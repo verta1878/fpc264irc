@@ -1,0 +1,21 @@
+# Build artifacts
+test/out/
+*.o
+*.ppu
+*.exe
+ppas.sh
+script.res
+*.log
+
+# Exception: shipped prebuilt RTL/package units MUST be tracked
+!bin/units/**/*.ppu
+!bin/units/**/*.o
+
+# Exception: shipped tool binaries
+!bin/ppc386
+!bin/ppcx64
+!bin/tools/**/*
+
+# Exception: prebuilt example binaries
+!examples/**/*.exe
+!libs/**/*.exe

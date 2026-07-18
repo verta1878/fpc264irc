@@ -1,0 +1,17 @@
+BITS 16
+CPU 8086
+SECTION text use16 class=code
+SECTION rodata class=data
+SECTION data class=data
+SECTION fpc class=data
+SECTION bss class=bss
+SECTION stack stack class=stack align=16
+SECTION heap class=heap align=16
+GROUP dgroup rodata data fpc bss stack heap
+SECTION text
+
+SECTION rodata class=data
+	ALIGN 2
+	GLOBAL _$CONVUTILS$_Ld1
+_$CONVUTILS$_Ld1:
+		DB	151,165,180,54,65,95,112,137,225,63

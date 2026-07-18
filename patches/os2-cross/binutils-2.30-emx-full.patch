@@ -1,0 +1,25 @@
+--- a/config.sub
++++ b/config.sub
+@@ Add emx as recognized OS
+ | -os2* |
++| -os2* | -emx* |
+
+--- a/bfd/config.bfd
++++ b/bfd/config.bfd
+@@ After i386-*-msdos* entry, add:
++  i[3-7]86-*-emx*)
++    targ_defvec=i386_aout_vec
++    targ_selvecs=i386_msdos_vec
++    ;;
+
+--- a/gas/configure.tgt
++++ b/gas/configure.tgt
+@@ After i386-*-msdos* entry, add:
++  i386-*-emx*)				fmt=aout ;;
+
+--- a/ld/configure.tgt
++++ b/ld/configure.tgt
+@@ After i386-*-msdos* entry, add:
++i[3-7]86-*-emx*)	targ_emul=i386aout
++			targ_extra_emuls=i386msdos
++			;;

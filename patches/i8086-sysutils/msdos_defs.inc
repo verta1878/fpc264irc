@@ -1,0 +1,1 @@
+{$define FINDHANDLE_IS_POINTER}

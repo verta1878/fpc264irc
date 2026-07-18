@@ -1,0 +1,290 @@
+BITS 16
+CPU 8086
+SECTION text use16 class=code
+SECTION rodata class=data
+SECTION data class=data
+SECTION fpc class=data
+SECTION bss class=bss
+SECTION stack stack class=stack align=16
+SECTION heap class=heap align=16
+GROUP dgroup rodata data fpc bss stack heap
+SECTION text
+
+SECTION text
+	ALIGN 2
+	GLOBAL STDCONVS_$$_REGISTERMASS
+STDCONVS_$$_REGISTERMASS:
+		push	bp
+		mov	bp,sp
+		push	word [U_$STDCONVS_$$_CBMASS]
+		push	word [RESSTR_$STDCONVS_$$_TXTMUNANOGRAMS+2]
+		sub	sp,8
+		mov	di,sp
+		push	ds
+		pop	es
+		mov	si,word _$STDCONVS$_Ld19
+		cld
+		mov	cx,4
+		rep
+		movsw
+		call	CONVUTILS_$$_REGISTERCONVERSIONTYPE$TCONVFAMILY$ANSISTRING$DOUBLE$$TCONVTYPE
+		mov	word [U_$STDCONVS_$$_MUNANOGRAMS],ax
+		push	word [U_$STDCONVS_$$_CBMASS]
+		push	word [RESSTR_$STDCONVS_$$_TXTMUMICROGRAMS+2]
+		sub	sp,8
+		mov	di,sp
+		push	ds
+		pop	es
+		mov	si,word _$STDCONVS$_Ld21
+		cld
+		mov	cx,4
+		rep
+		movsw
+		call	CONVUTILS_$$_REGISTERCONVERSIONTYPE$TCONVFAMILY$ANSISTRING$DOUBLE$$TCONVTYPE
+		mov	word [U_$STDCONVS_$$_MUMICROGRAMS],ax
+		push	word [U_$STDCONVS_$$_CBMASS]
+		push	word [RESSTR_$STDCONVS_$$_TXTMUMILLIGRAMS+2]
+		sub	sp,8
+		mov	di,sp
+		push	ds
+		pop	es
+		mov	si,word _$STDCONVS$_Ld6
+		cld
+		mov	cx,4
+		rep
+		movsw
+		call	CONVUTILS_$$_REGISTERCONVERSIONTYPE$TCONVFAMILY$ANSISTRING$DOUBLE$$TCONVTYPE
+		mov	word [U_$STDCONVS_$$_MUMILLIGRAMS],ax
+		push	word [U_$STDCONVS_$$_CBMASS]
+		push	word [RESSTR_$STDCONVS_$$_TXTMUCENTIGRAMS+2]
+		sub	sp,8
+		mov	di,sp
+		push	ds
+		pop	es
+		mov	si,word _$STDCONVS$_Ld44
+		cld
+		mov	cx,4
+		rep
+		movsw
+		call	CONVUTILS_$$_REGISTERCONVERSIONTYPE$TCONVFAMILY$ANSISTRING$DOUBLE$$TCONVTYPE
+		mov	word [U_$STDCONVS_$$_MUCENTIGRAMS],ax
+		push	word [U_$STDCONVS_$$_CBMASS]
+		push	word [RESSTR_$STDCONVS_$$_TXTMUDECIGRAMS+2]
+		sub	sp,8
+		mov	di,sp
+		push	ds
+		pop	es
+		mov	si,word _$STDCONVS$_Ld7
+		cld
+		mov	cx,4
+		rep
+		movsw
+		call	CONVUTILS_$$_REGISTERCONVERSIONTYPE$TCONVFAMILY$ANSISTRING$DOUBLE$$TCONVTYPE
+		mov	word [U_$STDCONVS_$$_MUDECIGRAMS],ax
+		push	word [U_$STDCONVS_$$_CBMASS]
+		push	word [RESSTR_$STDCONVS_$$_TXTMUGRAMS+2]
+		sub	sp,8
+		mov	di,sp
+		push	ds
+		pop	es
+		mov	si,word _$STDCONVS$_Ld22
+		cld
+		mov	cx,4
+		rep
+		movsw
+		call	CONVUTILS_$$_REGISTERCONVERSIONTYPE$TCONVFAMILY$ANSISTRING$DOUBLE$$TCONVTYPE
+		mov	word [U_$STDCONVS_$$_MUGRAMS],ax
+		push	word [U_$STDCONVS_$$_CBMASS]
+		push	word [RESSTR_$STDCONVS_$$_TXTMUDECAGRAMS+2]
+		sub	sp,8
+		mov	di,sp
+		push	ds
+		pop	es
+		mov	si,word _$STDCONVS$_Ld8
+		cld
+		mov	cx,4
+		rep
+		movsw
+		call	CONVUTILS_$$_REGISTERCONVERSIONTYPE$TCONVFAMILY$ANSISTRING$DOUBLE$$TCONVTYPE
+		mov	word [U_$STDCONVS_$$_MUDECAGRAMS],ax
+		push	word [U_$STDCONVS_$$_CBMASS]
+		push	word [RESSTR_$STDCONVS_$$_TXTMUHECTOGRAMS+2]
+		sub	sp,8
+		mov	di,sp
+		push	ds
+		pop	es
+		mov	si,word _$STDCONVS$_Ld23
+		cld
+		mov	cx,4
+		rep
+		movsw
+		call	CONVUTILS_$$_REGISTERCONVERSIONTYPE$TCONVFAMILY$ANSISTRING$DOUBLE$$TCONVTYPE
+		mov	word [U_$STDCONVS_$$_MUHECTOGRAMS],ax
+		push	word [U_$STDCONVS_$$_CBMASS]
+		push	word [RESSTR_$STDCONVS_$$_TXTMUKILOGRAMS+2]
+		wait fld1
+		sub	sp,8
+		mov	bx,sp
+		wait fstp	qword [bx]
+		DB	09bh
+		call	CONVUTILS_$$_REGISTERCONVERSIONTYPE$TCONVFAMILY$ANSISTRING$DOUBLE$$TCONVTYPE
+		mov	word [U_$STDCONVS_$$_MUKILOGRAMS],ax
+		push	word [U_$STDCONVS_$$_CBMASS]
+		push	word [RESSTR_$STDCONVS_$$_TXTMUMETRICTONS+2]
+		sub	sp,8
+		mov	di,sp
+		push	ds
+		pop	es
+		mov	si,word _$STDCONVS$_Ld25
+		cld
+		mov	cx,4
+		rep
+		movsw
+		call	CONVUTILS_$$_REGISTERCONVERSIONTYPE$TCONVFAMILY$ANSISTRING$DOUBLE$$TCONVTYPE
+		mov	word [U_$STDCONVS_$$_MUMETRICTONS],ax
+		push	word [U_$STDCONVS_$$_CBMASS]
+		push	word [RESSTR_$STDCONVS_$$_TXTMUDRAMS+2]
+		sub	sp,8
+		mov	di,sp
+		push	ds
+		pop	es
+		mov	si,word _$STDCONVS$_Ld45
+		cld
+		mov	cx,4
+		rep
+		movsw
+		call	CONVUTILS_$$_REGISTERCONVERSIONTYPE$TCONVFAMILY$ANSISTRING$DOUBLE$$TCONVTYPE
+		mov	word [U_$STDCONVS_$$_MUDRAMS],ax
+		push	word [U_$STDCONVS_$$_CBMASS]
+		push	word [RESSTR_$STDCONVS_$$_TXTMUGRAINS+2]
+		sub	sp,8
+		mov	di,sp
+		push	ds
+		pop	es
+		mov	si,word _$STDCONVS$_Ld46
+		cld
+		mov	cx,4
+		rep
+		movsw
+		call	CONVUTILS_$$_REGISTERCONVERSIONTYPE$TCONVFAMILY$ANSISTRING$DOUBLE$$TCONVTYPE
+		mov	word [U_$STDCONVS_$$_MUGRAINS],ax
+		push	word [U_$STDCONVS_$$_CBMASS]
+		push	word [RESSTR_$STDCONVS_$$_TXTMULONGTONS+2]
+		sub	sp,8
+		mov	di,sp
+		push	ds
+		pop	es
+		mov	si,word _$STDCONVS$_Ld47
+		cld
+		mov	cx,4
+		rep
+		movsw
+		call	CONVUTILS_$$_REGISTERCONVERSIONTYPE$TCONVFAMILY$ANSISTRING$DOUBLE$$TCONVTYPE
+		mov	word [U_$STDCONVS_$$_MULONGTONS],ax
+		push	word [U_$STDCONVS_$$_CBMASS]
+		push	word [RESSTR_$STDCONVS_$$_TXTMUTONS+2]
+		sub	sp,8
+		mov	di,sp
+		push	ds
+		pop	es
+		mov	si,word _$STDCONVS$_Ld48
+		cld
+		mov	cx,4
+		rep
+		movsw
+		call	CONVUTILS_$$_REGISTERCONVERSIONTYPE$TCONVFAMILY$ANSISTRING$DOUBLE$$TCONVTYPE
+		mov	word [U_$STDCONVS_$$_MUTONS],ax
+		push	word [U_$STDCONVS_$$_CBMASS]
+		push	word [RESSTR_$STDCONVS_$$_TXTMUOUNCES+2]
+		sub	sp,8
+		mov	di,sp
+		push	ds
+		pop	es
+		mov	si,word _$STDCONVS$_Ld49
+		cld
+		mov	cx,4
+		rep
+		movsw
+		call	CONVUTILS_$$_REGISTERCONVERSIONTYPE$TCONVFAMILY$ANSISTRING$DOUBLE$$TCONVTYPE
+		mov	word [U_$STDCONVS_$$_MUOUNCES],ax
+		push	word [U_$STDCONVS_$$_CBMASS]
+		push	word [RESSTR_$STDCONVS_$$_TXTMUPOUNDS+2]
+		sub	sp,8
+		mov	di,sp
+		push	ds
+		pop	es
+		mov	si,word _$STDCONVS$_Ld50
+		cld
+		mov	cx,4
+		rep
+		movsw
+		call	CONVUTILS_$$_REGISTERCONVERSIONTYPE$TCONVFAMILY$ANSISTRING$DOUBLE$$TCONVTYPE
+		mov	word [U_$STDCONVS_$$_MUPOUNDS],ax
+		push	word [U_$STDCONVS_$$_CBMASS]
+		push	word [RESSTR_$STDCONVS_$$_TXTMUSTONES+2]
+		sub	sp,8
+		mov	di,sp
+		push	ds
+		pop	es
+		mov	si,word _$STDCONVS$_Ld51
+		cld
+		mov	cx,4
+		rep
+		movsw
+		call	CONVUTILS_$$_REGISTERCONVERSIONTYPE$TCONVFAMILY$ANSISTRING$DOUBLE$$TCONVTYPE
+		mov	word [U_$STDCONVS_$$_MUSTONES],ax
+		mov	sp,bp
+		pop	bp
+		ret
+EXTERN	U_$STDCONVS_$$_MUSTONES
+EXTERN	_$STDCONVS$_Ld51
+EXTERN	RESSTR_$STDCONVS_$$_TXTMUSTONES
+EXTERN	U_$STDCONVS_$$_MUPOUNDS
+EXTERN	_$STDCONVS$_Ld50
+EXTERN	RESSTR_$STDCONVS_$$_TXTMUPOUNDS
+EXTERN	U_$STDCONVS_$$_MUOUNCES
+EXTERN	_$STDCONVS$_Ld49
+EXTERN	RESSTR_$STDCONVS_$$_TXTMUOUNCES
+EXTERN	U_$STDCONVS_$$_MUTONS
+EXTERN	_$STDCONVS$_Ld48
+EXTERN	RESSTR_$STDCONVS_$$_TXTMUTONS
+EXTERN	U_$STDCONVS_$$_MULONGTONS
+EXTERN	_$STDCONVS$_Ld47
+EXTERN	RESSTR_$STDCONVS_$$_TXTMULONGTONS
+EXTERN	U_$STDCONVS_$$_MUGRAINS
+EXTERN	_$STDCONVS$_Ld46
+EXTERN	RESSTR_$STDCONVS_$$_TXTMUGRAINS
+EXTERN	U_$STDCONVS_$$_MUDRAMS
+EXTERN	_$STDCONVS$_Ld45
+EXTERN	RESSTR_$STDCONVS_$$_TXTMUDRAMS
+EXTERN	U_$STDCONVS_$$_MUMETRICTONS
+EXTERN	_$STDCONVS$_Ld25
+EXTERN	RESSTR_$STDCONVS_$$_TXTMUMETRICTONS
+EXTERN	U_$STDCONVS_$$_MUKILOGRAMS
+EXTERN	RESSTR_$STDCONVS_$$_TXTMUKILOGRAMS
+EXTERN	U_$STDCONVS_$$_MUHECTOGRAMS
+EXTERN	_$STDCONVS$_Ld23
+EXTERN	RESSTR_$STDCONVS_$$_TXTMUHECTOGRAMS
+EXTERN	U_$STDCONVS_$$_MUDECAGRAMS
+EXTERN	_$STDCONVS$_Ld8
+EXTERN	RESSTR_$STDCONVS_$$_TXTMUDECAGRAMS
+EXTERN	U_$STDCONVS_$$_MUGRAMS
+EXTERN	_$STDCONVS$_Ld22
+EXTERN	RESSTR_$STDCONVS_$$_TXTMUGRAMS
+EXTERN	U_$STDCONVS_$$_MUDECIGRAMS
+EXTERN	_$STDCONVS$_Ld7
+EXTERN	RESSTR_$STDCONVS_$$_TXTMUDECIGRAMS
+EXTERN	U_$STDCONVS_$$_MUCENTIGRAMS
+EXTERN	_$STDCONVS$_Ld44
+EXTERN	RESSTR_$STDCONVS_$$_TXTMUCENTIGRAMS
+EXTERN	U_$STDCONVS_$$_MUMILLIGRAMS
+EXTERN	_$STDCONVS$_Ld6
+EXTERN	RESSTR_$STDCONVS_$$_TXTMUMILLIGRAMS
+EXTERN	U_$STDCONVS_$$_MUMICROGRAMS
+EXTERN	_$STDCONVS$_Ld21
+EXTERN	RESSTR_$STDCONVS_$$_TXTMUMICROGRAMS
+EXTERN	U_$STDCONVS_$$_MUNANOGRAMS
+EXTERN	CONVUTILS_$$_REGISTERCONVERSIONTYPE$TCONVFAMILY$ANSISTRING$DOUBLE$$TCONVTYPE
+EXTERN	_$STDCONVS$_Ld19
+EXTERN	RESSTR_$STDCONVS_$$_TXTMUNANOGRAMS
+EXTERN	U_$STDCONVS_$$_CBMASS

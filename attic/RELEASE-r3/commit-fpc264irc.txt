@@ -1,0 +1,42 @@
+=== Commit message: fpc264irc (compiler fork) ===
+
+Summary line:
+  r3: OS/2 TProcess + Mystic 56/56 + bundled IDE and Lazarus LCL
+
+Body:
+
+Release 2.6.4irc-r3 (2026-07-12).
+
+OS/2 TProcess (first for Free Pascal):
+- NEW src/packages/fcl-process/src/os2/process.inc — async TProcess via
+  DosExecPgm + DosWaitChild with DosCreatePipe/DosDupHandle pipe
+  redirection. Upstream FPC (through 3.x) never had an OS/2 process.inc.
+- os2/pipes.inc: implement GetNumBytesAvailable via DosPeekNPipe (was a
+  stub returning 0; Mystic's mis relay loop depends on it).
+- process.pp: add DosCalls to uses under {$ifdef os2}.
+
+OS/2 RTL completion (44 -> 60 units):
+- crt: fix byte vs tcrtcoord signature mismatch with shared crth.inc.
+- sysutils: remove redundant local Beep that clashed with the shared one.
+- sockets + so32dll: build the OS/2 TCP/IP units into the emx RTL.
+
+Cross-platform Mystic (Phase 4): 56/56.
+- 14/14 each on native Linux, win32, go32v2 DOS, and OS/2.
+- NEW build-mystic-os2.sh: one-command OS/2 build using this fork.
+
+FPC text-mode IDE — self-contained 3-tier:
+- bundled bin/ide/fp + units (Tier 2), build-ide.sh (Tier 3),
+  tools/get-ide.sh provisioner.
+
+Lazarus 1.2.6 LCL — self-contained 3-tier per widgetset:
+- win32 built + verified (GUI app -> PE32 .exe), gtk2 built.
+- bundled units with form resources (Tier 2), build-lcl.sh (Tier 3),
+  tools/get-lcl.sh; full widgetset source in src/lazarus/.
+
+Version string carries release identity (2.6.4irc-r3 (2026-07-12)); new -iR
+option. Docs: MILESTONE-R3.md, docs/mystic_build.md, docs/lazarus_lcl.md.
+
+Tests: 166 gates, 31 tools, 45 fallback, 13 platforms, 23 OS/2, 11 IDE+GUI.
+
+NOTE: consider splitting into focused commits if preferred (OS/2 TProcess /
+RTL completion / IDE / LCL / Mystic tooling are separable).

@@ -1,0 +1,7 @@
+__pycache__/
+objects/
+_watt32.pyd
+watt32_swig_wrap.c
+watt32_swig_wrap.i
+watt32.py
+watt32.pyo

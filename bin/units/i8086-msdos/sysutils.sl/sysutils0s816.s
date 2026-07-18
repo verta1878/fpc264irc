@@ -1,0 +1,24 @@
+BITS 16
+CPU 8086
+SECTION text use16 class=code
+SECTION rodata class=data
+SECTION data class=data
+SECTION fpc class=data
+SECTION bss class=bss
+SECTION stack stack class=stack align=16
+SECTION heap class=heap align=16
+GROUP dgroup rodata data fpc bss stack heap
+SECTION text
+
+SECTION data class=data
+	ALIGN 2
+	GLOBAL RTTI_$SYSUTILS_$$_OWORDREC
+RTTI_$SYSUTILS_$$_OWORDREC	DB	13,8
+		DB	"OWordRec"
+	DD	16,5
+	DW	RTTI_$SYSTEM_$$_QWORD,0,RTTI_$SYSTEM_$$_QWORD,8,RTTI_$SYSUTILS_$$_DEF371
+	DW	0,RTTI_$SYSUTILS_$$_DEF372,0,RTTI_$SYSUTILS_$$_DEF373,0
+EXTERN	RTTI_$SYSUTILS_$$_DEF373
+EXTERN	RTTI_$SYSUTILS_$$_DEF372
+EXTERN	RTTI_$SYSUTILS_$$_DEF371
+EXTERN	RTTI_$SYSTEM_$$_QWORD

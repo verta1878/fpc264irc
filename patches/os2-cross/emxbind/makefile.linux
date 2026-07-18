@@ -1,0 +1,13 @@
+# Makefile for emxbind Linux port
+CC = gcc
+CFLAGS = -I. -Isys -DUNIX_PORT -O2
+SRCS = emxbind.c exec.c export.c fixup.c list.c cmd.c map.c \
+       resource.c utils.c emx_compat.c
+
+emxbind: $(SRCS)
+	$(CC) $(CFLAGS) -o emxbind $(SRCS)
+
+clean:
+	rm -f emxbind emxbind_dbg emxbind_asan
+
+.PHONY: clean

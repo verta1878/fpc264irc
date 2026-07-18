@@ -1,0 +1,132 @@
+--- trayit_r.v1.pas	2026-07-17 21:29:18.680020704 +0000
++++ trayit_r.pas	2026-07-17 21:41:03.410896777 +0000
+@@ -21,9 +21,12 @@
+        Explorer to drop dead icons left behind by ANY program.
+ 
+   Target: i386-win32, Free Pascal 2.6.4irc (fpc264irc), pure Win32 API.
++  Runs on Windows XP through Windows 11 (Vista-only APIs are resolved
++  dynamically with XP fallbacks; PE subsystem version is 4.0).
+   ========================================================================== }
+ {$mode objfpc}{$H+}
+ {$apptype gui}
++{$R trayit_r.res}
+ 
+ uses
+   Windows, Messages;
+@@ -70,6 +73,8 @@
+   HOTKEY_TRAY = 1;
+ 
+ type
++  PHWND = ^HWND;
++
+   { NOTIFYICONDATAW, Windows 2000 layout (936 bytes) - valid on Win2k..Win11 }
+   TNID = packed record
+     cbSize          : DWORD;
+@@ -112,15 +117,47 @@
+   external 'user32.dll' name 'SetWinEventHook';
+ function UnhookWinEvent(hook: THandle): BOOL; stdcall;
+   external 'user32.dll' name 'UnhookWinEvent';
+-function QueryFullProcessImageNameW(hProcess: THandle; dwFlags: DWORD;
+-  lpExeName: PWideChar; var lpdwSize: DWORD): BOOL; stdcall;
+-  external 'kernel32.dll' name 'QueryFullProcessImageNameW';
++{ Windows XP support: QueryFullProcessImageNameW only exists on Vista+.
++  A static import would stop the exe from LOADING on XP, so both it and
++  the XP fallback (psapi!GetModuleFileNameExW) are resolved at runtime. }
++type
++  TQueryFullProcessImageNameW = function(hProcess: THandle; dwFlags: DWORD;
++    lpExeName: PWideChar; var lpdwSize: DWORD): BOOL; stdcall;
++  TGetModuleFileNameExW = function(hProcess: THandle; hModule: THandle;
++    lpFilename: PWideChar; nSize: DWORD): DWORD; stdcall;
++var
++  pQFPIN : TQueryFullProcessImageNameW = nil;   { Vista+           }
++  pGMFNE : TGetModuleFileNameExW       = nil;   { XP (psapi.dll)   }
++  procResolved: boolean = false;
++
++procedure ResolveProcNameApis;
++var hPsapi: THandle;
++begin
++  if procResolved then Exit;
++  procResolved := true;
++  pQFPIN := TQueryFullProcessImageNameW(
++    GetProcAddress(GetModuleHandle('kernel32.dll'), 'QueryFullProcessImageNameW'));
++  if not Assigned(pQFPIN) then   { objfpc: @procvar = addr of the VAR, never nil }
++  begin
++    hPsapi := LoadLibrary('psapi.dll');
++    if hPsapi <> 0 then
++      pGMFNE := TGetModuleFileNameExW(
++        GetProcAddress(hPsapi, 'GetModuleFileNameExW'));
++  end;
++end;
+ function XSendMessageTimeoutW(hw: HWND; Msg: UINT; wp: WPARAM; lp: LPARAM;
+   fuFlags, uTimeout: UINT; out lpdwResult: PtrUInt): LRESULT; stdcall;
+   external 'user32.dll' name 'SendMessageTimeoutW';
+ function XGetAncestor(h: HWND; gaFlags: UINT): HWND; stdcall;
+   external 'user32.dll' name 'GetAncestor';
+ 
++function AppIcon: HICON;
++begin
++  Result := LoadImageW(GetModuleHandleW(nil), PWideChar(1), IMAGE_ICON,
++                       16, 16, LR_DEFAULTCOLOR);
++  if Result = 0 then Result := LoadIcon(0, IDI_APPLICATION);
++end;
++
+ { ---- globals ------------------------------------------------------------ }
+ var
+   hInst            : THandle;
+@@ -173,18 +210,29 @@
+   pid: DWORD; hp: THandle; sz: DWORD; i: integer;
+   buf: array[0..MAX_PATH] of WideChar;
+   full: WideString;
++  ok: boolean;
+ begin
+   Result := '';
+   pid := 0;
+   GetWindowThreadProcessId(h, @pid);
+   if pid = 0 then Exit;
++  ResolveProcNameApis;
++  { Vista+: limited rights are enough. XP: PROCESS_QUERY_LIMITED_INFORMATION
++    does not exist and GetModuleFileNameExW additionally needs VM_READ. }
+   hp := OpenProcess(PROCESS_QUERY_LIMITED_INFORMATION, false, pid);
+   if hp = 0 then
++    hp := OpenProcess(PROCESS_QUERY_INFORMATION or PROCESS_VM_READ, false, pid);
++  if hp = 0 then
+     hp := OpenProcess(PROCESS_QUERY_INFORMATION, false, pid);
+   if hp = 0 then Exit;
+   sz := MAX_PATH;
+   buf[0] := #0;
+-  if QueryFullProcessImageNameW(hp, 0, @buf[0], sz) then
++  ok := false;
++  if Assigned(pQFPIN) then
++    ok := pQFPIN(hp, 0, @buf[0], sz)
++  else if Assigned(pGMFNE) then
++    ok := pGMFNE(hp, 0, @buf[0], MAX_PATH) > 0;
++  if ok then
+   begin
+     full := WideString(PWideChar(@buf[0]));
+     for i := Length(full) downto 1 do
+@@ -440,7 +488,7 @@
+ procedure ReAddAllIcons;
+ var i: integer; title: WideString;
+ begin
+-  AddIcon(0, LoadIcon(0, IDI_APPLICATION),
++  AddIcon(0, AppIcon,
+           APPTITLE + ' - Ctrl+minimize sends a window here');
+   for i := 0 to MAXTRAY - 1 do
+     if entries[i].used then
+@@ -764,6 +812,7 @@
+   wc.hInstance     := hInst;
+   wc.lpszClassName := PWideChar(clsName);
+   wc.hCursor       := LoadCursor(0, IDC_ARROW);
++  wc.hIcon         := AppIcon;
+   if RegisterClassExW(wc) = 0 then Halt(1);
+ 
+   { hidden top-level window: must be top-level so it receives the
+@@ -784,7 +833,7 @@
+ 
+   RegisterHotKey(hMain, HOTKEY_TRAY, MOD_CONTROL or MOD_SHIFT, Ord('T'));
+ 
+-  AddIcon(0, LoadIcon(0, IDI_APPLICATION),
++  AddIcon(0, AppIcon,
+           APPTITLE + ' - Ctrl+minimize sends a window here');
+ 
+   CleanStuckIcons;                       { clear leftovers from before }

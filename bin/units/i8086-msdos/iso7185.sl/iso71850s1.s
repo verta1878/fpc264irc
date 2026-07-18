@@ -1,0 +1,35 @@
+BITS 16
+CPU 8086
+SECTION text use16 class=code
+SECTION rodata class=data
+SECTION data class=data
+SECTION fpc class=data
+SECTION bss class=bss
+SECTION stack stack class=stack align=16
+SECTION heap class=heap align=16
+GROUP dgroup rodata data fpc bss stack heap
+SECTION text
+
+EXTERN	SYSTEM_$$_RANDOM$LONGINT$$LONGINT
+EXTERN	SYSTEM_$$_HEXSTR$LONGINT$BYTE$$SHORTSTRING
+EXTERN	fpc_shortstr_concat_multi
+EXTERN	SYSTEM_$$_ASSIGN$TEXT$SHORTSTRING
+EXTERN	SYSTEM_$$_REWRITE$TEXT
+EXTERN	fpc_write_text_char
+EXTERN	fpc_write_end
+EXTERN	SYSTEM_$$_RESET$TEXT
+EXTERN	TC_$SYSTEM_$$_CTRLZMARKSEOF
+EXTERN	SYSTEM_$$_EOF$TEXT$$BOOLEAN
+EXTERN	FPC_THREADVAR_RELOCATE
+EXTERN	U_$SYSTEM_$$_INPUT
+EXTERN	SYSTEM_$$_EOLN$TEXT$$BOOLEAN
+EXTERN	U_$SYSTEM_$$_OUTPUT
+EXTERN	fpc_get_output
+EXTERN	fpc_read_text_char
+EXTERN	fpc_read_end
+EXTERN	SYSTEM_$$_BLOCKREAD$file$formal$INT64
+EXTERN	SYSTEM_$$_BLOCKWRITE$file$formal$LONGINT
+EXTERN	SYSTEM_$$_EOF$file$$BOOLEAN
+EXTERN	SYSTEM_$$_RANDOMIZE
+EXTERN	TC_$SYSTEM_$$_FILEMODE
+; Begin asmlist al_procedures

@@ -1,0 +1,12 @@
+TrayIt! Remake — System Tray Utility for Console Programs
+
+Copyright (c) 2026 TrayIt! Remake contributors
+
+utrayit.pas, traydemo.pas, trayit_r.pas, and tools/build-fpcres.sh are
+original code. Licensed under the GNU General Public License v3.0 or later.
+
+See https://www.gnu.org/licenses/gpl-3.0.txt for the full license text.
+
+Note: No code from the original TrayIt! freeware by E. Toolé is involved.
+The utrayit unit is an entirely new implementation using only documented
+Windows/Unix APIs.

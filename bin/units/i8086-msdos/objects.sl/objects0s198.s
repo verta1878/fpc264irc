@@ -1,0 +1,25 @@
+BITS 16
+CPU 8086
+SECTION text use16 class=code
+SECTION rodata class=data
+SECTION data class=data
+SECTION fpc class=data
+SECTION bss class=bss
+SECTION stack stack class=stack align=16
+SECTION heap class=heap align=16
+GROUP dgroup rodata data fpc bss stack heap
+SECTION text
+
+SECTION data class=data
+	ALIGN 2
+	GLOBAL RTTI_$OBJECTS_$$_TSTREAM
+RTTI_$OBJECTS_$$_TSTREAM	DB	16,7
+		DB	"TStream"
+	DD	15,6
+	DW	RTTI_$OBJECTS_$$_TOBJECT,0,RTTI_$SYSTEM_$$_SMALLINT,2,RTTI_$SYSTEM_$$_SMALLINT
+	DW	4,RTTI_$SYSTEM_$$_LONGINT,6,RTTI_$SYSTEM_$$_LONGINT,10,RTTI_$SYSTEM_$$_BOOLEAN
+	DW	14
+EXTERN	RTTI_$SYSTEM_$$_BOOLEAN
+EXTERN	RTTI_$SYSTEM_$$_LONGINT
+EXTERN	RTTI_$SYSTEM_$$_SMALLINT
+EXTERN	RTTI_$OBJECTS_$$_TOBJECT

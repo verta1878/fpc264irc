@@ -1,0 +1,19 @@
+=== Commit message: mystic-bbs-irc (Mystic maintainer) ===
+
+Summary line:
+  Bump version to 1.10 A38irc
+
+Body:
+
+records.pas: mysVersion '1.10 A38' -> '1.10 A38irc'.
+
+Builds cleanly for OS/2 with the FPC 2.6.4irc fork, which now provides the
+OS/2 TProcess support that mis (the internet server) needs — upstream FPC
+never had it. See the fork's build-mystic-os2.sh; all 14 targets link for
+OS/2 with all symbols resolved.
+
+No other Mystic source changes are required for OS/2.
+
+NOTE: the working tree also shows a mode change on build.sh (100644 ->
+100755). If that was not intended, skip it when staging:
+  git checkout -- build.sh

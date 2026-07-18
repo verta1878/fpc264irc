@@ -1,0 +1,71 @@
+#include <winver.h>
+#include <tcp.h>
+#include <patchlevel.h> /* For PY_VERSION */
+
+#define RC_VERSION  WATTCP_MAJOR_VER, WATTCP_MINOR_VER, WATTCP_DEVEL_REL, 0
+
+#undef  RC_MANIFEST
+
+#if defined(__clang__)
+  #define RC_BUILDER  "clang-cl"
+//#define RC_MANIFEST  "_watt32.pyd.manifest"
+
+#elif defined(_MSC_VER)
+  #define RC_BUILDER  "Visual-C"
+//#define RC_MANIFEST  "_watt32.pyd.manifest"
+
+#elif defined(__MINGW32__)
+  #define RC_BUILDER  "MinGW"
+
+#else
+  #error "Unsupported compiler"
+#endif
+
+#if (RC_BITS == 32)
+  #define RC_BITNESS "32-bit"
+#elif (RC_BITS == 64)
+  #define RC_BITNESS "64-bit"
+#else
+  #error "'RC_BITS' is not defined"
+#endif
+
+VS_VERSION_INFO VERSIONINFO
+  FILEVERSION     RC_VERSION
+  PRODUCTVERSION  RC_VERSION
+  FILEFLAGSMASK   0x3fL
+  FILEFLAGS       0
+  FILEOS          VOS__WINDOWS32
+  FILETYPE        VFT_DLL
+  FILESUBTYPE     0x0L
+
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+ /* BLOCK "04090000" */
+    BLOCK "040904b0"
+    BEGIN
+      VALUE "CompanyName",      "Watt-32 tcp/ip stack"
+      VALUE "FileDescription",  "Python " PY_VERSION " library for Watt-32 library "
+      VALUE "FileVersion",      WATTCP_VER_STRING
+      VALUE "InternalName",     "Watt-32 "
+      VALUE "OriginalFilename", "_watt32.pyd"
+      VALUE "ProductName",      "Watt-32 tcp/ip stack"
+      VALUE "ProductVersion",   WATTCP_VER_STRING " (" RC_BUILDER ", " RC_BITNESS ")"
+      VALUE "LegalCopyright",   "This library carries a BSD-style licence.\r\n"
+                                "\t\t\tCopyright 1997-2026, Gisle Vanem <gvanem@yahoo.no>."
+    END
+  END
+
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x409, 1200
+  END
+END
+
+#if defined(RC_MANIFEST)
+  #define MANIFEST_RESOURCE_ID  1
+  #define RT_MANIFEST          24
+
+ MANIFEST_RESOURCE_ID RT_MANIFEST RC_MANIFEST
+#endif
+

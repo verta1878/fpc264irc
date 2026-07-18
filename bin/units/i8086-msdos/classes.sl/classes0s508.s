@@ -1,0 +1,42 @@
+BITS 16
+CPU 8086
+SECTION .text use16 class=code
+SECTION .rodata class=data
+SECTION .data class=data
+SECTION .fpc class=data
+SECTION .bss class=bss
+SECTION stack stack class=stack align=16
+SECTION heap class=heap align=16
+GROUP dgroup rodata data fpc bss stack heap
+SECTION .text
+
+SECTION .text
+	ALIGN 2
+	GLOBAL CLASSES_$$_REDIRECTFIXUPREFERENCES$TCOMPONENT$ANSISTRING$ANSISTRING
+CLASSES_$$_REDIRECTFIXUPREFERENCES$TCOMPONENT$ANSISTRING$ANSISTRING:
+		push	bp
+		mov	bp,sp
+		cmp	word [U_$CLASSES_$$_NEEDRESOLVING],0
+		je	..@j11355
+		jmp	..@j11356
+..@j11355:
+		jmp	..@j11353
+..@j11356:
+		mov	ax,word VMT_$CLASSES_$$_TREDIRECTREFERENCEVISITOR
+		push	ax
+		mov	ax,1
+		push	ax
+		push	word [bp+8]
+		push	word [bp+6]
+		push	word [bp+4]
+		call	CLASSES$_$TREDIRECTREFERENCEVISITOR_$__$$_CREATE$crc116E8328
+		push	ax
+		call	CLASSES_$$_VISITRESOLVELIST$TLINKEDLISTVISITOR
+..@j11353:
+		mov	sp,bp
+		pop	bp
+		ret	6
+EXTERN	CLASSES_$$_VISITRESOLVELIST$TLINKEDLISTVISITOR
+EXTERN	CLASSES$_$TREDIRECTREFERENCEVISITOR_$__$$_CREATE$crc116E8328
+EXTERN	VMT_$CLASSES_$$_TREDIRECTREFERENCEVISITOR
+EXTERN	U_$CLASSES_$$_NEEDRESOLVING

@@ -1,0 +1,19 @@
+Fix native ld linker invocation on modern binutils (>= 2.19 / 2.42)
+
+link.res is a full replacement linker script (ENTRY + SECTIONS). FPC 2.6.4
+passed it to ld as a bare positional argument and only added -T when
+cross-linking with a sysroot. Modern GNU ld (binutils 2.19+, e.g. 2.42) does
+not accept a linker script as positional input: it warns "link.res contains
+output sections; did you forget -T?" and on some builds parses it pathologically
+or wedges the ld process, so the link stage hangs or reports "Can't call the
+linker". Compiling was unaffected.
+
+Always pass the script with -T in the native ExeCmd (compiler/systems/
+t_linux.pas), matching FPC 3.2.2's behaviour for binutils >= 2.19. Our link.res
+is always a full replacement script, so -T is always correct.
+
+Rebuilt ppc386 + ppcx64 (still 2.6.4irc-r3). Verified: gates 166/169 ALL GREEN
+and now linking; native i386 Mystic build (mystic + 9 tools) compiles and links
+clean with no -T warning and no hang.
+
+Reported-by: Antonio Rico (Reapern66)

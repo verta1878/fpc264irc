@@ -1,0 +1,138 @@
+OS/2 EMX import symbol support for GNU binutils 2.30
+=====================================================
+
+Enables GNU ld 2.30 to resolve FPC's OS/2 DLL import-by-ordinal symbols
+(N_IMP1/N_IMP2 in a.out format). Without these patches, linking any OS/2
+program produces "undefined reference to $dll$doscalls$_index_NNN" errors.
+
+ROOT CAUSE: N_IMP1 (0x68) and N_IMP2 (0x6a) symbol types fall within the
+N_STAB mask range (0xe0), so stock binutils treats them as debugging
+symbols and skips them at multiple points: symbol classification, symbol
+table loading, archive member scanning, and — critically — the archive
+member *inclusion* test. The last one is the key: even when the symbol
+matched an undefined reference, the archive member was never pulled in
+because N_IMP1 wasn't in the list of types that trigger inclusion.
+
+THE FIX: seven changes total.
+
+bfd/aoutx.h (6 changes):
+  1. Define N_IMP1/N_IMP2 constants and IS_EMX_IMPORT() macro
+  2. translate_from_native_sym_flags: classify N_IMP as BSF_GLOBAL absolute
+  3. aout_link_add_symbols: don't skip N_IMP at the N_STAB filter
+  4. aout_link_add_symbols switch: handle N_IMP in default case (was abort())
+  5. aout_link_check_ar_symbols: don't skip N_IMP at the visibility filter
+  6. aout_link_check_ar_symbols: ADD N_IMP1 to the member-inclusion trigger
+     list (THE KEY FIX — without this the member is never linked in)
+
+bfd/linker.c (1 change):
+  7. _bfd_generic_link_add_archive_symbols: strip leading underscore when
+     looking up archive index symbols, so stripped references resolve
+
+Apply to fresh binutils-2.30 source:
+  tar xf binutils-2.30.tar.xz && cd binutils-2.30
+  patch -p1 < binutils-2.30-emx-nimp.patch
+  ./configure --target=i386-aout --enable-obsolete --disable-nls --disable-werror
+  make
+
+Verified: produces a.out executable with zero undefined references for
+FPC OS/2 (i386-emx) programs. Final conversion to OS/2 LX format is done
+by emxbind (separate tool, source in ../emxbind/).
+
+=====================================================
+
+--- a/bfd/aoutx.h	2018-01-13 13:31:15.000000000 +0000
++++ b/bfd/aoutx.h	2026-07-11 20:30:47.620157071 +0000
+@@ -125,6 +125,11 @@
+ #include "libaout.h"
+ #include "libbfd.h"
+ #include "aout/aout64.h"
++
++/* EMX a.out import symbol types (OS/2 DLL import-by-ordinal). */
++#define N_IMP1  0x68
++#define N_IMP2  0x6a
++#define IS_EMX_IMPORT(t) (((t) & ~N_EXT) == N_IMP1 || ((t) & ~N_EXT) == N_IMP2)
+ #include "aout/stab_gnu.h"
+ #include "aout/ar.h"
+ 
+@@ -1409,7 +1414,12 @@
+ {
+   flagword visible;
+ 
+-  if ((cache_ptr->type & N_STAB) != 0
++  if (IS_EMX_IMPORT (cache_ptr->type))
++    {
++      cache_ptr->symbol.section = bfd_abs_section_ptr;
++      cache_ptr->symbol.flags = BSF_GLOBAL;
++    }
++  else if ((cache_ptr->type & N_STAB) != 0
+       || cache_ptr->type == N_FN)
+     {
+       asection *sec;
+@@ -3067,8 +3077,8 @@
+ 
+       type = H_GET_8 (abfd, p->e_type);
+ 
+-      /* Ignore debugging symbols.  */
+-      if ((type & N_STAB) != 0)
++      /* Ignore debugging symbols, but NOT EMX import symbols.  */
++      if ((type & N_STAB) != 0 && !IS_EMX_IMPORT (type))
+ 	continue;
+ 
+       /* PR 19629: Corrupt binaries can contain illegal string offsets.  */
+@@ -3081,6 +3091,13 @@
+       switch (type)
+ 	{
+ 	default:
++	  /* EMX import symbols: global absolute definitions.  */
++	  if (IS_EMX_IMPORT (type))
++	    {
++	      section = bfd_abs_section_ptr;
++	      flags = BSF_GLOBAL;
++	      break;
++	    }
+ 	  abort ();
+ 
+ 	case N_UNDF:
+@@ -3310,7 +3327,7 @@
+ 	 optimization only, as we check the type more thoroughly
+ 	 below.  */
+       if (((type & N_EXT) == 0
+-	   || (type & N_STAB) != 0
++	   || ((type & N_STAB) != 0 && !IS_EMX_IMPORT (type))
+ 	   || type == N_FN)
+ 	  && type != N_WEAKA
+ 	  && type != N_WEAKT
+@@ -3341,7 +3358,8 @@
+ 	  || type == (N_DATA | N_EXT)
+ 	  || type == (N_BSS | N_EXT)
+ 	  || type == (N_ABS | N_EXT)
+-	  || type == (N_INDR | N_EXT))
++	  || type == (N_INDR | N_EXT)
++	  || IS_EMX_IMPORT (type))
+ 	{
+ 	  /* This object file defines this symbol.  We must link it
+ 	     in.  This is true regardless of whether the current
+--- a/bfd/linker.c	2018-01-13 13:31:15.000000000 +0000
++++ b/bfd/linker.c	2026-07-11 20:30:47.621937630 +0000
+@@ -941,8 +941,19 @@
+ 	      continue;
+ 	    }
+ 
+-	  h = bfd_link_hash_lookup (info->hash, arsym->name,
+-				    FALSE, FALSE, TRUE);
++	  { /* Strip leading char for EMX a.out archive import lookup. */
++	    const char *lookup_name = arsym->name;
++	    h = bfd_link_hash_lookup (info->hash, lookup_name,
++				      FALSE, FALSE, TRUE);
++	    if ((h == NULL || h->type == bfd_link_hash_new)
++		&& *lookup_name == bfd_get_symbol_leading_char (abfd))
++	      { struct bfd_link_hash_entry *h2;
++		h2 = bfd_link_hash_lookup (info->hash, lookup_name + 1,
++					   FALSE, FALSE, TRUE);
++		if (h2 != NULL && h2->type != bfd_link_hash_new)
++		  h = h2;
++	      }
++	  }
+ 
+ 	  if (h == NULL
+ 	      && info->pei386_auto_import

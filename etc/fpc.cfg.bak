@@ -1,0 +1,4 @@
+-Fu/home/claude/fpc264irc_final/bin/units/$fpctarget
+-Fu/home/claude/fpc264irc_final/bin/units/$fpctarget/*
+-Fl/usr/lib/i386-linux-gnu
+-Fl/usr/lib

@@ -1,0 +1,19 @@
+=== GitHub "About" (repo sidebar description — ~350 char max) ===
+
+Fork of Free Pascal 2.6.4 for BBS/retro preservation. Codepage-aware strings,
+DOS/OS2/Win/Linux cross-build from Linux, OS/2 linking + first-ever OS/2
+TProcess. Bundled IDE + Lazarus LCL. Builds Mystic BBS 56/56 across 4 platforms.
+Native linking fixed for modern binutils. fpSeteuid/fpSetegid, string literal
+indexing (r3.1).
+
+
+=== Website field (optional) ===
+
+(link to MILESTONE-R3.md or the releases page)
+
+
+=== Topics / tags (13) ===
+
+  free-pascal, fpc, pascal, bbs, retrocomputing, os2, dos, cross-compiler,
+  mystic-bbs, codepage, preservation, linker, binutils
+

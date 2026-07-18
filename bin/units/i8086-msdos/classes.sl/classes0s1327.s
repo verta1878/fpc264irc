@@ -1,0 +1,29 @@
+BITS 16
+CPU 8086
+SECTION .text use16 class=code
+SECTION .rodata class=data
+SECTION .data class=data
+SECTION .fpc class=data
+SECTION .bss class=bss
+SECTION stack stack class=stack align=16
+SECTION heap class=heap align=16
+GROUP dgroup rodata data fpc bss stack heap
+SECTION .text
+
+SECTION .data
+	ALIGN 2
+	GLOBAL RTTI_$CLASSES_$$_TCOLLECTIONSORTCOMPARE
+RTTI_$CLASSES_$$_TCOLLECTIONSORTCOMPARE	DB	23,22
+		DB	"TCollectionSortCompare"
+	DB	0,2
+	DW	RTTI_$SYSTEM_$$_SMALLINT
+	DB	2,8
+	DW	RTTI_$CLASSES_$$_TCOLLECTIONITEM
+	DB	5
+		DB	"Item1"
+	DB	8
+	DW	RTTI_$CLASSES_$$_TCOLLECTIONITEM
+	DB	5
+		DB	"Item2"
+EXTERN	RTTI_$CLASSES_$$_TCOLLECTIONITEM
+EXTERN	RTTI_$SYSTEM_$$_SMALLINT
