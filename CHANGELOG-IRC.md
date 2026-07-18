@@ -1,5 +1,47 @@
 # FPC 2.6.4irc Changelog
 
+## r3.1-20260718 (2026-07-18)
+
+### Win32 Heap Crash Fixed
+- **Root cause:** `syswin.inc` codepage signature changes (`cp:TSystemCodePage`
+  added to Unicode conversion functions) changed register allocation, corrupting
+  heap data structures on Windows 11. Wine unaffected.
+- **Fix:** Win32 system unit locked to r3's `system.o` (591KB, Jul 10).
+  Codepage patches deferred to Phase 6 (unstable branch).
+- **PE patching:** `tools/pe-win11-fix.py` sets NX_COMPAT + SubsystemVersion 6.0.
+
+### New Platforms
+- **i386-darwin:** 251 RTL+pkg PPUs + 171 LCL PPUs (new target)
+- **i8086-msdos:** 42 PPUs, all smartlinked (was 23 in r3)
+
+### PPU Expansion
+- x86_64-linux: 87 → 332 (+245)
+- i386-linux: 94 → 308 (+214)
+- i386-win32: 77 → 126 (+49, r3 system.o base)
+- i386-go32v2: 71 → 78 (+7)
+- i386-freebsd: 88 → 189 (+101)
+- i386-os2: 83 → 84 (+1)
+- i8086-msdos: 23 → 42 (+19)
+- i386-darwin: 0 → 251 (NEW)
+
+### LCL Backport
+- Lazarus 1.2.6 LCL on 5 platforms (1,773 PPUs total)
+- CustomDrawn widgetset for Linux, FreeBSD, Darwin
+- Win32 native widgetset (from r3 build)
+- Lazarus GUI IDE binary (72MB, CustomDrawn)
+- lazbuild CLI build tool (45MB)
+
+### Application Testing
+- Mystic BBS: 56/56 → 75/75 (added FreeBSD 15/15)
+- netmodem2irc: 34/34 engine tests (new)
+- Cross-compile: 65/65 all pass
+
+### Build Cleanup
+- Removed windres from compiler source (`rescmn.pas`)
+- Cleaned build artifacts from `src/rtl/units/`
+- Darwin process unit: fpvfork → fpfork fix
+
+
 **Base:** Free Pascal Compiler 2.6.4 (release_2_6_4, January 2014)
 **Fork:** 2.6.4irc — DOS networking, cross-compilation fixes, OS/2 import fix
 

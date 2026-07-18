@@ -1,8 +1,10 @@
 # FPC 2.6.4irc — Maintained Free Pascal Fork
 
-A preservation fork of Free Pascal 2.6.4 with codepage-aware AnsiStrings,
-7-platform cross-compiler, 23-unit i8086 DOS backend with Watt-32 TCP/IP,
-and a standardized BBS/retro build environment.
+**Current release: r3.1-20260718**
+
+A preservation fork of Free Pascal 2.6.4 for BBS and retro platform
+development. 8-platform cross-compiler with Lazarus LCL on 5 platforms,
+Mystic BBS 75/75, netmodem2irc 34/34, zero external dependencies.
 
 ## Quick Start
 
@@ -10,193 +12,157 @@ and a standardized BBS/retro build environment.
 # Native Linux build:
 bin/ppcx64 -Fubin/units/x86_64-linux program.pas
 
-# Cross-compile for 16-bit DOS:
-bin/tools/i8086-msdos/build-dos.sh examples/doorkit86/doorkit86.pas
-
 # Cross-compile for Win32:
 bin/ppc386 -Twin32 -Fubin/units/i386-win32 -XPi386-win32- program.pas
 
-# Run all tests:
-bash test/test-all-platforms.sh      # 15/15
-bash tools/cross-compile-all.sh     # 65/65
+# Cross-compile for 16-bit DOS:
+bin/ppc386 -Tgo32v2 -Fubin/units/i386-go32v2 program.pas
+
+# Cross-compile for FreeBSD:
+bin/ppc386 -Tfreebsd -Fubin/units/i386-freebsd program.pas
 ```
 
-## Supported Targets (7 platforms)
+## Supported Targets (8 platforms)
 
-| Target | PPUs | Compiler | Status |
-|--------|------|----------|--------|
-| x86_64-linux | 87 | `bin/ppcx64` | ✅ Native |
-| i386-linux | 94 | `bin/ppc386` | ✅ Cross |
-| i386-win32 | 80 | `bin/ppc386 -Twin32` | ✅ Cross |
-| i386-go32v2 | 74 | `bin/ppc386 -Tgo32v2` | ✅ Cross (DJGPP DOS) |
-| i386-freebsd | 88 | `bin/ppc386 -Tfreebsd` | ✅ Cross |
-| i386-os2 (EMX) | 83 | `bin/ppc386 -Temx` | ✅ Cross (compile+link) |
-| i8086-msdos | 23 | `ppcross8086` | ✅ Cross (16-bit DOS) |
+| Target | RTL+Pkg PPUs | LCL PPUs | Compiler | Status |
+|--------|-------------|----------|----------|--------|
+| x86_64-linux | 332 | 470 | `bin/ppcx64` | ✅ Native |
+| i386-linux | 308 | 360 | `bin/ppc386` | ✅ Cross |
+| i386-win32 | 126 | 413 | `bin/ppc386 -Twin32` | ✅ Cross (r3 system.o) |
+| i386-go32v2 | 78 | — | `bin/ppc386 -Tgo32v2` | ✅ Cross (DJGPP DOS) |
+| i386-freebsd | 189 | 359 | `bin/ppc386 -Tfreebsd` | ✅ Cross |
+| i386-os2 (EMX) | 84 | — | `bin/ppc386 -Temx` | ✅ Cross |
+| i8086-msdos | 42 | — | `ppcross8086` | ✅ Cross (16-bit, smartlinked) |
+| i386-darwin | 251 | 171 | `bin/ppc386 -Tdarwin` | ✅ Cross (PPU only) |
 
-## i8086 16-bit DOS — 23 Units
+**Total: 3,183 PPUs** (1,410 RTL+packages + 1,773 LCL)
+
+## IDE Binaries
+
+| Binary | Size | Description |
+|--------|------|-------------|
+| `bin/ide/fp` | 7.1MB | Text-mode IDE (Free Vision), static ELF x86_64 |
+| `bin/ide/lazarus` | 72MB | GUI IDE (Lazarus, CustomDrawn widgetset) |
+| `bin/ide/lazbuild` | 45MB | CLI build tool for Lazarus projects |
+
+## Application Test Results
+
+| Application | Platforms | Result |
+|-------------|-----------|--------|
+| Mystic BBS v1.10 | Linux, Win32, go32v2, OS/2, FreeBSD | **75/75** |
+| netmodem2irc | Engine tests + DOS bridge | **34/34** |
+| Cross-compile (all targets) | 8 platforms | **65/65** |
+| Compiler gates | All | **166/166 GREEN** |
+
+## Win32 on Windows 11
+
+Win32 binaries use r3's `system.o` (591KB, Jul 10 2026). A later rebuild
+from source introduced a heap manager bug that crashes on Windows 11
+(Wine unaffected). See `BUG-win32-heap-crash.md` for full analysis.
+
+Post-link PE patching for Windows 11 compatibility:
+```bash
+python3 tools/pe-win11-fix.py mystic.exe  # Sets NX_COMPAT + SubsystemVersion 6.0
+```
+
+## Lazarus LCL
+
+Lazarus 1.2.6 LCL backported to 5 platforms using CustomDrawn widgetset
+(Win32 uses native widgetset). Built from source with paswstring codepage
+fixes and Win9xWsManager stub.
+
+| Platform | LCL PPUs | Widgetset |
+|----------|----------|-----------|
+| x86_64-linux | 470 | CustomDrawn |
+| i386-linux | 360 | CustomDrawn |
+| i386-win32 | 413 | Win32 (from r3 build) |
+| i386-freebsd | 359 | CustomDrawn |
+| i386-darwin | 171 | CustomDrawn (partial — needs objc bridge) |
+
+## i8086 16-bit DOS — 42 Units
 
 All units compiled with smartlinks for minimal binary size (640KB limit).
+Watt-32 TCP/IP for BSD sockets on DOS. See `docs/watt32_integration.md`.
 
-| Unit | Smartlinks | Category |
-|------|-----------|----------|
-| system | 1941 | Core RTL |
-| dos | 84 | DOS API |
-| crt | 71 | Console I/O |
-| strings | 25 | PChar string functions |
-| objpas | 36 | Object Pascal mode |
-| sysutils | 971 | File I/O, date/time, string conversion |
-| sockets | 16 | Watt-32 BSD TCP/IP sockets |
-| math | 249 | Math functions (FPU stubs on DOS) |
-| types | 185 | Delphi-compatible type definitions |
-| strutils | 210 | Extended string utilities |
-| md5 | 54 | MD5 hash |
-| sha1 | 18 | SHA-1 hash |
-| crc | 23 | CRC32 checksum |
-| keyboard | 59 | Keyboard input |
-| objects | 242 | TStream, TCollection, TStringList |
-| ports | 14 | Direct I/O port access |
-| getopts | 35 | Command-line option parsing |
-| printer | 10 | LPT printer output |
-| utextmouse | 17 | INT 33h text-mode mouse |
-| seteuid_unit | 10 | UID/GID management (stub on DOS) |
-| doorkit86 | 42 | BBS door framework |
-| sysconst | 4 | System constants |
-| rtlconst | 3 | RTL constants |
+## Roadmap — r3.1 Stable
 
-**Total: 4,369 smartlink objects across 23 units.**
+All builds are `r3.1-YYYYMMDD` until verified and stable.
 
-### Watt-32 TCP/IP
+### Phase 0: Build Infrastructure
+- Make clean — purge build artifacts from source tree
+- Self-contained build script with three-tier fallback:
+  1. Use bundled pre-built tools (`bin/tools/`)
+  2. Fall back to system-installed tools
+  3. Fall back to building from source
+- Gate: `./build.sh` produces a working compiler from clean checkout
 
-`sockets.pp` provides BSD socket API for 16-bit DOS via the Watt-32 library.
-`wattcpwl.lib` (16-bit large model, built with OpenWatcom) is bundled at
-`lib/watt32/`. Includes FPC wrappers: `WattInit`, `WattTCPConnect`,
-`WattSend`, `WattRecv`, `WattClose`.
+### Phase 1: Win32 LCL
+- Fix ActiveX → variants checksum cascade
+- Build LCL win32 PPUs with `make lcl LCL_PLATFORM=win32`
+- Compile NMServer (GUI app) for Win32
+- Gate: NMServer.exe runs on Win11
 
-### PPU Fix
+### Phase 2: LCL Verification
+- Verify LCL on all 5 platforms
+- Fix FreeBSD synedit
+- Gate: test app compiles and links on all 5
 
-`compiler/ppu.pas` — moved `CpuAluBitSize`/`CpuAddrBitSize` arrays
-outside `{$ifdef generic_cpu}`, replaced compile-time dispatch with
-runtime `CpuAluBitSize[header.cpu]` in `getaint`/`getasizeint`/
-`getaword`/`putaint`. Fixes EListError crash when x86_64 host reads
-i8086 PPU files.
+### Phase 3: Lazarus IDE Cross-Platform
+- lazbuild for Win32
+- SynEdit + IDE component packages
+- Gate: `lazbuild` builds a .lpr project on Win32
 
-## Phases
+### Phase 4.1: Darwin Toolchain
+- Add assembler + linker for i386-darwin
+- Generate .o object files (currently PPUs only)
+- Gate: Darwin PPUs have matching .o files
 
-### Phase 1: Codepage-Aware AnsiStrings
-Backported from FPC 3.0: `TSystemCodePage`, `DefaultSystemCodePage`,
-codepage-tagged AnsiStrings. Source fixes: `cwstring.pp`, `syswin.inc`,
-`sysutils.pp`, `sysos.inc` — callback signatures for
-`Wide2AnsiMove`/`Ansi2WideMove` + Unicode wrappers.
+### Phase 5: Darwin PPU Completion (251 → ~300)
+- JPEG: fpreadjpeg, fpwritejpeg
+- Platform-specific: serial, exeinfo, heaptrc, lnfodwrf, ipc
+- Buildable: dateutils, blowfish, idea, libtar, streamex, htmlwriter
+- Gate: all buildable Darwin PPUs done
 
-### Phase 2: i8086 16-bit DOS Backend
-Cross-compiler (`ppcross8086`) rebuilt from FPC 3.0.4 source with PPU
-reader fix. Full RTL: 23 units, 4,369 smartlinks. Watt-32 TCP/IP built
-from source with OpenWatcom.
+### Phase 6: Win32 Heap Fix + Codepage (UNSTABLE BRANCH)
+- Fix `syswin.inc` `cp:TSystemCodePage` without breaking heap
+- Fix `system.o` so it can be rebuilt from source
+- Depends on Phase 0 build infrastructure
+- Gate: Mystic 75/75 + NMServer on Win11 with new system.o
 
-### Phase 3: Cross-Platform Unit Library
-Three extra units in `src/packages/extra/`, pre-built for all 7 targets:
+## Known Issues
 
-| Unit | Purpose | Platforms |
-|------|---------|-----------| 
-| `utrayit` | Console tray/minimize | Win32 (Shell_NotifyIcon), Unix (xterm CSI), DOS/OS2 (stub) |
-| `utextmouse` | Text-mode mouse | Unix (xterm SGR), Win32 (Console API), DOS (INT 33h), OS2 (stub) |
-| `seteuid_unit` | UID/GID (set/get EUID/EGID/REUID/REGID + errno) | Linux, FreeBSD/BSD (syscall), Win32/DOS/OS2 (stub) |
+| Issue | Impact | Workaround |
+|-------|--------|------------|
+| Win32 system.o heap bug | Can't rebuild system.o from source | Use r3 system.o (shipped) |
+| ActiveX→variants cascade | Win32 LCL can't cross-compile | Use pre-built LCL PPUs |
+| FreeBSD synedit | 2 compile errors | Defer to Phase 2 |
+| Darwin no .o files | PPU only, link on macOS | Phase 4.1 |
+| OS/2 emxbind | Format mismatch for .exe | Run emxbind on OS/2 |
 
-### Phase 4: Build Tools
-- `tools/cross-compile-all.sh` — 65-target verification
-- `tools/build-fpcres.sh` — builds `fpcres` for Win32 resources
-- `bin/tools/i386-emx/emxl.exe` — EMX 0.9d runtime loader
-- Bundled cross-binutils for go32v2, win32, freebsd, OS/2
+## Source Patches
 
-### Phase 5: BBS/Retro Examples
+Key modifications from stock FPC 2.6.4:
 
-| Example | Status |
-|---------|--------|
-| `examples/doorkit86/` — DOS BBS door framework (267 lines) | ✅ Compiles + runs DOSBox |
-| `examples/mpl-tests/` — MPL compiler test suite (4 scripts) | ✅ 4/4 pass |
-| `examples/renegade140/` — Renegade BBS 1.40 (98 files) | 📋 Porting project |
-| `examples/ciadraw/` — CIA Draw ANSI editor (10 files) | 📋 Porting project |
-| `libs/trayit-remake/` — TrayIt! Remake (XP-safe) | ✅ 3 platforms |
-
-### Phase 6: Source Code Fixes
-- **RecMessageBase.PostType** — missing field in  (used in
-   line 776). Added as Byte, carved from Res[29]→Res[28].
-  Without this fix,  and  fail to compile.
-
-### Phase 7: Verification
-- Mystic BBS A63: **15/15 Linux**, **15/15 Win32**, **15/15 OS/2**
-- Cross-compile-all: **65/65** (units + examples + Mystic × 3)
-- Platform tests: **15/15**
-- Compiler gates: **166/166**
-
-## i8086 Backport Patches
-
-Patches in `patches/` for compiling FPC 3.0.4 RTL units on i8086:
-
-| Patch Set | Files | What It Fixes |
-|-----------|-------|---------------|
-| `i8086-sysutils/` | sysstr, syshelp, syswide, sysuni, sysencoding, diskh, filutilh, sysutilh, sysutils | TTextLineBreakStyle enum range, TCompareOptions set overflow, Unicode PathStr, UnicodeString overloads |
-| `i8086-math/` | math.pp, mathu.inc | Internal error 200301231 in FPU mode functions (stubs) |
-| `i8086-strutils/` | strutils.pp | TReplaceFlags set overflow (Move-based construction) |
-
-## .gitignore Fix
-
-The `.gitignore` has `*.ppu` which blocks shipped PPU files from git.
-Added `!bin/units/**/*.ppu` exception. See `docs/gitignore_ppu_fix.md`
-and `docs/FOR-FPCIRC-AUTHOR-GITIGNORE.md` for the author's fix commands.
-
-## Recent Updates
-
-### Update 5 (latest)
-- **23 i8086 PPUs** — all WANT + NICE TO HAVE + CRITICAL units compiled.
-  sysutils (971 smartlinks), sockets (Watt-32), math, types, strutils, md5.
-- **Watt-32 built from source** — OpenWatcom 2.0 installed, `wattcpwl.lib`
-  (361KB, 16-bit large model) compiled and bundled.
-- **All smartlinks processed** — every PPU has `.sl/*.o` files.
-- **MPL test suite** — 4 test scripts for mplc verification.
-
-### Update 4
-- **seteuid_unit complete** — 242 lines, 8 functions, 7/7 targets.
-  Linux/FreeBSD/BSD real syscall, Win32/DOS/OS2 stub.
-- **utextmouse for i8086** — INT 33h mouse, 17 smartlinks.
-- **.gitignore fix** — root cause of missing PPUs on GitHub.
-
-### Update 3
-- **FreeBSD PPU chain rebuilt** — baseunix/unix/termio + fpseteuid/fpsetegid.
-- **cross-compile-all.sh** — 65-target verification script.
-- **Stale package PPUs rebuilt** — netdb, zipper, md5 for linux/win32.
-
-### Update 2
-- **TrayIt-Remake** — XP-safe (Vista+ APIs resolved dynamically).
-- **cwstring.pp fixed** — callback signatures + Unicode wrappers.
-- **Win32 RTL fixed** — syswin.inc, sysutils.pp, sysos.inc.
-
-### Update 1
-- **PPU reader fix** — ppcross8086 rebuilt from FPC 3.0.4.
-- **i8086 RTL** — system, dos, strings, crt + smartlinks.
-- **doorkit86** — BBS door framework, DOSBox verified.
-
-## Bug Report — All 7 Fixed
-
-| # | Bug | Status |
-|---|-----|--------|
-| 1 | fpSetEUID/fpSetEGID not in PPU | ✅ seteuid_unit.pas |
-| 2 | fpIsATTY not in PPU | ✅ PPU rebuilt + workaround |
-| 3 | BanMaxConns wrong file | ✅ Fixed in mystic source |
-| 4 | FreeBSD PPU mismatch | ✅ Chain rebuilt |
-| 5 | OS/2 system.ppu missing | ✅ 83 PPUs rebuilt |
-| 6 | ppcross8086 PPU crash | ✅ FPC 3.0.4 rebuild |
-| 7 | cwstring.pp callbacks | ✅ 4 signatures fixed |
+| File | Change |
+|------|--------|
+| `compiler/ppu.pas` | Runtime CpuAluBitSize dispatch (i8086 PPU fix) |
+| `rtl/unix/cwstring.pp` | Wide2AnsiMove/Ansi2WideMove callback signatures |
+| `rtl/bsd/bunxsysc.inc` | fpseteuid/fpsetegid (syscall 126/127) |
+| `rtl/win/syswin.inc` | Codepage callbacks (deferred to unstable) |
+| `compiler/rescmn.pas` | windres removed, fpcres only |
 
 ## Documentation
 
-- `docs/building_fpc264irc.md` — build from source, bootstrapping, i8086
-- `docs/i8086_ppu_fix.md` — PPU reader fix explanation
-- `docs/watt32_integration.md` — Watt-32 sockets build guide
-- `docs/gitignore_ppu_fix.md` — .gitignore PPU fix
-- `docs/FOR-FPCIRC-AUTHOR-GITIGNORE.md` — author fix commands
-- `docs/reported_bugs.md` — 7-bug tracker (all resolved)
-- `docs/comport_standardization_vision.md` — BBS/retro build vision
+| Doc | Description |
+|-----|-------------|
+| `BUG-win32-heap-crash.md` | Win32 heap crash analysis + root cause |
+| `docs/ppu_reference.md` | PPU reference for all platforms |
+| `docs/building_fpc264irc.md` | Build from source guide |
+| `docs/watt32_integration.md` | Watt-32 DOS sockets |
+| `docs/i8086_ppu_fix.md` | PPU reader fix |
+| `docs/lazarus_lcl.md` | LCL backport notes |
+| `docs/os2_linking_solved.md` | OS/2 cross-linking |
+| `docs/tier_fallback_system.md` | Three-tier build system |
 
 ## License
 
@@ -204,10 +170,3 @@ FPC 2.6.4irc: GPLv2+ (Free Pascal license).
 Extra units, examples, tools: GPLv3+.
 Watt-32: BSD license (Gisle Vanem).
 EMX runtime: GPLv2 (Eberhard Mattes).
-
-## GitHub Description
-
-> FPC 2.6.4irc — maintained Free Pascal fork: 7-platform cross-compiler,
-> 23-unit i8086 DOS backend with Watt-32 TCP/IP, codepage-aware AnsiStrings,
-> Mystic BBS 45/45 (15×3), 65/65 cross-compile. Foundation for a
-> standardized BBS/retro build environment.
