@@ -568,8 +568,8 @@ class procedure TWin32WSCustomGroupBox.GetPreferredSize(
 begin
   if MeasureText(AWinControl, AWinControl.Caption, PreferredWidth,
                  PreferredHeight) then begin
-    PreferredWidth += 19;
-    PreferredHeight += 4;
+    PreferredWidth := PreferredWidth + 19;  { fpc264irc: += not supported }
+    PreferredHeight := PreferredHeight + 4;
   end;
 end;
 

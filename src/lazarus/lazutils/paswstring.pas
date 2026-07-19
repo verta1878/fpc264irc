@@ -31,7 +31,7 @@ implementation
 procedure fpc_rangeerror; [external name 'FPC_RANGEERROR'];
 
 // len comes in widechars, not bytes
-procedure Wide2AnsiMove(source:pwidechar;var dest:ansistring;len:SizeInt);
+procedure Wide2AnsiMove(source:pwidechar;var dest:ansistring;cp:TSystemCodePage;len:SizeInt);
 var
   widestr: widestring;
 begin
@@ -48,7 +48,7 @@ begin
   {$endif}
 end;
 
-procedure Ansi2WideMove(source:pchar;var dest:widestring;len:SizeInt);
+procedure Ansi2WideMove(source:pchar;cp:TSystemCodePage;var dest:widestring;len:SizeInt);
 var
   ansistr: ansistring;
 begin
@@ -288,7 +288,7 @@ end;
 
 { Unicode }
 
-procedure Unicode2AnsiMove(source:pwidechar;var dest:ansistring;len:SizeInt);
+procedure Unicode2AnsiMove(source:pwidechar;var dest:ansistring;cp:TSystemCodePage;len:SizeInt);
 var
   widestr: unicodestring;
 begin
@@ -305,7 +305,7 @@ begin
   {$endif}
 end;
 
-procedure Ansi2UnicodeMove(source:pchar;var dest:UnicodeString;len:SizeInt);
+procedure Ansi2UnicodeMove(source:pchar;cp:TSystemCodePage;var dest:UnicodeString;len:SizeInt);
 var
   ansistr: ansistring;
 begin

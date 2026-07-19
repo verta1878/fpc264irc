@@ -1336,8 +1336,8 @@ const
 (**************************************************)
 (*                                                *)
 (* Normalize :  Normer un vecteur ( U, V )        *)
-(*              r‚sultat dans     ( X, Y )        *)
-(*              False si vecteur paramŠtre nul    *)
+(*              rsultat dans     ( X, Y )        *)
+(*              False si vecteur paramtre nul    *)
 (*                                                *)
 (**************************************************)
 
@@ -4944,7 +4944,7 @@ end;
     logfile: TFileStream;
     procedure writelnLog(s: string);
     begin
-      s+= LineEnding;
+      s := s + LineEnding;
       logfile.WriteBuffer(s[1],length(s));
     end;
 

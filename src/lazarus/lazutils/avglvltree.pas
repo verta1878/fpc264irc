@@ -1535,7 +1535,7 @@ procedure TAvgLvlTree.WriteReportToStream(s: TStream);
       WasLeft:=IsLeft;
       AParent:=AParent.Parent;
     end;
-    b+=NodeToReportStr(ANode)+LineEnding;
+    b := b + NodeToReportStr(ANode)+LineEnding;
     WriteStr(b);
     WriteTreeNode(ANode.Left);
   end;
@@ -1873,7 +1873,7 @@ begin
     aParent:=aNode.Parent;
     if (aParent=nil) then exit;
     if aParent.Left=aNode then
-      TIndexedAVLTreeNode(aParent).LeftCount-=1;
+      TIndexedAVLTreeNode(aParent).LeftCount := TIndexedAVLTreeNode(aParent).LeftCount - 1;
     aNode:=aParent;
   until false;
 end;
@@ -1892,7 +1892,7 @@ begin
     aParent:=aNode.Parent;
     if (aParent=nil) then exit;
     if aParent.Left=aNode then
-      TIndexedAVLTreeNode(aParent).LeftCount+=1;
+      TIndexedAVLTreeNode(aParent).LeftCount := TIndexedAVLTreeNode(aParent).LeftCount + 1;
     aNode:=aParent;
   until false;
 end;
@@ -1911,7 +1911,7 @@ var
 begin
   OldRight:=TIndexedAVLTreeNode(aNode.Right);
   inherited RotateLeft(aNode);
-  OldRight.LeftCount += 1+CurNode.LeftCount;
+  OldRight.LeftCount := OldRight.LeftCount + 1+CurNode.LeftCount;
 end;
 
 procedure TIndexedAVLTree.RotateRight(aNode: TAvgLvlTreeNode);
@@ -1928,7 +1928,7 @@ var
 begin
   OldLeft:=TIndexedAVLTreeNode(aNode.Left);
   inherited RotateRight(aNode);
-  CurNode.LeftCount -= (1 + OldLeft.LeftCount);
+  CurNode.LeftCount := CurNode.LeftCount - (1 + OldLeft.LeftCount);
 end;
 
 procedure TIndexedAVLTree.SwitchPositionWithSuccessor(aNode,
@@ -1979,7 +1979,7 @@ begin
       exit;
     end
     else begin
-      Index -= Result.LeftCount+1;
+      Index := Index - Result.LeftCount+1;
       Result:=TIndexedAVLTreeNode(Result.Right);
     end;
   until false;

@@ -2629,7 +2629,18 @@ gprt0$(OEXT) : gprt0.as
 wdllprt0$(OEXT) : wdllprt0.as
 wcygprt0$(OEXT) : wcygprt0.as
 system$(PPUEXT) : system.pp $(SYSDEPS)
-	$(COMPILER) -Us -Sg system.pp -Fi../win
+	@if [ -f $(UNITTARGETDIRPREFIX)system$(PPUEXT) ]; then \
+	  echo ""; \
+	  echo "╔═══════════════════════════════════════════════════════════════════╗"; \
+	  echo "║  SKIPPED: system.pp compilation (r3.1 — known heap bug)         ║"; \
+	  echo "║  Using pre-built r3 system.o/system.ppu (591KB, Jul 10 2026)    ║"; \
+	  echo "║  Cross-compiled system.o crashes on Win11 (EAccessViolation)    ║"; \
+	  echo "║  See: BUG-win32-heap-crash.md | Roadmap Phase 6                 ║"; \
+	  echo "╚═══════════════════════════════════════════════════════════════════╝"; \
+	  echo ""; \
+	else \
+	  $(COMPILER) -Us -Sg system.pp -Fi../win; \
+	fi
 objpas$(PPUEXT): $(OBJPASDIR)/objpas.pp $(INC)/except.inc system$(PPUEXT)
 	$(COMPILER) -I$(OBJPASDIR) $(OBJPASDIR)/objpas.pp
 macpas$(PPUEXT) : $(INC)/macpas.pp objpas$(PPUEXT) buildrtl$(PPUEXT)

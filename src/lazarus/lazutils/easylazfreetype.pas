@@ -503,7 +503,7 @@ begin
     glyphWidth := CharWidthFromUnicode(glyphCode);
     if glyphWidth <> 0 then
     begin
-      totalWidth += glyphWidth;
+      totalWidth := totalWidth + glyphWidth;
       if (totalWidth > AMaxWidth) and not firstChar then
       begin
         WordBreak;
@@ -555,13 +555,13 @@ begin
   if not (ftaBaseline in AAlign) then
   begin
     if ftaTop in AAlign then
-      y += AFont.Ascent else
+      y := y + AFont.Ascent else
     if ftaBottom in AAlign then
-      y += AFont.Ascent - AFont.TextHeight(AText) else
+      y := y + AFont.Ascent - AFont.TextHeight(AText) else
     if ftaVerticalCenter in AAlign then
-      y += AFont.Ascent - AFont.TextHeight(AText)*0.5;
+      y := y + AFont.Ascent - AFont.TextHeight(AText)*0.5;
   end;
-  AAlign -= [ftaTop,ftaBaseline,ftaBottom,ftaVerticalCenter];
+  AAlign := AAlign - [ftaTop,ftaBaseline,ftaBottom,ftaVerticalCenter];
 
   idx := pos(LineEnding, AText);
   while idx <> 0 do
@@ -569,7 +569,7 @@ begin
     DrawText(copy(AText,1,idx-1), AFont, x,y, AColor, AAlign);
     delete(AText,1,idx+length(LineEnding)-1);
     idx := pos(LineEnding, AText);
-    y += AFont.LineFullHeight;
+    y := y + AFont.LineFullHeight;
   end;
 
   if not (ftaLeft in AAlign) then
@@ -580,7 +580,7 @@ begin
     if ftaRight in AAlign then
       delta := -AFont.TextWidth(AText);
     if AFont.Hinted then delta := round(delta);
-    x += delta;
+    x := x + delta;
   end;
   DrawText(AText, AFont, x,y, AColor);
 end;
@@ -600,21 +600,21 @@ begin
   stepX := 0;
   stepY := AFont.LineFullHeight;
 
-  AAlign -= [ftaBaseline]; //ignored
-  if AAlign * [ftaTop,ftaVerticalCenter,ftaBottom] = [] then AAlign += [ftaTop]; //top by default
+  AAlign := AAlign - [ftaBaseline]; //ignored
+  if AAlign * [ftaTop,ftaVerticalCenter,ftaBottom] = [] then AAlign := AAlign + [ftaTop]; //top by default
   lineAlignment := AAlign * [ftaLeft,ftaCenter,ftaRight] + [ftaVerticalCenter];
 
   if ftaTop in AAlign then
   begin
     lineShift := 0.5;
-    X += stepX*lineShift;
-    Y += stepY*lineShift;
+    X := X + stepX*lineShift;
+    Y := Y + stepY*lineShift;
     repeat
       AFont.SplitText(AText, AMaxWidth, ARemains);
       DrawText(AText,AFont,X,Y,AColor,lineAlignment);
       AText := ARemains;
-      X+= stepX;
-      Y+= stepY;
+      X := X + stepX;
+      Y := Y + stepY;
     until ARemains = '';
   end else
   begin
@@ -628,13 +628,13 @@ begin
     else if ftaBottom in AAlign then lineShift := lines.Count-0.5
     else lineShift := -0.5;
 
-    X -= stepX*lineShift;
-    Y -= stepY*lineShift;
+    X := X - stepX*lineShift;
+    Y := Y - stepY*lineShift;
     for i := 0 to lines.Count-1 do
     begin
       DrawText(lines[i],AFont,X,Y,AColor,lineAlignment);
-      X+= stepX;
-      Y+= stepY;
+      X := X + stepX;
+      Y := Y + stepY;
     end;
     lines.Free;
   end;
@@ -713,9 +713,9 @@ var mono: TFreeTypeMonochromeMap;
 begin
   if ClearType then
   begin
-    Rect.Left *= 3;
-    Rect.Right *= 3;
-    x *= 3;
+    Rect.Left := Rect.Left * 3;
+    Rect.Right := Rect.Right * 3;
+    x := x * 3;
   end;
 
   glyphBounds := BoundsWithOffset[x,y];
@@ -847,8 +847,8 @@ begin
   result := [];
   a := StylesToArray(StyleAsString);
   for i := 0 to high(a) do
-    if a[i] = 'Bold' then result += [ftsBold] else
-    if (a[i] = 'Italic') or (a[i] = 'Oblique') then result += [ftsItalic];
+    if a[i] = 'Bold' then result := result + [ftsBold] else
+    if (a[i] = 'Italic') or (a[i] = 'Oblique') then result := result + [ftsItalic];
 end;
 
 function TFreeTypeFont.FindGlyphNode(Index: Integer): TAvgLvlTreeNode;
@@ -997,8 +997,8 @@ procedure TFreeTypeFont.SetFreeTypeStyles(AValue: TFreeTypeStyles);
 var str: string;
 begin
   str := '';
-  if ftsBold in AValue then str += 'Bold ';
-  if ftsItalic in AValue then str += 'Italic ';
+  if ftsBold in AValue then str := str + 'Bold ';
+  if ftsItalic in AValue then str := str + 'Italic ';
   StyleAsString := trim(str);
 end;
 
@@ -1019,9 +1019,9 @@ var Ratio: single;
 begin
   Ratio := FAscentValue + FDescentValue;
   if not SmallLinePadding then
-    Ratio += FLargeLineGapValue
+    Ratio := Ratio + FLargeLineGapValue
   else
-    Ratio += FLineGapValue;
+    Ratio := Ratio + FLineGapValue;
   if Ratio <> 0 then
     SizeInPixels := AValue / Ratio
   else
@@ -1179,11 +1179,11 @@ begin
                               else
                                   FCapHeight:=FAscentValue;
 
-    FAscentValue /= prop.header^.units_per_EM;
-    FDescentValue /= -prop.header^.units_per_EM;
-    FLineGapValue /= prop.header^.units_per_EM;
-    FLargeLineGapValue /= prop.header^.units_per_EM;
-    FCapHeight /= prop.header^.units_per_EM;
+    FAscentValue := FAscentValue / prop.header^.units_per_EM;
+    FDescentValue := FDescentValue / (-prop.header^.units_per_EM);
+    FLineGapValue := FLineGapValue / prop.header^.units_per_EM;
+    FLargeLineGapValue := FLargeLineGapValue / prop.header^.units_per_EM;
+    FCapHeight := FCapHeight / prop.header^.units_per_EM;
 
     if FLargeLineGapValue = 0 then
       FLargeLineGapValue := (FAscentValue+FDescentValue)*0.1;
@@ -1297,8 +1297,8 @@ begin
   end;
   if ClearType then
   begin
-    ARect.Left *= 3;
-    ARect.Right *= 3;
+    ARect.Left := ARect.Left * 3;
+    ARect.Right := ARect.Right * 3;
   end;
   tx := ARect.Right-ARect.Left;
   if tx > 0 then
@@ -1365,7 +1365,7 @@ begin
   begin
     RenderText(copy(AText,1,idx-1),x,y,ARect,OnRender);
     delete(AText,1,idx+length(LineEnding)-1);
-    y += LineFullHeight;
+    y := y + LineFullHeight;
     idx := pos(LineEnding,AText);
   end;
   If Assigned(FOnRenderText) then
@@ -1387,9 +1387,9 @@ begin
       else
        RenderDirectly(x,y,ARect,OnRender,quality,FClearType);
       if FClearType then
-        x += Advance/3
+        x := x + Advance/3
       else
-        x += Advance;
+        x := x + Advance;
     end;
   end;
 end;
@@ -1407,8 +1407,8 @@ procedure TFreeTypeFont.SetNameAndStyle(AName: string; AStyle: TFreeTypeStyles);
 var styleStr: string;
 begin
   styleStr := '';
-  if ftsBold in AStyle then styleStr += 'Bold ';
-  if ftsItalic in AStyle then styleStr += 'Italic ';
+  if ftsBold in AStyle then styleStr := styleStr + 'Bold ';
+  if ftsItalic in AStyle then styleStr := styleStr + 'Italic ';
   SetNameAndStyle(AName, Trim(styleStr));
 end;
 
@@ -1451,9 +1451,9 @@ begin
     with g do
     begin
       if FClearType then
-        result += Advance/3
+        result := result + Advance/3
       else
-        result += Advance;
+        result := result + Advance;
     end;
   end;
   if maxWidth > result then
@@ -1472,11 +1472,11 @@ begin
     idx := pos(LineEnding,AText);
     while idx <> 0 do
     begin
-      nb += 1;
+      nb := nb + 1;
       delete(AText,1,idx+length(LineEnding)-1);
       idx := pos(LineEnding,AText);
     end;
-    result *= nb;
+    result := result * nb;
   end;
 end;
 
@@ -1487,7 +1487,7 @@ begin
   if g = nil then result := 0
   else
     result := g.Advance;
-  if FClearType then result /= 3;
+  if FClearType then result := result / 3;
 end;
 
 function TFreeTypeFont.CharsWidth(AText: string): ArrayOfSingle;
@@ -1547,7 +1547,7 @@ var
       exit;
 
     for i := resultLineStart to resultIndex-1 do
-      result[i].x += delta;
+      result[i].x := result[i].x + delta;
   end;
 
 var
@@ -1568,14 +1568,14 @@ begin
   setlength(result, UTF8Length(AText)+1);
   resultIndex := 0;
   resultLineStart := 0;
-  if ftaLeft in AAlign then AAlign -= [ftaLeft, ftaCenter, ftaRight];
-  if ftaBaseline in AAlign then AAlign -= [ftaTop, ftaBaseline, ftaBottom, ftaVerticalCenter];
+  if ftaLeft in AAlign then AAlign := AAlign - [ftaLeft, ftaCenter, ftaRight];
+  if ftaBaseline in AAlign then AAlign := AAlign - [ftaTop, ftaBaseline, ftaBottom, ftaVerticalCenter];
   curX := 0;
   y := 0;
   if ftaTop in AAlign then
   begin
-    y += Ascent;
-    AAlign -= [ftaTop, ftaBottom, ftaVerticalCenter];
+    y := y + Ascent;
+    AAlign := AAlign - [ftaTop, ftaBottom, ftaVerticalCenter];
   end;
   yTopRel := -Ascent;
   yBottomRel := Descent;
@@ -1608,7 +1608,7 @@ begin
           dec(left);
         end;
         ApplyHorizAlign;
-        y += h;
+        y := y + h;
         curX := 0;
         resultLineStart := resultIndex;
         if left <= 0 then break;
@@ -1637,7 +1637,7 @@ begin
       yBottom := y+yBottomRel;
       inc(resultIndex);
     end;
-    curX += w;
+    curX := curX + w;
   end;
   with result[resultIndex] do
   begin
@@ -1652,24 +1652,24 @@ begin
 
   if ftaBottom in AAlign then
   begin
-    y += LineFullHeight-Ascent;
+    y := y + LineFullHeight-Ascent;
     for i := 0 to high(result) do
     with result[i] do
     begin
-      yTop -= y;
-      yBase -= y;
-      yBottom -= y;
+      yTop := yTop - y;
+      yBase := yBase - y;
+      yBottom := yBottom - y;
     end;
   end else
   if ftaVerticalCenter in AAlign then
   begin
-    y += LineFullHeight/2-Ascent;
+    y := y + LineFullHeight/2-Ascent;
     for i := 0 to high(result) do
     with result[i] do
     begin
-      yTop -= y;
-      yBase -= y;
-      yBottom -= y;
+      yTop := yTop - y;
+      yBase := yBase - y;
+      yBottom := yBottom - y;
     end;
   end;
 end;
@@ -1966,7 +1966,7 @@ begin
   if y < 0 then y := 0;
   if y2 > height then y2 := height;
   for yb := y to y2-1 do
-    result += GetPixelsInHorizlineNoBoundsChecking(x,yb,x2-1);
+    result := result + GetPixelsInHorizlineNoBoundsChecking(x,yb,x2-1);
 end;
 
 function TFreeTypeMonochromeMap.GetPixelsInHorizline(x, y, x2: integer): integer;
@@ -1998,18 +1998,18 @@ begin
   p := pbyte(map.Buffer) + y*map.Cols + ix;
   if ix2 > ix then
   begin
-    result += BitCountTable[ p^ and ($ff shr (x and 7)) ];
+    result := result + BitCountTable[ p^ and ($ff shr (x and 7)) ];
     inc(p^);
     inc(ix);
     while (ix2 > ix) do
     begin
-      result += BitCountTable[p^];
+      result := result + BitCountTable[p^];
       inc(ix);
       inc(p^);
     end;
-    result += BitCountTable[ p^ and ($ff shl (x2 and 7 xor 7)) ];
+    result := result + BitCountTable[ p^ and ($ff shl (x2 and 7 xor 7)) ];
   end else
-    result += BitCountTable[ p^ and ($ff shr (x and 7)) and ($ff shl (x2 and 7 xor 7))];
+    result := result + BitCountTable[ p^ and ($ff shr (x and 7)) and ($ff shl (x2 and 7 xor 7))];
 end;
 
 procedure TFreeTypeMonochromeMap.Init(AWidth, AHeight: integer);

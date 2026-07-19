@@ -1,172 +1,109 @@
-# FPC 2.6.4irc — Maintained Free Pascal Fork
+# FPC 2.6.4irc — r3.1
 
-**Current release: r3.1-20260718**
+Custom Free Pascal Compiler 2.6.4 fork for IRC/BBS applications.
+8-platform cross-compiler with Lazarus LCL support.
 
-A preservation fork of Free Pascal 2.6.4 for BBS and retro platform
-development. 8-platform cross-compiler with Lazarus LCL on 5 platforms,
-Mystic BBS 75/75, netmodem2irc 34/34, zero external dependencies.
+## Platforms
 
-## Quick Start
+| Target | RTL PPUs | LCL PPUs | Widgetset | Status |
+|--------|----------|----------|-----------|--------|
+| x86_64-linux | 528 | 136 | customdrawn (18) | ✅ Verified |
+| i386-linux | 166 | 152 | customdrawn (17) | ✅ Verified |
+| i386-win32 | 75 | 213 | win32 (27) | ✅ Verified |
+| i386-freebsd | 159 | 152 | customdrawn (17) | ✅ Verified |
+| i386-darwin | 590 | 157 | nogui | ✅ Verified |
+| i386-go32v2 | 78 | — | — | RTL only |
+| i386-os2 | 84 | — | — | RTL only |
+| i8086-msdos | 42 | — | — | RTL only |
 
-```bash
-# Native Linux build:
-bin/ppcx64 -Fubin/units/x86_64-linux program.pas
+## Key Binaries
 
-# Cross-compile for Win32:
-bin/ppc386 -Twin32 -Fubin/units/i386-win32 -XPi386-win32- program.pas
+- `bin/ppcx64` — x86_64-linux native compiler
+- `bin/ppc386` — i386 cross-compiler (all i386 targets)
+- `bin/ppcross8086` — i8086-msdos cross-compiler
 
-# Cross-compile for 16-bit DOS:
-bin/ppc386 -Tgo32v2 -Fubin/units/i386-go32v2 program.pas
+## Build System
 
-# Cross-compile for FreeBSD:
-bin/ppc386 -Tfreebsd -Fubin/units/i386-freebsd program.pas
-```
+### Compile Order (per platform)
+1. RTL: `make all` in `src/rtl/`
+2. Packages: `make -C packages all` in `src/`
+3. LazUtils: compile `lazutils.pas`
+4. LCL base: `make lclbase` in `src/lazarus/lcl/`
+5. Widgetset: `make intf` in `src/lazarus/lcl/`
 
-## Supported Targets (8 platforms)
+### Critical Rules
+- **Win32 system.pp is LOCKED** — Makefile guard prevents recompilation (BUG-001)
+- **Always compile from repo dir** with `-n` flag
+- **-Fu order matters**: LCL before RTL (BUG-012)
+- **No `+=` `-=` `*=` `/=` operators** — FPC 2.6.4 doesn't support them
+- **FreeBSD needs** `CROSSBINDIR=$REPO/bin/tools/i386-freebsd`
+- **Darwin needs** `-Amacho` (internal Mach-O assembler, no external tools)
 
-| Target | RTL+Pkg PPUs | LCL PPUs | Compiler | Status |
-|--------|-------------|----------|----------|--------|
-| x86_64-linux | 332 | 470 | `bin/ppcx64` | ✅ Native |
-| i386-linux | 308 | 360 | `bin/ppc386` | ✅ Cross |
-| i386-win32 | 126 | 413 | `bin/ppc386 -Twin32` | ✅ Cross (r3 system.o) |
-| i386-go32v2 | 78 | — | `bin/ppc386 -Tgo32v2` | ✅ Cross (DJGPP DOS) |
-| i386-freebsd | 189 | 359 | `bin/ppc386 -Tfreebsd` | ✅ Cross |
-| i386-os2 (EMX) | 84 | — | `bin/ppc386 -Temx` | ✅ Cross |
-| i8086-msdos | 42 | — | `ppcross8086` | ✅ Cross (16-bit, smartlinked) |
-| i386-darwin | 251 | 171 | `bin/ppc386 -Tdarwin` | ✅ Cross (PPU only) |
+### macOS SDK
+Darwin LCL needs the macOS 10.6 SDK (not included, 257MB).
+See `docs/macsdk-howto.md` for setup instructions.
 
-**Total: 3,183 PPUs** (1,410 RTL+packages + 1,773 LCL)
+## Applications
 
-## IDE Binaries
+### netmodem2irc
+IRC-to-modem gateway for BBS systems. Three binaries:
+- **NMServer.exe** — LCL GUI server (16MB)
+- **NMConfig.exe** — LCL GUI config tool (16MB)
+- **NetModemCPL.dll** — Control Panel applet (285KB)
 
-| Binary | Size | Description |
-|--------|------|-------------|
-| `bin/ide/fp` | 7.1MB | Text-mode IDE (Free Vision), static ELF x86_64 |
-| `bin/ide/lazarus` | 72MB | GUI IDE (Lazarus, CustomDrawn widgetset) |
-| `bin/ide/lazbuild` | 45MB | CLI build tool for Lazarus projects |
+## Bugs Fixed (r3.1)
 
-## Application Test Results
-
-| Application | Platforms | Result |
-|-------------|-----------|--------|
-| Mystic BBS v1.10 | Linux, Win32, go32v2, OS/2, FreeBSD | **75/75** |
-| netmodem2irc | Engine tests + DOS bridge | **34/34** |
-| Cross-compile (all targets) | 8 platforms | **65/65** |
-| Compiler gates | All | **166/166 GREEN** |
-
-## Win32 on Windows 11
-
-Win32 binaries use r3's `system.o` (591KB, Jul 10 2026). A later rebuild
-from source introduced a heap manager bug that crashes on Windows 11
-(Wine unaffected). See `BUG-win32-heap-crash.md` for full analysis.
-
-Post-link PE patching for Windows 11 compatibility:
-```bash
-python3 tools/pe-win11-fix.py mystic.exe  # Sets NX_COMPAT + SubsystemVersion 6.0
-```
-
-## Lazarus LCL
-
-Lazarus 1.2.6 LCL backported to 5 platforms using CustomDrawn widgetset
-(Win32 uses native widgetset). Built from source with paswstring codepage
-fixes and Win9xWsManager stub.
-
-| Platform | LCL PPUs | Widgetset |
-|----------|----------|-----------|
-| x86_64-linux | 470 | CustomDrawn |
-| i386-linux | 360 | CustomDrawn |
-| i386-win32 | 413 | Win32 (from r3 build) |
-| i386-freebsd | 359 | CustomDrawn |
-| i386-darwin | 171 | CustomDrawn (partial — needs objc bridge) |
-
-## i8086 16-bit DOS — 42 Units
-
-All units compiled with smartlinks for minimal binary size (640KB limit).
-Watt-32 TCP/IP for BSD sockets on DOS. See `docs/watt32_integration.md`.
-
-## Roadmap — r3.1 Stable
-
-All builds are `r3.1-YYYYMMDD` until verified and stable.
-
-### Phase 0: Build Infrastructure
-- Make clean — purge build artifacts from source tree
-- Self-contained build script with three-tier fallback:
-  1. Use bundled pre-built tools (`bin/tools/`)
-  2. Fall back to system-installed tools
-  3. Fall back to building from source
-- Gate: `./build.sh` produces a working compiler from clean checkout
-
-### Phase 1: Win32 LCL
-- Fix ActiveX → variants checksum cascade
-- Build LCL win32 PPUs with `make lcl LCL_PLATFORM=win32`
-- Compile NMServer (GUI app) for Win32
-- Gate: NMServer.exe runs on Win11
-
-### Phase 2: LCL Verification
-- Verify LCL on all 5 platforms
-- Fix FreeBSD synedit
-- Gate: test app compiles and links on all 5
-
-### Phase 3: Lazarus IDE Cross-Platform
-- lazbuild for Win32
-- SynEdit + IDE component packages
-- Gate: `lazbuild` builds a .lpr project on Win32
-
-### Phase 4.1: Darwin Toolchain
-- Add assembler + linker for i386-darwin
-- Generate .o object files (currently PPUs only)
-- Gate: Darwin PPUs have matching .o files
-
-### Phase 5: Darwin PPU Completion (251 → ~300)
-- JPEG: fpreadjpeg, fpwritejpeg
-- Platform-specific: serial, exeinfo, heaptrc, lnfodwrf, ipc
-- Buildable: dateutils, blowfish, idea, libtar, streamex, htmlwriter
-- Gate: all buildable Darwin PPUs done
-
-### Phase 6: Win32 Heap Fix + Codepage (UNSTABLE BRANCH)
-- Fix `syswin.inc` `cp:TSystemCodePage` without breaking heap
-- Fix `system.o` so it can be rebuilt from source
-- Depends on Phase 0 build infrastructure
-- Gate: Mystic 75/75 + NMServer on Win11 with new system.o
-
-## Known Issues
-
-| Issue | Impact | Workaround |
-|-------|--------|------------|
-| Win32 system.o heap bug | Can't rebuild system.o from source | Use r3 system.o (shipped) |
-| ActiveX→variants cascade | Win32 LCL can't cross-compile | Use pre-built LCL PPUs |
-| FreeBSD synedit | 2 compile errors | Defer to Phase 2 |
-| Darwin no .o files | PPU only, link on macOS | Phase 4.1 |
-| OS/2 emxbind | Format mismatch for .exe | Run emxbind on OS/2 |
-
-## Source Patches
-
-Key modifications from stock FPC 2.6.4:
-
-| File | Change |
-|------|--------|
-| `compiler/ppu.pas` | Runtime CpuAluBitSize dispatch (i8086 PPU fix) |
-| `rtl/unix/cwstring.pp` | Wide2AnsiMove/Ansi2WideMove callback signatures |
-| `rtl/bsd/bunxsysc.inc` | fpseteuid/fpsetegid (syscall 126/127) |
-| `rtl/win/syswin.inc` | Codepage callbacks (deferred to unstable) |
-| `compiler/rescmn.pas` | windres removed, fpcres only |
-
-## Documentation
-
-| Doc | Description |
+| Bug | Description |
 |-----|-------------|
-| `BUG-win32-heap-crash.md` | Win32 heap crash analysis + root cause |
-| `docs/ppu_reference.md` | PPU reference for all platforms |
-| `docs/building_fpc264irc.md` | Build from source guide |
-| `docs/watt32_integration.md` | Watt-32 DOS sockets |
-| `docs/i8086_ppu_fix.md` | PPU reader fix |
-| `docs/lazarus_lcl.md` | LCL backport notes |
-| `docs/os2_linking_solved.md` | OS/2 cross-linking |
-| `docs/tier_fallback_system.md` | Three-tier build system |
+| BUG-001 | Win32 Runtime Error 216 (heap crash) |
+| BUG-002 | ActiveX PPU cascade |
+| BUG-003 | FreeBSD Mystic BBS |
+| BUG-004 | x86_64 variants/varutils |
+| BUG-005 | windres removed from compiler |
+| BUG-006 | Build artifacts cleanup |
+| BUG-007 | PPU Reader crash |
+| BUG-008 | cwstring codepage signatures |
+| BUG-009 | win32wsstdctrls += operator |
+| BUG-010 | paswstring codepage signatures |
+| BUG-011 | 65+ compound operator conversions |
+| BUG-012 | Darwin Dialogs -Fu search order |
 
-## License
+See `docs/bugsfixed.md` for details.
 
-FPC 2.6.4irc: GPLv2+ (Free Pascal license).
-Extra units, examples, tools: GPLv3+.
-Watt-32: BSD license (Gisle Vanem).
-EMX runtime: GPLv2 (Eberhard Mattes).
+## Directory Structure
+
+```
+bin/                    Compilers + cross-tools
+  units/<target>/       RTL + package PPUs per target
+  lazarus/units/<target>/  LCL PPUs per target
+    lazutils/           LazUtils PPUs
+    lcl/                LCL base + widgetset PPUs
+src/
+  compiler/             FPC compiler source
+  rtl/                  Runtime library (per-platform)
+  packages/             FCL + third-party packages
+  lazarus/
+    lcl/                Lazarus Component Library
+    lazutils/           Lazarus utilities
+docs/
+  DECISIONS.md          Architecture decisions log
+  bugsfixed.md          Bug fix details
+  macsdk-howto.md       macOS SDK setup guide
+  ripscript/            RIPscript v1.53/v1.54/v3.0 specs
+```
+
+## Roadmap
+
+- **Phase 0–2**: ✅ Complete (build infra, Win32 LCL, cross-platform LCL)
+- **Phase 3**: Lazarus IDE compilation
+- **Phase 4**: ✅ Resolved (Darwin toolchain = -Amacho)
+- **Phase 5**: Darwin PPU completion
+- **Phase 6**: Built-in resource compiler (fpcres)
+- **Phase 7**: OS/2 PM + customdrawn widgetsets, DOS SDL, RIPscript
+- **Phase 8**: Win32 heap fix + codepage (unstable branch)
+
+## Preferences
+
+- Minimal C dependencies — pure Pascal where possible
+- FPC's internal assemblers (-Amacho, -Aelf) over external tools
+- customdrawn widgetset for cross-platform GUI unification

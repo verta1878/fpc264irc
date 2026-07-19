@@ -359,7 +359,7 @@ begin
   F1:=CFStringCreateWithCString(nil,Pointer(Filename1),kCFStringEncodingUTF8);
   F2:=CFStringCreateWithCString(nil,Pointer(Filename2),kCFStringEncodingUTF8);
   Flags:=kCFCompareNonliteral;
-  if IgnoreCase then Flags+=kCFCompareCaseInsensitive;
+  if IgnoreCase then Flags := Flags + kCFCompareCaseInsensitive;
   Result:=CFStringCompare(F1,F2,Flags);
   CFRelease(F1);
   CFRelease(F2);
@@ -1029,14 +1029,14 @@ begin
               break;
             if ord(Params[p])<128 then
             begin
-              Param+=Params[p];
+              Param := Param + Params[p];
               inc(p);
             end else begin
               // next character is already a normal character
             end;
           end else begin
             // treat backslash as normal character
-            Param+='\';
+            Param := Param + '\';
           end;
         end;
       '''':
@@ -1048,7 +1048,7 @@ begin
           mApostrophe:
             Mode:=mNormal;
           mQuote:
-            Param+='''';
+            Param := Param + '''';
           end;
         end;
       '"':
@@ -1058,7 +1058,7 @@ begin
           mNormal:
             Mode:=mQuote;
           mApostrophe:
-            Param+='"';
+            Param := Param + '"';
           mQuote:
             Mode:=mNormal;
           end;
@@ -1066,11 +1066,11 @@ begin
       ' ',#9,#10,#13:
         begin
           if Mode=mNormal then break;
-          Param+=Params[p];
+          Param := Param + Params[p];
           inc(p);
         end;
       else
-        Param+=Params[p];
+        Param := Param + Params[p];
         inc(p);
       end;
     end;
@@ -1112,8 +1112,8 @@ begin
             Delete(Result,i+1,length(Result));
           case Quot of
           AnyQuot: Result:=''''+Result+'''';
-          '''': Result+='''';
-          '"':  Result+='"';
+          '''': Result := Result + '''';
+          '"':  Result := Result + '"';
           end;
           break;
         end;
@@ -1186,8 +1186,8 @@ begin
   if ParamList=nil then exit;
   for i:=0 to ParamList.Count-1 do
   begin
-    if i>0 then Result+=' ';
-    Result+=StrToCmdLineParam(ParamList[i]);
+    if i>0 then Result := Result + ' ';
+    Result := Result + StrToCmdLineParam(ParamList[i]);
   end;
 end;
 

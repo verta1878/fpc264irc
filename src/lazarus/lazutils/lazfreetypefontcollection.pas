@@ -162,8 +162,8 @@ begin
     result := '';
     for i := 0 to StyleCount-1 do
     begin
-      if i > 0 then result += ' ';
-      result += Style[i];
+      if i > 0 then result := result + ' ';
+      result := result + Style[i];
     end;
   end;
 end;
@@ -463,8 +463,8 @@ begin
   result := '';
   for i := 0 to StyleCount-1 do
   begin
-    if i <> 0 then result += ' ';
-    result += Style[i];
+    if i <> 0 then result := result + ' ';
+    result := result + Style[i];
   end;
 end;
 
@@ -781,7 +781,7 @@ var sr: TSearchRec;
     i: integer;
 begin
   if (length(AFolder) <> 0) and (AFolder[length(AFolder)] <> PathDelim) then
-    AFolder += PathDelim;
+    AFolder := AFolder + PathDelim;
 
   files := TStringList.Create;
   BeginUpdate;
