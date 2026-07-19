@@ -94,13 +94,16 @@ docs/
 
 ## Roadmap
 
-- **Phase 0–2**: ✅ Complete (build infra, Win32 LCL, cross-platform LCL)
-- **Phase 3**: Lazarus IDE compilation
-- **Phase 4**: ✅ Resolved (Darwin toolchain = -Amacho)
-- **Phase 5**: Darwin PPU completion
-- **Phase 6**: Built-in resource compiler (fpcres)
-- **Phase 7**: OS/2 PM + customdrawn widgetsets, DOS SDL, RIPscript
-- **Phase 8**: Win32 heap fix + codepage (unstable branch)
+- **Phase 0**: ✅ Build Infrastructure
+- **Phase 1**: ✅ Win32 LCL + netmodem2irc binaries
+- **Phase 2**: ✅ Cross-Platform LCL Verification (5 platforms)
+- **Phase 3**: ✅ Darwin PPU Completion (757 PPUs + Carbon widgetset)
+- **Phase 4**: ✅ Darwin Toolchain (-Amacho, no external tools)
+- **Phase 6a**: ✅ Resource Compiler (windres .rc → .res, icons in binaries)
+- **Phase 6b**: OS/2 PM LCL Widgetset (LazUtils + LCL base + PM backend)
+- **Phase 7**: Lazarus IDE compilation
+- **Phase 8**: DOS SDL + RIPscript widgetsets
+- **Phase 9**: Win32 heap fix, cocoa 200509189 investigation (unstable)
 
 ## Preferences
 

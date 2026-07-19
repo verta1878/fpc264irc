@@ -295,3 +295,16 @@ configuration issue (missing bridging headers/framework paths). The cocoa
 backend may just need correct -Fi/-Ff paths to the macOS 10.6 SDK ObjC
 headers. Investigation deferred — Carbon widgetset works for now.
 Investigate: compile cocoautils.pas with -va to trace what's missing.
+
+### Phase 6: Resource Compiler — COMPLETE ✅
+fpcres (binary converter) already existed. For .rc → .res compilation,
+system windres (i686-w64-mingw32-windres) with --preprocessor=/bin/cat
+works without needing mingw-gcc. All three netmodem2irc binaries now
+compile with real icon resources (server.ico, mainicon.ico).
+
+### Phase Reorganization — 2026-07-19
+- Phase 6 split: 6a (resource compiler ✅) + 6b (OS/2 PM widgetset)
+- OS/2 PM moved from Phase 7 to Phase 6b (logical grouping with resources)
+- Lazarus IDE moved to Phase 7 (needs all platforms solid first)
+- DOS SDL + RIPscript moved to Phase 8
+- Win32 heap + cocoa 200509189 moved to Phase 9 (unstable branch)
