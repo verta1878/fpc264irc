@@ -275,3 +275,14 @@ Tested with actual Inno Setup 5.6.1 .res files:
 fpcres converts and merges all Borland BRCC32 .res files without errors.
 The ISCC crash should be resolved — Setup.e32 and SetupLdr.e32 will
 now have valid .rsrc PE sections with icons.
+
+### ISCC crash root cause — SetupLdr.exe missing resources
+SetupLdr.exe only has RT_MANIFEST. Missing: RT_ICON (SetupLdr.res),
+RT_VERSION (SetupLdrVersion.res), RT_RCDATA #11111 (SetupLdrOffsetTable.res).
+The {$R} directives in SetupLdr.dpr are present but the .res files
+are not in the compiler's search path during the FPC build.
+ISCC tries to seek to RT_RCDATA #11111 to write the offset table →
+resource not found → AV.
+Fix: ensure all three .res files are in the Projects/ directory
+when compiling SetupLdr.dpr. Our fpcres can merge them (BUG-032 verified).
+Not an fpc264irc bug — Inno build path issue.

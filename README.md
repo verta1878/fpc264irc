@@ -116,6 +116,7 @@ docs/
 - i8086-msdos LCL — no solution for 640K real-mode limit
 - RIPscript viewer — deferred to PPU creation phase
 - Inline var declarations — Delphi 10.3 feature, not in any FPC version, needs discussion
+- Antialiased line drawing — needs VGA 256+ colors, defer to DOS VESA backend work
 - Inno Setup 5.6.1 FPC port — see docs/INNO_HOLLOW_FEATURES.md
   - PascalScript engine (22 stub files, ~5,500 lines missing, needs RemObjects PS)
   - LZMA decompression (13 C externals, needs MinGW recompile or dynamic loading)

@@ -624,3 +624,35 @@ jpegdec.pas (276 lines): JPEG → raw pixel buffer decoder.
   Uses FPC's built-in pasjpeg (pure Pascal, no libjpeg).
   JPEGLoadFile, JPEGLoadStream, JPEGLoadMem, JPEGGetInfo.
   Output: RGB or Grayscale pixel buffer.
+
+### New Unit: wavdec.pas
+WAV file decoder — 294 lines, pure Pascal RIFF/WAVE reader.
+Reads PCM WAV files (8/16/24/32-bit, mono/stereo, any sample rate).
+WAVLoadFile, WAVLoadStream, WAVLoadMem, WAVGetInfo, WAVDurationMS.
+Compiles on all targets. No external dependencies.
+
+### New Units: pcmdec.pas + dosplay.pas
+pcmdec.pas (294 lines): WAV/RIFF PCM decoder. Reads 8/16/24/32-bit
+  mono/stereo WAV files. Returns raw PCM buffer + format info.
+dosplay.pas (435 lines): DOS Sound Blaster PCM playback.
+  Direct DSP/DMA programming via port I/O. Auto-detects via BLASTER env.
+  SB_Init, SB_PlayPCM, SB_WaitDone, SB_Done. Also PC Speaker tones.
+  Real implementation on go32v2, stubs on all other platforms.
+
+### New Unit: wavplay.pas — Cross-platform WAV player
+126 lines. Uses pcmdec.pas for decoding + platform-native playback:
+  Win32: winmm.dll sndPlaySound (sync + async)
+  Linux/FreeBSD: aplay subprocess (ALSA)
+  Darwin: afplay subprocess
+  DOS: Sound Blaster via dosplay.pas
+  OS/2: stub
+PlayWAV (blocking), PlayWAVAsync (non-blocking on Win32), StopWAV.
+
+### wavplay.pas — All platforms complete
+Win32: winmm.dll sndPlaySound (sync + async + memory)
+Linux: aplay/paplay/sox auto-detection
+FreeBSD: same as Linux (shared UNIX path)
+Darwin: afplay subprocess
+DOS: Sound Blaster via dosplay.pas
+OS/2: MMPM/2 mciSendString via MDM.DLL
+All platforms have PlayWAV, PlayWAVAsync, StopWAV, PlayPCMBuffer, AudioAvailable.
