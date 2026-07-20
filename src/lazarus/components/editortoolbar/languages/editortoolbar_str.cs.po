@@ -1,0 +1,63 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2013-03-09 21:25+0100\n"
+"Last-Translator: Václav Valíček <Valicek1994@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.5\n"
+
+#: editortoolbar_str.rsadddivider
+msgid "Add Divider"
+msgstr "Přidat oddělovač"
+
+#: editortoolbar_str.rsaddselected
+msgid "Add selected item to toolbar"
+msgstr "Přidat vybranou položku na panel"
+
+#: editortoolbar_str.rscancel
+msgid "Cancel"
+msgstr "Zrušit"
+
+#: editortoolbar_str.rsconfiguretoo
+msgid "Configure Toolbar"
+msgstr "Nastavení panelu nástrojů"
+
+#: editortoolbar_str.rseditortoolbarconfigform
+msgid "Editor Toolbar Configuration"
+msgstr "[Editor] Konfigurace panelu nástrojů"
+
+#: editortoolbar_str.rsjumpto
+msgid "Jump To"
+msgstr "Skok na"
+
+#: editortoolbar_str.rsmenutree
+msgid "Available Menu Items"
+msgstr "Dostupné položky menu:"
+
+#: editortoolbar_str.rsmoveselecteddown
+msgid "Move selected toolbar item down"
+msgstr "Posunout položku dolů"
+
+#: editortoolbar_str.rsmoveselectedup
+msgid "Move selected toolbar item up"
+msgstr "Posunout vybranou nahoru"
+
+#: editortoolbar_str.rsok
+msgid "OK"
+msgstr "OK"
+
+#: editortoolbar_str.rsremoveselected
+msgid "Remove selected item from toolbar"
+msgstr "Odstranit položku z panelu nástrojů"
+
+#: editortoolbar_str.rstoolbar
+msgid "Toolbar Items"
+msgstr "Aktivní položky:"
+
+#: editortoolbar_str.serrcouldnotfind
+msgid "Could not find <%s>"
+msgstr "Nemohu najít <%s>"

@@ -214,6 +214,9 @@ end;
     {$I sysenvapis_unix.inc}
   {$endif}
 {$endif}
+{$if defined(OS2) or defined(GO32V2) or defined(MSDOS)}
+  {$I sysenvapis_os2.inc}
+{$endif}
 
 procedure InternalInit;
 var

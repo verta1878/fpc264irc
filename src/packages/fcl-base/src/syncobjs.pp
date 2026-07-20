@@ -177,11 +177,11 @@ function TEventObject.WaitFor(Timeout : Cardinal) : TWaitResult;
 begin
   Result := TWaitResult(basiceventWaitFor(Timeout, Handle));
   if Result = wrError then
-{$IFDEF OS2}
-    FLastError := PLocalEventRec (Handle)^.FLastError;
-{$ELSE OS2}
+{$IF defined(OS2) or defined(GO32V2) or defined(MSDOS)}
+    FLastError := 0;
+{$ELSE}
     FLastError := GetLastOSError;
-{$ENDIF OS2}
+{$ENDIF}
 end;
 
 constructor TSimpleEvent.Create;

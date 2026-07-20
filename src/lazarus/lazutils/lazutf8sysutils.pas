@@ -16,7 +16,9 @@ uses
   {$ifdef Windows}
   Windows,
   {$else}
+  {$if not defined(OS2) and not defined(GO32V2) and not defined(MSDOS)}
   Unix, BaseUnix,
+  {$endif}
   {$endif}
   Classes;
 

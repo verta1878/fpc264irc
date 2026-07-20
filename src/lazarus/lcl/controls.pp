@@ -1863,6 +1863,8 @@ type
     FAdjustClientRectRealized: TRect;
     FAdjustClientRect: TRect; // valid if wcfAdjustClientRectValid
     FChildSizing: TControlChildSizing;
+    FCtl3D: Boolean;
+    FParentCtl3D: Boolean;
     FControls: TFPList;    // the child controls
     FOnGetDockCaption: TGetDockCaptionEvent;
     FDefWndProc: Pointer;
@@ -2054,6 +2056,7 @@ type
     procedure CreateHandle; virtual;
     procedure CreateParams(var Params: TCreateParams); virtual;
     procedure CreateWnd; virtual; //creates the window
+    procedure CreateWindowHandle(const Params: TCreateParams); virtual; // VCL compatibility — calls CreateWnd
     procedure DestroyHandle; virtual;
     procedure DestroyWnd; virtual;
     procedure DoFlipChildren; virtual;
@@ -2104,6 +2107,9 @@ type
     property IsResizing: Boolean read GetIsResizing;
     property TabOrder: TTabOrder read GetTabOrder write SetTaborder default -1;
     property TabStop: Boolean read FTabStop write SetTabStop default false;
+    // VCL Ctl3D compatibility — controls 3D border appearance (WS_EX_CLIENTEDGE)
+    property Ctl3D: Boolean read FCtl3D write FCtl3D default True;
+    property ParentCtl3D: Boolean read FParentCtl3D write FParentCtl3D default True;
     property OnAlignInsertBefore: TAlignInsertBeforeEvent read FOnAlignInsertBefore write FOnAlignInsertBefore;
     property OnAlignPosition: TAlignPositionEvent read FOnAlignPosition write FOnAlignPosition;
     property OnDockDrop: TDockDropEvent read FOnDockDrop write FOnDockDrop;

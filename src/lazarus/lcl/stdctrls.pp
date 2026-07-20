@@ -694,6 +694,7 @@ type
     FHideSelection: Boolean;
     FMaxLength: Integer;
     FModified: Boolean;
+    FOEMConvert: Boolean;
     FPasswordChar: Char;
     FReadOnly: Boolean;
     FOnChange: TNotifyEvent;
@@ -760,6 +761,7 @@ type
     property HideSelection: Boolean read FHideSelection write SetHideSelection default True;
     property MaxLength: Integer read FMaxLength write SetMaxLength default 0;
     property Modified: Boolean read GetModified write SetModified;
+    property OEMConvert: Boolean read FOEMConvert write FOEMConvert default False;
     property OnChange: TNotifyEvent read FOnChange write FOnChange;
     property PasswordChar: Char read FPasswordChar write SetPasswordChar default #0;
     property PopupMenu;

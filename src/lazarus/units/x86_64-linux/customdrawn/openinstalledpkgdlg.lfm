@@ -1,0 +1,67 @@
+object OpenLoadedPackagesDlg: TOpenLoadedPackagesDlg
+  Left = 407
+  Height = 494
+  Top = 151
+  Width = 447
+  ActiveControl = PkgListView
+  Caption = 'OpenLoadedPackagesDlg'
+  ClientHeight = 494
+  ClientWidth = 447
+  OnClose = FormClose
+  OnCreate = FormCreate
+  Position = poScreenCenter
+  LCLVersion = '1.1'
+  object HintMemo: TMemo
+    Left = 0
+    Height = 121
+    Top = 331
+    Width = 447
+    Align = alBottom
+    Lines.Strings = (
+      'Memo1'
+    )
+    ReadOnly = True
+    ScrollBars = ssAutoBoth
+    TabOrder = 0
+  end
+  object PkgListView: TListView
+    Left = 0
+    Height = 326
+    Top = 0
+    Width = 447
+    Align = alClient
+    Columns = <>
+    RowSelect = True
+    SortType = stText
+    TabOrder = 1
+    OnDblClick = PkgListViewDblClick
+    OnSelectItem = PkgListViewSelectItem
+  end
+  object Splitter1: TSplitter
+    Cursor = crVSplit
+    Left = 0
+    Height = 5
+    Top = 326
+    Width = 447
+    Align = alBottom
+    ResizeAnchor = akBottom
+  end
+  object ButtonPanel1: TButtonPanel
+    Left = 6
+    Height = 30
+    Top = 458
+    Width = 435
+    OKButton.Name = 'OKButton'
+    OKButton.DefaultCaption = True
+    OKButton.OnClick = OpenButtonClick
+    HelpButton.Name = 'HelpButton'
+    HelpButton.DefaultCaption = True
+    HelpButton.OnClick = HelpButtonClick
+    CloseButton.Name = 'CloseButton'
+    CloseButton.DefaultCaption = True
+    CancelButton.Name = 'CancelButton'
+    CancelButton.DefaultCaption = True
+    TabOrder = 3
+    ShowButtons = [pbOK, pbCancel, pbHelp]
+  end
+end

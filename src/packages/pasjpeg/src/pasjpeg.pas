@@ -45,6 +45,40 @@ uses
   jcapistd,
   jcomapi;
 
+{$IFNDEF WINDOWS}
+{ BMP file header types — normally from Windows unit }
+type
+  TBitmapFileHeader = packed record
+    bfType: Word;
+    bfSize: LongWord;
+    bfReserved1: Word;
+    bfReserved2: Word;
+    bfOffBits: LongWord;
+  end;
+
+  TBitmapInfoHeader = packed record
+    biSize: LongWord;
+    biWidth: LongInt;
+    biHeight: LongInt;
+    biPlanes: Word;
+    biBitCount: Word;
+    biCompression: LongWord;
+    biSizeImage: LongWord;
+    biXPelsPerMeter: LongInt;
+    biYPelsPerMeter: LongInt;
+    biClrUsed: LongWord;
+    biClrImportant: LongWord;
+  end;
+
+  TBitmapCoreHeader = packed record
+    bcSize: LongWord;
+    bcWidth: Word;
+    bcHeight: Word;
+    bcPlanes: Word;
+    bcBitCount: Word;
+  end;
+{$ENDIF}
+
 { ---------------------------------------------------------------------- }
 {   source manager to read compressed data                               }
 {   for reference: JDATASRC.PAS in PASJPG10 library                      }
@@ -876,7 +910,11 @@ var
 begin
   cinfo^.err^.format_message (cinfo, buffer);
   {message dialog}
+  {$IFDEF WINDOWS}
   ShowMessage(buffer);
+  {$ELSE}
+  WriteLn('JPEG Error: ', buffer);
+  {$ENDIF}
 end;
 
 procedure format_message (cinfo : j_common_ptr; var buffer : string); far;

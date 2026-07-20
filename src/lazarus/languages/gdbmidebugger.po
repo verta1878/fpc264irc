@@ -1,0 +1,115 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: gdbmidebugger.gdbmibreakpointerroronruncommand
+msgid "The debugger encountered an error when trying to run/step the application:%0:s%0:s%1:s%0:s%0:sPress \"Ok\" to remove the breakpoints and continue debugging (paused), and correct the problem, or choose an alternative run command.%0:sPress \"Stop\" to end the debug session."
+msgstr ""
+
+#: gdbmidebugger.gdbmicommandstartmainbreakerror
+msgid "The debugger could not set a breakpoint on the application's entry point.%0:sThis may be caused by missing debug info."
+msgstr ""
+
+#: gdbmidebugger.gdbmicommandstartmainrunerror
+msgid "The debugger could not run the application.%0:sThis may be caused by missing debug info."
+msgstr ""
+
+#: gdbmidebugger.gdbmicommandstartmainrunnopiderror
+msgid "The debugger failed to get the application's PID.%0:sThis may be caused by missing debug info."
+msgstr ""
+
+#: gdbmidebugger.gdbmicommandstartmainruntostoperror
+msgid "The debugger was unable to initialize itself.%0:sThe application did run (and terminated) before the debugger could set any breakpoints. %0:sThis may be caused by missing debug info."
+msgstr ""
+
+#: gdbmidebugger.gdbmierroronruncommand
+msgid "The debugger encountered an error when trying to run/step the application:%0:s%0:s%1:s%0:s%0:sPress \"Ok\" to continue debugging (paused), and correct the problem, or choose an alternative run command.%0:sPress \"Stop\" to end the debug session."
+msgstr ""
+
+#: gdbmidebugger.gdbmierroronruncommandwithwarning
+msgid "%0:s%0:sIn addition to the error the following warning was encountered:%0:s%0:s%1:s"
+msgstr ""
+
+#: gdbmidebugger.gdbmierrorstategenericinfo
+msgid "Error in: %1:s %0:s"
+msgstr ""
+
+#: gdbmidebugger.gdbmierrorstateinfocommanderror
+msgid "%0:sThe GDB command:%0:s\"%1:s\"%0:sreturned the error:%0:s\"%2:s\"%0:s"
+msgstr ""
+
+#: gdbmidebugger.gdbmierrorstateinfocommandnoresult
+msgid "%0:sThe GDB command:%0:s\"%1:s\"%0:sdid not return any result.%0:s"
+msgstr ""
+
+#: gdbmidebugger.gdbmierrorstateinfofailedread
+msgid "%0:sCould not read output from GDB.%0:s"
+msgstr ""
+
+#: gdbmidebugger.gdbmierrorstateinfofailedwrite
+msgid "%0:sCould not send a command to GDB.%0:s"
+msgstr ""
+
+#: gdbmidebugger.gdbmierrorstateinfogdbgone
+msgid "%0:sThe GDB process is no longer running.%0:s"
+msgstr ""
+
+#: gdbmidebugger.gdbmieventlogdebugoutput
+msgid "Debug Output: %s"
+msgstr ""
+
+#: gdbmidebugger.gdbmieventloggdbinternalerror
+msgid "GDB has encountered an internal error: %s"
+msgstr ""
+
+#: gdbmidebugger.gdbmieventlognosymbols
+msgid "File '%s' has no debug symbols"
+msgstr ""
+
+#: gdbmidebugger.gdbmieventlogprocessexitcode
+msgid "Process Exit: %s"
+msgstr ""
+
+#: gdbmidebugger.gdbmieventlogprocessexitnormally
+msgid "Process Exit: normally"
+msgstr ""
+
+#: gdbmidebugger.gdbmieventlogprocessstart
+msgid "Process Start: %s"
+msgstr ""
+
+#: gdbmidebugger.gdbmifailedtoterminategdb
+msgid "The IDE was unable to terminate the GDB process. This process may be left running outside the control of IDE.%0:sTo ensure the process is not affecting your System, you should locate and terminate it yourself."
+msgstr ""
+
+#: gdbmidebugger.gdbmifailedtoterminategdbtitle
+msgid "GDB did not terminate"
+msgstr ""
+
+#: gdbmidebugger.gdbmifatalerroroccured
+msgid "Unrecoverable error: \"%s\""
+msgstr ""
+
+#: gdbmidebugger.gdbmigdbinternalerror
+msgid "GDB has encountered an internal error: %0:sPress \"Ok\" to continue debugging. This may NOT be safe.%0:sPress \"Stop\" to end the debug session."
+msgstr ""
+
+#: gdbmidebugger.gdbmigdbinternalerrorinfo
+msgid "While executing the command: %0:s\"%2:s\"%0:sgdb reported:%0:s\"%1:s\"%0:s"
+msgstr ""
+
+#: gdbmidebugger.gdbmipressignoretocontinuedebuggingthismaynotbesafepres
+msgid "Press \"Ignore\" to continue debugging. This may NOT be safe. Press \"Abort\" to stop the debugger.%0:sException: %1:s with message \"%2:s\"%0:sContext: %4:s. State: %5:s %0:s%0:s%3:s"
+msgstr ""
+
+#: gdbmidebugger.gdbmithedebuggerexperiencedanunknowncondition
+msgid "The debugger experienced an unknown condition"
+msgstr ""
+
+#: gdbmidebugger.gdbmitimeoutforcmd
+msgid "Time-out for command: \"%s\""
+msgstr ""
+
+#: gdbmidebugger.gdbmiwarningunknowbreakpoint
+msgid "The debugger reached an unexpected %1:s%0:s%0:sPress \"Ok\" to continue debugging (paused).%0:sPress \"Stop\" to end the debug session."
+msgstr ""
+

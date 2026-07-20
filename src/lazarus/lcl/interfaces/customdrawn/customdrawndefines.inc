@@ -86,3 +86,17 @@
 {.$define VerboseCDKeyInput}
 {.$define VerboseCDInjectedControlNames}
 
+
+// ==================
+// OS/2 PM backend
+// ==================
+{$ifdef OS2}
+  {$define CD_OS2}
+{$endif}
+
+// ==================
+// DOS VGA/VESA backend (go32v2)
+// ==================
+{$ifdef GO32V2}
+  {$define CD_VESA}
+{$endif}

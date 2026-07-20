@@ -308,3 +308,303 @@ compile with real icon resources (server.ico, mainicon.ico).
 - Lazarus IDE moved to Phase 7 (needs all platforms solid first)
 - DOS SDL + RIPscript moved to Phase 8
 - Win32 heap + cocoa 200509189 moved to Phase 9 (unstable branch)
+
+### Phase 6b: OS/2 PM — Work In Progress
+RTL rebuilt: 62 PPUs using -Awasm (FPC internal Watcom assembler).
+Dummy cross-tools created in bin/tools/i386-os2/ for make compatibility.
+LazUtils blocked on OS/2 file utilities port (BUG-014).
+OS/2 PM widgetset requires: os2lazfileutils.inc, LCL OS/2 ifdefs, PM backend.
+PM API headers available in RTL: pmwin, pmgpi, pmstddlg, pmdev, pmshl, pmwp.
+
+### Phase 6c: pasjpeg OS/2 Fixes — DEFERRED
+Four categories of errors on OS/2:
+1. jidct2d.pas — "Unexpected end of file" (truncated/incomplete source)
+2. jidctasm.pas — "Wrong symbol type" (inline asm incompatible with cross-compiler)
+3. jmemdosa.pas — "GOTO and LABEL not supported" + "Selected assembler reader not supported" (DOS-specific memory manager)
+4. pasjpeg.pas — "Identifier not found TBitmapFileHeader/TBitmapInfoHeader/TBitmapCoreHeader" (needs Windows unit)
+
+### BUG-015 / BUG-007 Note
+pasjpeg cross-compile failures originally noted as BUG-007 (PPU Reader crash).
+Phase 6c covers the full set: truncated source, DOS asm, missing Windows types.
+Both deferred.
+
+### Phase 6b: OS/2 LCL — VERIFIED ✅ (nogui)
+RTL: 62 PPUs (-Awasm internal assembler, dummy cross-tools)
+LazUtils: 59 PPUs
+LCL: 217 PPUs (nogui widgetset)
+
+Source changes for OS/2:
+- lazutf8.pas: BUG-013 (LineEnding multi-char fix)
+- lazfileutils.pas: OS/2 routing to os2lazfileutils.inc (new file, 233 lines)
+- fileutil.pas: OS/2 routing to os2fileutil.inc (new file, 14 lines)
+- lazutf8sysutils.pas: excluded Unix from OS/2 uses clause
+- lclintf.pas: added sysenvapis_os2.inc (new file, OpenURL/OpenDocument stubs)
+- bin/tools/i386-os2/: dummy as, ld, wrc for cross-compilation
+
+PM widgetset (native GUI) deferred — needs dedicated backend work.
+
+### Phase 6b+: customdrawn PM Backend — PLAN
+
+**Goal:** Add OS/2 PM backend to customdrawn widgetset, giving OS/2 a GUI.
+
+**New file:** `src/lazarus/lcl/interfaces/customdrawn/customdrawn_os2proc.pas`
+
+**Based on:** `customdrawn_x11proc.pas` (Linux/FreeBSD X11 backend)
+
+**OS/2 PM units used:** pmwin, pmgpi, pmbitmap, pmstddlg, os2def
+
+**Implementation steps:**
+
+1. **Scaffold** — copy customdrawn_x11proc.pas, rename to os2proc
+2. **Window creation** — replace X11 calls with PM:
+   - XCreateWindow → WinCreateWindow
+   - XMapWindow → WinShowWindow
+   - XDestroyWindow → WinDestroyWindow
+3. **Message loop** — replace X11 event loop with PM:
+   - XNextEvent → WinGetMsg/WinDispatchMsg
+   - Map PM messages (WM_PAINT, WM_SIZE, WM_CHAR etc.) to LCL messages
+4. **Paint backend** — replace X11 drawing with PM:
+   - XPutImage → GpiDrawBitmap / WinBeginPaint
+   - customdrawn renders to a memory bitmap, PM blits it to screen
+5. **Register backend** — add OS2 to customdrawnint.pas platform selection
+6. **Build + verify** — compile widgetset, verify Interfaces + Forms test
+
+**Estimated:** ~500 lines of Pascal, one file + minor edits to customdrawnint.pas
+
+**Dependencies:** OS/2 LazUtils (done), LCL base (done), pmwin/pmgpi (in RTL)
+
+**Test:** Compile NMServer against OS/2 customdrawn (won't run on Linux,
+but PPU compilation verifies the widgetset is structurally correct)
+
+### [DECISION] OS/2 GUI: customdrawn + PM backend (not native PM widgetset)
+
+**Options considered:**
+1. Native PM widgetset — new `interfaces/os2/` with ~27 files implementing
+   every LCL control using native PM controls (WinCreateWindow for each
+   button, edit, listbox etc.)
+2. customdrawn + PM backend — one new file (`customdrawn_os2proc.pas`)
+   providing window creation and events; customdrawn draws all widgets itself
+
+**Chose option 2 because:**
+- **Much less code** — ~500 lines vs ~5000+ for a full native widgetset
+- **Already proven** — customdrawn works on Linux (X11), FreeBSD (X11),
+  and Windows (win backend). Adding OS/2 PM follows the same pattern.
+- **Cross-platform consistency** — same widget look on OS/2 as Linux/FreeBSD
+- **PM API is already in Pascal** — pmwin.pas, pmgpi.pas are pure FPC units,
+  no C bindings needed. WinCreateWindow, GpiDrawBitmap etc. callable directly.
+- **Minimal risk** — the PM backend only handles windows + events + blit.
+  All widget rendering is handled by existing customdrawn code.
+- **Matches project preference** — minimal C, pure Pascal, reuse existing code
+
+**Trade-off:** No native OS/2 look and feel. customdrawn widgets look the
+same everywhere. Acceptable for BBS/IRC server applications.
+
+### Phase 6b+: customdrawn PM Backend — IN PROGRESS
+Created 4 new files:
+- customdrawn_os2proc.pas (PM message → LCL message mapping)
+- customdrawnobject_os2.inc (AppInit/AppRun using WinInitialize/WinGetMsg)
+- customdrawnlclintf_os2.inc (timer stubs)
+- customdrawnwinapi_os2.inc (rubber band stubs)
+
+Modified:
+- customdrawndefines.inc (added CD_OS2 define)
+- customdrawnint.pas (OS/2 uses, Hab/Hmq fields, inc includes, X11 ifdef guards)
+
+Status: 153 LCL PPUs compile. Blocked on ExtTextOut/GetTextExtentExPoint
+override signature mismatch — OS/2 types may resolve differently.
+BUG-020: deferred.
+
+### Phase 6b+: customdrawn PM Backend — Status
+- customdrawn_os2proc.pas: scaffold complete (50 lines, message mapping)
+- customdrawnobject_os2.inc: PM init/message loop working (68 lines)  
+- customdrawnlclintf_os2.inc: timer stubs (12 lines)
+- customdrawnwinapi_os2.inc: cleaned (stub only)
+- customdrawnwslazdeviceapis.pas: added CD_OS2 to platform guard
+- customdrawnint.pas: pmwin/pmgpi after LCLType (prevents type shadowing)
+- BUG-020: os2def HWND shadowed LCLType HWND — FIXED (import order)
+- 171 LCL PPUs compile, 30 Backend method stubs needed
+- Next: add stub implementations for Backend* methods + verify
+
+### Phase 6b+: customdrawn PM Backend — VERIFIED ✅
+BUG-020 fixed: pmwin type conflicts isolated.
+OS/2 customdrawn widgetset: 174 LCL PPUs verified.
+Files created: customdrawn_os2proc.pas, customdrawnobject_os2.inc,
+customdrawnwinapi_os2.inc (30 method stubs), customdrawnlclintf_os2.inc.
+Also: os2lazfileutils.inc, os2fileutil.inc, sysenvapis_os2.inc.
+
+### Phase 7: Lazarus IDE — Source Downloaded
+Lazarus 1.2.6 full source (51.6MB) downloaded from SourceForge.
+Merged into src/lazarus/ preserving our modified lcl/lazutils/packager.
+IDE compilation deferred to fresh session (context limit).
+
+### Phase 7: Lazarus IDE — COMPILED ✅
+Lazarus 1.2.6 IDE compiled for x86_64-linux with customdrawn widgetset.
+Three binaries: lazarus (72MB), lazbuild (45MB), startlazarus (19MB).
+Required syncing lazutils fixes to components/lazutils/ (Makefile uses
+that path, not src/lazarus/lazutils/).
+Used: make all FPC=ppcx64 LCL_PLATFORM=customdrawn
+
+### Phase 7: Cross-platform IDE — RTL mismatch blocks 5 targets
+x86_64-linux IDE compiled successfully (make all LCL_PLATFORM=customdrawn).
+Other 5 targets blocked by paswstring codepage signature mismatch:
+x86_64-linux RTL has 4-param signatures (our fix), but i386-win32 RTL
+has original 3-param. Lazarus make rebuilds lazutils in-tree and hits
+the mismatch. Fix: rebuild all platform RTLs with matching signatures,
+or maintain separate paswstring versions per platform.
+
+### Phase 7 Fix: paswstring conditional signatures — COMPLETE ✅
+Added {$IFNDEF MSWINDOWS} to paswstring.pas for codepage parameter:
+- Non-Windows (x86_64-linux, i386-linux, freebsd, darwin, os2): 4-param
+- Windows (i386-win32, guarded r3 RTL): 3-param
+Result: IDE compiles for both x86_64-linux (72MB ELF) and i386-win32
+(151MB PE32). Win32 system.ppu untouched.
+
+### Phase 8a: RIPscript Output Unit — DEFERRED
+Server-side RIPscript: Pascal unit that emits BGI-style RIP escape codes
+(Line, Circle, Bar, SetColor, OutTextXY etc.) to stdout/socket.
+No LCL widgetset needed — terminal (RIPterm) renders the graphics.
+Blocked pending: user's existing RIPscript code upload + remote user
+connection design. RIPscript spec in docs/ripscript/.
+
+### Phase 8b: DOS SDL/VGA Framebuffer for go32v2 — DEFERRED
+Requires SDL 1.2 DOS libraries or custom VGA/VESA framebuffer backend.
+Large effort. Deferred.
+
+### [DECISION] Phase 8: customdrawn + VGA/VESA (not RIPscript)
+RIPscript is a remote presentation protocol — sends escape codes to a
+terminal. Not what we need for local DOS GUI apps.
+Instead: customdrawn + VGA/VESA backend for go32v2, same pattern as
+OS/2 PM backend. FPC go32v2 Graph unit supports VGA (640x480x16) and
+VESA modes (800x600, 1024x768). customdrawn renders widgets to a
+memory bitmap, VGA/VESA backend blits to screen.
+RIPscript code (rip154irc) preserved as reference for future BBS work.
+
+### Phase 8 — Revised Plan
+8a: customdrawn + VGA/VESA backend for go32v2 (Graph unit)
+8c: RIPscript viewer/parser — deferred to PPU creation phase
+ANSI viewer dropped.
+
+### Phase 8: go32v2 LCL — VERIFIED ✅ (nogui)
+RTL: 78 PPUs, LazUtils: 59, LCL: 140 (nogui widgetset)
+Same porting pattern as OS/2: route to os2lazfileutils.inc, os2fileutil.inc,
+sysenvapis_os2.inc. Stub syncobjs for single-threaded DOS.
+Dialogs {$R} ifdefed out for go32v2.
+VGA/VESA customdrawn backend deferred — needs Graph unit integration.
+
+### Phase 8: customdrawn + VESA backend for go32v2 — VERIFIED ✅
+Created VGA/VESA backend for customdrawn widgetset on DOS (go32v2).
+New files: customdrawn_vesaproc.pas, customdrawnobject_vesa.inc,
+customdrawnwinapi_vesa.inc, customdrawnlclintf_vesa.inc,
+customdrawnwsforms_vesa.inc, customdrawntrayicon_vesa.inc.
+Modified: customdrawndefines.inc (CD_VESA), customdrawnint.pas,
+customdrawnwsforms.pp, customdrawnwsextctrls.pas,
+customdrawnwslazdeviceapis.pas, dialogs.pp ({$R} ifdef),
+syncobjs.pp (GetLastOSError ifdef).
+Uses FPC Graph unit — supports VGA (640x480x16) up to VESA 1024x768x32K.
+
+### [DECISION] i8086-msdos LCL — DEFERRED (no solution)
+16-bit real mode 640K limit prevents LCL/customdrawn from fitting.
+No DPMI, no overlays, no flat memory model. LCL was never designed
+for 16-bit. go32v2 (32-bit DPMI) is the DOS GUI platform.
+i8086-msdos remains RTL-only (42 PPUs) for lightweight console tools.
+Future research: minimal LCL subset or DPMI extender integration.
+
+### Phase 9: Win32 LCL Backports — DEFERRED
+Needs backporting before Win32 heap fix investigation:
+- Ctl3D / ParentCtl3D — 3D control appearance properties
+- OEMConvert — OEM character conversion for edit controls
+- CreateWindowHandle — custom window handle creation
+- VerInfo — version information resource support
+These are Delphi compatibility properties used by Win32 LCL apps.
+Win32 heap fix (BUG-001) and cocoa 200509189 also deferred.
+
+### Phase 9: Win32 heap fix + cocoa 200509189 — DEFERRED
+Additionally needs LCL backports before proceeding:
+- Ctl3D / ParentCtl3D properties (Delphi VCL compatibility)
+- OEMConvert property (TEdit/TMemo OEM character conversion)
+- CreateWindowHandle method (custom window handle creation)
+- verinfo — version information resource support
+These are Delphi VCL features not present in Lazarus LCL 1.2.6.
+Backporting required before Phase 9 can proceed.
+
+### Phase 9: Win32 Heap Fix + LCL Backports — DEFERRED
+Win32 heap fix (Runtime Error 216) and cocoa 200509189 remain unstable.
+
+Additional LCL backports needed from newer Lazarus/Delphi:
+- Ctl3D property (3D control appearance)
+- OEMConvert property (edit controls)
+- ParentCtl3D property
+- CreateWindowHandle method
+- verinfo (version information resource support)
+
+These are Delphi VCL properties that later LCL versions added.
+FPC 2.6.4 / Lazarus 1.2.6 may be missing them.
+Backporting required for full Win32 LCL compatibility.
+
+### DOS Graphics Examples — DEFERRED
+http://tnabbs.org/public/files/examples.rar (1040MB)
+Black Book of Graphics Programming examples (1997).
+Too large to download in-session (~50 min at 350KB/s).
+User to upload directly in future session.
+
+### [DECISION] Removed .gitignore — use make clean instead
+.gitignore was the source of BUG-A (accidentally stripping shipped LCL PPUs).
+Every new PPU path needed a new exception line — fragile and error-prone.
+Replaced with `make clean` target that removes build artifacts but never
+touches bin/ (shipped PPUs). Everything in the repo is intentional.
+
+### Phase Reorder — 2026-07-19
+Phase 9: LCL Delphi Compatibility Backports (safe, needed by Inno port)
+  - Ctl3D / ParentCtl3D properties
+  - OEMConvert property
+  - CreateWindowHandle → CreateWnd
+Phase 10: Win32 heap fix + cocoa 200509189 (unstable, do last)
+
+### Phase 9: LCL Delphi Backports — COMPLETE ✅
+Added Ctl3D, ParentCtl3D (TWinControl), OEMConvert (TCustomEdit),
+CreateWindowHandle (TWinControl virtual method), verinfo.pas unit.
+All backward-compatible — existing code unaffected.
+
+### Phase 10 — Revised Plan (2026-07-19)
+Based on research doc "fpc-win32-rtl-abi-mismatch-research.md":
+
+The 3-param vs 4-param mismatch is worse than arity — it's a fundamental
+calling convention change (raw pchar buffer vs managed var RawByteString
+with refcount). Mixing them causes heap corruption, not just stack misalignment.
+
+Two stable states exist. The current state (source=4-param, binary=3-param)
+is unstable — held together only by nobody recompiling system.ppu.
+
+**Phase 10a (r3.1):** Revert syswin.inc + ustringh.inc to 3-param.
+Source matches shipped binary. Release is stable. No Windows testing needed.
+
+**Phase 10b (r4, future):** Put 4-param back, coordinated full RTL rebuild,
+ship new system.ppu, rebuild ALL downstream PPUs. Requires Windows testing.
+Build with -vu and DEBUG_UNIT_CRC_CHANGES to verify consistency.
+
+**Phase 10c (future):** cocoa Internal Error 200509189 on Darwin.
+ObjC bridge issue, needs macOS testing environment.
+
+### Phase 10b → Phase 11 (2026-07-19)
+Coordinated 4-param rebuild deferred to Phase 11.
+r3.1 is unstable for this change — needs real testing on WinXP and Win11
+to verify Win32 binaries work before shipping as r4.
+
+### BUG-029: AnsiString -Mdelphi stack overflow — KNOWN LIMITATION
+Compiler code generator bug. Workaround: {$H-} or avoid String return
+values in hot paths. Fixing requires compiler source changes (ppc386).
+Reported by Mystic BBS IRC Fork project.
+
+### Inno Setup 5.6.1 FPC Port — Deferred (not our scope)
+4/5 Inno targets compile clean against fpc264irc r3.1.
+Remaining work is Inno-side (PascalScript, LZMA, DFM, resources).
+All test reports and audit docs saved to docs/.
+See: INNO_HOLLOW_FEATURES.md, INNO_FPC_WORKMAP.md,
+FPCIRC_PHASE9_AUDIT.md, FPCIRC_PHASE9_TEST_RESULTS.md,
+FPCIRC_PHASE9_FINAL_TEST.md
+
+### [DECISION] Pure Pascal LZMA decoder (no C dependency)
+Created lzmadecpas.pas — 636 lines, LZMA1 + LZMA2 decoder.
+Fits project philosophy: minimal C, pure Pascal, self-contained.
+Compiles on all targets including go32v2 and i8086-msdos.
+Replaces the MinGW cross-compile approach for Inno LZMA decompression.

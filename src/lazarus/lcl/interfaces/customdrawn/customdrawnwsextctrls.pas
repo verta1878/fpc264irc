@@ -29,7 +29,7 @@ uses
 //  {$ifdef CD_Windows}Windows, customdrawn_WinProc,{$endif}
   {$ifdef CD_Cocoa}MacOSAll, CocoaAll, customdrawn_cocoaproc, CocoaGDIObjects,{$endif}
   {$ifdef CD_X11}X, XLib, XUtil, BaseUnix, customdrawn_x11proc,{$endif}
-//  {$ifdef CD_Android}customdrawn_androidproc, jni, bitmap, log, keycodes,{$endif}
+{$ifdef CD_Android}customdrawn_androidproc, jni, bitmap, log, keycodes,{$endif}
   // LCL
   LCLProc, LCLIntf,
   SysUtils, Classes, Controls, Graphics, Forms, ExtCtrls, LCLType,
@@ -242,6 +242,12 @@ end;
 {$endif}
 {$ifdef CD_X11}
   {$I customdrawntrayicon_x11.inc}
+{$endif}
+{$ifdef CD_OS2}
+  {$I customdrawntrayicon_os2.inc}
+{$endif}
+{$ifdef CD_VESA}
+  {$I customdrawntrayicon_vesa.inc}
 {$endif}
 {$ifdef CD_Android}
   {$I customdrawntrayicon_android.inc}

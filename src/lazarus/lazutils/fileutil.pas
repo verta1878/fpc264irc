@@ -262,12 +262,18 @@ uses
 {$IFDEF windows}
   Windows;
 {$ELSE}
+  {$IF defined(OS2) or defined(GO32V2) or defined(MSDOS)}
+  Dos;
+  {$ELSE}
   Unix, BaseUnix;
+  {$ENDIF}
 {$ENDIF}
 
 {$I fileutil.inc}
-{$IFDEF windows}
+{$IF defined(windows)}
   {$i winfileutil.inc}
+{$ELSEIF defined(OS2) or defined(GO32V2) or defined(MSDOS)}
+  {$i os2fileutil.inc}
 {$ELSE}
   {$i unixfileutil.inc}
 {$ENDIF}

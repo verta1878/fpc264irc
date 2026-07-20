@@ -703,7 +703,7 @@ begin
          // fpc 2.1.1 stores string constants as array of char so maybe this
          // will work for without ifdef (once available in 2.0.x too):
          // move(lineending, dest^, sizeof(LineEnding));
-{$IFDEF WINDOWS}
+{$IF defined(WINDOWS) or defined(OS2) or defined(GO32V2) or defined(MSDOS)}
                begin
                  move(lineending[1], dest^, length(LineEnding));
                  inc(dest, length(LineEnding)-1);

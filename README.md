@@ -94,16 +94,32 @@ docs/
 
 ## Roadmap
 
-- **Phase 0**: ✅ Build Infrastructure
-- **Phase 1**: ✅ Win32 LCL + netmodem2irc binaries
-- **Phase 2**: ✅ Cross-Platform LCL Verification (5 platforms)
+### Complete
+- **Phase 0**: ✅ Build Infrastructure (8 targets, cross-compilers)
+- **Phase 1**: ✅ Win32 LCL + netmodem2irc binaries (NMServer, NMConfig, NetModemCPL)
+- **Phase 2**: ✅ Cross-Platform LCL Verification (6 platforms)
 - **Phase 3**: ✅ Darwin PPU Completion (757 PPUs + Carbon widgetset)
 - **Phase 4**: ✅ Darwin Toolchain (-Amacho, no external tools)
 - **Phase 6a**: ✅ Resource Compiler (windres .rc → .res, icons in binaries)
-- **Phase 6b**: OS/2 PM LCL Widgetset (LazUtils + LCL base + PM backend)
-- **Phase 7**: Lazarus IDE compilation
-- **Phase 8**: DOS SDL + RIPscript widgetsets
-- **Phase 9**: Win32 heap fix, cocoa 200509189 investigation (unstable)
+- **Phase 6b/b+**: ✅ OS/2 LazUtils + LCL + customdrawn PM backend
+- **Phase 6c**: ✅ pasjpeg fixes (jidct2d, pasjpeg.pas BMP types, ShowMessage)
+- **Phase 7**: ✅ Lazarus IDE (x86_64-linux 72MB + i386-win32 151MB)
+- **Phase 8**: ✅ go32v2 LCL + customdrawn VESA backend (up to 1024x768x32K)
+- **Phase 9**: ✅ LCL Delphi Backports (Ctl3D, ParentCtl3D, OEMConvert, CreateWindowHandle, verinfo)
+
+### Pending
+- **Phase 10**: cocoa Internal Error 200509189 (Darwin ObjC bridge, needs macOS testing)
+- **Phase 11**: r3.1 unstable — Win32 ABI revert to 3-param + 4-param rebuild + AnsiString -Mdelphi stack overflow (BUG-029) + test on WinXP + Win11
+
+### Deferred
+- i8086-msdos LCL — no solution for 640K real-mode limit
+- RIPscript viewer — deferred to PPU creation phase
+- Inno Setup 5.6.1 FPC port — see docs/INNO_HOLLOW_FEATURES.md
+  - PascalScript engine (22 stub files, ~5,500 lines missing, needs RemObjects PS)
+  - LZMA decompression (13 C externals, needs MinGW recompile or dynamic loading)
+  - DFM→LFM form conversion (13 forms)
+  - Windows resources (12 .res, needs windres)
+  - SetupCompat.pas (3 functions)
 
 ## Preferences
 

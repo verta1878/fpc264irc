@@ -540,8 +540,10 @@ procedure Register;
 
 implementation
 
+{$IFNDEF GO32V2}
 {$R forms/finddlgunit.lfm}
 {$R forms/replacedlgunit.lfm}
+{$ENDIF}
 
 uses 
   Math, WSDialogs;

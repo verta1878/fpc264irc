@@ -6388,6 +6388,8 @@ begin
   FBrush := nil; // Brush will be created on demand. Only few controls need it.
   FTabOrder := -1;
   FTabStop := False;
+  FCtl3D := True;
+  FParentCtl3D := True;
   InvalidateClientRectCache(false);
 end;
 
@@ -7409,6 +7411,22 @@ begin
 
   //DebugLn('[TWinControl.CreateWnd] END ',Name,':',Classname);
   //WriteClientRect('D');
+end;
+
+{------------------------------------------------------------------------------
+  Method:  TWinControl.CreateWindowHandle
+  Params:  Params: TCreateParams
+  Returns: Nothing
+
+  VCL compatibility method. In Delphi VCL, CreateWindowHandle is called
+  by CreateWnd to do the actual Windows API CreateWindowEx call.
+  In LCL, this is handled internally. This method exists so that Delphi
+  code that overrides CreateWindowHandle can be ported to LCL.
+  Override CreateWnd instead for new LCL code.
+ ------------------------------------------------------------------------------}
+procedure TWinControl.CreateWindowHandle(const Params: TCreateParams);
+begin
+  // Default: do nothing — LCL handles window creation in CreateWnd/CreateHandle
 end;
 
 {------------------------------------------------------------------------------

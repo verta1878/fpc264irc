@@ -33,6 +33,8 @@ uses
   {$ifdef CD_Windows}Windows, customdrawn_WinProc,{$endif}
   {$ifdef CD_Cocoa}MacOSAll, CocoaAll, customdrawn_cocoaproc, CocoaGDIObjects,Types,{$endif}
   {$ifdef CD_X11}X, XLib, XUtil, BaseUnix, customdrawn_x11proc,{$ifdef CD_UseNativeText}xft, fontconfig,{$endif}{$endif}
+  {$ifdef CD_OS2}customdrawn_os2proc,{$endif}
+  {$ifdef CD_VESA}customdrawn_vesaproc, Graph,{$endif}
   {$ifdef CD_Android}
   customdrawn_androidproc, jni, bitmap, log, keycodes,
   {$endif}
@@ -147,6 +149,13 @@ type
     LeaderWindow: X.TWindow;
     ClientLeaderAtom: TAtom;
 
+    {$endif}
+    {$ifdef CD_OS2}
+    Hab: Cardinal; // Anchor block handle
+    Hmq: Cardinal; // Message queue handle
+    {$endif}
+
+    {$ifdef CD_X11}
     FWMProtocols: TAtom;	  // Atom for "WM_PROTOCOLS"
     FWMDeleteWindow: TAtom;	  // Atom for "WM_DELETE_WINDOW"
     FWMHints: TAtom;		  // Atom for "_MOTIF_WM_HINTS"
@@ -454,6 +463,7 @@ uses
 ////////////////////////////////////////////////////
   Win32Extra,}
   customdrawnprivate,
+  {$ifdef CD_OS2}{$endif}
   LCLMessageGlue;
 
   {$ifdef CD_Windows}
@@ -510,6 +520,16 @@ end;
   {$I customdrawnobject_x11.inc}
   {$I customdrawnwinapi_x11.inc}
   {$I customdrawnlclintf_x11.inc}
+{$endif}
+{$ifdef CD_OS2}
+  {$I customdrawnobject_os2.inc}
+  {$I customdrawnwinapi_os2.inc}
+  {$I customdrawnlclintf_os2.inc}
+{$endif}
+{$ifdef CD_VESA}
+  {$I customdrawnobject_vesa.inc}
+  {$I customdrawnwinapi_vesa.inc}
+  {$I customdrawnlclintf_vesa.inc}
 {$endif}
 {$ifdef CD_Android}
   {$I customdrawnobject_android.inc}

@@ -9,6 +9,11 @@
 #
 #  Requires: bin/ppc386 (i386 cross-compiler) and the matching
 #  target RTL in bin/units/i386-<os> plus tools in bin/tools/.
+#
+#  IMPORTANT: Package PPUs are prebuilt in bin/units/i386-<os>/.
+#  Do NOT add -Fu to package source dirs — that recompiles them
+#  with different checksums than the shipped RTL PPUs (BUG-E).
+#  Always rebuild LCL AFTER RTL is finalized (BUG-D).
 # ============================================================
 set -u
 ROOT="$(cd "$(dirname "$0")" && pwd)"
@@ -25,7 +30,6 @@ esac
 
 FPC="$ROOT/bin/ppc386"
 RTL="$ROOT/bin/units/i386-$OS"
-PKG="$ROOT/src/packages"
 LAZ="$ROOT/src/lazarus"
 REG="$LAZ/packager/registration"
 LU="$LAZ/lazutils"
@@ -35,38 +39,36 @@ OUT="$ROOT/bin/lazarus/units/i386-$OS"
 mkdir -p "$OUT/lazutils" "$OUT/lcl" "$OUT/lcl/$WS"
 export PATH="$TOOLS:$PATH"
 
-# Package source paths the LCL depends on (all in-tree FPC packages).
-PKGS="-Fu$PKG/fcl-base/src -Fu$PKG/fcl-image/src -Fu$PKG/fcl-xml/src \
--Fu$PKG/regexpr/src -Fu$PKG/paszlib/src -Fu$PKG/fcl-process/src \
--Fu$PKG/winunits-base/src -Fu$PKG/hash/src -Fu$PKG/pasjpeg/src \
--Fu$PKG/fcl-db/src/base -Fu$REG \
--Fi$PKG/fcl-process/src/$([ "$OS" = win32 ] && echo win || echo unix) \
--Fi$PKG/pasjpeg/src"
-
-COMMON="-Twin32 -Pi386 -Mobjfpc -Scghi -O1 -dLCL $PKGS -FD$TOOLS"
-[ "$OS" != win32 ] && COMMON="-Tlinux -Pi386 -Mobjfpc -Scghi -O1 -dLCL $PKGS -FD$TOOLS"
+# No -Fu to package source dirs. RTL PPUs in $RTL already contain
+# all package units (fcl-image, fcl-xml, paszlib, hash, etc.).
+COMMON="-T$OS -Pi386 -Mobjfpc -Scghi -O1 -dLCL -FD$TOOLS"
 
 echo "=== 1/3  LazUtils ($WS / i386-$OS) ==="
 ( cd "$LU" && "$FPC" $COMMON -Fu"$RTL" -FU"$OUT/lazutils" -Fi"$LU" lazutils.pas ) \
   2>&1 | grep -iE "Error:|Fatal:|lines compiled" | tail -3
 
 echo "=== 2/3  LCL base ==="
-( cd "$LCL" && make lclbase LCL_PLATFORM=$WS FPC="$FPC" \
-    CPU_TARGET=i386 OS_TARGET=$OS \
-    OPT="-Fu$RTL -Fu$OUT/lazutils $PKGS -Fu$LCL/interfaces/$WS -FD$TOOLS" ) \
+( cd "$LCL" && "$FPC" $COMMON \
+    -Fu"$RTL" -Fu"$OUT/lazutils" -Fu"$LU" \
+    -Fu. -Fu./nonwin32 -Fu./forms -Fu./widgetset \
+    -Fu./interfaces/$WS -Fi./include \
+    -FU"$OUT/lcl" \
+    alllclunits.pp ) \
   2>&1 | grep -iE "Error:|Fatal:|lines compiled|Linking" | tail -3
 
 echo "=== 3/3  $WS widgetset ==="
-( cd "$LCL" && make intf LCL_PLATFORM=$WS FPC="$FPC" \
-    CPU_TARGET=i386 OS_TARGET=$OS \
-    OPT="-Fu$RTL -Fu$OUT/lazutils $PKGS -FD$TOOLS" ) \
+( cd "$LCL" && "$FPC" $COMMON \
+    -Fu"$RTL" -Fu"$OUT/lazutils" -Fu"$OUT/lcl" \
+    -Fu./interfaces/$WS -Fi./include \
+    -FU"$OUT/lcl/$WS" \
+    interfaces/$WS/interfaces.pp ) \
   2>&1 | grep -iE "Error:|Fatal:|lines compiled|Linking" | tail -3
-
-# Collect results into bin/lazarus
-cp "$LCL/units/i386-$OS"/*.ppu "$LCL/units/i386-$OS"/*.o "$OUT/lcl/" 2>/dev/null
-cp "$LCL/units/i386-$OS/$WS"/*.ppu "$LCL/units/i386-$OS/$WS"/*.o "$OUT/lcl/$WS/" 2>/dev/null
 
 echo ""
 echo "Done. LCL units in: $OUT"
+echo "  lazutils:  $(ls "$OUT/lazutils"/*.ppu 2>/dev/null | wc -l) ppu"
 echo "  base:      $(ls "$OUT/lcl"/*.ppu 2>/dev/null | wc -l) ppu"
+# Copy LFM and RES resource files needed by LCL PPUs
+cp "$LCL/forms"/*.lfm "$OUT/lcl/" 2>/dev/null
+cp "$LCL/interfaces/$WS"/*.res "$OUT/lcl/$WS/" 2>/dev/null
 echo "  widgetset: $(ls "$OUT/lcl/$WS"/*.ppu 2>/dev/null | wc -l) ppu"

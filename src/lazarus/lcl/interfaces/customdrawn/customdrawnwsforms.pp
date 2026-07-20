@@ -198,6 +198,12 @@ implementation
 {$ifdef CD_X11}
   {$include customdrawnwsforms_x11.inc}
 {$endif}
+{$ifdef CD_OS2}
+  {$include customdrawnwsforms_os2.inc}
+{$endif}
+{$ifdef CD_VESA}
+  {$include customdrawnwsforms_vesa.inc}
+{$endif}
 {$ifdef CD_Android}
   {$include customdrawnwsforms_android.inc}
 {$endif}

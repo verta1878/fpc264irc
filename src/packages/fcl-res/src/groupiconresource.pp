@@ -76,7 +76,21 @@ begin
     {$IFDEF ENDIAN_BIG}
     offsetId:=SwapEndian(offsetId);
     {$ENDIF}
-    res:=OwnerList.Find(RT_ICON,offsetID,LangID);
+    // Try exact LangID first, then fall back to any LangID.
+    // Borland's BRCC32 may store RT_ICON sub-resources with a
+    // different LangID than the RT_GROUP_ICON entry (e.g., neutral
+    // vs $0409). FPC's resource merger requires exact match by default.
+    try
+      res:=OwnerList.Find(RT_ICON,offsetID,LangID);
+    except
+      on EResourceNotFoundException do
+        try
+          res:=OwnerList.Find(RT_ICON,offsetID,0);  // try neutral
+        except
+          on EResourceNotFoundException do
+            res:=OwnerList.Find(RT_ICON,offsetID);   // try any lang
+        end;
+    end;
     pii^.res:=res;
     SetChildOwner(res);
     fItemList.Add(pii);

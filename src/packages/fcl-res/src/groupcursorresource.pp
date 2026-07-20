@@ -73,7 +73,18 @@ begin
     {$IFDEF ENDIAN_BIG}
     cursorId:=SwapEndian(cursorId);
     {$ENDIF}
-    res:=OwnerList.Find(RT_CURSOR,cursorid,LangID);
+    // Try exact LangID first, then fall back for Borland compatibility
+    try
+      res:=OwnerList.Find(RT_CURSOR,cursorid,LangID);
+    except
+      on EResourceNotFoundException do
+        try
+          res:=OwnerList.Find(RT_CURSOR,cursorid,0);
+        except
+          on EResourceNotFoundException do
+            res:=OwnerList.Find(RT_CURSOR,cursorid);
+        end;
+    end;
     pci^.res:=res;
     SetChildOwner(res);
     fItemList.Add(pci);

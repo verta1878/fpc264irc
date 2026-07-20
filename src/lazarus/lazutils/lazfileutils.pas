@@ -135,8 +135,10 @@ implementation
 
 // to get more detailed error messages consider the os
 uses
-{$IFDEF Windows}
+{$IF defined(Windows)}
   Windows {$IFnDEF WinCE}, WinDirs{$ENDIF};
+{$ELSEIF defined(OS2) or defined(GO32V2) or defined(MSDOS)}
+  Dos;
 {$ELSE}
   {$IFDEF darwin}
   MacOSAll,
@@ -145,8 +147,10 @@ uses
 {$ENDIF}
 
 {$I lazfileutils.inc}
-{$IFDEF windows}
+{$IF defined(windows)}
   {$I winlazfileutils.inc}
+{$ELSEIF defined(OS2) or defined(GO32V2) or defined(MSDOS)}
+  {$I os2lazfileutils.inc}
 {$ELSE}
   {$I unixlazfileutils.inc}
 {$ENDIF}
