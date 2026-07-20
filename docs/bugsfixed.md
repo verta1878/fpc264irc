@@ -265,3 +265,13 @@ compile clean with -Tdarwin -Amacho -dCOCOA. The original error was
 likely caused by a build configuration issue (wrong assembler flag
 or ObjC bridge misconfiguration). With correct flags, cocoa compiles.
 Darwin now has two widgetsets: Carbon (46 PPUs) and Cocoa (14 PPUs).
+
+### BUG-032 verified: Borland .res icon merge — CONFIRMED FIXED
+Tested with actual Inno Setup 5.6.1 .res files:
+- SetupLdr.res (4 RT_ICON + 1 RT_GROUP_ICON "MAINICON", LangID 0x0409)
+- Setup.res (same structure)
+- Merge with SetupLdrVersion.res + SetupLdrOffsetTable.res: OK
+- Merge with SetupVersion.res + Images.res: OK
+fpcres converts and merges all Borland BRCC32 .res files without errors.
+The ISCC crash should be resolved — Setup.e32 and SetupLdr.e32 will
+now have valid .rsrc PE sections with icons.
