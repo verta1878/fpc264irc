@@ -613,3 +613,14 @@ Replaces the MinGW cross-compile approach for Inno LZMA decompression.
 Internal Error does not reproduce. Cocoa widgetset compiles clean
 (14 PPUs) with -Tdarwin -Amacho -dCOCOA. Previous error was likely
 a build config issue. Darwin now has Carbon + Cocoa widgetsets.
+
+### New Units: fixedmath.pas + jpegdec.pas
+fixedmath.pas (248 lines): 16.16 fixed-point math — no FPU required.
+  FixMul, FixDiv, FixSin, FixCos, FixTan, FixSqrt, FixLerp.
+  256-entry sine table, 1024-step angle system.
+  Compiles on all 8 targets including go32v2 and i8086.
+
+jpegdec.pas (276 lines): JPEG → raw pixel buffer decoder.
+  Uses FPC's built-in pasjpeg (pure Pascal, no libjpeg).
+  JPEGLoadFile, JPEGLoadStream, JPEGLoadMem, JPEGGetInfo.
+  Output: RGB or Grayscale pixel buffer.
