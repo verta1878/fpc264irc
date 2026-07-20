@@ -530,65 +530,7 @@ function GetProcessID: SizeUInt;
      stdcall; external 'kernel32' name 'MultiByteToWideChar';
  function WideCharToMultiByte(CodePage:UINT; dwFlags:DWORD; lpWideCharStr:PWideChar; cchWideChar:longint; lpMultiByteStr:PChar;cchMultiByte:longint; lpDefaultChar:PChar; lpUsedDefaultChar:pointer):longint;
      stdcall; external 'kernel32' name 'WideCharToMultiByte';
- function GetACP: UINT;
-     stdcall; external 'kernel32' name 'GetACP';
- function GetLocaleInfoA(Locale:DWORD; LCType:DWORD; lpLCData:PChar; cchData:longint):longint;
-     stdcall; external 'kernel32' name 'GetLocaleInfoA';
- function GetEnvironmentVariableA(lpName:PChar; lpBuffer:PChar; nSize:DWORD):DWORD;
-     stdcall; external 'kernel32' name 'GetEnvironmentVariableA';
 
-const
-  LOCALE_USER_DEFAULT = $0400;
-  LOCALE_IDEFAULTANSICODEPAGE = $00001004;
-
-var
-  { Effective ANSI codepage — initialized at startup.
-    On real Windows: same as GetACP (e.g., 1252).
-    On Wine: corrected from 65001 to real ANSI codepage.
-    Controlled by FPC_ALLOW_UTF8_ACP environment variable. }
-  FPC_AnsiCodePage: UINT = 0;
-
-procedure InitAnsiCodePage;
-var
-  CP: UINT;
-  Buf: array[0..15] of Char;
-  Len: Integer;
-  EnvBuf: array[0..3] of Char;
-begin
-  CP := GetACP;
-
-  if CP = 65001 then
-  begin
-    { Wine returns 65001 (UTF-8) from GetACP when inheriting Linux locale.
-      Delphi-era code assumes single-byte ANSI. Check for opt-in override. }
-    if GetEnvironmentVariableA('FPC_ALLOW_UTF8_ACP', @EnvBuf, SizeOf(EnvBuf)) > 0 then
-    begin
-      { User explicitly wants UTF-8 — allow it }
-      FPC_AnsiCodePage := 65001;
-      Exit;
-    end;
-
-    { Fall back to the real ANSI codepage for this locale }
-    Len := GetLocaleInfoA(LOCALE_USER_DEFAULT, LOCALE_IDEFAULTANSICODEPAGE,
-                          @Buf, SizeOf(Buf));
-    if Len > 1 then
-    begin
-      { Parse numeric string }
-      CP := 0;
-      Len := 0;
-      while (Buf[Len] >= '0') and (Buf[Len] <= '9') do
-      begin
-        CP := CP * 10 + (Ord(Buf[Len]) - Ord('0'));
-        Inc(Len);
-      end;
-      if CP = 0 then CP := 1252;  { safety: default to Western }
-    end
-    else
-      CP := 1252;  { GetLocaleInfo failed — default to Western }
-  end;
-
-  FPC_AnsiCodePage := CP;
-end;
  function CharUpperBuff(lpsz:LPWSTR; cchLength:DWORD):DWORD;
      stdcall; external 'user32' name 'CharUpperBuffW';
  function CharLowerBuff(lpsz:LPWSTR; cchLength:DWORD):DWORD;
@@ -600,10 +542,10 @@ procedure Win32Unicode2AnsiMove(source:punicodechar;var dest:ansistring;len:Size
   begin
     // retrieve length including trailing #0
     // not anymore, because this must also be usable for single characters
-    destlen:=WideCharToMultiByte(FPC_AnsiCodePage, WC_NO_BEST_FIT_CHARS, source, len, nil, 0, nil, nil);
+    destlen:=WideCharToMultiByte(CP_ACP, WC_NO_BEST_FIT_CHARS, source, len, nil, 0, nil, nil);
     // this will null-terminate
     setlength(dest, destlen);
-    WideCharToMultiByte(FPC_AnsiCodePage, WC_NO_BEST_FIT_CHARS, source, len, @dest[1], destlen, nil, nil);
+    WideCharToMultiByte(CP_ACP, WC_NO_BEST_FIT_CHARS, source, len, @dest[1], destlen, nil, nil);
   end;
 
 procedure Win32Ansi2UnicodeMove(source:pchar;var dest:UnicodeString;len:SizeInt);
@@ -612,10 +554,10 @@ procedure Win32Ansi2UnicodeMove(source:pchar;var dest:UnicodeString;len:SizeInt)
   begin
     // retrieve length including trailing #0
     // not anymore, because this must also be usable for single characters
-    destlen:=MultiByteToWideChar(FPC_AnsiCodePage, MB_PRECOMPOSED, source, len, nil, 0);
+    destlen:=MultiByteToWideChar(CP_ACP, MB_PRECOMPOSED, source, len, nil, 0);
     // this will null-terminate
     setlength(dest, destlen);
-    MultiByteToWideChar(FPC_AnsiCodePage, MB_PRECOMPOSED, source, len, @dest[1], destlen);
+    MultiByteToWideChar(CP_ACP, MB_PRECOMPOSED, source, len, @dest[1], destlen);
   end;
 
 
@@ -646,10 +588,10 @@ procedure Win32Ansi2WideMove(source:pchar;var dest:widestring;len:SizeInt);
   begin
     // retrieve length including trailing #0
     // not anymore, because this must also be usable for single characters
-    destlen:=MultiByteToWideChar(FPC_AnsiCodePage, MB_PRECOMPOSED, source, len, nil, 0);
+    destlen:=MultiByteToWideChar(CP_ACP, MB_PRECOMPOSED, source, len, nil, 0);
     // this will null-terminate
     setlength(dest, destlen);
-    MultiByteToWideChar(FPC_AnsiCodePage, MB_PRECOMPOSED, source, len, @dest[1], destlen);
+    MultiByteToWideChar(CP_ACP, MB_PRECOMPOSED, source, len, @dest[1], destlen);
   end;
 
 
@@ -705,9 +647,6 @@ procedure InitWin32Widestrings;
           end;
       end;
 {$endif}
-
-    { Initialize ANSI codepage — corrects Wine's UTF-8 lie }
-    InitAnsiCodePage;
 
     { Note: since WideChar=UnicodeChar and PWideChar=PUnicodeChar,
       Wide2AnsiMoveProc is identical to Unicode2AnsiStrMoveProc. }

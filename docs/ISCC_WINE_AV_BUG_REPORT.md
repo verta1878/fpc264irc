@@ -114,3 +114,44 @@ Initialized at startup by InitAnsiCodePage:
 
 **Status:** Fix in source. Requires RTL rebuild to take effect.
 Inno team needs to rebuild all 5 targets against patched RTL.
+
+---
+
+## UPDATE 2: Real Root Cause Found — BUG-035
+
+**NOT a codepage issue.** BUG-034 was a red herring.
+
+### Crash Location
+`COMPRESS_UPDATECRC32` at RVA 0x3DBCF in ISCmplr.dll
+Assembly: `mov 0x9435f0(,%eax,4),%eax` — CRC32 table lookup
+eax = 0x4C58 (19544) — WAY out of bounds (max 255)
+
+### Root Cause: FPC Lo() returns Word, not Byte
+```
+Compress.pas line 152:
+  CRC32Table[Lo(CurCRC) xor P^] xor (CurCRC shr 8);
+
+Delphi: Lo(LongInt) → Byte  (low 8 bits)  → index 0-255
+FPC:    Lo(LongInt) → Word  (low 16 bits)  → index 0-65535
+```
+
+CRC32Table is `array[Byte]` (256 entries). FPC produces a
+Word-sized XOR result that overflows the array → reads unmapped
+memory → Access Violation.
+
+### Fix (Inno-side, one line)
+```pascal
+// BEFORE:
+CRC32Table[Lo(CurCRC) xor P^] xor (CurCRC shr 8);
+// AFTER:
+CRC32Table[Byte(CurCRC) xor P^] xor (CurCRC shr 8);
+```
+
+### Lo() Audit (8 usages in Inno)
+Only Compress.pas:152 is critical. All other Lo() usages are
+comparisons or small-value assignments that work with Word result.
+
+### Impact
+This crash occurs on ALL platforms (Wine and real Windows).
+It is not Wine-specific. Every attempt to compile a .iss script
+will crash at the compression stage.

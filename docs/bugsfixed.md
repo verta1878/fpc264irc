@@ -303,3 +303,26 @@ Replaced CP_ACP with FPC_AnsiCodePage in Win32Unicode2AnsiMove and
 Win32Ansi2UnicodeMove. Requires RTL rebuild.
 **Safety:** Only fires when GetACP=65001 (never on real Windows).
 **Override:** Set FPC_ALLOW_UTF8_ACP=1 to force UTF-8 codepage.
+
+### BUG-035: ISCC.exe crash in UpdateCRC32 — Lo() incompatibility
+**Symptom:** Access Violation at COMPRESS_UPDATECRC32 during installer
+compilation. CRC32 table index = 0x4C58 (out of bounds, max 255).
+**Root cause:** FPC's Lo() returns Word (16-bit) for LongInt input.
+Delphi's Lo() returns Byte (8-bit) for LongInt input.
+  Compress.pas line 155: CRC32Table[Lo(CurCRC) xor P^]
+  Delphi: Lo($12345678) = $78 (Byte), index 0-255 ✅
+  FPC:    Lo($12345678) = $5678 (Word), index 0-65535 ❌
+CRC table is array[Byte] (256 entries). Word index overflows → AV.
+**Fix (Inno-side):** Change Lo(CurCRC) to Byte(CurCRC) in Compress.pas:
+  CRC32Table[Byte(CurCRC) xor P^] xor (CurCRC shr 8);
+**Fix (FPC-side):** Could override Lo() in -Mdelphi mode, but this is
+a compiler intrinsic change with wide blast radius. Inno-side fix safer.
+**Note:** BUG-034 (Wine codepage) was a RED HERRING. The crash occurs
+on any platform, not just Wine. The codepage fix is still valid but
+does not address this crash.
+
+### BUG-034: REVERTED — Wine codepage patch removed
+The syswin.inc FPC_AnsiCodePage patch was a red herring.
+The real crash was BUG-035 (Lo() returning Word instead of Byte).
+Wine codepage patch reverted to original CP_ACP code.
+syswin.inc restored to pre-patch state (665 lines).
