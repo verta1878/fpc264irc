@@ -49,10 +49,22 @@ i8086-msdos     42 RTL  —            —        RTL only
 - build-lcl.sh rebuilt without package source paths
 - fpcres rebuilt with Borland .res icon fix
 
+## IMPORTANT: RTL Rebuild Required
+
+BUG-034 (Wine codepage crash) patched in rtl/win/syswin.inc but
+the shipped PPUs in bin/units/i386-win32/ are PRE-PATCH. You MUST
+rebuild the Win32 RTL before this fix takes effect:
+
+  cd src/rtl/win32
+  ppc386 -Twin32 -Mobjfpc system.pp   (or use build.sh)
+
+Then rebuild all Win32 binaries (ISCC, Setup, SetupLdr, etc.)
+against the new PPUs. Without this step, the fix is source-only.
+
 ## Remaining
 
-Phase 11: r3.1 unstable — Win32 ABI revert + AnsiString BUG-029
-          + test on WinXP + Win11
+Phase 11: r3.1 unstable — Win32 RTL rebuild + ABI revert +
+          AnsiString BUG-029 + test on WinXP + Win11
 
 ## Deferred
 

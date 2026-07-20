@@ -91,3 +91,26 @@ FPC AnsiString implementation under Wine may behave differently.
 
 Test on real Windows. If `ISCC.exe test.iss` produces test-setup.exe,
 this is Wine-only and not a code bug.
+
+---
+
+## UPDATE: BUG-034 Fix Applied
+
+**Fix commit:** syswin.inc patched with FPC_AnsiCodePage
+**Date:** 2026-07-20
+
+Root cause identified: Wine's GetACP() returns 65001 (UTF-8).
+FPC's RTL uses CP_ACP in WideCharToMultiByte/MultiByteToWideChar,
+which under Wine resolves to UTF-8. Delphi-era AnsiString code
+expects single-byte ANSI (1252). UTF-8 multi-byte conversion
+corrupts string buffer sizes → memory corruption → AV.
+
+**Fix:** Replaced CP_ACP with FPC_AnsiCodePage variable in syswin.inc.
+Initialized at startup by InitAnsiCodePage:
+1. GetACP() returns 65001 → detect Wine environment
+2. Check FPC_ALLOW_UTF8_ACP env var (opt-in override)
+3. Fall back to GetLocaleInfoA(LOCALE_IDEFAULTANSICODEPAGE)
+4. If that fails → default to 1252 (Western European)
+
+**Status:** Fix in source. Requires RTL rebuild to take effect.
+Inno team needs to rebuild all 5 targets against patched RTL.
