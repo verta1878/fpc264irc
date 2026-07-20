@@ -326,3 +326,25 @@ The syswin.inc FPC_AnsiCodePage patch was a red herring.
 The real crash was BUG-035 (Lo() returning Word instead of Byte).
 Wine codepage patch reverted to original CP_ACP code.
 syswin.inc restored to pre-patch state (665 lines).
+
+### Setup.exe AV on Win98 — NOT an fpc264irc bug
+**Symptom:** Setup.exe shows window frame ("netmodem2irc-setup") with
+black client area, then "Access violation" dialog.
+**Root cause:** All 13 DFM form resources are disabled ({$R *.DFM}).
+The wizard window creates but has zero controls — no panels, buttons,
+labels, or notebook pages. Code accessing WizardForm.NextButton or
+InnerNotebook hits nil → AV.
+**Proof:** Window frame + toolbar rendered correctly = Win32 LCL works.
+Black client area = no DFM controls loaded.
+**Fix:** Inno Phase 6 (DFM→LFM conversion). Not fpc264irc scope.
+**Confirmed:** ISCC.exe works on real Windows (Win98). BUG-035 fix verified.
+
+### Setup.exe AV — FIXED (Inno-side, not fpc264irc)
+**Root cause:** Missing RegisterClass() calls for Inno custom components.
+LCL's LFM streamer had the form data but couldn't instantiate TNewButton,
+TNewNotebook, TBitmapImage, etc. because they weren't registered.
+**Fix:** InnoComponentReg.pas — 18 custom components registered in
+initialization section. Under Wine, Setup.exe no longer crashes
+(hangs waiting for GUI = Wine limitation, not a bug).
+**Note:** dfm2lfm converter available at src/lazarus/lcl/dfm2lfm.pas
+and Lazarus built-in converter at src/lazarus/converter/.

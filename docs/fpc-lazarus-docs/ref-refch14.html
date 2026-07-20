@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title>14 Using functions and procedures</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.tug.org/tex4ht/)"> 
+<!-- html,4,png,sections+,fn-in --> 
+<meta name="src" content="ref.tex"> 
+<link rel="stylesheet" type="text/css" href="ref.css"> 
+</head><body 
+>
+<!--l. 10477--><div class="crosslinks"><p class="noindent">[<a 
+href="refch15.html" >next</a>] [<a 
+href="refch13.html" >prev</a>] [<a 
+href="refch13.html#tailrefch13.html" >prev-tail</a>] [<a 
+href="#tailrefch14.html">tail</a>] [<a 
+href="ref.html#refch14.html" >up</a>] </p></div>
+<h2 class="chapterHead"><span class="titlemark">Chapter&#x00A0;14</span><br /><a 
+href="ref.html#QQ2-175-216" id="x175-19900014">Using functions and procedures</a></h2>
+<a 
+ id="dx175-199001"></a>
+<a 
+ id="dx175-199002"></a>
+<!--l. 10479--><p class="noindent" >Free Pascal supports the use of functions and procedures. It supports
+     <ul class="itemize1">
+     <li class="itemize">Function overloading, i. e. functions with the same name but different parameter lists.
+     </li>
+     <li class="itemize"><span 
+class="cmtt-10">Const </span>parameters.
+     </li>
+     <li class="itemize">Open arrays (i. e. arrays without bounds).
+     </li>
+     <li class="itemize">Variable number of arguments as in C.
+     </li>
+     <li class="itemize">Return-like construct as in C, through the <span 
+class="cmtt-10">Exit </span>keyword.</li></ul>
+<!--l. 10489--><p class="noindent" ><span 
+class="cmbx-10">Remark</span> In many of the subsequent paragraphs the words <span 
+class="cmtt-10">procedure </span>and <span 
+class="cmtt-10">function </span>will be
+used interchangeably. The statements made are valid for both, except when indicated
+otherwise.
+<div class="sectionTOCS">
+&#x00A0;<span class="sectionToc" >14.1 <a 
+href="refse92.html#x176-20000014.1">Procedure declaration</a></span>
+<br />&#x00A0;<span class="sectionToc" >14.2 <a 
+href="refse93.html#x177-20100014.2">Function declaration</a></span>
+<br />&#x00A0;<span class="sectionToc" >14.3 <a 
+href="refse94.html#x178-20200014.3">Function results</a></span>
+<br />&#x00A0;<span class="sectionToc" >14.4 <a 
+href="refse95.html#x179-20300014.4">Parameter lists</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >14.4.1 <a 
+href="refsu64.html#x180-20400014.4.1">Value parameters</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >14.4.2 <a 
+href="refsu65.html#x181-20500014.4.2">Variable parameters</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >14.4.3 <a 
+href="refsu66.html#x182-20600014.4.3">Out parameters</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >14.4.4 <a 
+href="refsu67.html#x183-20700014.4.4">Constant parameters</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >14.4.5 <a 
+href="refsu68.html#x184-20800014.4.5">Open array parameters</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >14.4.6 <a 
+href="refsu69.html#x185-20900014.4.6">Array of const</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >14.4.7 <a 
+href="refsu70.html#x186-21000014.4.7">Untyped parameters</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >14.4.8 <a 
+href="refsu71.html#x187-21100014.4.8">Managed types and reference counts</a></span>
+<br />&#x00A0;<span class="sectionToc" >14.5 <a 
+href="refse96.html#x188-21200014.5">Function overloading</a></span>
+<br />&#x00A0;<span class="sectionToc" >14.6 <a 
+href="refse97.html#x189-21300014.6">Forward declared functions</a></span>
+<br />&#x00A0;<span class="sectionToc" >14.7 <a 
+href="refse98.html#x190-21400014.7">External functions</a></span>
+<br />&#x00A0;<span class="sectionToc" >14.8 <a 
+href="refse99.html#x191-21500014.8">Assembler functions</a></span>
+<br />&#x00A0;<span class="sectionToc" >14.9 <a 
+href="refse100.html#x192-21600014.9">Modifiers</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >14.9.1 <a 
+href="refsu72.html#x193-21700014.9.1">alias</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >14.9.2 <a 
+href="refsu73.html#x194-21800014.9.2">cdecl</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >14.9.3 <a 
+href="refsu74.html#x195-21900014.9.3">cppdecl</a></span>
+                                                                            
+
+                                                                            
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >14.9.4 <a 
+href="refsu75.html#x196-22000014.9.4">export</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >14.9.5 <a 
+href="refsu76.html#x197-22100014.9.5">hardfloat</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >14.9.6 <a 
+href="refsu77.html#x198-22200014.9.6">inline</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >14.9.7 <a 
+href="refsu78.html#x199-22300014.9.7">interrupt</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >14.9.8 <a 
+href="refsu79.html#x200-22400014.9.8">iocheck</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >14.9.9 <a 
+href="refsu80.html#x201-22500014.9.9">local</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >14.9.10 <a 
+href="refsu81.html#x202-22600014.9.10">MS_ABI_Default</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >14.9.11 <a 
+href="refsu82.html#x203-22700014.9.11">MS_ABI_CDecl</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >14.9.12 <a 
+href="refsu83.html#x204-22800014.9.12">MWPascal</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >14.9.13 <a 
+href="refsu84.html#x205-22900014.9.13">noreturn</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >14.9.14 <a 
+href="refsu85.html#x206-23000014.9.14">nostackframe</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >14.9.15 <a 
+href="refsu86.html#x207-23100014.9.15">overload</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >14.9.16 <a 
+href="refsu87.html#x208-23200014.9.16">pascal</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >14.9.17 <a 
+href="refsu88.html#x209-23300014.9.17">public</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >14.9.18 <a 
+href="refsu89.html#x210-23400014.9.18">register</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >14.9.19 <a 
+href="refsu90.html#x211-23500014.9.19">safecall</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >14.9.20 <a 
+href="refsu91.html#x212-23600014.9.20">saveregisters</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >14.9.21 <a 
+href="refsu92.html#x213-23700014.9.21">softfloat</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >14.9.22 <a 
+href="refsu93.html#x214-23800014.9.22">stdcall</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >14.9.23 <a 
+href="refsu94.html#x215-23900014.9.23">SYSV_ABI_Default</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >14.9.24 <a 
+href="refsu95.html#x216-24000014.9.24">SYSV_ABI_CDecl</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >14.9.25 <a 
+href="refsu96.html#x217-24100014.9.25">VectorCall</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >14.9.26 <a 
+href="refsu97.html#x218-24200014.9.26">varargs</a></span>
+<br />&#x00A0;&#x00A0;<span class="subsectionToc" >14.9.27 <a 
+href="refsu98.html#x219-24300014.9.27">winapi</a></span>
+<br />&#x00A0;<span class="sectionToc" >14.10 <a 
+href="refse101.html#x220-24400014.10">Unsupported Turbo Pascal modifiers</a></span>
+</div>
+
+
+
+
+
+
+
+
+
+                                                                            
+
+                                                                            
+<!--l. 11945--><div class="crosslinks"><p class="noindent">[<a 
+href="refch15.html" >next</a>] [<a 
+href="refch13.html" >prev</a>] [<a 
+href="refch13.html#tailrefch13.html" >prev-tail</a>] [<a 
+href="refch14.html" >front</a>] [<a 
+href="ref.html#refch14.html" >up</a>] </p></div>
+<!--l. 11945--><p class="noindent" ><a 
+ id="tailrefch14.html"></a>  
+<footer>
+<hr>
+<span>Page generated on 2025-07-18.</span>&nbsp;
+<a href="https://gitlab.com/freepascal.org/fpc/documentation/-/issues/new?issue%5Btitle%5D=issue%20in%20page%20refch14.html">Report a problem on this page</a>
+</footer>
+</body></html> 
