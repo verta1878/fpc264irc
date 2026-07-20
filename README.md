@@ -105,15 +105,17 @@ docs/
 - **Phase 6c**: ✅ pasjpeg fixes (jidct2d, pasjpeg.pas BMP types, ShowMessage)
 - **Phase 7**: ✅ Lazarus IDE (x86_64-linux 72MB + i386-win32 151MB)
 - **Phase 8**: ✅ go32v2 LCL + customdrawn VESA backend (up to 1024x768x32K)
+- **Phase 10**: ✅ cocoa widgetset compiled (14 PPUs, Internal Error 200509189 resolved)
 - **Phase 9**: ✅ LCL Delphi Backports (Ctl3D, ParentCtl3D, OEMConvert, CreateWindowHandle, verinfo)
 
 ### Pending
-- **Phase 10**: cocoa Internal Error 200509189 (Darwin ObjC bridge, needs macOS testing)
+
 - **Phase 11**: r3.1 unstable — Win32 ABI revert to 3-param + 4-param rebuild + AnsiString -Mdelphi stack overflow (BUG-029) + test on WinXP + Win11
 
 ### Deferred
 - i8086-msdos LCL — no solution for 640K real-mode limit
 - RIPscript viewer — deferred to PPU creation phase
+- Inline var declarations — Delphi 10.3 feature, not in any FPC version, needs discussion
 - Inno Setup 5.6.1 FPC port — see docs/INNO_HOLLOW_FEATURES.md
   - PascalScript engine (22 stub files, ~5,500 lines missing, needs RemObjects PS)
   - LZMA decompression (13 C externals, needs MinGW recompile or dynamic loading)

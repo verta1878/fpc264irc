@@ -608,3 +608,8 @@ Created lzmadecpas.pas — 636 lines, LZMA1 + LZMA2 decoder.
 Fits project philosophy: minimal C, pure Pascal, self-contained.
 Compiles on all targets including go32v2 and i8086-msdos.
 Replaces the MinGW cross-compile approach for Inno LZMA decompression.
+
+### Phase 10: cocoa 200509189 — RESOLVED ✅
+Internal Error does not reproduce. Cocoa widgetset compiles clean
+(14 PPUs) with -Tdarwin -Amacho -dCOCOA. Previous error was likely
+a build config issue. Darwin now has Carbon + Cocoa widgetsets.

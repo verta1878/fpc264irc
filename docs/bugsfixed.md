@@ -255,3 +255,13 @@ The LangID fallback fix was in fcl-res source but the fpcres binary
 (Jul 17) predated the fix (Jul 20). Rebuilt fpcres from source.
 The compiler calls fpcres externally to merge .res files — source
 fixes don't take effect until the binary is recompiled.
+
+### BUG-033: cocoa Internal Error 200509189 — RESOLVED
+**Previously:** Reported as compiler crash when building cocoa widgetset.
+Internal Error 200509189 is in assemble.pas line 867 — unexpected
+character in assembler expression parser.
+**Resolution:** Error does NOT reproduce. All 14 cocoa widgetset units
+compile clean with -Tdarwin -Amacho -dCOCOA. The original error was
+likely caused by a build configuration issue (wrong assembler flag
+or ObjC bridge misconfiguration). With correct flags, cocoa compiles.
+Darwin now has two widgetsets: Carbon (46 PPUs) and Cocoa (14 PPUs).
