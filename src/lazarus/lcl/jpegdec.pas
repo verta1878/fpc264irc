@@ -47,6 +47,44 @@ function JPEGLoadMem(InBuf: PByte; InSize: Cardinal;
 function JPEGGetInfo(const FileName: string;
   out Info: TJPEGInfo): Boolean;
 
+type
+  TJPEGStreamState = (
+    jssAccumulating,   // collecting data, haven't decoded yet
+    jssHeaderRead,     // header parsed, dimensions known
+    jssPartialDecode,  // have a partial image
+    jssComplete,       // fully decoded
+    jssError
+  );
+
+  TJPEGStream = record
+    Buffer: PByte;        // accumulated JPEG data
+    BufSize: LongWord;    // current data size
+    BufCap: LongWord;     // allocated capacity
+    Pixels: PByte;        // latest decoded image (RGB)
+    Width: Integer;
+    Height: Integer;
+    State: TJPEGStreamState;
+    HasImage: Boolean;    // true if Pixels contains a valid image
+    ScanCount: Integer;   // number of scans decoded so far
+  end;
+
+{ Initialize streaming decoder }
+procedure JPEGStreamInit(out Strm: TJPEGStream);
+
+{ Feed chunk of data — attempts decode after each feed }
+function JPEGStreamFeed(var Strm: TJPEGStream;
+  Data: PByte; Size: LongWord): Boolean;
+
+{ Get current partial/complete image (nil if not yet available) }
+function JPEGStreamGetPixels(var Strm: TJPEGStream;
+  out Pixels: PByte; out W, H: Integer): Boolean;
+
+{ Check if complete }
+function JPEGStreamComplete(const Strm: TJPEGStream): Boolean;
+
+{ Free streaming decoder }
+procedure JPEGStreamFree(var Strm: TJPEGStream);
+
 implementation
 
 uses
@@ -271,6 +309,133 @@ begin
   finally
     F.Free;
   end;
+end;
+
+
+{ TJPEGStream }
+
+procedure JPEGStreamInit(out Strm: TJPEGStream);
+begin
+  FillChar(Strm, SizeOf(Strm), 0);
+  Strm.BufCap := 16384;
+  GetMem(Strm.Buffer, Strm.BufCap);
+  Strm.State := jssAccumulating;
+end;
+
+function JPEGStreamFeed(var Strm: TJPEGStream;
+  Data: PByte; Size: LongWord): Boolean;
+var
+  NewCap: LongWord;
+  NewBuf: PByte;
+  TempPixels: PByte;
+  TempW, TempH: Integer;
+begin
+  Result := False;
+  if Strm.State = jssError then Exit;
+  if Strm.State = jssComplete then begin Result := True; Exit; end;
+
+  // Grow buffer if needed
+  if Strm.BufSize + Size > Strm.BufCap then
+  begin
+    NewCap := Strm.BufCap;
+    while NewCap < Strm.BufSize + Size do
+      NewCap := NewCap * 2;
+    GetMem(NewBuf, NewCap);
+    if Strm.BufSize > 0 then
+      Move(Strm.Buffer^, NewBuf^, Strm.BufSize);
+    FreeMem(Strm.Buffer);
+    Strm.Buffer := NewBuf;
+    Strm.BufCap := NewCap;
+  end;
+
+  // Append new data
+  Move(Data^, Strm.Buffer[Strm.BufSize], Size);
+  Inc(Strm.BufSize, Size);
+
+  // Try to decode with what we have
+  // JPEG needs at minimum SOI (FFD8) + some data
+  if Strm.BufSize < 128 then Exit;
+
+  // Check JPEG signature
+  if (Strm.Buffer[0] <> $FF) or (Strm.Buffer[1] <> $D8) then
+  begin
+    Strm.State := jssError;
+    Exit;
+  end;
+
+  // Attempt full decode — if JPEG is incomplete, it will fail
+  // gracefully and we try again next feed
+  TempPixels := nil;
+  if JPEGLoadMem(Strm.Buffer, Strm.BufSize, TempPixels, TempW, TempH) then
+  begin
+    // Successful decode — update image
+    if Strm.Pixels <> nil then
+      FreeMem(Strm.Pixels);
+    Strm.Pixels := TempPixels;
+    Strm.Width := TempW;
+    Strm.Height := TempH;
+    Strm.HasImage := True;
+    Inc(Strm.ScanCount);
+
+    // Check if we have the EOI marker (FFD9) = complete
+    if (Strm.Buffer[Strm.BufSize - 2] = $FF) and
+       (Strm.Buffer[Strm.BufSize - 1] = $D9) then
+      Strm.State := jssComplete
+    else
+      Strm.State := jssPartialDecode;
+
+    Result := True;
+  end
+  else
+  begin
+    // Decode failed — not enough data yet, keep accumulating
+    if Strm.State = jssAccumulating then
+    begin
+      // Try to at least read dimensions from SOF marker
+      if Strm.BufSize > 256 then
+        Strm.State := jssHeaderRead;
+    end;
+  end;
+end;
+
+function JPEGStreamGetPixels(var Strm: TJPEGStream;
+  out Pixels: PByte; out W, H: Integer): Boolean;
+begin
+  if Strm.HasImage then
+  begin
+    Pixels := Strm.Pixels;
+    W := Strm.Width;
+    H := Strm.Height;
+    Result := True;
+  end
+  else
+  begin
+    Pixels := nil;
+    W := 0;
+    H := 0;
+    Result := False;
+  end;
+end;
+
+function JPEGStreamComplete(const Strm: TJPEGStream): Boolean;
+begin
+  Result := Strm.State = jssComplete;
+end;
+
+procedure JPEGStreamFree(var Strm: TJPEGStream);
+begin
+  if Strm.Buffer <> nil then
+  begin
+    FreeMem(Strm.Buffer);
+    Strm.Buffer := nil;
+  end;
+  if Strm.Pixels <> nil then
+  begin
+    FreeMem(Strm.Pixels);
+    Strm.Pixels := nil;
+  end;
+  Strm.State := jssError;
+  Strm.HasImage := False;
 end;
 
 end.

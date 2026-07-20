@@ -29,6 +29,10 @@ var
 
 function SB_Init: Boolean;
 procedure SB_Done;
+function SB_StreamStart(SampleRate: LongWord; Bits: Word; Channels: Word): Boolean;
+procedure SB_StreamFeed(Data: PByte; Size: LongWord);
+procedure SB_StreamStop;
+function SB_StreamNeedsData: Boolean;
 function SB_Reset: Boolean;
 procedure SB_PlayPCM(Data: PByte; Size: LongWord;
   SampleRate: LongWord; Bits: Word; Channels: Word);
@@ -38,6 +42,8 @@ procedure SB_WaitDone;
 procedure SB_Beep(Freq, DurationMS: Word);
 procedure Speaker_Tone(Freq, DurationMS: Word);
 procedure Speaker_Off;
+
+{ Streaming playback — double-buffer DMA for continuous audio }
 
 implementation
 
@@ -273,6 +279,114 @@ begin
     { yield CPU until interrupt }
 end;
 
+{ Streaming — double-buffer DMA }
+const
+  STREAM_BUF_SIZE = 32000;  // each half-buffer
+var
+  StreamBuf: array[0..1] of LongWord;  // DOS addresses for two buffers
+  StreamSel: array[0..1] of Word;      // DPMI selectors
+  StreamCurrent: Byte;                  // which buffer is playing (0 or 1)
+  StreamActive: Boolean;
+  StreamRate: LongWord;
+  StreamBits: Word;
+  StreamChans: Word;
+
+function SB_StreamStart(SampleRate: LongWord; Bits: Word; Channels: Word): Boolean;
+var
+  DOSAddr: LongWord;
+  I: Integer;
+begin
+  Result := False;
+  if not SB.Detected then Exit;
+  StreamRate := SampleRate;
+  StreamBits := Bits;
+  StreamChans := Channels;
+  StreamCurrent := 0;
+  StreamActive := False;
+
+  // Allocate two DMA buffers in DOS memory
+  for I := 0 to 1 do
+  begin
+    DOSAddr := global_dos_alloc((STREAM_BUF_SIZE + 15) shr 4);
+    if DOSAddr = 0 then Exit;
+    StreamSel[I] := Word(DOSAddr);
+    StreamBuf[I] := (DOSAddr shr 16) * 16;
+    // Fill with silence
+    if Bits = 8 then
+      dosmemfillchar(StreamBuf[I], 0, STREAM_BUF_SIZE, #128)
+    else
+      dosmemfillchar(StreamBuf[I], 0, STREAM_BUF_SIZE, #0);
+  end;
+
+  // Set sample rate
+  if SB.DSPVersion >= $0400 then
+  begin
+    DSPWrite(CMD_SET_RATE);
+    DSPWrite(Hi(Word(SampleRate)));
+    DSPWrite(Lo(Word(SampleRate)));
+  end else begin
+    DSPWrite(CMD_SET_TIME);
+    DSPWrite(256 - (1000000 div SampleRate));
+  end;
+
+  StreamActive := True;
+  Result := True;
+end;
+
+procedure SB_StreamFeed(Data: PByte; Size: LongWord);
+var
+  FeedSize: LongWord;
+begin
+  if not StreamActive then Exit;
+  FeedSize := Size;
+  if FeedSize > STREAM_BUF_SIZE then FeedSize := STREAM_BUF_SIZE;
+
+  // Copy data to the next buffer
+  dosmemput(StreamBuf[StreamCurrent], 0, Data^, FeedSize);
+
+  // Pad remainder with silence if needed
+  if FeedSize < STREAM_BUF_SIZE then
+  begin
+    if StreamBits = 8 then
+      dosmemfillchar(StreamBuf[StreamCurrent], FeedSize, STREAM_BUF_SIZE - FeedSize, #128)
+    else
+      dosmemfillchar(StreamBuf[StreamCurrent], FeedSize, STREAM_BUF_SIZE - FeedSize, #0);
+  end;
+
+  // Setup DMA and play this buffer
+  SetupDMA(SB.DMA8, StreamBuf[StreamCurrent], STREAM_BUF_SIZE);
+  SB.Playing := True;
+
+  DSPWrite(CMD_DMA_8_OUT);
+  DSPWrite(Lo(Word(STREAM_BUF_SIZE - 1)));
+  DSPWrite(Hi(Word(STREAM_BUF_SIZE - 1)));
+
+  // Swap to other buffer for next feed
+  StreamCurrent := 1 - StreamCurrent;
+end;
+
+procedure SB_StreamStop;
+var I: Integer;
+begin
+  if not StreamActive then Exit;
+  DSPWrite(CMD_HALT_DMA_8);
+  SB.Playing := False;
+  StreamActive := False;
+  for I := 0 to 1 do
+    if StreamBuf[I] <> 0 then
+    begin
+      global_dos_free(StreamSel[I]);
+      StreamBuf[I] := 0;
+    end;
+end;
+
+function SB_StreamNeedsData: Boolean;
+begin
+  // After IRQ fires (Playing = False), the current buffer finished
+  // and we need more data for the next one
+  Result := StreamActive and not SB.Playing;
+end;
+
 procedure Speaker_Tone(Freq, DurationMS: Word);
 var Div2: Word; Start, Cur: LongWord;
 begin
@@ -314,6 +428,10 @@ var
 
 function SB_Init: Boolean;
 procedure SB_Done;
+function SB_StreamStart(SampleRate: LongWord; Bits: Word; Channels: Word): Boolean;
+procedure SB_StreamFeed(Data: PByte; Size: LongWord);
+procedure SB_StreamStop;
+function SB_StreamNeedsData: Boolean;
 function SB_Reset: Boolean;
 procedure SB_PlayPCM(Data: PByte; Size: LongWord;
   SampleRate: LongWord; Bits: Word; Channels: Word);
@@ -327,6 +445,10 @@ procedure Speaker_Off;
 implementation
 
 function SB_Init: Boolean; begin Result := False; end;
+function SB_StreamStart(SampleRate: LongWord; Bits: Word; Channels: Word): Boolean; begin Result := False; end;
+procedure SB_StreamFeed(Data: PByte; Size: LongWord); begin end;
+procedure SB_StreamStop; begin end;
+function SB_StreamNeedsData: Boolean; begin Result := False; end;
 procedure SB_Done; begin end;
 function SB_Reset: Boolean; begin Result := False; end;
 procedure SB_PlayPCM(Data: PByte; Size: LongWord;

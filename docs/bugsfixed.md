@@ -286,3 +286,20 @@ resource not found → AV.
 Fix: ensure all three .res files are in the Projects/ directory
 when compiling SetupLdr.dpr. Our fpcres can merge them (BUG-032 verified).
 Not an fpc264irc bug — Inno build path issue.
+
+### BUG-034: Wine ANSI codepage crash (GetACP returns 65001) — FIXED
+**Symptom:** ISCC.exe crashes in post-message processing under Wine.
+**Root cause:** Wine's GetACP() returns 65001 (UTF-8) because it inherits
+the Linux locale. FPC's RTL passes CP_ACP to WideCharToMultiByte/
+MultiByteToWideChar, which under Wine resolves to UTF-8. Delphi-era
+code expects single-byte ANSI (1252). UTF-8 multi-byte conversion
+corrupts string lengths → memory corruption → AV.
+**Fix:** Added FPC_AnsiCodePage variable to syswin.inc, initialized at
+startup by InitAnsiCodePage. When GetACP returns 65001:
+  1. Check FPC_ALLOW_UTF8_ACP env var (opt-in override)
+  2. Fall back to GetLocaleInfoA(LOCALE_IDEFAULTANSICODEPAGE)
+  3. If that fails, default to 1252 (Western European)
+Replaced CP_ACP with FPC_AnsiCodePage in Win32Unicode2AnsiMove and
+Win32Ansi2UnicodeMove. Requires RTL rebuild.
+**Safety:** Only fires when GetACP=65001 (never on real Windows).
+**Override:** Set FPC_ALLOW_UTF8_ACP=1 to force UTF-8 codepage.

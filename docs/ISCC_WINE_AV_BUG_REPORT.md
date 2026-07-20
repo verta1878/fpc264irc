@@ -1,98 +1,93 @@
 # ISCC.exe Wine AV — Post-Message Processing Crash
 
-**Date:** 2026-07-20 (updated)
-**Binary:** ISCC.exe + ISCmplr.dll (FPC 2.6.4irc r3.1 Phase 9)
-**Runtime:** Wine 9.0 on Ubuntu 24.04 x86_64
-**Status:** Needs real Windows test to determine if Wine-only
+**Date:** 2026-07-20
+**Binary:** ISCC.exe + ISCmplr.dll built against fpc264irc commit b7b5254f ("inno wine fix")
+**Runtime:** Wine 9.0 + wine32:i386 on Ubuntu 24.04 x86_64
+**Status:** AV persists after wine fix commit. Needs real Windows test.
 
 ---
 
 ## Summary
 
-ISCC.exe crashes with Access Violation after successfully parsing
-.iss scripts and loading messages. The crash occurs in post-message
-processing (PopulateLanguageEntryData or language code page handling),
-NOT in PE resource walking as previously suspected.
+ISCC.exe crashes with Access Violation in post-message processing.
+The crash persists after the fpc264irc "inno wine fix" commit
+(b7b5254f). All resources are correctly embedded. PrepareSetupE32
+and message parsing both succeed. The crash is after "Messages in
+script file" — in PopulateLanguageEntryData, language codepage
+handling, or the transition to file compression.
 
-## Previous Root Cause (FIXED)
+## Build Details
 
-SetupLdr.exe was missing RT_RCDATA #11111 (offset table) because
-`{$R}` directives couldn't find the `.res` files. This has been
-fixed — all resources now embed correctly.
+- fpc264irc: commit b7b5254f ("inno wine fix")
+- RTL: 589 PPUs
+- LCL: rebuilt from source (50 LazUtils + 37 base + 90 win32)
+- fpcres: system FPC 3.2.2 fpcres (installed to toolchain)
+- Source: innosetup-5_6_1-fpc-src_tar.gz (uploaded, good tarball)
+- All 5 targets compile clean
 
-## Current Resource Status (VERIFIED)
+## Binaries
+
+| File | Size | Status |
+|------|------|--------|
+| ISCC.exe | 437KB | compiles, runs under Wine |
+| ISCmplr.dll | 1.9MB | loads correctly |
+| Setup.exe | 2.5MB | compiles, has .rsrc (43KB, 7 resource types) |
+| SetupLdr.exe | 215KB | compiles, has .rsrc (8KB, 5 resource types) |
+| Compil32.exe | 2.3MB | compiles |
+
+## Resource Verification
 
 ```
-Setup.e32 (2.5MB):
-  .rsrc: 43,008 bytes
-  Types: RT_BITMAP, RT_ICON, RT_RCDATA, RT_GROUP_ICON, RT_VERSION, RT_MANIFEST
-
-SetupLdr.e32 (215KB):
-  .rsrc: 8,192 bytes
-  Types: RT_ICON, RT_RCDATA, RT_GROUP_ICON, RT_VERSION, RT_MANIFEST
+Setup.exe:    RT_BITMAP, RT_ICON, RT_RCDATA, RT_GROUP_ICON, RT_VERSION, RT_MANIFEST
+SetupLdr.exe: RT_ICON, RT_RCDATA, RT_GROUP_ICON, RT_VERSION, RT_MANIFEST
 ```
 
-RT_RCDATA #11111 (SetupLdrOffsetTable) confirmed present.
+RT_RCDATA #11111 (SetupLdrOffsetTable) confirmed present in SetupLdr.
 
 ## What Works Under Wine
 
-- ISCC.exe launches, shows version info
-- ISCmplr.dll loads successfully
-- .iss script parsing (all sections)
-- Wizard bitmap loading
-- **"Preparing Setup program executable" — succeeds**
-- PrepareSetupE32 — succeeds (reads Setup.e32, patches PE header)
-- Default.isl message file loading
-- [LangOptions], [Messages], [CustomMessages] parsing
-- "Messages in script file" — succeeds
+1. ISCC.exe launches, shows version
+2. ISCmplr.dll loads
+3. .iss script parsing (all sections)
+4. Wizard bitmap loading
+5. "Preparing Setup program executable" — PrepareSetupE32 succeeds
+6. Default.isl message loading
+7. [LangOptions], [Messages], [CustomMessages] parsing
+8. "Messages in script file" — ReadMessagesFromScript succeeds
+9. **Access violation** — post-message processing
 
-## Where It Crashes
-
-```
-Preparing Setup program executable       ← OK
-Reading default messages from Default.isl ← OK
-Parsing [LangOptions], [Messages]...     ← OK
-   File: Z:\...\Default.isl              ← OK
-   Messages in script file               ← OK
-Access violation.                         ← HERE (post-message)
-```
-
-## Exception Details
+## Exception
 
 ```
 code=c0000005 (EXCEPTION_ACCESS_VIOLATION)
-addr=0x0153DBCF    ← inside ISCmplr.dll
+addr=0x0153DBCF (inside ISCmplr.dll)
 ```
 
-## Code Flow Analysis
+## Code Flow (Compile.pas)
 
 ```
-Compile.pas DoCompile:
-  line 8750: Read wizard images           ← OK
-  line 8759: PrepareSetupE32(SetupE32)    ← OK
-  line 8770: Read Default.isl             ← OK
-  line 8800: ReadMessagesFromScript        ← OK ("Messages in script file")
-  line 8810+: PopulateLanguageEntryData    ← CRASH (suspected)
-             or language codepage handling
-             or EnumIniSection for [Files]
+line 8750: Read wizard images              <- OK
+line 8759: PrepareSetupE32(SetupE32)       <- OK
+line 8770+: ReadDefaultMessages            <- OK
+line 8800+: ReadMessagesFromScript          <- OK
+line 8810+: PopulateLanguageEntryData       <- CRASH (suspected)
 ```
 
-The crash is in the code that runs AFTER message parsing completes.
-Possible causes under Wine:
-- String/codepage conversion in PopulateLanguageEntryData
-- Memory allocation for language data streams
-- Wine's ANSI codepage handling differs from real Windows
+## What Has Been Ruled Out
 
-## Testing Needed
+- Missing resources — all present, verified
+- Missing RT_RCDATA #11111 — confirmed in SetupLdr
+- fpcres LangID bug — BUG-032 fixed
+- PE resource directory layout — PrepareSetupE32 succeeds
+- fpc264irc wine fix commit b7b5254f — does not fix this crash
 
-1. Run `ISCC.exe test.iss` on real Windows
-2. If it works → Wine string/codepage issue, not our code
-3. If same AV → debug with Lazarus or gdb at the crash point
+## Likely Cause
 
-## Not an fpc264irc Bug
+Wine ANSI string/codepage handling differs from real Windows.
+The crash occurs in language data processing after message parsing.
+FPC AnsiString implementation under Wine may behave differently.
 
-This is either:
-- Wine codepage/string handling incompatibility (most likely)
-- An Inno ANSI string processing issue specific to FPC's
-  AnsiString implementation under Wine (possible)
-- A real bug in our code (unlikely — all prior stages work)
+## Next Step
+
+Test on real Windows. If `ISCC.exe test.iss` produces test-setup.exe,
+this is Wine-only and not a code bug.
