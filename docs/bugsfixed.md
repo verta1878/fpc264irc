@@ -200,17 +200,24 @@ Already fixed: .gitignore was deleted entirely. Using make clean instead.
 Lazarus Makefile controls unit output dir, ignoring -FU flag.
 build-lcl.sh handles by copying afterward. Low priority.
 
-### BUG-029: AnsiString stack overflow in -Mdelphi mode — KNOWN LIMITATION
-**Symptom:** Runtime Error 216 after 3-5 function calls with AnsiString
-params/return values in -Mdelphi mode ({$H+}).
-**Root cause:** Compiler generates temporary AnsiString finalization code
-that leaks stack frames. Each call accumulates unreleased stack frames
-until stack overflows.
-**Workaround:** Add {$H-} to force ShortStrings, or use Var parameters
-instead of function return values for strings.
-**Status:** Compiler-level bug in ppc386 code generator. Cannot fix by
-editing RTL/LCL source. Would need changes to the compiler itself.
-Not present with {$H-} or -Mobjfpc without {$H+}.
+### BUG-029: AnsiString heap corruption in -Mdelphi mode — FIXED
+**Symptom:** Runtime Error 216 after 2-3 function calls with AnsiString
+concat + function return values in {$H+} mode. Minimal reproducer:
+`function Foo(a: String): String; begin Result := a + 'B'; end;`
+**Root cause:** Two separate issues in the codepage-aware TAnsiRec backport:
+1. `asmutils.pas`: Used `{$ifdef cpu64}` (HOST check) to emit a 4-byte Dummy
+   alignment field in constant AnsiString headers. When ppcx64 cross-compiled
+   ppc386, the HOST was x86_64 so cpu64=TRUE, emitting 16-byte headers for
+   i386 targets. Fix: runtime `if target_info.cpu in [cpu_x86_64,...]` check.
+2. `rtl/i386/i386.inc`: Hand-written assembly `fpc_AnsiStr_Decr_Ref` used
+   `subl $8,%eax` before FreeMem (old 8-byte TAnsiRec layout), but allocation
+   uses AnsiFirstOff=12 (new layout with CodePage+ElementSize). FreeMem got
+   called at alloc_ptr+4 instead of alloc_ptr → heap corruption.
+   Fix: changed FreeMem's `subl $8` to `subl $12` + binary-patched system.o.
+**Files changed:** `src/compiler/asmutils.pas`, `src/compiler/ppu.pas`,
+`src/rtl/i386/i386.inc`, `bin/units/i386-linux/system.o` (binary patch),
+`bin/ppc386` (rebuilt).
+**Verified:** 1000 iterations of nested AnsiString function calls — no crash.
 
 ### BUG-025 (BUG-D): RTL/LCL PPU version skew — FIXED
 LCL rebuilt after RTL using Lazarus make system.

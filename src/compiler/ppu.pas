@@ -308,9 +308,11 @@ implementation
     fpccrc,
     cutils;
 
-{$ifdef generic_cpu}
-{ We need to use the correct size of aint and pint for
-  the target CPU }
+{ BUG-029/r4 fix: these arrays must be available unconditionally
+  for cross-compiler PPU reading (getaint/getasizeint) and for
+  target-aware constant emission (asmutils.pas). Originally
+  guarded by {$ifdef generic_cpu} which excluded them from
+  target-specific compiler builds. }
 const
   CpuAddrBitSize : array[tsystemcpu] of longint =
     (
@@ -346,7 +348,6 @@ const
     { 12 }  8 {'avr'},
     { 13 } 32 {'mipsel'}
     );
-{$endif generic_cpu}
 
 
 

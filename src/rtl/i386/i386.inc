@@ -1520,6 +1520,8 @@ asm
 // Var l located in register
         movl    %eax,(%esp)
 // [101] l:=@PAnsiRec(S-FirstOff)^.Ref;
+// Ref is at StringPtr-8 in both 8-byte and 12-byte TAnsiRec layouts
+// (in 12-byte: CodePage:2 + ElementSize:2 + Ref:4 = offset 4, so ptr-12+4 = ptr-8)
         movl    (%eax),%edx
         subl    $8,%edx
 // [102] If l^<0 then exit;
@@ -1551,7 +1553,10 @@ asm
 .Lj3620:
         movl    (%esp),%eax
         movl    (%eax),%eax
-        subl    $8,%eax
+// BUG-029 fix: FreeMem needs record BASE at StringPtr - AnsiFirstOff.
+// AnsiFirstOff = SizeOf(TAnsiRec) = 12 (CodePage:2+ElementSize:2+Ref:4+Len:4).
+// Original had $8 from pre-codepage layout (Ref:4+Len:4 = 8 bytes only).
+        subl    $12,%eax
         call    FPC_FREEMEM_X
         movl    (%esp),%eax
         movl    $0,(%eax)

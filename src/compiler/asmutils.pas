@@ -59,17 +59,21 @@ uses
             current_asmdata.getdatalabel(referencelab);
             list.concat(tai_label.create(referencelab));
           end;
-        { New TAnsiRec layout (backported from FPC 3.0):
+        { BUG-029 fix: TAnsiRec layout must match across compiler and RTL.
+          FPC 2.6.4irc uses the codepage-aware 12-byte layout:
             CodePage    : Word    = 0 (CP_ACP / DefaultSystemCodePage)
             ElementSize : Word    = 1 (byte characters)
-            [Dummy      : DWord   = 0 (alignment padding on 64-bit)]
             Ref         : SizeInt = -1 (constant, not ref-counted)
-            Len         : SizeInt = string length }
+            Len         : SizeInt = string length
+          The i386 asm override of fpc_ansistr_decr_ref in i386.inc was
+          also updated from sub $8 to sub $12 to match this layout. }
         list.concat(Tai_const.Create_16bit(0));    { CodePage = CP_ACP }
         list.concat(Tai_const.Create_16bit(1));    { ElementSize = 1 }
-{$ifdef cpu64}
-        list.concat(Tai_const.Create_32bit(0));    { Dummy alignment }
-{$endif cpu64}
+        { Dummy alignment DWord only needed for 64-bit targets where
+          SizeInt is 8 bytes. Must check TARGET cpu, not HOST cpu —
+          {$ifdef cpu64} would check the host which breaks cross-compilation. }
+        if target_info.cpu in [cpu_x86_64,cpu_powerpc64,cpu_iA64] then
+          list.concat(Tai_const.Create_32bit(0));    { Dummy alignment }
         list.concat(tai_const.create_pint(-1));    { Ref = -1 (constant) }
         list.concat(tai_const.create_pint(len));   { Len }
         { make sure the string doesn't get dead stripped if the header is referenced }
