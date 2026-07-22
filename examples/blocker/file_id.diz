@@ -1,0 +1,48 @@
+ :                                              :
+-+---- - -+- -  -        .    .   - --+-- - ----+-
+ :`                        __                 ':]
+ .         ___  __________/  |________          :
+           \  \/  / ____/\   __\_  __ \         .
+            >    < <_|  | |  |  |  | \/
+ .         /__/\_ \__   | |__|  |__|            .
+ :               \/  |__|                       .
+ [:.                                           ,:
+-+--- -  .  -.- .    - ---+-- -  -   -  .   - --+-
+ [.               Blocker v2.3                 `]
+-+-- -   .  -   -  - --+--- -    . -.-  .  - ---+-
+ ; Blocker is a telnet client to use under any  :
+ . linux terminal, supporting ANSI graphics. It .
+ : offers many unique features like:            ;
+ :                                              :
+ : = capture ansi screens from bbs              :
+ : = import syncterm phonebook                  '
+ : = easy sort/search phonebook                 :
+ . = automatic import bbs list from             :
+ ;                     www.telnetbbsguide.com   :
+ : = music packages for BBSes!!!                ;
+ . = find links/data via the use of RegExpr.    '
+ . = ...and run a default application ex. http  ;
+ ;   links                                      ;
+ : = includes a find-node script to get info    ' 
+ ;   for a bbs via its node address             ;
+ ; = easy copy/paste via the terminal mechanism ; 
+ .   no more right-mouse-clicks                 ; 
+ : = utf8 support via the included cp437 util.  ' 
+ ;   link: https://github.com/keaston/cp437     ;
+ ; = macros                                     :
+ ' = insert tags/quotes                         '
+ : = the AutoText feature!                      ' 
+ ' = insert any ASCII char, via Blocker         ;
+ ; = scrollback feature                         '
+ ; = preview ansi files                         '
+ ' = convert any ansi file to mystic pipe codes '
+ : = modem & keystrokes fxs                     :
+ ' = copy/paste ansi or ascii with keyboard     '
+ : = internal audio player for mod files        :
+ ' = includes a music stream utility            '
+ : ... need more? :p                            ; 
+ :                                              '
+ '  open source. get the code at github/xqtr    :
+ .   currently supports only ipv4 addresses     ;
+ .                                    linux/64b :
+ + --   -   -  - --          -- - -+- -  -   -  +

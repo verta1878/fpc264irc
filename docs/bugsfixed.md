@@ -355,3 +355,15 @@ initialization section. Under Wine, Setup.exe no longer crashes
 (hangs waiting for GUI = Wine limitation, not a bug).
 **Note:** dfm2lfm converter available at src/lazarus/lcl/dfm2lfm.pas
 and Lazarus built-in converter at src/lazarus/converter/.
+
+### BUG-036: C-style operators (+=, -=, *=, /=) not enabled by default — FIXED
+**Symptom:** `result += value` fails with 'Syntax error' unless -Sc flag used.
+**Root cause:** `cs_support_c_operators` not included in default mode switches.
+Scanner recognizes `+=` token but only when flag is set.
+**Fix:** Added `include(current_settings.moduleswitches, cs_support_c_operators)`
+to SetCompileMode in scanner.pas. Enabled for all modes (OBJFPC, DELPHI, TP, FPC).
+**Workaround (until compiler rebuild):** Compile with `-Sc` flag.
+**Note:** Cannot break existing code — no valid Pascal puts + immediately before =
+as separate operators.
+**Files changed:** src/compiler/scanner.pas
+

@@ -184,6 +184,8 @@ type
 
 function FindAllFiles(const SearchPath: String; SearchMask: String = '';
   SearchSubDirs: Boolean = True): TStringList;
+procedure FindAllFiles(AList: TStringList; const SearchPath: String;
+  SearchMask: String = ''; SearchSubDirs: Boolean = True);
 function FindAllDirectories(const SearchPath: string;
   SearchSubDirs: Boolean = True): TStringList;
 
@@ -262,7 +264,7 @@ uses
 {$IFDEF windows}
   Windows;
 {$ELSE}
-  {$IF defined(OS2) or defined(GO32V2) or defined(MSDOS)}
+  {$IFDEF OS2}
   Dos;
   {$ELSE}
   Unix, BaseUnix;
@@ -272,7 +274,7 @@ uses
 {$I fileutil.inc}
 {$IF defined(windows)}
   {$i winfileutil.inc}
-{$ELSEIF defined(OS2) or defined(GO32V2) or defined(MSDOS)}
+{$ELSEIF defined(OS2)}
   {$i os2fileutil.inc}
 {$ELSE}
   {$i unixfileutil.inc}

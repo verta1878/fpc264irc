@@ -981,6 +981,19 @@ begin
   end;
 end;
 
+procedure FindAllFiles(AList: TStringList; const SearchPath: String;
+  SearchMask: String; SearchSubDirs: Boolean);
+var
+  Searcher: TListFileSearcher;
+begin
+  Searcher := TListFileSearcher.Create(AList);
+  try
+    Searcher.Search(SearchPath, SearchMask, SearchSubDirs);
+  finally
+    Searcher.Free;
+  end;
+end;
+
 type
 
   { TListDirectoriesSearcher }

@@ -184,6 +184,8 @@ type
 
 function FindAllFiles(const SearchPath: String; SearchMask: String = '';
   SearchSubDirs: Boolean = True): TStringList;
+procedure FindAllFiles(AList: TStringList; const SearchPath: String;
+  SearchMask: String = ''; SearchSubDirs: Boolean = True);
 function FindAllDirectories(const SearchPath: string;
   SearchSubDirs: Boolean = True): TStringList;
 

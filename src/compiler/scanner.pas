@@ -382,6 +382,11 @@ implementation
                  include(init_settings.moduleswitches,cs_support_goto);
              end;
 
+           { support C-style operators (+=, -=, *=, /=) in all modes }
+           include(current_settings.moduleswitches,cs_support_c_operators);
+           if changeinit then
+             include(init_settings.moduleswitches,cs_support_c_operators);
+
            { support pointer math by default in fpc/objfpc modes }
            if ([m_fpc,m_objfpc] * current_settings.modeswitches <> []) then
              begin
