@@ -43,15 +43,15 @@ function UnicodeCharLenToString(S : PUnicodeChar;Len : SizeInt) : AnsiString;
 procedure UnicodeCharLenToStrVar(Src : PUnicodeChar;Len : SizeInt;out Dest : AnsiString);
 procedure UnicodeCharToStrVar(S : PUnicodeChar;out Dest : AnsiString);
 
-procedure DefaultUnicode2AnsiMove(source:punicodechar;var dest:ansistring;len:SizeInt);
-procedure DefaultAnsi2UnicodeMove(source:pchar;var dest:unicodestring;len:SizeInt);
+procedure DefaultUnicode2AnsiMove(source:punicodechar;var dest:ansistring;cp:TSystemCodePage;len:SizeInt);
+procedure DefaultAnsi2UnicodeMove(source:pchar;cp:TSystemCodePage;var dest:unicodestring;len:SizeInt);
 
 Type
   { hooks for internationalization
     please add new procedures at the end, it makes it easier to detect new procedures }
   TUnicodeStringManager = record
-    Wide2AnsiMoveProc : procedure(source:pwidechar;var dest:ansistring;len:SizeInt);
-    Ansi2WideMoveProc : procedure(source:pchar;var dest:widestring;len:SizeInt);
+    Wide2AnsiMoveProc : procedure(source:pwidechar;var dest:ansistring;cp:TSystemCodePage;len:SizeInt);
+    Ansi2WideMoveProc : procedure(source:pchar;cp:TSystemCodePage;var dest:widestring;len:SizeInt);
 
 //    UpperUTF8 : procedure(p:PUTF8String);
 
@@ -92,8 +92,8 @@ Type
     ThreadFiniProc : procedure;
 
     { this is only different on windows }
-    Unicode2AnsiMoveProc : procedure(source:punicodechar;var dest:ansistring;len:SizeInt);
-    Ansi2UnicodeMoveProc : procedure(source:pchar;var dest:unicodestring;len:SizeInt);
+    Unicode2AnsiMoveProc : procedure(source:punicodechar;var dest:ansistring;cp:TSystemCodePage;len:SizeInt);
+    Ansi2UnicodeMoveProc : procedure(source:pchar;cp:TSystemCodePage;var dest:unicodestring;len:SizeInt);
     UpperUnicodeStringProc : function(const S: UnicodeString): UnicodeString;
     LowerUnicodeStringProc : function(const S: UnicodeString): UnicodeString;
     CompareUnicodeStringProc : function(const s1, s2 : UnicodeString) : PtrInt;

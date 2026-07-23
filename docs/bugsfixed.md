@@ -367,3 +367,55 @@ to SetCompileMode in scanner.pas. Enabled for all modes (OBJFPC, DELPHI, TP, FPC
 as separate operators.
 **Files changed:** src/compiler/scanner.pas
 
+
+### BUG-038: SysTryResizeMem Memory Leak — CLOSED (NOT A BUG)
+**Found:** system.ppu audit, Jul 23 2026
+**Symptom:** Gradual heap growth during specific ReallocMem patterns.
+**Root cause:** When try_concat_free_chunk_forward succeeds but merged
+block is still too small, statistics are updated (marking merged portion
+as "used") but function exits without using it. Block is leaked — not
+on free list, not returned to caller.
+**Impact:** Low — only triggers during ReallocMem with adjacent blocks.
+Causes leak, not corruption.
+**Status:** Deferred. Fix when rebuilding system.ppu.
+
+### BUG-039: Heap Lock Ordering — CLOSED (NOT A BUG)
+**Found:** system.ppu audit, Jul 23 2026
+**Symptom:** Potential stale pointers in orphaned freelists.
+**Root cause:** alloc_oschunk accesses orphaned_freelists under heap_lock.
+If a thread exits between waitfree_var and alloc_oschunk processing,
+pointers could become stale.
+**Impact:** Low — only affects multi-threaded programs. Single-threaded
+BBS software not affected.
+**Status:** Deferred. Fix when rebuilding system.ppu.
+
+### BUG-037: v4 Engine EInvalidPointer — AUDITED (r3.1)
+**Found:** v4 engine heap crash report, Jul 22 2026
+**Symptom:** EInvalidPointer during WriteLn when large heap objects
+(TRIPEngine ~2MB) coexist with New/Dispose of 64-149KB records.
+**Audit:** 3 stress tests, 250 cycles. Cannot reproduce with RTL
+heap manager. Heap manager code is correct for this scenario.
+**Root cause:** User code — most likely FillChar on class instance
+(destroys VMT at offset 0), buffer overrun with {$R-}, or stale
+pointer after Dispose.
+**Recommendations:**
+- Compile with {$R+}{$Q+} to catch overruns
+- Never FillChar a class instance — only fill individual fields
+- Set pointers to nil after Dispose
+**Status:** Audited. RTL cleared. Waiting for v4 maintainer to
+narrow down the exact line.
+**See:** docs/v4_engine_heap_audit.md
+**Deep audit (Jul 23 2026):** Full stats trace through SysReAllocMem
+proves the stats update is intentional and balances correctly.
+SysTryResizeMem merges the adjacent free block, updates stats,
+returns FALSE. SysReAllocMem then gets the merged size via MemSize,
+allocates new, copies, frees merged block. Net stats: correct.
+Not exported in TMemoryManager — only called by SysReAllocMem.
+**Status:** CLOSED — not a bug.
+**Deep audit (Jul 23 2026):** Full threading trace proves lock ordering
+is correct. FinalizeHeap holds heap_lock continuously from entry to
+exit — no gap between finish_waitlist and modify_freelists. The unlocked
+check at alloc_oschunk line 756 is deliberate double-checked locking
+(safe on x86/x86_64 TSO). waitfree_var blocks on heap_lock until
+FinalizeHeap completes, then writes to orphaned_freelists correctly.
+**Status:** CLOSED — not a bug.

@@ -326,5 +326,5 @@ threadvar
   function StringToOleStr(const source : ansistring) : PWideChar;inline;
     begin
       result:=nil;
-      widestringmanager.Ansi2WideMoveProc(pchar(pointer(source)),widestring(pointer(result)),length(source));
+      widestringmanager.Ansi2WideMoveProc(pchar(pointer(source)),DefaultSystemCodePage,widestring(pointer(result)),length(source));
     end;

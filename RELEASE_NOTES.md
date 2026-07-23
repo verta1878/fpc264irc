@@ -92,9 +92,9 @@ Three real-world FreePascal BBS programs tested:
 | i386-os2 | ✅ Full + PM widgetset |
 | i8086-msdos | ✅ Compiler built |
 
-### 37 Bugs Fixed
+### 39 Bugs Fixed
 
-BUG-001 through BUG-036 including the AnsiString heap corruption
+BUG-001 through BUG-039 including the AnsiString heap corruption
 and C-style operator default.
 
 ---
@@ -120,3 +120,33 @@ GNU General Public License v3
 
 *For the BBS scene. For the demoscene. For everyone still
 building on the platforms that matter.*
+
+### BUG-036 Fixed: C-Style Operators
+
+`+=` `-=` `*=` `/=` now enabled by default in all compiler modes.
+Compiler rebuilt from source with the fix. No `-Sc` flag needed.
+
+### BUG-038: SysTryResizeMem — NOT A BUG (closed) / BUG-039: Heap Lock Ordering — NOT A BUG (closed) (Deferred)
+
+Full audit of RTL heap manager and string operations completed.
+Two low-severity issues found and deferred:
+- BUG-038: SysTryResizeMem memory leak after failed forward merge
+- BUG-039: Heap lock ordering with orphaned freelists (threading)
+Neither causes corruption. See `docs/system_ppu_audit.md`.
+
+### Third-Party Code Verification
+
+Three real-world BBS programs compile clean:
+- BlockArt (xqtr) — zero changes needed
+- xAnsiViewer (xqtr) — zero changes needed
+- Blocker (xqtr) — +cnetdb.pas compatibility shim
+
+### Compiler Rebuilt
+
+ppcx64 bootstrapped from patched source (Jul 23 2026).
+BUG-036 fix baked into the binary — `+=` works everywhere.
+
+### BUG-037: v4 Engine Heap Crash — Audited (r3.1)
+RTL heap manager audited and cleared. EInvalidPointer is caused
+by user code (FillChar on class or buffer overrun), not the RTL.
+See `docs/v4_engine_heap_audit.md` for full analysis.

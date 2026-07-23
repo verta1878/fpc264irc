@@ -503,7 +503,7 @@ Function fpc_WChar_To_AnsiStr(const c : WideChar): AnsiString; compilerproc;
   Converts a WideChar to a AnsiString;
 }
 begin
-  widestringmanager.Wide2AnsiMoveProc(@c, fpc_WChar_To_AnsiStr,DefaultSystemCodePage, 1);
+  widestringmanager.Wide2AnsiMoveProc(@c, fpc_WChar_To_AnsiStr, DefaultSystemCodePage, 1);
 end;
 
 
@@ -549,7 +549,7 @@ begin
   else
     i := high(arr)+1;
   SetLength(fpc_CharArray_To_WideStr,i);
-  widestringmanager.Ansi2WideMoveProc(pchar(@arr),DefaultSystemCodePage,fpc_CharArray_To_WideStr,i);
+  widestringmanager.Ansi2WideMoveProc (pchar(@arr),DefaultSystemCodePage,fpc_CharArray_To_WideStr,i);
 end;
 
 
@@ -608,7 +608,7 @@ begin
   len := length(src);
   { make sure we don't dereference src if it can be nil (JM) }
   if len > 0 then
-    widestringmanager.ansi2widemoveproc(pchar(@src[1]),DefaultSystemCodePage,temp,len);
+    widestringmanager.ansi2widemoveproc(pchar(@src[1]),temp,len);
   len := length(temp);
   if len > arraysize then
     len := arraysize;
@@ -629,7 +629,7 @@ begin
   len := length(src);
   { make sure we don't access char 1 if length is 0 (JM) }
   if len > 0 then
-    widestringmanager.ansi2widemoveproc(pchar(@src[1]),DefaultSystemCodePage,temp,len);
+    widestringmanager.ansi2widemoveproc(pchar(@src[1]),temp,len);
   len := length(temp);
   if len > arraysize then
     len := arraysize;

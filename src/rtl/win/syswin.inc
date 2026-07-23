@@ -523,7 +523,6 @@ function GetProcessID: SizeUInt;
  const
    { MultiByteToWideChar  }
       MB_PRECOMPOSED = 1;
-      CP_ACP = 0;
       WC_NO_BEST_FIT_CHARS = $400;
 
  function MultiByteToWideChar(CodePage:UINT; dwFlags:DWORD; lpMultiByteStr:PChar; cchMultiByte:longint; lpWideCharStr:PWideChar;cchWideChar:longint):longint;
@@ -536,7 +535,7 @@ function GetProcessID: SizeUInt;
  function CharLowerBuff(lpsz:LPWSTR; cchLength:DWORD):DWORD;
      stdcall; external 'user32' name 'CharLowerBuffW';
 
-procedure Win32Unicode2AnsiMove(source:punicodechar;var dest:ansistring;len:SizeInt);
+procedure Win32Unicode2AnsiMove(source:punicodechar;var dest:ansistring;cp:TSystemCodePage;len:SizeInt);
   var
     destlen: SizeInt;
   begin
@@ -548,7 +547,7 @@ procedure Win32Unicode2AnsiMove(source:punicodechar;var dest:ansistring;len:Size
     WideCharToMultiByte(CP_ACP, WC_NO_BEST_FIT_CHARS, source, len, @dest[1], destlen, nil, nil);
   end;
 
-procedure Win32Ansi2UnicodeMove(source:pchar;var dest:UnicodeString;len:SizeInt);
+procedure Win32Ansi2UnicodeMove(source:pchar;cp:TSystemCodePage;var dest:UnicodeString;len:SizeInt);
   var
     destlen: SizeInt;
   begin
@@ -582,7 +581,7 @@ function Win32UnicodeLower(const s : UnicodeString) : UnicodeString;
                               Widestring
  ******************************************************************************}
 
-procedure Win32Ansi2WideMove(source:pchar;var dest:widestring;len:SizeInt);
+procedure Win32Ansi2WideMove(source:pchar;cp:TSystemCodePage;var dest:widestring;len:SizeInt);
   var
     destlen: SizeInt;
   begin
