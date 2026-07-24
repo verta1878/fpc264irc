@@ -1,0 +1,86 @@
+BITS 16
+CPU 8086
+SECTION text use16 class=code
+SECTION rodata class=data
+SECTION data class=data
+SECTION fpc class=data
+SECTION bss class=bss
+SECTION stack stack class=stack align=16
+SECTION heap class=heap align=16
+GROUP dgroup rodata data fpc bss stack heap
+SECTION text
+
+SECTION text
+	ALIGN 2
+	GLOBAL SYSTEM_$$_FPC_WRITEBUFFER$TEXT$formal$SMALLINT
+SYSTEM_$$_FPC_WRITEBUFFER$TEXT$formal$SMALLINT:
+		push	bp
+		mov	bp,sp
+		sub	sp,6
+		mov	ax,word [bp+6]
+		mov	word [bp-2],ax
+		mov	word [bp-6],0
+		mov	bx,word [bp+8]
+		mov	si,word [bp+8]
+		mov	ax,word [bx+6]
+		mov	dx,word [si+10]
+		sub	ax,dx
+		mov	word [bp-4],ax
+		jmp	..@j21681
+	ALIGN 2
+..@j21680:
+		mov	bx,word [bp-2]
+		mov	si,word [bp-6]
+		lea	ax,[bx+si]
+		push	ax
+		mov	bx,word [bp+8]
+		mov	bx,word [bx+14]
+		mov	si,word [bp+8]
+		mov	si,word [si+10]
+		lea	ax,[bx+si]
+		push	ax
+		push	word [bp-4]
+		call	SYSTEM_$$_MOVE$formal$formal$SMALLINT
+		mov	ax,word [bp-4]
+		sub	word [bp+4],ax
+		mov	ax,word [bp-4]
+		add	word [bp-6],ax
+		mov	bx,word [bp+8]
+		mov	ax,word [bp-4]
+		add	word [bx+10],ax
+		mov	ax,word [bp+8]
+		push	ax
+		mov	bx,word [bp+8]
+		mov	ax,word [bx+18]
+		call	ax
+		mov	bx,word [bp+8]
+		mov	si,word [bp+8]
+		mov	ax,word [bx+6]
+		mov	dx,word [si+10]
+		sub	ax,dx
+		mov	word [bp-4],ax
+..@j21681:
+		mov	ax,word [bp+4]
+		cmp	ax,word [bp-4]
+		jg	..@j21680
+		jmp	..@j21682
+..@j21682:
+		mov	bx,word [bp-2]
+		mov	si,word [bp-6]
+		lea	ax,[bx+si]
+		push	ax
+		mov	bx,word [bp+8]
+		mov	bx,word [bx+14]
+		mov	si,word [bp+8]
+		mov	si,word [si+10]
+		lea	ax,[bx+si]
+		push	ax
+		push	word [bp+4]
+		call	SYSTEM_$$_MOVE$formal$formal$SMALLINT
+		mov	bx,word [bp+8]
+		mov	ax,word [bp+4]
+		add	word [bx+10],ax
+		mov	sp,bp
+		pop	bp
+		ret	6
+EXTERN	SYSTEM_$$_MOVE$formal$formal$SMALLINT

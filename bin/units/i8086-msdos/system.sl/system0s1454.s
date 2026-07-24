@@ -1,0 +1,20 @@
+BITS 16
+CPU 8086
+SECTION text use16 class=code
+SECTION rodata class=data
+SECTION data class=data
+SECTION fpc class=data
+SECTION bss class=bss
+SECTION stack stack class=stack align=16
+SECTION heap class=heap align=16
+GROUP dgroup rodata data fpc bss stack heap
+SECTION text
+
+SECTION data class=data
+	GLOBAL TC_$SYSTEM$_$DIY_FP_CACHED_POWER10$SMALLINT$TDIY_FP_POWER_OF_10_$$_CORRECTOR
+TC_$SYSTEM$_$DIY_FP_CACHED_POWER10$SMALLINT$TDIY_FP_POWER_OF_10_$$_CORRECTOR	DB	0,0,0,1,0,0,1,1,0,0,1,1,255,1,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,2,0,1,1,0,0,254,0,2,0,1,1,1,1,1,2,0,0,2,1,0
+	DB	1,0,0,0,0,1,255,0,0,1,1,0,0,1,0,255,0,255,0,0,0,1,0,0,0,1,0,0,0,1,1,255,0,255,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,255,0,255
+	DB	0,0,255,0,255,1,1,0,255,0,0,255,255,255,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,255,0,0,0,0,255,0,255,0,0,0,0,0,0,0,0
+	DB	2,2,1,1,0,0,0,2,0,0,1,1,0,0,1,1,0,0,1,0,0,0,1,2,0,0,1,0,0,0,255,0,0,0,2,0,0,0,1,1,0,0,0,1,255,1,0,1,0,0,0,255,0,0,0,1,0,0,1
+	DB	0,0,0,0,0,0,0,1,1,255,0,0,2,0,0,1,1,0,1,1,1,255,255,1,254,0,0,0,255,1,255,1,255,255,255,0,0,1,1,0,0,0,0,1,1,0,0
+	DB	1,0,0,0,0,0

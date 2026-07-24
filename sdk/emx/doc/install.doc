@@ -1,0 +1,629 @@
+===============================================================================
+install.doc       emx 0.9d     INSTALLATION GUIDE                   21-Dec-1998
+===============================================================================
+                                     Copyright (c) 1990-1998 by Eberhard Mattes
+
+Introduction
+------------
+
+Welcome to emx 0.9d, an environment for creating 32-bit programs for
+OS/2 (and DOS) with the GNU C compiler.
+
+To use the GNU C compiler with emx, you need at least
+
+  emxrt.zip     emx runtime package
+  emxdev1.zip   Files required for developing programs with emx (part 1)
+  emxdev2.zip   Files required for developing programs with emx (part 2)
+  gnudev1.zip   The GNU C compiler, the GNU debugger, and other tools (part 1)
+  gnudev2.zip   The GNU C compiler, the GNU debugger, and other tools (part 2)
+  gppdev1.zip   Additional files for GCC required for compiling C++ programs
+  gobjcdev.zip  Additional files for GCC required for compiling
+                programs written in the Objective C language
+
+and
+
+  unzip.exe     a free program for unpacking ZIP files
+
+The following packages are optional:
+
+  emxview.zip   emx documentation in OS/2 .inf format
+  emxsrcd1.zip  Source for emx devlopment tools (part 1)
+  emxsrcd2.zip  Source for emx devlopment tools (part 2)
+  emxsrcr.zip   Source for the emx runtime package
+  emxample.zip  Sample programs
+  emxtest.zip   Test programs (used for testing emx and the libraries)
+  gnuview.zip   emxgnu.inf (emxgnu.doc in OS/2 .inf format)
+  gnudoc.zip    Documentation for GNU programs (texinfo sources etc.)
+  gnuinfo.zip   GNU texinfo (includes info file browser)
+  gnupat.zip    patches for GNU sources
+  gnusrc.zip    Patched GNU sources (info, termcap, GPPDEMID)
+  gbinusrc.zip  Patched GNU sources (ld, ar, nm, size, strip, objdump, gprof)
+  gccsrc1.zip   Patched GNU sources (GCC 2.8.1, part 1)
+  gccsrc2.zip   Patched GNU sources (GCC 2.8.1, part 2)
+  gccsrc3.zip   Patched GNU sources (GCC 2.8.1, part 3)
+  gdbsrc1.zip   Patched GNU sources (GDB 4.16, part 1)
+  gdbsrc2.zip   Patched GNU sources (GDB 4.16, part 2)
+  gppdev2.zip   libg++ 2.8.1.1a
+  gppsrc1.zip   Patched sources of libstdc++ 2.8.1.1
+  gppsrc2.zip   Patched sources of libg++ 2.8.1.1a
+  bsddev.zip    BSD programs (gprof) and libraries (curses etc.)
+  bsddoc.zip    Documentation for BSD libraries
+  bsdsrc.zip    Source for BSD libraries
+
+
+Preliminary tasks
+-----------------
+
+IMPORTANT!  If there is an older version of emx already installed, you
+should delete the old version or rename the old directory.  Installing
+a new version over an old version is NOT RECOMMENDED.
+
+Some of the emx batch files (such as texi2dvi.cmd) require REXX to be
+installed.  If you haven't installed REXX, use Selective Install to
+install it.  (Note to DOS users: REXX is OS/2's batch file language.)
+
+emx 0.9c and later break some versions of Siegfried Hanisch's ScreenSaver.
+Either upgrade to version 2.6 or disable ScreenSaver before installing
+emx 0.9c or later.  Otherwise, your system will freeze.
+
+
+Installing the packages
+-----------------------
+
+You should install all the packages on the same drive.  For instance,
+use
+
+  c:
+  cd \
+  unzip emxrt
+
+to install the emxrt.zip package on drive C:.  PKUNZIP cannot be used.
+All the files will be installed in the \emx subdirectory or in
+subdirectories thereof.  The other packages are installed the same
+way.  If the emx DLLs are in use, unzip won't be able to replace them.
+emxrt.doc (or emxrt.inf) explains how to use emxuzdll to update the
+DLLs while they are in use.
+
+After unpacking the emx runtime and development system packages,
+you'll find further information in the following files:
+
+  \emx\doc\COPYING.EMX          emx & library license, license overview
+  \emx\doc\COPYING              GNU General Public License
+  \emx\doc\install.doc          Installation guide
+  \emx\doc\emxrt.doc            User's guide to the emx runtime package
+  \emx\doc\emxdev.doc           Application developer's guide
+  \emx\doc\emxlib.doc           C library reference
+  \emx\doc\build.doc            Compiling the sources
+  \emx\doc\history.doc          Change log
+  \emx\doc\future.doc           Things to do
+  \emx\book\emxrt.inf           .inf version of emxrt.doc
+  \emx\book\emxdev.inf          .inf version of emxdev.doc (optional)
+  \emx\book\emxlib.inf          .inf version of emxlib.doc (optional)
+
+After unpacking the GNU and BSD packages, you'll find further
+information in the following files:
+
+  \emx\doc\COPYING              GNU General Public License
+  \emx\doc\COPYING.LIB          GNU Library General Public License
+  \emx\doc\COPYING.BSD          BSD license (for libraries bsd and curses)
+  \emx\doc\COPYING.SCP          Additional information for stdc++ library
+  \emx\doc\emxgnu.doc           GNU development tools information
+  \emx\doc\emxbsd.doc           BSD library information
+  \emx\doc\NEWS.GCC             Changes in GCC
+  \emx\doc\NEWS.GDB             Changes in GDB
+  \emx\gnu\doc\bounds\README    Richard W.M. Jones's bounds checking patches
+  \emx\book\emxgnu.inf          .inf version of emxgnu.doc (optional)
+  \emx\book\emxbsd.inf          .inf version of emxbsd.doc
+
+
+If you have used emx before, read history.doc first.
+
+
+Setting environment variables
+-----------------------------
+
+OS/2 users should set the environment variables in config.sys, DOS
+users should set the environment variables in autoexec.bat.  Beware of
+blanks at the end of the lines!
+
+
+Developing programs on drive different from the installation drive
+------------------------------------------------------------------
+
+If you want to develop programs on a drive different from the drive
+where emx is installed, you have to set the C_INCLUDE_PATH and
+LIBRARY_PATH environment variables, for instance,
+
+    set C_INCLUDE_PATH=c:/emx/include
+    set LIBRARY_PATH=c:/emx/lib
+
+If you want to compile C++ programs, set CPLUS_INCLUDE_PATH as well:
+
+    set CPLUS_INCLUDE_PATH=c:/emx/include/cpp;c:/emx/include
+
+The genclass utility needs the following environment variable:
+
+    set PROTODIR=c:/emx/include/cpp/gen
+
+If you want to compile programs written in the Objective C language,
+set OBJC_INCLUDE_PATH as well:
+
+    set OBJC_INCLUDE_PATH=c:/emx/include
+
+
+Speeding up compilation
+-----------------------
+
+When compiling projects consisting of many modules (such as libraries)
+under OS/2, you can speed up compilation if you have enough memory by
+keeping GCC in memory.  For example, to keep GCC in memory for 5
+minutes, use
+
+    set GCCLOAD=5
+
+To make GCC use pipes instead of temporary files under OS/2, use
+
+    set GCCOPT=-pipe
+
+
+Setting up termcap
+------------------
+
+To use GDB (the GNU debugger) and info (the GNU info browser) and other
+programs that use termcap, set the TERM and TERMCAP environment
+variables:
+
+    set TERM=mono
+    set TERMCAP=c:/emx/etc/termcap.dat
+
+
+Setting up the info browser
+---------------------------
+
+Set the INFOPATH environment variable for info:
+
+    set INFOPATH=c:/emx/info
+
+
+Setting up on-line documentation in OS/2 .inf format
+----------------------------------------------------
+
+To use the emx documentation in OS/2 .inf format, append c:\emx\book
+to the BOOKSHELF environment variable and define an environment
+variable which tells VIEW how to concatenate the .inf files.  Example:
+
+    set BOOKSHELF=C:\OS2\BOOK;C:\EMX\BOOK
+    set EMXBOOK=emxdev.inf+emxlib.inf+emxgnu.inf+emxbsd.inf
+
+(If you have not installed emxbsd.zip, omit `+emxbsd.inf' from EMXBOOK.)
+
+To use the .inf files with EPM (the OS/2 Enhanced Editor), add the
+following line to your config.sys file:
+
+    set HELPNDX=emxbook.ndx
+
+If HELPNDX is already set in your config.sys file, add emxbook.ndx to
+the end of the HELPNDX variable, separated by a + character.
+Moreover, you should add c:\emx\book to the DPATH environment
+variable:
+
+    set DPATH=...;c:\emx\book
+
+where ... is the previous value of DPATH.
+
+
+Setting up on-line help for pmgdb
+---------------------------------
+
+To use pmgdb's on-line help, append c:\emx\help to the HELP
+environment variable.
+
+
+Finishing the installation
+--------------------------
+
+To finish the installation, add c:\emx\bin (insert the correct drive
+letter) to your PATH.  Add c:\emx\dll (insert the correct drive
+letter) to the LIBPATH statement in your config.sys file.  Reboot your
+computer to enable the new LIBPATH statement and the new environment
+variables.
+
+
+Creating desktop objects
+------------------------
+
+After rebooting, you can create a folder containing icons for the
+on-line books by typing
+
+    emxinst
+
+
+Creating the OMF libraries
+--------------------------
+
+To create the OMF libraries (for linking with LINK386), type the
+following commands after installing emx:
+
+    cd \emx\lib
+    omflibs
+
+The omflibs batch file builds .lib files from .a files.  If you
+install (after running omflibs) a package containing additional .a
+files , you should run omflibs again to build the .lib files for the
+new package.
+
+
+Using long file names for header files on HPFS
+----------------------------------------------
+
+You need `sed' for the following procedure.  GNU sed is available for
+anonymous ftp:
+
+    ftp.leo.org: /pub/comp/os/os2/leo/gnu/systools/gnused.zip
+
+To rename and patch the header files for HPFS, type
+
+    cd \emx\include
+    long
+
+You can revert to the short names for FAT by typing
+
+    cd \emx\include
+    short
+
+
+Trouble shooting
+----------------
+
+If OS/2 says
+
+    SYS1804: The system cannot find the file EMX.
+
+when running a program compiled for emx, you haven't set LIBPATH
+correctly.
+
+If programs print `WARNING: emx 0.9d or later required', an
+out-of-date version of emx.dll is active.  Make sure that the latest
+version of emx.dll is in a directory pointed to by the LIBPATH
+statement in your config.sys file.  Use
+
+    emxrev -p c:\config.sys
+
+to list all emx dynamic link libraries reachable by the LIBPATH
+statement of c:\config.sys (use the drive letter of your boot drive
+instead of c:).  To simplify things, you should keep only one version
+of each DLL.  Older programs work with newer emx DLLs, but not vice
+versa.
+
+
+Compiling sample programs
+-------------------------
+
+Install the emxample.zip package:
+
+  c:
+  cd \
+  unzip emxample
+
+Compile the sieve program (optimizer enabled):
+
+  cd \emx\samples
+  gcc -O2 sieve.c
+
+Run the sieve program:
+
+  sieve
+  sieve 100000
+  sieve -p 100
+
+Compile the hello program (C++):
+
+  gcc hello.cc -lstdcpp
+
+(Note that \emx\samples\hello.cc has been added by emxfix02.zip.)
+
+A `makefile', \emx\samples\makefile, is provided for use with any
+`make' utility (such as dmake, GNU make, NMAKE).  If you have a make
+utility installed, just type
+
+  make cpp-samples
+
+to build all the C++ sample programs.  See the makefile for further
+make targets.
+
+
+Sample debugging session
+------------------------
+
+Compile the sieve program for debugging:
+
+  cd \emx\samples
+  gcc -g sieve.c
+
+Start the debugger and step through some lines:
+
+  [C:\EMX\SAMPLES]gdb sieve.exe
+  GDB is free software and you are welcome to distribute copies of it
+   under certain conditions; type "show copying" to see the conditions.
+  There is absolutely no warranty for GDB; type "show warranty" for details.
+  GDB 4.16 (emx), Copyright 1996 Free Software Foundation, Inc...
+  (gdb) set arg 100                                     <- set command line
+  (gdb) b isqrt                                         <- set breakpoint
+  Breakpoint 1 at 0x1003e: file sieve.c, line 45.
+  (gdb) run                                             <- start program
+  Starting program: c:/emx/samples/sieve.exe 10
+
+  Breakpoint 1, isqrt (x=100) at sieve.c:45
+  45        l = 1; r = x;
+  (gdb) s                                               <- step over one line
+  46        while (l < r)
+  (gdb) l                                               <- list source
+  41      static ULONG isqrt (ULONG x)
+  42      {
+  43        ULONG l, r, m;
+  44      
+  45        l = 1; r = x;
+  46        while (l < r)
+  47          {
+  48            m = (l+r) / 2;
+  49            if (m > 46340) m = 46340;
+  50            if (m*m < x)
+  (gdb) disp l                                          <- watch variable
+  1: l = 1
+  (gdb) disp r                                          <- watch variable
+  2: r = 100
+  (gdb) s 5                                             <- step over five lines
+  53                  r = m-1;
+  2: r = 100
+  1: l = 1
+  (gdb) p m*m                                           <- show expression
+  $1 = 2500
+  (gdb) cont                                            <- continue program
+  Continuing.
+  25 primes                                             <- output of program
+
+
+  Program exited normally.
+  (gdb) q                                               <- quit gdb
+
+  [C:\EMX\TEST]
+
+OS/2 users can use pmgdb, a Presentation Manager front end for GDB, to
+simplify operating GDB and to debug Presentation Manager applications:
+
+  [C:\EMX\TEST]pmgdb sieve.exe 100
+
+After starting pmgdb, select Tutorial from the Help menu.
+
+
+Viewing OS/2 .inf files
+-----------------------
+
+If you've installed the optional emxview.zip and gnuview.zip packages,
+you can use the OS/2 VIEW utility to view a hypertext version of
+emxdev.doc, emxlib.doc, emxgnu.doc and emxbsd.doc.  If you've added
+c:\emx\book to the BOOKSHELF environment variable and defined the
+EMXBOOK environment variable (see above), type
+
+    view emxbook
+
+to view the concatenated .inf files.  To get help for, say, printf(),
+type
+
+    view emxbook printf
+
+If you haven't set the environment variables, type
+
+    view c:\emx\book\emxdev
+
+to view emxdev.inf.
+
+If you've properly set the HELPNDX and DPATH environment variables,
+you can use the kwhelp (Ctrl-H) command of EPM to get on-line help for
+the function at the cursor.  With emxbook.ndx, all four books are
+required to be installed.  If you haven't installed all the books, use
+a subset of emxdev.ndx, emxlib.ndx, emxgnu.ndx and emxbsd.ndx in the
+HELPNDX environment variable.
+
+emxbook.ndx contains all entries of emxdev.ndx, emxlib.ndx, emxgnu.ndx
+and emxbsd.ndx, pointing to `emxbook'.  Setting the EMXBOOK
+environment variable as explained above causes the three books to be
+concatenated and named `emxbook'.
+
+
+Viewing the GNU on-line manuals
+-------------------------------
+
+To view the GCC, GDB, etc. manuals, unpack gnudoc.zip and gnuinfo.zip
+and install info (see emxgnu.doc).  Use GNU makeinfo to create info
+files for on-line help from the texinfo files.  makeinf.bat and
+makeinf.cmd are batch files which simplify calling makeinfo.
+
+To create info files for the GCC manual, type:
+
+  cd \emx\gnu\doc\gcc
+  ..\makeinf gcc                (Using and Porting GNU CC)
+  ..\makeinf cpp                (The C Preprocessor)
+  ..\makeinf gxxint             (Internal Architecture of the Compiler)
+  ..\makeinf gppfaq     (Frequently asked questions about the GNU C++ compiler)
+
+To create info files for GDB, type:
+
+  cd \emx\gnu\doc\gdb
+  ..\makeinf gdb                (Debugging with GDB)
+  ..\makeinf gdbint             (The GNU debugger's internals)
+  ..\makeinf annotate           (Interfacing GDB to other programs)
+
+To create info files for GAS, type:
+
+  cd \emx\gnu\doc\gas
+  ..\makeinf as                 (The GNU assembler)
+  ..\makeinf gasp               (The GNU Assembler Preprocessor)
+
+To create the info file for the new GNU binary utilities (ar, nm,
+objdump, and size) and gprof, type:
+
+  cd \emx\gnu\doc\binutils
+  ..\makeinf binutils           (The GNU binary utilities)
+  ..\makeinf gprof              (Profiling your program's execution)
+
+(Note that emx uses the old versions of `ld' and `strip', for which no
+documentation is available.)
+
+To create info files for the texinfo manual, type:
+
+  cd \emx\gnu\doc\texinfo
+  ..\makeinf texi               (The documentation format for the GNU Project)
+  ..\makeinf makeinfo           (The makeinfo program)
+
+To create info files for libstdc++, type:
+
+  cd \emx\gnu\doc\stdcpp
+  ..\makeinf iostream           (The GNU C++ Iostream Library)
+
+To create info files for libg++, type:
+
+  cd \emx\gnu\doc\libgpp
+  ..\makeinf libgpp             (User's Guide to the GNU C++ Class Library)
+
+To create info files for the GNU termcap library, type:
+
+  cd \emx\gnu\doc\termcap
+  ..\makeinf termcap            (The Termcap Library)
+
+After creating the info files, you can use GNU info (see emxgnu.doc
+for details) or GNU Emacs to view the info files.
+
+
+Printing the GNU manuals
+------------------------
+
+To print the manuals, you have to unpack gnudoc.zip and gnuinfo.zip.
+Additionally, you have to install TeX.  Of course, I recommend emTeX,
+which can be used both under OS/2 and DOS.  emTeX is available for
+anonymous ftp on
+
+  ftp.dante.de:   /tex-archive/systems/msdos/emtex
+  ftp.tex.ac.uk:  /tex-archive/systems/msdos/emtex
+  ftp.cdrom.com:  /pub/tex/ctan/systems/msdos/emtex
+  ftp.leo.org:    /pub/comp/os/os2/leo/emTeX
+
+The following instructions assume that you are using emTeX (with
+emTeX386).  If TeX complains about undefined control sequences, just
+type `s' and ignore the errors.
+
+To typeset the GCC documentation, type
+
+  cd \emx\gnu\doc
+  makedvi gcc
+  makedvi gppfaq
+
+This creates the following files:
+
+  cpp.dvi               (The C Preprocessor)
+  gcc.dvi               (Using and Porting GNU CC)
+  gppfaq.dvi            (Frequently asked questions about the GNU C++ compiler)
+
+To typeset internal G++ documentation (you don't need this unless you
+want to hack G++), type
+
+  cd \emx\gnu\doc
+  makedvi gxxint
+
+To typeset the GDB documentation, type
+
+  cd \emx\gnu\doc
+  makedvi gdb
+
+This creates the following files:
+
+  refcard.dvi           (GDB Reference Card)
+  gdb.dvi               (Debugging with GDB)
+
+To typeset internal GDB documentation (you don't need this unless you
+want to hack GDB), type
+
+  cd \emx\gnu\doc
+  makedvi gdbint
+
+This create the following files:
+
+  gdbint.dvi            (The GNU debugger's internals)
+  stabs.dvi             (The "stabs" debugging information format)
+  annotate.dvi          (Interfacing GDB to other programs)
+
+To typeset the GAS documentation, type
+
+  cd \emx\gnu\doc
+  makedvi gas
+
+This creates the following files:
+
+  as.dvi                (The GNU assembler)
+  gasp.dvi              (The GNU Assembler Preprocessor)
+
+To typeset the documentation for the new GNU binary utilities (ar, nm,
+objdump, and size), type:
+
+  cd \emx\gnu\doc
+  makedvi binutils
+
+This creates the following file:
+
+  binutils.dvi          (The GNU binary utilities)
+  gprof.dvi             (Profiling your program's execution)
+
+(Note that emx uses the old versions of `ld' and `strip', for which no
+documentation is available.)
+
+To typeset the texinfo documentation, type
+
+  cd \emx\gnu\doc
+  makedvi texinfo
+
+This creates the following files:
+
+  info-stn.dvi          (GNU Info)
+  texi.dvi              (The documentation format for the GNU Project)
+  makeinfo.dvi          (The makeinfo program)
+
+To typeset the libstdc++ documentation, type
+
+  cd \emx\gnu\doc
+  makedvi iostream
+
+This creates the following file:
+
+  iostream.dvi          (The GNU C++ Iostream Library)
+
+To typeset the libg++ documentation, type
+
+  cd \emx\gnu\doc
+  makedvi libgpp
+
+This creates the following files:
+
+  libgpp.dvi            (User's Guide to the GNU C++ Class Library)
+
+To typeset the GNU termcap documentation, type
+
+  cd \emx\gnu\doc
+  makedvi termcap
+
+This creates the following file:
+
+  termcap.dvi           (The Termcap Library)
+
+
+Using BSD termcap instead of GNU termcap
+----------------------------------------
+
+If you want to use the BSD termcap library instead of the GNU termcap
+library, replace `gnu' in \emx\include\termcap.h with `bsd' and use
+-lbtermcap instead of -ltermcap.  See \emx\doc\emxbsd.doc and
+\emx\doc\emxgnu.doc for details.  The most important difference
+between the two termcap libraries are their licensing conditions, see
+\emx\doc\COPYING and \emx\doc\COPYING.BSD.  GNU termcap has more
+features than BSD termcap.
+
+--------------------------- END OF INSTALL.DOC ------------------------------

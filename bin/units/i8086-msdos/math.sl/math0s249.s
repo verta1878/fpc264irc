@@ -1,0 +1,40 @@
+BITS 16
+CPU 8086
+SECTION .text use16 class=code
+SECTION .rodata class=data
+SECTION .data class=data
+SECTION .fpc class=data
+SECTION .bss class=bss
+SECTION stack stack class=stack align=16
+SECTION heap class=heap align=16
+GROUP dgroup rodata data fpc bss stack heap
+SECTION .text
+
+SECTION .data
+	ALIGN 2
+	GLOBAL RESSTR_$MATH_$$_START
+RESSTR_$MATH_$$_START	DW	_$MATH$_Ld29,0,0
+	DD	0
+
+SECTION .data
+	ALIGN 2
+	GLOBAL RESSTR_$MATH_$$_SMATHERROR
+RESSTR_$MATH_$$_SMATHERROR	DW	_$MATH$_Ld31,_$MATH$_Ld30,_$MATH$_Ld30
+	DD	216488147
+
+SECTION .data
+	ALIGN 2
+	GLOBAL RESSTR_$MATH_$$_SINVALIDARGUMENT
+RESSTR_$MATH_$$_SINVALIDARGUMENT	DW	_$MATH$_Ld33,_$MATH$_Ld32,_$MATH$_Ld32
+	DD	12736788
+
+SECTION .data
+	ALIGN 2
+	GLOBAL RESSTR_$MATH_$$_END
+RESSTR_$MATH_$$_END; End asmlist al_resourcestrings
+
+EXTERN	_$MATH$_Ld32
+EXTERN	_$MATH$_Ld33
+EXTERN	_$MATH$_Ld30
+EXTERN	_$MATH$_Ld31
+EXTERN	_$MATH$_Ld29

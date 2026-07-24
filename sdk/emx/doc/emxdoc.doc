@@ -1,0 +1,573 @@
+===============================================================================
+emxdoc.doc        emx 0.9d     DOCUMENTATION FORMATTER REFERENCE    04-Jul-1998
+===============================================================================
+                                     Copyright (c) 1993-1998 by Eberhard Mattes
+
+                        ***************************
+                        **** PRELIMINARY DRAFT ****
+                        **** SUBJECT TO CHANGE ****
+                        ***************************
+
+Synopsis
+========
+
+  emxdoc -t [-fr] [-o <output>] <input>
+  emxdoc -i [-acfgr] [-n <start>] [-o <output>] [-x <xref>] <input>
+  emxdoc -k [-o <output>] <input>...
+  emxdoc -l [-fr] [-o <output>] <input>
+  emxdoc -m [-o <output>] <input>...
+
+
+Commands:
+
+-t      Create .doc file (plain text)
+
+-i      Create .ipf file (for IPFC)
+
+-k      Create .ndx file (for EPM)
+
+-l      Create .tex file (for LaTeX) -- not yet implemented
+
+-m      Merge directory files into cross reference file
+
+
+Options:
+
+-a      Use concatenating instead of calling .inf files.  Without -a,
+        a reference to a label in another .inf file causes that .inf
+        file to be called, that is, a new VIEW instance is created.
+        With -a, .inf files are assumed to be concatenated.  Use -n
+        with -a
+
+-b <number>
+
+        Select line breaking algorithm for -t.  Possible values are 0
+        (default) and 1 (slow):
+        0       greedy algorithm, filling lines as much as possible
+        1       minimize sum of (target_width - actual_width)^2
+
+-c      Use color (light blue) instead of slanted font for
+        highlighting with þpa, þsl, þem, þformat slanted and
+        `þformat emphasize'
+
+-e <character>
+
+        Set the escape character.  By default, emxdoc uses þ as the
+        escape character.  This documentation always uses þ as the
+        escape character.  You can choose a different escape character
+        with the -e option.  The character code is given in decimal,
+        octal, or hexadecimal, using C notation.  If the argument of
+        the -e option is a single non-digit character, that character
+        is used as the escape character
+
+-f      Enable French spacing.  With -f, one space is used after the
+        end of a sentence, without -f, two spaces are used
+
+-g      Gather global directory data
+
+-h <file>
+        Use hyphenation table (for -t -b1)
+
+-n <start>
+        Define first ID number, for use with -a.  The default is 1
+
+-o <output>
+        Set name of output file (default: stdout)
+
+-r      Make output file read-only
+
+-w <level>
+        Set the warning level:
+        0       No warnings (default)
+        1       Text starting in first column
+        2       Text should be inserted here
+
+-x <xref>
+        Use cross reference file, created by -m command
+
+
+Creating a .doc file
+====================
+
+  emxdoc -t -o sample.doc sample.src
+
+
+Creating an .inf file
+=====================
+
+  emxdoc -i -o sample.ipf sample.src
+  ipfc sample.ipf /inf
+
+
+Creating loosely related .inf files
+===================================
+
+  emxdoc -ig -o sample1.dir sample1.src
+  emxdoc -ig -o sample2.dir sample2.src
+  emxdoc -m -o sample.dir sample1.dir sample2.dir
+  emxdoc -i -o sample1.ipf -x sample.dir sample1.src
+  emxdoc -i -o sample2.ipf -x sample.dir sample1.src
+  ipfc sample1.ipf /inf
+  ipfc sample2.ipf /inf
+
+
+Creating .inf files to be concatenated
+======================================
+
+  emxdoc -ig -n1 -o sample1.dir sample1.src
+  emxdoc -ig -n1000 -o sample2.dir sample2.src
+  emxdoc -m -o sample.dir sample1.dir sample2.dir
+  emxdoc -i -n1 -o sample1.ipf -x sample.dir sample1.src
+  emxdoc -i -n1000 -o sample2.ipf -x sample.dir sample1.src
+  ipfc sample1.ipf /inf
+  ipfc sample2.ipf /inf
+
+Note that you'll get
+
+  151: No res for this reference [...]
+
+warning messages from ipfc.  Use -n to avoid overlapping ranges of
+IDs.
+
+
+Tags
+====
+
+Tags start by default with þ (code 254).  You can use the -e option to
+choose a different character. There are two types of tags:
+
+- tags which start in the first column
+
+- tags used in text
+
+
+[...TODO...]
+
+
+Words
+-----
+
+To find a word, emxdoc skips ( * and ` characters, and then takes all
+characters until one of the characters , ; ! ? ' is found.  The
+characters . and : terminates a word if followed by a blank or by the
+end of the line.  The character ) terminates a word if properly
+nested.  The character [ terminates a word inside þprototype.  After a
+word, terminating characters are skipped.  Example: The input
+
+    If the -s[<blah>] option or example.dll (in LIBPATH) are missing,
+    example() fails.
+
+consists of the following words:
+
+    If
+    the
+    -s[<bla>]
+    option
+    or
+    example.dll
+    in
+    LIBPATH
+    are
+    missing
+    example()
+    fails
+
+
+Tags which start in the first column
+------------------------------------
+
+þif <condition>
+þelse
+þendif
+
+   Conditionally include or exclude sections of the input file.  þif
+   statements may be nested to up to 8 levels.
+
+   The <condition> consists of the operators &, | and !, the operands
+   ipf, text and latex (which are true if -i, -t or -l, respectively,
+   is in effect), false, true, variables (see þset) and parentheses.
+
+   Example:
+
+        þif text
+        þh1 Table of Contents
+        þtoc
+        þendif
+
+þset <name> <value>
+
+   Set the variable <name> to <value>.  Variable names must be start
+   with a letter.  The remaining characters may be letters, digits or
+   `_'.  Letter case is significant.  Possible values are `false' and
+   `true'.  Variables can be used for þif.
+
+þformat <style> <word>...
+
+   Define <word>s to be formatted in style <style>.  Possible choices
+   for <style> are:
+
+        abbrev          Abbreviation (must end with .)
+        bold            Boldface
+        emphasize       Emphasized (slanted, uppercase for -t)
+        param           Parameter (slanted lower case for -i)
+        slanted         Slanted (or colored if -c is used)
+        syntax          <...> slanted, [|] bold, rest tty
+        tty             Fixed-width typewriter font
+        underline       Underlined
+
+    Example:
+
+        þformat syntax <style> <word>
+        þformat tty .exe .com
+        þformat abbrev etc.
+
+   abbrev is orthogonal to the other styles.  It means that the period
+   at the end of the word doesn't end a sentence (see the -f option).
+
+þreplace <word> <replacement>
+
+   Replace <word> with <replacement>, which is emxdoc input.  Example:
+
+        þreplace <table> þtt{<}þsl{table}þtt{>}
+
+   þreplace takes precedence over formatting styles.  <replacement>
+   should not directly or indirectly contain <word>.
+
+þspecial <mode> <word> <replacement>
+
+   Replace <word> with <replacement> on output in mode <mode> (text,
+   ipf or latex).
+
+     Example:
+
+        þspecial latex TeX \TeX{}
+
+þh<level>[<flags>] <heading>
+þh- <heading>
+þh= <heading>
+
+   Start new section of level <level> (1 through 3).  <heading> is the
+   section heading.  Example:
+
+        þh1 Getting started
+
+   If <flags> includes `u', the section is unnumbered and does not
+   appear in the table of contents of the output file when creating a
+   text file.
+
+   If <flags> includes `h' (hide), the section will not appear in the
+   Contents window.
+
+   þh- and þh= create an underlined section heading which does not appear
+   in the table of contents and does not start a new panel.
+
+
+þtoc
+
+   Insert table of contents.  Example:
+
+        þiftext
+        þh1 Table of Contents
+        þtoc
+        þendif
+
+
+þipfminitoc
+
+   In -i mode, insert a table of hypertext links to the subsections of
+   the current section.
+
+þtitle <title>
+
+   Define title of .inf document.  Example:
+
+        þtitle Formatting documents with emxdoc
+
+
+þlabel <label>
+
+   Define the label <label> to refer to the current section.  The
+   label can be used with þhpt{} and þref{}.  Example:
+
+        þlabel defining label
+
+
+þlanguage <language>
+
+   Define the language to be used for emxdoc-generated text.  Valid
+   languages are `english' (which is the default) and `german'.
+
+
+þsyntax <style>
+
+   Select the syntax style recognized by þsy{}.  Possible values for
+   <style> are `emx' (which is the default) and `dvidrv'.
+
+þindex <term>
+
+   Put <term> into the top level of the index.  Example:
+
+        þindex top level
+
+
+þi1 <term>
+
+   Put <term> into the top level of the index (unless already done)
+   and make this the first level entry for þi2.  If <term> is not
+   present, disable þi2.
+
+
+þi2 <term>
+
+   Put <term> into the second level of the index, under the term most
+   recently used with þi1.  Example:
+
+        þi1 indexing
+        þi2 levels
+
+
+þkeyword <keyword>...
+
+    Define keyword for EPM.  You can give multiple keywords, separated
+    by spaces.
+
+
+þipf
+þendipf
+
+    Insert lines of IPF commands between þipf and þendipf as-is into
+    the output file if -i is used.  Ignore lines if -t is used
+
+
+þtext
+þendtext
+
+    Insert lines between þtext and þendtext as-is into the output file
+    if -t is used.  Ignore lines if -i is used
+
+
+þdescription
+þitem <term>
+  <description>
+þenddescription
+
+    Describe terms.  Each description is started with þitem.  The term
+    to be described is given on the same line as þitem.  Paragraphs
+    between þdescription and þenddescription are indended.  If <term>
+    is short enough, its description starts on the same line.
+    Otherwise, it starts on the next line.
+
+
+þlist
+þitem <term>
+  <description>
+þendlist
+
+    Like þdescription, but the description is always put on a new
+    line.
+
+þenumerate
+þitem
+  <paragraph>
+þendenumeate
+
+    Numbered list of items.  þitem starts a new item.  Each item is
+    preceded by a number.  The paragraphs between þitemize and
+    þenditemize are indended.
+
+þitemize
+þitem
+  <paragraph>
+þenditemize
+
+    Unordered list of items.  þitem starts a new item.  Each item is
+    preceded by a mark.  The paragraphs between þitemize and
+    þenditemize are indended.
+
+þverbatim
+þendverbatim
+
+    Output lines between þverbatim and þendverbatim as-is, maintaining
+    line breaks and leading spaces.  A fixed-width typewriter font is
+    used.  The current indentation is used.
+
+
+þexample
+þendexample
+
+    Like þverbatim, but indent by 4 characters.
+
+
+þindent
+þendindent
+
+    Use an additional indentation of 4 characters for paragraphs
+    between þindent and þendindent.
+
+
+þtypewriter
+þendtypewriter
+
+    Like þident, but use þtt{} as default.  Note that line breaks and
+    leading spaces are not maintained in the output.
+
+
+þtable [indent] <width>...
+  <column1> ³ <column2>...
+  ÄÄÄÄÄÄÄÄÄÄÅÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+  <column1> ³ <column2>...
+  <column1> ³ <column2>...
+þendtable
+
+    Unfortunately, IPFC doesn't like font changes in tables.
+
+
+þfunction <name>...
+
+    Used in a library reference.  With -i, þfunction starts a new
+    panel.  With -t, þfunction inserts a dashed line.  All function
+    and variable names described in this section should be listed in
+    the þfunction line, separated by spaces.  If a <name> does contain
+    (), it is automatically added to the list of words to be formatted
+    specially, using tty style.  The section heading is constructed by
+    listing the names, separated by commas.  The last two names are
+    separated by ` and '.  A level-two index entry is created for each
+    <name>.  Therefore, an þi1 tag must have been used before
+    þfunction.  With -k, þfunction defines a keyword.
+
+
+þcompat <name>...
+
+    Defines the compatibility of the function.  This tag, if used,
+    must precede þheaders if present.  If þheaders is not present, it
+    must precede þprototype.  With -t, the compatibility is shown at
+    the right end of the first line created by þheaders.  If þheaders
+    is not used, a line is inserted by þprototype.  The names are
+    inclosed in square brackets.  With -i, þendprototype inserts the
+    `Compatibility:' section, using the names defined with þcompat.
+    The names are separated by spaces.
+
+
+þheaders
+þendheaders
+
+    List include files.
+
+
+þparam <name>...
+
+    Format the names using þpa{}.  This definition is local to the
+    current function or variable description, which ends at the next
+    þfunction or þh1 tag.
+
+
+þprototype
+þendprototype
+
+    Function prototype in library reference manual.
+
+
+þreturnvalue
+
+    Starts a new section, titled `Return value:'.
+
+
+þrestrictions
+
+    Starts a new section, titled `Restrictions:'.
+
+
+þimplementation
+
+    Starts a new section, titled `Implementation-defined behavior:'.
+
+
+þbugs
+
+    Starts a new section, titled `Bugs:'.
+
+
+þerrors
+
+    Starts a new section, titled `Errors:'.
+
+
+þhints
+
+    Starts a new section, titled `Hints:'.
+
+
+þseealso
+
+    Cross references in library reference manual.
+
+
+þsamplefile
+
+    Pointer to sample file in library reference manual.
+
+
+þsamplecode
+þendsamplecode
+
+    Sample code in library reference manual.
+
+
+
+Tags used in text
+-----------------
+
+þ.
+
+    Insert a period which marks the end of a sentence.  Required after
+    abbreviations.
+
+þbreak
+
+    Force line break
+
+þtt{<text>}
+
+    Use fixed-width typewriter font for <text>
+
+þsl{<text>}
+
+    Use slanted font for <text>.  Use color instead if -c option is in
+    effect
+
+þbf{<text>}
+
+    Use bold font for <text>
+
+þem{<text>}
+
+    Emphasize <text>.  This is done by using a slanted font for -i,
+    using italics for -l and upcasing for -t
+
+þsy{<text>}
+
+    Format <text> as grammer: þbf{} is used for the three characters [
+    | ], þsl{} is used for terms enclosed in angle brackets
+    (<whatever> -- the angle brackets are removed if -i is used) and
+    for * and # (and + for þsyntax dvidrv) at the end of <text>, þtt{}
+    is used for everything else
+
+þpa{<text>}
+
+    Use þsl{} and convert to lower-case if the -i option is used.
+    Unmodified if -t is used
+
+þul{<text>}
+
+    Underline
+
+þhpt{<label>}
+
+    Hypertext-reference to <label>, which is inserted into the output
+    file
+
+þref{<label>}
+
+   Insert section number of <label>
+
+--------------------------- END OF EMXDOC.DOC ------------------------------

@@ -1,0 +1,24 @@
+BITS 16
+CPU 8086
+SECTION text use16 class=code
+SECTION rodata class=data
+SECTION data class=data
+SECTION fpc class=data
+SECTION bss class=bss
+SECTION stack stack class=stack align=16
+SECTION heap class=heap align=16
+GROUP dgroup rodata data fpc bss stack heap
+SECTION text
+
+SECTION data class=data
+	ALIGN 2
+	GLOBAL RTTI_$UTEXTMOUSE_$$_TMOUSEACTION_s2o
+RTTI_$UTEXTMOUSE_$$_TMOUSEACTION_s2o	DD	4,3
+	DW	RTTI_$UTEXTMOUSE_$$_TMOUSEACTION+47
+	DD	0
+	DW	RTTI_$UTEXTMOUSE_$$_TMOUSEACTION+25
+	DD	1
+	DW	RTTI_$UTEXTMOUSE_$$_TMOUSEACTION+31
+	DD	2
+	DW	RTTI_$UTEXTMOUSE_$$_TMOUSEACTION+38
+EXTERN	RTTI_$UTEXTMOUSE_$$_TMOUSEACTION

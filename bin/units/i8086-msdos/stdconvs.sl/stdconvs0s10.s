@@ -1,0 +1,256 @@
+BITS 16
+CPU 8086
+SECTION text use16 class=code
+SECTION rodata class=data
+SECTION data class=data
+SECTION fpc class=data
+SECTION bss class=bss
+SECTION stack stack class=stack align=16
+SECTION heap class=heap align=16
+GROUP dgroup rodata data fpc bss stack heap
+SECTION text
+
+SECTION text
+	ALIGN 2
+	GLOBAL STDCONVS_$$_REGISTERTIMES
+STDCONVS_$$_REGISTERTIMES:
+		push	bp
+		mov	bp,sp
+		push	word [U_$STDCONVS_$$_CBTIME]
+		push	word [RESSTR_$STDCONVS_$$_TXTTUMILLISECONDS+2]
+		sub	sp,8
+		mov	di,sp
+		push	ds
+		pop	es
+		mov	si,word _$STDCONVS$_Ld22
+		cld
+		mov	cx,4
+		rep
+		movsw
+		call	CONVUTILS_$$_REGISTERCONVERSIONTYPE$TCONVFAMILY$ANSISTRING$DOUBLE$$TCONVTYPE
+		mov	word [U_$STDCONVS_$$_TUMILLISECONDS],ax
+		push	word [U_$STDCONVS_$$_CBTIME]
+		push	word [RESSTR_$STDCONVS_$$_TXTTUSECONDS+2]
+		wait fld1
+		sub	sp,8
+		mov	bx,sp
+		wait fstp	qword [bx]
+		DB	09bh
+		call	CONVUTILS_$$_REGISTERCONVERSIONTYPE$TCONVFAMILY$ANSISTRING$DOUBLE$$TCONVTYPE
+		mov	word [U_$STDCONVS_$$_TUSECONDS],ax
+		push	word [U_$STDCONVS_$$_CBTIME]
+		push	word [RESSTR_$STDCONVS_$$_TXTTUMINUTES+2]
+		sub	sp,8
+		mov	di,sp
+		push	ds
+		pop	es
+		mov	si,word _$STDCONVS$_Ld55
+		cld
+		mov	cx,4
+		rep
+		movsw
+		call	CONVUTILS_$$_REGISTERCONVERSIONTYPE$TCONVFAMILY$ANSISTRING$DOUBLE$$TCONVTYPE
+		mov	word [U_$STDCONVS_$$_TUMINUTES],ax
+		push	word [U_$STDCONVS_$$_CBTIME]
+		push	word [RESSTR_$STDCONVS_$$_TXTTUHOURS+2]
+		sub	sp,8
+		mov	di,sp
+		push	ds
+		pop	es
+		mov	si,word _$STDCONVS$_Ld56
+		cld
+		mov	cx,4
+		rep
+		movsw
+		call	CONVUTILS_$$_REGISTERCONVERSIONTYPE$TCONVFAMILY$ANSISTRING$DOUBLE$$TCONVTYPE
+		mov	word [U_$STDCONVS_$$_TUHOURS],ax
+		push	word [U_$STDCONVS_$$_CBTIME]
+		push	word [RESSTR_$STDCONVS_$$_TXTTUDAYS+2]
+		sub	sp,8
+		mov	di,sp
+		push	ds
+		pop	es
+		mov	si,word _$STDCONVS$_Ld57
+		cld
+		mov	cx,4
+		rep
+		movsw
+		call	CONVUTILS_$$_REGISTERCONVERSIONTYPE$TCONVFAMILY$ANSISTRING$DOUBLE$$TCONVTYPE
+		mov	word [U_$STDCONVS_$$_TUDAYS],ax
+		push	word [U_$STDCONVS_$$_CBTIME]
+		push	word [RESSTR_$STDCONVS_$$_TXTTUWEEKS+2]
+		sub	sp,8
+		mov	di,sp
+		push	ds
+		pop	es
+		mov	si,word _$STDCONVS$_Ld58
+		cld
+		mov	cx,4
+		rep
+		movsw
+		call	CONVUTILS_$$_REGISTERCONVERSIONTYPE$TCONVFAMILY$ANSISTRING$DOUBLE$$TCONVTYPE
+		mov	word [U_$STDCONVS_$$_TUWEEKS],ax
+		push	word [U_$STDCONVS_$$_CBTIME]
+		push	word [RESSTR_$STDCONVS_$$_TXTTUFORTNIGHTS+2]
+		sub	sp,8
+		mov	di,sp
+		push	ds
+		pop	es
+		mov	si,word _$STDCONVS$_Ld59
+		cld
+		mov	cx,4
+		rep
+		movsw
+		call	CONVUTILS_$$_REGISTERCONVERSIONTYPE$TCONVFAMILY$ANSISTRING$DOUBLE$$TCONVTYPE
+		mov	word [U_$STDCONVS_$$_TUFORTNIGHTS],ax
+		push	word [U_$STDCONVS_$$_CBTIME]
+		push	word [RESSTR_$STDCONVS_$$_TXTTUMONTHS+2]
+		sub	sp,8
+		mov	di,sp
+		push	ds
+		pop	es
+		mov	si,word _$STDCONVS$_Ld60
+		cld
+		mov	cx,4
+		rep
+		movsw
+		call	CONVUTILS_$$_REGISTERCONVERSIONTYPE$TCONVFAMILY$ANSISTRING$DOUBLE$$TCONVTYPE
+		mov	word [U_$STDCONVS_$$_TUMONTHS],ax
+		push	word [U_$STDCONVS_$$_CBTIME]
+		push	word [RESSTR_$STDCONVS_$$_TXTTUYEARS+2]
+		sub	sp,8
+		mov	di,sp
+		push	ds
+		pop	es
+		mov	si,word _$STDCONVS$_Ld61
+		cld
+		mov	cx,4
+		rep
+		movsw
+		call	CONVUTILS_$$_REGISTERCONVERSIONTYPE$TCONVFAMILY$ANSISTRING$DOUBLE$$TCONVTYPE
+		mov	word [U_$STDCONVS_$$_TUYEARS],ax
+		push	word [U_$STDCONVS_$$_CBTIME]
+		push	word [RESSTR_$STDCONVS_$$_TXTTUDECADES+2]
+		sub	sp,8
+		mov	di,sp
+		push	ds
+		pop	es
+		mov	si,word _$STDCONVS$_Ld62
+		cld
+		mov	cx,4
+		rep
+		movsw
+		call	CONVUTILS_$$_REGISTERCONVERSIONTYPE$TCONVFAMILY$ANSISTRING$DOUBLE$$TCONVTYPE
+		mov	word [U_$STDCONVS_$$_TUDECADES],ax
+		push	word [U_$STDCONVS_$$_CBTIME]
+		push	word [RESSTR_$STDCONVS_$$_TXTTUCENTURIES+2]
+		sub	sp,8
+		mov	di,sp
+		push	ds
+		pop	es
+		mov	si,word _$STDCONVS$_Ld63
+		cld
+		mov	cx,4
+		rep
+		movsw
+		call	CONVUTILS_$$_REGISTERCONVERSIONTYPE$TCONVFAMILY$ANSISTRING$DOUBLE$$TCONVTYPE
+		mov	word [U_$STDCONVS_$$_TUCENTURIES],ax
+		push	word [U_$STDCONVS_$$_CBTIME]
+		push	word [RESSTR_$STDCONVS_$$_TXTTUMILLENNIA+2]
+		sub	sp,8
+		mov	di,sp
+		push	ds
+		pop	es
+		mov	si,word _$STDCONVS$_Ld64
+		cld
+		mov	cx,4
+		rep
+		movsw
+		call	CONVUTILS_$$_REGISTERCONVERSIONTYPE$TCONVFAMILY$ANSISTRING$DOUBLE$$TCONVTYPE
+		mov	word [U_$STDCONVS_$$_TUMILLENNIA],ax
+		push	word [U_$STDCONVS_$$_CBTIME]
+		push	word [RESSTR_$STDCONVS_$$_TXTTUDATETIME+2]
+		sub	sp,8
+		mov	di,sp
+		push	ds
+		pop	es
+		mov	si,word _$STDCONVS$_Ld17
+		cld
+		mov	cx,4
+		rep
+		movsw
+		call	CONVUTILS_$$_REGISTERCONVERSIONTYPE$TCONVFAMILY$ANSISTRING$DOUBLE$$TCONVTYPE
+		mov	word [U_$STDCONVS_$$_TUDATETIME],ax
+		push	word [U_$STDCONVS_$$_CBTIME]
+		push	word [RESSTR_$STDCONVS_$$_TXTTUJULIANDATE+2]
+		sub	sp,8
+		mov	di,sp
+		push	ds
+		pop	es
+		mov	si,word _$STDCONVS$_Ld17
+		cld
+		mov	cx,4
+		rep
+		movsw
+		call	CONVUTILS_$$_REGISTERCONVERSIONTYPE$TCONVFAMILY$ANSISTRING$DOUBLE$$TCONVTYPE
+		mov	word [U_$STDCONVS_$$_TUJULIANDATE],ax
+		push	word [U_$STDCONVS_$$_CBTIME]
+		push	word [RESSTR_$STDCONVS_$$_TXTTUMODIFIEDJULIANDATE+2]
+		sub	sp,8
+		mov	di,sp
+		push	ds
+		pop	es
+		mov	si,word _$STDCONVS$_Ld17
+		cld
+		mov	cx,4
+		rep
+		movsw
+		call	CONVUTILS_$$_REGISTERCONVERSIONTYPE$TCONVFAMILY$ANSISTRING$DOUBLE$$TCONVTYPE
+		mov	word [U_$STDCONVS_$$_TUMODIFIEDJULIANDATE],ax
+		mov	sp,bp
+		pop	bp
+		ret
+EXTERN	U_$STDCONVS_$$_TUMODIFIEDJULIANDATE
+EXTERN	RESSTR_$STDCONVS_$$_TXTTUMODIFIEDJULIANDATE
+EXTERN	U_$STDCONVS_$$_TUJULIANDATE
+EXTERN	RESSTR_$STDCONVS_$$_TXTTUJULIANDATE
+EXTERN	U_$STDCONVS_$$_TUDATETIME
+EXTERN	_$STDCONVS$_Ld17
+EXTERN	RESSTR_$STDCONVS_$$_TXTTUDATETIME
+EXTERN	U_$STDCONVS_$$_TUMILLENNIA
+EXTERN	_$STDCONVS$_Ld64
+EXTERN	RESSTR_$STDCONVS_$$_TXTTUMILLENNIA
+EXTERN	U_$STDCONVS_$$_TUCENTURIES
+EXTERN	_$STDCONVS$_Ld63
+EXTERN	RESSTR_$STDCONVS_$$_TXTTUCENTURIES
+EXTERN	U_$STDCONVS_$$_TUDECADES
+EXTERN	_$STDCONVS$_Ld62
+EXTERN	RESSTR_$STDCONVS_$$_TXTTUDECADES
+EXTERN	U_$STDCONVS_$$_TUYEARS
+EXTERN	_$STDCONVS$_Ld61
+EXTERN	RESSTR_$STDCONVS_$$_TXTTUYEARS
+EXTERN	U_$STDCONVS_$$_TUMONTHS
+EXTERN	_$STDCONVS$_Ld60
+EXTERN	RESSTR_$STDCONVS_$$_TXTTUMONTHS
+EXTERN	U_$STDCONVS_$$_TUFORTNIGHTS
+EXTERN	_$STDCONVS$_Ld59
+EXTERN	RESSTR_$STDCONVS_$$_TXTTUFORTNIGHTS
+EXTERN	U_$STDCONVS_$$_TUWEEKS
+EXTERN	_$STDCONVS$_Ld58
+EXTERN	RESSTR_$STDCONVS_$$_TXTTUWEEKS
+EXTERN	U_$STDCONVS_$$_TUDAYS
+EXTERN	_$STDCONVS$_Ld57
+EXTERN	RESSTR_$STDCONVS_$$_TXTTUDAYS
+EXTERN	U_$STDCONVS_$$_TUHOURS
+EXTERN	_$STDCONVS$_Ld56
+EXTERN	RESSTR_$STDCONVS_$$_TXTTUHOURS
+EXTERN	U_$STDCONVS_$$_TUMINUTES
+EXTERN	_$STDCONVS$_Ld55
+EXTERN	RESSTR_$STDCONVS_$$_TXTTUMINUTES
+EXTERN	U_$STDCONVS_$$_TUSECONDS
+EXTERN	RESSTR_$STDCONVS_$$_TXTTUSECONDS
+EXTERN	U_$STDCONVS_$$_TUMILLISECONDS
+EXTERN	CONVUTILS_$$_REGISTERCONVERSIONTYPE$TCONVFAMILY$ANSISTRING$DOUBLE$$TCONVTYPE
+EXTERN	_$STDCONVS$_Ld22
+EXTERN	RESSTR_$STDCONVS_$$_TXTTUMILLISECONDS
+EXTERN	U_$STDCONVS_$$_CBTIME

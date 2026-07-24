@@ -1,0 +1,478 @@
+===============================================================================
+build.doc         emx 0.9d     BUILDING GCC etc.                    21-Dec-1998
+===============================================================================
+                                     Copyright (c) 1990-1998 by Eberhard Mattes
+
+
+Building emx, GCC, GDB, utilities, and libraries
+================================================
+
+The makefiles have been created for dmake 3.8.  Use the initialization
+file /emx/etc/dmake.ini for dmake.
+
+IMPORTANT: Set the following environment variables (insert the correct
+drive letters) unless indicated otherwise:
+
+  set emxopt=-t                     Truncate file names to 8.3
+  set emx=c:\emx\emx.exe            Speed up locating emx.exe for MS-DOS
+  path c:\emx\bin;%path%            Search c:\emx\bin for programs
+  set switchar=-                    dmake should use / instead of \
+
+To speed up compiling the libraries, you might want to set the
+following environment variables under OS/2:
+
+  set gccopt=-pipe                  Use pipes instead of temporary files
+  set gccload=5                     Keep executables in memory for 5 minutes
+
+You can use either the patched GNU sources or you can apply the
+patches to the sources yourself, see the batch files in the
+subdirectories of /emx/gnu/patches.  These batch files need Larry
+Wall's patch utility (aka GNU patch nowadays).  It should be named
+lwpatch.exe to avoid conflicts with OS/2's patch.exe program.  Some of
+the batch files require the `sed' program and other tools.  The batch
+files have been tested on an HPFS filesystem only.  The batch files
+must be run in the \emx\gnu directory:
+
+  cd \emx\gnu
+  patches\gcc\inst
+
+The makebin batch file converts a.out files to .exe files, using
+appropriate options.  The .exe files are put into the directory
+/emx/new.
+
+After testing, you can move the .exe files from /emx/new to /emx/bin.
+
+
+Preliminary tasks
+-----------------
+
+Create the directory /emx/new:
+
+  md \emx\new
+
+
+Building emx
+------------
+
+You need MASM 6.00A (the `A' is important).
+
+  cd \emx\src\dos
+  dmake
+  cd \emx\src\os2
+  dmake
+
+
+Building emxomf, emxomfar, emxomfld and listomf
+-----------------------------------------------
+
+  cd \emx\src\emxomf
+  dmake
+
+
+Building emxbind
+----------------
+
+  cd \emx\src\emxbind
+  nmake
+
+
+Building emxcat
+---------------
+
+  cd \emx\src\emxcat
+  nmake
+
+
+Building emxdoc
+---------------
+
+  cd \emx\src\emxdoc
+  dmake
+
+
+Building emxexp
+---------------
+
+  cd \emx\src\emxexp
+  dmake
+
+
+Building emximp
+---------------
+
+  cd \emx\src\emximp
+  dmake
+
+
+Building emxload
+----------------
+
+  cd \emx\src\emxload
+  dmake
+
+
+Building emxstack
+-----------------
+
+  cd \emx\src\emxstack
+  dmake
+
+
+Building touch and updt
+-----------------------
+
+  cd \emx\src\utils
+  dmake
+
+
+Formatting the documentation (.doc and .inf files)
+--------------------------------------------------
+
+  cd \emx\src\doc
+  dmake
+
+
+Building the FPU emulator
+-------------------------
+
+  cd \emx\gnu\fpu-emu
+  dmake
+  makebin emxfpemu
+
+
+Building GCC
+------------
+
+Edit makeexe.cmd and dostage1.cmd to contain the correct path for
+gcc.exe, cpp.exe, cc1.exe, as.exe, ld.exe and emxl.exe.
+
+  cd \emx\gnu\gcc-2.8
+  dostage1
+  makeexe
+  movstage stage1
+  dostage2
+  makeexe
+  movstage stage2
+  dostage3
+
+The files common to . and stage2 must be identical.  Now build the EXE
+files in \emx\new:
+
+  makebin all-gcc
+
+To recompile GCC without going through two or three stages, use
+compile.cmd.
+
+
+Building the new GNU binary utilities (ar, size, nm, objdump) and gprof
+-----------------------------------------------------------------------
+
+  cd \emx\gnu\binutils.26
+  cd bfd
+  dmake
+  cd ..\libibert
+  dmake
+  cd ..\binutils
+  dmake
+  cd ..\gprof
+  dmake
+  makebin new-binutils
+
+
+Building GAS
+------------
+
+  cd \emx\gnu\binutils.26
+  cd libibert
+  dmake
+  cd ..\gas
+  dmake
+  makebin all-as
+
+
+Building GDB
+------------
+
+You need sed for compiling GDB.  GNU Bison is required for compiling
+DUEL.  You can omit DUEL by editing \emx\gnu\gdb-4.16\gdb\makefile:
+remove the references to duelgdb.o and ../../duel/duel.a.
+
+  cd \emx\gnu\gdb-4.16\readline
+  dmake
+  cd \emx\gnu\gdb-4.16\bfd
+  dmake
+  cd \emx\gnu\gdb-4.16\libibert
+  dmake
+  cd \emx\gnu\duel
+  dmake
+  cd \emx\gnu\gdb-4.16\gdb
+  dmake
+  makebin gdb
+
+
+Building the texinfo utilities (info, makeinfo, texindex)
+---------------------------------------------------------
+
+  cd \emx\gnu\libtxi
+  dmake
+  cd \emx\gnu\info
+  dmake
+  cd \emx\gnu\makeinfo
+  dmake
+  cd \emx\gnu\texindex
+  dmake
+  makebin all-texinfo
+
+
+Building the old GNU binary utilities (ld, strip)
+-------------------------------------------------
+
+  cd \emx\gnu\binutils.old
+  dmake
+  makebin old-binutils
+
+
+Building genclass
+-----------------
+
+  cd \emx\gnu\libg++-2.8.1.1a\libg++\genclass
+  dmake
+  copy genclass.exe \emx\bin
+
+
+Building GCOV
+-------------
+
+Type the following commands to build gcov.exe:
+
+  cd \emx\gnu\gcc-2.8
+  gcc -O  -I. -Iconfig -Zsmall-conv -o \emx\bin\gcov.exe gcov.c
+
+
+Building GPPDEMID
+-----------------
+
+MS C 6.00A is required for building gppdemid.dll.
+
+  cd \emx\gnu\gppdemid
+  dmake
+  copy gppdemid.dll \emx\dll
+
+
+Building the libraries
+======================
+
+Don't forget to set the environment variables as indicated above.
+
+
+Building the emx libraries
+--------------------------
+
+Note that the `make' command in directory \emx\src\lib is a batch file
+invoking dmake!  You should not invoke dmake directly.
+
+Before building the emx libraries, some subdirectories must be
+created:
+
+  cd \emx\src\lib
+  make mkdir
+
+See \emx\src\lib\makefile for the available targets.  For instance, to
+build /emx/lib/st/c.a, type:
+
+  cd \emx\src\lib
+  make c-st
+
+When building sys.lib, note that you need MASM 6.0 to build thunk.obj.
+If you don't have MASM 6.0, you should avoid deleting thunk.obj.
+
+The `sed' tool is required for building emxlibc*.dll, c_import.a, and
+c_import.lib.
+
+If the DLLs are currently in use while they are built, copying to
+/emx/dll fails and you'll find the DLLs in /emx/src/lib/cdll.
+
+To build all the emx libraries and C library DLLs, type:
+
+  cd \emx\src\lib
+  make all-os2
+
+To build all the libraries and object files, type
+
+  cd \emx\src\lib
+  make all-os2-bsd
+
+Building /emx/lib/gcrt0.o requires installation of bsdsrc.zip.  To
+build gcrt0.o, type:
+
+  cd \emx\src\lib
+  make o-crt-bsd
+
+Building /emx/lib/gcc.a (and emxlibc*.dll) requires installation of
+the GCC sources.  You may have to change the value of the GCCSRC macro
+in \emx\src\lib\gcc\makefile.
+
+
+Building termcap.a (the GNU termcap library)
+--------------------------------------------
+
+  cd \emx\gnu\termcap
+  dmake
+  copy termcap.a \emx\lib
+
+This builds /emx/lib/termcap.a.
+
+
+Building stdcpp.a (the GNU standard C++ library)
+------------------------------------------------
+
+For building stdcpp.a you need OS/2; the library sources must be
+installed on an HPFS drive.  The -t option must not be set in the
+EMXOPT environment variable.  If you haven't applied long.cmd in
+\emx\include, you should run long.cmd now to rename the include files
+to the original long names before building stdcpp.a:
+
+  cd \emx\include
+  long
+
+The C++ include directory \emx\include\cpp is also required for some C
+programs and therefore must be added to the end of the search path for
+C headers:
+
+  set c_include_path=%c_include_path%;c:/emx/include/cpp
+
+(By default, the C compiler -- in contrast to the C++ compiler -- does
+not search the C++ include directory.)
+
+Type the following commands to build stdcpp.a:
+
+  cd \emx\gnu\libstdc++-2.8.1.1\libio
+  dmake iostream.list
+  cd ..\libstdc++
+  ar cr ..\libiberty\libiberty.a
+  dmake
+  copy "libstdc++.a" \emx\lib\stdcpp.a
+
+If you get the error message
+
+  SYS0010: The environment is incorrect.
+
+unset some unused environment variables and try again.
+
+
+Building gpp.a (the GNU C++ library)
+------------------------------------
+
+For building gpp.a you need OS/2.  The library sources must be
+installed on an HPFS drive.  The -t option must not be set in the
+EMXOPT environment variable.  If you haven't applied long.cmd in
+\emx\include, you should run long.cmd now to rename the include files
+to the original long names before building gpp.a:
+
+  cd \emx\include
+  long
+
+The C++ include directory \emx\include\cpp is also required for some C
+programs and therefore must be added to the end of the search path for
+C headers:
+
+  set c_include_path=%c_include_path%;c:/emx/include/cpp
+
+(By default, the C compiler -- in contrast to the C++ compiler -- does
+not search the C++ include directory.)
+
+Type the following commands to build gpp.a:
+
+  cd \emx\gnu\libg++-2.8.1.1a\libg++\src
+  del libgpp.a *.o
+  dmake
+  copy libgpp.a \emx\lib\gpp.a
+
+If you get the error message
+
+  SYS0010: The environment is incorrect.
+
+unset some unused environment variables and try again.
+
+
+Building objc.a (runtime library for the Objective C language)
+--------------------------------------------------------------
+
+If you have applied long.cmd in \emx\include, you should run short.cmd
+now to rename the include files to the short names (as distributed)
+before building objc.a:
+
+  cd \emx\include
+  short
+
+Then, type the following commands to build objc.a:
+
+  cd \emx\gnu\gcc-2.8\objc
+  dmake
+  copy st\objc.a \emx\lib\st
+  copy mt\objc.a \emx\lib\mt
+
+
+Building check.a (runtime library for bounds checking)
+------------------------------------------------------
+
+Type the following commands to build check.a:
+
+  cd \emx\gnu\gcc-2.8\bounds\lib
+  make libcheck.a
+  copy libcheck.a \emx\lib\st\check.a
+
+
+Building regexp.a (regular expressions)
+---------------------------------------
+
+  cd \emx\src\regexp
+  dmake
+  copy regexp.a \emx\lib
+
+This builds /emx/lib/regexp.a.
+
+
+Building curses.a (the BSD curses library)
+------------------------------------------
+
+  cd \emx\bsd\curses
+  dmake
+  copy curses.a \emx\lib
+
+This builds /emx/lib/curses.a.
+
+
+Building btermcap.a (the BSD termcap library)
+---------------------------------------------
+
+  cd \emx\bsd\libterm
+  dmake
+  copy termcap.a \emx\lib\btermcap.a
+
+This builds /emx/lib/btermcap.a.
+
+
+Building bsd.a (partial BSD C library)
+--------------------------------------
+
+  cd \emx\bsd\libc
+  dmake
+  copy bsd.a \emx\lib
+
+This builds /emx/lib/bsd.a.
+
+
+Building db.a (the BSD database library)
+----------------------------------------
+
+For building db.a you need OS/2 2.x.  The library sources must be
+installed on an HPFS drive.  (OK, I'm lazy.)
+
+  cd \emx\bsd\db
+  make                          (make.cmd invokes dmake via sub.cmd)
+  copy db.a \emx\lib
+
+This builds /emx/lib/db.a.
+
+---------------------------- END OF BUILD.DOC -------------------------------
