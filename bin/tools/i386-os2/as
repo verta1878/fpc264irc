@@ -1,4 +1,0 @@
-#!/bin/sh
-# Dummy OS/2 assembler — .o files created by FPC's internal -Awasm
-# This stub satisfies the Makefile but does nothing
-exit 0
