@@ -1,1 +1,0 @@
-d:\lazarussvn\tools\lazres.exe windows7.lrs windows7_button.bmp
