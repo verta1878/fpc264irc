@@ -1,0 +1,844 @@
+;
+; cdll.def
+;
+LIBRARY CDLL INITINSTANCE
+DESCRIPTION 'emx 0.9d dynamically-linked C library -- Copyright (c) 1993-1998 by Eberhard Mattes'
+
+DATA
+   MULTIPLE NONSHARED
+
+;
+; Lines which are used for multithread DLLs only are marked {MT}
+; Lines which are used for single-thread DLLs only are marked {ST}
+; Lines which are used for DLLs made with -Zsys only are marked {SYS}
+; Lines which are not used for DLLs made with -Zsys are marked {EMX}
+;
+; To create a multithread DLL, delete all lines containing {ST}
+; To create a single-thread DLL, delete all lines containing {MT}
+; To create a DLL which uses emx.dll, delete all lines containing {SYS}
+; To create a DLL with -Zsys, delete all lines containing {EMX}
+;
+
+EXPORTS
+
+;
+; The following symbols are used by the startup code and must
+; always be exported
+;
+  _entry1                       ; For startup code
+  _entry2                       ; For startup code
+  _startup                      ; For startup code
+  __ctordtorInit1               ; For startup code
+  __ctordtorTerm1               ; For startup code
+  atexit                        ; For startup code: atexit()
+  exit                          ; For startup code: exit()
+
+;
+; The following symbols are used by the startup code and must be
+; exported if the DLL does not use emx.dll.  If the DLL does use
+; emx.dll, these symbols must not be exported
+;
+  _emx_init                     ; {SYS} For startup code
+  _emx_syscall                  ; {SYS} For startup code
+
+;
+; Choose from the following symbols, depending on whether creating
+; a single-thread or multithread library
+;
+  _errno_fun                    ; {MT} For multithread library: errno
+  errno                         ; {ST} For single-thread library: errno
+
+;
+; The remaining symbols are optional
+;
+
+;
+; System calls
+;
+  __alarm                       ; {EMX}
+  __bind                        ; {EMX}
+  __brk
+  __accept                      ; {EMX}
+  __cgets                       ; {EMX}
+  __chdir
+  __chdrive
+  __chmod
+  __chsize
+  __clock
+  __close
+  __connect                     ; {EMX}
+  __core                        ; {EMX}
+  __dup
+  __dup2
+  __emx_version
+  __endthread                   ; {MT}
+  __execname
+  __exit
+  __fcntl
+  __filesys
+  __findfirst
+  __findnext
+  __fork                        ; {EMX}
+  __fstat
+  __fsync
+  __ftime
+  __ftruncate
+  __getcwd
+  __getdrive
+  __gethostbyaddr               ; {EMX}
+  __gethostbyname               ; {EMX}
+  __gethostid                   ; {EMX}
+  __gethostname                 ; {EMX}
+  __getnetbyaddr                ; {EMX}
+  __getnetbyname                ; {EMX}
+  __getpeername                 ; {EMX}
+  __getpid
+  __getppid
+  __getprotobyname              ; {EMX}
+  __getprotobynumber            ; {EMX}
+  __getservbyname               ; {EMX}
+  __getservbyport               ; {EMX}
+  __getsockhandle               ; {EMX}
+  __getsockname                 ; {EMX}
+  __getsockopt                  ; {EMX}
+  __imphandle
+  __impsockhandle               ; {EMX}
+  __initthread                  ; {MT}
+  __ioctl1
+  __ioctl2
+  __kill
+  __listen                      ; {EMX}
+  __lseek
+  __memaccess
+  __memavail
+  __mkdir
+  __newthread                   ; {MT}
+  __nls_ctype
+  __nls_memupr
+  __open
+  __os_version
+  __pause
+  __pipe
+  __portaccess
+  __profil                      ; {EMX}
+  __ptrace                      ; {EMX}
+  __raise
+  __read
+  __read_kbd
+  __recv                        ; {EMX}
+  __recvfrom                    ; {EMX}
+  __remove
+  __rename
+  __rmdir
+  __sbrk
+  __scrsize
+  __select                      ; {EMX}
+  __send                        ; {EMX}
+  __sendto                      ; {EMX}
+  __setsockopt                  ; {EMX}
+  __setsyserrno                 ; {EMX}
+  __settime                     ; {EMX}
+  __shutdown                    ; {EMX}
+  __sigaction
+  __signal
+  __sigpending
+  __sigprocmask
+  __sigsuspend
+  __sleep
+  __sleep2
+  __socket                      ; {EMX}
+  __spawnve
+  __stat
+  __swchar
+  __syserrno                    ; {EMX}
+  __ttyname                     ; {EMX}
+  __uflags
+  __ulimit
+  __umask
+  __unwind2
+  __utimes
+  __wait
+  __waitpid
+  __write
+
+;
+; GCC helper functions
+;
+  __bb_init_func
+  __builtin_delete
+  __builtin_new
+  __builtin_vec_delete
+  __builtin_vec_new
+  __cmpdi2
+  __cp_exception_info
+  __cp_pop_exception
+  __cp_push_exception
+  __divdi3
+  __divsi3
+  __dummy
+  __dynamic_cast
+  __eh_frame_init
+  __eh_frame_term
+  __eh_pc
+  __eq__C9type_infoRC9type_info
+  __fixdfsi
+  __fixunsdfdi
+  __fixunsdfsi
+  __fixunssfdi
+  __fixunsxfdi
+  __is_pointer__FPv
+  __moddi3
+  __muldi3
+  __new_handler
+  __ne__C9type_infoRC9type_info
+  __nw__FUlPv
+  __nw__FUlRC9nothrow_t
+  __probe
+  __pure_virtual
+  __rtti_array
+  __rtti_attr
+  __rtti_class
+  __rtti_func
+  __rtti_ptmd
+  __rtti_ptmf
+  __rtti_ptr
+  __rtti_si
+  __rtti_user
+  __tf9bad_alloc
+  __tfUc
+  __tfUi
+  __tfUl
+  __tfUs
+  __tfUx
+  __tfb
+  __tfc
+  __tfd
+  __tff
+  __tfi
+  __tfl
+  __tfr
+  __tfs
+  __tfv
+  __tfw
+  __tfx
+  __throw
+  __throw_bad_cast
+  __throw_type_match
+  __throw_type_match_rtti
+  __ucmpdi2
+  __udivdi3
+  __udivsi3
+  __umoddi3
+  __vn__FUlPv
+  __vn__FUlRC9nothrow_t
+  _$_9bad_alloc
+  _vt$9bad_alloc
+  before__C9type_infoRC9type_info
+  name__C9type_info
+  nothrow
+  set_terminate__FPFv_v
+  terminate__Fv
+  what__C9bad_alloc
+
+;
+; Other library symbols
+;
+  _CRT_init
+  _CRT_term
+  _HUGE_VAL                     ; {ALIASED}
+  _LHUGE_VAL                    ; {ALIASED}
+  __fmutex_release_internal
+  __fmutex_request_internal
+  __fpclassify
+  __fpclassifyf
+  __fpclassifyl
+  __isfinite
+  __isfinitef
+  __isfinitel
+  __isnan
+  __isnanf
+  __isnanl
+  __isnormal
+  __isnormalf
+  __isnormall
+  __signbit
+  __signbitf
+  __signbitl
+  __smutex_request_internal
+  __threadid                    ; {MT}
+  _abspath
+  _access                       ; {ALIASED}
+  _acosl
+  _alarm                        ; {EMX} {ALIASED}
+  _asinl
+  _assert
+  _atan2l
+  _atanl
+  _atofl
+  _atoll
+  _bcmp                         ; {ALIASED}
+  _bcopy                        ; {ALIASED}
+  _beginthread                  ; {MT}
+  _brk                          ; {ALIASED}
+  _bzero                        ; {ALIASED}
+  _cbrt                         ; {ALIASED}
+  _cbrtl
+  _ceill
+  _cfgetispeed                  ; {ALIASED}
+  _cfgetospeed                  ; {ALIASED}
+  _cfsetispeed                  ; {ALIASED}
+  _cfsetospeed                  ; {ALIASED}
+  _chdir                        ; {ALIASED}
+  _chdir2
+  _chdrive
+  _chmod                        ; {ALIASED}
+  _chsize                       ; {ALIASED}
+  _cleanup
+  _clear87
+  _close                        ; {ALIASED}
+  _closedir                     ; {ALIASED}
+  _control87
+  _copysign
+  _copysignf
+  _copysignl
+  _core                         ; {EMX}
+  _coshl
+  _cosl
+  _creat                        ; {ALIASED}
+  _crlf
+  _ctype
+  _cuserid                      ; {ALIASED}
+  _day
+  _daylight                     ; {ALIASED}
+  _defext
+  _dt_free
+  _dt_read
+  _dt_sort
+  _dt_split
+  _dup                          ; {ALIASED}
+  _dup2                         ; {ALIASED}
+  _ea_free
+  _ea_get
+  _ea_put
+  _ea_remove
+  _ead_add
+  _ead_clear
+  _ead_copy
+  _ead_count
+  _ead_create
+  _ead_delete
+  _ead_destroy
+  _ead_fea2list_size
+  _ead_fea2list_to_fealist
+  _ead_fealist_to_fea2list
+  _ead_find
+  _ead_get_fea2list
+  _ead_get_flags
+  _ead_get_name
+  _ead_get_value
+  _ead_name_len
+  _ead_read
+  _ead_replace
+  _ead_sort
+  _ead_use_fea2list
+  _ead_value_size
+  _ead_write
+  _emx_env
+  _emx_rev
+  _emx_vcmp
+  _emx_vprt
+  _emxload_connect
+  _emxload_disconnect
+  _emxload_env
+  _emxload_list_get
+  _emxload_list_start
+  _emxload_prog
+  _emxload_stop
+  _emxload_this
+  _emxload_unload
+  _endpwent                     ; {ALIASED}
+  _endthread                    ; {MT}
+  _envargs
+  _environ                      ; {ALIASED}
+  _eof                          ; {ALIASED}
+  _errno
+  _execl                        ; {ALIASED}
+  _execle                       ; {ALIASED}
+  _execlp                       ; {ALIASED}
+  _execlpe                      ; {ALIASED}
+  _execname
+  _execv                        ; {ALIASED}
+  _execve                       ; {ALIASED}
+  _execvp                       ; {ALIASED}
+  _execvpe                      ; {ALIASED}
+  _exit
+  _expand
+  _expl
+  _fabsl
+  _fassign
+  _fbuf
+  _fcloseall                    ; {ALIASED}
+  _fcntl                        ; {ALIASED}
+  _fdopen                       ; {ALIASED}
+  _fd_flags
+  _fd_init
+  _fd_lookahead
+  _ffs                          ; {ALIASED}
+  _fgetchar                     ; {ALIASED}
+  _filelength                   ; {ALIASED}
+  _filesys
+  _fill
+  _flock                        ; {ALIASED}
+  _floorl
+  _flush
+  _flushall                     ; {ALIASED}
+  _fmode_bin
+  _fmodl
+  _fmutex_checked_close
+  _fmutex_checked_create
+  _fmutex_checked_open
+  _fmutex_checked_release
+  _fmutex_checked_request
+  _fmutex_close
+  _fmutex_create
+  _fmutex_dummy
+  _fmutex_open
+  _fncmp
+  _fnexplode
+  _fnexplodefree
+  _fngetdrive
+  _fnisabs
+  _fnisrel
+  _fnlwr
+  _fnlwr2
+  _fnmatch                      ; {ALIASED}
+  _fnslashify
+  _fopen
+  _fork                         ; {EMX} {ALIASED}
+  _fpathconf                    ; {ALIASED}
+  _fpreset
+  _fputchar                     ; {ALIASED}
+  _frexpl
+  _fseek_hdr
+  _fsetmode
+  _fsopen
+  _fstat                        ; {ALIASED}
+  _fsync                        ; {ALIASED}
+  _ftime                        ; {ALIASED}
+  _ftruncate                    ; {ALIASED}
+  _ftw                          ; {ALIASED}
+  _fullpath
+  _fxam
+  _fxaml
+  _gcvt                         ; {ALIASED}
+  _getcwd                       ; {ALIASED}
+  _getcwd1
+  _getcwd2
+  _getc_inline
+  _getdrive
+  _getegid                      ; {ALIASED}
+  _geteuid                      ; {ALIASED}
+  _getext
+  _getext2
+  _getgid                       ; {ALIASED}
+  _getgrgid                     ; {ALIASED}
+  _getgrnam                     ; {ALIASED}
+  _getgroups                    ; {ALIASED}
+  _getlogin                     ; {ALIASED}
+  _getname
+  _getopt                       ; {ALIASED}
+  _getpagesize                  ; {ALIASED}
+  _getpass                      ; {ALIASED}
+  _getpass1
+  _getpass2
+  _getpgrp                      ; {ALIASED}
+  _getpid                       ; {ALIASED}
+  _getppid                      ; {ALIASED}
+  _getpwent                     ; {ALIASED}
+  _getpwnam                     ; {ALIASED}
+  _getpwuid                     ; {ALIASED}
+  _gettid
+  _gettimeofday                 ; {ALIASED}
+  _getuid                       ; {ALIASED}
+  _getvol
+  _getw                         ; {ALIASED}
+  _getwd                        ; {ALIASED}
+  _glob                         ; {ALIASED}
+  _globfree                     ; {ALIASED}
+  _heapchk
+  _heapmin
+  _heapset
+  _heap_walk
+  _hypot                        ; {ALIASED}
+  _hypotl
+  _imphandle
+  _index                        ; {ALIASED}
+  _input
+  _int86
+  _ioctl                        ; {ALIASED}
+  _isascii                      ; {ALIASED}
+  _isatty                       ; {ALIASED}
+  _isterm
+  _itoa
+  _kill                         ; {ALIASED}
+  _ldexpl
+  _lldiv
+  _lltoa
+  _localeconv
+  _log10l
+  _logl
+  _lseek                        ; {ALIASED}
+  _ltoa
+  _makepath
+  _mb_cur_max
+  _memaccess
+  _memccpy                      ; {ALIASED}
+  _memcount
+  _memdif
+  _memicmp                      ; {ALIASED}
+  _memrchr
+  _memswap
+  _mfclose
+  _mfopen
+  _mheap
+  _mkdir                        ; {ALIASED}
+  _mkstemp                      ; {ALIASED}
+  _mktemp                       ; {ALIASED}
+  _mktime
+  _modfl
+  _msize
+  _newstream
+  _nextafter
+  _nextafterf
+  _nextafterl
+  _nls_init
+  _nls_strlwr
+  _nls_strupr
+  _nls_tolower_tab
+  _nls_toupper_tab
+  _open                         ; {ALIASED}
+  _opendir                      ; {ALIASED}
+  _optarg                       ; {ALIASED}
+  _opterr                       ; {ALIASED}
+  _optind                       ; {ALIASED}
+  _optmode                      ; {ALIASED}
+  _optopt                       ; {ALIASED}
+  _optswchar                    ; {ALIASED}
+  _org_environ
+  _os2_bad
+  _osmajor
+  _osminor
+  _osmode
+  _output
+  _path
+  _pathconf                     ; {ALIASED}
+  _pause                        ; {ALIASED}
+  _pclose                       ; {ALIASED}
+  _pipe                         ; {ALIASED}
+  _pipe_size
+  _popen                        ; {ALIASED}
+  _portaccess
+  _powl
+  _profil                       ; {EMX} {ALIASED}
+  _ptrace                       ; {EMX} {ALIASED}
+  _putenv                       ; {ALIASED}
+  _putc_inline
+  _putw                         ; {ALIASED}
+  _read                         ; {ALIASED}
+  _read_kbd
+  _readdir                      ; {ALIASED}
+  _readv                        ; {ALIASED}
+  _remext
+  _response
+  _rewinddir                    ; {ALIASED}
+  _rfnlwr
+  _rindex                       ; {ALIASED}
+  _rint                         ; {ALIASED}
+  _rintl
+  _rmdir                        ; {ALIASED}
+  _rmtmp
+  _rmutex_checked_close
+  _rmutex_checked_create
+  _rmutex_checked_open
+  _rmutex_close
+  _rmutex_create
+  _rmutex_dummy
+  _rmutex_open
+  _sbrk                         ; {ALIASED}
+  _scrsize
+  _searchenv
+  _seek_hdr
+  _seekdir                      ; {ALIASED}
+  _select                       ; {EMX} {ALIASED}
+  _set_new_handler              ; {ALIASED}
+  _setbuffer                    ; {ALIASED}
+  _setgid                       ; {ALIASED}
+  _setmode                      ; {ALIASED}
+  _setpgid                      ; {ALIASED}
+  _setpwent                     ; {ALIASED}
+  _setsid                       ; {ALIASED}
+  _setsyserrno                  ; {EMX}
+  _settimeofday                 ; {EMX} {ALIASED}
+  _setuid                       ; {ALIASED}
+  _sfnlwr
+  _sigaction                    ; {ALIASED}
+  _sigaddset                    ; {ALIASED}
+  _sigdelset                    ; {ALIASED}
+  _sigemptyset                  ; {ALIASED}
+  _sigfillset                   ; {ALIASED}
+  _sigismember                  ; {ALIASED}
+  _siglongjmp                   ; {ALIASED}
+  _sigpending                   ; {ALIASED}
+  _sigprocmask                  ; {ALIASED}
+  _sigsetjmp                    ; {ALIASED}
+  _sigsuspend                   ; {ALIASED}
+  _sinhl
+  _sinl
+  _sleep                        ; {ALIASED}
+  _sleep2
+  _snprintf                     ; {ALIASED}
+  _sopen                        ; {ALIASED}
+  _spawnl                       ; {ALIASED}
+  _spawnle                      ; {ALIASED}
+  _spawnlp                      ; {ALIASED}
+  _spawnlpe                     ; {ALIASED}
+  _spawnv                       ; {ALIASED}
+  _spawnve                      ; {ALIASED}
+  _spawnvp                      ; {ALIASED}
+  _spawnvpe                     ; {ALIASED}
+  _splitargs
+  _splitpath
+  _sqrtl
+  _stat                         ; {ALIASED}
+  _status87
+  _strdup                       ; {ALIASED}
+  _streamv                      ; stdin, stdout, and stderr
+  _stricmp                      ; {ALIASED}
+  _strlwr                       ; {ALIASED}
+  _strncpy
+  _strnicmp                     ; {ALIASED}
+  _strnset                      ; {ALIASED}
+  _strptime                     ; {ALIASED}
+  _strrev                       ; {ALIASED}
+  _strset                       ; {ALIASED}
+  _strtof
+  _strtold
+  _strtoll
+  _strtoull
+  _strupr                       ; {ALIASED}
+  _swab                         ; {ALIASED}
+  _swchar
+  _sys_errlist                  ; {ALIASED}
+  _sys_nerr                     ; {ALIASED}
+  _sysconf                      ; {ALIASED}
+  _syserrno                     ; {EMX}
+  _tanhl
+  _tanl
+  _tcalloc
+  _tcdrain                      ; {ALIASED}
+  _tcflow                       ; {ALIASED}
+  _tcflush                      ; {ALIASED}
+  _tcgetattr                    ; {ALIASED}
+  _tcgetpgrp                    ; {ALIASED}
+  _tcsendbreak                  ; {ALIASED}
+  _tcsetattr                    ; {ALIASED}
+  _tcsetpgrp                    ; {ALIASED}
+  _tell                         ; {ALIASED}
+  _telldir                      ; {ALIASED}
+  _tempnam                      ; {ALIASED}
+  _tfree
+  _theapmin
+  _thread                       ; {MT}
+  _threadstore                  ; {MT}
+  _times                        ; {ALIASED}
+  _timezone                     ; {ALIASED}
+  _tmalloc
+  _toascii                      ; {ALIASED}
+  _tolower
+  _toupper
+  _trealloc
+  _trunc                        ; {ALIASED}
+  _truncate                     ; {ALIASED}
+  _truncl
+  _ttyname                      ; {EMX} {ALIASED}
+  _tzname                       ; {ALIASED}
+  _tzset                        ; {ALIASED}
+  _tzset_flag
+  _uaddmem
+  _ucalloc
+  _uclose
+  _ucreate
+  _ucreate2
+  _udefault
+  _udestroy
+  _uflags
+  _uheap_type
+  _uheap_walk
+  _uheap_walk2
+  _uheapchk
+  _uheapmin
+  _uheapset
+  _uldiv
+  _ulimit                       ; {ALIASED}
+  _ulldiv
+  _ulltoa
+  _ultoa
+  _umalloc
+  _umask                        ; {ALIASED}
+  _uname                        ; {ALIASED}
+  _unlink                       ; {ALIASED}
+  _uopen
+  _ustats
+  _utcalloc
+  _utdefault
+  _utime                        ; {ALIASED}
+  _utimes                       ; {ALIASED}
+  _utmalloc
+  _vsnprintf                    ; {ALIASED}
+  _vsopen
+  _wait                         ; {ALIASED}
+  _waitpid                      ; {ALIASED}
+  _wildcard
+  _write                        ; {ALIASED}
+  _writev                       ; {ALIASED}
+  abort
+  abs
+  acos
+  asctime
+  asin
+  atan
+  atan2
+  atof
+  atoi
+  atol
+  bsearch
+  calloc
+  ceil
+  clearerr
+  clock
+  cos
+  cosh
+  ctime
+  difftime
+  div
+  exp
+  fabs
+  fclose
+  feof
+  ferror
+  fflush
+  fgetc
+  fgetpos
+  fgets
+  fileno
+  floor
+  fmod
+  fopen
+  fprintf
+  fputc
+  fputs
+  fread
+  free
+  freopen
+  frexp
+  fscanf
+  fseek
+  fsetpos
+  ftell
+  fwrite
+  getchar
+  getenv
+  gets
+  gmtime
+  isalnum
+  isalpha
+  iscntrl
+  isdigit
+  isgraph
+  islower
+  isprint
+  ispunct
+  isspace
+  isupper
+  isxdigit
+  labs
+  ldexp
+  ldiv
+  localeconv
+  localtime
+  log
+  log10
+  longjmp
+  malloc
+  mblen
+  mbstowcs
+  mbtowc
+  memchr
+  memcmp
+  memcpy
+  memmove
+  memset
+  mktime
+  modf
+  perror
+  pow
+  printf
+  putchar
+  puts
+  qsort
+  raise
+  rand
+  realloc
+  remove
+  rename
+  rewind
+  scanf
+  setbuf
+  setjmp
+  setlocale
+  setvbuf
+  signal
+  sin
+  sinh
+  sprintf
+  sqrt
+  srand
+  sscanf
+  strcat
+  strchr
+  strcmp
+  strcoll
+  strcpy
+  strcspn
+  strerror
+  strftime
+  strlen
+  strncat
+  strncmp
+  strncpy
+  strpbrk
+  strrchr
+  strspn
+  strstr
+  strtod
+  strtok
+  strtol
+  strtoul
+  strxfrm
+  system
+  tan
+  tanh
+  time
+  tmpfile
+  tmpnam
+  tolower
+  toupper
+  ungetc
+  vfprintf
+  vfscanf
+  vprintf
+  vscanf
+  vsprintf
+  vsscanf
+  wcstombs
+  wctomb

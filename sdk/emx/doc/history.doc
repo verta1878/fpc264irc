@@ -1,0 +1,1426 @@
+===============================================================================
+history.doc       emx 0.9d     HISTORY                              21-Dec-1998
+===============================================================================
+                                     Copyright (c) 1990-1998 by Eberhard Mattes
+
+0.9d (21-Dec-1998)
+==================
+
+OS/2
+----
+
+- spawn*() and exec*(): 8192 character limit on arguments removed
+
+- select() now supports ASYNC devices under OS/2
+
+- PARENB is now correctly handled by emx.dll
+
+- fork() now loads in the child process DLLs having been "dynamically
+  loaded" by the parent process
+
+- OS/2 error code 114 is now mapped to EBADF instead of EINVAL
+
+- Sockets didn't work properly with TCP/IP 4.1 and/or SOCKS (there
+  seems to be still a problem, though)
+
+GCC
+---
+
+- GCC 2.8.1
+
+- The new GCC option -fstack-check can be used together with the
+  emx-specific GCC option -mprobe to generate code which conforms to
+  both stack checking conventions
+
+- Various (incompatible!) changes to non-standard calling conventions;
+  optlink may work now for simple cases (undocumented).  Calling
+  conventions will probably change again (and again without
+  maintaining compatibility), so better stick to the standard calling
+  convention when making libraries and DLLs
+
+- The -B option now works correctly
+
+
+ld
+--
+
+- ld did not correctly handle references from the data segment to
+  imported symbols
+
+- ld would trap if PATH contained a single \
+
+- Support for N_WEAKU has been added
+
+
+emxomf
+------
+
+- Support for N_WEAKU has been added
+
+
+emxdoc
+------
+
+- New flag for the h<level> tag: h (hide)
+
+
+Libraries
+---------
+
+- tzname[0] and tzname[1] would be NULL if TZ was invalid
+
+- `timezone' was not correctly set
+
+- TZ=XYZ (without offset) was not accepted
+
+- stat(), opendir() etc. would trap if the file name was "/" or "\\"
+
+- The output of printf()'s %f format was not correctly rounded for
+  numbers with magnitude between 0 and 1
+
+- The %s conversion of printf() with precision specified did not
+  correctly handle buffers which are not null-terminated
+
+- Enlarging the file descriptor table in _fd_init() wasn't thread-safe
+
+- The value of S_IFMT defined in <sys/stat.h> was wrong
+
+- fgets() would not return NULL if a read error would occurred
+
+- fgets() would not leave the array unchanged if EOF occurred without
+  any character read
+
+- malloc() etc. of the single-thread libraries no longer use
+  semaphores.  This results in slightly smaller executables and
+  should fix a problem with the RSX option -RO for single-thread
+  programs (multithread programs still don't work with -RO)
+
+- The behavior of snprintf() and vsnprintf() is now defined also for
+  N==0
+
+- snprintf() didn't obey the limit in some circumstances
+
+- New function: _setsyserrno()
+
+- libstdc++ 2.8.1.1
+
+- libg++ 2.8.1.1a
+
+- The Objective C runtime is now thread-safe
+
+- For most header files, `static inline' has been replaced with
+  `extern inline' and backing code has been added to the C libraries
+
+- _heapchk(), _heapmin(), _heapset(), _heap_walk(), and _theapmin()
+  now initialize the heap if not already done; this makes them work in
+  new threads before malloc() has been called
+
+- _udefault() and _utdefault() now return a pointer to the previous
+  heap even in new threads before calling malloc()
+
+- strptime()'s %y directive now interprets 0-68 as 2000-2068, 69-99 as
+  1969-1999 (previously, %y interpreted 0-69 as 2000-2069, 70-99 as
+  1970-1999)
+
+- inetntoa() is now thread-safe
+
+- _abspath() did not handle ".." correctly
+
+
+Other changes
+-------------
+
+- emxbind now can export variables from DLLs (that is, symbols from
+  the .data and .bss segments)
+
+- emxexp now supports long member names
+
+- New trivial C++ sample program (hello.cc) for showing how to link
+  with the standard C++ library
+
+- pmgdb could not cope with invalid display expressions
+
+- emxupd displayed a bogus warning ("emx 0.9c or later required")
+
+- emxbind now accepts more than one -R option for RSX
+
+- wordref sample extended
+
+- SIGWINCH added (but that signal isn't generated automatically)
+
+
+
+0.9c (09-Sep-1996)
+==================
+
+Important notes
+---------------
+
+- fpos_t of <stdio.h> has been extended; if you link a program against
+  the emx 0.9c libraries, you have to recompile all modules which use
+  fpos_t, fgetpos(), or fsetpos().  This applies both to static and
+  dynamic linking.  However, existing applications which use
+  emxlibc.dll, emxlibcs.dll, or emxlibcm.dll continue to work without
+  recompilation (unless they are relinked)
+
+- realloc() can no longer be applied to freed blocks
+
+- In multi-thread programs, performing stdio in a signal handler (or
+  after calling longjmp() to return from a signal handler) may block
+  if the signal handler interrupted a stdio function operating on the
+  same stream (FILE *).  Note that this practice has always been
+  unsafe.  In particular, the following code fragment is invalid
+  because fgets() will be applied `recursively' when Ctrl-C is
+  pressed:
+
+      ------------------------------------------------------------
+      static jmp_buf restart;
+      
+      void int_handler (int signo)
+      {
+        longjmp (restart, 1);
+      }
+      
+      signal (SIGINT, int_handler);
+      for (;;)
+        {
+          if (setjmp (restart) != 0)
+            puts ("(Interrupted.)");
+          if (fgets (buf, sizeof (buf), stdin) == NULL)
+            break;
+          interpret (buf);
+        }
+      ------------------------------------------------------------
+
+- The EMXTZ environment variable is gone
+
+
+Highlights
+----------
+
+- GDB now can debug multithread processes, DLLs, and descendant
+  processes
+
+- pmgdb, a Presentation Manager front end for GDB, is now included
+  (preliminary version)
+
+- malloc() has been reimplemented.  The new implementation is faster,
+  usually uses less memory, and supports multiple heaps.  Moreover, it
+  can handle non-contiguous memory; in consequence, the size of the
+  heap is no longer limited by the size of the heap object
+
+- sbrk() can allocate non-contiguous memory if enabled with
+  _uflags().  This, along with the new malloc() implementation, lifts
+  the 32MB limit for the heap.  However, fork() fails (ENOMEM) if the
+  process has more than one heap object
+
+- fork() now works with -Zcrtdll; data segments of DLLs created with
+  emx 0.9c and later are duplicated in the child process
+
+- stdio is now thread-safe for applications compiled and linked with
+  the -Zmt option (multi-thread) of GCC
+
+- New program emxupd.exe for replacing DLLs which are in use
+
+- DBCS support: library functions now properly treat DBCS characters
+  in file names; the -t emx option also properly handles DBCS
+  characters in file names
+
+- Daylight saving time is now supported
+
+- Tracing of emxlibcs.dll and emxlibcm.dll with the OS/2 TRACE command
+  is now supported; the new emxtsf tool assists in creating trace
+  definition files
+
+- Support for IBM TCP/IP 4.0
+
+
+emx for OS/2 (emx.dll)
+----------------------
+
+- Core dumps now contain the stack of the thread which caused the core
+  dump; previously, core dumps always contained the stack of the main
+  thread (thread 1)
+
+- The OS/2 error code ERROR_PIPE_NOT_CONNECTED is now mapped to the
+  errno value ENOTCONN
+
+- select() under OS/2 now considers file descriptors of types
+  unsupported by select() to be always ready for reading and writing.
+  Under DOS, select() still reports regular files to be ready for
+  reading unless positioned at EOF (subject to DOS bugs)
+
+- select() did not wake up when the TTY side of a PTY got ready for
+  reading
+
+- select() now works properly for NP_ACCESS_DUPLEX named pipes
+
+- select() now supports more than 256 file handles by redefining
+  FD_SETSIZE before including <sys/types.h> and <sys/select.h>
+
+- Processes were not continued after catching SIGTERM
+
+- termio/termios are now supported for PTYs
+
+- select() now polls if sockets are involved (previously, IBM's
+  select() was called, which seems to poll, too)
+
+- ptrace(), wait() and waitpid() have been extended to support
+  debugging of multithread processes
+
+- ptrace() is no longer restricted to a single debuggee
+
+- recv(), recvfrom(), send(), and sendto() can now be used on
+  non-socket handles
+
+- wait() no longer waits until _all_ descendants of a child process
+  terminate
+
+
+emx for DOS (emx.exe)
+---------------------
+
+- write() did not return the correct value in case of a partial write
+
+
+GCC
+---
+
+- GCC 2.7.2 with bounds checking 2.7.2-1.02
+
+- Stack probes didn't work
+
+- New -pn option for non-intrusive profiling
+
+- New -mepilogue option for generating code suitable for tracing with
+  the OS/2 TRACE command
+
+- New -Zsmall-conv option to link with small, fast, and inaccurate
+  decimal to binary and binary to decimal conversion routines.  By
+  default, big, slow, and accurate conversion routines are used
+
+
+GDB
+---
+
+- GDB 4.16
+
+- The `info heap' command now supports the new malloc()
+  implementation.  To obtain more details, type `info heap /v'.
+  Moreover, the `info heap' command now takes an optional argument
+  specifying the address of the heap or a substructure of the heap.
+  GNU malloc is now supported as well
+
+- GDB now can debug multithread processes, DLLs created with
+  emxbind, and descendant processes
+
+- GDB now knows how to step through longjmp()
+
+- New --args option to set the debuggee's command line arguments on
+  the command line of GDB
+
+- If the executable or symbol file cannot be opened and the filename
+  does not have an extension, GDB adds `.exe' and tries again
+
+- Added support for multiple heap objects in core dump files
+
+- The `up', `down', `backtrace', and `frame' commands of GDB now cope
+  with signal handlers under OS/2.  However, core dumps must have been
+  created by emx.dll 0.9c or later, so this does not work with old
+  core dump files
+
+
+ld
+--
+
+- Aliases didn't work for references from the data section
+  ("gcc -Zcrtdll calc.c" failed with import _trunc undefined)
+
+- Aliases in libraries caused problems with uninitialized variables
+
+- Relocations for references to .bss from .data did not work in DLLs
+
+- Constructors and destructors now work in DLLs created with ld and
+  emxbind
+
+
+emxload
+-------
+
+- emxload lost its children after 10 minutes
+
+- Suppress error popup when changing to root directory; some disks may
+  be locked by CHKDSK etc.
+
+
+emximp
+------
+
+- emximp can now convert module definition files (.def files) directly
+  to a.out import libraries (.a files)
+
+- New -m option for adding calls to _mcount to assist in profiling
+
+- For creating a .lib file, the -p option sets the page size
+
+- emximp now creates smaller .lib files and can handle more import
+  definitions per library
+
+
+emxaout
+-------
+
+- Fixups fixed, now works with .obj files created by TASM
+
+- Support LIDATA record
+
+
+Other changes
+-------------
+
+- libg++ 2.7.2
+
+- GNU Texinfo 3.6
+
+- emxomf now supports long file names in archives
+
+
+Libraries (new features)
+------------------------
+
+- malloc() has been reimplemented.  The new implementation is faster,
+  usually uses less memory, and supports multiple heaps.  Moreover, it
+  can handle non-contiguous memory; in consequence, the size of the
+  heap is no longer limited by the size of the heap object.  realloc()
+  can no longer be applied to freed blocks.  The old malloc()
+  implementation is provided in the malloc1 library, use -lmalloc1 to
+  link with the old malloc() implementation (you shouldn't do that
+  unless the new implementation turns out not to work properly)
+
+- stdio streams are now thread-safe for applications compiled and linked
+  with the -Zmt option (multi-thread) of GCC
+
+- Decimal to binary conversions (scanf(), strtod(), ...) and binary to
+  decimal conversions (gcvt(), printf(), ...) now conform to IEEE 754.
+  However, the conversion routines always round to nearest/even, no
+  matter what rounding mode is selected.  For instance,
+
+    printf ("%.0f %.0f", 2.5, 3.5);
+
+  prints "2 4", not "3 4", even if rounding towards infinity is
+  selected
+
+  The new conversion routines are slow and big.  To use the old,
+  inaccurate, conversion routines, use the -Zsmall-conv option of GCC.
+  This saves about 14KB for programs which use binary to decimal
+  conversions, about 11KB for programs which use decimal to binary
+  conversions, and about 15KB for programs which use both
+
+- The <ulimit.h> header is now available.  ulimit() now takes a
+  varying number of arguments.  New UL_OBJREST command for ulimit()
+
+- Fast RAM semaphores for OS/2, <sys/fmutex.h>, and simple RAM
+  semaphores for OS/2, <sys/smutex.h>, have been added
+
+- There is no longer a fixed limit for the number of stdio streams and
+  low-level file handles (emx.exe and emx.dll still have a limit).
+  This change breaks old programs which use emxlibc*.dll (-Zcrtdll)
+  and use the socket library (-lsocket) and attempt to open more than
+  256 files at a time (which previously failed but now succeeds and
+  causes problems with subsequent attempts to create sockets).
+  Relinking such programs solves that problem (which is very unlikely
+  to occur)
+
+- The leading underscore of `long double' math functions supposed to
+  be covered by C9X has been removed (code which uses the leading
+  underscore continues to work)
+
+- Threads not created by _beginthread() now can use the C library;
+  however no exception handler is installed for such threads (in
+  consequence, you won't get core dumps for crashes in those threads)
+
+- The procbuf class of libstdc++ now works (OS/2 only)
+
+- New functions: _fassign(), _fnslashify(), _gettid(), _memrchr(),
+  _strtoll(), _strtoull(), copysign(), fpclassify(), isfinite(), isnan(),
+  isnormal(), nextafter(), signbit(), strtof(), strtold()
+
+- fwrite() and fputs() now pay attention to _IOLBF
+
+- If a signal handler is installed for SIGABRT and SIGABRT is not
+  blocked, abort() will call the signal handler *before* cleaning up
+  the C library.  Otherwise, or if the signal catching function
+  returns, the signal action of SIGABRT is set to SIG_DFL and SIGABRT
+  is raised again
+
+- <sys/emx.h> has been split into several headers such as <emx/io.h>
+
+- ttyname() is now thread-safe
+
+- _nls_init() is now automatically called if necessary, you no longer
+  have to call _nls_init() though you should call it after changing
+  the country or the code page
+
+- All functions which deal with file names now support DBCS characters
+
+- "de_de", "en_us", and "en_gb" locales have been added
+
+- Profiling has been improved by adding _mcount calls to more
+  functions (new c_app_p.a, gcc_p.a, and os2_p.a libraries)
+
+- Static multithread libraries can now be used for single-thread
+  programs; for efficiency, however, using single-thread libraries for
+  single-thread programs is recommended
+
+- res_init() and other functions of <resolv.h> are now forwarded by
+  socket.a (and socket.lib) to tcp32dll.dll
+
+- pow() now tries to return the correct values (according to C9X) for
+  special cases
+
+- _DLL_InitTerm() can now call sbrk(), malloc(), etc.  However, if it
+   does so, fork() will no longer work (it will fail with ENOMEM)
+
+- strtod(), _strtold(), and scanf() can now convert "INF" and "NAN"
+
+- printf() prints "inf", "INF", "nan", and "NAN" instead of "#INF" and
+  "#NAN"; %F conversion added
+
+- printf() now prints -0.0 with sign
+
+- setlocale(): letter case is now ignored for comparing locale names
+
+- <netdb.h> now declares h_errno
+
+- O_NDELAY is now inherited for pipes (but not if -Zsys is used)
+
+- Various improvements have been made to the omflib library;
+  omflib_module_name() now returns a value
+
+
+Libraries (bug fixes)
+---------------------
+
+- stdio functions such as fgets() did not ignore EINTR
+
+- mktime() interpreted the structure pointed to by its argument in
+  GMT instead of local time
+
+- select() now clears all bits in the file descriptor sets if the
+  requested timed out (return value 0).  For emx.dll, this bug fix can
+  be disabled with set emxopt=-!512
+
+- _fnexplode() no longer expands a directory to all the files it contains
+
+- _threadid() did not work in C++
+
+- Definition of MB_CUR_MAX in <stdlib.h> fixed
+
+- NULL is defined as 0 in C++
+
+- fcntl(): Prototype fixed
+
+- wchar_t was not defined in <stddef.h>
+
+- emx\include\cpp\std\cmath.h, emx\include\cpp\std\stddef.h, and
+  emx\include\cpp\std\complext.h used long file names
+
+- fnmatch() did not properly handle inverted sets like [^ab]
+
+- glob() did not work with drive letters and UNC path names
+
+- ulimit(UL_GMEMLIM) was not correctly implemented for OS/2
+
+- fcntl(F_GETFL) didn't fail for invalid (closed) file handles
+
+- Creating custom C runtime DLLs with -Zomf -Zsys failed because
+  _settimeofday was not marked {EMX} in \emx\lib\cdll.def (test case:
+  dll7)
+
+- utimes() changed the creation time and date to 00:00 31-Dec-1979;
+  emx.dll and sys.lib now work around this bug of LAN Server or
+  HPFS386
+
+- \emx\lib\omflibs.cmd didn't set the time stamps of newly created
+  .lib files
+
+- ios::app of the standard C++ library did not work correctly
+
+- putenv() would delete the environment if realloc() failed
+
+- <stdarg.h> and <varargs.h> did not work with -fbounds-checking
+
+- DBL_MAX and LDBL_EPSILON fixed
+
+- The value of the `_end' symbol (end of the .bss segment) was too
+  small with -Zomf
+
+- write(1,"a\032b",3) no longer loops forever under DOS
+
+- Leading zeros are suppressed for the day of the month in the string
+  returned by asctime() and ctime()
+
+- gcvt() now uses fixed-point notation for 0.1
+
+- All default versions of _DLL_InitTerm() (except for the one for
+  -Zno-rte) now call _CRT_Init() to make sure that the C library is
+  initialized independent of the order in which OS/2 happens to
+  initalize the DLLs
+
+- sin(x) and tan(x) now return 0.0 for |x|>=2^63, cos(x) now returns
+  1.0 for |x|>=2^63; previously, these functions returned a NaN for
+  |x|>=2^63
+
+
+Sample programs
+---------------
+
+- New sample program checkemx.c which shows how to check the emx
+  revision index
+
+- New sample program wordref.c which shows how to use the BSD database
+  library
+
+- New sample program stdarg.c which shows how to use macros of
+  <stdarg.h>
+
+- The `sort' sample program has been renamed to `qsort', new `msort'
+  sample program
+
+- The `calc' sample program now supports variables
+
+
+0.9b (10-Dec-1995)
+==================
+
+Important notes
+---------------
+
+- libref.doc and libref.inf have been renamed emxlib.doc and emxlib.inf, resp.
+  gnudev.doc and gnudev.inf have been renamed emxgnu.doc and emxgnu.inf, resp.
+  bsddev.doc and bsddev.inf have been renamed emxbsd.doc and emxbsd.inf, resp.
+  Please update the HELPNDX and EMXBOOK environment variables!
+
+- gnudev.zip has been split into gnudev1.zip and gnudev2.zip
+
+- gnusrc.zip has been split into gnusrc.zip and gbinusrc.zip
+
+
+Highlights
+----------
+
+- GCC 2.7.2 with Richard W.M. Jones's bounds checking patches.  See
+  \emx\doc\NEWS.GCC and \emx\gnu\doc\bounds\README
+
+- libg++ 2.7.1.  The iostream library has been integrated into
+  libstdc++ (stdcpp.a and stdcpp.lib), the standard C++ library.  Use
+  -lstdcpp instead of -liostream
+
+- The BSD database library has been added (<db.h>, -ldb), see the
+  manual page \emx\bsd\man\dbopen.3 for details
+
+- Profiling with gprof is now supported
+
+- ar, nm, objdump, and size are now taken from the GNU binary utilties
+  2.6; a lot of bugs have been fixed and a lot of features have been
+  added (along with a few regressions)
+
+- Debugging in the presence of signals is now possible: The `handle'
+  command of GDB works
+
+- emx programs run by emx programs now inherit signal actions from
+  the parent process: SIG_IGN is inherited as SIG_IGN, everything else
+  is inherited as SIG_DFL
+
+- The -t emx option now takes an optional argument specifying the
+  names of the drives on which file names should be truncated.  Without
+  argument, UNC pathnames and file names on all drives will be truncated
+
+- A list of frequently asked questions with answers has been added:
+  \emx\doc\faq.doc
+
+
+emx for OS/2 (emx.dll)
+----------------------
+
+- The problem of dangling references to pipe handles for
+  exec*() in a fork()ed process has been fixed (that problem cannot be
+  solved for socket handles, unfortunately)
+
+- select() now supports up to 256 sockets and named pipes
+  (the limit was 32 in previous versions)
+
+- select() now returns the number of ready descriptors (System V and
+  POSIX.1g), not the number of bits set (BSD)
+
+- wait() fixed for processes killed asynchronously
+
+
+emx for DOS (emx.exe)
+---------------------
+
+- DOS programs now receive the environment passed to spawn*()
+
+- Stack backtraces in core dumps have been improved
+
+- SIGABRT now dumps core
+
+- __nls_memupr() has been fixed
+
+
+GCC
+---
+
+- GCC tries to load cpp.exe (and other passes) from the directory from
+  which gcc.exe was loaded.  This should solve the problem of
+  inadvertently invoking another compiler's cpp.exe
+
+- As GCC now by default accepts // for comments in C programs, the
+  -Zc++-comments option is no longer required.  For backward
+  compatibility, -Zc++-comments is still accepted
+
+
+GDB
+---
+
+- GDB 4.15
+
+- `info heap' command added
+
+- `set args' now supports quoting
+
+
+GNU binary utilities
+--------------------
+
+- ar now always strips directory names from member names; the J option
+  is still provided for backward compatibility
+
+- ar now supports long file names; emxomf and emximp don't (they will
+  use truncated names)
+
+- nm no longer demangles C++ symbols by default; use the --demangle
+  option (alias -C) to demangle C++ symbols
+
+- ld now uses a unique file name for the temporary a.out file if the
+  output file is an .exe or .dll file.  That is, `gcc -o file.exe ... '
+  no longer overwrites `file'
+
+
+emxbind
+-------
+
+- emxbind: New -o option for specifying the name of the output file
+  when creating an .exe file (-b).  Using this option, the base name
+  of the output file can be different from the base name of the input
+  file, without having to specify the path name of emxl.exe
+
+- emxbind doesn't put a heap object into the executable if -h0 is used
+
+- emxbind no longer puts a stack object into a DLL
+
+
+Libraries (new features)
+------------------------
+
+- The new tmalloc library implements _tmalloc() on top of any malloc()
+  implementation.  If you use an alternate malloc() implementation,
+  you have to link with the tmalloc library (-ltmalloc)
+
+- The C library no longer breaks if a non-ANSI function is redefined;
+  ANSI headers don't define non-ANSI symbols if the -ansi option of
+  GCC is used
+
+- If you invoke the linker directly (not via GCC), please note that
+  there are two new libraries: c_alias and c_static
+
+- open() and sopen() have a new O_SIZE for setting the initial size of
+  new and truncated files under OS/2.  This flag can be used to avoid
+  fragmentation on HPFS
+
+- New P_UNRELATED flag for spawn*() to create unrelated (independent)
+  sessions
+
+- New functions: glob() [preliminary implementation], mkstemp(),
+  readv(), ttyname(), settimeofday(), snprintf(), vsnprintf(), writev()
+  [readv() and writev() are not yet documented]
+
+- New <sys/select.h> header
+
+- _threadid is now also available in the single-thread libraries
+
+- The modules appinit.obj, dllinit.obj, ctor.obj,and dtor.obj no
+  longer exist.  They are no longer required in import libraries for
+  custom C runtime libraries as the code is now in library c_static
+  which is automatically passed to the linker by GCC if the -Zcrtdll
+  option is used.  Import libraries containing those modules continue
+  to work
+
+- The method for changing the heap size for applications built with
+  -Zsys has changed, see emxdev.doc or emxdev.inf
+
+- All members of the FILE structure now start with an underscore.  If
+  you access these (private) members and your code must be portable to
+  emx 0.09a and older, check the _FILE_MEMBERS_HAVE_UNDERSCORE macro
+  which is defined in stdio.h of emx 0.9b and later
+
+- The omflib library now supports ALIAS records
+
+- GNU termcap 1.2 replaced by GNU termcap 1.3
+
+- BSD termcap also available
+
+
+Libraries (bug fixes)
+---------------------
+
+- getservbyname() and getservbyport() fixed
+
+- readdir() is now reentrant
+
+- tmpfile(), tmpnam(), and tempnam() are now thread-safe.  A race
+  condition in tmpfile() has been removed
+
+- _dt_read() now adjusts the `mtime' member to the timezone
+
+- _ead_read(): Memory leak fixed
+
+- fnmatch() by mistake took [-...] for an inverted set.  Now, [!...]
+  and [^...] are taken for inverted sets
+
+- `printf ("%#.0o", 0)' now prints `0'
+
+- _beginthread() can now be used in stand-alone DLLs
+
+- The _atofl() function was by accident named _atold() in previous
+  releases
+
+- getopt() no longer crashes if optind is set to 1.  Now, optind must
+  be set to 0 to *re*initialize getopt(); for the first call, getopt()
+  initializes itself even if optind is 1
+
+- `scanf ("%[a-z]", s)' matched characters a-y only (off by one)
+
+
+Sample programs
+---------------
+
+- The `flag' WPS sample can now be built both with the 2.1 toolkit
+  (build in directory `som_oidl') and the 3.0 toolkit (build in
+  directory `som_idl')
+
+- The `redir' sample program has been improved
+
+
+Other changes
+-------------
+
+- GNU Texinfo 3.6
+
+- GAS 2.6
+
+- \emx\include\cpp\hpfs.cmd and \emx\include\objc\hpfs.cmd have been
+  replaced by \emx\include\long.cmd.  \emx\include\cpp\fat.cmd and
+  \emx\include\objc\fat.cmd have been replaced by \emx\include\short.cmd
+
+- inp*() and outp*() under OS/2 are a bit faster now as EMXIO.DLL no
+  longer thunks EBX
+
+- emxaout no longer aborts if there is debugging information in an
+  input file
+
+- emxexp: New -u option for exporting unitialized variables
+
+- emxload has a new option for preloading GNAT: -gnat
+
+- emxomf now supports N_INDR symbols (indirect references); they are
+  translated to ALIAS records
+
+- emxomf now supports .o files created with `ld -r'
+
+- emxomfar now supports ALIAS records
+
+- emxomfld: Assume that .a files are OMF library files
+
+- emxomfld: Add EMXOMFLD_LINKER environment variable for setting the
+  name of the linker to use
+
+- listomf: various record types added; .lib files can be listed; new
+  -a option for listing addresses of the records; new -d option for
+  not listing debugging info
+
+
+0.9a (05-Dec-1994)
+==================
+
+Important notes
+---------------
+
+- emx.dll no longer supports the -f option
+
+- emx.dll no longer creates a stack object if the stack size is 16KB
+  or less.  You have to relink programs which use emx.dll and assume
+  that emx.dll creates a big stack if the stack size is 16KB or less.
+  If relinking is not possible, you can use the emxstack tool
+
+- C++ include files have been moved from /emx/include.cpp to
+  /emx/include/cpp.  Don't forget to update the environment variables
+  CPLUS_INCLUDE_PATH and PROTODIR.  If /emx/include is also included
+  in CPLUS_INCLUDE_PATH, you can now use
+
+    #include <cpp/GetOpt.h>
+
+  to avoid reading /emx/include/getopt.h instead of
+  /emx/include/cpp/GetOpt.h
+
+- EMSDOS, defined in <errno.h>, has been renamed to ENOSYS
+
+- The `d_mode' member of `struct dirent' and `struct direct' has been
+  renamed to `d_attr'.  You can check for this change by testing the
+  macro `_DIRENT_D_MODE_RENAMED_D_ATTR'
+
+- When linking programs which use the hardware I/O port functions
+  (such as _inp8()), -lemxio (emxio.a or emxio.lib) is no longer
+  required and should no longer be used
+
+- SIGPIPE is now implemented.  When attempting to write to a broken
+  pipe, SIGPIPE will be raised by write().  In that case, write() only
+  returns (with errno set to EPIPE) if SIGPIPE is ignored or if the
+  signal handler for SIGPIPE returns.  You might want to install a
+  signal handler (or set SIG_IGN) for SIGPIPE to avoid termination of
+  your process
+
+- The -w option has been removed from GAS, the -Zwait option has been
+  removed from GCC
+
+- \emx\lib\omflib.cmd has been renamed to \emx\lib\omflibs.cmd.  It is
+  now written in REXX.  Moreover, it now rebuilds the .lib file if the
+  .a file is newer than the .lib file
+
+- Raising fatal signals such as SIGSEGV and SIGFPE with raise() or
+  kill() no longer terminates the process
+
+- Libraries which exist both in a single-thread and a multithread
+  version have been moved to the `st' and `mt' directories,
+  respectively, using the same name for both versions (for instance,
+  cmt.a has been renamed to mt/c.a)
+
+- Calling exec() in a forked process now runs the child process
+  synchronously to avoid some anomalies.  For instance, this makes
+  `bash' get correct return codes of its child processes
+
+- The C library has been split into several libraries to support
+  additional variants of DLLs.  If you use GCC for linking, there is
+  no difference.  However, if you run the linker manually, you have to
+  arrange for the new libraries.  c.a contains the modules which are
+  common to all types of applications and DLLs.  That library is
+  complemented by one of the following libraries:
+
+        c_app.a         modules which are specific to applications
+        c_dllrt.a       modules which are specific to custom C runtime DLLs
+        c_dllso.a       modules which are specific to stand-alone DLLs
+        c_dllnrt.a      modules which are specific to DLLs without runtime
+                        environment
+
+  cdll.a has been renamed to c_import.a.  (All this applies also to
+  .lib files.)  cdllobj.def has been renamed to cdll.def.  Import
+  libraries for custom C runtime DLLs should contain appinit.o and
+  dllinit.o in addition to ctor.o and dtor.o (this also applies to
+  .obj files)
+
+
+Highlights
+----------
+
+- Complete source code is now available
+
+- GAS 2.3 (which can generate listings)
+
+- GCC 2.6.3
+
+- GDB 4.13
+
+- GNU termcap 1.2
+
+- libg++ 2.6.1 and iostream 0.66.  The iostream library can now be
+  linked to both single-thread and multithread programs.  However, the
+  library is not thread-safe
+
+- Several changes to get closer to ANSI X3.159-1989 (ANSI C) and IEEE
+  1003.1 (aka POSIX.1 aka ISO/IEC 9945-1:1990)
+
+- POSIX.1 and System V signal handling models are available
+
+- There are now two versions of emxlibc.dll: emxlibcs.dll for
+  single-thread applications and emxlibcm.dll for multithread
+  application.  emxlibc.dll just contains forwarders to emxlibm.dll to
+  keep compatibility with existing applications.  Some functions such
+  as getc() and putc() are much faster in the single-thread library
+  than in the multithread library
+
+- New emxaout tool for converting .obj files to .o files
+
+- Stand-alone DLLs can now be built with -Zomf -Zsys
+
+- Henry Spencer's regexp library has been added.  The documentation
+  (file /emx/bsd/man/regexp.man) is in bsddev.zip as it (the
+  documentation!) is covered by the USG license.  The library can be
+  used freely (see /emx/src/regexp/COPYRIGH).  Note: the regexp
+  library may get replaced in a future emx release with another one
+  which conforms to POSIX.2
+
+- Support for sockets (IBM TCP/IP for OS/2) has been added to emx.dll.
+  Socket handles are treated like file handles.  Use -lsocket to link
+  with the socket library.  Note: This is quite preliminary, little
+  tested stuff.  See libref.inf for details
+
+
+emx for OS/2 (emx.dll)
+----------------------
+
+- exec() in a forked process now waits until the child terminates,
+  passing signals to the child process.  This makes signals and work
+  and causes the correct termination status to be returned by wait()
+
+- When a process is debugging another process, wait() can now be also
+  used for other child processes
+
+- waitpid() can be used with ptrace()
+
+- wait() and waitpid() can now be interrupted by a signal
+
+- WNOHANG option of waitpid() implemented
+
+- The SIGCLD signal stays pending until status for all terminated
+  child processes has been fetched with wait() or waitpid().  This
+  fixes the problem of lost SIGCLD signals when two or more child
+  process terminate within a short period of time
+
+- kill(getpid(),signo) now dumps core if called from the main thread
+  (for those signals and signal actions which cause a core dump)
+
+- spawn*() no longer uses the `MKS Korn shell' method for passing
+  command line arguments to child processes.  However, you can enable
+  that method by using the P_TILDE flag with spawn*()
+
+- The -q option can be used to enabling quoting of command line
+  arguments (that is, disabling _wildcard() and _response() in the
+  child process) passed to child processes.  This is requivalent to
+  using the P_QUOTE flag of spawn*()
+
+- Command line arguments passed with the `MKS Korn shell' method are
+  now automatically `quoted', that is, not expanded by _wildcard() and
+  _response().  To override this, use the -x (expand) emx option
+
+- New -n option for suppressing exception popups
+
+
+emx for DOS (emx.exe)
+---------------------
+
+- Command line arguments passed to child processes are no longer
+  quoted by default.  The -q option can be used to enabling quoting of
+  command line arguments (that is, disabling _wildcard() and _response()
+  in the child process) passed to child processes.  This is requivalent
+  to using the P_QUOTE flag of spawn*()
+
+- An emulator for the numeric coprocessor is now available and is
+  automatically loaded if and when required: emxfpemu.  There are some
+  limitations such as problems with debugging and exceptions
+
+- The heap of dumped executables (such as emacs.exe) was not correctly
+  handled
+
+- emxl.exe fixed: it crashed with VSHIELD /SWAP
+
+- emx.exe no longer checks the emx version number of executables
+
+- emx.exe skips the FNSAVE and FRSTOR coprocessor instructions if no
+  coprocessor is installed.  GCC uses FNSAVE and FRSTOR for untyped
+  calls and returns.  That feature is used by the Objective C runtime
+  of GCC 2.6.0, even for programs which don't use floating point code
+
+- Function 0x09 of interrupt 0x33 fixed
+
+- emx now tries to use VCPI even if no EMS is present.  This may cause
+  crashes with VCPI servers which don't support certain undocumented
+  behavior
+
+- emx no longer ignores XMS memory if VCPI is used
+
+- alarm(0) now works correctly
+
+- The -e option (ignore 387) has been renamed to -E.  The new -e
+  option now redirects the standard error handle (2) to standard
+  output (1)
+
+- A facility for emergency exit has been added: emx.exe will be
+  terminated if Ctrl-Break is pressed five times in a second, unless
+  emx.exe is blocked in a DOS call
+
+- The I command of the debugger of emxd.exe now shows the file handle
+  mappings of the processes
+
+
+Libraries (new features)
+------------------------
+
+- Add locale.h, setlocale() and localeconv().  Add dummy strcoll() and
+  strxfrm().  LC_COLLATE and LC_CTYPE are currently ignored.  The
+  definition of locales is preliminary, in a future versions locales
+  are probably represented differently.  Any volunteer for writing
+  localedef? ;-)
+
+- Add multibyte character support: mblen(), mbtowc(), mbstowcs(),
+  wctomb(), wcstombs(), printf(), scanf(), strftime(), etc.  However,
+  there are currently no locales which use multibyte charaters
+
+- New functions for POSIX.1: sysconf(), pathconf(), fpathconf(),
+  getgrgid(), getgrnam(), getgroups(), setgid(), setuid(),
+  sigaction(), sigaddset(), sigdelset(), sigemptyset(), sigfillset(),
+  sigismember(), sigpending(), sigprocmask(), sigsuspend(), tcdrain(),
+  tcflow(), tcflush(), tcgetattr(), tcgetpgrp(), tcsendbreak(),
+  tcsetattr(), and tcsetpgrp()
+
+- New function for POSIX.2: fnmatch()
+
+- Custom C runtime DLLs can now be built both as single-threaded and
+  multithreaded libraries.  Instead of cdllobj.lib, the following
+  libraries are now required: gcc.lib, c.lib, c_dllrt.lib, emx.lib,
+  emx2.lib, and os2.lib.  Moreover, cdllobj.def has been renamed to
+  cdll.def
+
+- For building stand-alone DLLs (which don't use a C runtime DLL and
+  emx.dll), c_dllso is provided.  GCC automatically selects that
+  library if the options -Zdll -Zomf -Zsys -Zso are given
+
+- The stream functions are linked into the executable only when
+  necessary.  This reduces the size of programs (such as DLLs and PM
+  applications) which don't use stream I/O
+
+- SIGCLD is an alias for SIGCHLD
+
+- F_DUPFD request of fcntl() implemented
+
+- _fnlwr2() function added for lower-casing only a suffix of a path
+   name
+
+- gcvt() function added for formatting floating point numbers
+
+- _getvol() function added for retrieving the volume label of a disk
+  drive
+
+- _imphandle() function added for registering an OS/2 file handle with
+   the emx run-time system
+
+- strptime() function added, which is incompatible with everybody
+  else's strptime() (all strptime() implementations are mutually
+  incompatible)
+
+- New graphics modes available:
+        G_MODE_EGA_C    EGA 640x200, 16 colors
+        G_MODE_EGA_E    EGA 640x350, 16 colors
+        G_MODE_VGA_H    VGA 640x480, 16 colors
+  Warning: These modes are quite slow and need access to the I/O ports
+
+- __open() now translates "/dev/null" to "nul", and "/dev/tty" to "con"
+
+- cuserid() and getlogin() now take the user name from the LOGNAME and
+  USER environment variables
+
+- fseek(), ftell(), fgetpos(), and fsetpos() now work correctly for
+  text-mode streams (unless the file contains both LFs with and
+  without preceding CR)
+
+- The video library source code can now be compiled with IBM's C/C++
+  Tools
+
+- getopt() may return a colon; error messages now include argv[0];
+  optopt is now implemented
+
+- New flags for open() and sopen(): O_NOINHERIT and O_SYNC (currently,
+  O_SYNC is ignored under DOS)
+
+- The F_SETFD request of fcntl() has been implemented under DOS;
+  however, FD_CLOEXEC is ignored when running DOS programs
+
+- New flags for spawn*(): P_TILDE (use `MKS Korn shell' method for
+  passing command line arguments) and P_QUOTE (disable _wildcard() and
+  _response() in the child process)
+
+- sleep() now returns the number of remaining seconds if interrupted
+  by a signal
+
+- Change sys/video.h and sys/winmgr.h to enable argument checking for
+  v_printf(), v_vprintf(), wm_printf(), and wm_vprintf()
+
+- _wildcard() now keeps the letter case of the directory part.  Only
+  the last (expanded) component of the path names is converted to
+  lower case
+
+- DosMon* and Spl* functions added
+
+- setvbuf() may choose to ignore the BUFFER and SIZE arguments
+
+- Support for indirect thunk calls added (new test program:
+  c16test2.c)
+
+- Programs statically linked with the multithread libraries (-Zmt
+  or -Zmts) now can work under DOS (relinking is required to take
+  advantage of this)
+
+- strchr (p, c) speed improved for c == 0
+
+- _scrsize() is now also implemented in the system call libraries (-Zsys)
+
+- perror() and strerror() now include the error code in the message if
+  the error code is unknown
+
+- The startup code of the system call libraries (-Zsys) no longer
+  copies the environment strings to the stack
+
+- emxlibcm.map and emxlibcs.map are now provided in \emx\etc to
+  simplify debugging
+
+- heapsort() and strsep() added to BSD library
+
+
+Libraries (bug fixes)
+---------------------
+
+- errno is now zero at program startup
+
+- dup2() now sets errno to EBADF if HANDLE2 is out of range
+
+- _msize() fixed
+
+- The __fixunssfdi helper function was missing (it is used for
+  converting `float' to `unsigned long long')
+
+- Very small numbers (close to LDBL_MIN) were not printed correctly by
+  printf()
+
+- write() no longer returns ENOSPC when writing in blocking mode to a pipe
+
+- write() now correctly handles text mode for non-blocking writes to a
+  pipe
+
+- Memory leak in scanf() fixed
+
+- scanf() rejected floating point numbers with a trailing decimal
+  point
+
+- A lot of bugs in scanf() fixed
+
+- printf ("%c", 0) didn't print a null character
+
+- freopen() now ignores failure to close the file
+
+- mktime() no longer rejects negative values in the structure.
+  Overflow is now detected and reported.  The full range of time_t is
+  now supported by mktime(), gmtime(), and localtime()
+
+- The output of strftime ("%j", ...) is 1-based (was incorrectly
+  0-based)
+
+- v_clear() fixed
+
+- Make qsort() more robust w.r.t. broken comparison functions which
+  never return 0
+
+- fork() now works in multithread statically linked programs (it
+  doesn't work when using -Zcrtdll or -Zmtd)
+
+- Fix WIFSIGNALED macro of sys/wait.h
+
+- The window manager functions sometimes produced garbage on the
+  screen because the data wasn't properly aligned for access by
+  16-bit code
+
+- _osmode was not defined when building a DLL.  In consequence,
+  setjmp() and longjmp() could not be used in a DLL
+
+- _CRT_init() and _CRT_term() are now protected against multiple calls
+
+- "fistpll" in /emx/src/lib/math/pow.s replaced with "fistpl"
+
+- Prototype of signal() fixed
+
+- ioctl(): Fix handling of IGNCR, ICRNL, and INLCR.  It's now possible
+  to swap CR and LF by setting both ICRNL and INLCR
+
+- _ead_add() didn't work correctly for non-empty eads
+
+- rmdir() now sets errno more correctly
+
+
+emxbind
+-------
+
+- No longer support the -f emx option and the -k0 emxbind option
+
+- "emxbind file.exe" no longer destroys file.exe
+
+- emxbind can now write a .map file (-m<map> otion)
+
+- If the -E option is not given, emxbind takes the name of (a
+  replacement DLL for) emx.dll from the EMXBIND_DLL environment
+  variable.  If neither -E nor EMXBIND_DLL are set, emx.dll will be
+  used
+
+
+emxomf
+------
+
+- emxomf now supports N_SETD
+
+- emxomf can now convert (I1) import records in libraries
+
+- emxomf no longer creates groups for sets (such as __CTOR__LIST__).
+  In consequence, executables become smaller and use less memory as
+  sets are no longer put into objects of their own, unless the
+  executable is linked with at least one module which has groups for
+  sets.  The -g option can be used to get the old behavior, that is,
+  groups will be created for sets
+
+- Command line options for emxomf can now be set in the EMXOMFOPT
+  environment variable
+
+- Several bugs fixed
+
+
+emximp
+------
+
+- emximp can now read multiple .def files
+
+- display warning message when the input .lib file contains static
+  code or data
+
+
+emxload
+-------
+
+- emxload now selects the root directory as current directory.  In
+  consequence, directories are no longer locked from renaming and
+  deleting
+
+- emxload -l now lists the time-out as minutes:seconds
+
+- The emxload server sets its priority to `foreground server'
+
+
+GCC
+---
+
+- Fix bug in -Xlinker (which has been introduced by adding -Zlinker)
+
+- The -Zwait option has been removed
+
+- New -Zmap option: write map file (passed down to ld or emxomfld)
+
+- If no output file name is given and the link step is not suppressed,
+  an .exe file (or .dll file if -Zdll is given) will be created
+  instead of `a.out'.  The base name is taken from the first input
+  file.  Example:
+
+        gcc sample.c utils.c
+
+  creates sample.exe
+
+- New -Zbsd-signals and -Zsysv-signals options for selecting signal
+  processing model
+
+- New -Zbin-files option for linking with binmode.o, selecting binary mode
+  as default for fopen(), open(), etc.
+
+- New -Zmt option for compiling multithread programs.  The -Zmt
+  option does not select static vs. dynamic linking
+
+- New -Zcrtdll option for dynamic linking.  The -Zcrtdll option does
+  not select compiling and linking single-thread vs. multithread
+  programs.  Zmtd is an abbreviation for -Zmt -Zcrtdll
+
+- New -Zso and -Zno-rte options for creating stand-alone DLLs and DLLs
+  without runtime environment
+
+- Reject incompatible options
+
+- This port of GCC no longer works with GAS 1.38
+
+
+GAS
+---
+
+- The -w option has been removed
+
+- New -Zomf option: call emxomf to create .obj file
+
+- New -Zstrip option: pass the -s option (omit debugging information)
+  to emxomf
+
+
+GNU ld
+------
+
+- Fix two bugs in processing of set vectors (used for constructors,
+  destructors, import method (I1) and for graph.a).  IMPORTANT: You
+  have to use the new GNU ld for linking with graph.a
+
+- New -Zmap option: write map file (passed down to emxbind)
+
+- New -Zno-demangle option: don't demangle C++ symbols in error
+  messages
+
+- New -Zdemangle-proto options: include parameters and qualifiers in
+  demangled C++ symbols in error messages
+
+- Use a new version of the C++ demangler
+
+
+GNU ar
+------
+
+- New J option for removing directories from filenames added to the
+  archive
+
+
+GNU info
+--------
+
+- Try to fix problem with `dir' and info files in text format (CR/LF)
+
+
+Other changes
+-------------
+
+- os2emx.h: Add spooler functions (PMSPL.DLL) and some Workplace Shell
+  functions. Add structure tags to make C++ modules compiled with
+  os2emx.h linkable with C++ modules compiled with the Toolkit headers
+
+- Workplace Shell sample program added: Flag (see
+  /emx/samples/makefile for details)
+
+- REXX sample added: regexx.dll and rgrep.cmd
+
+- New sample programs: redir and rmdirs
+
+- emxcat: sort input files by name to get identical results when using
+  wildcards, independent of the file system type (FAT vs. HPFS) and
+  the order of the files in the directory
+
+- emxomfld: add -Zmap option and no longer automatically recognize
+  .map files
+
+- os2emx.h: Add INCL_FONTFILEFORMAT
+
+- GPPDEMID.DLL: fix a problem with templates, use a new version of the
+  C++ demangler
+
+- The OS/2 error code ERROR_INVALID_PATH is now mapped to ENOENT
+  instead of EINVAL
+
+
+See HISTORY.OLD for older versions.
+
+--------------------------- END OF HISTORY.DOC ------------------------------

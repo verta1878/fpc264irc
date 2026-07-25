@@ -1,0 +1,10800 @@
+[1]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=0
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=B
+
+[2]
+	name=Another Droid BBS
+	address=andr01d.zapto.org:9999
+	user=
+	pass=
+	statusbar=0
+	music=0
+	last=
+	added=0
+	lastedit=0
+	calls=96
+	sysop=
+	software=Mystic BBS
+	comment=
+	rating=10
+	validated=
+	flags=
+
+[3]
+	name=MysticIsland
+	address=mysticisland.strangled.net
+	user=
+	pass=
+	statusbar=0
+	music=0
+	last=
+	added=0
+	lastedit=0
+	calls=15
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=
+	flags=
+
+[4]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[5]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=0
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=B
+
+[6]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=0
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=B
+
+[7]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=0
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=B
+
+[8]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[9]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[10]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[11]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[12]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[13]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[14]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[15]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[16]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[17]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[18]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[19]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[20]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[21]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[22]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[23]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[24]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[25]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[26]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[27]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[28]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[29]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[30]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[31]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[32]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[33]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[34]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[35]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[36]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[37]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[38]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[39]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[40]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[41]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[42]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[43]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[44]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[45]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[46]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[47]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[48]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[49]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[50]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[51]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[52]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[53]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[54]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[55]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[56]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[57]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[58]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[59]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[60]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[61]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[62]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[63]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[64]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[65]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[66]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[67]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[68]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[69]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[70]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[71]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[72]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[73]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[74]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[75]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[76]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[77]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[78]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[79]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[80]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[81]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[82]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[83]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[84]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[85]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[86]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[87]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[88]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[89]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[90]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[91]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[92]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[93]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[94]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[95]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[96]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[97]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[98]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[99]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[100]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[101]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[102]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[103]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[104]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[105]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[106]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[107]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[108]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[109]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[110]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[111]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[112]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[113]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[114]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[115]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[116]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[117]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[118]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[119]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[120]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[121]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[122]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[123]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[124]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[125]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[126]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[127]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[128]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[129]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[130]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[131]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[132]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[133]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[134]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[135]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[136]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[137]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[138]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[139]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[140]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[141]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[142]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[143]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[144]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[145]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[146]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[147]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[148]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[149]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[150]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[151]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[152]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[153]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[154]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[155]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[156]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[157]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[158]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[159]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[160]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[161]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[162]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[163]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[164]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[165]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[166]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[167]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[168]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[169]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[170]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[171]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[172]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[173]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[174]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[175]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[176]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[177]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[178]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[179]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[180]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[181]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[182]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[183]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[184]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[185]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[186]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[187]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[188]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[189]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[190]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[191]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[192]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[193]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[194]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[195]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[196]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[197]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[198]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[199]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[200]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[201]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[202]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[203]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[204]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[205]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[206]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[207]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[208]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[209]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[210]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[211]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[212]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[213]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[214]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[215]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[216]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[217]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[218]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[219]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[220]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[221]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[222]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[223]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[224]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[225]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[226]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[227]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[228]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[229]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[230]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[231]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[232]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[233]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[234]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[235]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[236]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[237]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[238]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[239]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[240]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[241]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[242]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[243]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[244]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[245]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[246]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[247]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[248]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[249]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[250]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[251]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[252]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[253]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[254]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[255]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[256]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[257]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[258]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[259]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[260]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[261]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[262]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[263]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[264]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[265]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[266]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[267]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[268]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[269]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[270]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[271]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[272]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[273]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[274]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[275]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[276]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[277]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[278]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[279]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[280]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[281]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[282]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[283]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[284]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[285]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[286]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[287]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[288]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[289]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[290]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[291]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[292]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[293]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[294]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[295]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[296]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[297]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[298]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[299]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[300]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[301]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[302]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[303]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[304]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[305]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[306]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[307]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[308]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[309]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[310]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[311]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[312]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[313]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[314]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[315]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[316]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[317]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[318]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[319]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[320]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[321]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[322]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[323]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[324]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[325]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[326]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[327]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[328]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[329]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[330]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[331]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[332]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[333]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[334]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[335]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[336]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[337]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[338]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[339]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[340]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[341]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[342]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[343]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[344]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[345]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[346]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[347]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[348]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[349]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[350]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[351]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[352]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[353]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[354]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[355]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[356]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[357]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[358]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[359]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[360]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[361]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[362]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[363]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[364]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[365]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[366]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[367]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[368]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[369]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[370]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[371]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[372]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[373]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[374]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[375]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[376]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[377]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[378]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[379]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[380]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[381]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[382]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[383]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[384]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[385]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[386]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[387]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[388]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[389]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[390]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[391]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[392]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[393]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[394]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[395]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[396]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[397]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[398]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[399]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[400]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[401]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[402]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[403]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[404]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[405]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[406]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[407]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[408]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[409]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[410]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[411]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[412]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[413]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[414]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[415]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[416]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[417]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[418]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[419]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[420]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[421]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[422]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[423]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[424]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[425]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[426]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[427]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[428]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[429]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[430]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[431]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[432]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[433]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[434]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[435]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[436]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[437]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[438]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[439]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[440]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[441]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[442]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[443]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[444]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[445]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[446]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[447]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[448]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[449]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[450]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[451]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[452]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[453]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[454]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[455]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[456]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[457]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[458]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[459]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[460]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[461]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[462]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[463]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[464]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[465]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[466]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[467]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[468]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[469]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[470]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[471]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[472]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[473]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[474]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[475]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[476]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[477]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[478]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[479]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[480]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[481]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[482]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[483]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[484]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[485]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[486]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[487]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[488]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[489]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[490]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[491]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[492]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[493]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[494]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[495]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[496]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[497]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[498]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[499]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[500]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[501]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[502]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[503]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[504]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[505]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[506]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[507]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[508]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[509]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[510]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[511]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[512]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[513]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[514]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[515]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[516]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[517]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[518]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[519]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[520]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[521]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[522]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[523]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[524]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[525]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[526]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[527]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[528]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[529]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[530]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[531]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[532]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[533]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[534]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[535]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[536]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[537]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[538]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[539]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[540]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[541]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[542]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[543]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[544]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[545]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[546]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[547]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[548]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[549]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[550]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[551]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[552]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[553]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[554]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[555]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[556]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[557]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[558]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[559]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[560]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[561]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[562]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[563]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[564]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[565]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[566]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[567]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[568]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[569]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[570]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[571]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[572]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[573]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[574]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[575]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[576]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[577]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[578]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[579]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[580]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[581]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[582]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[583]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[584]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[585]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[586]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[587]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[588]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[589]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[590]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[591]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[592]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[593]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[594]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[595]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[596]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[597]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[598]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[599]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=1
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=MB
+
+[600]
+	name=
+	address=
+	user=
+	pass=
+	statusbar=1
+	music=0
+	last=0
+	added=0
+	lastedit=0
+	calls=0
+	sysop=
+	software=
+	comment=
+	rating=0
+	validated=0
+	flags=B
+

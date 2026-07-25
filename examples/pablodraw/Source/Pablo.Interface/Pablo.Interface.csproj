@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <AssemblyTitle>Pablo.Interface</AssemblyTitle>
+    <AssemblyDescription>Main Interface</AssemblyDescription>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="Icons\PabloDraw_logo_by_lordmx.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\*.*" />
+    <EmbeddedResource Include="..\README.ans">
+      <Link>README.ans</Link>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="$(EtoBasePath)src\Eto\Eto.csproj" Condition="$(EtoBasePath) != ''" />
+    <PackageReference Include="Eto.Forms" Version="2.9.0" Condition="$(EtoBasePath) == ''" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="9.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Pablo\Pablo.csproj" />
+  </ItemGroup>
+</Project>

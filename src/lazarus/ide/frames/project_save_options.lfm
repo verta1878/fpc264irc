@@ -1,0 +1,95 @@
+object ProjectSaveOptionsFrame: TProjectSaveOptionsFrame
+  Left = 0
+  Height = 240
+  Top = 0
+  Width = 320
+  ClientHeight = 240
+  ClientWidth = 320
+  TabOrder = 0
+  DesignLeft = 617
+  DesignTop = 390
+  object SaveClosedUnitInfoCheckBox: TCheckBox
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Owner
+    AnchorSideRight.Control = Owner
+    Left = 0
+    Height = 21
+    Top = 0
+    Width = 320
+    Align = alTop
+    Caption = 'SaveClosedUnitInfoCheckBox'
+    TabOrder = 0
+  end
+  object SaveOnlyProjectUnitInfoCheckBox: TCheckBox
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = SaveClosedUnitInfoCheckBox
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 0
+    Height = 21
+    Top = 27
+    Width = 320
+    Anchors = [akTop, akLeft, akRight]
+    BorderSpacing.Top = 6
+    Caption = 'SaveOnlyProjectUnitInfoCheckBox'
+    TabOrder = 1
+  end
+  object SaveSessionLocationRadioGroup: TRadioGroup
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = SaveFoldState
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 0
+    Height = 20
+    Top = 108
+    Width = 320
+    Anchors = [akTop, akLeft, akRight]
+    AutoFill = True
+    AutoSize = True
+    BorderSpacing.Top = 6
+    Caption = 'SaveSessionLocationRadioGroup'
+    ChildSizing.LeftRightSpacing = 6
+    ChildSizing.TopBottomSpacing = 6
+    ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+    ChildSizing.EnlargeVertical = crsHomogenousChildResize
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 1
+    Constraints.MinHeight = 20
+    OnClick = SaveSessionLocationRadioGroupClick
+    TabOrder = 4
+  end
+  object SaveJumpHistory: TCheckBox
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = SaveOnlyProjectUnitInfoCheckBox
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 0
+    Height = 21
+    Top = 54
+    Width = 320
+    Anchors = [akTop, akLeft, akRight]
+    BorderSpacing.Top = 6
+    Caption = 'SaveJumpHistory'
+    TabOrder = 2
+  end
+  object SaveFoldState: TCheckBox
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = SaveJumpHistory
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 0
+    Height = 21
+    Top = 81
+    Width = 320
+    Anchors = [akTop, akLeft, akRight]
+    BorderSpacing.Top = 6
+    Caption = 'SaveFoldState'
+    TabOrder = 3
+  end
+end

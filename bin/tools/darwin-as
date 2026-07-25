@@ -1,0 +1,35 @@
+#!/bin/bash
+# Darwin cross-assembler using LLVM for Mach-O output
+# Usage: darwin-as [as-flags] -o output.o input.s
+#
+# Strips GNU as listing flags, uses llvm-mc-18 to produce
+# real Mach-O i386 objects on Linux.
+
+OUT=""
+IN=""
+ARGS=()
+NEXT_IS_OUT=0
+
+for arg in "$@"; do
+  if [ $NEXT_IS_OUT -eq 1 ]; then
+    OUT="$arg"
+    NEXT_IS_OUT=0
+    continue
+  fi
+  case "$arg" in
+    -o) NEXT_IS_OUT=1 ;;
+    -al*) ;; # skip listing flags
+    --32) ;; # skip, implied by triple
+    -*) ARGS+=("$arg") ;;
+    *) IN="$arg" ;;
+  esac
+done
+
+if [ -z "$OUT" ] || [ -z "$IN" ]; then
+  echo "Usage: darwin-as -o output.o input.s" >&2
+  exit 1
+fi
+
+exec llvm-mc-18 --arch=x86 --filetype=obj \
+  --triple=i386-apple-darwin \
+  -o "$OUT" "$IN"

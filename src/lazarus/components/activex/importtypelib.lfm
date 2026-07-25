@@ -1,0 +1,114 @@
+object FrmTL: TFrmTL
+  Left = 251
+  Height = 153
+  Top = 189
+  Width = 341
+  AutoSize = True
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsDialog
+  Caption = 'Import Type Library'
+  ClientHeight = 153
+  ClientWidth = 341
+  OnCreate = FormCreate
+  LCLVersion = '1.3'
+  object FNETL: TFileNameEdit
+    AnchorSideLeft.Control = Label1
+    AnchorSideTop.Control = Label1
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Side = asrBottom
+    Left = 6
+    Height = 21
+    Top = 19
+    Width = 294
+    DialogOptions = []
+    Filter = 'Type library files (*.tlb;*.dll;*.exe;*.ocx;*.olb)|*.tlb;*.dll;*.exe;*.ocx;*.olb|All Files (*.*)|*.*'
+    FilterIndex = 0
+    HideDirectories = False
+    ButtonWidth = 23
+    NumGlyphs = 1
+    Anchors = [akTop, akLeft, akRight]
+    MaxLength = 0
+    TabOrder = 0
+  end
+  object Label1: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Owner
+    Left = 6
+    Height = 13
+    Top = 6
+    Width = 130
+    BorderSpacing.Left = 6
+    BorderSpacing.Top = 6
+    Caption = 'File containing type library:'
+    ParentColor = False
+  end
+  object CBxTLActiveX: TCheckBox
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = FNETL
+    AnchorSideTop.Side = asrBottom
+    Left = 6
+    Height = 17
+    Hint = 'CBxTLActiveX'
+    Top = 46
+    Width = 296
+    BorderSpacing.Left = 6
+    BorderSpacing.Top = 6
+    BorderSpacing.Right = 6
+    Caption = 'Create visual component (TActiveXContainer descendant)'
+    OnChange = CBxTLActiveXChange
+    TabOrder = 1
+  end
+  object CBxTLPackage: TCheckBox
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = CBxTLActiveX
+    AnchorSideTop.Side = asrBottom
+    Left = 6
+    Height = 17
+    Top = 69
+    Width = 94
+    BorderSpacing.Left = 6
+    BorderSpacing.Top = 6
+    BorderSpacing.Right = 6
+    Caption = 'Create package'
+    OnChange = CBxTLPackageChange
+    TabOrder = 2
+  end
+  object CBxTLRecurse: TCheckBox
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = CBxTLPackage
+    AnchorSideTop.Side = asrBottom
+    Left = 6
+    Height = 17
+    Top = 92
+    Width = 152
+    BorderSpacing.Left = 6
+    BorderSpacing.Top = 6
+    BorderSpacing.Right = 6
+    BorderSpacing.Bottom = 6
+    Caption = 'Convert dependant typelibs'
+    TabOrder = 3
+  end
+  object ButtonPanel: TButtonPanel
+    AnchorSideTop.Control = CBxTLRecurse
+    AnchorSideTop.Side = asrBottom
+    AnchorSideBottom.Side = asrBottom
+    Left = 6
+    Height = 32
+    Top = 115
+    Width = 329
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    OKButton.Name = 'OKButton'
+    OKButton.DefaultCaption = True
+    HelpButton.Name = 'HelpButton'
+    HelpButton.DefaultCaption = True
+    CloseButton.Name = 'CloseButton'
+    CloseButton.DefaultCaption = True
+    CancelButton.Name = 'CancelButton'
+    CancelButton.DefaultCaption = True
+    TabOrder = 4
+    ShowButtons = [pbOK, pbCancel]
+  end
+  object SelectDirectoryDialog1: TSelectDirectoryDialog
+    left = 240
+  end
+end

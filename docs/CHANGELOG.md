@@ -1,0 +1,195 @@
+# CHANGELOG — fpc264irc r3.1
+
+## Changes from upstream FPC 2.6.4
+
+### Compiler Fixes
+- **BUG-029:** i386 ASM AnsiString Decr_Ref: `sub $12,%eax` (was `sub $8`)
+  Fixed header size calculation for TAnsiRec (CodePage+ElementSize+Ref+Length)
+- **BUG-040:** t_emx.pas: Removed `-N` flag from OS/2 EMX linker command
+  (OMAGIC → ZMAGIC for emxbind compatibility)
+
+### RTL Codepage Backport
+Added `DefaultSystemCodePage` parameter to all widestringmanager MoveProc
+functions across 6 source files:
+- `ustringh.inc` — MoveProc type declarations
+- `ustrings.inc` — UnicodeString conversion implementations
+- `wstringh.inc` — WideString forward declarations
+- `wstrings.inc` — WideString implementations (lines 552, 654 fixed)
+- `text.inc` — Text file codepage handling
+- `compproc.inc` — Compiler procedure declarations
+- `win/sysutils.pp` — Win32 Wide2AnsiMoveProc (lines 1135, 1137)
+
+### New Tools
+- `src/tools/emxbind.pas` — Pascal emxbind replacement (MZ stub + a.out)
+- `src/tools/emxbind.c` — C version (removed, Pascal is authoritative)
+- `bin/tools/i386-emx/emxbind.py` — Python version (removed)
+  All three produce identical output: SHA256 `1c47d0bf...`
+
+### New Units
+- `mdl/m_mouse.pas` — Cross-platform text-mode mouse (303 lines)
+  Linux: xterm ESC[M + SGR 1006
+  Win32: Console API (ReadConsoleInput)
+  DOS: INT 33h
+  OS/2: MOU subsystem via EMXWRAP
+
+### SDK Integration
+- `sdk/emx/` — Full EMX 0.9d (5.7MB, GPLv2)
+- `sdk/os2tk45/` — IBM OS/2 Toolkit 4.5.2 (16MB trimmed)
+- `sdk/prt/` — Print API drivers (6 units)
+- `sdk/MacOSX10.6.sdk/` — Minimal Darwin SDK (crt1.o + libSystem stub)
+
+### Import Stub Generation
+- 318 OS/2 EMX import stubs reverse-engineered from emx2.a format
+  (DOSCALLS 165, EMXWRAP 102, SO32DLL 31, QUECALLS 8, MSG 4, NLS 4, SESMGR 4)
+- Format: 32-byte a.out header + 2×12-byte nlist + string table
+- Symbol prefix: underscore (`_$dll$doscalls$_index_273`)
+
+### Darwin Cross-Compilation
+- `-dFPC_USE_LIBC` flag required (libc path, not direct syscalls)
+- `crt1.o` (584 bytes) with dyld_stub_binding_helper
+- `libSystem.B.dylib` (1,820 bytes) Mach-O stub with 73 exported symbols
+- cctools/ld64 built from source (Apple open-source, APSL)
+
+### Codec Package
+71 units (65 codecs + 6 print drivers) in 8.3 filename format:
+- Image: BMP, GIF, ICO, JPEG, PCX, PNG, PNM, TGA, TIFF, XBM, XPM, SVG
+- Audio: WAV, AIFF, AU, FLAC, MP3, OGG, MIDI, MOD, S3M, XM, IT
+- Archive: ZIP, TAR, GZ, BZ2, LZH, ARJ, RAR, CAB, CPIO, RPM
+- Print: RAW, BMP, ESC/P, PCL5, PostScript, API+dithering
+- All compile on x86_64-linux + i386-linux + i386-win32 + i386-go32v2
+
+### PPU Chain
+- system.ppu rebuilt from source for 5 i386 targets + restored for x86_64
+- Source timestamps set to Jan 2025 for checksum consistency
+- All 6 targets: zero "checksum changed" warnings
+
+### License
+- Upgraded from GPLv2 to GPLv3 (exercising "or any later version" clause)
+- EMX SDK: GPLv2 (compatible)
+- OS/2 Toolkit: IBM proprietary (headers/libs for linking)
+
+## Build Results
+
+| Platform | Programs | Format |
+|----------|----------|--------|
+| Linux i386 | 15/15 | ELF32, statically linked |
+| Win32 i386 | 15/15 | PE32, dynamically linked |
+| OS/2 EMX i386 | 15/15 | MZ + ZMAGIC a.out |
+| Darwin i386 | 15/15 | Mach-O, dynamically linked |
+
+60 total executables from one cross-compiler on Linux.
+
+### THD ScanPro Suite (Phase 25)
+GPLv3 clean-room rebuild of THD ProScan from THDDOC.TXT specification.
+5 programs × 3 platforms = 15 binaries. Standalone package: `thdpro-v100-gplv3.zip`
+
+- `THDPRO` — Main scanner (archive test, virus scan, description import)
+- `THDINSTL` — Configuration wizard (ClamAV, McAfee, F-PROT, TBSCAN paths)
+- `THDPLUS` — BBS database updater (reads TESTINFO.DAT)
+- `THDTERM` — Terminal wrapper (directory watch, auto-test, PASS/FAIL sort)
+- `THDSELCT` — Interactive file selector (TUI with toggle/batch test)
+
+### OS/2 EMX Link Pipeline (Phase 12 fixes)
+- `prt0.o` reassembled with `emx-as` (773 bytes) — fixes `_dos_init`/`_dos_syscall`
+- Import stub archives (`.dll.a`) required for cross-compilation — FPC generates
+  `call _$dll$doscalls$_index_NNN` without `.stabs` import directives
+- 303 import stubs: DOSCALLS (165) + EMXWRAP (107) + SO32DLL (31)
+- Link flag: `--allow-multiple-definition` for 6 embedded imports overlapping `.dll.a`
+- `emx2.a` no longer needed (prt0.o has its own startup code)
+
+### Bug Status
+- 42 bugs tracked, 42 closed (39 fixed, 2 not-a-bug, 1 Wine-only)
+- BUG-038: SysTryResizeMem leak — CLOSED (not a bug, audit proved stats balance)
+- BUG-039: Heap lock ordering — CLOSED (not a bug, single-threaded safe)
+
+### i8086 MS-DOS Target (Phase 16)
+- Built FPC 3.2.2 `ppcross8086` from source (4.2MB ELF64)
+- Compiled i8086-msdos RTL: system, objpas, strings, dos, charset, ctypes, ports
+- 6 prt0 startup objects (tiny/small/medium/compact/large/huge memory models)
+- Hello world: 15KB MZ executable, runs on 8086+ real-mode DOS
+- Old 2.6.4irc ppcross8086 had broken register allocator (access violation) — replaced
+
+### Repo Cleanup
+- `libs/` merged into `examples/`
+- `src/thdpro/` moved to `examples/thdpro/`
+- `sdk/thdpro/` → `examples/thdpro/reference/` (zipped)
+- `src/chg2rip/` removed (doesn't work)
+- `docs/` → 5 essentials + `att/` archive (55 old files)
+- `examples/mpl-tests/` removed
+- `out/` removed
+- Stray `.o`, `.ppu`, `.s`, compiled binaries cleaned
+- THD ScanPro scanners moved from reference to `examples/thdpro/scanners/`
+- marc-lib moved from `sdk/` to `examples/thdpro/marc-lib/`
+
+### THD ScanPro Phase 25-J — Companion Tools
+- THDPLUS: BBS database updater (reads TESTINFO.DAT)
+- THDTERM: Terminal wrapper (forces local mode `0 /RO`)
+- THDSELCT: Interactive file selector (forces local mode `0 /RO`)
+- All 3 are local-only — no COM port access
+- CWSDPMI embedded in DOS stubs (no external DPMI host needed)
+- Standalone package: `thdpro-v100-gplv3.zip` (15 binaries, 3 platforms)
+
+### RIPView v1.0.0 (evga)
+- RIPscrip v1.54 parser, 640×350 EGA canvas, BMP output
+- Linux 581KB, Win32 139KB, DOS 480KB
+- Standalone package: `ripview-v100-gplv3.zip`
+
+### Session 12 Updates
+
+#### i8086 Free Vision — 24/24
+- Fixed `platform.inc`: added `{$IFDEF CPUI8086}` block with BIT_16,
+  OS_DOS, OS_GO32, ASM_FPC, ASMMODE INTEL, and {$UNDEF BIT_32_OR_MORE}
+- Fixed `editors.pas`: `{$ifdef PPC_BP}` → `{$ifdef BIT_16}` for
+  MaxLines/MaxBufLength constants (64K segment limit)
+- Fixed `drivers.pas`: `SaveExit: Pointer` → `CodePointer`
+- Fixed `views.pas`: 11 `@NestedProc` → `Pointer(@NestedProc)` casts
+- Fixed `app.pas`: 4 Pointer(@) casts
+- Fixed `outline.pas`: 4 Pointer(@) casts
+- Fixed `tabs.pas`: 1 Pointer(@) cast
+- Fixed `inplong.pas`: 1 Pointer(@) cast
+- Stub `memory.pas` for i8086 using standard heap (paragraph heap
+  uses Seg() as L-value which FPC 3.2.2 doesn't support)
+- Total: 21 Pointer(@) casts across 5 files
+
+#### Darwin FV Mach-O .o Files — 24/24
+- Used `llvm-mc-18 --arch=x86 --filetype=obj --triple=i386-apple-darwin`
+  to assemble FPC-generated .s files into real Mach-O i386 objects
+- Updated `bin/tools/darwin-as` wrapper to use llvm-mc-18
+- GNU `as` on Linux cannot produce Mach-O (rejects `.subsections_via_symbols`)
+
+#### DOS Network Units (Phase 16) — 5 units
+- `pktdrv.pas` (133 lines) — Crynwr packet driver interface, INT 60h-7Fh
+- `tcpip.pas` (401 lines) — TCP/IP stack: ARP, IP, TCP, UDP, DNS
+  (structure complete, WatTCP reference for implementation)
+- `ipx.pas` (189 lines) — IPX/SPX via INT 7Ah (Novell NetWare)
+- `netbios.pas` (195 lines) — NetBIOS via INT 5Ch (LAN Manager, WfW 3.11)
+- `mslan.pas` (257 lines) — MS Network Redirector via INT 21h
+  (NET USE drive/printer mapping)
+- WatTCP source archived: `sdk/desqview/potpouri/WATTCP.ZIP`
+- `ia16-elf-gcc` available but cannot handle far pointer function params
+
+#### RIPView v1.0.0 — Updated from GitHub
+- Pulled fresh from github.com/verta1878/mystic-bbs-irc
+- 3,604 lines across 14 source files + 3 font includes
+- 42/42 RIPscrip v1.54 commands, font rendering, FV TUI mode
+- 6 binaries: CLI + FV TUI × Linux/Win32/DOS
+
+#### fpGUI Toolkit — Archived
+- `libs/fpgui/` — 296 .pas files from github.com/graemeg/fpgui
+- Modified LGPL + GPLv2
+- Not compiled — reference for future GUI work
+
+#### OS/2 EMX PPU Flags — 139 Patched
+- Flag byte 10: 0x04 (native OS/2) → 0x1c (EMX)
+- Flag byte 12: 0x80 → 0x81
+- All 139 non-system PPUs patched to match system.ppu
+
+#### CRC Unit — All 7 Targets
+- `src/packages/hash/src/crc.pas` compiled for Linux, Win32, go32v2,
+  OS/2, Darwin, i8086
+
+### Final Counts
+- 2,843 PPUs across 7 targets
+- Free Vision: 24/24 × 6 platforms = 144 compiled units
+- i8086: 55 PPUs (26 RTL + 24 FV + 5 network)
+- 42 bugs tracked, 42 closed (39 fixed, 2 not-a-bug, 1 Wine-only)

@@ -1,0 +1,567 @@
+===============================================================================
+faq.doc           emx 0.9d     Frequently asked questions           20-Oct-1997
+===============================================================================
+                                     Copyright (c) 1995-1997 by Eberhard Mattes
+
+(This file is under construction.)
+
+Quick reference
+===============
+
+0:   Why does my system freeze after installing emx 0.9c or later?
+1:   How can I create an application which doesn't need emx.dll?
+2:   LINK386 :  warning L4051: c_alias.lib : cannot find library
+3:   Where can I find information about the functions in os2emx.h?
+4:   Why does my program crash in _um_lump_alloc_noexpand() (etc.)?
+5:   Has GNU readline been ported to emx?
+6:   Why does VIEW say `Cannot open input files'?
+7:   Why does `view emxbook' say `Cannot open input files'?
+8:   Why does info say `info: Cannot find the node "Top".'?
+9:   How can I redirect the error messages of GCC?
+10:  Where can I find a `make' tool for emx?
+11:  What shall I do if `ostream::operator<<' and `_cout' etc. are undefined?
+12:  How can I open binary files in C++?
+13:  c:/emx/include/sys/stat.h:14: parse error before `dev_t'
+14:  Where is LINK386?
+15:  How do I create TCP/IP programs?
+16:  How do I create X11 clients?
+17:  What class libraries are available for emx?
+18:  Curses does not work correctly TODO: symptoms
+19:  What's the difference between _beginthread() and DosCreateThread?
+20:  How can I read keys without echo & without waiting for the RETURN key?
+21:  Why does RC say `fatal error C1015: cannot open include file 'os2.h''?
+22:  Why doesn't my PM program display any windows?
+23:  Why do programs started by an emx program run out of memory under DOS?
+24:  Undefined symbol __beginthread referenced from text segment
+25:  Undefined symbol _v_init referenced from text segment
+26:  OK, I'm using -lvideo.  Why is _v_init still undefined?
+27:  Why does rand() always yield the same sequence of `random' numbers?
+28:  Where can I get a pseudo random number generator better than rand()?
+29:  Why does spawn*(P_SESSION, ...) fail with errno set to EINVAL?
+30:  Why does emxomf print `emxomf warning: Cycle detected by make_type'?
+31:  Why are .exe files so big if I use C++?
+32:  How can I create smaller .exe files?
+33:  Why does my application not work if linked with LINK386 (-Zomf)?
+34:  Why does va_arg not work?
+35:  Why does the linker complains about `malloc' being multiply defined?
+36:  How can I make ILINK.EXE to be invoked instead of LINK386.EXE?
+37:  Where can I find IPMD?
+38:  Where can I find the crypt() function?
+39:  Where can I find a description of the GCC switches?
+40:  Where can I find information on sockets?
+
+
+The questions and answers
+=========================
+
+0:   Why does my system freeze after installing emx 0.9c or later?
+
+  You are probably using a version of Siegfried Hanisch's ScreenSaver
+  which breaks with emx 0.9c and later.  Please upgrade to version 2.6
+  of ScreenSaver.
+
+1:   How can I create an application which doesn't need emx.dll?
+
+  Compile and link with the -Zomf and -Zsys options of GCC.  Example:
+
+      gcc -Zomf -Zsys myprog.c
+
+  Note that fork() and some other features are not available when
+  using the -Zomf and -Zsys options.
+
+2:   Compiling and linking with the -Zomf option fails; LINK386
+     complains about not finding libraries c_alias.lib, gcc.lib,
+     c.lib, etc.:
+
+       LINK386 :  warning L4051: c_alias.lib : cannot find library
+
+     Compiling and linking without the -Zomf option works.
+
+  You forgot to run `omflibs' in the \emx\lib directory after
+  unpacking the ZIP files.
+
+3:   Where can I find information about the functions in os2emx.h?
+
+  TODO (Toolkit, DEVCON)
+
+    ftp-os2.nmsu.edu:/os2/newsltr/edm*.zip
+    ftp.leo.org:/pub/comp/os/os2/leo/doc/edmi/edm*.zip
+
+    http://www.iqpac.com
+    http://www.iqpac.com/edm2/os2api/index.html
+
+4:   Why does my program crash in _um_lump_alloc_noexpand() (or a similar
+     function I've never heard about)?
+
+  Your program corrupts the heap by overwriting control structures of
+  the heap.  For instance, this happens if you write beyond the end of
+  a block allocated by malloc().  There are several methods for
+  debugging heap problems:
+
+  - Recompile the program using the following GCC options:
+
+      -fbounds-checking -fno-builtin
+
+    Note that -fbounds-checking imposes several restrictions on the
+    program; see the GCC manual, \emx\gnu\doc\bounds\bcreport.txt, and
+    \emx\doc\emxgnu.doc for details.
+
+  - Recompile the program using a debugging malloc() package, such as
+    dbmalloc:
+
+      ftp.leo.org:/pub/comp/os/os2/leo/devtools/libraries/dbmalloc.zip
+
+    dbmalloc replaces malloc() and friends and memcpy() and friends to
+    catch attempts to corrupt the heap.  Note that -fbounds-checking
+    links with a debugging malloc() package.
+
+  - Insert _heapchk() calls to see where the heap becomes corrupt:
+
+      assert (_heapchk () == _HEAPOK);
+
+    Note that _heapchk() returns _HEAPEMPTY if malloc() has not yet
+    been called.  Therefore you should insert a dummy malloc() call
+    before the first _heapchk() call or don't call _heapchk() before
+    calling malloc().
+
+    _heapchk() works with the emx implementation of malloc() only.
+    Other malloc packages may support a similar function.
+
+  - Instead of inserting _heapchk() calls into the code, you can call
+    _heapchk() from GDB.  Just insert one call to _heapchk() to pull
+    in _heapchk().  To call _heapchk() from GDB, type
+
+      call _heapchk()
+
+    To check the heap each time the program stops, type
+
+      display _heapchk()
+
+    _heapchk() works with the emx implementation of malloc() only.
+    Other malloc packages may include a similar function.
+
+5:   Has GNU readline been ported to emx?
+
+  Yes, for GDB.  Just unpack the GDB sources (gdbsrc?.zip) and see
+  \emx\doc\build.doc for instructions for building GDB (which includes
+  building GNU readline).
+
+6:   Why does OS/2's VIEW command say
+
+      Cannot open input files
+
+     if I try to view an .inf file of the \emx\info directory?
+
+  There are two sorts of .inf files: OS/2 on-line books (to be viewed
+  with VIEW), and GNU info files (to be viewed with `info').  Type
+
+    info -f gdb
+
+  instead of
+
+    view gdb
+
+  to view gdb.inf.
+
+7.   Why does `view emxbook say `Cannot open input files'?
+
+  The EMXBOOK environment variable is not correctly set.  If you have
+  installed bsddev.zip, put the following line in config.sys:
+
+    set EMXBOOK=emxdev.inf+emxlib.inf+emxgnu.inf+emxbsd.inf
+
+  If you have not installed bsddev.zip, put the following line in
+  config.sys:
+
+    set EMXBOOK=emxdev.inf+emxlib.inf+emxgnu.inf
+
+  Don't forget to update that line of config.sys when installing
+  bsddev.zip.
+
+8:   Why does the `info' program say
+
+       info: Cannot find the node "Top".
+
+     if I try to view an .inf file of the \emx\book directory?
+
+  There are two sorts of .inf files: OS/2 on-line books (to be viewed
+  with VIEW), and GNU info files (to be viewed with `info').  Type
+
+    view emxdev
+
+  instead of
+
+    info -f emxdev
+
+  to view emxdev.inf.  You can't view OS/2 on-line books under DOS
+  (TODO: add a pointer to the program for viewing a .inf file in text
+  mode, available on ftp-os2.cdrom.com.  TODO: PC-DOS 7?)
+
+9:   How can I redirect the error messages of GCC?  `>errors' does not
+     work.
+
+  GCC, like most Unix programs, prints its error messages on standard
+  error, not on standard output.  Under OS/2, you can redirect
+  standard error by using `2>' instead of `>':
+
+    gcc myprog.c 2>errors
+
+  To pipe standard error (along with standard output) into another
+  program, use `2>&1 |' instead of `|':
+
+    gcc myprog.c 2>&1 | more
+
+  Unfortunately COMMAND.COM cannot redirect standard error, therefore
+  the above operators don't work under DOS.  However, you can use the
+  `redir' sample program of emx:
+
+    redir "2>errors" "gcc myprog.c"
+
+  Type the following commands to build redir.exe:
+
+    cd \emx\samples
+    gcc redir.exe
+
+  You might want to copy redir.exe to \emx\bin.
+
+10:  Where can I find a `make' tool for emx?
+
+  TODO (dmake 3.8, dmake 4.0, GNU make, ...)
+
+11:  Linking C++ programs does not work, there are a lot of undefined
+     symbols like `ostream::operator<<' and `_cout'.  What do I miss?
+
+  See emxgnu.doc.  You have to use the -lstdcpp option of GCC to link
+  with the standard C++ library (stdcpp.a or stdcpp.lib) which
+  contains code for <iostream.h> etc.  The -l option must (usually) be
+  used after all the object files and source files:
+
+    gcc myprog.cpp -lstdcpp
+
+  (Any object files, source files, and libraries given after an -l
+  option cannot reference symbols from the library specified by that
+  -l option.)
+
+12:  How can I open binary files in C++?
+
+  Use the ios::bin flag.
+
+13:  The <sys/stat.h> header does not work, I get error messages like
+
+       c:/emx/include/sys/stat.h:14: parse error before `dev_t'
+
+     if I compile a program that uses <sys/stat.h>.  How can I avoid this?
+
+  You have to #include <sys/types.h> before <sys/stat.h>, as required
+  by POSIX.1
+
+14:  Where is LINK386?
+
+  It's in the \OS2 directory.  If it isn't, run `Selective Install' of
+  the `System Setup' folder, click on the OK button, click on
+  `Optional System Utilities' and its `More...' button, then select
+  `Linking Object Modules', and continue the installation.
+
+15:  How do I create TCP/IP programs?
+
+  TODO (headers, man pages, -lsocket, emxdev.doc)
+
+16:  How do I create X11 clients?
+
+  TODO (IBM X11: header files, patching header files, libraries,
+  problems; XFree86/OS2: ...)
+
+17:  What class libraries are available for emx?
+
+  TODO (C++: libg++, STL, dho, LEDA, Touch-GUI, OCL, os2cl, OOL)
+       (Objective C: KPlib, libobjects, classlib)
+
+  ftp-os2.nmsu.edu:/os2/dev32/cl_lib07.zip
+  ftp-os2.nmsu.edu:/os2/dev32/dho_10b.zip
+  ftp-os2.nmsu.edu:/os2/dev32/lobj_bin.zip
+  ftp-os2.nmsu.edu:/os2/dev32/lobj_src.zip
+  ftp-os2.nmsu.edu:/os2/dev32/ocl120.zip
+  ftp-os2.nmsu.edu:/os2/dev32/os2cl016.zip
+  ftp.mpi-sb.mpg.de:/pub/LEDA/...
+
+18:  Curses does not work correctly TODO: symptoms
+
+  TODO (PDCurses, ncurses)
+
+19:  What's the difference between _beginthread() and DosCreateThread?
+
+  _beginthread() creates a new thread and initializes the C runtime
+  environment for the new thread.  DosCreateThread just creates a new
+  thread.  Therefore, threads created by DosCreateThread cannot use
+  certain library functions such as malloc(), printf(), rand(), and
+  strtok().
+
+20:  How can I read keys without echo and without waiting for the
+     RETURN key?
+
+  TODO (termio, termios, _read_kbd, KbdCharIn, INT 0x16, getpass(),
+        _getpass1(), _getpass2())
+
+21:  RC cannot find include files, it prints
+
+       fatal error C1015: cannot open include file 'os2.h'
+
+     How can I fix this?
+
+  Use the -I option or set the INCLUDE environment variable.  At least
+  one of them should point to the \emx\include directory.  Examples:
+
+    rc -r -I c:\emx\include myprog.rc
+
+    set include=c:\emx\include
+    rc -r myprog.rc
+
+  If you have installed the Developer's Toolkit, INCLUDE is probably
+  already set up correctly, pointing to the Toolkit's include file
+  directory.
+
+22:  I wrote a correct PM program, but its windows are invisible.
+     What's wrong?
+
+  You forgot to mark the .EXE file as PM application.  This is usually
+  done by using
+
+    NAME myprog WINDOWAPI
+
+  in the module definition file (myprog.def).  To link with a module
+  definition file, just give its name to GCC:
+
+    gcc myprog.c myprog.res myprog.def
+
+  You can also use emxbind's -ep option, though a module definition
+  file is usually preferred.
+
+23:  Why do programs started by an emx program with spawn*() or
+     system() run out of memory under DOS?
+
+  You forgot to use the emx option -p for the emx program.  Type
+
+    emxbind -a myprog.exe -p
+
+  to set the -p option.
+
+24:  I get the error message 
+
+      Undefined symbol __beginthread referenced from text segment
+
+    or
+
+      error L2029: '_beginthread' : unresolved external
+
+    when linking my program.  Where is _beginthread()?
+
+  _beginthread() is in the multithread libraries.  Therefore you have
+  to use the -Zmt option.
+
+25:  I get error messages like
+
+      Undefined symbol _v_init referenced from text segment
+
+    or
+
+      error L2029: 'v_init' : unresolved external
+
+    when linking my program.  Where are all those functions whose name
+    start with `v_' or `wm_'?
+
+  These functions are in the video.a and video.lib libraries.
+  Therefore you have to use the -lvideo option for linking.
+
+26:  OK, I'm using -lvideo.  Why is _v_init still undefined?
+
+  Libraries must be specified after the modules which reference them.
+  That is, -lvideo must follow any object files or source files which
+  use the video.a library:
+
+    gcc main.c sub.c -lvideo    CORRECT
+    gcc -lvideo main.c sub.c    INCORRECT
+
+27:  rand() is not random enough: Why does it yield the same sequence
+     of `random' numbers each time I run my program?
+
+  This behavior is required by ISO 9899-1990.  It makes the behavior
+  of your program recreatable.  If you don't like this, call srand()
+  with a really random number (derived from the system time, for
+  instance) or use a hardware device for generating random numbers.
+
+  The emx implementation of rand() is thread-safe, each thread has its
+  own pseudo random number generator.  If you want different sequences
+  in different threads, use different arguments for srand() in
+  different threads.
+
+28:  rand() is not random enough, where can I get a better pseudo
+     random number generator?
+
+  Use random() which is provided in the bsd.a and bsd.lib libraries
+  (use -lbsd).
+
+29:  spawn*(P_SESSION, ...) fails with errno set to EINVAL, _syserrno()
+     returns 460.  What's going on?
+
+  emx.dll uses a termination queue when it starts a session to be able
+  to signal SIGCHLD on termination of the session and to be able to
+  retrieve the return code of that session for wait().
+
+  There can be multiple queues per session, even in different
+  processes.  However, no two or more of these queues can be attached
+  to a child session at a time.  That is, while a process P1 has a
+  child session S1, only process P1 can start another session S2.  In
+  other words, all child sessions of a session must be attached to the
+  same queue.
+
+  There are two ways to solve the problem:
+
+  1. Have only one queue.  That is, all sessions are to be started by
+     the same process; don't start sessions from fork()ed processes.
+
+  2. Don't have a queue.  If the P_UNRELATED flag is passed to
+     spawn*(), emx.dll won't use a termination queue.  However,
+     SIGCHLD and wait() won't work.
+
+30:  Why does emxomf print `emxomf warning: Cycle detected by make_type'?
+
+  emxomf does not completely understand the debug info of the module.
+  Ignore this warning message, it's benign.
+
+31:  Why are .exe files so big if I use C++?
+
+  C++ debug info is quite big; use the -s option of GCC to avoid
+  putting debug info into the executable.  See also the next question.
+
+32:  How can I create smaller .exe files?
+
+  There are various techniques for reducing the size of .exe files:
+
+  1. Use the -s option of GCC to strip debug info.  If you want to ship
+     a small .exe file and still want to be able to debug it (in case
+     a user sends a core dump file, for instance), let GCC create an
+     unstripped a.out executable and let emxbind strip the debug info:
+
+        gcc -g -o app.dbg app1.o app2.o app3.o
+        emxbind -bs app.dbg
+
+     Now, app.exe does not contain debug info and you can type
+
+        gdb -e app.exe -s app.dbg
+        gdb -e app.exe -s app.dbg -c core
+
+     to debug the application.  This technique does not work with
+     the -Zomf option.
+
+  2. Link the C runtime library dynamically (emxlibcs.dll or
+     emxlibcm.dll).  This is done by using the -Zcrtdll option of GCC.
+     However, dynamically linked applications cannot be run under DOS.
+
+  3. Use the smaller, faster, and inaccurate version of the routines
+     for decimal to binary conversion and vice versa.  This is done by
+     using the -Zsmall-conv option of GCC.  (This applies to
+     statically linked programs only.)
+
+  4. Use LINK386 instead of `ld' to link the application.  This is
+     done by using the -Zomf option of GCC.
+
+  5. Let LINK386 compress the .exe file:
+
+        gcc -o app.exe app1.obj app2.obj app3.obj -Zomf -Zlinker /exepack
+
+     LINK386 will compress better if /exepack:2 is used instead of
+     /exepack.  However, executables created with /exepack:2 will run
+     only on OS/2 3.0 and later, not on OS/2 2.1, for instance.
+
+     RC packs resources if the -x option is specified.  -x1 works with
+     all versions of OS/2, -x2 works with OS/2 3.0 and later only.
+
+  6. Decrease the alignment factor of pages in the .exe file:
+
+        gcc -o app.exe app1.obj app2.obj app3.obj -Zomf -Zlinker /align:4
+
+  7. Avoid scanf() and printf() as these function pull in a lot of
+     code from the libraries.  Especially in C++ programs, using both
+     C-style and C++-style I/O will put a lot of duplicate code into
+     the executable.  (This applies to statically linked programs
+     only.)
+
+  8. Let GCC optimize the code.  Try various optimization levels (-O
+     and -O2).  Note that some optimizations increase the size of the
+     code.  Try -fomit-frame-pointer (unless you need to debug the
+     program).  See the GCC manual for details on optimization.
+
+  9. Use the old malloc() library.  This is done by using the
+     -lmalloc1 option of GCC (not tested).  (This applies to
+     statically linked programs only.)
+
+33:  My application does not work if linked with LINK386 (-Zomf option
+     of GCC).  It does work if linked with ld/emxbind.  Why?
+
+  There are several possible reasons for this effect:
+
+  1. Some versions of LINK386 have a bug which causes uninitialized
+     variables to be initialized with *non-zero* values (ISO 9899-1990
+     requires all bits of uninitialized variables being initially
+     zero).  `LINK386 3.00.000 Jul 05 1995' (of FixPak XR_W009) and
+     later are OK (note the date, there's at least one 3.00.000
+     version which does not work.)
+
+  2. The default stack size with -Zomf is only 32768 bytes.  This is
+     usually not enough.  Use, for instance, -Zstack 0x2000 (8 MBytes
+     of stack space) on the GCC command line
+
+  3. Using SEGMENTS in the module definition file causes a problem
+     with constructors and destructors (which are also used by the
+     startup code of the C library) unless *all* code segments are
+     listed
+
+  4. All versions of LINK386 (and ILINK) have a bug which under
+     certain circumstances causes the entire data object to be
+     initialized to zero.  This seems to happen only if the size of
+     the code object is n*0x1000+4.  To work around the problem, just
+     add some dummy code
+
+34:  Why does va_arg not work?
+
+  There are some restrictions on the type of the second argument of
+  the va_start macro and on the type passed as second argument to the
+  va_arg macro.  For instance, `char', `short', and `float' don't
+  work.  See emxlib.doc for details.
+
+35:  The linker complains about `malloc' being multiply defined.  What's
+     wrong?
+
+  You are using a malloc() replacement and _tmalloc() is called by the
+  program.  You have to specify the -ltmalloc option.
+
+36:  How can I make ILINK.EXE to be invoked instead of LINK386.EXE?
+
+  SET EMXOMFLD_LINKER=C:\IBMCPP\BIN\ILINK.EXE -NOFREE
+
+37:  Where can I find IPMD?
+
+  IPMD (aka ICSDEBUG), IBM's debugger for OS/2, is shipped as part of
+  IBM's Visual Age C++.  It's not available for free.
+
+38:  Where can I find the crypt() function?
+
+  ftp.leo.org:/pub/comp/os/os2/leo/crypt/gnuufc.zip
+
+39:  Where can I find a description of the GCC switches?
+
+  The switches (command line options) of GCC are described in the GCC
+  manual \emx\info\gcc.inf.  INSTALL.DOC contains instructions for
+  making GNU on-line manuals, including the GCC manual.  You can read
+  GNU on-line manuals with GNU Emacs or with info, the stand-alone
+  info reader (see emxgnu.doc).
+
+  GCC switches added in the emx port of GCC are described in
+  emxgnu.doc (OS/2: `view emxgnu gcc').
+
+40:  Where can I find information on sockets?
+
+  rtfm.mit.edu:/pub/usenet/news.answers/unix-faq/socket
+
+
+------------------------------ END OF FAQ.DOC -------------------------------

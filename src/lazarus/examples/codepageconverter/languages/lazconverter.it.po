@@ -1,0 +1,54 @@
+ Massimo Soricetti <notturno@quipo.it>, 2011.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2011-04-21 23:51+0200\n"
+"Last-Translator: Massimo Soricetti <notturno@quipo.it>\n"
+"Language-Team: PincoPallo Team\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Virtaal 0.5.1\n"
+
+#: tlazconverterform.button1.caption
+msgid "Path"
+msgstr "Cammino"
+
+#: tlazconverterform.button2.caption
+msgid "Search"
+msgstr "Cerca"
+
+#: tlazconverterform.button3.caption
+msgid "Convert"
+msgstr "Converti"
+
+#: tlazconverterform.caption
+msgctxt "TLAZCONVERTERFORM.CAPTION"
+msgid "Codepage LazConverter for PAS, LFM, LRS, LRT & INC files v0.0.6"
+msgstr "Codepage LazConverter per file PAS, LFM, LRS, LRT e INC v0.0.6"
+
+#: tlazconverterform.label1.caption
+msgid "Path to your project:"
+msgstr "Cammino per il vostro progetto:"
+
+#: tlazconverterform.label2.caption
+msgid "Convert From:"
+msgstr "Converti da:"
+
+#: tlazconverterform.label3.caption
+msgid "Convert To:"
+msgstr "Converti in:"
+
+#: tlazconverterform.label6.caption
+msgid "Ready..."
+msgstr "Pronto..."
+
+#: tlazconverterform.menuitem1.caption
+msgid "Remove from conversion"
+msgstr "Togli dalla conversione"
+
+#: tlazconverterform.selectdirectorydialog1.title
+msgid "Select Directory"
+msgstr ""
+
