@@ -1,0 +1,2 @@
+--script=script.res
+-o /tmp/test_link.exe

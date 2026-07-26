@@ -1,113 +1,42 @@
-{
-    This file is part of the Free Pascal run time library.
-    Copyright (c) 1999-2000 by the Free Pascal development team
+{ dynlibs.inc for OS/2 EMX — real implementation using DosLoadModule }
 
-    Implements OS dependent part for loading of dynamic libraries.
+uses doscalls;
 
-    See the file COPYING.FPC, included in this distribution,
-    for details about the copyright.
+procedure InitDynLibs;
+begin
+end;
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-
- **********************************************************************}
-
-
-{$ifdef readinterface}
-
-{ ---------------------------------------------------------------------
-    Interface declarations
-  ---------------------------------------------------------------------}
-
-type
- TLibHandle = longint;
-
-const
- NilHandle = 0;
-// these are for easier crossplatform construction of dll names in dynloading libs.
- SharedSuffix  = 'dll';
-
-{$else}
-
-{ ---------------------------------------------------------------------
-    Implementation section
-  ---------------------------------------------------------------------}
-
-uses
- DosCalls;
-
-threadvar
- DynLibErrNo: cardinal;
- DynLibErrPath: array [0..259] of char;
-
-function LoadLibrary (const Name: AnsiString): TLibHandle;
+Function DoLoadLibrary(const Name: AnsiString): TLibHandle;
 var
- Handle: longint;
+  ObjName: String;
+  Handle: THandle;
+  RC: Cardinal;
+  NameZ: String;
 begin
- DynLibErrPath [0] := #0;
- DynLibErrNo := DosLoadModule (@DynLibErrPath [0], SizeOf (DynLibErrPath),
-                                                         PChar (Name), Handle);
- if DynLibErrNo = 0 then
-  Result := Handle
- else
-  Result := NilHandle;
+  ObjName := '';
+  NameZ := Name;
+  RC := DosLoadModule(ObjName, 255, NameZ, Handle);
+  if RC = 0 then
+    Result := TLibHandle(Handle)
+  else
+    Result := NilHandle;
 end;
 
-function GetProcedureAddress (Lib: TLibHandle; const ProcName: AnsiString): pointer;
+Function DoUnloadLibrary(Lib: TLibHandle): Boolean;
+begin
+  Result := (DosFreeModule(THandle(Lib)) = 0);
+end;
+
+Function DoGetProcedureAddress(Lib: TLibHandle; const ProcName: AnsiString): Pointer;
 var
- P: pointer;
+  Addr: Pointer;
+  RC: Cardinal;
+  ProcZ: String;
 begin
- DynLibErrPath [0] := #0;
- DynLibErrNo := DosQueryProcAddr (Lib, 0, PChar (ProcName), P);
- if DynLibErrNo = 0 then
-  Result := P
- else
-  Result := nil;
+  ProcZ := ProcName;
+  RC := DosQueryProcAddr(THandle(Lib), 0, ProcZ, Addr);
+  if RC = 0 then
+    Result := Addr
+  else
+    Result := nil;
 end;
-
-function UnloadLibrary (Lib: TLibHandle): boolean;
-begin
- DynLibErrPath [0] := #0;
- DynLibErrNo := DosFreeModule (Lib);
- Result := DynLibErrNo = 0;
-end;
-
-function GetDynLibsError: longint;
-begin
- GetDynLibsError := DynLibErrNo;
-end;
-
-function GetDynLibsErrorStr: string;
-const
- SysMsgFile: array [0..10] of char = 'OSO001.MSG'#0;
-var
- VarArr: array [1..9] of PChar;
- OutBuf: array [0..999] of char;
- RetMsgSize: cardinal;
- RC: cardinal;
-begin
- if DynLibErrNo = 0 then
-  GetDynLibsErrorStr := ''
- else
-  begin
-   VarArr [1] := @DynLibErrPath [0];
-   RC := DosGetMessage (@VarArr, 1, @OutBuf [0], SizeOf (OutBuf),
-                                     DynLibErrNo, @SysMsgFile [0], RetMsgSize);
-   if RC = 0 then
-    Result := StrPas (@OutBuf [0])
-   else
-    begin
-     WriteStr (Result, DynLibErrNo);
-     Result := 'Error ' + Result;
-    end;
-   if DynLibErrPath [0] <> #0 then
-    Result := StrPas (@DynLibErrPath [0]) + ' - ' + Result;
-  end;
-end;
-
-function GetLoadErrorStr: string;
-begin
- GetLoadErrorStr := GetDynLibsErrorStr;
-end;
-{$endif}

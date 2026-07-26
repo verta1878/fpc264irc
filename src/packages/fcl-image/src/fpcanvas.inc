@@ -333,8 +333,11 @@ begin
 end;
 
 function TFPCustomCanvas.TextExtent(const Text: string): TSize;
+var tw, th: integer;
 begin
-  GetTextSize(Text, Result.cx, Result.cy);
+  GetTextSize(Text, tw, th);
+  Result.cx := tw;
+  Result.cy := th;
 end;
 
 function TFPCustomCanvas.TextHeight(const Text: string): Integer;

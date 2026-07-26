@@ -30,9 +30,13 @@ procedure CheckLineClipping (ClipRect:TRect; var x1,y1, x2,y2 : integer);
 implementation
 
 procedure SortRect (var rect : TRect);
+var l,t,r,b: integer;
 begin
-  with rect do
-    SortRect (left,top, right,bottom);
+  l := rect.left; t := rect.top;
+  r := rect.right; b := rect.bottom;
+  SortRect(l, t, r, b);
+  rect.left := l; rect.top := t;
+  rect.right := r; rect.bottom := b;
 end;
 
 procedure SortRect (var left,top, right,bottom : integer);
@@ -61,9 +65,13 @@ begin
 end;
 
 procedure CheckRectClipping (ClipRect:TRect; var Rect:Trect);
+var x1,y1,x2,y2: integer;
 begin
-  with ClipRect do
-    CheckRectClipping (ClipRect, left,top,right,bottom);
+  x1 := Rect.left; y1 := Rect.top;
+  x2 := Rect.right; y2 := Rect.bottom;
+  CheckRectClipping(ClipRect, x1, y1, x2, y2);
+  Rect.left := x1; Rect.top := y1;
+  Rect.right := x2; Rect.bottom := y2;
 end;
 
 procedure CheckRectClipping (ClipRect:TRect; var x1,y1, x2,y2 : integer);

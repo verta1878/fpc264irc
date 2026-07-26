@@ -1,0 +1,9 @@
+{"version":1,"strings":[
+{"hash":209132501,"name":"charconsts.sinvalidunicodecodepointsequence","sourcebytes":[73,110,118,97,108,105,100,32,85,110,105,99,111,100,101,32,99,111,100,101,32,112,111,105,110,116,32,115,101,113,117,101,110,99,101],"value":"Invalid Unicode code point sequence"},
+{"hash":122084952,"name":"charconsts.sinvalidutf32char","sourcebytes":[73,110,118,97,108,105,100,32,85,84,70,45,51,50,32,99,104,97,114,97,99,116,101,114,58,32,85,43,37,120],"value":"Invalid UTF-32 character: U+%x"},
+{"hash":222365044,"name":"charconsts.sinvalidhighsurrogate","sourcebytes":[73,110,118,97,108,105,100,32,104,105,103,104,32,115,117,114,114,111,103,97,116,101,32,97,116,32,105,110,100,101,120,32,37,100],"value":"Invalid high surrogate at index %d"},
+{"hash":166628245,"name":"charconsts.shighsurrogateoutofrange","sourcebytes":[72,105,103,104,32,115,117,114,114,111,103,97,116,101,32,111,117,116,32,111,102,32,114,97,110,103,101],"value":"High surrogate out of range"},
+{"hash":48120405,"name":"charconsts.slowsurrogateoutofrange","sourcebytes":[76,111,119,32,115,117,114,114,111,103,97,116,101,32,111,117,116,32,111,102,32,114,97,110,103,101],"value":"Low surrogate out of range"},
+{"hash":55167973,"name":"charconsts.sstringindexoutofrange","sourcebytes":[83,116,114,105,110,103,32,105,110,100,101,120,32,111,117,116,32,111,102,32,114,97,110,103,101],"value":"String index out of range"},
+{"hash":16812788,"name":"charconsts.sclasscantbeconstructed","sourcebytes":[67,108,97,115,115,32,99,97,110,110,111,116,32,98,101,32,99,111,110,115,116,114,117,99,116,101,100],"value":"Class cannot be constructed"}
+]}

@@ -1,0 +1,10 @@
+Procedure TEventLog.ActivateSystemLog; begin end;
+Procedure TEventLog.DeActivateSystemLog; begin end;
+procedure TEventLog.WriteSystemLog(EventType: TEventType; const Msg: String);
+begin WriteLn(StdErr, Msg); end;
+Function TEventLog.DefaultFileName: String; begin Result := 'event.log'; end;
+function TEventLog.MapTypeToEvent(EventType: TEventType): DWord; begin Result := Ord(EventType); end;
+function TEventLog.MapTypeToCategory(EventType: TEventType): Word; begin Result := 0; end;
+function TEventLog.MapTypeToEventID(EventType: TEventType): DWord; begin Result := Ord(EventType); end;
+function TEventLog.RegisterMessageFile(AFileName: String): Boolean; begin Result := True; end;
+function TEventLog.UnRegisterMessageFile: Boolean; begin Result := True; end;

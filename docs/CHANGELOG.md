@@ -193,3 +193,96 @@ GPLv3 clean-room rebuild of THD ProScan from THDDOC.TXT specification.
 - Free Vision: 24/24 × 6 platforms = 144 compiled units
 - i8086: 55 PPUs (26 RTL + 24 FV + 5 network)
 - 42 bugs tracked, 42 closed (39 fixed, 2 not-a-bug, 1 Wine-only)
+
+
+### Architecture Decision: Pure Pascal go32v2 Sockets
+
+**[DECISION]** Replaced C-based sockets.pp (27 `{$linklib watt}` externals)
+with pure Pascal implementation using go32 unit DPMI services (735 lines).
+
+| Before | After |
+|--------|-------|
+| `{$linklib watt}` (C library) | `Uses go32` (Pascal) |
+| 27 C external declarations | `realintr()` + `seg_move()` |
+| Requires libwatt.a pre-compiled | Self-contained, no C toolchain |
+| Watt-32 handles packet driver | go32.realintr() calls packet driver |
+| Watt-32 handles DMA buffers | go32.global_dos_alloc() + seg_move() |
+
+Same pattern as go32.pp itself — pure Pascal talking to hardware through
+DPMI interrupts. The i8086 port was mechanical: swap go32.realintr() for
+Dos.Intr() and go32.seg_move() for Move() (already in real mode).
+
+### i8086 Huge Memory Model
+
+**[DECISION]** Rebuilt entire i8086 RTL with `-Wmhuge` flag. Removes 64K
+segment limit for data elements. Unlocked: classes, FCL-Base, FCL-JSON,
+FCL-XML, FCL-Image, paszlib, regexpr, sockets, resolve, ssockets,
+fphttpclient, openssl, dynlibs, fpwidestring, fpcanvas.
+
+i8086: 55 → 106 PPUs. Key fixes:
+- paszlib zbase.pas: `{$IFDEF TP}` → `{$IF defined(TP) or defined(CPUI8086)}`
+- xmlread.pp: Unicode case labels $D7FF/$E000 wrapped with `{$IF defined(CPUI8086)}`
+- clipping.pp: TRect LongInt→SmallInt via temp vars
+- fpwidestring: removed THREADING feature, used System.TCompareOptions
+
+### Final PPU Counts
+- Linux: 236, Win32: 619, go32v2: 298, OS/2: 207, Darwin: 787, i8086: 106
+- Total: 3,011 PPUs across 7 targets
+
+
+### Phase 27-29: Incomplete Units Finished
+
+#### Phase 27 — OS/2 DynLibs Real Implementation ✅
+- `dynlibs.inc` wired to `DosLoadModule`/`DosFreeModule`/`DosQueryProcAddr`
+  from `doscalls` unit. OpenSSL on OS/2 can now load real DLLs.
+
+#### Phase 28 — Darwin FV Mach-O .o Refresh ✅
+- 24/24 PPUs + 24/24 Mach-O .o rebuilt via `llvm-mc-18`
+- Reflects all source changes (Pointer(@) casts, BIT_16 ifdefs, etc.)
+
+#### Phase 29 — TCP/IP Implementation ✅
+- `ARPResolve`: sends ARP request, subnet/gateway detection, cache
+- `fpConnect`: initializes seq numbers, sends SYN
+- `fpSend`: builds Ethernet + IP + TCP headers, correct checksums
+- `SendTCPPacket`: full packet builder (TCP pseudo-header checksum)
+- `BuildIPPacket`: IPv4 header with TTL, ident, checksum
+- `TCPChecksum`: RFC 793 with pseudo-header
+- Both go32v2 (960 lines) and i8086 (957 lines)
+- Remaining: packet receive callback needs real packet driver
+
+#### Additional Fixes
+- `eventlog.inc` for i8086/go32v2 — stub (writes to stderr)
+- `tcpip.pas` rewritten as thin wrapper around `sockets` unit
+- `resolve.inc` go32v2 — dotted-quad parsing, DNS placeholder
+- `variants` + `varutils` compiled for i8086 from FPC 3.2.2 source
+- `fpjson` + `jsonparser` now compile on i8086 (was blocked by variants)
+
+### Final Counts
+- Linux: 237, Win32: 619, go32v2: 298, OS/2: 207, Darwin: 788, i8086: 112
+- Total: 3,019 PPUs across 7 targets
+
+
+### Phase 30 — Smart Linking (go32v2)
+
+Rebuilt 149/152 go32v2 units with `-CX` flag for smart linking.
+Programs compiled with `-XX` strip unused procedures from every unit.
+
+| Before | After |
+|--------|-------|
+| 3 .a / 149 .o | 149 .a / 3 .o |
+| 2% smart-linked | 98% smart-linked |
+
+Remaining 3 .o (assembly, pre-Pascal bootstrap):
+- prt0 — DJGPP DPMI real→protected mode switch
+- exceptn — hardware exception/interrupt handler
+- fpu — FPU detection via CPUID
+
+Key fixes during smart-link rebuild:
+- `get_pc_addr`: removed cpui386 from exclusion ifdef in system.inc
+- `classesh.inc`: removed duplicate tthread.inc include from classes.pp
+- `tthread.inc`: go32v2 single-threaded stubs matching 2.6.4 classesh.inc
+- `process.inc`: go32v2 stubs for Execute, Resume, Suspend, Terminate
+- `eventlog.inc`: simplified stubs without GetEnumName dependency
+- `fpwidestring`: CompareStringProc 3-param → 2-param for 2.6.4 system unit
+- `sysmsg`: compiled with `-Rintel` for inline assembly
+- 67 stale duplicate .o files removed (superseded by .a)

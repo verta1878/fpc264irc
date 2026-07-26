@@ -95,7 +95,7 @@ Procedure HandleErrorAddrFrameInd (Errno : longint;addr : CodePointer; frame : P
   Used by range check error handlers in astrings.inc (backported from 3.0).
   i8086/i386/x86_64 provide their own asm Get_pc_addr in the cpu include
   (below), so exclude them here to avoid a duplicate-overload clash. }
-{$if not(defined(cpui8086) or defined(cpui386) or defined(cpux86_64))}
+{$if not(defined(cpui8086) or defined(cpux86_64))}
 function get_pc_addr : CodePointer;
 begin
   get_pc_addr := nil;

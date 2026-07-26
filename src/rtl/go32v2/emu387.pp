@@ -110,7 +110,7 @@ end;
 { function _detect_80387 : boolean;
   not used because of the underscore problem }
 
-{$L fpu.o }
+{ fpu detection — inline Pascal asm, no external .o }
 
 
 function getenv(const envvar:string):string;
@@ -138,7 +138,44 @@ begin
 end;
 
 
-function __detect_80387:byte;external name '__detect_80387';
+function __detect_80387: byte; assembler; nostackframe;
+asm
+  pushl %esi
+  pushl %eax
+  movl  %esp, %esi
+  fninit
+  movw  $0x5a5a, (%esi)
+  fnstsw (%esi)
+  cmpb  $0, (%esi)
+  jne   .Lno387
+  fnstcw (%esi)
+  movl  (%esi), %eax
+  andl  $0x103f, %eax
+  cmpl  $0x3f, %eax
+  jne   .Lno387
+  fld1
+  fldz
+  .byte 0xde, 0xf9
+  fld   %st
+  fchs
+  fcompp
+  fstsw (%esi)
+  movzwl (%esi), %eax
+  sahf
+  je    .Lno387
+  fninit
+  fnstcw (%esi)
+  wait
+  andw  $0x0fffa, (%esi)
+  fldcw (%esi)
+  movw  $1, %ax
+  jmp   .Lexit
+.Lno387:
+  xorl  %eax, %eax
+.Lexit:
+  popl  %esi
+  popl  %esi
+end;
 
 procedure npxsetup(prog_name : string);
 var

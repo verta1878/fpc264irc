@@ -97,7 +97,7 @@ var
                                         '.1.0.2', '.1.0.1','.1.0.0','.0.9.8',
                                         '.0.9.7', '.0.9.6', '.0.9.5', '.0.9.4',
                                         '.0.9.3', '.0.9.2', '.0.9.1');
-  {$ENDIF}
+  {$ENDIF WINDOWS}
 
 const
   // EVP.h Constants
@@ -1646,7 +1646,7 @@ begin
 {$IFDEF CIL}
 {$ELSE}
     Result := _SSLGetCurrentCipher(s)
-{$ENDIF}
+{$ENDIF WINDOWS}
   else
     Result := nil;
 end;
@@ -2740,13 +2740,13 @@ begin
     Result := LoadLibrary(Value + DLLVersions[i] + '.dylib');
     {$ELSE}
     Result := LoadLibrary(Value + '.so' + DLLVersions[i]);
-    {$ENDIF}
+    {$ENDIF WINDOWS}
     
     if Result <> NilHandle then
       Break;
   end;
 end;
-{$ENDIF}
+{$ENDIF WINDOWS}
 
 function LoadLib(const Value: String): HModule;
 begin
@@ -2754,7 +2754,7 @@ begin
   Result := LoadLibrary(Value);
   {$ELSE}
   Result := LoadLibHack(Value);
-  {$ENDIF}
+  {$ENDIF WINDOWS}
 end;
 
 function GetProcAddr(module: HModule; const ProcName: string;
@@ -2788,10 +2788,10 @@ begin
     if not IsLibEaloaded then
     begin
       SSLLibHandle := LoadLib(DLLSSLName);
-  {$IFNDEF UNIX}
+  {$IFDEF WINDOWS}
       if (SSLLibHandle = 0) then
         SSLLibHandle := LoadLib(DLLSSLName2);
-  {$ENDIF}
+  {$ENDIF WINDOWS}
       if (SSLLibHandle <> 0) then
       begin
         _SslGetError := GetProcAddr(SSLLibHandle, 'SSL_get_error', AVerboseLoading);

@@ -1536,6 +1536,10 @@ begin
           BufAppend(ToFill, WideChar(Code))
         else
           FatalError('Invalid character reference');
+      {$IF defined(CPUI8086)}
+      $09, $0A, $0D, $20..$7FFF:
+        BufAppend(ToFill, WideChar(Code));
+      {$ELSE}
       $09, $0A, $0D, $20..$D7FF, $E000..$FFFD:
         BufAppend(ToFill, WideChar(Code));
       $10000..$10FFFF:
@@ -1543,6 +1547,7 @@ begin
           BufAppend(ToFill, WideChar($D7C0 + (Code shr 10)));
           BufAppend(ToFill, WideChar($DC00 xor (Code and $3FF)));
         end;
+      {$ENDIF}
     else
       FatalError('Invalid character reference');
     end;
