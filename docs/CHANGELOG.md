@@ -286,3 +286,19 @@ Key fixes during smart-link rebuild:
 - `fpwidestring`: CompareStringProc 3-param → 2-param for 2.6.4 system unit
 - `sysmsg`: compiled with `-Rintel` for inline assembly
 - 67 stale duplicate .o files removed (superseded by .a)
+
+### DOSBox Verification
+
+PabloDraw Pascal test suite verified in DOSBox 0.74:
+- pdtest.exe: 33/33 ALL TESTS PASSED (go32v2 DJGPP COFF)
+- pdmain.exe: runs, displays help (go32v2)
+- Cross-compiled from Linux using our go32v2-ld + CWSDPMI
+- All 14 PD units compile for go32v2 with {$IFDEF GO32V2}
+
+### PabloDraw RIP Crash Bug Filed
+
+Filed on cwensley/pablodraw GitHub:
+- BinaryReader UTF-8 crash on CP437 bytes ≥128
+- Root cause: FormatRip.cs line 42 missing Encoding parameter
+- One-line fix: new BinaryReader(stream, Encoding)
+- Found by kiddo/evga from RIP art with block characters

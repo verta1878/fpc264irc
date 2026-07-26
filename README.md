@@ -44,10 +44,11 @@ i8086:   sockets.pp → Dos.Intr()      →         packet driver
 variants, FCL-Base, FCL-JSON, FCL-XML, FCL-Image, paszlib, fpwidestring,
 regexpr, sockets — 113 PPUs on a 16-bit CPU.
 
-**Smart Linking.** go32v2 RTL rebuilt with `-CX`. 149/152 units
+**Smart Linking.** go32v2 RTL rebuilt with `-CX`. 151/151 units
 produce `.a` archives (one `.o` per procedure). Programs compiled with
-`-XX` strip unused code. Only 3 units remain as `.o`: prt0, exceptn,
-fpu (assembly — pre-Pascal bootstrap). 98% smart-linked.
+`-XX` strip unused code. fpu.o eliminated (inlined into emu387.pp).
+prt0 and exceptn assembled from source into `.a` archives.
+100% smart-linked. Zero pre-compiled binary blobs.
 
 **DUCET Disk + EMS Overlay.** Unicode collation table (424KB) stored as
 `DUCET.DAT` on disk. `emsovl.pas` (225 lines) implements LIM EMS 4.0:
@@ -138,6 +139,7 @@ Source: `examples/thdpro/` + `m_door.pas`
 | 28: Darwin FV Mach-O .o refresh | ✅ |
 | 29: TCP/IP (ARP + IP + TCP + DNS + state machine) | ✅ |
 | 30: Smart Linking (151/151 = 100% on go32v2) | ✅ |
+| PD: PabloDraw Pascal (20 files, 4,460 lines) | ✅ |
 | 21-24: VM Testing | Deferred — no VMs |
 | 25-L: THD ScanPro live test | Deferred — needs BBS |
 | 26-B/C: PabloDraw / SDL preview | Deferred — needs Lazarus/SDL |

@@ -1,4 +1,4 @@
-# CREDITS — fpc264irc r3.1
+# FPC 2.6.4irc r3.1 — Credits
 
 ## The Crew
 
@@ -6,32 +6,27 @@
 |--------|------|
 | verta1878 | Project lead, architect |
 | sysop/0 | fpc264irc maintainer, compiler engineer |
-| evga | Display, Mystic monitor, marc-lib, RIPView, repo cleanup |
-| kiddo | marc-lib archive library |
-| wrench | Build machine, PPU chain verification |
+| evga | Display, Mystic monitor, marc-lib, RIPView |
+| kiddo | marc-lib archive library, PD RIP crash finder |
 
-## Standing on the shoulders of:
+## Standing On
 
-| Who | What |
-|-----|------|
-| Florian Klämpfl et al. | Free Pascal Compiler |
-| James Coyle | Mystic BBS |
-| Ian Davis | TheDraw |
-| David Muir (PainSoft) | THD ProScan |
-| Joaquim Homrighausen | FrontDoor |
-| Eberhard Mattes | EMX 0.9d |
-| Jeff Reeder (TeleGrafix) | RIPscrip, RIPaint |
-| Erick Engelke | WatTCP |
-| Graeme Geldenhuys | fpGUI toolkit |
-| Maarten Bekers | EleCom (FOSSIL reference) |
-| Mike Hodgson | FreeDoor 1.71 (FOSSIL reference) |
-| Quarterdeck / IBM | DESQview + QEMM |
-| Novell | NetWare IPX/SPX |
-| Microsoft | LAN Manager, WfW 3.11 DOS client |
-| Crynwr | Packet driver specification |
+- **Free Pascal Team** — Florian Klämpfl, Pierre Muller, Jonas Maebe, et al
+- **Borland** — Turbo Pascal, Turbo Vision, BGI (the DNA)
+- **DJ Delorie** — DJGPP, v2prt0.as, exceptn.as (go32v2 bootstrap)
+- **Charles Sandmann** — CWSDPMI, DPMI exception handlers
+- **Curtis Wensley** — PabloDraw (MIT), format parsers we converted
+- **Carl Gorringe** — RIPtermJS (MPL-2.0), RIPscrip reference
+- **James Coyle / g00r00** — Mystic BBS (the target platform)
+- **TeleGrafix Communications** — RIPscrip v1.54 specification
+
+## Tools
+
+- FPC 3.2.2 (i8086 cross-compiler source)
+- LLVM MC 18 (Darwin Mach-O assembler)
+- GAS (go32v2 bootstrap assembly)
+- Linux x86_64 (host platform)
 
 ## License
 
-GPLv3 — because the code should outlive us all.
-
-o7
+GPLv3 — see LICENSE
