@@ -1094,13 +1094,13 @@ begin
         begin
           lImageItem := ImageList.Items[ANode.ImageIndex];
           if lImageItem <> nil then
-            result += lImageItem.Image.Width + 2;
+            result := result + lImageItem.Image.Width + 2;
         end
         else if IndentNodeWithNoImage then
-          result += NoImageIndent + 2;
+          result := result + NoImageIndent + 2;
       end
       else if IndentNodeWithNoImage then
-        result += NoImageIndent + 2;
+        result := result + NoImageIndent + 2;
 
       if StateImageList <> nil then
       begin
@@ -1108,10 +1108,10 @@ begin
         begin
           lImageItem := StateImageList.Items[ANode.StateImageIndex];
           if lImageItem <> nil then
-            result += lImageItem.Image.Width + 2;
+            result := result + lImageItem.Image.Width + 2;
         end
         else if IndentNodeWithNoImage then
-          result += NoImageIndent + 2;
+          result := result + NoImageIndent + 2;
       end;
     end;
   end;  { if/else }
@@ -1763,14 +1763,14 @@ begin
         if AImageItem <> nil then
         begin
           Canvas.DrawImagePart(w + imgx - FXOffset + 1, ACenterPos - 8, AImageItem.Image, 0, 0, 16, 16);
-          imgx += AImageItem.Image.Width + 2; // 1px spacing on right before node text
+          imgx := imgx + AImageItem.Image.Width + 2; // 1px spacing on right before node text
         end
         else
         begin
           if FIndentNodeWithNoImage then
-            imgx += FNoImageIndent + 2
+            imgx := imgx + FNoImageIndent + 2
           else
-            imgx += 2;
+            imgx := imgx + 2;
         end;
       end;
 

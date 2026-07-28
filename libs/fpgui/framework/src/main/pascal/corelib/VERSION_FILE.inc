@@ -1,0 +1,7 @@
+{ Auto-generated version info }
+const
+  FPGUI_VERSION = '2.1.0';
+  FPGUI_VERSION_MAJOR = 2;
+  FPGUI_VERSION_MINOR = 1;
+  FPGUI_VERSION_PATCH = 0;
+  FPGUI_BUILD_DATE = '2026-04-27';

@@ -5,7 +5,7 @@
   {$define AggCanvas}
   {$modeswitch objectivec1}
 {$endif}
-{$WARN 5024 off : Parameter "$1" not used}
+{ warn 5024 suppressed for 2.6.4 }
 
 
 // The AggPas hybrid canvas is the default canvas on all platforms.

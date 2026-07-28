@@ -1523,7 +1523,7 @@ begin
   lRect.Width := lRect.Width - (FCheckBoxRect.Width + 1);
   flags := [txtLeft, txtVCenter];
   if not Enabled then
-    flags += [txtDisabled];
+    flags := flags + [txtDisabled];
   if HasText then
   begin
     if not FChecked then

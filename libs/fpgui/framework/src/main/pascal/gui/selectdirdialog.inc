@@ -236,7 +236,7 @@ begin
       dir := UTF8Copy(s, 1, i-1);
     UTF8Delete(s, 1, i);    // delete leading dir + PathDelim
     if (prevn = tv.RootNode) and (pos(':', dir) > 0) then
-      dir += PathDelim;     // Windows drive letter. eg: C:\  or  D:\  etc.
+      dir := dir + PathDelim;     // Windows drive letter. eg: C:\  or  D:\  etc.
     nextn := prevn.FindSubNode(dir, True);
     if Assigned(nextn) then
     begin
@@ -309,18 +309,12 @@ begin
 end;
 
 procedure TfpgSelectDirDialog.AfterCreate;
-var
-  mig: TfpgMigLayoutManager;
 begin
   inherited AfterCreate;
   Name := 'fpgSelectDirDialog';
   SetPosition(20, 20, 300, 370);
   WindowTitle := rsSelectaDirectory;
   WindowPosition := wpOneThirdDown;
-
-  // Create MigLayout manager
-  mig := TfpgMigLayoutManager.Create;
-  LayoutManager := mig;
 
   tv := TfpgTreeView.Create(self);
   with tv do
@@ -331,7 +325,6 @@ begin
     OnExpand    := @NodeExpanded;
     PreferredSize := fpgSize(280, 300);
   end;
-  mig.AddLayoutComponent(tv, TfpgMigCC.Create().Grow().Wrap());
 
   btnOK := TfpgButton.Create(self);
   with btnOK do
@@ -343,7 +336,6 @@ begin
     PreferredSize := fpgSize(80, 24);
     OnClick := @btnOKClick;
   end;
-  mig.AddLayoutComponent(btnOK, TfpgMigCC.Create().SpanX().Split(2).Tag('ok'));
 
   btnCancel := TfpgButton.Create(self);
   with btnCancel do
@@ -355,7 +347,6 @@ begin
     PreferredSize := fpgSize(80, 24);
     OnClick := @btnCancelClick;
   end;
-  mig.AddLayoutComponent(btnCancel, TfpgMigCC.Create().Tag('cancel'));
 
   // Set tab order
   tv.TabOrder         := 1;

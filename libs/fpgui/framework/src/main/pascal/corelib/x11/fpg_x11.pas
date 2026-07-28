@@ -1057,9 +1057,9 @@ begin
   for i := 0 to Mimetypes.Count-1 do
   begin
     { This list must be from most specific to least specific }
-    if Mimetypes[i].format = MimeChoice then
+    if TfpgMimeDataItem(Mimetypes[i]).format = MimeChoice then
     begin
-      FDNDDataType := Mimetypes[i].data;
+      FDNDDataType := TfpgMimeDataItem(Mimetypes[i]).data;
       break;
     end;
   end;

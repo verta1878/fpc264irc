@@ -8,6 +8,7 @@
 | sysop/0 | fpc264irc maintainer, compiler engineer |
 | evga | Display, Mystic monitor, marc-lib, RIPView |
 | kiddo | marc-lib archive library, PD RIP crash finder |
+| wrench | tork netmodem2irc, network architecture |
 
 ## Standing On
 

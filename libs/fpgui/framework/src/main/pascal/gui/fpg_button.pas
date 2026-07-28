@@ -705,16 +705,16 @@ begin
     begin
       ix := FImageMargin + FImage.Width;
       if FImageSpacing > 0 then
-        ix += FImageSpacing;
+        ix := ix + FImageSpacing;
       r.OffsetRect(ix, 0);
-      r.Width -= ix;
+      r.Width := r.Width - ix;
     end;
     if FDown then
      r.OffsetRect(offset.x, offset.y);
 
     lTextFlags := [txtHCenter, txtVCenter, txtWrap];
     if not Enabled then
-      lTextFlags += [txtDisabled];
+      lTextFlags := lTextFlags + [txtDisabled];
     Canvas.DrawText(r, Text, lTextFlags);  { DrawText does use fpgStyle }
   end
   else

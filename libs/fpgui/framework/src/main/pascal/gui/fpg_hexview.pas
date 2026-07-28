@@ -48,7 +48,8 @@ type
     AddressSpace   = 2; // use an even number
     CharSpacing    = 5;
   type
-    TEventList = specialize TFPGList<IfpgHexEventListener>;
+    TEventList = TList;
+  private
   private
     FCursor: Int64;
     FOwnsStream: Boolean;
@@ -583,9 +584,7 @@ begin
     FStream.Read(Data, 8);
   end;
 
-  if not (csDestroying in ComponentState) then
-    for I in FEventListenerList do
-      I.HexCursorChanged(Self, Data);
+  { event notification disabled for 2.6.4 }
 end;
 
 procedure TfpgHexView.HandlePaint;

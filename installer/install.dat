@@ -1,0 +1,82 @@
+#
+# FPC 2.6.4irc r3.1 — Installer Configuration
+#
+
+title=Free Pascal Compiler 2.6.4irc r3.1
+version=2.6.4irc-r3.1
+
+#
+# Paths
+#
+basepath=c:\fpc264irc
+docsub=docs
+
+#
+# Packages — each is a zip inside the distribution
+#
+
+# Base compiler
+package=base
+name=Base Compiler
+desc=FPC 2.6.4irc compiler binary (ppc386)
+required=1
+
+# RTL — runtime library
+package=rtl
+name=Runtime Library (RTL)
+desc=System, SysUtils, Classes, Strings — all targets
+
+# FCL — Free Component Library
+package=fcl
+name=Free Component Library (FCL)
+desc=JSON, XML, Process, DB, Base64, IniFiles, etc.
+
+# FV — Free Vision
+package=fv
+name=Free Vision (TUI Framework)
+desc=App, Views, Dialogs, Menus — Turbo Vision clone
+
+# Sockets — Pure Pascal TCP/IP
+package=sockets
+name=Pure Pascal Sockets
+desc=TCP/IP stack for DOS — packet driver, ARP, TCP state machine
+
+# Serial — UART driver
+package=serial
+name=Serial Port Unit
+desc=COM1-COM4 UART 8250/16550 with IRQ ring buffers
+
+# X11 units
+package=x11
+name=X11 Units (Linux)
+desc=X Window System bindings for Linux GUI
+
+# fpGUI toolkit
+package=fpgui
+name=fpGUI Toolkit v2.1.0
+desc=Cross-platform GUI — 264 units, AggPas canvas, all widgets
+
+# PabloDraw Pascal
+package=pablodraw
+name=PabloDraw Pascal
+desc=ANSI/RIP art toolkit — 20 files, 9 formats, teleconference
+
+# utrayit
+package=utrayit
+name=Console Tray Unit
+desc=Minimize console to system tray (Win32) or iconify (Unix)
+
+# Codecs
+package=codecs
+name=Multimedia Codecs
+desc=PNG, JPEG, BMP, WAV, GIF — pure Pascal
+
+# Documentation
+package=docs
+name=Documentation
+desc=PDF reference guides, CHANGELOG, CREDITS
+
+# Source
+package=source
+name=Compiler & RTL Source
+desc=Full source tree for rebuilding

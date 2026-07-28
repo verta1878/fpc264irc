@@ -188,7 +188,9 @@ type
 
   { This is very basic for now, just to remind us of theming support. Later we
     will rework this to use a Style Manager like the previous fpGUI.
-    Also support Bitmap based styles for easier theme implementations. }
+    Also support Bitmap based styles for easier theme implementation
+
+s. }
 
   TfpgStyle = class(TObject)
   private
@@ -510,7 +512,7 @@ procedure fpgInitTimers;
 function  fpgCheckTimers: Boolean;
 procedure fpgResetAllTimers;
 function  fpgClosestTimer(ctime: QWord; amaxtime: integer): integer;
-function  fpgGetTickCount: QWord;
+function  fpgfpgGetTickCount: QWord;
 procedure fpgPause(MilliSeconds: Cardinal);
 
 // Rectangle, Point & Size routines
@@ -578,6 +580,8 @@ operator = (const AColor1, AColor2: TRGBTriple) b: Boolean;
 
 
 implementation
+
+
 
 uses
   strutils,
@@ -655,10 +659,12 @@ function TfpgDrop.AcceptMimeType(const ACompatibleFormat: array of TfpgString
   ): Boolean;
 var
   MimeType: TfpgMimeDataItem;
+  fei_idx: Integer;
 begin
   Result := False;
-  for MimeType in Mimetypes do
+  for fei_idx := 0 to Mimetypes.Count - 1 do
   begin
+    MimeType := TfpgMimeDataItem(Mimetypes[fei_idx]);
     if MimeType.format in ACompatibleFormat then
     begin
       Result := True;
@@ -745,7 +751,7 @@ var
 begin
   if fpgTimers = nil then
     Exit;
-  ctime := GetTickCount64;
+  ctime := fpgGetTickCount;
   i := fpgTimers.Count;
   Result := i > 0;
   while i > 0 do
@@ -810,9 +816,9 @@ begin
     Result := -1;
 end;
 
-function fpgGetTickCount: QWord;
+function fpgfpgGetTickCount: QWord;
 begin
-  Result := GetTickCount64;
+  Result := fpgGetTickCount;
 end;
 
 { blocking function for the caller, but still processes framework messages }
@@ -1108,7 +1114,7 @@ begin
   spacing := '';
   inc(iCallTrace);
   for i := 0 to iCallTrace do
-    spacing += '  ';
+    spacing := spacing + '  ';
   FClassName := AClassName;
   FMethodName := AMethodName;
 end;
@@ -1141,7 +1147,7 @@ var
 begin
   s := '';
   for i := 0 to iCallTrace+1 do
-    s += '  ';
+    s := s + '  ';
   writeln(s + AMessage);
 end;
 
@@ -2018,9 +2024,9 @@ var
   frames: PPointer;
 begin
   m:='Backtrace:'#10;
-  m+='   * '+BackTraceStrFunc(ExceptAddr)+#10;
+  m := m + '   * '+BackTraceStrFunc(ExceptAddr)+#10;
   frames:=ExceptFrames;
-  for i:=0 to ExceptFrameCount-1 do m+='   * '+BackTraceStrFunc(frames[i])+#10;
+  for i:=0 to ExceptFrameCount-1 do m := m + '   * '+BackTraceStrFunc(frames[i])+#10;
   fpgClipboard.text:=m;
   TfpgMessageDialog.Critical('Exception '+E.ClassName+': '+E.message, m);
 end;
@@ -2030,7 +2036,7 @@ begin
   if IsMultiThread then
     CheckSynchronize;  // execute the to-be synchronized method
 
-  DoWaitWindowMessage(fpgClosestTimer(GetTickCount64, atimeoutms));
+  DoWaitWindowMessage(fpgClosestTimer(fpgGetTickCount, atimeoutms));
   fpgDeliverMessages;
   fpgProcessInvokeQueue;
   fpgCheckTimers;
@@ -2082,7 +2088,7 @@ begin
       Result := TrimRight(Result) + sLineBreak;
     end else
       Inc(lw, tw);
-    Result += sub;
+    Result := Result + sub;
   end;
 end;
 

@@ -623,7 +623,7 @@ begin
   // Draw select item's text
   flags := [txtLeft, txtVCenter];
   if not Enabled then
-    flags += [txtDisabled];
+    flags := flags + [txtDisabled];
   if HasText then
     Canvas.DrawText(ARect, Text, flags)
   else

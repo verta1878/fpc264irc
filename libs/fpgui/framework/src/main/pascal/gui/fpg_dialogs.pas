@@ -1144,13 +1144,7 @@ begin
 end;
 
 procedure TfpgFileDialog.InitializeComponents;
-var
-  mig: TfpgMigLayoutManager;
 begin
-  // Create MigLayout manager
-  mig := TfpgMigLayoutManager.Create;
-  mig.LC.Fill;
-  LayoutManager := mig;
 
   // Directory combobox with toolbar buttons on same row
   chlDir := TfpgComboBox.Create(self);
@@ -1161,7 +1155,7 @@ begin
     PreferredSize := fpgSize(400, 24);
     OnChange := @DirChange;
   end;
-  mig.AddLayoutComponent(chlDir, TfpgMigCC.Create().GrowX().PushX().MinWidth('50lp'));
+
 
   btnUpDir := TfpgButton.Create(self);
   with btnUpDir do
@@ -1176,7 +1170,7 @@ begin
     PreferredSize := fpgSize(24, 24);
     OnClick := @UpDirClick;
   end;
-  mig.AddLayoutComponent(btnUpDir, TfpgMigCC.Create().Split(5).GapX('2lp', '2lp').AlignX('right').MinWidth('24lp'));
+
 
   btnDirNew := TfpgButton.Create(self);
   with btnDirNew do
@@ -1191,7 +1185,7 @@ begin
     PreferredSize := fpgSize(24, 24);
     OnClick := @btnDirNewClicked;
   end;
-  mig.AddLayoutComponent(btnDirNew, TfpgMigCC.Create().GapX('2lp', '2lp').MinWidth('24lp'));
+
 
   btnShowHidden := TfpgButton.Create(self);
   with btnShowHidden do
@@ -1208,7 +1202,7 @@ begin
     PreferredSize := fpgSize(24, 24);
     OnClick := @DirChange;
   end;
-  mig.AddLayoutComponent(btnShowHidden, TfpgMigCC.Create().GapX('2lp', '2lp').MinWidth('24lp'));
+
 
   btnGoHome := TfpgButton.Create(self);
   with btnGoHome do
@@ -1223,7 +1217,7 @@ begin
     PreferredSize := fpgSize(24, 24);
     OnClick := @btnGoHomeClicked;
   end;
-  mig.AddLayoutComponent(btnGoHome, TfpgMigCC.Create().GapX('2lp', '2lp').MinWidth('24lp'));
+
 
   btnBookmark := TfpgButton.Create(self);
   with btnBookmark do
@@ -1238,7 +1232,7 @@ begin
     PreferredSize := fpgSize(24, 24);
     OnClick := @btnBookmarkClicked;
   end;
-  mig.AddLayoutComponent(btnBookmark, TfpgMigCC.Create().GapX('2lp', '2lp').MinWidth('24lp').Wrap());
+
 
   // File grid - grows both horizontally and vertically, spans 2 columns
   grid := TfpgFileGrid.Create(self);
@@ -1251,7 +1245,7 @@ begin
     OnDoubleClick := @GridDblClicked;
     OnHeaderClick := @GridHeaderClicked;
   end;
-  mig.AddLayoutComponent(grid, TfpgMigCC.Create().GrowX().GrowY().SpanX(2).PushY.Wrap());
+
 
   { Create lower Panel details - spans 2 columns, only grows horizontally }
   pnlFileInfo := TfpgPanel.Create(self);
@@ -1264,7 +1258,7 @@ begin
     Text := '';
     PreferredSize := fpgSize(600, 25);
   end;
-  mig.AddLayoutComponent(pnlFileInfo, TfpgMigCC.Create().GrowX().SpanX(2).Wrap());
+
 
   // Filename label - spans 2 columns
   lb1 := TfpgLabel.Create(self);
@@ -1274,7 +1268,7 @@ begin
     Text := fpgAddColon(rsFileName);
     FontDesc := '#Label1';
   end;
-  mig.AddLayoutComponent(lb1, TfpgMigCC.Create().GrowX().SpanX(2).Wrap());
+
 
   // Filename edit - spans 2 columns, only grows horizontally
   edFilename := TfpgEdit.Create(self);
@@ -1287,7 +1281,7 @@ begin
     OnChange := @edFilenameChanged;
     OnKeyPress := @edFilenameKeyPressed;
   end;
-  mig.AddLayoutComponent(edFilename, TfpgMigCC.Create().GrowX().SpanX(2).Wrap());
+
 
   { Filter section - spans 2 columns }
   lb2 := TfpgLabel.Create(self);
@@ -1297,7 +1291,7 @@ begin
     Text := fpgAddColon(rsFileType);
     FontDesc := '#Label1';
   end;
-  mig.AddLayoutComponent(lb2, TfpgMigCC.Create().GrowX().SpanX(2).Wrap());
+
 
   chlFilter := TfpgComboBox.Create(self);
   with chlFilter do
@@ -1307,7 +1301,7 @@ begin
     PreferredSize := fpgSize(600, 22);
     OnChange := @FilterChange;
   end;
-  mig.AddLayoutComponent(chlFilter, TfpgMigCC.Create().GrowX().SpanX(2).Wrap());
+
 
   // OK and Cancel buttons using MIG button tags with gap above
   btnOK := TfpgButton.Create(self);
@@ -1320,7 +1314,7 @@ begin
     PreferredSize := fpgSize(80, 24);
     OnClick := @btnOKClick;
   end;
-  mig.AddLayoutComponent(btnOK, TfpgMigCC.Create().SpanX().Split(2).Tag('ok').GapTop('16lp'));
+
 
   btnCancel := TfpgButton.Create(self);
   with btnCancel do
@@ -1332,7 +1326,7 @@ begin
     PreferredSize := fpgSize(80, 24);
     OnClick := @btnCancelClick;
   end;
-  mig.AddLayoutComponent(btnCancel, TfpgMigCC.Create().Tag('cancel'));
+
 
   // Set tab order
   chlDir.TabOrder := 1;

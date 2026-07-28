@@ -25,7 +25,7 @@ uses
   Classes,
   SysUtils,
   fpg_impl,
-  syncobjs, // TCriticalSection usage
+  { HAS_SYNCOBJS}syncobjs,{} // TCriticalSection usage
   variants,
   fgl,
   contnrs,
@@ -326,7 +326,8 @@ type
   public
     constructor Create(const afontdesc: string); virtual;
     destructor  Destroy; override;
-    // IFontEngine implementation (methods already exist!)
+    // IFontEngine
+    { implementation (methods already exist!) }
     function    GetAscent: integer; virtual; abstract;
     function    GetDescent: integer; virtual; abstract;
     function    GetHeight: integer; virtual; abstract;
@@ -472,7 +473,9 @@ type
     procedure   DoAllocateBuffer; virtual; abstract;
     { Blit the off-screen buffer directly to the OS window for the given rect,
       bypassing the paint message queue. Called by RestoreFromBuffer.
-      The default implementation is a no-op; backends override as needed. }
+      The default function fpgGetTickCount: QWord;
+
+implementation is a no-op; backends override as needed. }
     procedure   DoRestoreFromBuffer(const ARect: TfpgRect); virtual;
   public
     constructor Create(awidget: TfpgWidgetBase); virtual;
@@ -951,7 +954,7 @@ type
     constructor Create(const AFormat: TfpgString; const AData: variant); reintroduce;
   end;
 
-  TfpgMimeDataItemList = specialize TFPGObjectList<TfpgMimeDataItem>;
+  TfpgMimeDataItemList = TObjectList;
 
 
   TfpgMimeDataBase = class(TObject)
@@ -1050,7 +1053,7 @@ type
 
   TfpgBaseTimer = class(TObject)
   private
-    FNextAlarm: QWord;      { monotonic timestamp in milliseconds (via GetTickCount64) }
+    FNextAlarm: QWord;      { monotonic timestamp in milliseconds (via fpgGetTickCount) }
     FInterval: integer;
     FOnTimer: TNotifyEvent;
     procedure   SetInterval(const AValue: integer);
@@ -1113,6 +1116,9 @@ procedure SortRect(var left, top, right, bottom: integer);
 
 
 
+
+function fpgGetTickCount: QWord;
+
 implementation
 
 uses
@@ -1127,6 +1133,11 @@ uses
   dateutils,
   math,
   regexpr;
+
+function fpgGetTickCount: QWord;
+begin
+  Result := Trunc(Now * 86400000);
+end;
 
 
 const
@@ -4858,7 +4869,7 @@ end;
 procedure TfpgBaseTimer.SetInterval(const AValue: integer);
 begin
   FInterval := AValue;
-  FNextAlarm := GetTickCount64 + QWord(FInterval);
+  FNextAlarm := fpgGetTickCount + QWord(FInterval);
 end;
 
 procedure TfpgBaseTimer.SetEnabled(const AValue: boolean);
@@ -4866,7 +4877,7 @@ begin
   if AValue and (FInterval <= 0) then
      Exit;
   if (not FEnabled) and AValue then
-    FNextAlarm := GetTickCount64 + QWord(Interval);
+    FNextAlarm := fpgGetTickCount + QWord(Interval);
   FEnabled := AValue;
 end;
 
@@ -4894,7 +4905,7 @@ begin
     // set the next alarm point
     if Interval > 0 then
       while FNextAlarm <= ACurrentTime do
-        FNextAlarm += QWord(Interval);
+        FNextAlarm := FNextAlarm + QWord(Interval);
 
     if Assigned(FOnTimer) then
       FOnTimer(self);
@@ -4911,7 +4922,7 @@ procedure TfpgBaseTimer.Pause(ASeconds: integer);
 begin
   if Enabled then
   begin
-    FNextAlarm := GetTickCount64 + QWord(ASeconds) * 1000;
+    FNextAlarm := fpgGetTickCount + QWord(ASeconds) * 1000;
   end;
 end;
 

@@ -710,9 +710,9 @@ begin
 
   if ASelected then
   begin
-    r.Height -= 1;
+    r.Height := r.Height - 1;
     if TabPosition = tpBottom then
-      r.Top += 1;
+      r.Top := r.Top + 1;
   end;
 
   lParams.TabSheet := ATabSheet;
@@ -940,7 +940,7 @@ begin
 
     tpBottom:
       begin
-        lTxtFlags += [txtHCenter, txtVCenter];
+        lTxtFlags := lTxtFlags + [txtHCenter, txtVCenter];
         lp := 0;
         r2.SetRect(2, ActualHeight - ButtonHeight, 50, TabH-2);
         while h <> nil do
@@ -991,7 +991,7 @@ begin
 
     tpTop:
       begin
-        lTxtFlags += [txtHCenter, txtVCenter];
+        lTxtFlags := lTxtFlags + [txtHCenter, txtVCenter];
         lp := 0;
         r2.SetRect(2, 2, 50, TabH);
         while h <> nil do
@@ -1042,7 +1042,7 @@ begin
 
     tpRight:
       begin
-        lTxtFlags += [txtVCenter, txtLeft];
+        lTxtFlags := lTxtFlags + [txtVCenter, txtLeft];
         lp := 0;
         TabW := MaxButtonWidth;
         r2.SetRect(ActualWidth - 2 - TabW, 2, TabW, TabH);
@@ -1070,7 +1070,7 @@ begin
             Canvas.SetTextColor(h.TabTextColor);
             Canvas.DrawText(r2.left+toffset, r2.Top, r2.Width, r2.Height, GetTabText(h.Text), lTxtFlags);
           end;
-          r2.Top += r2.Height;
+          r2.Top := r2.Top + r2.Height;
           lp := r2.Top;
           if h <> TfpgTabSheet(FPages.Last) then
             h := TfpgTabSheet(FPages[FPages.IndexOf(h)+1])
@@ -1093,7 +1093,7 @@ begin
 
     tpLeft:
       begin
-        lTxtFlags += [txtVCenter, txtLeft];
+        lTxtFlags := lTxtFlags + [txtVCenter, txtLeft];
         lp := 0;
         TabW := MaxButtonWidth;
         r2.SetRect(2, 2, TabW, TabH);
@@ -1121,7 +1121,7 @@ begin
             Canvas.SetTextColor(h.TabTextColor);
             Canvas.DrawText(r2.left+toffset, r2.Top, r2.Width, r2.Height, GetTabText(h.Text), lTxtFlags);
           end;
-          r2.Top += r2.Height;
+          r2.Top := r2.Top + r2.Height;
           lp := r2.Top;
           if h <> TfpgTabSheet(FPages.Last) then
             h := TfpgTabSheet(FPages[FPages.IndexOf(h)+1])

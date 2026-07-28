@@ -430,9 +430,9 @@ begin
     dlg.DefaultButton := mbOK;
     dlg.Text := dlg.WindowTitle;
     s:='';
-    if a.AppAuthor<>''    then s+=a.AppAuthor+LineEnding;
-    if a.AppCopyright<>'' then s+=a.AppCopyright+LineEnding;
-    if a.AppSiteName<>''  then s+=a.AppSiteName+LineEnding;
+    if a.AppAuthor<>''    then s:=s+a.AppAuthor+LineEnding;
+    if a.AppCopyright<>'' then s:=s+a.AppCopyright+LineEnding;
+    if a.AppSiteName<>''  then s:=s+a.AppSiteName+LineEnding;
     if AText<>''          then s:=TrimLeft(s+LineEnding+AText+LineEnding);
     if s<>''              then begin
       SetLength(s, length(s)-1);
