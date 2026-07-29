@@ -207,8 +207,8 @@ type
 
 // File dialogs
 const
-  CLSID_FileOpenDialog: TGUID = '{DC1C5A9C-E88A-4dde-A5A1-60F82A20AEF7}';
-  CLSID_FileSaveDialog: TGUID = '{C0B4E2F3-BA21-4773-8DBA-335EC946EB8B}';
+  CLSID_FileOpenDialog: TGUID = (D1: $DC1C5A9C; D2: $E88A; D3: $4dde; D4: ($A5, $A1, $60, $F8, $2A, $20, $AE, $F7));
+  CLSID_FileSaveDialog: TGUID = (D1: $C0B4E2F3; D2: $BA21; D3: $4773; D4: ($8D, $BA, $33, $5E, $C9, $46, $EB, $8B));
 
   // GETPROPERTYSTOREFLAGS enum
   GPS_DEFAULT	            = 0;
@@ -246,10 +246,12 @@ type
   end;
   PROPERTYKEY = _tagpropertykey;
   REFPROPERTYKEY = ^PROPERTYKEY;
+  TPROPVARIANT = record end;
+  IBindCtx = interface(IUnknown) end;
   REFPROPVARIANT = ^TPROPVARIANT;
 {$ifdef UseVistaDialogs}
   IEnumShellItems = interface(IUnknown)
-    ['{70629033-e363-4a28-a567-0db78006e6d7}']
+    ['{70629033-E363-4A28-A567-0DB78006E6D7}']
     function Next(celt: ULONG; out rgelt: IShellItem; var pceltFetched: ULONG): HResult; stdcall;
     function Skip(celt: ULONG): HResult; stdcall;
     function Reset: HResult; stdcall;
@@ -257,7 +259,7 @@ type
   end;
 
   IShellItemArray = interface(IUnknown)
-    ['{b63ea76d-1f85-456f-a19c-48159efa858b}']
+    ['{B63EA76D-1F85-456F-A19C-48159EFA858B}']
     function BindToHandler(pbc: IBindCtx; const bhid: TGUID; const riid: REFIID; out ppvOut): HResult; stdcall;
     function GetPropertyStore(flags: GETPROPERTYSTOREFLAGS; const riid: REFIID; out ppv): HResult; stdcall;
     function GetPropertyDescriptionList(keyType: REFPROPERTYKEY; const riid: REFIID; out ppv): HResult; stdcall;
@@ -268,7 +270,7 @@ type
   end;
 
   IPropertyStore = interface(IUnknown)
-    ['{886d8eeb-8cf2-4446-8d02-cdba1dbdcf99}']
+    ['{886D8EEB-8CF2-4446-8D02-CDBA1DBDCF99}']
     function GetCount(out cProps: DWORD): HResult; stdcall;
     function GetAt(iProp: DWORD; out pkey: PROPERTYKEY): HResult; stdcall;
     function GetValue(key: REFPROPERTYKEY; out pv: PROPVARIANT): HResult; stdcall;
@@ -277,13 +279,13 @@ type
   end;
 
   IPropertyDescriptionList = interface(IUnknown)
-    ['{1f9fc1d0-c39b-4b26-817f-011967d3440e}']
+    ['{1F9FC1D0-C39B-4B26-817F-011967D3440E}']
     function GetCount(out pcElem: UINT): HResult; stdcall;
     function GetAt(iElem: UINT; const riid: REFIID; out ppv): HResult; stdcall;
   end;
 
   IFileOperationProgressSink = interface(IUnknown)
-    ['{04b0f1a7-9490-44bc-96e1-4296a31252e2}']
+    ['{04B0F1A7-9490-44BC-96E1-4296A31252E2}']
     function StartOperations: HResult; stdcall;
     function FinishOperations(hrResult: HResult): HResult; stdcall;
     function PreRenameItem(dwFlags: DWORD; psiItem: IShellItem; pszNewName: LPCWSTR): HResult; stdcall;
@@ -303,7 +305,7 @@ type
   end;
 
   IFileDialogCustomize = interface(IUnknown)
-    ['{e6fdd21a-163f-4975-9c8c-a69f1ba37034}']
+    ['{E6FDD21A-163F-4975-9C8C-A69F1BA37034}']
     function EnableOpenDropDown(dwIDCtl: DWORD): HResult; stdcall;
     function AddMenu(dwIDCtl: DWORD; pszLabel: LPCWSTR): HResult; stdcall;
     function AddPushButton(dwIDCtl: DWORD; pszLabel: LPCWSTR): HResult; stdcall;
@@ -334,7 +336,7 @@ type
   end;
 
   IFileDialogControlEvents = interface(IUnknown)
-    ['{36116642-D713-4b97-9B83-7484A9D00433}']
+    ['{36116642-D713-4B97-9B83-7484A9D00433}']
     function OnItemSelected(pfdc: IFileDialogCustomize; dwIDCtl: DWORD; dwIDItem: DWORD): HResult; stdcall;
     function OnButtonClicked(pfdc: IFileDialogCustomize; dwIDCtl: DWORD): HResult; stdcall;
     function OnCheckButtonToggled(pfdc: IFileDialogCustomize; dwIDCtl: DWORD; bChecked: BOOL): HResult; stdcall;
@@ -342,13 +344,13 @@ type
   end;
 
   IFileOpenDialog = interface(IFileDialog)
-    ['{d57c7288-d4ad-4768-be02-9d969532d960}']
+    ['{D57C7288-D4AD-4768-BE02-9D969532D960}']
     function GetResults(var ppenum: IShellItemArray): HResult; stdcall;
     function GetSelectedItems(var ppsai: IShellItemArray): HResult; stdcall;
   end;
 
   IFileSaveDialog = interface(IFileDialog)
-    ['{84bccd23-5fde-4cdb-aea4-af64b83d78ab}']
+    ['{84BCCD23-5FDE-4CDB-AEA4-AF64B83D78AB}']
     function SetSaveAsItem(psi: IShellItem): HResult; stdcall;
     function SetProperties(pStore: IPropertyStore): HResult; stdcall;
     function SetCollectedProperties(pList: IPropertyDescriptionList; fAppendDefault: BOOL): HResult; stdcall;

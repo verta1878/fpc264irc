@@ -25,5 +25,5 @@
 // Enable WindowsUnicodeSupport for fpc 2.2.1 and higher
 {$DEFINE WindowsUnicodeSupport}
 {$ENDIF DisableWindowsUnicodeSupport}
-{$DEFINE UseVistaDialogs}
+{ DEFINE UseVistaDialogs - disabled for FPC 2.6.4 }
 {.$DEFINE RedirectDestroyMessages}
