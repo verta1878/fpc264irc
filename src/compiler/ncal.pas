@@ -1169,6 +1169,7 @@ implementation
       var
         pt : tcallparanode;
         i  : integer;
+        hasabstract : boolean;
       begin
         inherited derefimpl;
         symtableprocentry:=tprocsym(symtableprocentryderef.resolve);
@@ -2418,6 +2419,7 @@ implementation
         objectinfo : tobjectinfoitem;
         pd : tprocdef;
         i  : integer;
+        hasabstract : boolean;
       begin
         objectdf := nil;
         { verify if trying to create an instance of a class which contains
@@ -2426,19 +2428,45 @@ implementation
         { first verify this class type, no class than exit  }
         { also, this checking can only be done if the constructor is directly
           called, indirect constructor calls cannot be checked.
+          Backported from FPC 3.2.2: safer methodpointer check.
         }
         if assigned(methodpointer) and
            not (nf_is_self in methodpointer.flags) then
           begin
-            if (methodpointer.resultdef.typ = objectdef) then
+            if assigned(methodpointer.resultdef) and
+               (methodpointer.resultdef.typ = objectdef) then
               objectdf:=tobjectdef(methodpointer.resultdef)
             else
-              if (methodpointer.resultdef.typ = classrefdef) and
+              if assigned(methodpointer.resultdef) and
+                 (methodpointer.resultdef.typ = classrefdef) and
+                 assigned(tclassrefdef(methodpointer.resultdef).pointeddef) and
                  (tclassrefdef(methodpointer.resultdef).pointeddef.typ = objectdef) and
                  (methodpointer.nodetype in [typen,loadvmtaddrn]) then
                 objectdf:=tobjectdef(tclassrefdef(methodpointer.resultdef).pointeddef);
           end;
         if not assigned(objectdf) then
+          exit;
+
+        { Quick exit if class is not abstract and has no abstract ancestors.
+          Backported from FPC 3.2.2 to fix EAccessViolation on deep
+          class hierarchies (LCL Controls/Forms). }
+        if not (oo_is_abstract in objectdf.objectoptions) then
+          begin
+            hasabstract := false;
+            objectdf := objectdf.childof;
+            while assigned(objectdf) do
+              begin
+                if (oo_is_abstract in objectdf.objectoptions) then
+                  begin hasabstract := true; break; end;
+                objectdf := objectdf.childof;
+              end;
+            if not hasabstract then exit;
+          end;
+        { Reset objectdf for the parents walk }
+        if assigned(methodpointer) and assigned(methodpointer.resultdef) and
+           (methodpointer.resultdef.typ = objectdef) then
+          objectdf := tobjectdef(methodpointer.resultdef)
+        else
           exit;
 
         parents := tlinkedlist.create;
