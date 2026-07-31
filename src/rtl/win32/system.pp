@@ -664,6 +664,11 @@ begin
   cmdshow:=startupinfo.wshowwindow;
   { Setup heap }
   InitHeap;
+  { threading — must init before exceptions/IO which use critical sections.
+    Backported from FPC 3.2.2: moving InitSystemThreads early prevents
+    Wine deadlock where SysInitExceptions tries to EnterCriticalSection
+    before the threading subsystem is initialized. }
+  InitSystemThreads;
   SysInitExceptions;
   { setup fastmove stuff }
   fpc_cpucodeinit;
@@ -673,8 +678,6 @@ begin
   { Reset IO Error }
   InOutRes:=0;
   ProcessID := GetCurrentProcessID;
-  { threading }
-  InitSystemThreads;
   { Reset internal error variable }
   errno:=0;
   initvariantmanager;
