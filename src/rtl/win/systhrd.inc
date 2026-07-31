@@ -147,7 +147,14 @@ var
            TLSKey:=TlsAlloc;
            InitThreadVars(@SysRelocateThreadvar);
 
-           IsMultiThread:=true;
+           { Backport from FPC 3.2.2: Do NOT set IsMultiThread here.
+             Setting it during DLL init (IsLibrary=true) causes a
+             deadlock under Wine because the threading subsystem
+             isn't fully initialized yet at DllMain time.
+             IsMultiThread is set in SysBeginThread when a thread
+             is actually created. }
+           if not IsLibrary then
+             IsMultiThread:=true;
          end;
       end;
 
@@ -241,6 +248,8 @@ var
 {$endif DEBUG_MT}
         { Initialize multithreading if not done }
         SysInitMultithreading;
+        { Ensure IsMultiThread is set when actually creating threads }
+        IsMultiThread:=true;
 
         { the only way to pass data to the newly created thread
           in a MT safe way, is to use the heap }

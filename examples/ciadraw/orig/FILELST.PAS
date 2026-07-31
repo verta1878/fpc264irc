@@ -1,11 +1,10 @@
-{$IFDEF FPC}{$MODE TP}{$ENDIF}
 Unit FileLst;
 
 Interface
  Function File2Load : String;
 Implementation
 
-Uses {$IFDEF FPC}Go32,{$ENDIF}Dos,Crt,Extense;
+Uses Dos,Crt,Extense;
 
 Type str12 = String[12];
 
@@ -48,7 +47,7 @@ Begin
  Highest := X-1;
 End;
 
-{$IFNDEF FPC}Procedure LoadPic;External;{$L LOADPIC.OBJ}{$ENDIF}
+Procedure LoadPic;External;{$L LOADPIC.OBJ}
 
 Procedure DisplayFiles;
 Var X : Byte;
@@ -83,13 +82,24 @@ Begin
                     else DirExist := ((woFattr and directory) <> 0)
 End;
 
-Function FileExist(FileName : String) : Boolean;
-Var F : File; OK : Boolean;
-Begin
-  {$I-} Assign(F, FileName); Reset(F, 1);
-  OK := (IOResult = 0);
-  if OK then Close(F); {$I+}
-  FileExist := OK;
+Function FileExist(FileName : String) : Boolean; ASSEMBLER;
+Asm
+  PUSH DS          {Save DS                         }
+  LDS  SI,Filename {DS:SI => Filename               }
+  XOR  BX,BX       {Clear BX                        }
+  MOV  BL,[SI]     {BX = Length(Filename)           }
+  INC  SI          {DS:SI => Filename[1]            }
+  MOV  DX,SI       {DS:DX => Filename[1]            }
+  MOV  [SI+BX],BH  {Append Ascii 0 to Filename      }
+  MOV  AX,4300h    {Get Attribute Function Code     }
+  INT  21h         {Get File Attributes             }
+  MOV  AL,BH       {Default Result = FALSE          }
+  ADC  CL,CL       {Attribute * 2 + Carry Flag      }
+  AND  CL,31h      {Directory or VolumeID or Failed }
+  JNZ  @@Done      {Yes - Exit                      }
+  INC  AL          {No - Change Result to TRUE      }
+@@Done:
+  POP  DS          {Restore DS                      }
 End; {FileExists}
 
 
@@ -104,11 +114,11 @@ Begin
  GetDir(0,StartingDir);
  For X := 1 to 1000 do Filelist[X] := '';
  Top := 1;Active := 1;Mask := '*.*';CH := #0;
- ChangeMode(3);
+ asm mov ax,3;int 10h; end;
  Nocursor;
  Load_Directories;
  Load_Files;
- {$IFDEF FPC}{ splash }{$ELSE}Move(@Loadpic^,Mem[$b800:0000],4000);{$ENDIF}
+ Move(@Loadpic^,Mem[$b800:0000],4000);
  InputString := '';
  InputCount := 0;
 Return:
@@ -165,7 +175,7 @@ Return:
              Chdir(InputString);
              For X := 1 to 1000 do Filelist[X] := '';
              Top := 1;Active := 1;Mask := '*.*';CH := #0;
-             {$IFDEF FPC}{ splash }{$ELSE}Move(@Loadpic^,Mem[$b800:0000],4000);{$ENDIF}
+             Move(@Loadpic^,Mem[$b800:0000],4000);
              Load_Directories;
              Load_Files;
              Goto Return;
@@ -181,7 +191,7 @@ Return:
                     Mask := InputString;
                     For X := 1 to 1000 do Filelist[X] := '';
                     Top := 1;Active := 1;CH := #0;
-                    {$IFDEF FPC}{ splash }{$ELSE}Move(@Loadpic^,Mem[$b800:0000],4000);{$ENDIF}
+                    Move(@Loadpic^,Mem[$b800:0000],4000);
                     Load_Directories;
                     Load_Files;
                     Goto Return;
@@ -212,7 +222,7 @@ Return:
            Chdir(Startingdir);
            Exit;
           End;
- 'a'..'z','A'..'G','I','J','L','N'..'O','Q'..'Z','0'..'9','*','.',':','!' :
+ 'a'..'z','A'..'Z','0'..'9',':','\','*','.','!','#','$','%' :
           Begin
            If InputCount < 50 then Begin
                                     Inc(InputCount);

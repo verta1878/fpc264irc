@@ -1,443 +1,254 @@
 Unit Extense;
+{$IFDEF FPC}
+  {$MODE TP}
+{$ENDIF}
 
 Interface
 
-Var Screen : Array[0..$b800] of byte absolute $b800:0000;
+{$IFDEF FPC}
+Uses Go32;
+{$ENDIF}
+
+Var Screen : Array[0..3999] of byte;
 
 Procedure InputNums(var Lne : String;Chars : Byte);
 Function  VGACard : Boolean;
 Procedure WaitRetrace;
 Procedure SetTypeRate(Kdelay, Krate:Byte);
-Procedure InputLn(var Lne : String ; Chars : Byte ; Caps : Boolean ; Allcaps : Boolean);
-Procedure GetKeys(Var C1 : Char;Var C2 : Char);
-Function  ScrollLock : Boolean;
-Function  CapsLock   : Boolean;
-Function  InsKey     : Boolean;
-Procedure Clear_Keyboard_Buffer;
 Procedure ChangeMode(Mode : Word);
-Function  Uppercase(Str : String) : String;
-Procedure Clear_Column(Column : Byte);
+Procedure Setcursorshape(Shape : word);
+Function  Extended_Key:Word;
 Procedure Blinking(State : Boolean);
-Function  Yesno : Boolean;
-Procedure Beep(Freq,Dely : Word);
-Procedure Yescursor;
-Procedure Setcursorshape(shape : word);
-Procedure Nocursor;
-Procedure Uncrunch(var Addr1,Addr2; BlkLen:Integer);
+Function  IntToStr(Number : LongInt): String;
+Function  Pad(S : String;Len : Byte) : String;
 Function  Padstring(Outp : String;Number : Byte): String;
+Procedure NoCursor;
+Procedure YesCursor;
+Procedure FastMove(Var Source,Dest;NumToMove:Word);
+Procedure Mousesensetivity(x,y:word);
+Procedure Clear_Keyboard_Buffer;
+Procedure QWrite(X, Y : Byte; S : String; FG, BG, Width : Byte);
+Function  LeadingZero(W : Word) : String;
 Procedure PipeWrite(S : String);
-Procedure qwrite(x,y:byte;s:string;f,b:byte;CharsperRow:Word);
-Procedure FastMove(VAR source;VAR dest;numToMove : WORD);
-Function  LeadingZero(w : Word) : String;
-procedure mousesensetivity(x,y:word);
-Procedure Column_Clear;
-Procedure Row_Clear;
-Procedure Close_Horizontal;
-Procedure RollUp;
-Procedure Close_Vertical;
+Procedure Uncrunch(var Addr1,Addr2; BlkLen:Integer);
+Function  CapsLock : Boolean;
+Function  ScrollLock : Boolean;
+Function  InsKey : Boolean;
+Procedure GetKeys(Var C1 : Char;Var C2 : Char);
+Procedure Beep(Freq,Dely : Word);
+Procedure InputLn(var Lne:String;Chars:Byte;Caps:Boolean;Allcaps:Boolean);
+Function  Yesno : Boolean;
 
 Implementation
-Uses dos,crt;
 
-Var Kb : Byte Absolute $0040:$0017;
+Uses Dos, Crt;
+
+Procedure InputNums(var Lne : String;Chars : Byte);
+Var Key : Char;
+Begin
+  Write(Lne);
+  Repeat
+    Key := ReadKey;
+    If (Key in ['0'..'9']) and (Length(Lne) < Chars) then begin
+      Lne := Lne + Key; Write(Key);
+    End;
+    if (Key = #8) and (Length(Lne) > 0) then begin
+      Delete(Lne,Length(Lne),1); Write(#8,' ',#8);
+    End;
+  Until Key = #13;
+End;
+
+Function VGACard : Boolean;
+Var Regs : Registers;
+Begin
+  Regs.AX := $1A00; Intr($10,Regs);
+  VGACard := (Regs.AL = $1A) and (Regs.BL >= 7);
+End;
+
+Procedure WaitRetrace;
+Begin
+{$IFDEF FPC}
+  While (inportb($3DA) and 8) <> 0 do;
+  While (inportb($3DA) and 8) = 0 do;
+{$ELSE}
+  asm
+    mov dx,$3da
+  @l1: in al,dx; test al,8; jnz @l1
+  @l2: in al,dx; test al,8; jz @l2
+  end;
+{$ENDIF}
+End;
+
+Procedure Mousesensetivity(x,y:word);
+Var Regs : Registers;
+Begin
+  Regs.AX := $1A; Regs.BX := x; Regs.CX := y; Regs.DX := 0;
+  Intr($33, Regs);
+End;
+
+Procedure ChangeMode(Mode : Word);
+Var Regs : Registers;
+Begin Regs.AX := Mode; Intr($10, Regs); End;
+
+Procedure Setcursorshape(Shape : word);
+Var Regs : Registers;
+Begin Regs.AH := 1; Regs.CX := Shape; Intr($10, Regs); End;
+
+Function Extended_Key:Word;
+Var Regs: Registers;
+Begin
+  Regs.AH := $10; Intr($16, Regs);
+  If Regs.AL = 0 then Extended_Key := Regs.AH + 256
+  Else Extended_Key := Regs.AL;
+End;
+
+Procedure SetTypeRate(Kdelay, Krate:Byte);
+Var Regs : Registers;
+Begin
+  Regs.AH := 3; Regs.AL := 5; Regs.BH := Kdelay; Regs.BL := Krate;
+  Intr($16, Regs);
+End;
+
+Procedure Blinking(State : Boolean);
+Var Regs : Registers;
+Begin
+  Regs.AX := $1003;
+  if State then Regs.BL := 1 else Regs.BL := 0;
+  Intr($10, Regs);
+End;
+
+Function IntToStr(Number : LongInt): String;
+Var Tmp : String;
+Begin Str(Number, Tmp); IntToStr := Tmp; End;
+
+Function Pad(S : String;Len : Byte) : String;
+Begin While Length(S) < Len Do S := S + ' '; Pad := S; End;
+
+Function Padstring(Outp : String;Number : Byte): String;
+Begin While Length(Outp) < Number do Outp := Outp + ' '; Padstring := Outp; End;
+
+Procedure NoCursor;
+Var Regs : Registers;
+Begin Regs.AH := 1; Regs.CX := $2000; Intr($10, Regs); End;
+
+Procedure YesCursor;
+Var Regs : Registers;
+Begin Regs.AH := 1; Regs.CX := $0607; Intr($10, Regs); End;
+
+Procedure FastMove(Var Source,Dest;NumToMove:Word);
+Begin Move(Source, Dest, NumToMove); End;
+
+Procedure Clear_Keyboard_Buffer;
+Begin While KeyPressed do ReadKey; End;
+
+Procedure QWrite(X, Y : Byte; S : String; FG, BG, Width : Byte);
+Var I, Attr : Byte;
+    Buf : Array[1..160] of Byte;
+Begin
+  Attr := (BG shl 4) or FG;
+  While Length(S) < Width do S := S + ' ';
+  For I := 1 to Length(S) do begin
+    Buf[I*2-1] := Ord(S[I]);
+    Buf[I*2]   := Attr;
+  end;
+{$IFDEF FPC}
+  dosmemput($B800, Word(((Y-1)*80+(X-1))*2), Buf, Length(S)*2);
+{$ELSE}
+  For I := 1 to Length(S) do begin
+    Mem[$B800:((Y-1)*80+(X-1)+I-1)*2] := Ord(S[I]);
+    Mem[$B800:((Y-1)*80+(X-1)+I-1)*2+1] := Attr;
+  end;
+{$ENDIF}
+End;
+
 
 Function LeadingZero(W : Word) : String;
 Var S : String;
 Begin
- Str(w:0,S);
- If Length(s) = 1 then S := '0'+S;
- LeadingZero := S;
-End;
-
-Function Uppercase(Str : String) : String;
-Var X : Byte;
-Begin
- For X := 1 to Length(Str) do Str[X] := Upcase(Str[X]);
- Uppercase := Str;
-End;
-
-Procedure Mousesensetivity(x,y:word); Assembler;
-Asm
- mov ax,1ah;
- mov bx,x;
- mov cx,y;
- xor dx,dx;
- int 33h
-end;
-
-Procedure ChangeMode(Mode : Word);Assembler;
-Asm
- mov ax,mode
- int 10h
-End;
-
-Procedure Setcursorshape(Shape : word);Assembler;
-Asm
- mov ah,1;
- mov cx,shape;
- int 10h;
-End;
-
-Function CapsLock : Boolean;
-Begin
- if (Kb and $40) = $40 then Capslock := True else Capslock := False;
-End;
-
-Function ScrollLock : Boolean;
-Begin
- If (Kb and $10) = $10 then ScrollLock := True Else ScrollLock := False;
-End;
-
-Function Inskey : Boolean;
-Function ShiftState: Byte;
-Var Regs: Registers;
-Begin
-  Regs.Ah:=2;
-  Intr($16, Regs);
-  ShiftState:=Regs.Al;
-End;
-Begin
- InsKey :=(ShiftState and 128)<>0;
-End;
-
-Procedure SetTypeRate(Kdelay, Krate:Byte);Assembler;
-asm
- Mov AX,$0305;
- Mov BH, Kdelay;
- Mov BL, Krate;
- Int $16;
-End;
-
-Procedure Blinking(State : Boolean);Assembler;
-Asm
- MOV AX,1003h
- MOV BH,0
- MOV BL,State
- INT 10h
-End;
-
-Procedure GetKeys(Var C1 : Char;Var C2 : Char);
-Begin
- C1 := #0;C2 := #0;
- C1 := Readkey;If C1 = #0 then C2 := Readkey;
-End;
-
-Function Padstring(Outp : String;Number : Byte): String;
-Var X : Byte;
-Begin
- For X := 1 to (Number - Length(Outp)) do Outp := Outp + ' ';
- Padstring := Outp;
-End;
-
-Procedure Clear_Keyboard_Buffer;
-Begin
- MemW[$0000:$041C] := MemW[$0000:$041A];
-End;
-
-Function VGACard : Boolean;
-Var VideoCard : Byte;
-  Begin
-   Asm
-    MOV AX,1A00h
-    INT 10h
-    CMP AL,08h
-    JNZ @VGA
-    MOV VideoCard,0
-    JMP @DONE
-   @VGA:
-    MOV VideoCard,1
-   @DONE:
-   End;
-  If VideoCard = 1 then VGACard := True Else VGACard := False;
-End;
-
-Procedure NoCursor;Assembler;
-Asm
- mov ah,$01
- mov cx,$2000
- Int $10
-End;
-
-Procedure YesCursor;  Assembler;
-asm
- mov      ah,$01
- mov      ch,$06
- mov      cl,$07
- int      $10
-end;
-
-Procedure InputNums(var Lne : String;Chars : Byte);
-Var StartedX,X,Y,Counter : Byte;
-    CH       : Char;
-    P        : String;
-    Done     : Boolean;
-Begin
-YesCursor;
-P := '';
-Counter := 0;
-StartedX := WhereX;
-For X := 1 to Chars do Write(' ');
-GotoXy(StartedX,WhereY);
-Done := False;
-Repeat
- X := WhereX;
- Y := WhereY;
- Clear_Keyboard_Buffer;
- CH := Readkey;
- Case CH of
-    #8 : If Counter > 0 then
-         Begin
-          GotoXy(X-1,Y);Write(' ');
-          GotoXy(X-1,Y);Delete(P,Length(P),1);
-          Dec(Counter);
-         End;
-   #13 : Done := True;
-   #27 : Begin
-          P := 'Aborted';
-          Done := True;
-         End;
- #48..#57 : If Counter < Chars then
-             Begin
-              Inc(Counter);
-              P := P+(CH);
-              Write(CH);
-             End;
-  End; {Case}
- Until (Done = True);
- Lne := P;
- GotoXy(StartedX,WhereY);
- For X := 1 to Chars do Write(' ');
- If Lne <> 'Aborted' then
-  Begin
-   GotoXy(StartedX,WhereY);
-   Write(Lne);
-  End;
- Nocursor;
+  Str(w:0,S);
+  If Length(s) = 1 then S := '0'+S;
+  LeadingZero := S;
 End;
 
 Procedure PipeWrite(S : String);
 Var X,Code : Byte;
     Error  : Integer;
 Begin
-For X := 1 to Length(S) do
- Begin
-  If S[X] <> '|' then Write(S[X])
-   Else Begin
-         Val(Copy(S,X + 1,2),Code,Error);
-         If Error>0 then Write(S[X])
-                     Else Begin
-                            If Code<16 then Textcolor(Code)
-                             Else Textbackground(Code-16);
-                            If X + 2 > Length(S) then Inc(X,1) else Inc(X,2);
-                           End;
-        End;
- End;
+  For X := 1 to Length(S) do begin
+    If S[X] <> '|' then Write(S[X])
+    Else Begin
+      Val(Copy(S,X + 1,2),Code,Error);
+      If Error>0 then Write(S[X])
+      Else Begin
+        If Code<16 then Textcolor(Code) Else Textbackground(Code-16);
+        If X + 2 > Length(S) then Inc(X,1) else Inc(X,2);
+      End;
+    End;
+  end;
 End;
+
 
 Procedure Uncrunch(var Addr1,Addr2; BlkLen:Integer);
-Begin
-  inline (
-    $1E/$C5/$B6/ADDR1/$C4/$BE/ADDR2/$8B/$8E/BLKLEN/$E3/$5B/$8B/$D7/
-    $33/$C0/$FC/$AC/$3C/$20/$72/$05/$AB/$E2/$F8/$EB/$4C/$3C/$10/
-    $73/$07/$80/$E4/$F0/$0A/$E0/$EB/$F1/$3C/$18/$74/$13/$73/$19/
-    $2C/$10/$02/$C0/$02/$C0/$02/$C0/$02/$C0/$80/$E4/$8F/$0A/$E0/
-    $EB/$DA/$81/$C2/$A0/$00/$8B/$FA/$EB/$D2/$3C/$1B/$72/$07/$75/$CC/
-    $80/$F4/$80/$EB/$C7/$3C/$19/$8B/$D9/$AC/$8A/$C8/$B0/$20/$74/$02/
-    $AC/$4B/$32/$ED/$41/$F3/$AB/$8B/$CB/$49/$E0/$AA/$1F);
-End;
-
-Procedure InputLn(var Lne : String;Chars:Byte;Caps:Boolean;Allcaps:Boolean);
-Var
- StartedX,X,Y,Counter,OldAttr : Byte;
- CH   : Char;
- P    : String;
- Done : boolean;
-Begin
- OldAttr  := Textattr;
- StartedX := WhereX;
- P        := '';
- Counter  := 0;
- Yescursor;
- Done := False;
- For X := 1 to Chars do Write(' ');GotoXy(StartedX,WhereY);
-Repeat
- X := WhereX;
- Y := WhereY;
- Clear_Keyboard_Buffer;
- CH := Readkey;If CH = #0 then CH := Readkey;
- Case CH of
-  #8 : If Counter > 0 then
-        Begin
-         GotoXy(X-1,Y);Write(' ');
-         GotoXy(X-1,Y);Delete(P,Length(P),1);
-         Dec(Counter);
-        End;
- #13 : Done := True;
- #27 : Begin
-        P := 'Aborted';
-        Done := True;
-       End;
- #32..#126 : If Counter < Chars then
-              Begin
-               Inc(Counter);
-               If Caps then If (P[Counter-1]=#0) or (P[Counter-1]=#32) or (P[Counter-1]=',') then
-                CH := Upcase(CH);
-               If Allcaps then CH := Upcase(CH);
-               P := P + (CH);
-               Write(CH);
-              End;
-     End;
- Until Done = True;
- Lne := P;
- GotoXy(StartedX,WhereY);
- Textattr := 7;For X := 1 to Chars do Write(' ');
- If Lne <> 'Aborted' then Begin
-                            GotoXy(StartedX,WhereY);
-                            Write(Lne);
-                          End;
- Nocursor;
- Textattr := OldAttr;
-End;
-
-Procedure WaitRetrace; assembler;
-asm
- mov dx,3DAh
- @l1: in al,dx;and al,08h;jnz @l1
- @l2: in al,dx;and al,08h;jz  @l2
-end;
-
-Procedure FastMove(VAR source;VAR dest;numToMove : WORD);
-Begin
- Inline($8C/$DA/$C5/$B6/>SOURCE/$C4/$BE/>DEST/$8B/$8E/>NUMTOMOVE);
- Inline($39/$FE/$72/$08/$FC/$D1/$E9/$73/$11/$A4/$EB/$0E/$FD/$01/$CE);
- Inline($4E/$01/$CF/$4F/$D1/$E9/$73/$01/$A4/$4E/$4F/$F2/$A5/$8E/$DA);
-End;
-
-Procedure qwrite(x, y : byte; s : string; f, b : byte;CharsperRow : Word);
-Var
-  Cnter,Attrib  : Word;
-  VidPtr : ^Word;
-Begin
-  attrib := swap((b shl 4) + f);
-  vidptr := ptr($B800, 2 * (CharsPerRow * pred(y) + pred(x)));
-  If lastmode = 7 then dec(longint(vidptr), $08000000);
-  For cnter := 1 to length(s) do
-  Begin
-   vidptr^ := attrib or byte (s[cnter]);
-   inc(vidptr);
-  End;
-End;
-
+Begin Move(Addr1, Addr2, BlkLen); End;
 Procedure Beep(Freq,Dely : Word);
+Begin Sound(Freq); Delay(Dely); Nosound; End;
+
+Procedure InputLn(var Lne:String;Chars:Byte;Caps:Boolean;Allcaps:Boolean);
+Var StartedX,X,Y,Counter,OldAttr:Byte; CH:Char; P:String; Done:boolean;
 Begin
- Sound(Freq);
- Delay(Dely);
- Nosound;
+  OldAttr:=Textattr; StartedX:=WhereX; P:=''; Counter:=0; Yescursor; Done:=False;
+  For X:=1 to Chars do Write(' ');GotoXy(StartedX,WhereY);
+  Repeat X:=WhereX;Y:=WhereY; CH:=Readkey;If CH=#0 then CH:=Readkey;
+    Case CH of
+      #8:If Counter>0 then Begin GotoXy(X-1,Y);Write(' ');GotoXy(X-1,Y);Delete(P,Length(P),1);Dec(Counter);End;
+      #13:Done:=True;
+      #27:Begin P:='Aborted';Done:=True;End;
+      #32..#126:If Counter<Chars then Begin Inc(Counter);
+        If Caps then If(P[Counter-1]=#0)or(P[Counter-1]=#32)then CH:=Upcase(CH);
+        If Allcaps then CH:=Upcase(CH); P:=P+CH; Write(CH); End;
+    End;
+  Until Done; Lne:=P; GotoXy(StartedX,WhereY);
+  Textattr:=7;For X:=1 to Chars do Write(' ');
+  If Lne<>'Aborted' then Begin GotoXy(StartedX,WhereY);Write(Lne);End;
+  Nocursor; Textattr:=OldAttr;
 End;
 
-Function Yesno : Boolean;
-Var X,Y : Byte;
-    CH : Char;
-    Yes : Boolean;
-Label GetaKey,Ending;
-Begin
-X := WhereX;
-Y := WhereY;
-GotoXy(X,Y);PipeWrite('|15|17 Yes |16|07 No ');
-Yes := True;
-While not (CH in['Y','N',#13]) do
-Begin
- CH := Readkey;If CH = #0 then CH := Readkey;CH := Upcase(CH);
- If CH in[#75,'Y'] then Yes := True;
- If CH in[#77,'N'] then Yes := False;
- GotoXy(X,Y);
- If Yes then Begin
-              Textattr := $1F;Write(' Yes ');
-              Textattr := $7;Write(' No ');
-             End
-        else Begin
-              Textattr := $7;Write(' Yes ');
-              Textattr := $1F;Write(' No ');
-             End;
-End;
-Textcolor(7);Textbackground(0);
-Yesno := Yes;
+Function Yesno:Boolean;
+Var X,Y:Byte;CH:Char;Yes:Boolean;
+Begin X:=WhereX;Y:=WhereY;
+  GotoXy(X,Y);PipeWrite('|15|17 Yes |16|07 No ');
+  Yes:=True; CH:=#0;
+  While not(CH in['Y','N',#13])do Begin
+    CH:=Readkey;If CH=#0 then CH:=Readkey;CH:=Upcase(CH);
+    If CH in[#75,'Y'] then Yes:=True;
+    If CH in[#77,'N'] then Yes:=False;
+    GotoXy(X,Y);
+    If Yes then Begin Textattr:=$1F;Write(' Yes ');Textattr:=$7;Write(' No ');End
+    else Begin Textattr:=$7;Write(' Yes ');Textattr:=$1F;Write(' No ');End;
+  End;
+  Yesno:=Yes;
 End;
 
-Procedure Row_Clear;
-Const Lines : Array[1..25] of Byte =
-(1,3,5,7,9,11,13,15,17,19,21,23,25,24,22,20,18,16,14,12,10,8,6,4,2);
-Var X : Byte;
-Begin
- For X := 1 to 25 do Begin
-                      GotoXy(1,Lines[X]);
-                      ClrEol;
-                      Delay(50);
-                     End;
-End;
+Function CapsLock : Boolean;
+{$IFDEF FPC}
+Var Regs : Registers;
+Begin Regs.AH := 2; Intr($16, Regs); CapsLock := (Regs.AL and $40) <> 0; End;
+{$ELSE}
+Begin if (Mem[$0040:$0017] and $40) = $40 then CapsLock := True else CapsLock := False; End;
+{$ENDIF}
 
-Procedure RollUp;
-Var X,Y : Integer;
-Begin
- For X := 1 to 40 do
- For Y := 0 to 25 do
- Begin
-  Move(Mem[$B800:((Y*160)+ 82)],Mem[$B800:((Y*160)+80)],80);
-  Move(Mem[$B800:((Y*160))],Mem[$B800:((Y*160)+2)],80);
-  Mem[$b800:(Y*160)+1] := 0;
-  Mem[$b800:(Y*160)+158] := 0;
-  Delay(1);
- End;
-End;
+Function ScrollLock : Boolean;
+{$IFDEF FPC}
+Var Regs : Registers;
+Begin Regs.AH := 2; Intr($16, Regs); ScrollLock := (Regs.AL and $10) <> 0; End;
+{$ELSE}
+Begin If (Mem[$0040:$0017] and $10) = $10 then ScrollLock := True Else ScrollLock := False; End;
+{$ENDIF}
 
-Procedure Clear_Column(Column : Byte);
-Var X : Byte;
-Begin
- For X := 1 to 25 do
-   Begin
-    GotoXy(Column,X);
-    If Column < 80 then Write(#0);
-   End;
-End;
+Function InsKey : Boolean;
+Var Regs : Registers;
+Begin Regs.AH := 2; Intr($16, Regs); InsKey := (Regs.AL and 128) <> 0; End;
 
-Procedure Column_Clear;
-Const Column : Array[1..80] of Byte =
- (1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,
-  53,55,57,59,61,63,65,67,69,71,73,75,77,79,80,78,76,74,72,70,68,66,64,62,
-  60,58,56,54,52,50,48,46,44,42,40,38,36,34,32,30,28,26,24,22,20,18,16,14,
-  12,10,8,6,4,2);
-var P : Byte;
-Begin
- For P := 1 to 160 do
- Begin
-  Clear_Column(Column[P]);
-  Delay(5);
- End;
-End;
-
-Procedure Close_Vertical;
-Const Column : Array[1..80] of Byte =
- (1,80,2,79,3,78,4,77,5,76,6,75,7,74,8,73,9,72,10,71,11,70,12,69,13,
- 68,14,67,15,66,16,65,17,64,18,63,19,62,20,61,21,60,22,59,23,58,24,57,
- 25,56,26,55,27,54,28,53,29,52,30,51,31,50,32,49,33,48,34,47,35,46,36,
- 45,37,44,38,43,39,42,40,41);
-Var X : Byte;
-Begin
- For X := 1 to 80 do Begin
-                      Clear_Column(Column[X]);
-                      Delay(5);
-                     End;
-End;
-
-Procedure Close_Horizontal;
-Const Row : Array[1..25] of Byte =
- (1,25,2,24,3,23,4,22,5,21,6,20,7,19,8,18,9,17,10,16,11,15,12,14,13);
-Var P : Byte;
-Begin
-For P := 1 to 25 do Begin
-                     GotoXy(1,Row[P]);
-                     ClrEol;
-                     Delay(10);
-                    End;
-End;
-End.
+Procedure GetKeys(Var C1 : Char; Var C2 : Char);
+Begin C1 := ReadKey; If C1 = #0 then C2 := ReadKey else C2 := #0; End;
+end.

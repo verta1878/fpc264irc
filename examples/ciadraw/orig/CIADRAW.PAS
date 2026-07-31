@@ -1,8 +1,7 @@
-{$IFDEF FPC}{$MODE TP}{$ASMMODE INTEL}{$ENDIF}
 Program CiA_Draw;
 {$F+}
 
-Uses {$IFDEF FPC}Go32,{$ENDIF} Dos,         { Turbo Pascal's DOS Unit              }
+Uses Dos,         { Turbo Pascal's DOS Unit              }
      Crt,         { Turbo Pascal's CRT Unit              }
      Extense,     { Extended Pascal Unit                 }
      Exec,        { Memory Efficient EXEC Unit           }
@@ -10,7 +9,7 @@ Uses {$IFDEF FPC}Go32,{$ENDIF} Dos,         { Turbo Pascal's DOS Unit           
      Load,        { Unit to Load an Ansi into the Buffer }
      FileLst,     { File Listing/Selection Lightbars     }
      Pallette,    { Pallette Manipulation Routines       }
-     FontUnit;
+     FontEdit,FontUnit;
 
 Const
  Modez : Array[1..4] of Word = (80,80,132,132);
@@ -53,9 +52,9 @@ Var
 
 Label Loop1,Loop2,Back;
 
-{$IFNDEF FPC}{$IFNDEF FPC}Procedure Cialogo;External;{$L CIALOGO.OBJ}{$ENDIF}{$ENDIF}
-{$IFNDEF FPC}{$IFNDEF FPC}Procedure Cialogo2;External;{$L CIALOGO2.OBJ}{$ENDIF}{$ENDIF}
-{$IFNDEF FPC}{$IFNDEF FPC}Procedure Cialogo3;External;{$L CIALOGO3.OBJ}{$ENDIF}{$ENDIF}
+Procedure Cialogo;External;{$L CIALOGO.OBJ}
+Procedure Cialogo2;External;{$L CIALOGO2.OBJ}
+Procedure Cialogo3;External;{$L CIALOGO3.OBJ}
 
 Procedure Set8X16;assembler;
 Asm
@@ -87,9 +86,9 @@ Procedure ScreenOp(Mode : Byte);
 Var X,X2,Y : Word;
 Begin
  Case Mode of
-   0 : ChangeMode(3);
-   1 : {$IFDEF FPC}dosmemget($B800,0,ScrBuffer,Yres*160){$ELSE}FastMove(Ptr($B800,$0000)^,ScrBuffer,Yres*160){$ENDIF};
-   2 : {$IFDEF FPC}dosmemput($B800,0,ScrBuffer,Yres*160){$ELSE}FastMove(ScrBuffer,Ptr($B800,$0000)^,Yres*160){$ENDIF};
+   0 : Asm mov ax,3;int 10; end;
+   1 : FastMove(Mem[$b800:0000],ScrBuffer,Yres*160);
+   2 : FastMove(ScrBuffer,Mem[$b800:0000],Yres*160);
    3 : Begin
         X := 0;x2 := 0;
         While X2 < Yres do
@@ -181,13 +180,24 @@ Begin
  GotoXy(X1,Y2);Write('Ó');For X := 1 to (X2-X1) do Write('Ä');Write('½');
 End;
 
-Function FileExist(FileName : String) : Boolean;
-Var F : File; OK : Boolean;
-Begin
-  {$I-} Assign(F, FileName); Reset(F, 1);
-  OK := (IOResult = 0);
-  if OK then Close(F); {$I+}
-  FileExist := OK;
+Function FileExist(FileName : String) : Boolean; ASSEMBLER;
+Asm
+  PUSH DS          {Save DS                         }
+  LDS  SI,Filename {DS:SI => Filename               }
+  XOR  BX,BX       {Clear BX                        }
+  MOV  BL,[SI]     {BX = Length(Filename)           }
+  INC  SI          {DS:SI => Filename[1]            }
+  MOV  DX,SI       {DS:DX => Filename[1]            }
+  MOV  [SI+BX],BH  {Append Ascii 0 to Filename      }
+  MOV  AX,4300h    {Get Attribute Function Code     }
+  INT  21h         {Get File Attributes             }
+  MOV  AL,BH       {Default Result = FALSE          }
+  ADC  CL,CL       {Attribute * 2 + Carry Flag      }
+  AND  CL,31h      {Directory or VolumeID or Failed }
+  JNZ  @@Done      {Yes - Exit                      }
+  INC  AL          {No - Change Result to TRUE      }
+@@Done:
+  POP  DS          {Restore DS                      }
 End; {FileExists}
 
 
@@ -359,19 +369,15 @@ Update;
 End;
 
 
-Procedure CIA_set8x16;
-Var Regs : Registers;
-Begin Regs.AX := $1112; Regs.BL := 0; Intr($10, Regs); End;
-
-Procedure SwitchVideoMode;
+Procedure ChangeMode;
 Begin
  YesCursor;
  Inc(VideoMode);
  If VideoMode = 5 then VideoMode := 1;
  Case VideoMode of
   1 : Begin
-       ChangeMode(3);
-       CIA_set8x16;
+       asm mov ax,3;int 10h;end;
+       set8x16;
        Xres := 80;Yres := 24;
       End;
   2 : Begin
@@ -400,27 +406,18 @@ Begin
  Blinking(False);
 End;
 
-
-Procedure Putpixel(X,Y : Word;Color : Byte);
-{$IFDEF FPC}
-Begin
-  dosmemput($A000, Word(LongInt(Y)*320+X), Color, 1);
-End;
-{$ELSE}
-Assembler;
+Procedure Putpixel(X,Y : Word;Color : Byte);Assembler;
 Asm
- mov ax,$A000
- mov es,ax
- mov bx,Y
- shl bx,6
- mov di,bx
- shl bx,2
- add di,bx
- add di,X
- mov al,Color
- mov es:[di],al
+ MOV ax,$a000
+ MOV es,ax
+ MOV ah,byte ptr y
+ MOV bx,x
+ ADD bx,ax
+ SHR ax,2
+ ADD bx,ax
+ MOV al,color
+ MOV es:[bx],al
 End;
-{$ENDIF}
 
 Function IsZero(Line : Array of Byte) : Boolean;
 Var Zero : Boolean;
@@ -452,7 +449,7 @@ Begin
                                    Break;
                                   End;
    End;
- ChangeMode($13);
+ asm mov ax,13h;int 10h end;
  For Y := 0 to Highest do
   Begin
   For X := 0 to 80 do
@@ -585,7 +582,7 @@ Begin
    3 : Begin                  { Jump to Dos }
         GetDir(0,StartingDir);
         Textattr := $7;
-        ChangeMode(3);
+        asm mov ax,3;int 10h end;
         ClrScr;
         GrabPallette;
         SaveTempPal;
@@ -598,7 +595,7 @@ Begin
         Clear_Keyboard_Buffer;
         C1 := #0;C2 := #0;
         Dec(VideoMode);
-        SwitchVideoMode;
+        ChangeMode;
         ScreenOp(3);
         Chdir(StartingDir);
         Update;
@@ -803,7 +800,7 @@ Var OldX,OldY,OldTop : Byte;
     TempInteger : Integer;
 Label ExitProcedure;
 Begin
- if videomode > 1 then ChangeMode(3);
+ if videomode > 1 then asm mov ax,3;int 10h;end;
  Textattr := 7;
  ClrScr;
  OldX := Xpos;OldY := YPos;OldTop := Top;
@@ -827,7 +824,7 @@ Begin
  Background := TempInteger;
  ExitProcedure:
  Dec(VideoMode);
- SwitchVideoMode;
+ ChangeMode;
  Top := OldTop;
  XPos := OldX;
  YPos := OldY;
@@ -851,13 +848,13 @@ Begin
                            YesCursor;
                            Dec(VideoMode);
                            RestoreTempPal;
-                           SwitchVideoMode;
+                           ChangeMode;
                            RestorePallette;
                            Exit;
                           End;
  ScreenOp(4);   { Zero de Buffah }
  Dec(VideoMode);
- SwitchVideoMode;
+ ChangeMode;
  Xpos := 1;Ypos := 1;Top := 1;
  If Temp <> '' then Begin
                      Fsplit(Temp,D,N,E);
@@ -873,7 +870,7 @@ Begin
                       Update;
                      End;
  Dec(VideoMode);
- SwitchVideoMode;
+ ChangeMode;
  RestoreTempPal;
  RestorePallette;
  Update;
@@ -885,7 +882,7 @@ Begin
                       Writeln('VGA Card Not Detected, Cannot Execute.');
                       Halt(255);
                      End;
- ChangeMode(3);
+ asm mov ax,3;int 10h; end;
  Set8x16;
  For X := 0 to 255 do GetImageChar(X,DefaultCharSet[X]);
  Grey := False;
@@ -900,9 +897,9 @@ Begin
  randomize;
  X := Random(27);
  Case X of
-  0..9   : {$IFDEF FPC};{$ELSE}{$IFDEF FPC};{$ELSE}fastmove(@cialogo^,Ptr($B800,$0000)^,4000);{$ENDIF}{$ENDIF}
-  10..18 : {$IFDEF FPC};{$ELSE}{$IFDEF FPC};{$ELSE}fastmove(@cialogo2^,Ptr($B800,$0000)^,4000);{$ENDIF}{$ENDIF}
-  19..27 : {$IFDEF FPC};{$ELSE}{$IFDEF FPC};{$ELSE}fastmove(@cialogo3^,Ptr($B800,$0000)^,4000);{$ENDIF}{$ENDIF}
+  0..9   : fastmove(@cialogo^,mem[$b800:0000],4000);
+  10..18 : fastmove(@cialogo2^,mem[$b800:0000],4000);
+  19..27 : fastmove(@cialogo3^,mem[$b800:0000],4000);
  End;
  Delay(2000);
  Clear_Keyboard_Buffer;
@@ -961,7 +958,7 @@ If Keypressed then
            Textattr := 7;
            ClrScr;
            RestoreOrigPallette;
-           {$IFNDEF FPC}EditFont;{$ENDIF}
+           EditFont;
            Blinking(False);
            If Videomode = 1 then Set8X16;
            Textattr := 7;
@@ -1005,7 +1002,7 @@ If Keypressed then
            GrabPallette;
            SaveTempPal;
            if VideoMode in[1,3] then SaveTempFont;
-           SwitchVideoMode;
+           ChangeMode;
            RestoreTempPal;
            RestorePallette;
            if VideoMode in[1,3] then RestoreTempFont;
@@ -1018,7 +1015,7 @@ If Keypressed then
    AltV : Begin
            ViewVGA;
            Dec(VideoMode);
-           SwitchVideoMode;
+           ChangeMode;
           End;
     119 : CursorOp(11);
      32 : CursorOp(17);

@@ -1,4 +1,3 @@
-{$IFDEF FPC}{$MODE TP}{$ENDIF}
 Unit Load;
 
 Interface
@@ -25,24 +24,12 @@ Var
    OldTextAttr : Word;
 
 procedure FillWord(var x; count:integer; w:word);
-Var P : PWord;
-    I : Integer;
 Begin
-  P := @x;
-  For I := 0 to count-1 do begin
-    P^ := w;
-    Inc(P);
-  end;
+ Inline($c4/$be/x/$8b/$86/w/$8b/$8e/count/$fc/$f2/$ab);
 End;
 
-Function Normalized(P : Pointer) : pointer;
-Begin
-{$IFDEF FPC}
-  Normalized := P; { In protected mode, pointers are already linear }
-{$ELSE}
-  Normalized := Ptr(Seg(P^) + Ofs(P^) div 16, Ofs(P^) and $0F);
-{$ENDIF}
-End;
+Function Normalized(P : Pointer) : pointer; inline
+   ($58/$5A/$89/$C3/$B1/$04/$D3/$EB/$01/$DA/$25/$0F/$00);
 
 Function Linear(P : Pointer) : LongInt;
 Begin
@@ -51,11 +38,7 @@ End;
 
 Function LinearToPointer(L : LongInt) : Pointer;
 Begin
-{$IFDEF FPC}
-  LinearToPointer := Pointer(L); { Protected mode: linear address }
-{$ELSE}
-  LinearToPointer := Ptr(Word(L shr 4), Word(L and $0000000F));
-{$ENDIF}
+ LinearToPointer := Ptr(Word(L shr 4), Word(L and $0000000F));
 End;
 
 Function PtrDiff(P1, P2 : Pointer) : LongInt;

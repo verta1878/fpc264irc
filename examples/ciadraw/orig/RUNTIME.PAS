@@ -1,4 +1,3 @@
-{$IFDEF FPC}{$MODE TP}{$ENDIF}
 Unit RunTime;
 
 Interface
@@ -37,7 +36,7 @@ Begin
            16:Message:='Cannot remove current directory ';
            17:Message:='Cannot rename across drives ';
           100:Message:='Disk read error ';
-          101:Message:='Disk write error ';
+          100:Message:='Disk write error ';
           102:Message:='File not assigned ';
           103:Message:='File not open ';
           104:Message:='File not open for input ';

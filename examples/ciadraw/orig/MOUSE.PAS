@@ -1,4 +1,3 @@
-{$IFDEF FPC}{$MODE TP}{$ENDIF}
 {
 From: LOU DUCHEZ
 Subj: mouse Library

@@ -1,4 +1,3 @@
-{$IFDEF FPC}{$MODE TP}{$ASMMODE INTEL}{$ENDIF}
 Unit FontEdit;
 
 Interface
@@ -32,21 +31,29 @@ Var
   Ascii    : Byte;
   C1,C2    : Char;
 
-Function GetBitA(var a;Bit:Word):Boolean;
-Var P : PByte;
-Begin
-  P := PByte(@a);
-  Inc(P, Bit shr 3);
-  GetBitA := (P^ and (1 shl (Bit and 7))) <> 0;
-End;
+Function GetBitA(var a;Bit:Word):Boolean;assembler;
+Const Bits:array[0..7] of Byte = ($1,$2,$4,$8,$10,$20,$40,$80);
+asm
+  Les di,a
+  Mov si,bit
+  Mov bx,si
+  And si,07h
+  Shr bx,03h
+  Mov al,Byte(Bits[si])
+  And al,es:[di+bx]
+end;
 
-Procedure InvertBitA(var a;Bit:Word);
-Var P : PByte;
-Begin
-  P := PByte(@a);
-  Inc(P, Bit shr 3);
-  P^ := P^ xor (1 shl (Bit and 7));
-End;
+Procedure InvertBitA(var a;Bit:Word);assembler;
+Const Bits:array[0..7] of Byte = ($1,$2,$4,$8,$10,$20,$40,$80);
+asm
+  Les di,a
+  Mov si,bit
+  Mov bx,si
+  And si,07h
+  Shr bx,03h
+  Mov al,Byte(Bits[si])
+  Xor es:[di+bx],al
+end;
 
 Procedure ShowFont(Character : Byte);
 Var X,Y : Byte;
@@ -69,13 +76,24 @@ Begin
                                             else Qwrite(82-(7+(Y*3)),X+3,'ллл',8,0,80);
 End;
 
-Function FileExist(FileName : String) : Boolean;
-Var F : File; OK : Boolean;
-Begin
-  {$I-} Assign(F, FileName); Reset(F, 1);
-  OK := (IOResult = 0);
-  if OK then Close(F); {$I+}
-  FileExist := OK;
+Function FileExist(FileName : String) : Boolean; ASSEMBLER;
+Asm
+  PUSH DS          {Save DS                         }
+  LDS  SI,Filename {DS:SI => Filename               }
+  XOR  BX,BX       {Clear BX                        }
+  MOV  BL,[SI]     {BX = Length(Filename)           }
+  INC  SI          {DS:SI => Filename[1]            }
+  MOV  DX,SI       {DS:DX => Filename[1]            }
+  MOV  [SI+BX],BH  {Append Ascii 0 to Filename      }
+  MOV  AX,4300h    {Get Attribute Function Code     }
+  INT  21h         {Get File Attributes             }
+  MOV  AL,BH       {Default Result = FALSE          }
+  ADC  CL,CL       {Attribute * 2 + Carry Flag      }
+  AND  CL,31h      {Directory or VolumeID or Failed }
+  JNZ  @@Done      {Yes - Exit                      }
+  INC  AL          {No - Change Result to TRUE      }
+@@Done:
+  POP  DS          {Restore DS                      }
 End; {FileExists}
 
 
@@ -136,7 +154,7 @@ Procedure EditFont;
 Begin
 ClrScr;
 Nocursor;
-{$IFNDEF FPC}move(@FontScrn^,mem[$b800:0000],4000);{$ENDIF}
+move(@FontScrn^,mem[$b800:0000],4000);
 Active := 1;
 FontXPos := 1;FontYPos := 1;
 Mode := 1;
@@ -173,7 +191,7 @@ Begin
                     int 10h
                    end;
                    For X := 0 to 255 do GetImageChar(X,DefaultCharSet[X]);
-                   {$IFNDEF FPC}move(@FontScrn^,mem[$b800:0000],4000);{$ENDIF}
+                   move(@FontScrn^,mem[$b800:0000],4000);
                    Nocursor;
                   End;
  If C2 = #34 then Begin {Alt-G .. Rotate Font Right}
@@ -209,7 +227,7 @@ Begin
                      BlockWrite(FontFile,CharSet,SizeOf(CharSet));
                      Close(FontFile);
                     End;
-                   {$IFNDEF FPC}move(@FontScrn^,mem[$b800:0000],4000);{$ENDIF}
+                   move(@FontScrn^,mem[$b800:0000],4000);
                   End;
  If C2 = #38 then Begin {Alt-L .. Load Font File}
                    Beep(1000,100);
@@ -228,7 +246,7 @@ Begin
                      Close(FontFIle);
                     End;
                    WaitRetrace;
-                   {$IFNDEF FPC}move(@FontScrn^,mem[$b800:0000],4000);{$ENDIF}
+                   move(@FontScrn^,mem[$b800:0000],4000);
                   End;
  If Mode = 1 then SelectChar;
  If Mode = 2 then SelectPos;
