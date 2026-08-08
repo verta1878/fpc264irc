@@ -1,0 +1,5 @@
+uart/uart.c(128): Warning! W131: No prototype found for function 'outp'
+uart/uart.c(129): Warning! W131: No prototype found for function 'io_delay'
+uart/uart.c(130): Warning! W131: No prototype found for function 'inp'
+uart/uart.c(636): Warning! W131: No prototype found for function 'int_disable'
+uart/uart.c(638): Warning! W131: No prototype found for function 'int_enable'

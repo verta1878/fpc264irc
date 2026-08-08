@@ -31,9 +31,14 @@ uses
   Win32Int, Forms;
 
 initialization
-  CreateWidgetset(TWin32WidgetSet);
+  { LCL_7182_PATCH: Don't create widgetset when loaded as a DLL.
+    ISCmplr.dll loaded under Wine headless has no display —
+    CreateWidgetset would fail. Same IsLibrary guard as systhrd.inc. }
+  if not IsLibrary then
+    CreateWidgetset(TWin32WidgetSet);
 
 finalization
-  FreeWidgetSet;
+  if WidgetSet <> nil then
+    FreeWidgetSet;
 
 end.
