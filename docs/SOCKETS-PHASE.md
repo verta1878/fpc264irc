@@ -30,7 +30,7 @@ their vectors. The unit provides Init/Done, the program calls them.
 ## Status
 
 The TCP side — state machine, checksums, ARP, packet driver — is done.
-What's left is UDP (needed for DNS) and one missing line in ioctlSocket.
+UDP and DNS are both working. FIONREAD fixed. Full network stack operational.
 The hard 90% is built.
 
 ## Files

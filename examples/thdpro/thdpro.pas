@@ -341,7 +341,11 @@ Begin
   Case Scan.ID Of
     scMcAfee: Begin
       { McAfee: 0=clean, 1=virus, 2=error }
-      If RC = 1 Then Result := trVirusFound;
+      If RC = 1 Then Result := trVirusFound
+      Else If RC = 2 Then Begin
+        Result := trSuspicious;
+        Log('  McAfee error (RC=2) — scanner error');
+      End;
     End;
     scFProt: Begin
       { F-Prot: 0=clean, 1=not scanned, 2=self-check fail,
@@ -355,7 +359,11 @@ Begin
     End;
     scClamAV: Begin
       { ClamAV: 0=clean, 1=virus, 2=error }
-      If RC = 1 Then Result := trVirusFound;
+      If RC = 1 Then Result := trVirusFound
+      Else If RC = 2 Then Begin
+        Result := trSuspicious;
+        Log('  ClamAV error (RC=2) — file may be corrupt or unreadable');
+      End;
     End;
   End;
 
@@ -618,13 +626,13 @@ Begin
   Rec.BBS_Processed := False;
 
   Rec.Check_count   := 1;
-  Rec.BBS_type      := 0;  { TODO: configurable }
+  Rec.BBS_type      := Ord(Config.ConvertTo);  { from config }
   Rec.COM_port      := Config.ComPort;
   Rec.EXIT_level    := ExitLvl;
   Rec.TESTINFO_REV  := 1;
 
   Rec.TEST_DT       := NowPackedDT;
-  Rec.CMD_options   := ' ';  { TODO: capture actual cmdline }
+  Rec.CMD_options   := ParamStr(0) + ' ' + FileName;  { actual cmdline }
   Rec.Creator       := 'THD ScanPro';
   Rec.Log_path      := Config.LogFile;
   Rec.BBS_data_dir  := Config.BBSDir;
@@ -1107,10 +1115,57 @@ Var
 Begin
   If Not FileExists('THDPRO.CFG') Then Exit;
   
-  { Try binary format first }
-  { TODO: read binary TCfg record from THDINSTL }
-  
-  { For now, also support simple KEY=VALUE text format }
+  { Try binary format first (written by THDINSTL) }
+  If FileExists('THDPRO.BIN') Then Begin
+    Assign(BinF, 'THDPRO.BIN');
+    {$I-} Reset(BinF); {$I+}
+    If IOResult = 0 Then Begin
+      BlockRead(BinF, BinCfg, SizeOf(BinCfg));
+      Close(BinF);
+      Config.WorkDir     := BinCfg.WorkDir;
+      Config.LogFile     := BinCfg.LogFile;
+      Config.BBSDir      := BinCfg.BBSDataDir;
+      Config.MaxLogSize  := BinCfg.MaxLogSize;
+      Config.MaxFileSize := BinCfg.MaxFileSize;
+      Config.ComPort     := BinCfg.ComPort;
+      Config.MaxDescSize := BinCfg.MaxDescSize;
+      Config.SecureMode  := BinCfg.SecureMode;
+      { Map scanner paths to scanner array }
+      Config.NScanners := 0;
+      If BinCfg.ClamAVPath <> '' Then Begin
+        Inc(Config.NScanners);
+        Config.Scanners[Config.NScanners].ID   := scClamAV;
+        Config.Scanners[Config.NScanners].Name := 'ClamAV';
+        Config.Scanners[Config.NScanners].Path := BinCfg.ClamAVPath;
+        Config.Scanners[Config.NScanners].Active := True;
+      End;
+      If BinCfg.McAfeePath <> '' Then Begin
+        Inc(Config.NScanners);
+        Config.Scanners[Config.NScanners].ID   := scMcAfee;
+        Config.Scanners[Config.NScanners].Name := 'McAfee';
+        Config.Scanners[Config.NScanners].Path := BinCfg.McAfeePath;
+        Config.Scanners[Config.NScanners].Active := True;
+      End;
+      If BinCfg.FProtPath <> '' Then Begin
+        Inc(Config.NScanners);
+        Config.Scanners[Config.NScanners].ID   := scFProt;
+        Config.Scanners[Config.NScanners].Name := 'F-Prot';
+        Config.Scanners[Config.NScanners].Path := BinCfg.FProtPath;
+        Config.Scanners[Config.NScanners].Active := True;
+      End;
+      If BinCfg.TBScanPath <> '' Then Begin
+        Inc(Config.NScanners);
+        Config.Scanners[Config.NScanners].ID   := scTBScan;
+        Config.Scanners[Config.NScanners].Name := 'TBScan';
+        Config.Scanners[Config.NScanners].Path := BinCfg.TBScanPath;
+        Config.Scanners[Config.NScanners].Active := True;
+      End;
+      Log('Config loaded from THDPRO.BIN (binary)');
+      Exit;
+    End;
+  End;
+
+  { Fallback: simple KEY=VALUE text format }
   { This allows manual editing without THDINSTL }
 End;
 

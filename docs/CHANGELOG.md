@@ -302,3 +302,49 @@ Filed on cwensley/pablodraw GitHub:
 - Root cause: FormatRip.cs line 42 missing Encoding parameter
 - One-line fix: new BinaryReader(stream, Encoding)
 - Found by kiddo/evga from RIP art with block characters
+
+---
+
+## Session 17 — r3.1
+
+### Compiler Fixes
+- **BUG-037:** ncal.pas VerifyAbstractCalls nil-safe (cycle-built ppc386)
+- **BUG-038:** Wine deadlock fix — systhrd.inc + system.pp init order (wrench)
+- **BUG-039:** LCL_7182 — interfaces.pp IsLibrary guard for headless DLL
+
+### LCL Win32
+- 736 PPUs rebuilt with all three patches
+- shlobj stub expanded (BFFM_*, BROWSEINFOW, CoTaskMemAlloc)
+
+### CIADraw
+- 10/10 units ported TP7 → FPC go32v2 with {$IFDEF FPC} guards
+
+### PCBoard 15.4
+- hexadecimal delivered pcbrevival on GitHub (12 binaries, OpenWatcom)
+
+### MDL
+- 55 units from g00r00's project audited — 76% already OOP
+- serial_ext.pas merged (wrench's bridge layer)
+- MDL-OOP-ANALYSIS.md written
+
+### utrayit
+- 10 C bug fixes backported to Pascal (null checks, casts, buffer sizing)
+
+### FOSSIL Socket
+- m_fossil_socket.pas — third backend (fbSocket) for all platforms
+- FOSSIL-SOCKET.md + LINUX_SERIAL_PLAN.md docs
+
+### SIO Rebuild
+- evga's clean-room OS/2 serial driver preserved with GPLv3
+
+### netmodem2irc
+- Full FOSSIL driver stack: DOS/Linux/OS/2/Windows
+
+### thdproscan
+- 4 bugs fixed (binary config, ClamAV RC=2, BBS_type, FILES.BBS writer)
+- Sample thdpro.cfg preconfigured for ClamAV
+
+### Docs Updated
+- CREDITS.md — added hexadecimal
+- LCL-STATUS.md — updated to 253+ PPUs
+- NETWORK-STATUS.md — all features confirmed working

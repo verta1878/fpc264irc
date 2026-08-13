@@ -105,7 +105,36 @@ Begin
   WriteLn('      Exit: ', Rec.EXIT_level,
     '  Creator: ', Rec.Creator);
 
-  { TODO: Write to FILES.BBS / RA / Renegade / PCBoard / Mystic }
+  { Write scan results to FILES.BBS }
+  If FileExists(BBSDir + 'FILES.BBS') Then Begin
+    Assign(BBS, BBSDir + 'FILES.BBS');
+    {$I-} Append(BBS); {$I+}
+    If IOResult <> 0 Then Begin
+      {$I-} Rewrite(BBS); {$I+}
+      If IOResult <> 0 Then Begin
+        WriteLn('  ERROR: Cannot write FILES.BBS');
+        Exit;
+      End;
+    End;
+    For I := 0 To RecCount - 1 Do Begin
+      If Recs[I].Status = trPassed Then
+        WriteLn(BBS, Recs[I].FileName, ' ', Recs[I].Desc);
+    End;
+    Close(BBS);
+    WriteLn('  Updated FILES.BBS (', RecCount, ' entries)');
+  End Else Begin
+    { Create new FILES.BBS }
+    Assign(BBS, BBSDir + 'FILES.BBS');
+    {$I-} Rewrite(BBS); {$I+}
+    If IOResult = 0 Then Begin
+      For I := 0 To RecCount - 1 Do Begin
+        If Recs[I].Status = trPassed Then
+          WriteLn(BBS, Recs[I].FileName, ' ', Recs[I].Desc);
+      End;
+      Close(BBS);
+      WriteLn('  Created FILES.BBS (', RecCount, ' entries)');
+    End;
+  End
   { For now, just mark as processed }
   Rec.Processed := True;
   Rec.BBS_Processed := True;

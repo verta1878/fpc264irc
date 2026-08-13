@@ -507,3 +507,53 @@ Then rebuild install_data.mys with the fixed install_make.
   - mystic.dat (5,282 bytes) 
   - 11 ROOT files, 18 DATA files, text/menus/scripts/docs
 **Status:** FIXED
+
+---
+
+### BUG-037: ncal.pas VerifyAbstractCalls EAccessViolation — FIXED
+
+**Symptom:** ppc386 crashes with EAccessViolation when compiling deep
+LCL class hierarchies (TControl → TWinControl → TForm).
+
+**Root cause:** `TCallNode.VerifyAbstractCalls` in ncal.pas dereferences
+`methodpointer.resultdef` without nil check.
+
+**Fix:** Added `assigned(methodpointer.resultdef)` checks + proper early
+exit when no abstract methods exist. Cycle-built ppc386 from modified source.
+
+**Files:** `src/compiler/ncal.pas`
+
+### BUG-038: Wine deadlock in DLL init (systhrd.inc + system.pp) — FIXED
+
+**Symptom:** ISCC.exe deadlocks under Wine at critical section 00446B10.
+FPC 3.2.2 works, FPC 2.6.4 deadlocks.
+
+**Root cause:** Two-part init ordering bug:
+1. `SysInitMultithreading` sets `IsMultiThread := true` during DLL init,
+   before Wine's threading subsystem is ready.
+2. `InitSystemThreads` called AFTER `SysInitExceptions`, which tries
+   to use critical sections before threading is initialized.
+
+**Fix (backported from FPC 3.2.2):**
+1. `systhrd.inc`: Don't set `IsMultiThread := true` when `IsLibrary = true`.
+2. `system.pp`: Move `InitSystemThreads` before `SysInitExceptions`.
+
+**Files:** `src/rtl/win/systhrd.inc`, `src/rtl/win32/system.pp`
+**Credit:** wrench found the system.pp init order half.
+
+### BUG-039: LCL_7182 — CreateWidgetset crashes in headless Wine DLL — FIXED
+
+**Symptom:** Setup.exe loads ISCmplr.dll under Wine headless.
+CreateWidgetset tries to create a Win32 GUI with no display. Crash.
+
+**Fix:** Skip CreateWidgetset when loaded as DLL:
+```pascal
+initialization
+  if not IsLibrary then
+    CreateWidgetset(TWin32WidgetSet);
+finalization
+  if WidgetSet <> nil then
+    FreeWidgetSet;
+```
+
+**File:** `src/lazarus/lcl/interfaces/win32/interfaces.pp`

@@ -115,3 +115,21 @@ FTSC FSC-0015 rev 5 + FSC-0072. Real UART, no network.
 ## License
 
 GPLv3 — Part of netmodem2irc (verta1878/netmodem2irc).
+
+## serial_ext.pas — Bridge Unit (wrench)
+
+Fills the gap between FPC's RTL `Serial` unit and MDL's `m_serial.pas`.
+Six functions FPC doesn't provide:
+
+| Function | What |
+|----------|------|
+| SerGetDCD(H) | Carrier Detect status |
+| SerDataAvailable(H) | Non-blocking data check |
+| SerDetectUART(port) | Identify UART type (8250/16550/16550A) |
+| SerSetFIFO(H, enable, trigger) | FIFO control |
+| SerEnableIRQ(H) | Enable interrupt-driven receive |
+| SerDisableIRQ(H) | Disable interrupt-driven receive |
+
+On Linux: uses ioctl/fpSelect. On DOS: calls serial_irq. On Windows: stubs.
+
+See also: `examples/fossil-socket/m_fossil_socket.pas` for the socket backend.

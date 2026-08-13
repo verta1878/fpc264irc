@@ -4,7 +4,7 @@ Custom Free Pascal Compiler 2.6.4 fork for BBS and retro computing.
 7-target cross-compiler with 65 multimedia codecs, RIPscrip viewer,
 pure Pascal DOS networking, and full Unicode support.
 
-3,021 PPUs across 7 targets. Zero C dependencies on DOS. Pascal strings
+2,432 PPUs across 6 targets. Zero C dependencies on DOS. Pascal strings
 throughout — length-prefixed ShortString/AnsiString, no libc, no null
 terminators except at OS API boundaries.
 
@@ -12,9 +12,9 @@ terminators except at OS API boundaries.
 
 | Target | PPUs | Free Vision | Sockets |
 |--------|------|-------------|---------|
-| i386-linux | 237 | 24/24 | BSD (system) |
-| i386-win32 | 619 | 24/24 | Winsock |
-| i386-go32v2 | 299 | 24/24 | Pure Pascal (go32 DPMI) |
+| i386-linux | 242 | 24/24 | BSD (system) |
+| i386-win32 | 736 | 24/24 | Winsock |
+| i386-go32v2 | 302 | 24/24 | Pure Pascal (go32 DPMI) |
 | i386-os2 | 207 | 24/24 | EMX sockets |
 | i386-darwin | 788 | 24/24 (Mach-O .o via llvm-mc-18) | BSD (system) |
 | i8086-msdos | 113 | 24/24 (huge model) | Pure Pascal (Dos.Intr) |
