@@ -48,7 +48,7 @@ type
   { Canvas — 2D grid of character cells }
   PPDCanvasElement = ^TPDCanvasElement;
   
-  TPDCanvas = class
+  TPDCanvas = {$IFDEF CPU16}object{$ELSE}class{$ENDIF}
     FWidth: Integer;
     FHeight: Integer;
     FData: array of TPDCanvasElement;
@@ -182,7 +182,7 @@ begin Result := (FForeground = Other.FForeground) and (FBackground = Other.FBack
 
 { ---- TPDCanvas ---- }
 
-constructor TPDCanvas.Create(AWidth, AHeight: Integer);
+{$IFDEF CPU16}procedure{$ELSE}constructor{$ENDIF} TPDCanvas.Create(AWidth, AHeight: Integer);
 begin
   inherited Create;
   Resize(AWidth, AHeight);
@@ -192,7 +192,7 @@ procedure TPDCanvas.Resize(AWidth, AHeight: Integer);
 begin
   FWidth := AWidth;
   FHeight := AHeight;
-  SetLength(FData, FWidth * FHeight);
+  {$IFNDEF CPU16}SetLength(FData, FWidth * FHeight);{$ENDIF}
   Clear;
 end;
 
@@ -231,7 +231,7 @@ begin
   if NewHeight < 1 then NewHeight := 1;
   if NewHeight < FHeight then begin
     FHeight := NewHeight;
-    SetLength(FData, FWidth * FHeight);
+    {$IFNDEF CPU16}SetLength(FData, FWidth * FHeight);{$ENDIF}
   end;
 end;
 

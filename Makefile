@@ -6,6 +6,10 @@
 
 .PHONY: clean help
 
+# FPCIRC Guard (D5)
+check:
+	@test -f .fpcirc || (echo "ERROR: Not an fpc264irc repo" && exit 1)
+
 help:
 	@echo "Usage:"
 	@echo "  make clean    — remove all build artifacts (preserves shipped PPUs)"

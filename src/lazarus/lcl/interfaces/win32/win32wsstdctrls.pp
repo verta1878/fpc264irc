@@ -22,6 +22,7 @@ unit Win32WSStdCtrls;
 interface
 
 uses
+  win32compat,
 ////////////////////////////////////////////////////
 // I M P O R T A N T
 ////////////////////////////////////////////////////
@@ -1070,7 +1071,7 @@ begin
   {$ifdef WindowsUnicodeSupport}
   if UnicodeEnabledOS then
   begin
-    Windows.SendMessageW(WinHandle, EM_GETSEL, Windows.WPARAM(@Result), 0);
+    WinSendMessage(WinHandle, EM_GETSEL, Windows.WPARAM(@Result), 0);
   end
   else
   begin
@@ -1088,7 +1089,7 @@ begin
   {$ifdef WindowsUnicodeSupport}
   if UnicodeEnabledOS then
   begin
-    Windows.SendMessageW(WinHandle, EM_GETSEL, Windows.WPARAM(@startpos), Windows.LPARAM(@endpos));
+    WinSendMessage(WinHandle, EM_GETSEL, Windows.WPARAM(@startpos), Windows.LPARAM(@endpos));
   end
   else
   begin
@@ -1105,9 +1106,9 @@ begin
   {$ifdef WindowsUnicodeSupport}
   if UnicodeEnabledOS then
   begin
-    Windows.SendMessageW(WinHandle, EM_SETSEL, Windows.WParam(NewStart), Windows.LParam(NewStart));
+    WinSendMessage(WinHandle, EM_SETSEL, Windows.WParam(NewStart), Windows.LParam(NewStart));
     // scroll caret into view
-    Windows.SendMessageW(WinHandle, EM_SCROLLCARET, 0, 0);
+    WinSendMessage(WinHandle, EM_SCROLLCARET, 0, 0);
   end
   else
   begin
@@ -1129,9 +1130,9 @@ begin
   {$ifdef WindowsUnicodeSupport}
    if UnicodeEnabledOS then
    begin
-     Windows.SendMessageW(WinHandle, EM_GETSEL, Windows.WParam(@startpos), Windows.LParam(@endpos));
+     WinSendMessage(WinHandle, EM_GETSEL, Windows.WParam(@startpos), Windows.LParam(@endpos));
      endpos := startpos + NewLength;
-     Windows.SendMessageW(WinHandle, EM_SETSEL, Windows.WParam(startpos), Windows.LParam(endpos));
+     WinSendMessage(WinHandle, EM_SETSEL, Windows.WParam(startpos), Windows.LParam(endpos));
    end
    else
    begin
@@ -1181,7 +1182,7 @@ var
   BufferX: Longword;
 begin
   // EM_GETSEL expects a pointer to 32-bits buffer in lParam
-  Windows.SendMessageW(ACustomEdit.Handle, EM_GETSEL, 0, PtrInt(@BufferX));
+  WinSendMessage(ACustomEdit.Handle, EM_GETSEL, 0, PtrInt(@BufferX));
   Result.X := BufferX;
   Result.Y := 0;
 end;
@@ -1234,7 +1235,7 @@ end;
 
 class procedure TWin32WSCustomEdit.SetCaretPos(const ACustomEdit: TCustomEdit; const NewPos: TPoint);
 begin
-  Windows.SendMessageW(ACustomEdit.Handle, EM_SETSEL, NewPos.X, NewPos.X);
+  WinSendMessage(ACustomEdit.Handle, EM_SETSEL, NewPos.X, NewPos.X);
 end;
 
 class procedure TWin32WSCustomEdit.SetCharCase(const ACustomEdit: TCustomEdit; NewCase: TEditCharCase);
@@ -1381,18 +1382,18 @@ begin
 
     EM_GETSEL expects a pointer to 32-bits buffer in lParam
   }
-  Windows.SendMessageW(ACustomEdit.Handle, EM_GETSEL, 0, PtrInt(@BufferX));
+  WinSendMessage(ACustomEdit.Handle, EM_GETSEL, 0, PtrInt(@BufferX));
   { EM_LINEINDEX returns the char index of a given line
     wParam = -1 indicates the line of the caret
   }
-  Result.X := BufferX - Windows.SendMessageW(ACustomEdit.Handle, EM_LINEINDEX, -1, 0);
+  Result.X := BufferX - WinSendMessage(ACustomEdit.Handle, EM_LINEINDEX, -1, 0);
 
   { Y position calculation }
 
   { EM_LINEFROMCHAR returns the number of the line of a given
     char index.
   }
-  Result.Y := Windows.SendMessageW(ACustomEdit.Handle, EM_LINEFROMCHAR, BufferX, 0);
+  Result.Y := WinSendMessage(ACustomEdit.Handle, EM_LINEFROMCHAR, BufferX, 0);
 end;
 
 class procedure TWin32WSCustomMemo.SetCaretPos(const ACustomEdit: TCustomEdit; const NewPos: TPoint);
@@ -1400,11 +1401,11 @@ var
   CharIndex: LRESULT;
 begin
   { EM_LINEINDEX returns the char index of a given line }
-  CharIndex := Windows.SendMessageW(ACustomEdit.Handle, EM_LINEINDEX, NewPos.Y, 0) + NewPos.X;
+  CharIndex := WinSendMessage(ACustomEdit.Handle, EM_LINEINDEX, NewPos.Y, 0) + NewPos.X;
   { EM_SETSEL expects the character position in char index, which
     doesn't go back to zero in new lines
   }
-  Windows.SendMessageW(ACustomEdit.Handle, EM_SETSEL, CharIndex, CharIndex);
+  WinSendMessage(ACustomEdit.Handle, EM_SETSEL, CharIndex, CharIndex);
 end;
 
 class procedure TWin32WSCustomMemo.SetScrollbars(const ACustomMemo: TCustomMemo; const NewScrollbars: TScrollStyle);

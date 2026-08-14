@@ -42,12 +42,12 @@ begin
   LocalIP := inet_addr(SelfIP);
   SubnetMask := inet_addr(Mask);
   GatewayIP := inet_addr(Gateway);
-  Result := InitWatt32;
+  Result := InitSockets;
 end;
 
 procedure TCPShutdown;
 begin
-  DoneWatt32;
+  DoneSockets;
 end;
 
 function TCPOpen(RemoteIP: TIPAddr; RemotePort: Word): TSocket;

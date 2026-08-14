@@ -85,8 +85,8 @@ begin
 
   if UnicodeEnabledOS then
   begin
-    Windows.UnregisterClassW(@ClsNameW, System.HInstance);
-    Windows.UnregisterClassW(@ClsHintNameW, System.HInstance);
+    Windows.UnregisterClass(PChar(ClsName), System.HInstance);
+    Windows.UnregisterClass(PChar(ClsHintName), System.HInstance);
   end
   else
   begin
@@ -474,7 +474,7 @@ begin
   begin
     {$ifdef WindowsUnicodeSupport}
     if UnicodeEnabledOS then
-      Windows.SetWindowTextW(FAppHandle, PWideChar(UTF8ToUTF16(ATitle)))
+      WinSetWindowText(FAppHandle, ATitle)
     else
       Windows.SetWindowText(FAppHandle, PChar(Utf8ToAnsi(ATitle)));
     {$else}
@@ -634,7 +634,7 @@ begin
       LPSzMenuName := nil;
       LPSzClassName := @ClsNameW;
     end;
-    Result := Windows.RegisterClassW(@WindowClassW) <> 0;
+    Result := WinRegisterClass(@WindowClassW);
     if Result then
     begin
       with WindowClassW do
@@ -646,7 +646,7 @@ begin
         hbrBackground := 0;
         LPSzClassName := @ClsHintNameW;
       end;
-      Result := Windows.RegisterClassW(@WindowClassW) <> 0;
+      Result := WinRegisterClass(@WindowClassW);
     end;
   end
   else begin

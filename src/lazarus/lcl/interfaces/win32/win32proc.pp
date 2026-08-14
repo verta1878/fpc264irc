@@ -22,6 +22,7 @@ unit win32proc;
 interface
 
 uses
+  win32compat,
   Windows, Win32Extra, Classes, SysUtils,
   LMessages, LCLType, LCLProc, LCLMessageGlue,Controls, Forms, Menus, GraphType, IntfGraphics;
 
@@ -1045,10 +1046,10 @@ begin
 {$ifdef WindowsUnicodeSupport}
   if UnicodeEnabledOS then
   begin
-    TextLen := Windows.GetWindowTextLengthW(AHandle);
+    TextLen := WinGetWindowTextLength(AHandle);
     SetLength(WideBuffer, TextLen);
     if TextLen > 0 // Never give Windows the chance to write to System.emptychar
-    then TextLen := Windows.GetWindowTextW(AHandle, PWideChar(WideBuffer), TextLen + 1);
+    then TextLen := Windows.GetWindowText(AHandle, PChar(WideBuffer), TextLen + 1);
     SetLength(WideBuffer, TextLen);
     Result := UTF16ToUTF8(WideBuffer);
   end

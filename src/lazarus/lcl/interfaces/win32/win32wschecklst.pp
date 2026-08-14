@@ -21,6 +21,7 @@ unit Win32WSCheckLst;
 interface
 
 uses
+  win32compat,
 ////////////////////////////////////////////////////
 // I M P O R T A N T                                
 ////////////////////////////////////////////////////
@@ -247,7 +248,7 @@ class procedure TWin32WSCustomCheckListBox.DefaultWndHandler(
     if UnicodeEnabledOS then
     begin
       WideBuffer := UTF8ToUTF16(CheckListBox.Items[Data^.ItemID]);
-      Windows.DrawTextW(Data^._HDC, PWideChar(WideBuffer), -1,
+      WinDrawText(Data^._HDC, UTF8Encode(WideBuffer),
        TextRect, TextFlags);
     end
     else

@@ -21,7 +21,8 @@ unit Win32WSComCtrls;
 
 interface
 
-uses        
+uses
+  win32compat,        
   // FCL
   CommCtrl, Windows, Classes, SysUtils, Math, Win32Extra,
   ShellAPI,
@@ -297,7 +298,7 @@ begin
   Parent := TWin32WidgetSet(WidgetSet).AppHandle;
   {$ifdef WindowsUnicodeSupport}
   if UnicodeEnabledOS then
-    PreferredSizeStatusBar := CreateWindowExW(0, STATUSCLASSNAMEW,
+    PreferredSizeStatusBar := Windows.CreateWindowEx(0, STATUSCLASSNAME,
       nil, Flags,
       0, 0, 0, 0, Parent, 0, HInstance, nil)
   else
@@ -343,7 +344,7 @@ begin
   WParam := WParam or StatusPanel.Index;
   {$ifdef WindowsUnicodeSupport}
     if UnicodeEnabledOS then
-      Windows.SendMessageW(StatusPanel.StatusBar.Handle, SB_SETTEXTW, WParam, LPARAM(PWideChar(UTF8ToUTF16(Text))))
+      WinSendMessage(StatusPanel.StatusBar.Handle, SB_SETTEXT, WParam, LPARAM(PWideChar(UTF8ToUTF16(Text))))
     else
       Windows.SendMessage(StatusPanel.StatusBar.Handle, SB_SETTEXT, WParam, LPARAM(PChar(Utf8ToAnsi(Text))));
   {$else}
@@ -520,7 +521,7 @@ begin
   if AStatusBar.SimplePanel then
   {$ifdef WindowsUnicodeSupport}
     if UnicodeEnabledOS then
-      Windows.SendMessageW(AStatusBar.Handle, SB_SETTEXTW, 255, LPARAM(PWideChar(UTF8ToUTF16(AStatusBar.SimpleText))))
+      WinSendMessage(AStatusBar.Handle, SB_SETTEXT, 255, LPARAM(PWideChar(UTF8ToUTF16(AStatusBar.SimpleText))))
     else
       Windows.SendMessage(AStatusBar.Handle, SB_SETTEXT, 255, LPARAM(PChar(Utf8ToAnsi(AStatusBar.SimpleText))))
   {$else}

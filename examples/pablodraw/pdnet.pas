@@ -78,7 +78,7 @@ type
   TOnUpdateEvent = procedure(X1, Y1, X2, Y2: Integer) of object;
 
   { ---- Server ---- }
-  TPDNetServer = class
+  TPDNetServer = {$IFDEF CPU16}object{$ELSE}class{$ENDIF}
   private
     FUsers: array[0..PD_MAX_USERS - 1] of TPDNetUser;
     FCanvas: TPDCanvas;
@@ -103,8 +103,7 @@ type
     procedure SendWelcome(Idx: Integer);
     procedure DisconnectUser(Idx: Integer; const Reason: String);
   public
-    constructor Create(ACanvas: TPDCanvas);
-    destructor Destroy; override;
+    {$IFDEF CPU16}procedure Init(ACanvas: TPDCanvas); procedure Done;{$ELSE}constructor Create(ACanvas: TPDCanvas); destructor Destroy; override;{$ENDIF}
     function  Start(APort: Word): Boolean;
     procedure Stop;
     procedure Poll;
@@ -112,7 +111,7 @@ type
     procedure SetUserLevel(Idx: Integer; Level: TUserLevel);
     procedure BroadcastChat(const From, Text: String);
     function  GetUser(Idx: Integer): TPDNetUser;
-    property Canvas: TPDCanvas read FCanvas;
+    {$IFNDEF CPU16}property Canvas: TPDCanvas read FCanvas;{$ENDIF}
     property Port: Word read FPort;
     property Running: Boolean read FRunning;
     property Password: String read FPassword write FPassword;
@@ -123,7 +122,7 @@ type
   end;
 
   { ---- Client ---- }
-  TPDNetClient = class
+  TPDNetClient = {$IFDEF CPU16}object{$ELSE}class{$ENDIF}
   private
     FSocket: LongInt;
     FCanvas: TPDCanvas;
@@ -141,8 +140,7 @@ type
     procedure ProcessMessage(const Msg: TPDNetMsg);
     function  TryReadMessage(var Msg: TPDNetMsg): Boolean;
   public
-    constructor Create(ACanvas: TPDCanvas);
-    destructor Destroy; override;
+    {$IFDEF CPU16}procedure Init(ACanvas: TPDCanvas); procedure Done;{$ELSE}constructor Create(ACanvas: TPDCanvas); destructor Destroy; override;{$ENDIF}
     function  Connect(const Host: String; APort: Word; const AAlias, APass: String): Boolean;
     procedure Disconnect;
     procedure Poll;
@@ -150,7 +148,7 @@ type
     procedure SendUpdate(X1, Y1, X2, Y2: Integer);
     procedure SendCursor(X, Y: Integer);
     function  GetUser(Idx: Integer): TPDNetUser;
-    property Canvas: TPDCanvas read FCanvas;
+    {$IFNDEF CPU16}property Canvas: TPDCanvas read FCanvas;{$ENDIF}
     property Alias: String read FAlias;
     property Level: TUserLevel read FLevel;
     property MyIndex: Integer read FMyIndex;
@@ -203,7 +201,7 @@ end;
 
 { ---- TPDNetServer ---- }
 
-constructor TPDNetServer.Create(ACanvas: TPDCanvas);
+{$IFDEF CPU16}procedure TPDNetServer.Init(ACanvas: TPDCanvas);{$ELSE}constructor TPDNetServer.Create(ACanvas: TPDCanvas);{$ENDIF}
 var I: Integer;
 begin
   inherited Create;
@@ -218,7 +216,7 @@ begin
   end;
 end;
 
-destructor TPDNetServer.Destroy;
+{$IFDEF CPU16}procedure TPDNetServer.Done;{$ELSE}destructor TPDNetServer.Destroy;{$ENDIF}
 begin
   Stop;
   inherited;
@@ -626,7 +624,7 @@ end;
 
 { ---- TPDNetClient ---- }
 
-constructor TPDNetClient.Create(ACanvas: TPDCanvas);
+{$IFDEF CPU16}procedure TPDNetClient.Init(ACanvas: TPDCanvas);{$ELSE}constructor TPDNetClient.Create(ACanvas: TPDCanvas);{$ENDIF}
 begin
   inherited Create;
   FCanvas := ACanvas;
@@ -638,7 +636,7 @@ begin
   FLevel := ulViewer;
 end;
 
-destructor TPDNetClient.Destroy;
+{$IFDEF CPU16}procedure TPDNetClient.Done;{$ELSE}destructor TPDNetClient.Destroy;{$ENDIF}
 begin
   Disconnect;
   inherited;

@@ -121,7 +121,7 @@ begin
   begin
     {$ifdef WindowsUnicodeSupport}
     if UnicodeEnabledOS then
-     AnIndex := Windows.SendMessageW(FWin32List, FFlagAddString, 0,
+     AnIndex := WinSendMessage(FWin32List, FFlagAddString, 0,
       LPARAM(PWideChar(UTF8ToUTF16(TheStrings[Counter])))) //Insert
     else
      AnIndex := Windows.SendMessage(FWin32List, FFlagAddString, 0,
@@ -170,8 +170,8 @@ begin
     {$ifdef WindowsUnicodeSupport}
     if UnicodeEnabledOS then
     begin
-      SetLength(w, Windows.SendMessageW(FWin32List, FFlagGetTextLen, Index, 0));
-      Windows.SendMessageW(FWin32List, FFlagGetText, Index, LPARAM(PWideChar(w)));
+      SetLength(w, WinSendMessage(FWin32List, FFlagGetTextLen, Index, 0));
+      WinSendMessage(FWin32List, FFlagGetText, Index, LPARAM(PWideChar(w)));
       Result := UTF16ToUTF8(w);
     end
     else
@@ -251,7 +251,7 @@ begin
   begin
     {$ifdef WindowsUnicodeSupport}
     if UnicodeEnabledOS then
-      FLastInsertedIndex := Windows.SendMessageW(FWin32List, FFlagAddString, 0, LPARAM(PWideChar(UTF8ToUTF16(S))))
+      FLastInsertedIndex := WinSendMessage(FWin32List, FFlagAddString, 0, LPARAM(PWideChar(UTF8ToUTF16(S))))
     else
       FLastInsertedIndex := Windows.SendMessage(FWin32List, FFlagAddString, 0, LPARAM(PChar(Utf8ToAnsi(S))));
     {$else}
@@ -262,7 +262,7 @@ begin
   begin
     {$ifdef WindowsUnicodeSupport}
     if UnicodeEnabledOS then
-      Windows.SendMessageW(FWin32List, FFlagInsertString, Index, LPARAM(PWideChar(UTF8ToUTF16(S))))
+      WinSendMessage(FWin32List, FFlagInsertString, Index, LPARAM(PWideChar(UTF8ToUTF16(S))))
     else
       Windows.SendMessage(FWin32List, FFlagInsertString, Index, LPARAM(PChar(Utf8ToAnsi(S))));
     {$else}

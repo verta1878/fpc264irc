@@ -304,8 +304,8 @@ Function  fpRecvFrom(Sock: TSocket; Buf: Pointer; Len, Flags: cint;
             Addr: PInetSockAddr; AddrLen: PSockLen): ssize_t;
 
 { ---- Init / Shutdown ---- }
-Function  InitWatt32: Boolean;
-Procedure DoneWatt32;
+Function  InitSockets: Boolean;
+Procedure DoneSockets;
 
 { ---- DNS (stub) ---- }
 Function  ResolveName(const HostName: String; var Addr: TInAddr): Boolean;
@@ -1224,7 +1224,7 @@ Begin Result := LastSockErr; End;
 
 { ---- Init / Shutdown ---- }
 
-Function InitWatt32: Boolean;
+Function InitSockets: Boolean;
 Var I: Integer;
 Begin
   For I := 0 to MAX_SOCKETS-1 do SockTable[I].InUse := False;
@@ -1238,7 +1238,7 @@ Begin
   Result := PktDriverInit;
 End;
 
-Procedure DoneWatt32;
+Procedure DoneSockets;
 Begin
   PktDriverDone;
 End;

@@ -22,6 +22,7 @@ unit Win32WSSpin;
 interface
 
 uses
+  win32compat,
 ////////////////////////////////////////////////////
 // I M P O R T A N T
 ////////////////////////////////////////////////////
@@ -200,7 +201,7 @@ begin
   Info^.AWinControl := AWinControl;
   {$IFDEF WindowsUnicodeSupport}
   if UnicodeEnabledOS then
-    Info^.DefWndProc := Windows.WNDPROC(SetWindowLongPtrW(UpDown, GWL_WNDPROC, PtrInt(@SpinUpDownWndProc)))
+    Info^.DefWndProc := Windows.WNDPROC(SetWindowLongPtr(UpDown, GWL_WNDPROC, PtrInt(@SpinUpDownWndProc)))
   else
   {$ENDIF}
   Info^.DefWndProc := Windows.WNDPROC(SetWindowLongPtr(UpDown, GWL_WNDPROC, PtrInt(@SpinUpDownWndProc)));

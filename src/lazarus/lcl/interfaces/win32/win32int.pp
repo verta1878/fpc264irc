@@ -28,6 +28,7 @@ interface
   successful compilation.
 }
 uses
+  win32compat,
   Windows, ActiveX, Classes, Translations, ComCtrls, Controls, Buttons,
   Forms, Dialogs, GraphMath, GraphType, InterfaceBase, LCLIntf,
   LCLType, LMessages, StdCtrls, SysUtils, Win32Def, Graphics, Menus, CommCtrl,

@@ -22,6 +22,7 @@ unit Win32WSControls;
 interface
 
 uses
+  win32compat,
 ////////////////////////////////////////////////////
 // I M P O R T A N T
 ////////////////////////////////////////////////////
@@ -178,7 +179,7 @@ var
   NCCreateParams: TNCCreateParams;
   WindowClass, DummyClass: WndClass;
 {$ifdef WindowsUnicodeSupport}
-  WindowClassW, DummyClassW: WndClassW;
+  WindowClassW, DummyClassW: WndClass;
 {$endif}
 begin
   NCCreateParams.DefWndProc := nil;
@@ -194,18 +195,18 @@ begin
       {$ifdef WindowsUnicodeSupport}
         if UnicodeEnabledOS then
         begin
-          if GetClassInfoW(System.HInstance, PWideChar(WideString(pClassName)), @WindowClassW) then
+          if GetClassInfo(System.HInstance, PChar(pClassName), @WindowClassW) then
           begin
             NCCreateParams.DefWndProc := WndProc(WindowClassW.lpfnWndProc);
-            if not GetClassInfoW(System.HInstance, PWideChar(WideString(pSubClassName)), @DummyClassW) then
+            if not GetClassInfo(System.HInstance, PChar(pSubClassName), @DummyClassW) then
             begin
               with WindowClassW do
               begin
                 LPFnWndProc := SubClassWndProc;
                 hInstance := System.HInstance;
-                lpszClassName := PWideChar(WideString(pSubClassName));
+                lpszClassName := PChar(pSubClassName);
               end;
-              Windows.RegisterClassW(@WindowClassW);
+              WinRegisterClass(@WindowClassW);
             end;
             pClassName := pSubClassName;
           end;

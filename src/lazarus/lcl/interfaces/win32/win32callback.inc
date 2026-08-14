@@ -82,7 +82,7 @@ begin
   if (PrevWndProc = nil) or (PrevWndProc = @WindowProc) // <- prevent recursion
   then begin
     if UnicodeEnabledOS
-    then Result := Windows.DefWindowProcW(Window, Msg, WParam, LParam)
+    then Result := WinDefWindowProc(Window, Msg, WParam, LParam)
     else Result := Windows.DefWindowProc(Window, Msg, WParam, LParam)
   end
   else begin
@@ -2712,7 +2712,7 @@ begin
     end;
   else
     if UnicodeEnabledOS
-    then Result := Windows.DefWindowProcW(Window, Msg, WParam, LParam)
+    then Result := WinDefWindowProc(Window, Msg, WParam, LParam)
     else Result := Windows.DefWindowProc(Window, Msg, WParam, LParam);
   end;
 end;

@@ -1,0 +1,5 @@
+Cyclades Cyclom-Y Driver v1.0.0
+INSTALL: i386\SIGNING\SIGN.BAT then i386\cyinstall /install
+x64: See x64\README.TXT
+DOS: DOS\CYTEST / DOS\CYFTST
+EMERGENCY: EMERGENCY_RECOVERY.txt
