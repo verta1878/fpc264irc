@@ -557,3 +557,18 @@ finalization
 ```
 
 **File:** `src/lazarus/lcl/interfaces/win32/interfaces.pp`
+
+## BUG-040: LCL Win32 uses W-variant APIs (crashes Win9x)
+- **Severity:** HIGH
+- **Fix:** win32compat.pas + 46 call replacements
+- **Status:** FIXED (U-1 complete)
+
+## BUG-041: dl.o missing stat.inc include path
+- **Severity:** MEDIUM
+- **Fix:** Added -Fisrc/rtl/linux/i386 to compile options
+- **Status:** FIXED (dl.ppu + dl.o rebuilt)
+
+## BUG-042: Watt32 function names confuse linker
+- **Severity:** LOW
+- **Fix:** InitWatt32→InitSockets, DoneWatt32→DoneSockets
+- **Status:** FIXED (go32v2 + msdos + tcpip.pas)

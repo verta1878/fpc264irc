@@ -348,3 +348,46 @@ Filed on cwensley/pablodraw GitHub:
 - CREDITS.md — added hexadecimal
 - LCL-STATUS.md — updated to 253+ PPUs
 - NETWORK-STATUS.md — all features confirmed working
+
+## Session 17 (2026-08-14)
+
+### Compiler
+- ncal.pas nil-safe VerifyAbstractCalls fix (cycle-built)
+- Wine deadlock backport (systhrd.inc + system.pp)
+- LCL_7182 interfaces.pp IsLibrary guard
+
+### U-1 Win9x ANSI Backport
+- win32compat.pas (212 lines) — A/W dispatch layer
+- 46 W-variant API calls replaced across 11 LCL Win32 files
+- WNDCLASSW→WNDCLASS, BROWSEINFO var param fix
+- multimon PPU rebuilt (EnumDisplayMonitors)
+- EnumFontFamiliesExW restored in Unicode branch
+- MessageBoxW/TextOutW/ExtTextOutW restored in Unicode branches
+- 737 Win32 PPUs compile clean
+
+### U-4 Linux/FreeBSD UTF-8
+- Verified — pass-through, no conversion needed
+- dl.o rebuilt with correct include paths (stat.inc fix)
+- 9 Linux PPUs rebuilt fresh (dl, sockets, baseunix, unix, etc.)
+- 241 Linux PPUs total
+
+### U-7 Cross-Platform Test
+- u7_test.pas — 29 tests across string, codepage, API, file, number
+- Linux: 29/29 PASS
+- Win32 + DOS: compile clean, need Wine/DOSBox for runtime test
+
+### Repo Cleanup
+- test/ and tests/ merged into test/
+- examples/serial/ removed (subset of fossils/)
+- examples/netmodem2irc → examples/fossils/ renamed
+- fossils/ updated with wrench's 62-file release
+- Fossil dupes removed (m_fossil_socket.pas, serial_ext.pas)
+- InitWatt32→InitSockets, DoneWatt32→DoneSockets renamed
+- Old Watt32 code moved to attic/
+- D5 FPCIRC guard added (.fpcirc + build.sh + Makefile)
+- fix-permissions.sh added (ZIP strips +x)
+- go32v2 linker +x fixed
+
+### PabloDraw
+- i8086 ifdefs: class→object, dynamic→static arrays, Init/Done
+- pdtypes.pas, pdnet.pas, pdserver.pas, pdclient.pas patched
