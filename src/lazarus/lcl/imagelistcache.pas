@@ -35,7 +35,7 @@ type
   // cache item
   TImageCacheItem = record
     FImageList: TCustomImageList;    // link to imagelist
-    FListener: IImageCacheListener;  // link to listener
+    FListener: Pointer; // IImageCacheListener — Pointer to avoid FPC 2.6.4 internal error 2005011510  // link to listener
     FImageIndexes: array of Integer; // indexes of imagelist that listener reserved
   end;
   PImageCacheItem = ^TImageCacheItem;
@@ -206,7 +206,7 @@ begin
     begin
       Item := FItems.GetNew;
       Item^.FImageList := GetImageListFor(ABitmap.Width div ABitmapCount, ABitmap.Height);
-      Item^.FListener := AListener;
+      Item^.FListener := Pointer(AListener);
     end;
 
     AStart := Item^.FImageList.Add(ABitmap, nil);
@@ -284,7 +284,7 @@ begin
       // process all Items that needs to be updated
       for j := 0 to AUpdates.Count - 1 do
       begin
-        AListener := PImageCacheItem(AUpdates[j])^.FListener;
+        AListener := IImageCacheListener(PImageCacheItem(AUpdates[j])^.FListener);
         for k := 0 to High(PImageCacheItem(AUpdates[j])^.FImageIndexes) do
         begin
           // update cache item and notify listener
@@ -332,7 +332,7 @@ var
 begin
   Result := nil;
   for i := 0 to Count - 1 do
-    if Items[i]^.FListener = AListener then
+    if Items[i]^.FListener = Pointer(AListener) then
     begin
       Result := Items[i];
       break;
