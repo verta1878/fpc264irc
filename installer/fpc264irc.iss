@@ -50,17 +50,7 @@ Name: "examples";   Description: "Examples (PabloDraw, FOSSIL, etc.)";  Types: f
 Name: "docs";       Description: "Documentation";                       Types: full compact
 Name: "src";        Description: "Source code";                          Types: full
 Name: "ide";       Description: "Lazarus IDE"; Types: full
-Name: "rtl_os2";    Description: "OS/2 cross-compile";                     Types: full
-Name: "rtl_i8086";  Description: "i8086 real-mode DOS cross-compile";        Types: full
-Name: "rtl_darwin"; Description: "macOS/Darwin cross-compile";               Types: full
-Name: "rtl_linux64";Description: "Linux x86_64 cross-compile";              Types: full
-Name: "tools_os2";  Description: "OS/2 EMX linker + assembler";             Types: full
 Name: "ide";       Description: "Lazarus IDE (lazarus.exe)";             Types: full
-Name: "rtl_os2";    Description: "OS/2 cross-compile";                     Types: full
-Name: "rtl_i8086";  Description: "i8086 real-mode DOS cross-compile";        Types: full
-Name: "rtl_darwin"; Description: "macOS/Darwin cross-compile";               Types: full
-Name: "rtl_linux64";Description: "Linux x86_64 cross-compile";              Types: full
-Name: "tools_os2";  Description: "OS/2 EMX linker + assembler";             Types: full
 
 ; ===========================================================================
 ; Files
@@ -113,7 +103,6 @@ Source: "..\CREDITS.md"; DestDir: "{app}";         Flags: ignoreversion skipifso
 ; ---- Source ----
 Source: "..\src\compiler\*";  DestDir: "{app}\src\compiler";  Flags: ignoreversion recursesubdirs skipifsourcedoesntexist; Components: src
 Source: "..\src\rtl\*";       DestDir: "{app}\src\rtl";       Flags: ignoreversion recursesubdirs skipifsourcedoesntexist; Components: src
-Source: "..\src\lazarus\*";   DestDir: "{app}\src\lazarus";   Flags: ignoreversion recursesubdirs skipifsourcedoesntexist; Components: src
 
 ; ---- Lazarus IDE (optional) ----
 Source: "..\bin\lazarus.exe"; DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist; Components: ide
@@ -129,23 +118,14 @@ Source: "..\bin\ppcx64"; DestDir: "{app}\bin"; DestName: "ppcx64.exe"; Flags: ig
 Source: "..\bin\ppcross8086"; DestDir: "{app}\bin"; DestName: "ppcross8086.exe"; Flags: ignoreversion skipifsourcedoesntexist; Components: compiler
 
 ; ---- OS/2 tools ----
-Source: "..\bin\tools\i386-emx\*"; DestDir: "{app}\bin\tools\i386-emx"; Flags: ignoreversion skipifsourcedoesntexist; Components: tools_os2
-Source: "..\bin\tools\i386-os2\*"; DestDir: "{app}\bin\tools\i386-os2"; Flags: ignoreversion skipifsourcedoesntexist; Components: tools_os2
 
 ; ---- i8086 tools ----
-Source: "..\bin\tools\i8086-msdos\*"; DestDir: "{app}\bin\tools\i8086-msdos"; Flags: ignoreversion skipifsourcedoesntexist recursesubdirs; Components: tools_dos
 
-; ---- x86_64-linux tools ----
-Source: "..\bin\tools\x86_64-linux\*"; DestDir: "{app}\bin\tools\x86_64-linux"; Flags: ignoreversion skipifsourcedoesntexist; Components: tools_linux
 
 ; ---- make ----
 Source: "..\bin\tools\make"; DestDir: "{app}\bin"; DestName: "make.exe"; Flags: ignoreversion skipifsourcedoesntexist; Components: compiler
 
 ; ---- OS/2 + i8086 PPUs ----
-Source: "..\bin\units\i386-os2\*"; DestDir: "{app}\units\i386-os2"; Flags: ignoreversion skipifsourcedoesntexist recursesubdirs; Components: rtl_os2
-Source: "..\bin\units\i8086-msdos\*"; DestDir: "{app}\units\i8086-msdos"; Flags: ignoreversion skipifsourcedoesntexist recursesubdirs; Components: rtl_i8086
-Source: "..\bin\units\i386-darwin\*"; DestDir: "{app}\units\i386-darwin"; Flags: ignoreversion skipifsourcedoesntexist recursesubdirs; Components: rtl_darwin
-Source: "..\bin\units\x86_64-linux\*"; DestDir: "{app}\units\x86_64-linux"; Flags: ignoreversion skipifsourcedoesntexist recursesubdirs; Components: rtl_linux64
 
 ; ---- IDE resources ----
 Source: "..\bin\ide\*"; DestDir: "{app}\bin\ide"; Flags: ignoreversion skipifsourcedoesntexist recursesubdirs; Components: ide
