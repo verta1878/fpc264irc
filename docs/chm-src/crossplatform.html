@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html><head><title>Cross-Platform Compilation</title></head>
+<body>
+<h1>Cross-Platform Compilation</h1>
+<table border="1">
+<tr><th>Target</th><th>Compiler</th><th>PPUs</th><th>Command</th></tr>
+<tr><td>Win32 (default)</td><td>ppc386</td><td>1263</td><td><code>ppc386 -Twin32 myapp.pas</code></td></tr>
+<tr><td>Win9x ANSI</td><td>ppc386</td><td>1263</td><td><code>ppc386 -Twin32 myapp.pas</code> (default=ANSI)</td></tr>
+<tr><td>Win NT+ Unicode</td><td>ppc386</td><td>1263</td><td><code>ppc386 -Twin32 -dUNICODE myapp.pas</code></td></tr>
+<tr><td>Linux i386</td><td>ppc386</td><td>241</td><td><code>ppc386 -Tlinux myapp.pas</code></td></tr>
+<tr><td>DOS go32v2</td><td>ppc386</td><td>302</td><td><code>ppc386 -Tgo32v2 myapp.pas</code></td></tr>
+<tr><td>FreeBSD i386</td><td>ppc386</td><td>160</td><td><code>ppc386 -Tfreebsd myapp.pas</code></td></tr>
+<tr><td>x86_64 Linux</td><td>ppcx64</td><td>&mdash;</td><td><code>ppcx64 -Tlinux myapp.pas</code></td></tr>
+<tr><td>i8086 DOS</td><td>ppcross8086</td><td>&mdash;</td><td><code>ppcross8086 -Tmsdos myapp.pas</code></td></tr>
+</table>
+</body></html>

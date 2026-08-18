@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html><head><title>Bugs Fixed</title></head>
+<body>
+<h1>Bugs Fixed in FPC 2.6.4irc</h1>
+
+<h2>Compiler Fixes</h2>
+<table border="1">
+<tr><th>Bug</th><th>Description</th><th>Status</th></tr>
+<tr><td>B-001</td><td>IUnknown.QueryInterface const/constref mismatch</td><td>Fixed — RTL rebuilt with our ppc386</td></tr>
+<tr><td>B-002</td><td>FPC_HAS_CONSTREF not defined in 2.6.4</td><td>Fixed — const works natively</td></tr>
+<tr><td>B-029</td><td>Socket unit crash on glibc 2.34+</td><td>Fixed — dl.o reimplemented</td></tr>
+</table>
+
+<h2>IDE Fixes</h2>
+<table border="1">
+<tr><th>Bug</th><th>Description</th><th>Status</th></tr>
+<tr><td>U-001</td><td>Win9x ANSI API calls (W functions fail)</td><td>Fixed — win32compat.pas backport</td></tr>
+<tr><td>U-002</td><td>CORBA interface hack in idehelpintf.pas</td><td>Removed — IUnknown native</td></tr>
+<tr><td>U-003</td><td>Pointer cast in imagelistcache.pas</td><td>Removed — IUnknown native</td></tr>
+</table>
+
+<h2>Platform Fixes</h2>
+<table border="1">
+<tr><th>Bug</th><th>Description</th><th>Status</th></tr>
+<tr><td>P-001</td><td>Linux dl.o missing on glibc 2.34+</td><td>Fixed — custom dl.o with version script</td></tr>
+<tr><td>P-002</td><td>DOS InitWatt32 undefined reference</td><td>Fixed — removed from all configs</td></tr>
+</table>
+</body></html>

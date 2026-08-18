@@ -1,0 +1,9 @@
+--- Fix for SHAddToRecentDocs ---
+Add before the 'implementation' keyword in environmentopts.pp:
+
+{$IFDEF WINDOWS}
+const
+  SHARD_PATHW = 3;
+procedure SHAddToRecentDocs(uFlags: LongWord; pv: Pointer); stdcall;
+  external 'shell32.dll' name 'SHAddToRecentDocs';
+{$ENDIF}

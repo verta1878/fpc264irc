@@ -721,6 +721,14 @@ function dbgs(o: TEnvOptParseType): string; overload;
 
 implementation
 
+{$IFDEF WINDOWS}
+{ FIX: SHAddToRecentDocs not in FPC 2.6.4 shlobj }
+const
+  SHARD_PATHW = 3;
+procedure SHAddToRecentDocs(uFlags: LongWord; pv: Pointer); stdcall;
+  external 'shell32.dll' name 'SHAddToRecentDocs';
+{$ENDIF}
+
 function PascalExtToType(const Ext: string): TPascalExtType;
 begin
   if Ext<>'' then

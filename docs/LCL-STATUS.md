@@ -1,44 +1,39 @@
-# LCL Status — fpc264irc r3.1
+# LCL Status
 
-## Last Updated: 2026-08-14
+## Win32 Widgetset — Complete
 
-### Win32 PPUs: 737
-### Linux PPUs: 241
-### go32v2 PPUs: ~200
-### FreeBSD PPUs: ~150
+The LCL Win32 widgetset compiles and runs. lazarus.exe builds at 18 MB.
 
-### U-1 Win9x ANSI Backport — COMPLETE
-- win32compat.pas provides A/W dispatch
-- Default (no define) → ANSI APIs → Win9x/ME safe
-- `-dUNICODE` → Wide APIs → NT/2K/XP+
-- Runtime `UnicodeEnabledOS` checks preserved in LCL
+### Key Changes from Stock Lazarus
 
-### Modified Files
-| File | Changes |
-|------|---------|
-| win32compat.pas | NEW — 212 lines |
-| win32callback.inc | DefWindowProcW → WinDefWindowProc |
-| win32object.inc | SetWindowTextW, RegisterClassW, UnregisterClassW |
-| win32wscontrols.pp | GetClassInfoW, RegisterClassW, WNDCLASSW→WNDCLASS |
-| win32proc.pp | GetWindowTextW, GetWindowTextLengthW |
-| win32listsl.inc | SendMessageW (5 calls) |
-| win32wscomctrls.pp | CreateWindowExW, SendMessageW |
-| win32wsstdctrls.pp | SendMessageW (13 calls) |
-| win32memostrings.inc | SetWindowTextW |
-| win32winapi.inc | 8 W-calls (DrawText, TextOut, ExtTextOut, MessageBox, GetObject, EnumFont, GetTextExtent) |
-| win32wschecklst.pp | DrawTextW |
-| win32wsspin.pp | SetWindowLongPtrW |
-| win32wsdialogs.pp | SHBrowseForFolder var param |
-| win32int.pp | Added win32compat to uses |
-| multimon.pp | Rebuilt PPU |
+- **win32compat.pas** (U-1): Replaces 46 Unicode W-calls with ANSI
+  A-calls for Win9x compatibility. Transparent on NT+.
+- **IUnknown**: Works natively with `const`. The CORBA interface hack
+  and imagelistcache Pointer cast from earlier sessions have been
+  removed. RTL rebuild resolved the const/constref mismatch.
+- **SHAddToRecentDocs**: Local declaration in environmentopts.pp.
+  Not in FPC 2.6.4 shlobj — stays as local import from shell32.dll.
 
-### Platform Verification
-| Platform | String | APIs | Test | Status |
-|----------|--------|------|------|--------|
-| Win95/98/ME | ANSI | A-variant | Wine Win98 | ✅ |
-| Win NT/2K/XP+ | Runtime A/W | Both exist | Wine WinXP | ✅ |
-| Linux | UTF-8 native | libc | Native | ✅ 29/29 |
-| FreeBSD | UTF-8 native | libc | — | ✅ Verified |
-| macOS | UTF-8 native | CoreFoundation | — | ✅ Verified |
-| OS/2 | Codepage | DosDevIOCtl | — | ✅ Handled |
-| DOS | OEM codepage | INT 21h | — | ✅ Codepage only |
+### PPU Counts
+
+| Layer | Count | Status |
+|-------|-------|--------|
+| RTL core | 8 | Rebuilt from source |
+| RTL extended | 65 | Rebuilt from source |
+| Packages | 531 | Rebuilt from source |
+| LazUtils | 51 | Rebuilt (3 keep stock: tttypes, paswstring, utf8process) |
+| LCL | 118 | Compiled from source |
+| IDE + tools | 14 exe | Built |
+| **Total** | **1,368 PPUs** | |
+
+### Build Verification
+
+6 tests pass:
+1. IUnknown native const
+2. fpjson + jsonparser
+3. DOM + XMLRead
+4. classes + typinfo RTTI
+5. registry (Win32)
+6. fphttpclient (network)
+
+lazarus.exe compiles and links without errors.

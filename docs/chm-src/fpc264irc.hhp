@@ -1,0 +1,19 @@
+[OPTIONS]
+Compatibility=1.1
+Compiled file=fpc264irc.chm
+Default topic=index.html
+Display compile progress=Yes
+Language=0x0409 English (United States)
+Title=FPC 2.6.4irc r3.1 Help
+
+[FILES]
+index.html
+install.html
+crossplatform.html
+win32compat.html
+lcl.html
+fpgui.html
+tools.html
+bugsfixed.html
+changelog.html
+credits.html

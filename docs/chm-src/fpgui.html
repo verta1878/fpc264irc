@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html><head><title>fpGUI Toolkit</title></head>
+<body>
+<h1>fpGUI Toolkit</h1>
+<p>fpGUI is a lightweight cross-platform GUI toolkit included in fpc264irc. 307 Pascal units.</p>
+<h2>Location</h2>
+<p><code>libs/fpgui/</code></p>
+<h2>Key Units</h2>
+<table border="1">
+<tr><th>Unit</th><th>Description</th></tr>
+<tr><td>fpg_form.pas</td><td>Form (window) component</td></tr>
+<tr><td>fpg_button.pas</td><td>Button component</td></tr>
+<tr><td>fpg_edit.pas</td><td>Text edit component</td></tr>
+<tr><td>fpg_label.pas</td><td>Label component</td></tr>
+<tr><td>fpg_grid.pas</td><td>Grid/table component</td></tr>
+<tr><td>fpg_tree.pas</td><td>Tree view component</td></tr>
+<tr><td>fpg_menu.pas</td><td>Menu component</td></tr>
+<tr><td>fpg_dialogs.pas</td><td>Common dialogs</td></tr>
+<tr><td>fpg_lcl.pas</td><td>LCL bridge</td></tr>
+</table>
+<h2>Usage</h2>
+<pre>uses fpg_form, fpg_button;
+
+var
+  frm: TfpgForm;
+begin
+  fpgApplication.Initialize;
+  frm := TfpgForm.Create(nil);
+  frm.WindowTitle := 'Hello fpGUI';
+  frm.Show;
+  fpgApplication.Run;
+end.</pre>
+<h2>vs LCL</h2>
+<p>fpGUI is simpler and lighter than LCL. Use fpGUI for small tools. Use LCL (Lazarus) for full IDE-designed applications.</p>
+</body></html>

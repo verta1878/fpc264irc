@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html><head><title>LCL Status</title></head>
+<body>
+<h1>LCL Status — fpc264irc r3.1</h1>
+<h2>PPU Counts</h2>
+<table border="1">
+<tr><th>Platform</th><th>PPUs</th></tr>
+<tr><td>Win32</td><td>1263</td></tr>
+<tr><td>Linux i386</td><td>241</td></tr>
+<tr><td>DOS go32v2</td><td>302</td></tr>
+<tr><td>FreeBSD</td><td>160</td></tr>
+</table>
+<h2>Win32 LCL Changes</h2>
+<ul>
+<li>win32compat.pas: A/W API dispatch layer (196 lines)</li>
+<li>imagelistcache.pas: IImageCacheListener → Pointer (FPC 2.6.4 compiler bug workaround)</li>
+<li>idehelpintf.pas: TIDEHTMLControlIntf → CORBA interface (constref workaround)</li>
+<li>environmentopts.pp: SHAddToRecentDocs declared locally</li>
+<li>editoroptions.pp: resource embedding disabled for cross-compile</li>
+</ul>
+<h2>CORBA Interface Workaround</h2>
+<p>FPC 2.6.4 doesn't support <code>constref</code> in interface method declarations. The pre-built PPUs were compiled by a newer FPC that uses constref for IUnknown.QueryInterface. Our compiler generates <code>const</code> instead — signature mismatch.</p>
+<p>Fix: interfaces that don't need IUnknown (no GUID, no reference counting) are switched to <code>{$interfaces corba}</code>. CORBA interfaces don't require QueryInterface/_AddRef/_Release.</p>
+</body></html>

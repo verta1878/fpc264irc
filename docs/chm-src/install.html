@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html><head><title>Installation Guide</title></head>
+<body>
+<h1>Installation Guide</h1>
+
+<h2>Windows (Win32)</h2>
+<p>Run <code>fpc264irc_r31_setup.exe</code>. The installer places:</p>
+<ul>
+<li><code>C:\FPC264irc\bin\</code> — compiler (ppc386.exe) + 14 tools</li>
+<li><code>C:\FPC264irc\units\i386-win32\</code> — 1,368 PPUs</li>
+<li><code>C:\FPC264irc\lazarus\</code> — Lazarus IDE (lazarus.exe, 18 MB)</li>
+<li><code>C:\FPC264irc\src\</code> — complete source tree</li>
+</ul>
+<p>Add <code>C:\FPC264irc\bin</code> to your PATH. The installer does this
+automatically.</p>
+
+<h2>Linux (i386)</h2>
+<p>Extract the archive. Run the setup script:</p>
+<pre>
+tar xzf fpc264irc-r31-linux.tar.gz
+cd fpc264irc
+./setup-linux-i386.sh
+</pre>
+<p>The script detects your glibc version and applies the dl.o fix
+automatically. See <a href="crossplatform.html">Cross-Platform</a> for
+details on the glibc 2.34+ dl.o issue.</p>
+
+<h2>DOS (go32v2)</h2>
+<p>Extract to a DOS partition or DOSBox directory. Requires DPMI host
+(CWSDPMI or equivalent). Set <code>FPC=ppc386.exe</code> in your
+autoexec.bat.</p>
+<p>302 PPUs included. Requires 16 MB RAM minimum (DPMI extender).</p>
+
+<h2>FreeBSD (i386)</h2>
+<p>Extract the archive. 160 PPUs included. Requires FreeBSD 9.x+
+with 32-bit compatibility libraries.</p>
+
+<h2>Compiler Flags</h2>
+<table border="1">
+<tr><th>Flag</th><th>Purpose</th></tr>
+<tr><td><code>-Twin32</code></td><td>Target Windows 32-bit</td></tr>
+<tr><td><code>-Tlinux</code></td><td>Target Linux i386</td></tr>
+<tr><td><code>-Tgo32v2</code></td><td>Target DOS (DJGPP)</td></tr>
+<tr><td><code>-Tfreebsd</code></td><td>Target FreeBSD i386</td></tr>
+<tr><td><code>-Sg</code></td><td>Enable GOTO/LABEL support</td></tr>
+<tr><td><code>-n</code></td><td>Don't read fpc.cfg</td></tr>
+<tr><td><code>-FU&lt;dir&gt;</code></td><td>PPU output directory</td></tr>
+<tr><td><code>-Fu&lt;dir&gt;</code></td><td>Unit search path</td></tr>
+<tr><td><code>-Fi&lt;dir&gt;</code></td><td>Include search path</td></tr>
+</table>
+</body></html>

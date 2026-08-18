@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html><head><title>Win9x ANSI / Unicode Backport (U-1)</title></head>
+<body>
+<h1>Win9x ANSI / Unicode Backport (U-1)</h1>
+<h2>Problem</h2>
+<p>Stock Lazarus LCL uses W-variant (Unicode) Windows APIs that don't exist on Win95/98/ME. 46 W-calls cause crashes on Win9x.</p>
+<h2>Solution</h2>
+<p><code>win32compat.pas</code> (196 lines) provides A/W dispatch:</p>
+<ul>
+<li>Default (no define): ANSI APIs — Win9x/ME safe</li>
+<li><code>-dUNICODE</code>: Wide APIs — NT/2K/XP+</li>
+<li>Runtime <code>UnicodeEnabledOS</code> checks preserved in LCL</li>
+</ul>
+<h2>Modified Files</h2>
+<p>win32callback.inc, win32object.inc, win32wscontrols.pp, win32proc.pp, win32listsl.inc, win32wscomctrls.pp, win32wsstdctrls.pp, win32memostrings.inc, win32winapi.inc, win32wschecklst.pp, win32wsspin.pp, win32wsdialogs.pp, win32int.pp, multimon.pp</p>
+<h2>U-2 (Infrastructure)</h2>
+<p>win32compat.pas IS the infrastructure. <code>{$IFDEF UNICODE}</code> selects W-variants.</p>
+<h2>U-3 (Unicode Build)</h2>
+<p>Compile with <code>-dUNICODE</code> for Wide APIs on NT+.</p>
+<h2>U-4 (Linux UTF-8)</h2>
+<p>Pass-through. No conversion needed. LazUtils has 10,427 lines of UTF-8 support.</p>
+</body></html>

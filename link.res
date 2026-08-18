@@ -1,2 +1,9 @@
---script=script.res
--o /tmp/test_link.exe
+SEARCH_DIR(/lib/)
+SEARCH_DIR(/usr/lib/)
+SEARCH_DIR(/tmp/)
+SEARCH_DIR(./bin/)
+INPUT(
+prt0.o
+/home/claude/fpc264irc/bin/units/i386-freebsd/t_cross.o
+/home/claude/fpc264irc/bin/units/i386-freebsd/system.o
+)

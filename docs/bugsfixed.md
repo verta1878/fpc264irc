@@ -572,3 +572,9 @@ finalization
 - **Severity:** LOW
 - **Fix:** InitWatt32→InitSockets, DoneWatt32→DoneSockets
 - **Status:** FIXED (go32v2 + msdos + tcpip.pas)
+
+## BUG-043: dl.o fails to link on glibc 2.34+ (libdl absorbed into libc)
+- **Severity:** HIGH
+- **Fix:** Changed LibDL from 'dl' to 'c' in src/rtl/unix/dl.pp
+- **Backup:** scripts/setup-linux-i386.sh creates libdl.so linker script
+- **Status:** FIXED — links and runs without any setup on glibc 2.34+

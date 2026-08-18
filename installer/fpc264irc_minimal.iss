@@ -54,3 +54,30 @@ begin
     'Path', OrigPath) then begin Result := True; exit; end;
   Result := Pos(';' + Param + ';', ';' + OrigPath + ';') = 0;
 end;
+
+; ---- FPC Tools ----
+Source: "..\bin\fpc.exe"; DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist
+Source: "..\bin\fpcmake.exe"; DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist
+Source: "..\bin\fpcres.exe"; DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist
+Source: "..\bin\h2pas.exe"; DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist
+Source: "..\bin\ppudump.exe"; DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist
+Source: "..\bin\ppufiles.exe"; DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist
+Source: "..\bin\ppumove.exe"; DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist
+Source: "..\bin\ptop.exe"; DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist
+Source: "..\bin\rstconv.exe"; DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist
+Source: "..\bin\plex.exe"; DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist
+Source: "..\bin\pyacc.exe"; DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist
+
+; ---- Help Files (CHM) ----
+Source: "..\src\lazarus\docs\chm\*.chm"; DestDir: "{app}\docs\chm"; Flags: ignoreversion skipifsourcedoesntexist
+
+; ---- fpGUI ----
+Source: "..\libs\fpgui\*"; DestDir: "{app}\libs\fpgui"; Flags: ignoreversion recursesubdirs skipifsourcedoesntexist
+
+; ---- Lazarus docs ----
+Source: "..\src\lazarus\docs\*.txt"; DestDir: "{app}\docs\lazarus"; Flags: ignoreversion skipifsourcedoesntexist
+Source: "..\src\lazarus\docs\*.pdf"; DestDir: "{app}\docs\lazarus"; Flags: ignoreversion skipifsourcedoesntexist
+Source: "..\src\lazarus\docs\*.xml"; DestDir: "{app}\docs\lazarus"; Flags: ignoreversion skipifsourcedoesntexist
+
+; ---- Lazarus IDE ----
+Source: "..\bin\lazarus.exe"; DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist

@@ -1,51 +1,52 @@
 # dl.o glibc Compatibility Fix
 
-## Quick Fix
-Run once on your build machine (needs root):
-```bash
-sudo scripts/setup-linux-i386.sh
+## Status: FIXED
+
+The `dl.pp` unit now uses `LibDL = 'c'` on Linux instead of `LibDL = 'dl'`.
+This links against libc directly, where `dlopen`/`dlsym`/`dlclose` live
+on glibc 2.34+ (Ubuntu 22.04+, Debian 12+).
+
+No `-ldl` flag needed. No linker script needed. Just works.
+
+## What Changed
+
+**Before (broken on glibc 2.34+):**
+```pascal
+LibDL = 'dl';   // links with -ldl — fails, libdl.so doesn't exist
 ```
 
-This installs libc6-dev:i386, creates the libdl.so linker script,
-and verifies that dl links and runs.
-
-## Problem
-FPC's `dl.pp` links against `dlopen`/`dlsym`/`dlclose`/`dladdr`.
-On glibc 2.34+ (Ubuntu 22.04+, Debian 12+), these symbols moved
-from `libdl.so` into `libc.so`. The linker can't find `-ldl`.
-
-## Three-Layer Fix
-
-### 1. Install 32-bit glibc dev headers
-```bash
-dpkg --add-architecture i386
-apt-get install libc6-dev:i386
+**After (works everywhere):**
+```pascal
+LibDL = 'c';    // links with -lc — dlopen is in libc on all glibc versions
 ```
 
-### 2. Create libdl.so linker script
-glibc 2.34+ has no `libdl.so` symlink. Create one that points to libc:
+This matches the BSD behavior where dlopen was always in libc.
+
+## Backup: setup-linux-i386.sh
+
+If other code (not ours) needs `-ldl`, run the setup script:
 ```bash
-cat > /usr/lib/i386-linux-gnu/libdl.so << 'LDEOF'
-/* GNU ld script — glibc 2.34+ absorbed libdl into libc */
-GROUP ( /usr/lib/i386-linux-gnu/libc.so.6 )
-LDEOF
+sudo attic/setup-linux-i386.sh
 ```
 
-### 3. Add library search path
-Pass `-Fl/usr/lib/i386-linux-gnu` to ppc386:
+This creates a `libdl.so` linker script pointing to `libc.so.6`.
+Not needed for fpc264irc itself — only for third-party code.
+
+## Build Prerequisites
+
+Still need 32-bit glibc headers for cross-compiling i386 on x86_64:
 ```bash
-bin/ppc386 -Tlinux -Fubin/units/i386-linux -Fl/usr/lib/i386-linux-gnu myapp.pas
+sudo apt install libc6-dev:i386
 ```
 
-Or use the included config file:
-```bash
-bin/ppc386 @bin/fpc-linux.cfg myapp.pas
-```
+The setup script handles this too.
 
 ## dl_glibc_compat.c (optional)
+
 `src/rtl/unix/dl_glibc_compat.c` contains `.symver` directives to
 force `GLIBC_2.0` symbol versions for maximum backwards compatibility.
-Not needed for modern Linux distributions (Ubuntu 22.04+).
-
-## Runtime Requirement
-Compiled binaries require glibc 2.34+ unless built with dl_glibc_compat.o.
+Use this if your binaries must run on glibc < 2.34:
+```bash
+gcc -m32 -c src/rtl/unix/dl_glibc_compat.c -o dl_glibc_compat.o
+# Link dl_glibc_compat.o with your final executable
+```

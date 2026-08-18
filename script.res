@@ -6,13 +6,11 @@ SECTIONS
   . = ALIGN(16);
   prt0.o(.text)
   . = ALIGN(16);
-  bin/units/i386-go32v2/test_link.o(.text)
+  /home/claude/fpc264irc/bin/units/i386-go32v2/t_cross.o(.text)
   . = ALIGN(16);
-  system.o(.text)
+  /home/claude/fpc264irc/bin/units/i386-go32v2/system.o(.text)
   . = ALIGN(16);
-  exceptn.o(.text)
-  . = ALIGN(16);
-  go32.o(.text)
+  /home/claude/fpc264irc/bin/units/i386-go32v2/exceptn.o(.text)
     *(.text)
     etext  =  . ;
     PROVIDE(_etext  =  .);
@@ -66,5 +64,4 @@ SECTIONS
     .debug_macinfo  0 : { *(.debug_macinfo) }
   }
 SEARCH_DIR("/tmp/")
-SEARCH_DIR("./bin/units/i386-go32v2/")
 SEARCH_DIR("./bin/")

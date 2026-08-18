@@ -72,7 +72,7 @@ uses
   MainBase;
 
 {$I revision.inc}
-{$R lazarus.res}
+{ FIX: lazarus.res disabled for cross-compile }
 
 begin
   {$IFDEF IDE_MEM_CHECK}CheckHeapWrtMemCnt('lazarus.pp: begin');{$ENDIF}

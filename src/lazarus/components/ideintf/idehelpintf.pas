@@ -92,6 +92,7 @@ var
 type
   { TIDEHTMLControlIntf }
 
+  {$interfaces corba}
   TIDEHTMLControlIntf = interface
     function GetURL: string;
     procedure SetURL(const AValue: string);
@@ -99,6 +100,7 @@ type
     procedure SetHTMLContent(Stream: TStream; const NewURL: string = '');
     procedure GetPreferredControlSize(out AWidth, AHeight: integer);
   end;
+  {$interfaces com}
 
   { TAbstractIDEHTMLProvider
     An instance of this class connects 3 parts:

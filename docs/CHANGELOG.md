@@ -1,3 +1,32 @@
+# Changelog
+
+## r3.1 — 2026-08-16 (Phase 1+2+3)
+
+### RTL Rebuild
+- Full RTL cascade rebuild: 1,368 Win32 PPUs (was 1,263)
+- 531 packages rebuilt from source with our ppc386
+- IUnknown compiles natively with const — CORBA hack removed
+- Core chain: system → fpintres → objpas → strings → windows → sysutils → classes → sysinitpas
+- Fixed dependency chains: eventlog → custweb → ssockets → fphttpclient, varutils → variants, dos → objects
+
+### Cross-Platform
+- Linux i386: 84 units rebuilt, 249 total PPUs
+- DOS go32v2: 64 units rebuilt, 305 total PPUs
+- FreeBSD i386: 63 units rebuilt, 160 total PPUs
+
+### IDE
+- lazarus.exe rebuilt (18 MB)
+- 14 FPC tools rebuilt against new PPUs
+- LazUtils: 51 of 52 rebuilt (3 keep stock PPU — Lazarus 3.x syntax)
+
+### Help System
+- fpc264irc.chm compiled (10 pages, 11 KB)
+- All stub pages replaced with real content
+- Installed to bin/lazarus/ and docs/
+
+### Tests
+- 6 compilation tests pass: IUnknown, JSON, XML, RTTI, Registry, HTTP
+
 # CHANGELOG — fpc264irc r3.1
 
 ## Changes from upstream FPC 2.6.4

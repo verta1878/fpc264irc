@@ -23,7 +23,7 @@ const
   {$ifdef HAIKU}
     LibDL = 'root';
   {$else}
-    LibDL = 'dl';
+    LibDL = 'c';  { glibc 2.34+ absorbed libdl into libc }
   {$endif}
 {$endif}
 

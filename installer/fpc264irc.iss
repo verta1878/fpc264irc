@@ -59,6 +59,18 @@ Name: "ide";       Description: "Lazarus IDE (lazarus.exe)";             Types: 
 [Files]
 ; ---- Compiler ----
 Source: "..\bin\ppc386";            DestDir: "{app}\bin"; DestName: "ppc386.exe"; Flags: ignoreversion skipifsourcedoesntexist; Components: compiler
+Source: "..\bin\h2pas.exe";      DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist; Components: compiler
+Source: "..\bin\fpcmake.exe";    DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist; Components: compiler
+Source: "..\bin\fpcres.exe";     DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist; Components: compiler
+Source: "..\bin\ppudump.exe";    DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist; Components: compiler
+Source: "..\bin\ppufiles.exe";   DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist; Components: compiler
+Source: "..\bin\ppumove.exe";    DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist; Components: compiler
+Source: "..\bin\ptop.exe";       DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist; Components: compiler
+Source: "..\bin\rstconv.exe";    DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist; Components: compiler
+Source: "..\bin\plex.exe";       DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist; Components: compiler
+Source: "..\bin\pyacc.exe";      DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist; Components: compiler
+Source: "..\bin\fpc.exe";        DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist; Components: compiler
+Source: "..\bin\chmcmd.exe";     DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist; Components: compiler
 
 ; ---- Win32 PPUs ----
 Source: "..\bin\units\i386-win32\*"; DestDir: "{app}\units\i386-win32"; Flags: ignoreversion recursesubdirs; Components: rtl_win32

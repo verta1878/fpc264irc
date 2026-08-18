@@ -1696,7 +1696,7 @@ procedure InitLocale;
 
 implementation
 
-{$R editoroptions.res}
+{ disabled for cross-compile }
 
 const
   ValidAttribChars = ['a'..'z', 'A'..'Z', '_', '0'..'9'];
