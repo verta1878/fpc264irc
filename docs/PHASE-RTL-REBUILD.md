@@ -254,3 +254,168 @@ From kiddo — protocols, RIPscrip:
 
 Status: answered. SDLDisplay + CustomDrawn cover all use cases.
 Crew: kiddo (protocols), evga (display), sysop/0 (implementation)
+
+## Phase 12: USB Pascal Port (from C)
+
+Port USBDDOS (C, GPL) + Bret Johnson (ASM) USB drivers to Pascal.
+Aggressive code comments. Audit. 3 tests per unit.
+
+### Phase 12a: Core types ✅
+- usbcore.pas (311 lines) — device/config/endpoint descriptors
+- All packed records match USB 2.0 spec byte-for-byte
+- Helper functions for endpoint parsing, version strings
+- Test: descriptor sizes verified (8/18/9/9/7 bytes)
+
+### Phase 12b: HID types ✅
+- usbhid.pas (274 lines) — keyboard, mouse, joystick
+- Boot protocol reports (keyboard 8 bytes, mouse 4 bytes)
+- TUSBJoystickState — axes, buttons, hat switch
+- HID usage pages + generic desktop usages
+- HID report field + report map for descriptor parsing
+- Hat-to-XY conversion for DOS gameport emulation
+- Test: types + helpers verified, hat conversion verified
+
+### Phase 12c: Tests ✅
+- test_usbcore: 13 assertions, descriptor sizes + helpers
+- test_usbhid: 13 assertions, keyboard/mouse/joystick + hat
+- test_usbcross: Linux cross-compile syntax check
+- 3/3 pass
+
+### Phase 12d: USB Mass Storage (queued)
+- Port msc.c (1,145 lines) → usbmsc.pas
+- SCSI transparent command set
+- Bulk-Only Transport (BBB)
+
+### Phase 12e: USB Host Controller (queued)
+- Port hcd.c/uhci.c/ohci.c/ehci.c → usbhcd.pas
+- PCI enumeration, DMA, transfer descriptors
+- Heavy — needs DPMI for DOS protected mode access
+
+### Phase 12f: USB Hub (queued)
+- Port hub.c (235 lines) → usbhub.pas
+
+### Phase 12g: HID Report Descriptor Parser (queued)
+- Parse variable-format reports for joystick/gamepad
+- Map to TUSBJoystickState
+- Reference: Bret Johnson's HIDSUPT1.A36 + USBJSTIK.A36
+
+### Phase 12h: xHCI Driver (queued)
+- Port from Das U-Boot xHCI (C, GPL)
+- USB 3.0/3.1 SuperSpeed support
+- No existing DOS source — this would be first
+
+Crew: sysop/0, wrench
+Source: USBDDOS (github.com/crazii/USBDDOS)
+Source: Bret Johnson (bretjohnson.us/source/source.htm)
+Source: Das U-Boot xHCI (github.com/rondoval/emu68-xhci-driver)
+
+## Phase 13: USB Hardware Support — All 8 Platforms (queued)
+
+Add real USB host controller access to the Pascal USB units.
+Currently usbpci.pas has stubs on Win32/Linux — make them work.
+Support ALL 8 platforms we build PPUs for.
+
+### 13a: Win32 USB access
+- Use WinUSB API + SetupDi for device enumeration
+- usbhcd_win32.pas — WinUSB wrapper
+- Test: enumerate USB devices on Windows
+
+### 13b: Linux USB access (x86 + ARM)
+- Use libusb (already have reference source)
+- usbhcd_linux.pas — libusb wrapper via dynlibs
+- Works on x86 AND ARM Linux (same libusb API)
+- Test: enumerate USB devices on Linux
+
+### 13c: DOS USB access (go32v2)
+- Use USBDDOS C library via external linking
+- OR: direct port I/O via go32 (usbpci.pas already does this)
+- usbhcd_dos.pas — UHCI/OHCI/EHCI register access
+- Test: detect USB controller on DOS
+
+### 13d: FreeBSD USB access
+- Reuse Linux libusb backend — identical API
+- usbhcd_linux.pas + {$IFDEF FREEBSD} conditional
+- libusb is native on FreeBSD (installed by default)
+- Test: enumerate USB devices on FreeBSD
+
+### 13e: Win64 USB access
+- Reuse Win32 WinUSB backend — identical API
+- usbhcd_win32.pas + {$IFDEF WIN64} conditional
+- WinUSB works on both 32-bit and 64-bit Windows
+- Test: enumerate USB devices on Win64
+
+### 13f: OS/2 USB access
+- Use USBCALLS.DLL (IBM USB stack for OS/2 + eComStation)
+- usbhcd_os2.pas — USBCALLS wrapper (~200 lines)
+- Functions: UsbOpen, UsbClose, UsbBulkRead, UsbBulkWrite
+- Reference: EDM/2 wiki USBCALLS documentation
+- Test: enumerate USB devices on OS/2
+
+### 13g: Darwin (macOS) USB access
+- Use IOKit framework (IOUSBDeviceInterface)
+- usbhcd_darwin.pas — IOKit wrapper (~500 lines)
+- Functions: IOServiceGetMatchingServices, IOCreatePlugInInterface
+- Reference: Apple IOKit USB documentation
+- Test: enumerate USB devices on macOS
+
+### 13h: Cross-platform USB unit
+- uses USBCore, USBHID, USBPCI, USBHost;
+- USBHost auto-selects backend via {$IFDEF}:
+    Win32/Win64 → WinUSB
+    Linux/FreeBSD/ARM → libusb
+    DOS → direct port I/O
+    OS/2 → USBCALLS.DLL
+    Darwin → IOKit
+- Unified API:
+    USBHost.Init
+    USBHost.Enumerate → returns array of TUSBDevice
+    USBHost.OpenDevice(VendorID, ProductID) → handle
+    USBHost.BulkRead(handle, endpoint, buffer, size)
+    USBHost.BulkWrite(handle, endpoint, buffer, size)
+    USBHost.CloseDevice(handle)
+    USBHost.Shutdown
+- Test: same test program compiles on ALL 8 platforms
+- 3 tests per platform minimum
+
+### Platform Backend Matrix:
+
+  Platform     Backend          Reuse From     Effort
+  ─────────    ──────────────   ──────────     ──────
+  Win32        WinUSB API       —              New
+  Win64        WinUSB API       Win32          ifdef
+  Linux x86    libusb           —              New
+  Linux ARM    libusb           Linux x86      Same binary
+  FreeBSD      libusb           Linux          ifdef
+  DOS          direct port I/O  —              New (usbpci.pas started)
+  OS/2         USBCALLS.DLL     —              New (~200 lines)
+  Darwin       IOKit            —              New (~500 lines)
+
+  4 new backends + 3 ifdefs + 1 unified API = all 8 platforms
+
+Crew: sysop/0, wrench
+Source: USBDDOS, libusb, Bret Johnson, WinUSB, USBCALLS, IOKit
+
+## Phase 12i: Recreate DOS USB Utilities (queued)
+
+Three DOS USB utilities need recreation from source or from scratch.
+Critical for hot-plug USB + modern filesystems on DOS.
+
+### DEVLOAD.COM — Dynamic Device Driver Loader
+Source: ✅ FOUND — FDOS/devload on GitHub (GPLv2, NASM, 2,556 lines)
+Build: nasm -f bin devload.asm -o devload.com
+Use: Load USBASPI.SYS from command line (hot-plug USB)
+Pascal port: wrap as USBDevLoad unit for runtime driver loading
+
+### USBCD.SYS — USB CD-ROM Device Driver
+Source: ❌ BINARY ONLY (Panasonic, (C) 2000-2003)
+Recreate from scratch using ASPI interface + SCSI CD-ROM commands
+Reference: USBDDOS msc.c, Linux sr_mod
+~500 lines C or Pascal
+
+### USBEXFAT.COM — exFAT Filesystem Driver
+Source: ❌ Source reportedly on cn-dos.net (Chinese forum)
+Recreate or find source. exFAT: 64-bit clusters, bitmap, upcase table
+Reference: Linux exfat module (Samsung, GPL)
+~1,500 lines C or Pascal. Hardest of the three.
+
+Crew: sysop/0, wrench
