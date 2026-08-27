@@ -39,6 +39,7 @@ console applications. Includes Lazarus IDE with LCL widgetset.
   fcl-image, fcl-web, winunits-jedi, winunits-base, chm, paszlib,
   hash, regexpr, and more
 - **Full RTL rebuild** — all PPUs compiled with our ppc386
+- **USB stack** — phases 12a-13h (mass storage, HID, CDC, audio, printer, host controllers)
 
 ## Quick Start
 
@@ -59,15 +60,30 @@ ppc386 -Tgo32v2 myapp.pas    # DOS
 5. registry (Win32)
 6. fphttpclient (network)
 
+USB stack: 38 tests across phases 12a-13h (mass storage BOT/SCSI,
+HID keyboard/mouse, audio, CDC serial, printer, UHCI/OHCI/EHCI/xHCI).
+
+## Related Repos
+
+| Repo | What |
+|------|------|
+| verta1878/ow2irc | OpenWatcom 2 IRC (C/C++ compiler with x64 backend) |
+| verta1878/pcbirc | PCBoard 15.3/15.4 revival (16-bit DOS) |
+| verta1878/netmodem2irc | FOSSIL/TCP bridge |
+| verta1878/mystic-bbs-irc | Mystic BBS fork |
+
 ## The Crew
 
 | Handle | Role |
 |--------|------|
 | verta1878 | Project lead |
-| sysop/0 | Compiler engineer |
+| sysop/0 | Compiler engineer, FPC + OW2IRC maintainer, Tang Console, USB |
+| bob | Compiler engineer, wcc64 backend, Glide builds |
 | evga | Display, Mystic, SIO rebuild |
 | kiddo | Protocols, RIPscrip |
 | wrench | Transport, FOSSIL, DVI/HDMI |
 | hexadecimal | PCBoard, Cyclades |
+| byte | Program recovery |
+| dotmatrix | Software recovery |
 
 the crew 4free — x86 little endian
