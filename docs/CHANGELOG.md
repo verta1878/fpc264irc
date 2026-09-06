@@ -14,7 +14,10 @@
 - 1,029 Win64 PPUs compiled from unmodified r31 source
 - Full RTL: system, sysutils, classes, dos, typinfo, math, objects, fgl, contnrs, custapp, sockets, keyboard, mouse, video, printer, windows, winsock, winsock2, dynlibs + 20 support units
 - Packages: fcl-base (34/34), fcl-xml, fcl-json, fcl-process, fcl-fpcunit, fcl-passrc, fcl-image, fcl-res, fcl-stl, fcl-js, hash, paszlib, bzip2, sqlite, openssl, numlib, winunits-base, winunits-jedi, regexpr, fv, chm, and more
-- Zero RTL source workarounds — all previous Byte+const enum hacks, string concat splits, PByte packed record workarounds REMOVED
+- Zero RTL source workarounds
+- i8086-msdos: all 6 memory models (Tiny/Small/Medium/Compact/Large/Huge), 21 PPUs each
+- Built from FPC 3.2.2 source with ppcross8086 3.2.2
+- classes.pp now compiles all 6 models (fixed with -di8086 define), links on Huge only (64K hardware segment limit, same as stock FPC 3.2.2). Use objects.pp for smaller models. — all previous Byte+const enum hacks, string concat splits, PByte packed record workarounds REMOVED
 
 ### Phase 30: Compiler Bootstrap
 - 4 compiler patches (defutil.pas, nopt.pas, symdef.pas, fppu.pas)

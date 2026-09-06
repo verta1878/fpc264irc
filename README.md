@@ -86,6 +86,14 @@ sysutils, classes, mouse, keyboard, video, graph, and more.
 Works with: IBM PC/XT/AT, Tandy, PCjr, DOSBox, 86Box, real hardware.
 Output: 16-bit MZ .EXE (not NE, not PE, not DJGPP).
 
+All 6 memory models supported: Tiny, Small, Medium, Compact, Large, Huge.
+21 units per model including system, dos, crt, sysutils, objects, keyboard,
+mouse, video, printer, math, typinfo, fgl, and more. Smart linking required (`-XX`).
+`classes` compiles for all 6 models but links on Huge only — code+data exceed
+the 64K segment limit on smaller models (hardware limit, same as stock FPC 3.2.2).
+Use `objects` (TCollection, TStream — 17K) instead of `classes` (TList — 498K)
+on Tiny/Small/Medium/Compact/Large. Built from FPC 3.2.2 source with `ppcross8086` 3.2.2.
+
 ## x64 Compiler Bootstrap
 
 4 patches to `src/compiler/`, 3-stage build. See `docs/X64-BOOTSTRAP.md`.
