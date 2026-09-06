@@ -2760,9 +2760,9 @@ end;
 function GetProcAddr(module: HModule; const ProcName: string;
   AVerboseLoading: Boolean): SslPtr;
 begin
-  Result := GetProcedureAddress(module, PChar(ProcName));
+  Result := GetProcAddress(module, PChar(ProcName));
   if AVerboseLoading and (Result = nil) then
-    begin OpenSSL_unavailable_functions := OpenSSL_unavailable_functions + ProcName; OpenSSL_unavailable_functions := OpenSSL_unavailable_functions + LineEnding; end;
+    OpenSSL_unavailable_functions := OpenSSL_unavailable_functions + ProcName + LineEnding;
 end;
 
 // The AVerboseLoading parameter can be used to check which particular
@@ -2855,7 +2855,7 @@ begin
         //load failed!
         if SSLLibHandle <> 0 then
         begin
-          UnloadLibrary(SSLLibHandle);
+          FreeLibrary(SSLLibHandle);
           SSLLibHandle := 0;
         end;
         Result := False;
@@ -3058,7 +3058,7 @@ begin
       begin
         if SSLUtilHandle <> 0 then
         begin
-          UnloadLibrary(SSLUtilHandle);
+          FreeLibrary(SSLUtilHandle);
         end;
         Result := False;
       end;
@@ -3079,7 +3079,7 @@ begin
     SSLloaded := false;
     if SSLLibHandle <> 0 then
     begin
-      UnloadLibrary(SSLLibHandle);
+      FreeLibrary(SSLLibHandle);
      SSLLibHandle := 0;
     end;
 
@@ -3140,7 +3140,7 @@ begin
         libealoaded := false;
         if SSLUtilHandle <> 0 then
         begin
-          UnloadLibrary(SSLUtilHandle);
+          FreeLibrary(SSLUtilHandle);
           SSLUtilHandle := 0;
         end;
 

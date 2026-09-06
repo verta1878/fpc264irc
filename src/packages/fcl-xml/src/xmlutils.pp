@@ -238,20 +238,20 @@ begin
   begin
     GetMem(p, 512);
     for I := 0 to 255 do
-      PByte(p)[I] := ord(Byte(I) in Xml11HighPages);
-    PByte(p)[0] := 2;
-    PByte(p)[3] := $2c;
-    PByte(p)[$20] := $2a;
-    PByte(p)[$21] := $2b;
-    PByte(p)[$2f] := $29;
-    PByte(p)[$30] := $2d;
-    PByte(p)[$fd] := $28;
-    PByte(p)[$ff] := $30;
+      p^[I] := ord(Byte(I) in Xml11HighPages);
+    p^[0] := 2;
+    p^[3] := $2c;
+    p^[$20] := $2a;
+    p^[$21] := $2b;
+    p^[$2f] := $29;
+    p^[$30] := $2d;
+    p^[$fd] := $28;
+    p^[$ff] := $30;
 
-    Move(p^, PByte(p)[256], 256);
-    PByte(p)[$100] := $19;
-    PByte(p)[$103] := $2E;
-    PByte(p)[$120] := $2F;
+    Move(p^, p^[256], 256);
+    p^[$100] := $19;
+    p^[$103] := $2E;
+    p^[$120] := $2F;
     Xml11Pg := p;
   end;
   Result := Xml11Pg;
