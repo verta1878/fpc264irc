@@ -43,6 +43,17 @@ applied in our RTL. See `docs/DL-GLIBC-FIX.md` for details.
 
 ## Compiling
 
+### 16-bit DOS (Real Mode)
+
+```
+ppcross8086 -Tmsdos myapp.pas
+```
+
+Produces a 16-bit MZ .EXE that runs on original IBM PC hardware (8086+).
+No DPMI, no extender — pure real mode. 113 units included.
+
+### All targets
+
 ```
 # Windows 64-bit:
 ppcx64 -Twin64 myapp.pas

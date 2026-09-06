@@ -70,6 +70,22 @@ end.
 
 *More serial examples coming — see docs/USB.md.*
 
+## 16-bit DOS (Real Mode)
+
+`ppcross8086` compiles Pascal to 16-bit DOS .EXE files that run on original
+IBM PC hardware — 8086, 286, 386, no DPMI extender, no protected mode.
+Real mode, 640K, the way it was.
+
+```
+ppcross8086 -Tmsdos myapp.pas
+```
+
+113 pre-compiled units included: system, dos, crt, objects, strings,
+sysutils, classes, mouse, keyboard, video, graph, and more.
+
+Works with: IBM PC/XT/AT, Tandy, PCjr, DOSBox, 86Box, real hardware.
+Output: 16-bit MZ .EXE (not NE, not PE, not DJGPP).
+
 ## x64 Compiler Bootstrap
 
 4 patches to `src/compiler/`, 3-stage build. See `docs/X64-BOOTSTRAP.md`.
