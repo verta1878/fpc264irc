@@ -38,24 +38,12 @@ unit typinfo;
 {$endif}
        // if you change one of the following enumeration types
        // you have also to change the compiler in an appropriate way !
-{$ifdef cpu64}
-       TTypeKind = Byte;
-     const
-       tkUnknown=0; tkInteger=1; tkChar=2; tkEnumeration=3; tkFloat=4;
-       tkSet=5; tkMethod=6; tkSString=7; tkLString=8; tkAString=9;
-       tkWString=10; tkVariant=11; tkArray=12; tkRecord=13; tkInterface=14;
-       tkClass=15; tkObject=16; tkWChar=17; tkBool=18; tkInt64=19; tkQWord=20;
-       tkDynArray=21; tkInterfaceRaw=22; tkProcVar=23; tkUString=24; tkUChar=25;
-       tkHelper=26;
-     type
-{$else}
        TTypeKind = (tkUnknown,tkInteger,tkChar,tkEnumeration,tkFloat,
                    tkSet,tkMethod,tkSString,tkLString,tkAString,
                    tkWString,tkVariant,tkArray,tkRecord,tkInterface,
                    tkClass,tkObject,tkWChar,tkBool,tkInt64,tkQWord,
                    tkDynArray,tkInterfaceRaw,tkProcVar,tkUString,tkUChar,
                    tkHelper);
-{$endif}
 
        TOrdType  = (otSByte,otUByte,otSWord,otUWord,otSLong,otULong);
 
@@ -542,11 +530,11 @@ begin
           If Result='' then
             Result:=GetEnumName(PTI,i)
           else
-            begin Result:=Result+','; Result:=Result+GetEnumName(PTI,I); end;
+            Result:=Result+','+GetEnumName(PTI,I);
         end;
     end;
   if Brackets then
-    begin Result:='['+Result; Result:=Result+']'; end;
+    Result:='['+Result+']';
 end;
 
 

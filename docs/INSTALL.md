@@ -1,67 +1,63 @@
 # Installation Guide
 
-## Windows (Win32)
+## Windows (NSIS Installer)
 
-Run `fpc264irc_r31_setup.exe`. Installs to `C:\FPC264irc\`.
+Run `fpc264irc-r311-setup.exe`. Installs to `C:\FPC264IRC\`.
 
 Contents after install:
-- `bin\ppc386.exe` — compiler + 14 tools
-- `bin\units\i386-win32\` — 1,368 PPUs
+- `bin\ppcx64.exe` — 64-bit compiler
+- `bin\ppc386.exe` — 32-bit compiler + 14 tools
+- `bin\units\x86_64-win64\` — 1,012 Win64 PPUs
+- `bin\units\i386-win32\` — 1,521 Win32 PPUs
 - `bin\lazarus\lazarus.exe` — Lazarus IDE (18 MB)
-- `bin\lazarus\fpc264irc.chm` — help file
 - `src\` — complete source tree
 
-The installer adds `C:\FPC264irc\bin` to your PATH.
+The installer adds `C:\FPC264IRC\bin` to your PATH.
 
-## Linux (i386)
+To build the installer yourself: `makensis installer\fpc264irc-setup.nsi`
+
+## Linux (Debian/Ubuntu)
 
 ```
-tar xzf fpc264irc-r31-linux.tar.gz
 cd fpc264irc
-./setup-linux-i386.sh
+bash installer/build-deb.sh
+sudo dpkg -i /tmp/fpc264irc_*.deb
 ```
 
-The setup script:
-1. Detects your glibc version
-2. Applies the dl.o fix for glibc 2.34+ automatically
-3. Installs to `/usr/local/fpc264irc/`
-4. Creates symlinks in `/usr/local/bin/`
+Installs to `/usr/lib/fpc264irc/`. Creates symlinks:
+- `/usr/bin/ppcx64-irc` → native x64 compiler
+- `/usr/bin/ppc386-irc` → 32-bit compiler
 
-249 Linux PPUs included.
-
-## DOS (go32v2)
-
-Extract to a DOS partition. Requires CWSDPMI or equivalent DPMI host.
-305 PPUs included. 16 MB RAM minimum.
+## Linux (Manual)
 
 ```
-SET PATH=C:\FPC264IRC\BIN;%PATH%
+tar xzf fpc264irc-r311-linux.tar.gz
+cd fpc264irc
+export PATH=$PWD/bin:$PATH
+```
+
+### glibc 2.34+ Fix
+
+If you get linker errors about `dlopen` on modern Linux, the fix is already
+applied in our RTL. See `docs/DL-GLIBC-FIX.md` for details.
+
+## Compiling
+
+```
+# Windows 64-bit:
+ppcx64 -Twin64 myapp.pas
+
+# Windows 32-bit:
+ppc386 -Twin32 myapp.pas
+
+# Linux:
+ppcx64 -Tlinux myapp.pas
+
+# DOS:
 ppc386 -Tgo32v2 myapp.pas
 ```
 
-## FreeBSD (i386)
+## x64 Compiler Bootstrap
 
-Extract the archive. 160 PPUs included.
-Requires FreeBSD 9.x+ with 32-bit compat libs.
-
-## Compiler Flags
-
-| Flag | Purpose |
-|------|---------|
-| `-Twin32` | Target Windows 32-bit |
-| `-Tlinux` | Target Linux i386 |
-| `-Tgo32v2` | Target DOS (DJGPP) |
-| `-Tfreebsd` | Target FreeBSD i386 |
-| `-Sg` | Enable GOTO/LABEL |
-| `-n` | Don't read fpc.cfg |
-| `-FU<dir>` | PPU output directory |
-| `-Fu<dir>` | Unit search path |
-| `-Fi<dir>` | Include search path |
-| `-o<file>` | Output executable name |
-
-## Verifying Installation
-
-```
-ppc386 -iV          # Should print: 2.6.4
-ppc386 -iW          # Should print: 2.6.4irc-r3
-```
+The Win64 PPUs require the native x64 compiler, which is built via a
+3-stage bootstrap. See `docs/X64-BOOTSTRAP.md` for the full procedure.

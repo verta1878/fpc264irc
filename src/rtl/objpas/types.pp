@@ -121,15 +121,9 @@ type
   end;
   PSmallPoint = ^TSmallPoint;
 
-{$ifdef cpu64}
-  TDuplicates = Byte;
-const
-  dupIgnore = 0; dupAccept = 1; dupError = 2;
-type
-{$else}
   TDuplicates = (dupIgnore, dupAccept, dupError);
-{$endif}
 
+type
   TOleChar = WideChar;
   POleStr = PWideChar;
   PPOleStr = ^POleStr;

@@ -57,7 +57,7 @@ function TCollectionItem.GetNamePath: string;
 
 begin
   If FCollection<>Nil then
-    begin Result:=FCollection.GetNamePath; Result:=Result+'['; Result:=Result+IntToStr(Index); Result:=Result+']'; end
+    Result:=FCollection.GetNamePath+'['+IntToStr(Index)+']'
   else
     Result:=ClassName;
 end;
@@ -172,10 +172,10 @@ begin
   PropCount:=GetPropList(TheOwner, PropList);
   Try
     For I:=0 To PropCount-1 Do
-      If (PPropInfo(PPointer(Pointer(PropList)+I*SizeOf(Pointer))^)^.PropType^.Kind=tkClass) And
-         (GetObjectProp(TheOwner, PPropInfo(PPointer(Pointer(PropList)+I*SizeOf(Pointer))^), ClassType)=Self) Then
+      If (PropList^[i]^.PropType^.Kind=tkClass) And
+         (GetObjectProp(TheOwner, PropList^[i], ClassType)=Self) Then
         Begin
-          FPropName:=PPropInfo(PPointer(Pointer(PropList)+I*SizeOf(Pointer))^)^.Name;
+          FPropName:=PropList^[i]^.Name;
           Exit;
         End;
   Finally
@@ -255,7 +255,7 @@ var o : TPersistent;
 begin
   o:=getowner;
   if assigned(o) and (propname<>'') then 
-     begin result:=o.getnamepath; result:=result+'.'; result:=result+propname; end
+     result:=o.getnamepath+'.'+propname
    else
      result:=classname;
 end;

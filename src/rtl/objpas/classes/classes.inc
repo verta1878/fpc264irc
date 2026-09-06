@@ -1197,7 +1197,7 @@ procedure ObjectBinaryToText(Input, Output: TStream; Encoding: TObjectTextEncodi
               OutStr(indent + '  item');
               ValueType := TValueType(Input.ReadByte);
               if ValueType <> vaList then
-                begin OutStr('['+IntToStr(ReadInt(ValueType))); OutStr(']'); end;
+                OutStr('[' + IntToStr(ReadInt(ValueType)) + ']');
               OutLn('');
               ReadPropList(indent + '    ');
               OutStr(indent + '  end');
@@ -1219,7 +1219,7 @@ procedure ObjectBinaryToText(Input, Output: TStream; Encoding: TObjectTextEncodi
   begin
     while Input.ReadByte <> 0 do begin
       Input.Seek(-1, soFromCurrent);
-      begin OutStr(indent+ReadSStr); OutStr(' = '); end;
+      OutStr(indent + ReadSStr + ' = ');
       ProcessValue(TValueType(Input.ReadByte), Indent);
     end;
   end;
@@ -1251,7 +1251,7 @@ procedure ObjectBinaryToText(Input, Output: TStream; Encoding: TObjectTextEncodi
     if ObjName <> '' then
       OutStr(ObjName + ': ');
     OutStr(ObjClassName);
-    if (b and 2) <> 0 then begin OutStr('['+IntToStr(ChildPos)); OutStr(']'); end;
+    if (b and 2) <> 0 then OutStr('[' + IntToStr(ChildPos) + ']');
     OutLn('');
 
     ReadPropList(indent + '  ');
@@ -1571,7 +1571,7 @@ var
       if parser.Token <> '.' then break;
       parser.NextToken;
       parser.CheckToken(toSymbol);
-      begin name := name + '.'; name := name + parser.TokenString; end;
+      name := name + '.' + parser.TokenString;
     end;
     WriteString(name);
     parser.CheckToken('=');

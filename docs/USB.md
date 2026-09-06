@@ -130,3 +130,9 @@ begin
   end;
 end.
 ```
+
+
+## Serial Examples
+
+*Coming soon — FTDI, CH340, CP2102, PL2303 real-world examples.*
+*Contact verta1878 for test hardware configurations.*

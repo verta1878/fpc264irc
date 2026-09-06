@@ -127,47 +127,18 @@ type
 
 {$DEFINE FPC_FEXPAND_SYSUTILS}
 
-{$ifdef cpu64}
-{ x64: simplified ExpandFileName to avoid open array type bug in fexpand.inc }
-function ExpandFileName(const FileName: String): String;
-var
-  S, CurDir: String;
-begin
-  S := FileName;
-  if S = '' then begin
-    GetDir(0, S);
-    Result := S;
-    Exit;
-  end;
-  DoDirSeparators(S);
-{$ifdef windows}
-  if ((Length(S) >= 2) and (S[2] = ':')) or
-     ((Length(S) >= 2) and (S[1] = DirectorySeparator) and (S[2] = DirectorySeparator)) then begin
-    Result := S;
-    Exit;
-  end;
-{$else}
-  if (Length(S) >= 1) and (S[1] = DirectorySeparator) then begin
-    Result := S;
-    Exit;
-  end;
-{$endif}
-  GetDir(0, CurDir);
-  if (Length(CurDir) > 0) and (CurDir[Length(CurDir)] <> DirectorySeparator) then
-    CurDir := CurDir + DirectorySeparator;
-  Result := CurDir + S;
-end;
-{$else}
 {$I fexpand.inc}
 
+
 function ExpandFileName (Const FileName : string): String;
+
 Var S : String;
+
 Begin
  S:=FileName;
  DoDirSeparators(S);
  Result:=Fexpand(S);
 end;
-{$endif}
 
 
 {$ifndef HASEXPANDUNCFILENAME}
@@ -223,16 +194,10 @@ var
          begin
           Inc (ItemsFound);
           if ItemsFound = 1 then
-           begin FoundPath := SearchBase; FoundPath := FoundPath + SR.Name; end;
+           FoundPath := SearchBase + SR.Name;
          end
         else if SR.Attr and faDirectory = faDirectory then
-         begin
-       FoundPath := SearchBase;
-       FoundPath := FoundPath + SR.Name;
-       FoundPath := FoundPath + DirectorySeparator;
-       TryCase (FoundPath, NextRest);
-       FoundPath := '';
-      end;
+         TryCase (SearchBase + SR.Name + DirectorySeparator, NextRest);
        end;
       if ItemsFound < 2 then
        RC := FindNext (SR);
@@ -321,7 +286,7 @@ begin
     end;
   Result:='';
   For J:=I to SC do Result:=Result+OneLevelBack;
-  For J:=I to DC do begin Result:=Result+DD[J]; Result:=Result+DirectorySeparator; end;
+  For J:=I to DC do Result:=Result+DD[J]+DirectorySeparator;
   Result:=Result+ExtractFileName(DestNAme);
 end;
 

@@ -834,8 +834,8 @@ begin
   if PropCount>0 then 
     try
       for i := 0 to PropCount-1 do
-        if IsStoredProp(Instance,PPropInfo(PPointer(Pointer(PropList)+i*SizeOf(Pointer))^)) then
-          WriteProperty(Instance,PPropInfo(PPointer(Pointer(PropList)+i*SizeOf(Pointer))^));
+        if IsStoredProp(Instance,PropList^[i]) then
+          WriteProperty(Instance,PropList^[i]);
     Finally    
       Freemem(PropList);
     end;
@@ -1131,7 +1131,7 @@ begin
             SavedAncestor := Ancestor;
             SavedPropPath := FPropPath;
             try
-              begin FPropPath := FPropPath + PPropInfo(PropInfo)^.Name; FPropPath := FPropPath + '.'; end;
+              FPropPath := FPropPath + PPropInfo(PropInfo)^.Name + '.';
               if HasAncestor then
                 Ancestor := TPersistent(GetObjectProp(Ancestor, PropInfo));
               WriteProperties(TPersistent(ObjValue));

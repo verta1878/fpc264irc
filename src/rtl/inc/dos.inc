@@ -282,38 +282,7 @@ end;
 {$IFNDEF HAS_FEXPAND}
 
 (* FExpand maintained in standalone include file for easier maintenance. *)
-{$ifdef cpu64}
-{ x64: simplified FExpand to avoid open array type bug in fexpand.inc }
-function FExpand(const Path: PathStr): PathStr;
-var
-  S, CurDir: PathStr;
-begin
-  S := Path;
-  if S = '' then begin
-    GetDir(0, S);
-    FExpand := S;
-    Exit;
-  end;
-{$ifdef windows}
-  if ((Length(S) >= 2) and (S[2] = ':')) or
-     ((Length(S) >= 2) and (S[1] = DirectorySeparator) and (S[2] = DirectorySeparator)) then begin
-    FExpand := S;
-    Exit;
-  end;
-{$else}
-  if (Length(S) >= 1) and (S[1] = DirectorySeparator) then begin
-    FExpand := S;
-    Exit;
-  end;
-{$endif}
-  GetDir(0, CurDir);
-  if (Length(CurDir) > 0) and (CurDir[Length(CurDir)] <> DirectorySeparator) then
-    CurDir := CurDir + DirectorySeparator;
-  FExpand := CurDir + S;
-end;
-{$else}
 {$I fexpand.inc}
-{$endif}
 
 {$ENDIF HAS_FEXPAND}
 

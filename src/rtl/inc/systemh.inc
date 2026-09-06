@@ -409,14 +409,7 @@ Type
   { Needed for fpc_get_output }
   PText               = ^Text;
 
-{$ifdef cpu64}
-  TTextLineBreakStyle = Byte;
-const
-  tlbsLF = 0; tlbsCRLF = 1; tlbsCR = 2;
-type
-{$else}
   TTextLineBreakStyle = (tlbsLF,tlbsCRLF,tlbsCR);
-{$endif}
 
 { procedure type }
   TProcedure  = Procedure;

@@ -58,7 +58,6 @@
 ### Tests
 - 6 compilation tests pass: IUnknown, JSON, XML, RTTI, Registry, HTTP
 
-# CHANGELOG — fpc264irc r3.1
 
 ## Changes from upstream FPC 2.6.4
 

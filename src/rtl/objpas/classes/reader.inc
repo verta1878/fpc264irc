@@ -1414,7 +1414,7 @@ begin
           while Assigned(FindGlobalComponent(ResultName)) do
           begin
             Inc(i);
-            begin ResultName := CompName + '_'; ResultName := ResultName + IntToStr(i); end;
+            ResultName := CompName + '_' + IntToStr(i);
           end;
           Result.Name := ResultName;
         end;

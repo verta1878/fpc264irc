@@ -116,3 +116,8 @@ echo.
 echo Cleanup complete. Ready for: git add -A ^&^& git commit -m "r311" ^&^& git tag r311
 echo.
 pause
+
+REM --- 9. Remove stale .exe from source tree ---
+echo [9/9] Removing compiled .exe files from source tree...
+for /r src %%f in (*.exe) do del "%%f"
+echo    Done.

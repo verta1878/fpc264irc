@@ -581,9 +581,7 @@ j := 0;
 while i < count do begin
    i := i + 1;
    if S[i] = Quote then begin
-      result := result;
-      result := result + copy(S, 1 + j, i - j); result := result;
-      result := result + Quote;
+      result := result + copy(S, 1 + j, i - j) + Quote;
       j := i;
       end ;
    end ;
@@ -654,9 +652,9 @@ begin
   while (I<=L) do
     begin
     case S[i] of
-      #10: if (Ord(Style)=1) then
+      #10: if (Style=tlbsCRLF) then
                Inc(DestLen);
-      #13: if (Ord(Style)=1) then
+      #13: if (Style=tlbsCRLF) then
              if (I<L) and (S[i+1]=#10) then
                Inc(I)
              else
@@ -678,7 +676,7 @@ begin
     While I<L do
       case Source[I] of
         #10: begin
-             if Ord(Style)=1 then
+             if Style=tlbsCRLF then
                begin
                Dest[j]:=#13;
                Inc(J);
@@ -688,7 +686,7 @@ begin
              Inc(I);
              end;
         #13: begin
-             if Ord(Style)=1 then
+             if Style=tlbsCRLF then
                begin
                Dest[j] := #13;
                Inc(J);
@@ -1443,113 +1441,29 @@ Begin
           Case FormatSettings.CurrencyFormat Of
             0: Result := FormatSettings.CurrencyString + Result;
             1: Result := Result + FormatSettings.CurrencyString;
-            2: begin
-              Result := FormatSettings.CurrencyString;
-              Result := Result + ' ';
-              Result := Result + Result;
-              end;
-            3: begin
-              Result := Result;
-              Result := Result + ' ';
-              Result := Result + FormatSettings.CurrencyString;
-              end;
+            2: Result := FormatSettings.CurrencyString + ' ' + Result;
+            3: Result := Result + ' ' + FormatSettings.CurrencyString;
           End
         End
         Else
         Begin
           Case FormatSettings.NegCurrFormat Of
-            0: begin
-              Result := '(';
-              Result := Result + FormatSettings.CurrencyString;
-              Result := Result + Result;
-              Result := Result + ')';
-              end;
-            1: begin
-              Result := '-';
-              Result := Result + FormatSettings.CurrencyString;
-              Result := Result + Result;
-              end;
-            2: begin
-              Result := FormatSettings.CurrencyString;
-              Result := Result + '-';
-              Result := Result + Result;
-              end;
-            3: begin
-              Result := FormatSettings.CurrencyString;
-              Result := Result + Result;
-              Result := Result + '-';
-              end;
-            4: begin
-              Result := '(';
-              Result := Result + Result;
-              Result := Result + FormatSettings.CurrencyString;
-              Result := Result + ')';
-              end;
-            5: begin
-              Result := '-';
-              Result := Result + Result;
-              Result := Result + FormatSettings.CurrencyString;
-              end;
-            6: begin
-              Result := Result;
-              Result := Result + '-';
-              Result := Result + FormatSettings.CurrencyString;
-              end;
-            7: begin
-              Result := Result;
-              Result := Result + FormatSettings.CurrencyString;
-              Result := Result + '-';
-              end;
-            8: begin
-              Result := '-';
-              Result := Result + Result;
-              Result := Result + ' ';
-              Result := Result + FormatSettings.CurrencyString;
-              end;
-            9: begin
-              Result := '-';
-              Result := Result + FormatSettings.CurrencyString;
-              Result := Result + ' ';
-              Result := Result + Result;
-              end;
-            10: begin
-              Result := Result;
-              Result := Result + ' ';
-              Result := Result + FormatSettings.CurrencyString;
-              Result := Result + '-';
-              end;
-            11: begin
-              Result := FormatSettings.CurrencyString;
-              Result := Result + ' ';
-              Result := Result + Result;
-              Result := Result + '-';
-              end;
-            12: begin
-              Result := FormatSettings.CurrencyString;
-              Result := Result + ' ';
-              Result := Result + '-';
-              Result := Result + Result;
-              end;
-            13: begin
-              Result := Result;
-              Result := Result + '-';
-              Result := Result + ' ';
-              Result := Result + FormatSettings.CurrencyString;
-              end;
-            14: begin
-              Result := '(';
-              Result := Result + FormatSettings.CurrencyString;
-              Result := Result + ' ';
-              Result := Result + Result;
-              Result := Result + ')';
-              end;
-            15: begin
-              Result := '(';
-              Result := Result + Result;
-              Result := Result + ' ';
-              Result := Result + FormatSettings.CurrencyString;
-              Result := Result + ')';
-              end;
+            0: Result := '(' + FormatSettings.CurrencyString + Result + ')';
+            1: Result := '-' + FormatSettings.CurrencyString + Result;
+            2: Result := FormatSettings.CurrencyString + '-' + Result;
+            3: Result := FormatSettings.CurrencyString + Result + '-';
+            4: Result := '(' + Result + FormatSettings.CurrencyString + ')';
+            5: Result := '-' + Result + FormatSettings.CurrencyString;
+            6: Result := Result + '-' + FormatSettings.CurrencyString;
+            7: Result := Result + FormatSettings.CurrencyString + '-';
+            8: Result := '-' + Result + ' ' + FormatSettings.CurrencyString;
+            9: Result := '-' + FormatSettings.CurrencyString + ' ' + Result;
+            10: Result := Result + ' ' + FormatSettings.CurrencyString + '-';
+            11: Result := FormatSettings.CurrencyString + ' ' + Result + '-';
+            12: Result := FormatSettings.CurrencyString + ' ' + '-' + Result;
+            13: Result := Result + '-' + ' ' + FormatSettings.CurrencyString;
+            14: Result := '(' + FormatSettings.CurrencyString + ' ' + Result + ')';
+            15: Result := '(' + Result + ' ' + FormatSettings.CurrencyString + ')';
           End;
         End;
       End;
@@ -2725,9 +2639,7 @@ begin
       end
     else
       begin
-      Result := Result;
-      Result := Result + Copy(RemS,1,P-1);
-      Result := Result + NewPattern;
+      Result:=Result+Copy(RemS,1,P-1)+NewPattern;
       P:=P+Length(OldP);
       RemS:=Copy(RemS,P,Length(RemS)-P+1);
       if not (rfReplaceAll in Flags) then
