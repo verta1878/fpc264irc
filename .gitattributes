@@ -1,0 +1,25 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Pascal source
+*.pas text
+*.pp text
+*.inc text
+*.lpr text
+*.lpk text
+
+# Batch files need CRLF
+*.bat text eol=crlf
+
+# Shell scripts need LF
+*.sh text eol=lf
+
+# Binary files
+*.exe binary
+*.dll binary
+*.ppu binary
+*.o binary
+*.a binary
+*.chm binary
+*.zip binary
+*.gz binary
