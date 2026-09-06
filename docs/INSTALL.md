@@ -45,12 +45,20 @@ applied in our RTL. See `docs/DL-GLIBC-FIX.md` for details.
 
 ### 16-bit DOS (Real Mode)
 
+Each memory model has its own unit directory. Always use `-XX` (smart linking):
+
 ```
-ppcross8086 -Tmsdos myapp.pas
+ppcross8086 -Tmsdos -WmSmall -XX -Fubin/units/i8086-msdos-small myapp.pas
 ```
 
-Produces a 16-bit MZ .EXE that runs on original IBM PC hardware (8086+).
-No DPMI, no extender — pure real mode. 113 units included.
+Replace `-WmSmall` and the directory with your chosen model:
+Tiny, Small (default), Medium, Compact, Large, or Huge.
+
+22 units per model. Produces a 16-bit MZ .EXE that runs on original
+IBM PC hardware (8086+). No DPMI, no extender — pure real mode.
+
+Do NOT use `bin/units/i8086-msdos/` directly — it lacks .o files
+and will fail with "Can't open object file" errors.
 
 ### All targets
 

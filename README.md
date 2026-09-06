@@ -87,8 +87,39 @@ Works with: IBM PC/XT/AT, Tandy, PCjr, DOSBox, 86Box, real hardware.
 Output: 16-bit MZ .EXE (not NE, not PE, not DJGPP).
 
 All 6 memory models supported: Tiny, Small, Medium, Compact, Large, Huge.
-21 units per model including system, dos, crt, sysutils, objects, keyboard,
-mouse, video, printer, math, typinfo, fgl, and more. Smart linking required (`-XX`).
+22 units per model including system, dos, crt, sysutils, objects, keyboard,
+mouse, video, printer, math, typinfo, fgl, classes, and more.
+
+**Important:** Each model has its own unit directory. You MUST use the
+matching directory and pass `-XX` (smart linking) or compilation will fail
+with "Can't open object file" errors:
+
+```
+ppcross8086 -Tmsdos -WmTiny    -XX -Fubin/units/i8086-msdos-tiny    program.pas
+ppcross8086 -Tmsdos -WmSmall   -XX -Fubin/units/i8086-msdos-small   program.pas
+ppcross8086 -Tmsdos -WmMedium  -XX -Fubin/units/i8086-msdos-medium  program.pas
+ppcross8086 -Tmsdos -WmCompact -XX -Fubin/units/i8086-msdos-compact program.pas
+ppcross8086 -Tmsdos -WmLarge   -XX -Fubin/units/i8086-msdos-large   program.pas
+ppcross8086 -Tmsdos -WmHuge    -XX -Fubin/units/i8086-msdos-huge    program.pas
+```
+
+Do NOT use `bin/units/i8086-msdos/` directly — it contains legacy archives
+without individual .o files. Always use the model-specific directories above.
+
+**Choosing a model:**
+
+| Model | Code | Data | Best for |
+|-------|------|------|----------|
+| Tiny | 64K shared | (with code) | .COM files, TSRs |
+| Small | 64K | 64K | Simple utilities, serial tools |
+| Medium | multiple | 64K | Large code, small data |
+| Compact | 64K | multiple | Small code, large data |
+| Large | multiple | multiple | Large programs |
+| Huge | multiple | multiple | Everything, no limits (498K+ with classes) |
+
+Small is the default and works for most serial/console programs.
+Use Huge if you need `classes` (TList, TStringList) — it exceeds 64K
+on all other models (hardware segment limit, same as stock FPC 3.2.2).
 `classes` compiles for all 6 models but links on Huge only — code+data exceed
 the 64K segment limit on smaller models (hardware limit, same as stock FPC 3.2.2).
 Use `objects` (TCollection, TStream — 17K) instead of `classes` (TList — 498K)
