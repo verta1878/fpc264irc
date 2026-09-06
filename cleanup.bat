@@ -14,6 +14,7 @@ set MISSING=0
 if not exist README.md          echo    MISSING: README.md & set /a MISSING+=1
 if not exist LICENSE            echo    MISSING: LICENSE & set /a MISSING+=1
 if not exist .gitattributes     echo    MISSING: .gitattributes & set /a MISSING+=1
+if not exist .fpcirc        echo    MISSING: .fpcirc ^& set /a MISSING+=1
 if not exist CHANGELOG-IRC.md   echo    MISSING: CHANGELOG-IRC.md & set /a MISSING+=1
 if not exist build-linux.sh     echo    MISSING: build-linux.sh & set /a MISSING+=1
 if not exist build-windows.bat  echo    MISSING: build-windows.bat & set /a MISSING+=1
@@ -31,6 +32,7 @@ echo [2/10] Removing stale build artifacts...
 if exist link.res     del link.res
 if exist ppas.sh      del ppas.sh
 if exist ppas.bat     del ppas.bat
+if exist a.out        del a.out
 if exist script.res   del script.res
 if exist pp.o         del pp.o
 if exist bin\link.res del bin\link.res
@@ -108,6 +110,7 @@ if exist README.md          echo    README.md           OK
 if exist LICENSE            echo    LICENSE              OK
 if exist VERSION            echo    VERSION              OK
 if exist .gitattributes     echo    .gitattributes       OK
+if exist .fpcirc            echo    .fpcirc              OK
 if exist CHANGELOG-IRC.md   echo    CHANGELOG-IRC.md     OK
 if exist cleanup.bat        echo    cleanup.bat          OK
 if exist build-linux.sh     echo    build-linux.sh       OK
@@ -153,6 +156,7 @@ if exist bin\ppcx64_orig    echo    WARNING: bin\ppcx64_orig still present!
 if exist bin\ppcx64_patched echo    WARNING: bin\ppcx64_patched still present!
 if exist bin\pp.o           echo    WARNING: bin\pp.o still present!
 if exist test\test_usb.o    echo    WARNING: test\test_usb.o still present!
+if exist a.out            echo    WARNING: a.out still present!
 if exist CREDITS.md         echo    WARNING: CREDITS.md at root (should be in docs\)
 echo.
 echo ============================================================
