@@ -2687,7 +2687,12 @@ implementation
 
         { Tarraydef.size may never be called for an open array! }
         if highrange<lowrange then
-          internalerror(99080501);
+          begin
+            { IRC: open arrays are passed by reference (pointer + high).
+              Return pointer size, same as dynamic arrays. }
+            size := sizeof(pint);
+            exit;
+          end;
         if not (ado_IsBitPacked in arrayoptions) then
           cachedelesize:=elesize
         else
@@ -2800,7 +2805,8 @@ implementation
           if ((highrange=-1) and (lowrange=0)) then
            getmangledparaname:='array_of_'+elementdef.mangledparaname
          else
-          internalerror(200204176);
+          { IRC: fixed arrays or arrays with overflowed bounds on x64 }
+          getmangledparaname:='array_of_'+elementdef.mangledparaname;
       end;
 
 

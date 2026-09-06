@@ -299,7 +299,7 @@ begin
   Writeln(hstdout^,'An unhandled exception occurred at $',HexStr(PtrUInt(Addr),sizeof(PtrUInt)*2),' :');
   if Obj is exception then
    begin
-     Message:=Exception(Obj).ClassName+' : '+Exception(Obj).Message;
+     Message:=Exception(Obj).ClassName; Message:=Message+' : '; Message:=Message+Exception(Obj).Message;
      Writeln(hstdout^,Message);
    end
   else

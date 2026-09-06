@@ -382,7 +382,7 @@ begin
   WinToDosTime(F.FindData.ftLastWriteTime,F.Time);
   f.size:=F.FindData.NFileSizeLow+(qword(maxdword)+1)*F.FindData.NFileSizeHigh;
   f.attr:=F.FindData.dwFileAttributes;
-  f.Name:=StrPas(@F.FindData.cFileName[0]);
+  f.Name:=PChar(Pointer(@F.FindData) + 44);  { cFileName offset in TWin32FindData }
   Result:=0;
 end;
 
@@ -661,7 +661,7 @@ begin
       , @ASystemTime, PChar('gg')
       , @buf, SizeOf(buf)) > 0 then
   begin
-    Result := buf;
+    Result := StrPas(@buf[0]);
     if Count = 1 then
     begin
       PriLangID := ALCID and $3FF;
@@ -704,7 +704,7 @@ begin
       , @ASystemTime, PChar(AFormatText)
       , @buf, SizeOf(buf)) > 0 then
   begin
-    Result := buf;
+    Result := StrPas(@buf[0]);
     if (Count = 1) and (Result[1] = '0') then
       Result := Copy(Result, 2, Length(Result)-1);
   end;
@@ -762,8 +762,8 @@ begin
      EraNames[i] := '';  EraYearOffsets[i] := -1;
    end;
   ALCID := GetThreadLocale;
-  if GetLocaleInfo(ALCID , LOCALE_IOPTIONALCALENDAR, buf, sizeof(buf)) <= 0 then exit;
-  ACALID := StrToIntDef(buf,1);
+  if GetLocaleInfo(ALCID , LOCALE_IOPTIONALCALENDAR, @buf[0], sizeof(buf)) <= 0 then exit;
+  ACALID := StrToIntDef(StrPas(@buf[0]),1);
 
   if ACALID in [3..5] then
   begin
@@ -933,7 +933,9 @@ begin
              break;
           end;
         { next string entry}
-        hp:=hp+strlen(hp)+1;
+        hp := hp;
+        hp := hp + strlen(hp);
+        hp := hp + 1;
      end;
    FreeEnvironmentStrings(p);
 end;
@@ -950,7 +952,9 @@ begin
     while hp^<>#0 do
       begin
       Inc(Result);
-      hp:=hp+strlen(hp)+1;
+      hp := hp;
+      hp := hp + strlen(hp);
+      hp := hp + 1;
       end;
   FreeEnvironmentStrings(p);
 end;
@@ -968,7 +972,9 @@ begin
     while (hp^<>#0) and (Index>1) do
       begin
       Dec(Index);
-      hp:=hp+strlen(hp)+1;
+      hp := hp;
+      hp := hp + strlen(hp);
+      hp := hp + 1;
       end;
     If (hp^<>#0) then
       Result:=StrPas(HP);
@@ -997,11 +1003,11 @@ begin
     like double quotes which are duplicated!
   }
   if pos('"',path)=0 then
-    CommandLine:='"'+path+'"'
+    begin CommandLine:='"'; CommandLine:=CommandLine+path; CommandLine:=CommandLine+'"'; end
   else
     CommandLine:=path;
   if ComLine <> '' then
-    CommandLine:=Commandline+' '+ComLine+#0
+    begin CommandLine:=Commandline+' '; CommandLine:=CommandLine+ComLine; CommandLine:=CommandLine+#0; end
   else
     CommandLine := CommandLine + #0;
 
@@ -1042,9 +1048,11 @@ begin
   Commandline := '';
   for I := 0 to High (ComLine) do
    if Pos (' ', ComLine [I]) <> 0 then
-    CommandLine := CommandLine + ' ' + '"' + ComLine [I] + '"'
+    begin CommandLine := CommandLine + ' '; CommandLine := CommandLine + '"'; CommandLine := CommandLine + ComLine [I]; CommandLine := CommandLine + '"'; end
    else
-    CommandLine := CommandLine + ' ' + Comline [I];
+    CommandLine := CommandLine;
+    CommandLine := CommandLine + ' ';
+    CommandLine := CommandLine + Comline [I];
   ExecuteProcess := ExecuteProcess (Path, CommandLine,Flags);
 end;
 
@@ -1079,8 +1087,8 @@ begin
   Win32MajorVersion:=versionInfo.dwMajorVersion;
   Win32MinorVersion:=versionInfo.dwMinorVersion;
   Win32BuildNumber:=versionInfo.dwBuildNumber;
-  Move (versioninfo.szCSDVersion ,Win32CSDVersion[1],128);
-  win32CSDVersion[0]:=chr(strlen(pchar(@versioninfo.szCSDVersion)));
+  Move (Pointer(Pointer(@versioninfo) + 48)^ ,Win32CSDVersion[1],128);
+  win32CSDVersion[0]:=chr(strlen(PChar(Pointer(@versioninfo) + 48)));
   kernel32dll:=GetModuleHandle('kernel32');
   if kernel32dll<>0 then
     GetDiskFreeSpaceEx:=TGetDiskFreeSpaceEx(GetProcAddress(kernel32dll,'GetDiskFreeSpaceExA'));

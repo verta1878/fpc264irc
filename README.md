@@ -39,7 +39,6 @@ console applications. Includes Lazarus IDE with LCL widgetset.
   fcl-image, fcl-web, winunits-jedi, winunits-base, chm, paszlib,
   hash, regexpr, and more
 - **Full RTL rebuild** — all PPUs compiled with our ppc386
-- **USB stack** — phases 12a-13h (mass storage, HID, CDC, audio, printer, host controllers)
 
 ## Quick Start
 
@@ -60,30 +59,51 @@ ppc386 -Tgo32v2 myapp.pas    # DOS
 5. registry (Win32)
 6. fphttpclient (network)
 
-USB stack: 38 tests across phases 12a-13h (mass storage BOT/SCSI,
-HID keyboard/mouse, audio, CDC serial, printer, UHCI/OHCI/EHCI/xHCI).
-
-## Related Repos
-
-| Repo | What |
-|------|------|
-| verta1878/ow2irc | OpenWatcom 2 IRC (C/C++ compiler with x64 backend) |
-| verta1878/pcbirc | PCBoard 15.3/15.4 revival (16-bit DOS) |
-| verta1878/netmodem2irc | FOSSIL/TCP bridge |
-| verta1878/mystic-bbs-irc | Mystic BBS fork |
-
 ## The Crew
 
 | Handle | Role |
 |--------|------|
 | verta1878 | Project lead |
-| sysop/0 | Compiler engineer, FPC + OW2IRC maintainer, Tang Console, USB |
-| bob | Compiler engineer, wcc64 backend, Glide builds |
+| sysop/0 | Compiler engineer |
 | evga | Display, Mystic, SIO rebuild |
 | kiddo | Protocols, RIPscrip |
 | wrench | Transport, FOSSIL, DVI/HDMI |
 | hexadecimal | PCBoard, Cyclades |
-| byte | Program recovery |
-| dotmatrix | Software recovery |
 
 the crew 4free — x86 little endian
+
+## r311 — x86_64-win64 Cross Target + USB Stack (2026-09-06)
+
+### What's New
+
+**Native x64 compiler** — 3-stage bootstrapped ppcx64 (ELF 64-bit), built from 4 compiler patches that fix FPC 2.6.4's x64 codegen bugs. Zero RTL source modifications required.
+
+**1,029 Win64 PPUs** from unmodified r31 source — full RTL, fcl-base, fcl-xml, fcl-json, fcl-process, fcl-fpcunit, winunits-base, winunits-jedi, hash, paszlib, bzip2, sqlite, openssl, numlib, fcl-image, fcl-res, fcl-stl, and more.
+
+**USB stack** — 9 units (3,334 lines):
+- Hardware: `usbcore`, `usbpci`, `usbhid`, `usbtrans`, `usbxhci`, `usbhub`, `usbmsd`
+- User-space: `libusb` (libusb-1.0 bindings), `usbserial` (FTDI/CH340/CP2102/PL2303)
+- See `docs/USB.md` for API reference.
+
+### Compiler Patches
+
+4 files patched in `src/compiler/` to fix x64 codegen:
+
+| File | Fix |
+|------|-----|
+| `defutil.pas` | Range check demoted to warning for ordinals fitting target storage |
+| `nopt.pas` | Multi-string concat optimization disabled (missing RTL function) |
+| `symdef.pas` | ICE 99080501 + 200204176 graceful fallback for open arrays |
+| `fppu.pas` | Timestamp/CRC bypass for bootstrap chain |
+
+See `docs/X64-BOOTSTRAP.md` for the full bootstrap procedure.
+
+### Build
+
+```
+# 3-stage bootstrap (Linux host):
+bin/ppc386 → ppcx64 (i386 binary) → ppcx64 (native x64)
+
+# Compile for Win64:
+bin/ppcx64 -Twin64 -Sg -Fu... -Fi... -FUbin/units/x86_64-win64 <unit>.pp
+```

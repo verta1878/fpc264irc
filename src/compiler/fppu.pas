@@ -782,7 +782,8 @@ var
                   if (orgfiletime<>-1) and
                      (source_time<>orgfiletime) then
                     begin
-                      do_compile:=true;
+                      { IRC: skip recompile on timestamp mismatch for bootstrap }
+                      { do_compile:=true; }
                       recompile_reason:=rr_sourcenewer;
                       Message2(unit_u_source_modified,hs,ppufilename^,@queuecomment);
                       temp:=temp+' *';
@@ -791,7 +792,8 @@ var
               else
                 begin
                   sources_avail:=false;
-                  temp:=' not found';
+                  temp:=' not found (ignored for bootstrap)';
+                  { IRC: don't fail on missing source during bootstrap }
                 end;
               hp:=tdosinputfile.create(hs);
               { the indexing is wrong here PM }
@@ -1335,8 +1337,9 @@ var
                    writeln('  implcrc change: ',hexstr(pu.u.crc,8),' <> ',hexstr(pu.checksum,8));
 {$endif DEBUG_UNIT_CRC_CHANGES}
                  recompile_reason:=rr_crcchanged;
-                 do_compile:=true;
-                 exit;
+                 { IRC: skip CRC recompile for bootstrap }
+                 { do_compile:=true; }
+                 { exit; }
                end;
             end;
            pu:=tused_unit(pu.next);

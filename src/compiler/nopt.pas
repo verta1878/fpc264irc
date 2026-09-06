@@ -288,6 +288,11 @@ var
   hp : tnode;
   i  : longint;
 begin
+  { IRC: disable multi-string concat optimization entirely.
+    fpc_ansistr_concat_multi not available in FPC 2.6.4 RTL.
+    fpc_shortstr_concat_multi has Pointer/PShortString mismatch on x64. }
+  result := false;
+  exit;
   result:=false;
   if p.resultdef.typ<>stringdef then
     exit;

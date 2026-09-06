@@ -87,6 +87,7 @@ end;
 
 
 
+{$ifndef cpu64}
 function StringToGUID(const S: string): TGUID;
 begin
   if not TryStringToGUID(S, Result) then
@@ -171,3 +172,74 @@ begin
     ]);
 end;
 
+{$else}
+{ x64 stubs: FPC 2.6.4 ICEs on packed record array access on x86_64 }
+
+Function StringToGUID(const S: string): TGUID;
+begin
+  if not TryStringToGUID(S, Result) then
+    raise EConvertError.Create('Invalid GUID: ' + S);
+end;
+
+function TryStringToGUID(const S: string; out Guid: TGUID): Boolean;
+var
+  P: PByte;
+  function HexNibble(C: Char): Byte;
+  begin
+    case C of
+      '0'..'9': Result := Ord(C) - Ord('0');
+      'a'..'f': Result := Ord(C) - Ord('a') + 10;
+      'A'..'F': Result := Ord(C) - Ord('A') + 10;
+    else Result := 0;
+    end;
+  end;
+  function HexByte(I: Integer): Byte;
+  begin
+    Result := HexNibble(S[I]) * 16 + HexNibble(S[I+1]);
+  end;
+begin
+  Result := False;
+  FillChar(Guid, SizeOf(Guid), 0);
+  if Length(S) <> 38 then Exit;
+  P := PByte(@Guid);
+  P[3] := HexByte(2); P[2] := HexByte(4); P[1] := HexByte(6); P[0] := HexByte(8);
+  P[5] := HexByte(11); P[4] := HexByte(13);
+  P[7] := HexByte(16); P[6] := HexByte(18);
+  P[8] := HexByte(21); P[9] := HexByte(23);
+  P[10] := HexByte(26); P[11] := HexByte(28);
+  P[12] := HexByte(30); P[13] := HexByte(32);
+  P[14] := HexByte(34); P[15] := HexByte(36);
+  Result := True;
+end;
+
+function IsEqualGUID(const guid1, guid2: TGUID): Boolean;
+begin
+  Result := CompareMem(@guid1, @guid2, SizeOf(TGUID));
+end;
+
+function GuidCase(const GUID: TGUID; const List: array of TGuid): Integer;
+begin
+  for Result := 0 to High(List) do
+    if IsEqualGUID(GUID, List[Result]) then Exit;
+  Result := -1;
+end;
+
+function GUIDToString(const GUID: TGUID): string;
+var P: PByte;
+begin
+  P := PByte(@GUID);
+  Result := '{';
+  Result := Result + HexStr(P[3],2); Result := Result + HexStr(P[2],2); Result := Result + HexStr(P[1],2); Result := Result + HexStr(P[0],2);
+  Result := Result + '-';
+  Result := Result + HexStr(P[5],2); Result := Result + HexStr(P[4],2);
+  Result := Result + '-';
+  Result := Result + HexStr(P[7],2); Result := Result + HexStr(P[6],2);
+  Result := Result + '-';
+  Result := Result + HexStr(P[8],2); Result := Result + HexStr(P[9],2);
+  Result := Result + '-';
+  Result := Result + HexStr(P[10],2); Result := Result + HexStr(P[11],2); Result := Result + HexStr(P[12],2);
+  Result := Result + HexStr(P[13],2); Result := Result + HexStr(P[14],2); Result := Result + HexStr(P[15],2);
+  Result := Result + '}';
+end;
+
+{$endif}

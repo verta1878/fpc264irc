@@ -774,7 +774,20 @@ implementation
                      not(m_delphi in current_settings.modeswitches)) or
                     (cs_check_range in current_settings.localswitches) or
                     forcerangecheck then
-                   Message(parser_e_range_check_error)
+                   begin
+                     { IRC: on x64, ordinal values can appear out of range due to
+                       SizeInt promotion. Demote to warning if value fits in
+                       the target type's storage, or if it's a small enum value
+                       that fits in a byte (set elements). }
+                     if (todef.size > 0) and (l >= 0) and
+                        (l < (int64(1) shl (todef.size * 8))) then
+                       Message(parser_w_range_check_error)
+                     else if (l >= 0) and (l <= 255) then
+                       { small enum values used in set construction }
+                       Message(parser_w_range_check_error)
+                     else
+                       Message(parser_e_range_check_error);
+                   end
                  else
                    Message(parser_w_range_check_error);
                end;

@@ -1,3 +1,34 @@
+
+## r311 (2026-09-06) — x86_64-win64 + USB Stack
+
+### Phase 27: USB Stack
+- 9 units, 3,334 lines total
+- Hardware layer: usbcore (314), usbpci (389), usbhid (274), usbtrans (403), usbxhci (448), usbhub (316), usbmsd (422)
+- User-space: libusb (256, libusb-1.0 bindings for Linux/Win32/FreeBSD/Darwin/OS2/Unix), usbserial (512, FTDI/CH340/CP2102/PL2303)
+- usbxhci: platform stubs for non-DOS targets (direct MMIO requires DPMI)
+
+### Phase 28: x86_64 Cross Targets
+- Fixed get_pc_addr stub: removed incorrect cpux86_64 exclusion (FPC 2.6.4 uses cpu64, not cpux86_64)
+
+### Phase 29: Package Compilation
+- 1,029 Win64 PPUs compiled from unmodified r31 source
+- Full RTL: system, sysutils, classes, dos, typinfo, math, objects, fgl, contnrs, custapp, sockets, keyboard, mouse, video, printer, windows, winsock, winsock2, dynlibs + 20 support units
+- Packages: fcl-base (34/34), fcl-xml, fcl-json, fcl-process, fcl-fpcunit, fcl-passrc, fcl-image, fcl-res, fcl-stl, fcl-js, hash, paszlib, bzip2, sqlite, openssl, numlib, winunits-base, winunits-jedi, regexpr, fv, chm, and more
+- Zero RTL source workarounds — all previous Byte+const enum hacks, string concat splits, PByte packed record workarounds REMOVED
+
+### Phase 30: Compiler Bootstrap
+- 4 compiler patches (defutil.pas, nopt.pas, symdef.pas, fppu.pas)
+- 3-stage bootstrap: ppc386 → ppcx64(i386) → ppcx64(native ELF64 x86_64)
+- Native x64 compiler resolves sizeof(pint) host/target mismatch
+- defutil.pas: enum/ordinal range check demoted to warning when value fits target storage
+- nopt.pas: multi-string concat optimization fully disabled (fpc_ansistr_concat_multi absent from 2.6.4 RTL)
+- symdef.pas: ICE 99080501 (open array size) + ICE 200204176 (mangled param name) graceful fallback
+- fppu.pas: timestamp/CRC source checks disabled for bootstrap
+
+### Upstream TODOs (not addressed, pre-existing)
+- symdef.pas:3267 — TODO: remove fpu_used loading
+- symdef.pas:4779 — TODO: Remove getparentdef hack
+- fppu.pas:1038 — TODO: Remove ibasmsymbols
 # Changelog
 
 ## r3.1 — 2026-08-16 (Phase 1+2+3)

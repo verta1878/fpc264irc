@@ -541,7 +541,7 @@ begin
           end;
         If HaveArg and ((Result='') or AllErrors) then
           If Assigned(Opts) then
-            Opts.Add(O+'='+OV);
+            begin O:=O+'='; Opts.Add(O+OV); end;
         end;
       end;
     Inc(I);

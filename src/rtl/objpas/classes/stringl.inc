@@ -57,7 +57,7 @@ begin
         inc(j);
       end;
    end;
-  Result:=Quote+Result+Quote;
+  begin Result:=Quote+Result; Result:=Result+Quote; end;
 end;
 
 {
@@ -241,7 +241,7 @@ begin
     If (Index<0) then
       Index:=Add('');
     CheckSpecialChars;
-    Strings[Index]:=GetName(Index)+FNameValueSeparator+Value;
+    begin Strings[Index]:=GetName(Index); Strings[Index]:=Strings[Index]+FNameValueSeparator; Strings[Index]:=Strings[Index]+Value; end;
     end;
 end;
 
@@ -392,14 +392,15 @@ end;
 Procedure TStrings.SetValue(const Name, Value: string);
 
 Var L : longint;
+    TmpS: string;
 
 begin
   CheckSpecialChars;
   L:=IndexOfName(Name);
   if L=-1 then
-   Add (Name+FNameValueSeparator+Value)
+   begin TmpS:=Name+FNameValueSeparator; Add(TmpS+Value); end
   else
-   Strings[L]:=Name+FNameValueSeparator+value;
+   begin Strings[L]:=Name; Strings[L]:=Strings[L]+FNameValueSeparator; Strings[L]:=Strings[L]+value; end;
 end;
 
 

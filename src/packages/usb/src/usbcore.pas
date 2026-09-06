@@ -306,9 +306,10 @@ end;
 function USB_VersionString(bcdUSB: Word): string;
 begin
   { BCD format: $0200 = 2.00, $0310 = 3.10 }
-  Result := IntToStr(bcdUSB shr 8) + '.' +
-            IntToStr((bcdUSB shr 4) and $0F) +
-            IntToStr(bcdUSB and $0F);
+  Result := IntToStr(bcdUSB shr 8);
+  Result := Result + '.';
+  Result := Result + IntToStr((bcdUSB shr 4) and $0F);
+  Result := Result + IntToStr(bcdUSB and $0F);
 end;
 
 end.

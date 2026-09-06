@@ -112,7 +112,7 @@ begin
   Result:=IncludeTrailingPathDelimiter(GetAppConfigDir(Global));
   if SubDir then
     Result:=IncludeTrailingPathDelimiter(Result+'Config');
-  Result:=Result+ApplicationName+ConfigExtension;
+  Result:=Result+ApplicationName; Result:=Result+ConfigExtension;
 end;
 
 Function GetAppConfigFile(Global : Boolean) : String;

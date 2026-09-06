@@ -24,7 +24,16 @@ type
    { For FloatToText }
    TFloatFormat = (ffGeneral, ffExponent, ffFixed, ffNumber, ffCurrency);
    TFloatValue = (fvExtended, fvCurrency, fvSingle, fvReal, fvDouble, fvComp);
+{$ifdef cpu64}
+   TReplaceFlag = Byte;
+   TReplaceFlags = set of TReplaceFlag;
+ const
+   rfReplaceAll = 0;
+   rfIgnoreCase = 1;
+ type
+{$else}
    TReplaceFlags = set of (rfReplaceAll, rfIgnoreCase);
+{$endif}
 
    TFloatRec = Record
       Exponent: Integer;

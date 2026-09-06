@@ -287,7 +287,13 @@ type
 
 { TList class}
 
+{$ifdef cpu64}
+  TListNotification = Byte;
+const lnAdded = 0; lnExtracted = 1; lnDeleted = 2;
+type
+{$else}
   TListNotification = (lnAdded, lnExtracted, lnDeleted);
+{$endif}
   TList = class;
 
   TListEnumerator = class
@@ -1612,7 +1618,13 @@ type
 
 { TComponent class }
 
+{$ifdef cpu64}
+  TOperation = Byte;
+const opInsert = 0; opRemove = 1;
+type
+{$else}
   TOperation = (opInsert, opRemove);
+{$endif}
   TComponentState = set of (csLoading, csReading, csWriting, csDestroying,
     csDesigning, csAncestor, csUpdating, csFixups, csFreeNotification,
     csInline, csDesignInstance);

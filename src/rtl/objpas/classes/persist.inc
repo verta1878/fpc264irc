@@ -121,7 +121,7 @@ begin
  If TheOwner<>Nil then
    begin
    OwnerName:=TheOwner.GetNamePath;
-   If OwnerName<>'' then Result:=OwnerName+'.'+Result;
+   If OwnerName<>'' then begin OwnerName:=OwnerName+'.'; Result:=OwnerName+Result; end;
    end;
 end;
 
