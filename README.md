@@ -185,10 +185,36 @@ bin/ppc386 → ppcx64 (i386 binary) → ppcx64 (native ELF64)
 | Handle | Role |
 |--------|------|
 | verta1878 | Project lead |
-| sysop/0 | Compiler engineer |
+| sysop/0 | Compiler engineer, FPC, Tang Console, USB |
+| bob | Compiler engineer, OpenWatcom2 x64, Glide, 3dfx drivers |
 | evga | Display, Mystic, SIO rebuild |
 | kiddo | Protocols, RIPscrip |
 | wrench | Transport, FOSSIL, DVI/HDMI |
 | hexadecimal | PCBoard, Cyclades |
+| DotMatrix | Documentation sourcing |
+| byte | Program discovery |
 
 the crew 4free — x86 little endian
+
+## Serial Unit — Cross-Platform
+
+9 platforms, 26 unified functions. `uses Serial;` works everywhere.
+
+| Platform | Backend |
+|----------|---------|
+| x86_64-linux, i386-linux | termios (ioctl) |
+| x86_64-win64, i386-win32 | Windows COM API |
+| x86_64-freebsd, i386-freebsd | termios (ioctl) |
+| i386-darwin | termios (ioctl) |
+| i386-go32v2 | direct UART 8250/16550 |
+| i386-os2 | DosDevIOCtl ASYNC |
+
+26 functions: SerOpen, SerClose, SerRead, SerWrite, SerFlush,
+SerSetParams, SerSaveState, SerRestoreState, SerSetDTR, SerSetRTS,
+SerGetCTS, SerGetDSR, SerGetRI, SerGetCD, SerBreak, SerDrain, SerSync,
+SerFlushInput, SerFlushOutput, SerReadTimeout, SerDataAvailable,
+SerDetectUART, SerSetFIFO, SerGetBase, SerEnableIRQ, SerDisableIRQ.
+
+Source: `src/rtl/unix/serial.pp` (Unix/BSD/Mac), `src/rtl/win/serial.pp` (Windows),
+`src/rtl/os2/serial.pp` (OS/2), `src/packages/serial/serial.pp` (DOS).
+Full reference: `docs/SERIAL.md`.
