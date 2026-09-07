@@ -1,0 +1,23 @@
+fpc264irc r311 patch #5 md5
+Date: Mon Sep  7 16:40:38 UTC 2026
+
+0ee43bdbc557baa40e258cec747fe182  ./bin/units/i386-go32v2/gzio.o
+b5e219211600f6b6c1b6c28f9aeea156  ./bin/units/i386-go32v2/gzio.ppu
+cd85b792e7637b48ea781bfc8e004cfb  ./bin/units/i386-go32v2/zbase.o
+91d2c60bbe80c96bdb6dc2d72771c254  ./bin/units/i386-go32v2/zbase.ppu
+c97a9e57c7d94f03b5dfc6cabe54c11d  ./bin/units/i386-go32v2/zdeflate.o
+04f381962b3cd7e7ce3bfb3839c4747c  ./bin/units/i386-go32v2/zdeflate.ppu
+178baf419cd33d90cc915bdc328a0fc4  ./bin/units/i386-go32v2/zinflate.o
+45ab0b594c0eddefee32f9a535336bd7  ./bin/units/i386-go32v2/zinflate.ppu
+1d3d5a928023e39fb4b94418a3771b23  ./bin/units/i386-go32v2/zipper.o
+3d6114e1216b6d91c4a6161c5df9c60d  ./bin/units/i386-go32v2/zipper.ppu
+ad76f3e05bc69775c4de9fdf10b7a6d1  ./bin/units/i386-go32v2/zstream.o
+83037300af454fb42dda906dfa484725  ./bin/units/i386-go32v2/zstream.ppu
+333e4bdc3e3f8241d16f71759b8365fd  ./bin/units/x86_64-linux/cthreads.o
+f160fc6f0c53643c249a8ae3854fd149  ./bin/units/x86_64-linux/cthreads.ppu
+fcb676c3936ac842111e58801a8d7e6f  ./bin/units/x86_64-linux/dl.o
+42b4aa2a497a26317804feba5e5027c7  ./bin/units/x86_64-linux/dl.ppu
+69029f8f84f546f244b0e529b2ea2f09  ./bin/units/x86_64-linux/dynlibs.o
+9589094c8670dfe49fdb37dd0644b969  ./bin/units/x86_64-linux/dynlibs.ppu
+caed8331ef4071d944159c18861676ca  ./src/rtl/unix/dl.pp
+bcb24347600519a0c2ccfba0499211dd  ./src/rtl/unix/dynlibs.pas

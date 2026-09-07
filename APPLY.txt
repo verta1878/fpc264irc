@@ -1,0 +1,60 @@
+FPC 2.6.4irc r311 — Patch #5 (dl/dynlibs) + paszlib rebuild
+=============================================================
+
+Extract from fpc264irc repo root:
+
+  cd fpc264irc
+  unzip -o fpc264irc-release.zip
+
+CHANGED SOURCE FILES:
+  src/rtl/unix/dl.pp           added {$linklib dl} {$linklib c} for Linux
+  src/rtl/unix/dynlibs.pas     added GetProcAddress + FreeLibrary aliases
+
+REBUILT PPUs (x86_64-linux):
+  bin/units/x86_64-linux/dl.ppu          libdl now links automatically
+  bin/units/x86_64-linux/dynlibs.ppu     GetProcAddress/FreeLibrary work
+  bin/units/x86_64-linux/cthreads.ppu    rebuilt (depends on dl.ppu checksum)
+
+REBUILT PPUs (i386-go32v2):
+  bin/units/i386-go32v2/zbase.ppu        paszlib chain rebuilt
+  bin/units/i386-go32v2/zdeflate.ppu     marc now compiles for DOS
+  bin/units/i386-go32v2/zinflate.ppu
+  bin/units/i386-go32v2/zstream.ppu
+  bin/units/i386-go32v2/gzio.ppu
+  bin/units/i386-go32v2/zipper.ppu
+
+WHAT THIS FIXES:
+  - mystic_test/mystic and mystic_test/mutil no longer need
+    -k--no-as-needed -k-ldl -k-lc linker flags
+  - bbs_hunspell.pas GetProcAddress/FreeLibrary resolve on Linux
+  - marc compiles for DOS go32v2 (was failing: zdeflate not found)
+
+ALL 5 PATCHES:
+  1. src/compiler/defutil.pas    type conversion crash
+  2. src/compiler/nopt.pas       register allocation
+  3. src/compiler/symdef.pas     overloaded operator resolution
+  4. src/compiler/fppu.pas       PPU cross-compilation writing
+  5. src/rtl/unix/dl.pp +        libdl auto-link + GetProcAddress alias
+     src/rtl/unix/dynlibs.pas
+
+FILE CHECKSUMS (SHA256):
+e6332a921b494067966111705a4342c27f22204d5df7813daa62ba7031590fce  ./bin/units/i386-go32v2/gzio.o
+275eb08f8be21d78691068073e068fb7bde69469df96e1552d38da76f0d9167c  ./bin/units/i386-go32v2/gzio.ppu
+103dc7b18277d402037d6d255f37183de315c5c86d50b62a35359d8e939d3ef4  ./bin/units/i386-go32v2/zbase.o
+ffef20fc8a2d8dbfe31d22c4931c4250e7a5f7c576c45e2e769fec6f78311609  ./bin/units/i386-go32v2/zbase.ppu
+1e657a28e2744ff24c6632224ac9afd0811b5701df42142f963695442c7d3f9e  ./bin/units/i386-go32v2/zdeflate.o
+727b115f32a240a444b2e44545b1caecb06600224dfea241a60cf277d6a7323d  ./bin/units/i386-go32v2/zdeflate.ppu
+1e6e75480451d1db1265dfc106c30f0f9de6f9baae1c58725edba63d1269b224  ./bin/units/i386-go32v2/zinflate.o
+1f8f106dd8d4765ec0c0868ca88a9c26a01bf6cad19da82842460fdc97939235  ./bin/units/i386-go32v2/zinflate.ppu
+c7742d908a8c23a1c4aa1bcea61ab99ac6f9ed940cd773b4a5f9712484aa22e5  ./bin/units/i386-go32v2/zipper.o
+0bfa301d1ee82445fc19ba2d2948d5d4cc21823c00d41d82886d5bb8ec605366  ./bin/units/i386-go32v2/zipper.ppu
+465af6173b68d72b68efe0af72ad1d615994c41e381100a29d6af0893414f51e  ./bin/units/i386-go32v2/zstream.o
+9b84652a8909afc1b8e6f429b9b625c3b23557ccfed23bef3edf3eaa291367cc  ./bin/units/i386-go32v2/zstream.ppu
+9b6f6e6cd285ef349c0da15af9857f139bb5a1919b56ef1de6c96728cb9a1dd2  ./bin/units/x86_64-linux/cthreads.o
+1ef73deaa7ea1413bb51346e977d17d949ee0aa241ac46e6a2ef9cd6b85fe524  ./bin/units/x86_64-linux/cthreads.ppu
+bfced45fc0e97ae5ec154dc559e133bca2cce2ca5476629f20d97bece556e568  ./bin/units/x86_64-linux/dl.o
+829779433bb50bc917317d488a25a4cac4eb24cf0a6d2a2e1105979f3ee37ace  ./bin/units/x86_64-linux/dl.ppu
+5a76f909c02a0f485092404f10322a12d01367ee5047a1a95d6b7232c30c34ba  ./bin/units/x86_64-linux/dynlibs.o
+ec530b39912a426fd3d63d48d1a1701d8f63c3b4707ae2b544f000a3a3e4a0b4  ./bin/units/x86_64-linux/dynlibs.ppu
+25caa26e1c9c388333923081d5f2fdc799987f4ca9bb5fb05dcdeac0965bc099  ./src/rtl/unix/dl.pp
+5ff8082d6fc5e9060f0dae8505efe390d147f53dadd5bd6c95e61054a0d64831  ./src/rtl/unix/dynlibs.pas
