@@ -31,70 +31,6 @@ SYSTEM_GETPROCESSID$$LONGWORD:
 
 .text
 	.balign 4,0x90
-.globl	SYSTEM_DUMMYDOSOPENL$crc5CEF2B0C
-SYSTEM_DUMMYDOSOPENL$crc5CEF2B0C:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$4,%esp
-	pushl	40(%ebp)
-	pushl	36(%ebp)
-	pushl	32(%ebp)
-	pushl	28(%ebp)
-	pushl	20(%ebp)
-	movl	16(%ebp),%eax
-	pushl	%eax
-	movl	12(%ebp),%eax
-	pushl	%eax
-	pushl	8(%ebp)
-	call	_$dll$doscalls$_index_273
-	addl	$32,%esp
-	movl	%eax,-4(%ebp)
-	movl	-4(%ebp),%eax
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-.globl	SYSTEM_DUMMYDOSSETFILEPTRL$LONGINT$INT64$LONGWORD$INT64$$LONGWORD
-SYSTEM_DUMMYDOSSETFILEPTRL$LONGINT$INT64$LONGWORD$INT64$$LONGWORD:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$8,%esp
-	leal	-8(%ebp),%eax
-	pushl	%eax
-	pushl	20(%ebp)
-	pushl	12(%ebp)
-	pushl	8(%ebp)
-	call	_$dll$doscalls$_index_256
-	addl	$16,%esp
-	movl	%eax,-4(%ebp)
-	movl	24(%ebp),%eax
-	movl	-8(%ebp),%edx
-	movl	$0,%ecx
-	movl	%edx,(%eax)
-	movl	%ecx,4(%eax)
-	movl	-4(%ebp),%eax
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-.globl	SYSTEM_DUMMYDOSSETFILESIZEL$LONGINT$INT64$$LONGWORD
-SYSTEM_DUMMYDOSSETFILESIZEL$LONGINT$INT64$$LONGWORD:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$4,%esp
-	pushl	12(%ebp)
-	pushl	8(%ebp)
-	call	_$dll$doscalls$_index_272
-	addl	$8,%esp
-	movl	%eax,-4(%ebp)
-	movl	-4(%ebp),%eax
-	leave
-	ret
-
-.text
-	.balign 4,0x90
 SYSTEM_ERRNO2INOUTRES:
 	pushl	%ebp
 	movl	%esp,%ebp
@@ -102,158 +38,144 @@ SYSTEM_ERRNO2INOUTRES:
 	movl	%ebx,-4(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj66
+	je	Lj23
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj67
-Lj66:
+	jmp	Lj24
+Lj23:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj67:
+Lj24:
 	movw	(%eax),%ax
 	cmpw	$19,%ax
-	jb	Lj56
+	jb	Lj14
 	subw	$19,%ax
 	subw	$12,%ax
-	jbe	Lj57
+	jbe	Lj15
 	decw	%ax
 	subw	$1,%ax
-	jbe	Lj58
+	jbe	Lj16
 	subw	$5,%ax
-	je	Lj59
+	je	Lj17
 	decw	%ax
-	je	Lj60
+	je	Lj18
 	subw	$71,%ax
-	je	Lj62
+	je	Lj20
 	subw	$2,%ax
-	je	Lj61
+	je	Lj19
 	subw	$2,%ax
-	je	Lj63
-	subw	$92,%ax
-	je	Lj64
-	subw	$84,%ax
-	je	Lj65
-	jmp	Lj56
-Lj57:
+	je	Lj21
+	subw	$176,%ax
+	je	Lj22
+	jmp	Lj14
+Lj15:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj70
+	je	Lj27
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj71
-Lj70:
+	jmp	Lj28
+Lj27:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj71:
+Lj28:
 	movzwl	(%eax),%ebx
 	addl	$131,%ebx
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj72
+	je	Lj29
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj73
-Lj72:
+	jmp	Lj30
+Lj29:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj73:
+Lj30:
 	movw	%bx,(%eax)
-	jmp	Lj55
-Lj58:
+	jmp	Lj13
+Lj16:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj76
+	je	Lj33
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj77
-Lj76:
+	jmp	Lj34
+Lj33:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj77:
+Lj34:
 	movw	$5,(%eax)
-	jmp	Lj55
-Lj59:
+	jmp	Lj13
+Lj17:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj80
+	je	Lj37
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj81
-Lj80:
+	jmp	Lj38
+Lj37:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj81:
+Lj38:
 	movw	$100,(%eax)
-	jmp	Lj55
-Lj60:
+	jmp	Lj13
+Lj18:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj84
+	je	Lj41
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj85
-Lj84:
+	jmp	Lj42
+Lj41:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj85:
+Lj42:
 	movw	$101,(%eax)
-	jmp	Lj55
-Lj61:
+	jmp	Lj13
+Lj19:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj88
+	je	Lj45
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj89
-Lj88:
+	jmp	Lj46
+Lj45:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj89:
+Lj46:
 	movw	$101,(%eax)
-	jmp	Lj55
-Lj62:
+	jmp	Lj13
+Lj20:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj92
+	je	Lj49
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj93
-Lj92:
+	jmp	Lj50
+Lj49:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj93:
+Lj50:
 	movw	$5,(%eax)
-	jmp	Lj55
-Lj63:
+	jmp	Lj13
+Lj21:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj96
+	je	Lj53
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj97
-Lj96:
+	jmp	Lj54
+Lj53:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj97:
+Lj54:
 	movw	$6,(%eax)
-	jmp	Lj55
-Lj64:
+	jmp	Lj13
+Lj22:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj100
+	je	Lj57
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj101
-Lj100:
+	jmp	Lj58
+Lj57:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj101:
-	movw	$3,(%eax)
-	jmp	Lj55
-Lj65:
-	movl	FPC_THREADVAR_RELOCATE,%edx
-	testl	%edx,%edx
-	je	Lj104
-	movl	U_SYSTEM_INOUTRES,%eax
-	call	*%edx
-	jmp	Lj105
-Lj104:
-	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj105:
-	movw	$4,(%eax)
-	jmp	Lj55
-Lj56:
-Lj55:
+Lj58:
+	movw	$290,(%eax)
+	jmp	Lj13
+Lj14:
+Lj13:
 	movl	-4(%ebp),%ebx
 	leave
 	ret
@@ -289,9 +211,9 @@ SYSTEM_SSE_SUPPORT$$BOOLEAN:
 	subl	$8,%esp
 	call	SYSTEM_CPUID_SUPPORT$$BOOLEAN
 	testb	%al,%al
-	jne	Lj110
-	jmp	Lj111
-Lj110:
+	jne	Lj63
+	jmp	Lj64
+Lj63:
 	pushl	%ebx
 	movl	$1,%eax
 	cpuid
@@ -300,22 +222,22 @@ Lj110:
 	movl	-8(%ebp),%eax
 	andl	$33554432,%eax
 	testl	%eax,%eax
-	jne	Lj114
-	jmp	Lj113
-Lj114:
+	jne	Lj67
+	jmp	Lj66
+Lj67:
 	cmpb	$0,U_SYSTEM_OS_SUPPORTS_SSE
-	jne	Lj112
-	jmp	Lj113
-Lj112:
+	jne	Lj65
+	jmp	Lj66
+Lj65:
 	movb	$1,-1(%ebp)
-	jmp	Lj115
-Lj113:
+	jmp	Lj68
+Lj66:
 	movb	$0,-1(%ebp)
-Lj115:
-	jmp	Lj116
-Lj111:
+Lj68:
+	jmp	Lj69
+Lj64:
 	movb	$0,-1(%ebp)
-Lj116:
+Lj69:
 	movb	-1(%ebp),%al
 	leave
 	ret
@@ -328,9 +250,9 @@ SYSTEM_MMX_SUPPORT$$BOOLEAN:
 	subl	$8,%esp
 	call	SYSTEM_CPUID_SUPPORT$$BOOLEAN
 	testb	%al,%al
-	jne	Lj121
-	jmp	Lj122
-Lj121:
+	jne	Lj74
+	jmp	Lj75
+Lj74:
 	pushl	%ebx
 	movl	$1,%eax
 	cpuid
@@ -340,10 +262,10 @@ Lj121:
 	andl	$8388608,%eax
 	testl	%eax,%eax
 	setneb	-1(%ebp)
-	jmp	Lj125
-Lj122:
+	jmp	Lj78
+Lj75:
 	movb	$0,-1(%ebp)
-Lj125:
+Lj78:
 	movb	-1(%ebp),%al
 	leave
 	ret
@@ -351,9 +273,178 @@ Lj125:
 .text
 	.balign 4,0x90
 SYSTEM_SMALLFORWARDMOVE_3:
-	jmp	*Lj130(,%ecx,4)
+	jmp	*Lj83(,%ecx,4)
 	.balign 16,0x90
-Lj130:
+Lj83:
+	.long	Lj84
+	.long	Lj85
+	.long	Lj86
+	.long	Lj87
+	.long	Lj88
+	.long	Lj89
+	.long	Lj90
+	.long	Lj91
+	.long	Lj92
+	.long	Lj93
+	.long	Lj94
+	.long	Lj95
+	.long	Lj96
+	.long	Lj97
+	.long	Lj98
+	.long	Lj99
+	.long	Lj100
+	.long	Lj101
+	.long	Lj102
+	.long	Lj103
+	.long	Lj104
+	.long	Lj105
+	.long	Lj106
+	.long	Lj107
+	.long	Lj108
+	.long	Lj109
+	.long	Lj110
+	.long	Lj111
+	.long	Lj112
+	.long	Lj113
+	.long	Lj114
+	.long	Lj115
+	.long	Lj116
+	.long	Lj117
+	.long	Lj118
+	.long	Lj119
+	.long	Lj120
+Lj120:
+	movl	-36(%eax),%ecx
+	movl	%ecx,-36(%edx)
+Lj116:
+	movl	-32(%eax),%ecx
+	movl	%ecx,-32(%edx)
+Lj112:
+	movl	-28(%eax),%ecx
+	movl	%ecx,-28(%edx)
+Lj108:
+	movl	-24(%eax),%ecx
+	movl	%ecx,-24(%edx)
+Lj104:
+	movl	-20(%eax),%ecx
+	movl	%ecx,-20(%edx)
+Lj100:
+	movl	-16(%eax),%ecx
+	movl	%ecx,-16(%edx)
+Lj96:
+	movl	-12(%eax),%ecx
+	movl	%ecx,-12(%edx)
+Lj92:
+	movl	-8(%eax),%ecx
+	movl	%ecx,-8(%edx)
+Lj88:
+	movl	-4(%eax),%ecx
+	movl	%ecx,-4(%edx)
+	ret
+Lj119:
+	movl	-35(%eax),%ecx
+	movl	%ecx,-35(%edx)
+Lj115:
+	movl	-31(%eax),%ecx
+	movl	%ecx,-31(%edx)
+Lj111:
+	movl	-27(%eax),%ecx
+	movl	%ecx,-27(%edx)
+Lj107:
+	movl	-23(%eax),%ecx
+	movl	%ecx,-23(%edx)
+Lj103:
+	movl	-19(%eax),%ecx
+	movl	%ecx,-19(%edx)
+Lj99:
+	movl	-15(%eax),%ecx
+	movl	%ecx,-15(%edx)
+Lj95:
+	movl	-11(%eax),%ecx
+	movl	%ecx,-11(%edx)
+Lj91:
+	movl	-7(%eax),%ecx
+	movl	%ecx,-7(%edx)
+	movl	-4(%eax),%ecx
+	movl	%ecx,-4(%edx)
+	ret
+Lj87:
+	movzwl	-3(%eax),%ecx
+	movw	%cx,-3(%edx)
+	movzbl	-1(%eax),%ecx
+	movb	%cl,-1(%edx)
+	ret
+Lj118:
+	movl	-34(%eax),%ecx
+	movl	%ecx,-34(%edx)
+Lj114:
+	movl	-30(%eax),%ecx
+	movl	%ecx,-30(%edx)
+Lj110:
+	movl	-26(%eax),%ecx
+	movl	%ecx,-26(%edx)
+Lj106:
+	movl	-22(%eax),%ecx
+	movl	%ecx,-22(%edx)
+Lj102:
+	movl	-18(%eax),%ecx
+	movl	%ecx,-18(%edx)
+Lj98:
+	movl	-14(%eax),%ecx
+	movl	%ecx,-14(%edx)
+Lj94:
+	movl	-10(%eax),%ecx
+	movl	%ecx,-10(%edx)
+Lj90:
+	movl	-6(%eax),%ecx
+	movl	%ecx,-6(%edx)
+Lj86:
+	movzwl	-2(%eax),%ecx
+	movw	%cx,-2(%edx)
+	ret
+Lj117:
+	movl	-33(%eax),%ecx
+	movl	%ecx,-33(%edx)
+Lj113:
+	movl	-29(%eax),%ecx
+	movl	%ecx,-29(%edx)
+Lj109:
+	movl	-25(%eax),%ecx
+	movl	%ecx,-25(%edx)
+Lj105:
+	movl	-21(%eax),%ecx
+	movl	%ecx,-21(%edx)
+Lj101:
+	movl	-17(%eax),%ecx
+	movl	%ecx,-17(%edx)
+Lj97:
+	movl	-13(%eax),%ecx
+	movl	%ecx,-13(%edx)
+Lj93:
+	movl	-9(%eax),%ecx
+	movl	%ecx,-9(%edx)
+Lj89:
+	movl	-5(%eax),%ecx
+	movl	%ecx,-5(%edx)
+Lj85:
+	movzbl	-1(%eax),%ecx
+	movb	%cl,-1(%edx)
+Lj84:
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_SMALLBACKWARDMOVE_3:
+	jmp	*Lj123(,%ecx,4)
+	.balign 16,0x90
+Lj123:
+	.long	Lj124
+	.long	Lj125
+	.long	Lj126
+	.long	Lj127
+	.long	Lj128
+	.long	Lj129
+	.long	Lj130
 	.long	Lj131
 	.long	Lj132
 	.long	Lj133
@@ -384,292 +475,123 @@ Lj130:
 	.long	Lj158
 	.long	Lj159
 	.long	Lj160
-	.long	Lj161
-	.long	Lj162
-	.long	Lj163
-	.long	Lj164
-	.long	Lj165
-	.long	Lj166
-	.long	Lj167
-Lj167:
-	movl	-36(%eax),%ecx
-	movl	%ecx,-36(%edx)
-Lj163:
-	movl	-32(%eax),%ecx
-	movl	%ecx,-32(%edx)
-Lj159:
-	movl	-28(%eax),%ecx
-	movl	%ecx,-28(%edx)
-Lj155:
-	movl	-24(%eax),%ecx
-	movl	%ecx,-24(%edx)
-Lj151:
-	movl	-20(%eax),%ecx
-	movl	%ecx,-20(%edx)
-Lj147:
-	movl	-16(%eax),%ecx
-	movl	%ecx,-16(%edx)
-Lj143:
-	movl	-12(%eax),%ecx
-	movl	%ecx,-12(%edx)
-Lj139:
-	movl	-8(%eax),%ecx
-	movl	%ecx,-8(%edx)
-Lj135:
-	movl	-4(%eax),%ecx
-	movl	%ecx,-4(%edx)
-	ret
-Lj166:
-	movl	-35(%eax),%ecx
-	movl	%ecx,-35(%edx)
-Lj162:
-	movl	-31(%eax),%ecx
-	movl	%ecx,-31(%edx)
-Lj158:
-	movl	-27(%eax),%ecx
-	movl	%ecx,-27(%edx)
-Lj154:
-	movl	-23(%eax),%ecx
-	movl	%ecx,-23(%edx)
-Lj150:
-	movl	-19(%eax),%ecx
-	movl	%ecx,-19(%edx)
-Lj146:
-	movl	-15(%eax),%ecx
-	movl	%ecx,-15(%edx)
-Lj142:
-	movl	-11(%eax),%ecx
-	movl	%ecx,-11(%edx)
-Lj138:
-	movl	-7(%eax),%ecx
-	movl	%ecx,-7(%edx)
-	movl	-4(%eax),%ecx
-	movl	%ecx,-4(%edx)
-	ret
-Lj134:
-	movzwl	-3(%eax),%ecx
-	movw	%cx,-3(%edx)
-	movzbl	-1(%eax),%ecx
-	movb	%cl,-1(%edx)
-	ret
-Lj165:
-	movl	-34(%eax),%ecx
-	movl	%ecx,-34(%edx)
-Lj161:
-	movl	-30(%eax),%ecx
-	movl	%ecx,-30(%edx)
-Lj157:
-	movl	-26(%eax),%ecx
-	movl	%ecx,-26(%edx)
-Lj153:
-	movl	-22(%eax),%ecx
-	movl	%ecx,-22(%edx)
-Lj149:
-	movl	-18(%eax),%ecx
-	movl	%ecx,-18(%edx)
-Lj145:
-	movl	-14(%eax),%ecx
-	movl	%ecx,-14(%edx)
-Lj141:
-	movl	-10(%eax),%ecx
-	movl	%ecx,-10(%edx)
-Lj137:
-	movl	-6(%eax),%ecx
-	movl	%ecx,-6(%edx)
-Lj133:
-	movzwl	-2(%eax),%ecx
-	movw	%cx,-2(%edx)
-	ret
-Lj164:
-	movl	-33(%eax),%ecx
-	movl	%ecx,-33(%edx)
 Lj160:
-	movl	-29(%eax),%ecx
-	movl	%ecx,-29(%edx)
-Lj156:
-	movl	-25(%eax),%ecx
-	movl	%ecx,-25(%edx)
-Lj152:
-	movl	-21(%eax),%ecx
-	movl	%ecx,-21(%edx)
-Lj148:
-	movl	-17(%eax),%ecx
-	movl	%ecx,-17(%edx)
-Lj144:
-	movl	-13(%eax),%ecx
-	movl	%ecx,-13(%edx)
-Lj140:
-	movl	-9(%eax),%ecx
-	movl	%ecx,-9(%edx)
-Lj136:
-	movl	-5(%eax),%ecx
-	movl	%ecx,-5(%edx)
-Lj132:
-	movzbl	-1(%eax),%ecx
-	movb	%cl,-1(%edx)
-Lj131:
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_SMALLBACKWARDMOVE_3:
-	jmp	*Lj170(,%ecx,4)
-	.balign 16,0x90
-Lj170:
-	.long	Lj171
-	.long	Lj172
-	.long	Lj173
-	.long	Lj174
-	.long	Lj175
-	.long	Lj176
-	.long	Lj177
-	.long	Lj178
-	.long	Lj179
-	.long	Lj180
-	.long	Lj181
-	.long	Lj182
-	.long	Lj183
-	.long	Lj184
-	.long	Lj185
-	.long	Lj186
-	.long	Lj187
-	.long	Lj188
-	.long	Lj189
-	.long	Lj190
-	.long	Lj191
-	.long	Lj192
-	.long	Lj193
-	.long	Lj194
-	.long	Lj195
-	.long	Lj196
-	.long	Lj197
-	.long	Lj198
-	.long	Lj199
-	.long	Lj200
-	.long	Lj201
-	.long	Lj202
-	.long	Lj203
-	.long	Lj204
-	.long	Lj205
-	.long	Lj206
-	.long	Lj207
-Lj207:
 	movl	32(%eax),%ecx
 	movl	%ecx,32(%edx)
-Lj203:
+Lj156:
 	movl	28(%eax),%ecx
 	movl	%ecx,28(%edx)
-Lj199:
+Lj152:
 	movl	24(%eax),%ecx
 	movl	%ecx,24(%edx)
-Lj195:
+Lj148:
 	movl	20(%eax),%ecx
 	movl	%ecx,20(%edx)
-Lj191:
+Lj144:
 	movl	16(%eax),%ecx
 	movl	%ecx,16(%edx)
-Lj187:
+Lj140:
 	movl	12(%eax),%ecx
 	movl	%ecx,12(%edx)
-Lj183:
+Lj136:
 	movl	8(%eax),%ecx
 	movl	%ecx,8(%edx)
-Lj179:
+Lj132:
 	movl	4(%eax),%ecx
 	movl	%ecx,4(%edx)
-Lj175:
+Lj128:
 	movl	(%eax),%ecx
 	movl	%ecx,(%edx)
 	ret
-Lj206:
+Lj159:
 	movl	31(%eax),%ecx
 	movl	%ecx,31(%edx)
-Lj202:
+Lj155:
 	movl	27(%eax),%ecx
 	movl	%ecx,27(%edx)
-Lj198:
+Lj151:
 	movl	23(%eax),%ecx
 	movl	%ecx,23(%edx)
-Lj194:
+Lj147:
 	movl	19(%eax),%ecx
 	movl	%ecx,19(%edx)
-Lj190:
+Lj143:
 	movl	15(%eax),%ecx
 	movl	%ecx,15(%edx)
-Lj186:
+Lj139:
 	movl	11(%eax),%ecx
 	movl	%ecx,11(%edx)
-Lj182:
+Lj135:
 	movl	7(%eax),%ecx
 	movl	%ecx,7(%edx)
-Lj178:
+Lj131:
 	movl	3(%eax),%ecx
 	movl	%ecx,3(%edx)
 	movl	(%eax),%ecx
 	movl	%ecx,(%edx)
 	ret
-Lj174:
+Lj127:
 	movzwl	1(%eax),%ecx
 	movw	%cx,1(%edx)
 	movzbl	(%eax),%ecx
 	movb	%cl,(%edx)
 	ret
-Lj205:
+Lj158:
 	movl	30(%eax),%ecx
 	movl	%ecx,30(%edx)
-Lj201:
+Lj154:
 	movl	26(%eax),%ecx
 	movl	%ecx,26(%edx)
-Lj197:
+Lj150:
 	movl	22(%eax),%ecx
 	movl	%ecx,22(%edx)
-Lj193:
+Lj146:
 	movl	18(%eax),%ecx
 	movl	%ecx,18(%edx)
-Lj189:
+Lj142:
 	movl	14(%eax),%ecx
 	movl	%ecx,14(%edx)
-Lj185:
+Lj138:
 	movl	10(%eax),%ecx
 	movl	%ecx,10(%edx)
-Lj181:
+Lj134:
 	movl	6(%eax),%ecx
 	movl	%ecx,6(%edx)
-Lj177:
+Lj130:
 	movl	2(%eax),%ecx
 	movl	%ecx,2(%edx)
-Lj173:
+Lj126:
 	movzwl	(%eax),%ecx
 	movw	%cx,(%edx)
 	ret
-Lj204:
+Lj157:
 	movl	29(%eax),%ecx
 	movl	%ecx,29(%edx)
-Lj200:
+Lj153:
 	movl	25(%eax),%ecx
 	movl	%ecx,25(%edx)
-Lj196:
+Lj149:
 	movl	21(%eax),%ecx
 	movl	%ecx,21(%edx)
-Lj192:
+Lj145:
 	movl	17(%eax),%ecx
 	movl	%ecx,17(%edx)
-Lj188:
+Lj141:
 	movl	13(%eax),%ecx
 	movl	%ecx,13(%edx)
-Lj184:
+Lj137:
 	movl	9(%eax),%ecx
 	movl	%ecx,9(%edx)
-Lj180:
+Lj133:
 	movl	5(%eax),%ecx
 	movl	%ecx,5(%edx)
-Lj176:
+Lj129:
 	movl	1(%eax),%ecx
 	movl	%ecx,1(%edx)
-Lj172:
+Lj125:
 	movzbl	(%eax),%ecx
 	movb	%cl,(%edx)
-Lj171:
+Lj124:
 	ret
 
 .text
@@ -692,13 +614,13 @@ SYSTEM_BACKWARDS_VALGRIND:
 	pushl	%edi
 	leal	-1(%eax,%ecx,1),%esi
 	leal	-1(%edx,%ecx,1),%edi
-Lj212:
+Lj165:
 	movb	(%esi),%al
 	movb	%al,(%edi)
 	decl	%esi
 	decl	%edi
 	decl	%ecx
-	jnz	Lj212
+	jnz	Lj165
 	popl	%edi
 	popl	%esi
 	ret
@@ -717,13 +639,13 @@ SYSTEM_FORWARDS_IA32_3:
 	addl	%ecx,%edx
 	subl	$16,%ecx
 	negl	%ecx
-Lj215:
+Lj168:
 	fildq	-16(%eax,%ecx,1)
 	fistpq	-16(%edx,%ecx,1)
 	fildq	-8(%eax,%ecx,1)
 	fistpq	-8(%edx,%ecx,1)
 	addl	$16,%ecx
-	jle	Lj215
+	jle	Lj168
 	fistpq	(%ebx)
 	negl	%ecx
 	addl	$16,%ecx
@@ -741,13 +663,13 @@ SYSTEM_BACKWARDS_IA32_3:
 	subl	%ebx,%ecx
 	addl	%ecx,%ebx
 	subl	$16,%ecx
-Lj218:
+Lj171:
 	fildq	(%eax,%ecx,1)
 	fildq	8(%eax,%ecx,1)
 	fistpq	8(%edx,%ecx,1)
 	fistpq	(%edx,%ecx,1)
 	subl	$16,%ecx
-	jge	Lj218
+	jge	Lj171
 	fistpq	-8(%edx,%ebx,1)
 	addl	$16,%ecx
 	popl	%ebx
@@ -758,7 +680,7 @@ Lj218:
 	.balign 4,0x90
 SYSTEM_FORWARDS_MMX_3:
 	cmpl	$1024,%ecx
-	jge	Lj221
+	jge	Lj174
 	cmpl	$72,%ecx
 	jl	SYSTEM_FORWARDS_IA32_3
 	pushl	%ebx
@@ -772,7 +694,7 @@ SYSTEM_FORWARDS_MMX_3:
 	addl	%ecx,%edx
 	subl	$32,%ecx
 	negl	%ecx
-Lj222:
+Lj175:
 	movq	-32(%eax,%ecx,1),%mm1
 	movq	-24(%eax,%ecx,1),%mm2
 	movq	-16(%eax,%ecx,1),%mm3
@@ -782,18 +704,18 @@ Lj222:
 	movq	%mm3,-16(%edx,%ecx,1)
 	movq	%mm4,-8(%edx,%ecx,1)
 	addl	$32,%ecx
-	jle	Lj222
+	jle	Lj175
 	movq	%mm0,(%ebx)
 	emms
 	popl	%ebx
 	negl	%ecx
 	addl	$32,%ecx
 	jmp	SYSTEM_SMALLFORWARDMOVE_3
-Lj221:
+Lj174:
 	pushl	%ebx
 	movl	%ecx,%ebx
 	testl	$15,%edx
-	jz	Lj223
+	jz	Lj176
 	movl	%edx,%ecx
 	addl	$15,%ecx
 	andl	$-16,%ecx
@@ -802,7 +724,7 @@ Lj221:
 	addl	%ecx,%edx
 	subl	%ecx,%ebx
 	call	SYSTEM_SMALLFORWARDMOVE_3
-Lj223:
+Lj176:
 	movl	%ebx,%ecx
 	andl	$-16,%ecx
 	subl	%ecx,%ebx
@@ -817,7 +739,7 @@ Lj223:
 	addl	%eax,%edi
 	shrl	$3,%eax
 	negl	%eax
-Lj224:
+Lj177:
 	movq	(%esi,%eax,8),%mm0
 	movq	8(%esi,%eax,8),%mm1
 	movq	16(%esi,%eax,8),%mm2
@@ -835,7 +757,7 @@ Lj224:
 	movq	%mm6,48(%edi,%eax,8)
 	movq	%mm7,56(%edi,%eax,8)
 	addl	$8,%eax
-	jnz	Lj224
+	jnz	Lj177
 	emms
 	addl	%ebx,%ecx
 	shrl	$2,%ecx
@@ -862,7 +784,7 @@ SYSTEM_BACKWARDS_MMX_3:
 	subl	%ebx,%ecx
 	addl	%ecx,%ebx
 	subl	$32,%ecx
-Lj227:
+Lj180:
 	movq	(%eax,%ecx,1),%mm1
 	movq	8(%eax,%ecx,1),%mm2
 	movq	16(%eax,%ecx,1),%mm3
@@ -872,7 +794,7 @@ Lj227:
 	movq	%mm2,8(%edx,%ecx,1)
 	movq	%mm1,(%edx,%ecx,1)
 	subl	$32,%ecx
-	jge	Lj227
+	jge	Lj180
 	movq	%mm0,-8(%edx,%ebx,1)
 	emms
 	addl	$32,%ecx
@@ -892,12 +814,12 @@ SYSTEM_ALIGNEDFWDMOVESSE_3$formal$formal$SMALLINT:
 	shrl	$3,%eax
 	negl	%eax
 	cmpl	$-32768,%eax
-	jl	Lj230
-Lj231:
+	jl	Lj183
+Lj184:
 	testl	$15,%esi
-	jnz	Lj232
-Lj233:
-Lj234:
+	jnz	Lj185
+Lj186:
+Lj187:
 	movaps	(%esi,%eax,8),%xmm0
 	movaps	16(%esi,%eax,8),%xmm1
 	movaps	32(%esi,%eax,8),%xmm2
@@ -915,10 +837,10 @@ Lj234:
 	movaps	%xmm6,96(%edx,%eax,8)
 	movaps	%xmm7,112(%edx,%eax,8)
 	addl	$16,%eax
-	js	Lj234
-	jmp	Lj235
-Lj232:
-Lj236:
+	js	Lj187
+	jmp	Lj188
+Lj185:
+Lj189:
 	movups	(%esi,%eax,8),%xmm0
 	movups	16(%esi,%eax,8),%xmm1
 	movups	32(%esi,%eax,8),%xmm2
@@ -936,13 +858,13 @@ Lj236:
 	movaps	%xmm6,96(%edx,%eax,8)
 	movaps	%xmm7,112(%edx,%eax,8)
 	addl	$16,%eax
-	js	Lj236
-	jmp	Lj235
-Lj230:
+	js	Lj189
+	jmp	Lj188
+Lj183:
 	testl	$15,%esi
-	jnz	Lj237
-Lj238:
-Lj239:
+	jnz	Lj190
+Lj191:
+Lj192:
 	prefetchnta	512(%esi,%eax,8)
 	prefetchnta	576(%esi,%eax,8)
 	movaps	(%esi,%eax,8),%xmm0
@@ -962,11 +884,11 @@ Lj239:
 	movntps	%xmm6,96(%edx,%eax,8)
 	movntps	%xmm7,112(%edx,%eax,8)
 	addl	$16,%eax
-	js	Lj239
+	js	Lj192
 	sfence
-	jmp	Lj235
-Lj237:
-Lj240:
+	jmp	Lj188
+Lj190:
+Lj193:
 	prefetchnta	512(%esi,%eax,8)
 	prefetchnta	576(%esi,%eax,8)
 	movups	(%esi,%eax,8),%xmm0
@@ -986,20 +908,20 @@ Lj240:
 	movntps	%xmm6,96(%edx,%eax,8)
 	movntps	%xmm7,112(%edx,%eax,8)
 	addl	$16,%eax
-	js	Lj240
+	js	Lj193
 	sfence
-Lj235:
+Lj188:
 	andl	$127,%ecx
-	jz	Lj241
+	jz	Lj194
 	addl	%ecx,%esi
 	addl	%ecx,%edx
 	negl	%ecx
-Lj242:
+Lj195:
 	movups	(%esi,%ecx,1),%xmm0
 	movaps	%xmm0,(%edx,%ecx,1)
 	addl	$16,%ecx
-	jnz	Lj242
-Lj241:
+	jnz	Lj195
+Lj194:
 	popl	%esi
 	ret
 
@@ -1007,10 +929,10 @@ Lj241:
 	.balign 4,0x90
 SYSTEM_FORWARDS_SSE_3:
 	cmpl	$2048,%ecx
-	jge	Lj245
+	jge	Lj198
 	cmpl	$68,%ecx
 	movups	(%eax),%xmm0
-	jg	Lj246
+	jg	Lj199
 	movups	16(%eax),%xmm1
 	movups	%xmm0,(%edx)
 	movups	%xmm1,16(%edx)
@@ -1018,7 +940,7 @@ SYSTEM_FORWARDS_SSE_3:
 	addl	%ecx,%edx
 	subl	$32,%ecx
 	jmp	SYSTEM_SMALLFORWARDMOVE_3
-Lj246:
+Lj199:
 	pushl	%ebx
 	movl	%edx,%ebx
 	addl	%ecx,%eax
@@ -1029,23 +951,23 @@ Lj246:
 	addl	%ecx,%edx
 	subl	$32,%ecx
 	negl	%ecx
-Lj247:
+Lj200:
 	movups	-32(%eax,%ecx,1),%xmm1
 	movups	-16(%eax,%ecx,1),%xmm2
 	movaps	%xmm1,-32(%edx,%ecx,1)
 	movaps	%xmm2,-16(%edx,%ecx,1)
 	addl	$32,%ecx
-	jle	Lj247
+	jle	Lj200
 	movups	%xmm0,(%ebx)
 	negl	%ecx
 	addl	$32,%ecx
 	popl	%ebx
 	jmp	SYSTEM_SMALLFORWARDMOVE_3
-Lj245:
+Lj198:
 	pushl	%ebx
 	movl	%ecx,%ebx
 	testl	$15,%edx
-	jz	Lj248
+	jz	Lj201
 	movl	%edx,%ecx
 	addl	$15,%ecx
 	andl	$-16,%ecx
@@ -1055,7 +977,7 @@ Lj245:
 	subl	%ecx,%ebx
 	call	SYSTEM_SMALLFORWARDMOVE_3
 	movl	%ebx,%ecx
-Lj248:
+Lj201:
 	andl	$-16,%ecx
 	subl	%ecx,%ebx
 	pushl	%edx
@@ -1077,14 +999,14 @@ Lj248:
 	.balign 4,0x90
 SYSTEM_BACKWARDS_SSE_3:
 	cmpl	$68,%ecx
-	jg	Lj251
+	jg	Lj204
 	subl	$32,%ecx
 	movups	(%eax,%ecx,1),%xmm1
 	movups	16(%eax,%ecx,1),%xmm2
 	movups	%xmm1,(%edx,%ecx,1)
 	movups	%xmm2,16(%edx,%ecx,1)
 	jmp	SYSTEM_SMALLBACKWARDMOVE_3
-Lj251:
+Lj204:
 	pushl	%ebx
 	movups	-16(%eax,%ecx,1),%xmm0
 	leal	(%edx,%ecx,1),%ebx
@@ -1092,13 +1014,13 @@ Lj251:
 	subl	%ebx,%ecx
 	addl	%ecx,%ebx
 	subl	$32,%ecx
-Lj252:
+Lj205:
 	movups	(%eax,%ecx,1),%xmm1
 	movups	16(%eax,%ecx,1),%xmm2
 	movaps	%xmm1,(%edx,%ecx,1)
 	movaps	%xmm2,16(%edx,%ecx,1)
 	subl	$32,%ecx
-	jge	Lj252
+	jge	Lj205
 	movups	%xmm0,-16(%edx,%ebx,1)
 	addl	$32,%ecx
 	popl	%ebx
@@ -1112,32 +1034,32 @@ SYSTEM_MOVE$formal$formal$LONGINT:
 .globl	FPC_MOVE
 FPC_MOVE:
 	cmpl	$36,%ecx
-	ja	Lj255
+	ja	Lj208
 	cmpl	%edx,%eax
 	leal	(%eax,%ecx,1),%eax
-	jle	Lj256
-Lj257:
+	jle	Lj209
+Lj210:
 	addl	%ecx,%edx
 	jmp	SYSTEM_SMALLFORWARDMOVE_3
-Lj256:
-	je	Lj258
+Lj209:
+	je	Lj211
 	subl	%ecx,%eax
 	jmp	SYSTEM_SMALLBACKWARDMOVE_3
-Lj255:
-	jng	Lj258
+Lj208:
+	jng	Lj211
 	cmpl	%edx,%eax
-	jg	Lj259
-	je	Lj258
+	jg	Lj212
+	je	Lj211
 	pushl	%eax
 	addl	%ecx,%eax
 	cmpl	%edx,%eax
 	popl	%eax
-	jg	Lj260
-Lj259:
+	jg	Lj213
+Lj212:
 	jmp	*TC_SYSTEM_FASTMOVEPROC_FORWARD
-Lj260:
+Lj213:
 	jmp	*TC_SYSTEM_FASTMOVEPROC_BACKWARD
-Lj258:
+Lj211:
 	ret
 
 .text
@@ -1146,36 +1068,36 @@ SYSTEM_SETUP_FASTMOVE:
 	pushl	%ebp
 	movl	%esp,%ebp
 	cmpb	$0,__fpc_valgrind
-	jne	Lj263
-	jmp	Lj264
-Lj263:
+	jne	Lj216
+	jmp	Lj217
+Lj216:
 	movl	$SYSTEM_FORWARDS_VALGRIND,%eax
 	movl	%eax,TC_SYSTEM_FASTMOVEPROC_FORWARD
 	movl	$SYSTEM_BACKWARDS_VALGRIND,%eax
 	movl	%eax,TC_SYSTEM_FASTMOVEPROC_BACKWARD
-	jmp	Lj269
-Lj264:
+	jmp	Lj222
+Lj217:
 	cmpb	$0,TC_SYSTEM_HAS_SSE_SUPPORT
-	jne	Lj270
-	jmp	Lj271
-Lj270:
+	jne	Lj223
+	jmp	Lj224
+Lj223:
 	movl	$SYSTEM_FORWARDS_SSE_3,%eax
 	movl	%eax,TC_SYSTEM_FASTMOVEPROC_FORWARD
 	movl	$SYSTEM_BACKWARDS_SSE_3,%eax
 	movl	%eax,TC_SYSTEM_FASTMOVEPROC_BACKWARD
-	jmp	Lj276
-Lj271:
+	jmp	Lj229
+Lj224:
 	cmpb	$0,TC_SYSTEM_HAS_MMX_SUPPORT
-	jne	Lj277
-	jmp	Lj278
-Lj277:
+	jne	Lj230
+	jmp	Lj231
+Lj230:
 	movl	$SYSTEM_FORWARDS_MMX_3,%eax
 	movl	%eax,TC_SYSTEM_FASTMOVEPROC_FORWARD
 	movl	$SYSTEM_BACKWARDS_MMX_3,%eax
 	movl	%eax,TC_SYSTEM_FASTMOVEPROC_BACKWARD
-Lj278:
-Lj276:
-Lj269:
+Lj231:
+Lj229:
+Lj222:
 	leave
 	ret
 
@@ -1186,12 +1108,12 @@ SYSTEM_FPC_CPUINIT:
 	movl	%esp,%ebp
 	movb	$0,U_SYSTEM_OS_SUPPORTS_SSE
 	cmpb	$0,operatingsystem_islibrary
-	jne	Lj287
-	jmp	Lj288
-Lj287:
+	jne	Lj240
+	jmp	Lj241
+Lj240:
 	call	SYSTEM_GET8087CW$$WORD
 	movw	%ax,TC_SYSTEM_DEFAULT8087CW
-Lj288:
+Lj241:
 	leave
 	ret
 
@@ -1218,17 +1140,17 @@ fpc_geteipasecx:
 .globl	SYSTEM_FILLCHAR$formal$LONGINT$BYTE
 SYSTEM_FILLCHAR$formal$LONGINT$BYTE:
 	cmpl	$22,%edx
-	jg	Lj297
+	jg	Lj250
 	orl	%edx,%edx
-	jle	Lj298
-Lj299:
+	jle	Lj251
+Lj252:
 	movb	%cl,(%eax)
 	incl	%eax
 	decl	%edx
-	jne	Lj299
-Lj298:
+	jne	Lj252
+Lj251:
 	ret
-Lj297:
+Lj250:
 	cld
 	pushl	%edi
 	movl	%eax,%edi
@@ -1240,10 +1162,10 @@ Lj297:
 	rep
 	stosl
 	movl	%edx,%ecx
-Lj300:
+Lj253:
 	rep
 	stosb
-Lj301:
+Lj254:
 	popl	%edi
 	ret
 
@@ -1259,7 +1181,7 @@ SYSTEM_FILLWORD$formal$LONGINT$WORD:
 	movzwl	%cx,%eax
 	movl	%edx,%ecx
 	cmpl	$0,%ecx
-	jle	Lj304
+	jle	Lj257
 	movl	%eax,%edx
 	shll	$16,%eax
 	orl	%edx,%eax
@@ -1272,7 +1194,7 @@ SYSTEM_FILLWORD$formal$LONGINT$WORD:
 	andl	$1,%ecx
 	rep
 	stosw
-Lj304:
+Lj257:
 	movl	-4(%ebp),%edi
 	leave
 	ret
@@ -1289,11 +1211,11 @@ SYSTEM_FILLDWORD$formal$LONGINT$LONGWORD:
 	movl	%ecx,%eax
 	movl	%edx,%ecx
 	cmpl	$0,%ecx
-	jle	Lj307
+	jle	Lj260
 	cld
 	rep
 	stosl
-Lj307:
+Lj260:
 	movl	-4(%ebp),%edi
 	leave
 	ret
@@ -1312,20 +1234,20 @@ SYSTEM_INDEXBYTE$formal$LONGINT$BYTE$$LONGINT:
 	movl	%edx,%ecx
 	xorl	%eax,%eax
 	testl	%ecx,%ecx
-	jz	Lj310
+	jz	Lj263
 	cld
 	movl	%ecx,%edx
 	movb	%bl,%al
 	repne
 	scasb
-	jne	Lj310
+	jne	Lj263
 	incl	%ecx
 	subl	%ecx,%edx
 	movl	%edx,%eax
-	jmp	Lj311
-Lj310:
+	jmp	Lj264
+Lj263:
 	movl	$-1,%eax
-Lj311:
+Lj264:
 	movl	-8(%ebp),%edi
 	movl	-12(%ebp),%ebx
 	leave
@@ -1345,20 +1267,20 @@ SYSTEM_INDEXWORD$formal$LONGINT$WORD$$LONGINT:
 	movl	%edx,%ecx
 	xorl	%eax,%eax
 	testl	%ecx,%ecx
-	jz	Lj314
+	jz	Lj267
 	cld
 	movl	%ecx,%edx
 	movw	%bx,%ax
 	repne
 	scasw
-	jne	Lj314
+	jne	Lj267
 	incl	%ecx
 	subl	%ecx,%edx
 	movl	%edx,%eax
-	jmp	Lj315
-Lj314:
+	jmp	Lj268
+Lj267:
 	movl	$-1,%eax
-Lj315:
+Lj268:
 	movl	-8(%ebp),%edi
 	movl	-12(%ebp),%ebx
 	leave
@@ -1378,20 +1300,20 @@ SYSTEM_INDEXDWORD$formal$LONGINT$LONGWORD$$LONGINT:
 	movl	%edx,%ecx
 	xorl	%eax,%eax
 	testl	%ecx,%ecx
-	jz	Lj318
+	jz	Lj271
 	cld
 	movl	%ecx,%edx
 	movl	%ebx,%eax
 	repne
 	scasl
-	jne	Lj318
+	jne	Lj271
 	incl	%ecx
 	subl	%ecx,%edx
 	movl	%edx,%eax
-	jmp	Lj319
-Lj318:
+	jmp	Lj272
+Lj271:
 	movl	$-1,%eax
-Lj319:
+Lj272:
 	movl	-8(%ebp),%edi
 	movl	-12(%ebp),%ebx
 	leave
@@ -1402,28 +1324,28 @@ Lj319:
 .globl	SYSTEM_COMPAREBYTE$formal$formal$LONGINT$$LONGINT
 SYSTEM_COMPAREBYTE$formal$formal$LONGINT$$LONGINT:
 	cmpl	$57,%ecx
-	jg	Lj322
+	jg	Lj275
 	testl	%ecx,%ecx
-	je	Lj323
+	je	Lj276
 	pushl	%ebx
-Lj324:
+Lj277:
 	movb	(%eax),%bl
 	cmpb	(%edx),%bl
 	leal	1(%eax),%eax
 	leal	1(%edx),%edx
-	jne	Lj325
+	jne	Lj278
 	decl	%ecx
-	jne	Lj324
-Lj325:
+	jne	Lj277
+Lj278:
 	movzbl	-1(%edx),%ecx
 	movzbl	%bl,%eax
 	subl	%ecx,%eax
 	popl	%ebx
 	ret
-Lj323:
+Lj276:
 	movl	$0,%eax
 	ret
-Lj322:
+Lj275:
 	pushl	%esi
 	pushl	%edi
 	cld
@@ -1437,27 +1359,27 @@ Lj322:
 	orl	%ecx,%ecx
 	rep
 	cmpsb
-	jne	Lj326
+	jne	Lj279
 	movl	%eax,%ecx
 	andl	$3,%eax
 	shrl	$2,%ecx
 	orl	%ecx,%ecx
 	rep
 	cmpsl
-	je	Lj327
+	je	Lj280
 	movl	$4,%eax
 	subl	%eax,%esi
 	subl	%eax,%edi
-Lj327:
+Lj280:
 	movl	%eax,%ecx
 	orl	%eax,%eax
 	rep
 	cmpsb
-Lj326:
+Lj279:
 	movzbl	-1(%esi),%ecx
 	movzbl	-1(%edi),%eax
 	subl	%ecx,%eax
-Lj328:
+Lj281:
 	popl	%edi
 	popl	%esi
 	ret
@@ -1467,28 +1389,28 @@ Lj328:
 .globl	SYSTEM_COMPAREWORD$formal$formal$LONGINT$$LONGINT
 SYSTEM_COMPAREWORD$formal$formal$LONGINT$$LONGINT:
 	cmpl	$32,%ecx
-	jg	Lj331
+	jg	Lj284
 	testl	%ecx,%ecx
-	je	Lj332
+	je	Lj285
 	pushl	%ebx
-Lj333:
+Lj286:
 	movw	(%eax),%bx
 	cmpw	(%edx),%bx
 	leal	2(%eax),%eax
 	leal	2(%edx),%edx
-	jne	Lj334
+	jne	Lj287
 	decl	%ecx
-	jne	Lj333
-Lj334:
+	jne	Lj286
+Lj287:
 	movzwl	-2(%edx),%ecx
 	movzwl	%bx,%eax
 	subl	%ecx,%eax
 	popl	%ebx
 	ret
-Lj332:
+Lj285:
 	movl	$0,%eax
 	ret
-Lj331:
+Lj284:
 	pushl	%esi
 	pushl	%edi
 	pushl	%ebx
@@ -1498,7 +1420,7 @@ Lj331:
 	movl	%ecx,%eax
 	movl	(%edi),%ebx
 	cmpl	(%esi),%ebx
-	jne	Lj335
+	jne	Lj288
 	shll	$1,%eax
 	movl	%edi,%edx
 	negl	%edx
@@ -1513,26 +1435,26 @@ Lj331:
 	orl	%ecx,%ecx
 	rep
 	cmpsl
-	je	Lj336
+	je	Lj289
 	movl	$4,%eax
 	subl	%eax,%esi
 	subl	%eax,%edi
 	incl	%eax
-Lj336:
+Lj289:
 	subl	%edx,%esi
 	subl	%edx,%edi
 	addl	%edx,%eax
 	shrl	$1,%eax
-Lj335:
+Lj288:
 	movl	%eax,%ecx
 	orl	%eax,%eax
 	rep
 	cmpsw
-Lj337:
+Lj290:
 	movzwl	-2(%esi),%ecx
 	movzwl	-2(%edi),%eax
 	subl	%ecx,%eax
-Lj338:
+Lj291:
 	popl	%ebx
 	popl	%edi
 	popl	%esi
@@ -1543,19 +1465,19 @@ Lj338:
 .globl	SYSTEM_COMPAREDWORD$formal$formal$LONGINT$$LONGINT
 SYSTEM_COMPAREDWORD$formal$formal$LONGINT$$LONGINT:
 	cmpl	$32,%ecx
-	jg	Lj341
+	jg	Lj294
 	testl	%ecx,%ecx
-	je	Lj342
+	je	Lj295
 	pushl	%ebx
-Lj343:
+Lj296:
 	movl	(%eax),%ebx
 	cmpl	(%edx),%ebx
 	leal	4(%eax),%eax
 	leal	4(%edx),%edx
-	jne	Lj344
+	jne	Lj297
 	decl	%ecx
-	jne	Lj343
-Lj344:
+	jne	Lj296
+Lj297:
 	xorl	%eax,%eax
 	movl	-4(%edx),%edx
 	subl	%edx,%ebx
@@ -1566,10 +1488,10 @@ Lj344:
 	movsbl	%al,%eax
 	popl	%ebx
 	ret
-Lj342:
+Lj295:
 	movl	$0,%eax
 	ret
-Lj341:
+Lj294:
 	pushl	%esi
 	pushl	%edi
 	cld
@@ -1585,7 +1507,7 @@ Lj341:
 	addb	%cl,%al
 	subb	%dl,%al
 	movsbl	%al,%eax
-Lj345:
+Lj298:
 	popl	%edi
 	popl	%esi
 	ret
@@ -1602,23 +1524,23 @@ SYSTEM_INDEXCHAR0$formal$LONGINT$CHAR$$LONGINT:
 	movl	%eax,%esi
 	movzbl	%cl,%ebx
 	testl	%edx,%edx
-	je	Lj348
+	je	Lj301
 	xorl	%ecx,%ecx
 	xorl	%eax,%eax
 	.balign 4,0x90
-Lj349:
+Lj302:
 	movb	(%esi),%al
 	cmpb	%al,%bl
-	je	Lj348
+	je	Lj301
 	incl	%ecx
 	incl	%esi
 	cmpl	%edx,%ecx
-	je	Lj350
+	je	Lj303
 	testl	%eax,%eax
-	jne	Lj349
-Lj350:
+	jne	Lj302
+Lj303:
 	movl	$-1,%ecx
-Lj348:
+Lj301:
 	movl	%ecx,%eax
 	movl	-8(%ebp),%esi
 	movl	-12(%ebp),%ebx
@@ -1643,12 +1565,12 @@ FPC_SHORTSTR_TO_SHORTSTR:
 	xorl	%eax,%eax
 	lodsb
 	cmpl	%ecx,%eax
-	jbe	Lj353
+	jbe	Lj306
 	movl	%ecx,%eax
-Lj353:
+Lj306:
 	stosb
 	cmpl	$7,%eax
-	jl	Lj354
+	jl	Lj307
 	movl	%edi,%ecx
 	negl	%ecx
 	andl	$3,%ecx
@@ -1660,7 +1582,7 @@ Lj353:
 	shrl	$2,%ecx
 	rep
 	movsl
-Lj354:
+Lj307:
 	movl	%eax,%ecx
 	rep
 	movsb
@@ -1692,12 +1614,12 @@ FPC_SHORTSTR_ASSIGN:
 	movl	-4(%ebp),%ecx
 	lodsb
 	cmpl	%ecx,%eax
-	jbe	Lj357
+	jbe	Lj310
 	movl	%ecx,%eax
-Lj357:
+Lj310:
 	stosb
 	cmpl	$7,%eax
-	jl	Lj358
+	jl	Lj311
 	movl	%edi,%ecx
 	negl	%ecx
 	andl	$3,%ecx
@@ -1709,7 +1631,7 @@ Lj357:
 	shrl	$2,%ecx
 	rep
 	movsl
-Lj358:
+Lj311:
 	movl	%eax,%ecx
 	rep
 	movsb
@@ -1741,11 +1663,11 @@ FPC_SHORTSTR_COMPARE:
 	incl	%esi
 	incl	%edi
 	cmpl	%ebx,%eax
-	jbe	Lj361
+	jbe	Lj314
 	movl	%ebx,%eax
-Lj361:
+Lj314:
 	cmpl	$7,%eax
-	jl	Lj362
+	jl	Lj315
 	movl	%edi,%ecx
 	negl	%ecx
 	andl	$3,%ecx
@@ -1753,27 +1675,27 @@ Lj361:
 	orl	%ecx,%ecx
 	rep
 	cmpsb
-	jne	Lj363
+	jne	Lj316
 	movl	%eax,%ecx
 	andl	$3,%eax
 	shrl	$2,%ecx
 	orl	%ecx,%ecx
 	rep
 	cmpsl
-	je	Lj362
+	je	Lj315
 	movl	$4,%eax
 	subl	%eax,%esi
 	subl	%eax,%edi
-Lj362:
+Lj315:
 	movl	%eax,%ecx
 	orl	%eax,%eax
 	rep
 	cmpsb
-	je	Lj364
-Lj363:
+	je	Lj317
+Lj316:
 	movzbl	-1(%esi),%edx
 	movzbl	-1(%edi),%ebx
-Lj364:
+Lj317:
 	movl	%ebx,%eax
 	subl	%edx,%eax
 	movl	-12(%ebp),%edi
@@ -1800,24 +1722,24 @@ FPC_PCHAR_TO_SHORTSTR:
 	movl	$1,%ecx
 	testl	%esi,%esi
 	movl	%esi,%eax
-	jz	Lj367
+	jz	Lj320
 	leal	3(%esi),%edx
 	andl	$-4,%edx
 	incl	%edi
 	subl	%esi,%edx
-	jz	Lj368
-Lj369:
+	jz	Lj321
+Lj322:
 	movb	(%esi),%al
 	incl	%esi
 	testb	%al,%al
-	jz	Lj367
+	jz	Lj320
 	incl	%edi
 	incb	%cl
 	decb	%dl
 	movb	%al,-1(%edi)
-	jne	Lj369
+	jne	Lj322
 	.balign 16,0x90
-Lj368:
+Lj321:
 	movl	(%esi),%ebx
 	addl	$4,%edi
 	leal	-16843009(%ebx),%eax
@@ -1828,35 +1750,35 @@ Lj368:
 	addl	$4,%ecx
 	andl	$-2139062144,%eax
 	movl	%ebx,-4(%edi)
-	jnz	Lj370
+	jnz	Lj323
 	cmpl	$252,%ecx
-	ja	Lj371
-	jmp	Lj368
-Lj370:
+	ja	Lj324
+	jmp	Lj321
+Lj323:
 	subl	$4,%ecx
 	shrl	$8,%eax
-	jc	Lj367
+	jc	Lj320
 	incl	%ecx
 	shrl	$8,%eax
-	jc	Lj367
+	jc	Lj320
 	incl	%ecx
 	shrl	$8,%eax
-	jc	Lj367
+	jc	Lj320
 	incl	%ecx
-	jmp	Lj367
-Lj371:
+	jmp	Lj320
+Lj324:
 	testb	%cl,%cl
-	jz	Lj367
+	jz	Lj320
 	movl	(%esi),%eax
-Lj372:
+Lj325:
 	testb	%al,%al
-	jz	Lj367
+	jz	Lj320
 	movb	%al,(%edi)
 	shrl	$8,%eax
 	incl	%edi
 	incb	%cl
-	jnz	Lj372
-Lj367:
+	jnz	Lj325
+Lj320:
 	movl	-4(%ebp),%edi
 	addb	$255,%cl
 	movb	%cl,(%edi)
@@ -1876,7 +1798,7 @@ FPC_PCHAR_LENGTH:
 	movl	%esp,%ebp
 	subl	$8,%esp
 	testl	%eax,%eax
-	jz	Lj375
+	jz	Lj328
 	movl	%edi,-8(%ebp)
 	movl	%eax,%edi
 	movl	$-1,%ecx
@@ -1887,7 +1809,7 @@ FPC_PCHAR_LENGTH:
 	movl	$-2,%eax
 	subl	%ecx,%eax
 	movl	-8(%ebp),%edi
-Lj375:
+Lj328:
 	leave
 	ret
 
@@ -1896,9 +1818,9 @@ Lj375:
 .globl	SYSTEM_GET_CALLER_ADDR$POINTER$$POINTER
 SYSTEM_GET_CALLER_ADDR$POINTER$$POINTER:
 	orl	%eax,%eax
-	jz	Lj378
+	jz	Lj331
 	movl	4(%eax),%eax
-Lj378:
+Lj331:
 	ret
 
 .text
@@ -1906,9 +1828,9 @@ Lj378:
 .globl	SYSTEM_GET_CALLER_FRAME$POINTER$$POINTER
 SYSTEM_GET_CALLER_FRAME$POINTER$$POINTER:
 	orl	%eax,%eax
-	jz	Lj381
+	jz	Lj334
 	movl	(%eax),%eax
-Lj381:
+Lj334:
 	ret
 
 .text
@@ -1942,21 +1864,21 @@ SYSTEM_DECLOCKED$LONGINT$$BOOLEAN:
 	movl	%eax,-4(%ebp)
 	movl	TC_SYSTEM_ISMULTITHREAD,%eax
 	testl	%eax,%eax
-	je	Lj390
-	jmp	Lj391
-Lj390:
+	je	Lj343
+	jmp	Lj344
+Lj343:
 	movl	-4(%ebp),%eax
 	decl	(%eax)
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
 	seteb	-5(%ebp)
-	jmp	Lj394
-Lj391:
+	jmp	Lj347
+Lj344:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_CPUDECLOCKED$LONGINT$$BOOLEAN
 	movb	%al,-5(%ebp)
-Lj394:
+Lj347:
 	movb	-5(%ebp),%al
 	leave
 	ret
@@ -1970,16 +1892,16 @@ SYSTEM_INCLOCKED$LONGINT:
 	movl	%eax,-4(%ebp)
 	movl	TC_SYSTEM_ISMULTITHREAD,%eax
 	testl	%eax,%eax
-	je	Lj401
-	jmp	Lj402
-Lj401:
+	je	Lj354
+	jmp	Lj355
+Lj354:
 	movl	-4(%ebp),%eax
 	incl	(%eax)
-	jmp	Lj403
-Lj402:
+	jmp	Lj356
+Lj355:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_CPUINCLOCKED$LONGINT
-Lj403:
+Lj356:
 	leave
 	ret
 
@@ -2094,22 +2016,22 @@ SYSTEM_SYSINITFPU:
 	fldcw	-6(%ebp)
 	fwait
 	cmpb	$0,TC_SYSTEM_HAS_SSE_SUPPORT
-	jne	Lj422
-	jmp	Lj423
-Lj422:
+	jne	Lj375
+	jmp	Lj376
+Lj375:
 	movl	TC_SYSTEM_MXCSR,%eax
 	movl	%eax,-4(%ebp)
 	ldmxcsr	-4(%ebp)
-Lj423:
+Lj376:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj428
+	je	Lj381
 	movl	U_SYSTEM_SOFTFLOAT_EXCEPTION_MASK,%eax
 	call	*%edx
-	jmp	Lj429
-Lj428:
+	jmp	Lj382
+Lj381:
 	movl	$U_SYSTEM_SOFTFLOAT_EXCEPTION_MASK+4,%eax
-Lj429:
+Lj382:
 	movb	$50,(%eax)
 	leave
 	ret
@@ -2127,22 +2049,22 @@ SYSTEM_SYSRESETFPU:
 	fwait
 	fldcw	-6(%ebp)
 	cmpb	$0,TC_SYSTEM_HAS_SSE_SUPPORT
-	jne	Lj434
-	jmp	Lj435
-Lj434:
+	jne	Lj387
+	jmp	Lj388
+Lj387:
 	movl	TC_SYSTEM_MXCSR,%eax
 	movl	%eax,-4(%ebp)
 	ldmxcsr	-4(%ebp)
-Lj435:
+Lj388:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj440
+	je	Lj393
 	movl	U_SYSTEM_SOFTFLOAT_EXCEPTION_FLAGS,%eax
 	call	*%edx
-	jmp	Lj441
-Lj440:
+	jmp	Lj394
+Lj393:
 	movl	$U_SYSTEM_SOFTFLOAT_EXCEPTION_FLAGS+4,%eax
-Lj441:
+Lj394:
 	movb	$0,(%eax)
 	leave
 	ret
@@ -2156,67 +2078,67 @@ SYSTEM_FPC_CPUCODEINIT:
 	call	SYSTEM_SSE_SUPPORT$$BOOLEAN
 	movb	%al,U_SYSTEM_OS_SUPPORTS_SSE
 	cmpb	$0,U_SYSTEM_OS_SUPPORTS_SSE
-	jne	Lj448
-	jmp	Lj449
-Lj448:
+	jne	Lj401
+	jmp	Lj402
+Lj401:
 	movb	$1,U_SYSTEM_SSE_CHECK
 	movaps	%xmm7,%xmm6
 	movb	$0,U_SYSTEM_SSE_CHECK
-Lj449:
+Lj402:
 	movb	U_SYSTEM_OS_SUPPORTS_SSE,%al
 	movb	%al,TC_SYSTEM_HAS_SSE_SUPPORT
 	cmpb	$0,TC_SYSTEM_HAS_SSE_SUPPORT
-	jne	Lj458
-	jmp	Lj457
-Lj458:
+	jne	Lj411
+	jmp	Lj410
+Lj411:
 	cmpb	$0,operatingsystem_islibrary
-	jne	Lj456
-	jmp	Lj457
-Lj456:
+	jne	Lj409
+	jmp	Lj410
+Lj409:
 	call	SYSTEM_GETSSECSR$$LONGWORD
 	movl	%eax,TC_SYSTEM_MXCSR
-Lj457:
+Lj410:
 	call	SYSTEM_MMX_SUPPORT$$BOOLEAN
 	movb	%al,TC_SYSTEM_HAS_MMX_SUPPORT
 	call	SYSTEM_SYSRESETFPU
 	movb	operatingsystem_islibrary,%al
 	testb	%al,%al
-	je	Lj463
-	jmp	Lj464
-Lj463:
+	je	Lj416
+	jmp	Lj417
+Lj416:
 	call	SYSTEM_SYSINITFPU
-Lj464:
+Lj417:
 	cmpb	$0,__fpc_valgrind
-	jne	Lj465
-	jmp	Lj466
-Lj465:
+	jne	Lj418
+	jmp	Lj419
+Lj418:
 	movl	$SYSTEM_FORWARDS_VALGRIND,%eax
 	movl	%eax,TC_SYSTEM_FASTMOVEPROC_FORWARD
 	movl	$SYSTEM_BACKWARDS_VALGRIND,%eax
 	movl	%eax,TC_SYSTEM_FASTMOVEPROC_BACKWARD
-	jmp	Lj471
-Lj466:
+	jmp	Lj424
+Lj419:
 	cmpb	$0,TC_SYSTEM_HAS_SSE_SUPPORT
-	jne	Lj472
-	jmp	Lj473
-Lj472:
+	jne	Lj425
+	jmp	Lj426
+Lj425:
 	movl	$SYSTEM_FORWARDS_SSE_3,%eax
 	movl	%eax,TC_SYSTEM_FASTMOVEPROC_FORWARD
 	movl	$SYSTEM_BACKWARDS_SSE_3,%eax
 	movl	%eax,TC_SYSTEM_FASTMOVEPROC_BACKWARD
-	jmp	Lj478
-Lj473:
+	jmp	Lj431
+Lj426:
 	cmpb	$0,TC_SYSTEM_HAS_MMX_SUPPORT
-	jne	Lj479
-	jmp	Lj480
-Lj479:
+	jne	Lj432
+	jmp	Lj433
+Lj432:
 	movl	$SYSTEM_FORWARDS_MMX_3,%eax
 	movl	%eax,TC_SYSTEM_FASTMOVEPROC_FORWARD
 	movl	$SYSTEM_BACKWARDS_MMX_3,%eax
 	movl	%eax,TC_SYSTEM_FASTMOVEPROC_BACKWARD
-Lj480:
-Lj478:
-Lj471:
+Lj433:
+Lj431:
+Lj424:
 	leave
 	ret
 
@@ -2227,37 +2149,37 @@ fpc_ansistr_decr_ref:
 .globl	FPC_ANSISTR_DECR_REF
 FPC_ANSISTR_DECR_REF:
 	cmpl	$0,(%eax)
-	jne	Lj487
+	jne	Lj440
 	ret
-Lj487:
+Lj440:
 	subl	$4,%esp
 	movl	%eax,(%esp)
 	movl	(%eax),%edx
 	subl	$8,%edx
 	cmpl	$0,(%edx)
-	jl	Lj488
-Lj489:
+	jl	Lj441
+Lj442:
 	cmpl	$0,TC_SYSTEM_ISMULTITHREAD
-	jne	Lj490
+	jne	Lj443
 	decl	(%edx)
-	je	Lj491
+	je	Lj444
 	addl	$4,%esp
 	ret
-Lj490:
+Lj443:
 	movl	%edx,%eax
 	call	SYSTEM_CPUDECLOCKED$LONGINT$$BOOLEAN
 	testb	%al,%al
-	je	Lj492
-Lj491:
+	je	Lj445
+Lj444:
 	movl	(%esp),%eax
 	movl	(%eax),%eax
 	subl	$12,%eax
 	call	FPC_FREEMEM_X
 	movl	(%esp),%eax
 	movl	$0,(%eax)
-Lj493:
-Lj492:
-Lj488:
+Lj446:
+Lj445:
+Lj441:
 	addl	$4,%esp
 	ret
 
@@ -2270,15 +2192,15 @@ FPC_ANSISTR_UNIQUE:
 	movl	%eax,%edx
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj496
-Lj497:
+	je	Lj449
+Lj450:
 	movl	-8(%eax),%ecx
 	cmpl	$1,%ecx
-	je	Lj498
+	je	Lj451
 	movl	%edx,%eax
 	call	SYSTEM_FPC_TRUELY_ANSISTR_UNIQUE$POINTER$$POINTER
-Lj498:
-Lj496:
+Lj451:
+Lj449:
 	ret
 
 .text
@@ -2317,11 +2239,11 @@ SYSTEM_WRITEBARRIER:
 .globl	SYSTEM_BSFQWORD$QWORD$$LONGWORD
 SYSTEM_BSFQWORD$QWORD$$LONGWORD:
 	bsfl	4(%esp),%eax
-	jnz	Lj509_1
-Lj510_1:
+	jnz	Lj462_1
+Lj463_1:
 	bsfl	8(%esp),%eax
 	addl	$32,%eax
-Lj509_1:
+Lj462_1:
 	ret	$8
 
 .text
@@ -2329,12 +2251,12 @@ Lj509_1:
 .globl	SYSTEM_BSRQWORD$QWORD$$LONGWORD
 SYSTEM_BSRQWORD$QWORD$$LONGWORD:
 	bsrl	8(%esp),%eax
-	jz	Lj513_1
+	jz	Lj466_1
 	addl	$32,%eax
-	jmp	Lj514_1
-Lj513_1:
+	jmp	Lj467_1
+Lj466_1:
 	bsrl	4(%esp),%eax
-Lj514_1:
+Lj467_1:
 	ret	$8
 
 .text
@@ -2437,11 +2359,11 @@ SYSTEM_FILLQWORD$formal$LONGINT$QWORD:
 	movl	%edx,-8(%ebp)
 	movl	-8(%ebp),%eax
 	cmpl	$0,%eax
-	jle	Lj563
-	jmp	Lj564
-Lj563:
-	jmp	Lj561
-Lj564:
+	jle	Lj516
+	jmp	Lj517
+Lj516:
+	jmp	Lj514
+Lj517:
 	movl	-4(%ebp),%eax
 	movl	%eax,-12(%ebp)
 	movl	-8(%ebp),%eax
@@ -2449,22 +2371,22 @@ Lj564:
 	movl	-12(%ebp),%edx
 	addl	%edx,%eax
 	movl	%eax,-16(%ebp)
-	jmp	Lj570
+	jmp	Lj523
 	.balign 4,0x90
-Lj569:
+Lj522:
 	movl	-12(%ebp),%edx
 	movl	8(%ebp),%eax
 	movl	%eax,(%edx)
 	movl	12(%ebp),%eax
 	movl	%eax,4(%edx)
 	addl	$8,-12(%ebp)
-Lj570:
+Lj523:
 	movl	-12(%ebp),%eax
 	cmpl	-16(%ebp),%eax
-	jb	Lj569
-	jmp	Lj571
-Lj571:
-Lj561:
+	jb	Lj522
+	jmp	Lj524
+Lj524:
+Lj514:
 	leave
 	ret	$8
 
@@ -2481,44 +2403,44 @@ SYSTEM_INDEXQWORD$formal$LONGINT$QWORD$$LONGINT:
 	movl	%eax,-16(%ebp)
 	movl	-8(%ebp),%eax
 	cmpl	$0,%eax
-	jl	Lj578
-	jmp	Lj581
-Lj581:
+	jl	Lj531
+	jmp	Lj534
+Lj534:
 	movl	-8(%ebp),%eax
 	cmpl	$536870911,%eax
-	jg	Lj578
-	jmp	Lj580
-Lj580:
+	jg	Lj531
+	jmp	Lj533
+Lj533:
 	movl	-8(%ebp),%eax
 	shll	$3,%eax
 	movl	-16(%ebp),%edx
 	addl	%edx,%eax
 	cmpl	-16(%ebp),%eax
-	jb	Lj578
-	jmp	Lj579
-Lj578:
+	jb	Lj531
+	jmp	Lj532
+Lj531:
 	movl	$-9,-20(%ebp)
-	jmp	Lj584
-Lj579:
+	jmp	Lj537
+Lj532:
 	movl	-8(%ebp),%eax
 	shll	$3,%eax
 	movl	-16(%ebp),%edx
 	addl	%edx,%eax
 	movl	%eax,-20(%ebp)
-Lj584:
-	jmp	Lj588
+Lj537:
+	jmp	Lj541
 	.balign 4,0x90
-Lj587:
+Lj540:
 	movl	-16(%ebp),%eax
 	movl	(%eax),%edx
 	movl	4(%eax),%eax
 	cmpl	12(%ebp),%eax
-	jne	Lj591
+	jne	Lj544
 	cmpl	8(%ebp),%edx
-	jne	Lj591
-	jmp	Lj590
-	jmp	Lj591
-Lj590:
+	jne	Lj544
+	jmp	Lj543
+	jmp	Lj544
+Lj543:
 	movl	-4(%ebp),%eax
 	movl	-16(%ebp),%edx
 	subl	%eax,%edx
@@ -2529,17 +2451,17 @@ Lj590:
 	addl	%edx,%eax
 	sarl	$3,%eax
 	movl	%eax,-12(%ebp)
-	jmp	Lj574
-Lj591:
+	jmp	Lj527
+Lj544:
 	addl	$8,-16(%ebp)
-Lj588:
+Lj541:
 	movl	-16(%ebp),%eax
 	cmpl	-20(%ebp),%eax
-	jb	Lj587
-	jmp	Lj589
-Lj589:
+	jb	Lj540
+	jmp	Lj542
+Lj542:
 	movl	$-1,-12(%ebp)
-Lj574:
+Lj527:
 	movl	-12(%ebp),%eax
 	leave
 	ret	$8
@@ -2556,11 +2478,11 @@ SYSTEM_MOVECHAR0$formal$formal$LONGINT:
 	movl	%ecx,-12(%ebp)
 	movl	-12(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj598
-	jmp	Lj599
-Lj598:
-	jmp	Lj596
-Lj599:
+	je	Lj551
+	jmp	Lj552
+Lj551:
+	jmp	Lj549
+Lj552:
 	movl	-12(%ebp),%edx
 	movl	-4(%ebp),%eax
 	movb	$0,%cl
@@ -2568,21 +2490,21 @@ Lj599:
 	movl	%eax,-16(%ebp)
 	movl	-16(%ebp),%eax
 	cmpl	$-1,%eax
-	jne	Lj608
-	jmp	Lj609
-Lj608:
+	jne	Lj561
+	jmp	Lj562
+Lj561:
 	movl	-16(%ebp),%ecx
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_MOVE$formal$formal$LONGINT
-	jmp	Lj616
-Lj609:
+	jmp	Lj569
+Lj562:
 	movl	-12(%ebp),%ecx
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_MOVE$formal$formal$LONGINT
-Lj616:
-Lj596:
+Lj569:
+Lj549:
 	leave
 	ret
 
@@ -2605,9 +2527,9 @@ SYSTEM_COMPARECHAR0$formal$formal$LONGINT$$LONGINT:
 	movl	-12(%ebp),%eax
 	addl	%eax,%edx
 	movl	%edx,-28(%ebp)
-	jmp	Lj634
+	jmp	Lj587
 	.balign 4,0x90
-Lj633:
+Lj586:
 	movl	-20(%ebp),%eax
 	movzbl	(%eax),%edx
 	movl	-24(%ebp),%eax
@@ -2616,47 +2538,47 @@ Lj633:
 	movl	%edx,-32(%ebp)
 	movl	-32(%ebp),%eax
 	cmpl	$0,%eax
-	jl	Lj638
-	jmp	Lj639
-Lj638:
+	jl	Lj591
+	jmp	Lj592
+Lj591:
 	movl	$-1,-16(%ebp)
-	jmp	Lj623
-	jmp	Lj642
-Lj639:
+	jmp	Lj576
+	jmp	Lj595
+Lj592:
 	movl	-32(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj643
-	jmp	Lj644
-Lj643:
+	jg	Lj596
+	jmp	Lj597
+Lj596:
 	movl	$1,-16(%ebp)
-	jmp	Lj623
-Lj644:
-Lj642:
+	jmp	Lj576
+Lj597:
+Lj595:
 	movl	-20(%ebp),%eax
 	movzbl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj647
-	jmp	Lj649
-Lj649:
+	je	Lj600
+	jmp	Lj602
+Lj602:
 	movl	-24(%ebp),%eax
 	movzbl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj647
-	jmp	Lj648
-Lj647:
+	je	Lj600
+	jmp	Lj601
+Lj600:
 	movl	$0,-16(%ebp)
-	jmp	Lj623
-Lj648:
+	jmp	Lj576
+Lj601:
 	incl	-24(%ebp)
 	incl	-20(%ebp)
-Lj634:
+Lj587:
 	movl	-20(%ebp),%eax
 	cmpl	-28(%ebp),%eax
-	jb	Lj633
-	jmp	Lj635
-Lj635:
+	jb	Lj586
+	jmp	Lj588
+Lj588:
 	movl	$0,-16(%ebp)
-Lj623:
+Lj576:
 	movl	-16(%ebp),%eax
 	leave
 	ret
@@ -2676,28 +2598,28 @@ FPC_HELP_CONSTRUCTOR:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj656
-	jmp	Lj657
-Lj656:
+	je	Lj609
+	jmp	Lj610
+Lj609:
 	movl	-4(%ebp),%eax
 	movl	%eax,-16(%ebp)
-	jmp	Lj654
-Lj657:
+	jmp	Lj607
+Lj610:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	movl	%eax,-20(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj664
-	jmp	Lj663
-Lj664:
+	je	Lj617
+	jmp	Lj616
+Lj617:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	movl	(%eax),%eax
 	cmpl	$0,%eax
-	ja	Lj662
-	jmp	Lj663
-Lj662:
+	ja	Lj615
+	jmp	Lj616
+Lj615:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	movl	(%eax),%edx
@@ -2705,12 +2627,12 @@ Lj662:
 	call	SYSTEM_GETMEM$POINTER$LONGWORD
 	movl	-8(%ebp),%eax
 	movl	$-1,(%eax)
-Lj663:
+Lj616:
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj671
-	jmp	Lj672
-Lj671:
+	jne	Lj624
+	jmp	Lj625
+Lj624:
 	movl	-20(%ebp),%eax
 	movl	(%eax),%edx
 	movl	-4(%ebp),%eax
@@ -2721,10 +2643,10 @@ Lj671:
 	addl	%eax,%edx
 	movl	-20(%ebp),%eax
 	movl	%eax,(%edx)
-Lj672:
+Lj625:
 	movl	-4(%ebp),%eax
 	movl	%eax,-16(%ebp)
-Lj654:
+Lj607:
 	movl	-16(%ebp),%eax
 	leave
 	ret
@@ -2743,33 +2665,33 @@ FPC_HELP_DESTRUCTOR:
 	movl	%ecx,-12(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj685
-	jmp	Lj688
-Lj688:
+	je	Lj638
+	jmp	Lj641
+Lj641:
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj685
-	jmp	Lj687
-Lj687:
+	je	Lj638
+	jmp	Lj640
+Lj640:
 	movl	-4(%ebp),%eax
 	movl	-12(%ebp),%edx
 	addl	%edx,%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj685
-	jmp	Lj686
-Lj685:
-	jmp	Lj683
-Lj686:
+	je	Lj638
+	jmp	Lj639
+Lj638:
+	jmp	Lj636
+Lj639:
 	movl	-4(%ebp),%eax
 	movl	-12(%ebp),%edx
 	addl	%edx,%eax
 	movl	(%eax),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj689
-	jmp	Lj691
-Lj691:
+	je	Lj642
+	jmp	Lj644
+Lj644:
 	movl	-4(%ebp),%eax
 	movl	-12(%ebp),%edx
 	addl	%edx,%eax
@@ -2782,19 +2704,19 @@ Lj691:
 	movl	4(%eax),%eax
 	addl	%eax,%edx
 	testl	%edx,%edx
-	jne	Lj689
-	jmp	Lj690
-Lj689:
+	jne	Lj642
+	jmp	Lj643
+Lj642:
 	movw	$210,%ax
 	call	SYSTEM_RUNERROR$WORD
-Lj690:
+Lj643:
 	movl	-4(%ebp),%eax
 	movl	-12(%ebp),%edx
 	addl	%edx,%eax
 	movl	$0,(%eax)
 	movl	-4(%ebp),%eax
 	call	SYSTEM_FREEMEM$POINTER$$LONGWORD
-Lj683:
+Lj636:
 	leave
 	ret
 
@@ -2812,40 +2734,40 @@ FPC_HELP_FAIL:
 	movl	%ecx,-12(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj700
-	jmp	Lj702
-Lj702:
+	je	Lj653
+	jmp	Lj655
+Lj655:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj700
-	jmp	Lj701
-Lj700:
-	jmp	Lj698
-Lj701:
+	je	Lj653
+	jmp	Lj654
+Lj653:
+	jmp	Lj651
+Lj654:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	cmpl	$-1,%eax
-	je	Lj703
-	jmp	Lj704
-Lj703:
+	je	Lj656
+	jmp	Lj657
+Lj656:
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj705
-	jmp	Lj707
-Lj707:
+	je	Lj658
+	jmp	Lj660
+Lj660:
 	movl	-4(%ebp),%eax
 	movl	-12(%ebp),%edx
 	addl	%edx,%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj705
-	jmp	Lj706
-Lj705:
+	je	Lj658
+	jmp	Lj659
+Lj658:
 	movl	$210,%eax
 	call	SYSTEM_HANDLEERROR$LONGINT
-	jmp	Lj710
-Lj706:
+	jmp	Lj663
+Lj659:
 	movl	-4(%ebp),%eax
 	movl	-12(%ebp),%edx
 	addl	%edx,%eax
@@ -2854,15 +2776,15 @@ Lj706:
 	call	SYSTEM_FREEMEM$POINTER$$LONGWORD
 	movl	-8(%ebp),%eax
 	movl	$0,(%eax)
-Lj710:
-	jmp	Lj717
-Lj704:
+Lj663:
+	jmp	Lj670
+Lj657:
 	movl	-4(%ebp),%eax
 	movl	-12(%ebp),%edx
 	addl	%edx,%eax
 	movl	$0,(%eax)
-Lj717:
-Lj698:
+Lj670:
+Lj651:
 	leave
 	ret
 
@@ -2878,27 +2800,27 @@ FPC_CHECK_OBJECT:
 	movl	%eax,-4(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj722
-	jmp	Lj725
-Lj725:
+	je	Lj675
+	jmp	Lj678
+Lj678:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj722
-	jmp	Lj724
-Lj724:
+	je	Lj675
+	jmp	Lj677
+Lj677:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%ecx
 	movl	(%eax),%edx
 	movl	4(%ecx),%eax
 	addl	%eax,%edx
 	testl	%edx,%edx
-	jne	Lj722
-	jmp	Lj723
-Lj722:
+	jne	Lj675
+	jmp	Lj676
+Lj675:
 	movw	$210,%ax
 	call	SYSTEM_RUNERROR$WORD
-Lj723:
+Lj676:
 	leave
 	ret
 
@@ -2915,50 +2837,50 @@ FPC_CHECK_OBJECT_EXT:
 	movl	%edx,-8(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj730
-	jmp	Lj733
-Lj733:
+	je	Lj683
+	jmp	Lj686
+Lj686:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj730
-	jmp	Lj732
-Lj732:
+	je	Lj683
+	jmp	Lj685
+Lj685:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	(%eax),%ecx
 	movl	4(%edx),%eax
 	addl	%eax,%ecx
 	testl	%ecx,%ecx
-	jne	Lj730
-	jmp	Lj731
-Lj730:
+	jne	Lj683
+	jmp	Lj684
+Lj683:
 	movw	$210,%ax
 	call	SYSTEM_RUNERROR$WORD
-Lj731:
-	jmp	Lj737
+Lj684:
+	jmp	Lj690
 	.balign 4,0x90
-Lj736:
+Lj689:
 	movl	-4(%ebp),%eax
 	cmpl	-8(%ebp),%eax
-	je	Lj739
-	jmp	Lj740
-Lj739:
-	jmp	Lj728
-	jmp	Lj741
-Lj740:
+	je	Lj692
+	jmp	Lj693
+Lj692:
+	jmp	Lj681
+	jmp	Lj694
+Lj693:
 	movl	-4(%ebp),%eax
 	movl	8(%eax),%eax
 	movl	%eax,-4(%ebp)
-Lj741:
-Lj737:
+Lj694:
+Lj690:
 	cmpl	$0,-4(%ebp)
-	jne	Lj736
-	jmp	Lj738
-Lj738:
+	jne	Lj689
+	jmp	Lj691
+Lj691:
 	movw	$219,%ax
 	call	SYSTEM_RUNERROR$WORD
-Lj728:
+Lj681:
 	leave
 	ret
 
@@ -2982,28 +2904,28 @@ fpc_shortstr_concat:
 	movl	-20(%ebp),%edx
 	addl	%edx,%eax
 	cmpl	-12(%ebp),%eax
-	jg	Lj752
-	jmp	Lj753
-Lj752:
+	jg	Lj705
+	jmp	Lj706
+Lj705:
 	movl	-16(%ebp),%eax
 	cmpl	-12(%ebp),%eax
-	jg	Lj754
-	jmp	Lj755
-Lj754:
+	jg	Lj707
+	jmp	Lj708
+Lj707:
 	movl	-12(%ebp),%eax
 	movl	%eax,-16(%ebp)
-Lj755:
+Lj708:
 	movl	-12(%ebp),%eax
 	movl	-16(%ebp),%edx
 	subl	%edx,%eax
 	movl	%eax,-20(%ebp)
-Lj753:
+Lj706:
 	movl	-4(%ebp),%eax
 	movl	-8(%ebp),%edx
 	cmpl	%edx,%eax
-	je	Lj760
-	jmp	Lj761
-Lj760:
+	je	Lj713
+	jmp	Lj714
+Lj713:
 	movl	-4(%ebp),%edx
 	movl	-16(%ebp),%eax
 	incl	%eax
@@ -3013,14 +2935,14 @@ Lj760:
 	movl	8(%ebp),%eax
 	leal	1(%eax),%eax
 	call	SYSTEM_MOVE$formal$formal$LONGINT
-	jmp	Lj768
-Lj761:
+	jmp	Lj721
+Lj714:
 	movl	-4(%ebp),%eax
 	movl	8(%ebp),%edx
 	cmpl	%edx,%eax
-	je	Lj769
-	jmp	Lj770
-Lj769:
+	je	Lj722
+	jmp	Lj723
+Lj722:
 	movl	-4(%ebp),%edx
 	movl	-16(%ebp),%eax
 	incl	%eax
@@ -3036,8 +2958,8 @@ Lj769:
 	movl	-8(%ebp),%eax
 	leal	1(%eax),%eax
 	call	SYSTEM_MOVE$formal$formal$LONGINT
-	jmp	Lj783
-Lj770:
+	jmp	Lj736
+Lj723:
 	movl	-16(%ebp),%ecx
 	movl	-4(%ebp),%eax
 	leal	1(%eax),%edx
@@ -3053,8 +2975,8 @@ Lj770:
 	movl	8(%ebp),%eax
 	leal	1(%eax),%eax
 	call	SYSTEM_MOVE$formal$formal$LONGINT
-Lj783:
-Lj768:
+Lj736:
+Lj721:
 	movl	-16(%ebp),%eax
 	movl	-20(%ebp),%edx
 	addl	%edx,%eax
@@ -3076,67 +2998,67 @@ fpc_shortstr_concat_multi:
 	movl	%ecx,-8(%ebp)
 	movl	8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj800
-	jmp	Lj801
-Lj800:
+	je	Lj753
+	jmp	Lj754
+Lj753:
 	movl	-4(%ebp),%eax
 	movb	$0,(%eax)
-	jmp	Lj798
-Lj801:
+	jmp	Lj751
+Lj754:
 	movl	$0,-20(%ebp)
 	movl	-4(%ebp),%eax
 	movl	-8(%ebp),%edx
 	movl	-20(%ebp),%ecx
 	cmpl	(%edx,%ecx,4),%eax
-	je	Lj806
-	jmp	Lj807
-Lj806:
+	je	Lj759
+	jmp	Lj760
+Lj759:
 	incl	-20(%ebp)
-Lj807:
+Lj760:
 	movb	$0,-33(%ebp)
 	movl	8(%ebp),%ebx
 	movl	-20(%ebp),%eax
 	movl	%eax,-24(%ebp)
 	cmpl	-24(%ebp),%ebx
-	jl	Lj811
+	jl	Lj764
 	decl	-24(%ebp)
 	.balign 4,0x90
-Lj812:
+Lj765:
 	incl	-24(%ebp)
 	movl	-4(%ebp),%eax
 	movl	-8(%ebp),%ecx
 	movl	-24(%ebp),%edx
 	cmpl	(%ecx,%edx,4),%eax
-	je	Lj813
-	jmp	Lj814
-Lj813:
+	je	Lj766
+	jmp	Lj767
+Lj766:
 	movb	$1,-33(%ebp)
-	jmp	Lj811
-Lj814:
+	jmp	Lj764
+Lj767:
 	cmpl	-24(%ebp),%ebx
-	jg	Lj812
-Lj811:
+	jg	Lj765
+Lj764:
 	cmpb	$0,-33(%ebp)
-	jne	Lj817
-	jmp	Lj818
-Lj817:
+	jne	Lj770
+	jmp	Lj771
+Lj770:
 	movl	$0,-20(%ebp)
 	movb	$0,-289(%ebp)
 	leal	-289(%ebp),%eax
 	movl	%eax,-300(%ebp)
-	jmp	Lj825
-Lj818:
+	jmp	Lj778
+Lj771:
 	movl	-20(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj826
-	jmp	Lj827
-Lj826:
+	je	Lj779
+	jmp	Lj780
+Lj779:
 	movl	-4(%ebp),%eax
 	movb	$0,(%eax)
-Lj827:
+Lj780:
 	movl	-4(%ebp),%eax
 	movl	%eax,-300(%ebp)
-Lj825:
+Lj778:
 	movl	-300(%ebp),%eax
 	movzbl	(%eax),%eax
 	movl	%eax,-28(%ebp)
@@ -3151,19 +3073,19 @@ Lj825:
 	movl	-20(%ebp),%eax
 	movl	%eax,-24(%ebp)
 	cmpl	-24(%ebp),%ebx
-	jl	Lj837
+	jl	Lj790
 	decl	-24(%ebp)
 	.balign 4,0x90
-Lj838:
+Lj791:
 	incl	-24(%ebp)
 	movl	-8(%ebp),%eax
 	movl	-24(%ebp),%edx
 	movl	(%eax,%edx,4),%eax
 	movl	%eax,-296(%ebp)
 	cmpl	$0,-296(%ebp)
-	jne	Lj841
-	jmp	Lj842
-Lj841:
+	jne	Lj794
+	jmp	Lj795
+Lj794:
 	movl	-296(%ebp),%eax
 	movb	(%eax),%al
 	movb	%al,-13(%ebp)
@@ -3171,14 +3093,14 @@ Lj841:
 	movl	-28(%ebp),%eax
 	addl	%edx,%eax
 	cmpl	-12(%ebp),%eax
-	jg	Lj845
-	jmp	Lj846
-Lj845:
+	jg	Lj798
+	jmp	Lj799
+Lj798:
 	movl	-12(%ebp),%eax
 	movl	-28(%ebp),%edx
 	subl	%edx,%eax
 	movb	%al,-13(%ebp)
-Lj846:
+Lj799:
 	movl	-32(%ebp),%edx
 	movl	-296(%ebp),%eax
 	leal	1(%eax),%eax
@@ -3188,23 +3110,23 @@ Lj846:
 	addl	%eax,-32(%ebp)
 	movzbl	-13(%ebp),%eax
 	addl	%eax,-28(%ebp)
-Lj842:
+Lj795:
 	cmpl	-24(%ebp),%ebx
-	jg	Lj838
-Lj837:
+	jg	Lj791
+Lj790:
 	movl	-300(%ebp),%eax
 	movb	-28(%ebp),%dl
 	movb	%dl,(%eax)
 	cmpb	$0,-33(%ebp)
-	jne	Lj857
-	jmp	Lj858
-Lj857:
+	jne	Lj810
+	jmp	Lj811
+Lj810:
 	leal	-289(%ebp),%ecx
 	movl	-12(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	fpc_shortstr_to_shortstr
-Lj858:
-Lj798:
+Lj811:
+Lj751:
 	movl	-304(%ebp),%ebx
 	leave
 	ret	$4
@@ -3231,14 +3153,14 @@ FPC_SHORTSTR_APPEND_SHORTSTR:
 	movswl	-16(%ebp),%edx
 	addl	%edx,%eax
 	cmpl	-12(%ebp),%eax
-	jg	Lj871
-	jmp	Lj872
-Lj871:
+	jg	Lj824
+	jmp	Lj825
+Lj824:
 	movswl	-14(%ebp),%edx
 	movl	-12(%ebp),%eax
 	subl	%edx,%eax
 	movw	%ax,-16(%ebp)
-Lj872:
+Lj825:
 	movl	-4(%ebp),%edx
 	movswl	-14(%ebp),%eax
 	incl	%eax
@@ -3275,9 +3197,9 @@ FPC_SHORTSTR_COMPARE_EQUAL:
 	movl	%edx,-12(%ebp)
 	movl	-12(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj887
-	jmp	Lj888
-Lj887:
+	je	Lj840
+	jmp	Lj841
+Lj840:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%ecx
 	movl	-8(%ebp),%eax
@@ -3286,7 +3208,7 @@ Lj887:
 	leal	1(%eax),%eax
 	call	SYSTEM_COMPAREBYTE$formal$formal$LONGINT$$LONGINT
 	movl	%eax,-12(%ebp)
-Lj888:
+Lj841:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -3325,25 +3247,25 @@ FPC_CHARARRAY_TO_SHORTSTR:
 	movl	-12(%ebp),%eax
 	incl	%eax
 	cmpl	-16(%ebp),%eax
-	jle	Lj909
-	jmp	Lj910
-Lj909:
+	jle	Lj862
+	jmp	Lj863
+Lj862:
 	movl	-12(%ebp),%eax
 	movl	%eax,-16(%ebp)
-	jmp	Lj913
-Lj910:
+	jmp	Lj866
+Lj863:
 	movl	-16(%ebp),%eax
 	cmpl	$0,%eax
-	jl	Lj914
-	jmp	Lj915
-Lj914:
+	jl	Lj867
+	jmp	Lj868
+Lj867:
 	movl	$0,-16(%ebp)
-Lj915:
-Lj913:
+Lj868:
+Lj866:
 	cmpb	$0,8(%ebp)
-	jne	Lj918
-	jmp	Lj919
-Lj918:
+	jne	Lj871
+	jmp	Lj872
+Lj871:
 	movl	-16(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movb	$0,%cl
@@ -3351,21 +3273,21 @@ Lj918:
 	movl	%eax,-20(%ebp)
 	movl	-20(%ebp),%eax
 	cmpl	$0,%eax
-	jl	Lj928
-	jmp	Lj929
-Lj928:
+	jl	Lj881
+	jmp	Lj882
+Lj881:
 	movb	-16(%ebp),%al
 	movb	%al,-21(%ebp)
-	jmp	Lj932
-Lj929:
+	jmp	Lj885
+Lj882:
 	movb	-20(%ebp),%al
 	movb	%al,-21(%ebp)
-Lj932:
-	jmp	Lj935
-Lj919:
+Lj885:
+	jmp	Lj888
+Lj872:
 	movb	-16(%ebp),%al
 	movb	%al,-21(%ebp)
-Lj935:
+Lj888:
 	movzbl	-21(%ebp),%ecx
 	movl	-4(%ebp),%eax
 	leal	1(%eax),%edx
@@ -3393,24 +3315,24 @@ fpc_shortstr_to_chararray:
 	movl	-12(%ebp),%eax
 	incl	%eax
 	cmpl	-16(%ebp),%eax
-	jl	Lj950
-	jmp	Lj951
-Lj950:
+	jl	Lj903
+	jmp	Lj904
+Lj903:
 	movl	-12(%ebp),%eax
 	incl	%eax
 	movl	%eax,-16(%ebp)
-Lj951:
+Lj904:
 	movl	-16(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj954
-	jmp	Lj955
-Lj954:
+	jg	Lj907
+	jmp	Lj908
+Lj907:
 	movl	-16(%ebp),%ecx
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	leal	1(%eax),%eax
 	call	SYSTEM_MOVE$formal$formal$LONGINT
-Lj955:
+Lj908:
 	movl	-12(%ebp),%edx
 	incl	%edx
 	movl	-16(%ebp),%eax
@@ -3435,26 +3357,26 @@ FPC_PWIDECHAR_LENGTH:
 	movl	%eax,-4(%ebp)
 	movl	$0,-12(%ebp)
 	cmpl	$0,-4(%ebp)
-	jne	Lj972
-	jmp	Lj973
-Lj972:
-	jmp	Lj975
+	jne	Lj925
+	jmp	Lj926
+Lj925:
+	jmp	Lj928
 	.balign 4,0x90
-Lj974:
+Lj927:
 	incl	-12(%ebp)
-Lj975:
+Lj928:
 	movl	-4(%ebp),%eax
 	movl	-12(%ebp),%edx
 	movw	(%eax,%edx,2),%ax
 	testw	%ax,%ax
-	jne	Lj974
-	jmp	Lj976
-Lj976:
-Lj973:
+	jne	Lj927
+	jmp	Lj929
+Lj929:
+Lj926:
 	movl	-12(%ebp),%eax
 	movl	%eax,-8(%ebp)
-	jmp	Lj968
-Lj968:
+	jmp	Lj921
+Lj921:
 	movl	-8(%ebp),%eax
 	leave
 	ret
@@ -3474,96 +3396,96 @@ FPC_MUL_INTEGER:
 	movb	$0,-15(%ebp)
 	movw	-4(%ebp),%ax
 	cmpw	$0,%ax
-	jl	Lj983
-	jmp	Lj984
-Lj983:
+	jl	Lj936
+	jmp	Lj937
+Lj936:
 	movb	-15(%ebp),%al
 	testb	%al,%al
 	seteb	-15(%ebp)
 	movswl	-4(%ebp),%eax
 	negl	%eax
 	movw	%ax,-18(%ebp)
-	jmp	Lj989
-Lj984:
+	jmp	Lj942
+Lj937:
 	movw	-4(%ebp),%ax
 	movw	%ax,-18(%ebp)
-Lj989:
+Lj942:
 	movw	-8(%ebp),%ax
 	cmpw	$0,%ax
-	jl	Lj992
-	jmp	Lj993
-Lj992:
+	jl	Lj945
+	jmp	Lj946
+Lj945:
 	movb	-15(%ebp),%al
 	testb	%al,%al
 	seteb	-15(%ebp)
 	movswl	-8(%ebp),%eax
 	negl	%eax
 	movw	%ax,-20(%ebp)
-	jmp	Lj998
-Lj993:
+	jmp	Lj951
+Lj946:
 	movw	-8(%ebp),%ax
 	movw	%ax,-20(%ebp)
-Lj998:
+Lj951:
 	movzwl	-18(%ebp),%edx
 	movzwl	-20(%ebp),%eax
 	mull	%edx
 	movw	%ax,-22(%ebp)
 	cmpb	$0,-12(%ebp)
-	jne	Lj1007
-	jmp	Lj1004
-Lj1007:
+	jne	Lj960
+	jmp	Lj957
+Lj960:
 	movzwl	-18(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj1006
-	jmp	Lj1004
-Lj1006:
+	jne	Lj959
+	jmp	Lj957
+Lj959:
 	movzwl	-20(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj1005
-	jmp	Lj1004
-Lj1005:
+	jne	Lj958
+	jmp	Lj957
+Lj958:
 	movw	-18(%ebp),%ax
 	cmpw	-22(%ebp),%ax
-	ja	Lj1003
-	jmp	Lj1009
-Lj1009:
+	ja	Lj956
+	jmp	Lj962
+Lj962:
 	movw	-20(%ebp),%ax
 	cmpw	-22(%ebp),%ax
-	ja	Lj1003
-	jmp	Lj1008
-Lj1008:
+	ja	Lj956
+	jmp	Lj961
+Lj961:
 	movzwl	-22(%ebp),%eax
 	shrl	$15,%eax
 	testl	%eax,%eax
-	jne	Lj1010
-	jmp	Lj1004
-Lj1010:
+	jne	Lj963
+	jmp	Lj957
+Lj963:
 	movw	-22(%ebp),%ax
 	cmpw	$32768,%ax
-	jne	Lj1003
-	jmp	Lj1011
-Lj1011:
+	jne	Lj956
+	jmp	Lj964
+Lj964:
 	movb	-15(%ebp),%al
 	testb	%al,%al
-	je	Lj1003
-	jmp	Lj1004
-Lj1003:
+	je	Lj956
+	jmp	Lj957
+Lj956:
 	movl	%ebp,%edx
 	movl	$215,%eax
 	call	SYSTEM_HANDLEERRORFRAME$LONGINT$POINTER
-Lj1004:
+Lj957:
 	cmpb	$0,-15(%ebp)
-	jne	Lj1016
-	jmp	Lj1017
-Lj1016:
+	jne	Lj969
+	jmp	Lj970
+Lj969:
 	movzwl	-22(%ebp),%eax
 	negl	%eax
 	movw	%ax,-14(%ebp)
-	jmp	Lj1020
-Lj1017:
+	jmp	Lj973
+Lj970:
 	movw	-22(%ebp),%ax
 	movw	%ax,-14(%ebp)
-Lj1020:
+Lj973:
 	movw	-14(%ebp),%ax
 	leave
 	ret
@@ -3586,16 +3508,16 @@ FPC_MUL_WORD:
 	movb	$0,-19(%ebp)
 	decb	-19(%ebp)
 	.balign 4,0x90
-Lj1033:
+Lj986:
 	incb	-19(%ebp)
 	movw	-8(%ebp),%ax
 	movw	-18(%ebp),%dx
 	andw	%dx,%ax
 	movzwl	%ax,%eax
 	testl	%eax,%eax
-	jne	Lj1034
-	jmp	Lj1035
-Lj1034:
+	jne	Lj987
+	jmp	Lj988
+Lj987:
 	movw	-14(%ebp),%ax
 	movw	%ax,-16(%ebp)
 	movzwl	-14(%ebp),%eax
@@ -3603,54 +3525,54 @@ Lj1034:
 	addl	%edx,%eax
 	movw	%ax,-14(%ebp)
 	cmpb	$0,-12(%ebp)
-	jne	Lj1042
-	jmp	Lj1041
-Lj1042:
+	jne	Lj995
+	jmp	Lj994
+Lj995:
 	cmpb	$0,-20(%ebp)
-	jne	Lj1040
-	jmp	Lj1043
-Lj1043:
+	jne	Lj993
+	jmp	Lj996
+Lj996:
 	movzwl	-16(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj1045
-	jmp	Lj1041
-Lj1045:
+	jne	Lj998
+	jmp	Lj994
+Lj998:
 	movzwl	-4(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj1044
-	jmp	Lj1041
-Lj1044:
+	jne	Lj997
+	jmp	Lj994
+Lj997:
 	movw	-16(%ebp),%ax
 	cmpw	-14(%ebp),%ax
-	ja	Lj1040
-	jmp	Lj1046
-Lj1046:
+	ja	Lj993
+	jmp	Lj999
+Lj999:
 	movw	-4(%ebp),%ax
 	cmpw	-14(%ebp),%ax
-	ja	Lj1040
-	jmp	Lj1041
-Lj1040:
+	ja	Lj993
+	jmp	Lj994
+Lj993:
 	movl	%ebp,%edx
 	movl	$215,%eax
 	call	SYSTEM_HANDLEERRORFRAME$LONGINT$POINTER
-Lj1041:
-Lj1035:
+Lj994:
+Lj988:
 	cmpb	$0,-20(%ebp)
-	jne	Lj1051
-	jmp	Lj1053
-Lj1053:
+	jne	Lj1004
+	jmp	Lj1006
+Lj1006:
 	movw	-4(%ebp),%ax
 	andw	$32768,%ax
 	movzwl	%ax,%eax
 	testl	%eax,%eax
-	jne	Lj1051
-	jmp	Lj1052
-Lj1051:
+	jne	Lj1004
+	jmp	Lj1005
+Lj1004:
 	movb	$1,-20(%ebp)
-	jmp	Lj1054
-Lj1052:
+	jmp	Lj1007
+Lj1005:
 	movb	$0,-20(%ebp)
-Lj1054:
+Lj1007:
 	movzwl	-4(%ebp),%eax
 	shll	$1,%eax
 	movw	%ax,-4(%ebp)
@@ -3658,7 +3580,7 @@ Lj1054:
 	shll	$1,%eax
 	movw	%ax,-18(%ebp)
 	cmpb	$15,-19(%ebp)
-	jb	Lj1033
+	jb	Lj986
 	movw	-14(%ebp),%ax
 	leave
 	ret
@@ -3678,95 +3600,95 @@ FPC_MUL_LONGINT:
 	movb	$0,-17(%ebp)
 	movl	-4(%ebp),%eax
 	cmpl	$0,%eax
-	jl	Lj1063
-	jmp	Lj1064
-Lj1063:
+	jl	Lj1016
+	jmp	Lj1017
+Lj1016:
 	movb	-17(%ebp),%al
 	testb	%al,%al
 	seteb	-17(%ebp)
 	movl	-4(%ebp),%eax
 	negl	%eax
 	movl	%eax,-24(%ebp)
-	jmp	Lj1069
-Lj1064:
+	jmp	Lj1022
+Lj1017:
 	movl	-4(%ebp),%eax
 	movl	%eax,-24(%ebp)
-Lj1069:
+Lj1022:
 	movl	-8(%ebp),%eax
 	cmpl	$0,%eax
-	jl	Lj1072
-	jmp	Lj1073
-Lj1072:
+	jl	Lj1025
+	jmp	Lj1026
+Lj1025:
 	movb	-17(%ebp),%al
 	testb	%al,%al
 	seteb	-17(%ebp)
 	movl	-8(%ebp),%eax
 	negl	%eax
 	movl	%eax,-28(%ebp)
-	jmp	Lj1078
-Lj1073:
+	jmp	Lj1031
+Lj1026:
 	movl	-8(%ebp),%eax
 	movl	%eax,-28(%ebp)
-Lj1078:
+Lj1031:
 	movl	-28(%ebp),%eax
 	mull	-24(%ebp)
 	movl	%eax,-32(%ebp)
 	cmpb	$0,-12(%ebp)
-	jne	Lj1087
-	jmp	Lj1084
-Lj1087:
+	jne	Lj1040
+	jmp	Lj1037
+Lj1040:
 	movl	-24(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj1086
-	jmp	Lj1084
-Lj1086:
+	jne	Lj1039
+	jmp	Lj1037
+Lj1039:
 	movl	-28(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj1085
-	jmp	Lj1084
-Lj1085:
+	jne	Lj1038
+	jmp	Lj1037
+Lj1038:
 	movl	-24(%ebp),%eax
 	cmpl	-32(%ebp),%eax
-	ja	Lj1083
-	jmp	Lj1089
-Lj1089:
+	ja	Lj1036
+	jmp	Lj1042
+Lj1042:
 	movl	-28(%ebp),%eax
 	cmpl	-32(%ebp),%eax
-	ja	Lj1083
-	jmp	Lj1088
-Lj1088:
+	ja	Lj1036
+	jmp	Lj1041
+Lj1041:
 	movl	-32(%ebp),%eax
 	shrl	$15,%eax
 	testl	%eax,%eax
-	jne	Lj1090
-	jmp	Lj1084
-Lj1090:
+	jne	Lj1043
+	jmp	Lj1037
+Lj1043:
 	movl	-32(%ebp),%eax
 	cmpl	$-2147483648,%eax
-	jne	Lj1083
-	jmp	Lj1091
-Lj1091:
+	jne	Lj1036
+	jmp	Lj1044
+Lj1044:
 	movb	-17(%ebp),%al
 	testb	%al,%al
-	je	Lj1083
-	jmp	Lj1084
-Lj1083:
+	je	Lj1036
+	jmp	Lj1037
+Lj1036:
 	movl	%ebp,%edx
 	movl	$215,%eax
 	call	SYSTEM_HANDLEERRORFRAME$LONGINT$POINTER
-Lj1084:
+Lj1037:
 	cmpb	$0,-17(%ebp)
-	jne	Lj1096
-	jmp	Lj1097
-Lj1096:
+	jne	Lj1049
+	jmp	Lj1050
+Lj1049:
 	movl	-32(%ebp),%eax
 	negl	%eax
 	movl	%eax,-16(%ebp)
-	jmp	Lj1100
-Lj1097:
+	jmp	Lj1053
+Lj1050:
 	movl	-32(%ebp),%eax
 	movl	%eax,-16(%ebp)
-Lj1100:
+Lj1053:
 	movl	-16(%ebp),%eax
 	leave
 	ret
@@ -3789,15 +3711,15 @@ FPC_MUL_DWORD:
 	movb	$0,-25(%ebp)
 	decb	-25(%ebp)
 	.balign 4,0x90
-Lj1113:
+Lj1066:
 	incb	-25(%ebp)
 	movl	-8(%ebp),%eax
 	movl	-24(%ebp),%edx
 	andl	%edx,%eax
 	testl	%eax,%eax
-	jne	Lj1114
-	jmp	Lj1115
-Lj1114:
+	jne	Lj1067
+	jmp	Lj1068
+Lj1067:
 	movl	-16(%ebp),%eax
 	movl	%eax,-20(%ebp)
 	movl	-16(%ebp),%edx
@@ -3805,53 +3727,53 @@ Lj1114:
 	addl	%eax,%edx
 	movl	%edx,-16(%ebp)
 	cmpb	$0,-12(%ebp)
-	jne	Lj1122
-	jmp	Lj1121
-Lj1122:
+	jne	Lj1075
+	jmp	Lj1074
+Lj1075:
 	cmpb	$0,-26(%ebp)
-	jne	Lj1120
-	jmp	Lj1123
-Lj1123:
+	jne	Lj1073
+	jmp	Lj1076
+Lj1076:
 	movl	-20(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj1125
-	jmp	Lj1121
-Lj1125:
+	jne	Lj1078
+	jmp	Lj1074
+Lj1078:
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj1124
-	jmp	Lj1121
-Lj1124:
+	jne	Lj1077
+	jmp	Lj1074
+Lj1077:
 	movl	-20(%ebp),%eax
 	cmpl	-16(%ebp),%eax
-	ja	Lj1120
-	jmp	Lj1126
-Lj1126:
+	ja	Lj1073
+	jmp	Lj1079
+Lj1079:
 	movl	-4(%ebp),%eax
 	cmpl	-16(%ebp),%eax
-	ja	Lj1120
-	jmp	Lj1121
-Lj1120:
+	ja	Lj1073
+	jmp	Lj1074
+Lj1073:
 	movl	%ebp,%edx
 	movl	$215,%eax
 	call	SYSTEM_HANDLEERRORFRAME$LONGINT$POINTER
-Lj1121:
-Lj1115:
+Lj1074:
+Lj1068:
 	cmpb	$0,-26(%ebp)
-	jne	Lj1131
-	jmp	Lj1133
-Lj1133:
+	jne	Lj1084
+	jmp	Lj1086
+Lj1086:
 	movl	-4(%ebp),%eax
 	andl	$-2147483648,%eax
 	testl	%eax,%eax
-	jne	Lj1131
-	jmp	Lj1132
-Lj1131:
+	jne	Lj1084
+	jmp	Lj1085
+Lj1084:
 	movb	$1,-26(%ebp)
-	jmp	Lj1134
-Lj1132:
+	jmp	Lj1087
+Lj1085:
 	movb	$0,-26(%ebp)
-Lj1134:
+Lj1087:
 	movl	-4(%ebp),%eax
 	shll	$1,%eax
 	movl	%eax,-4(%ebp)
@@ -3859,7 +3781,7 @@ Lj1134:
 	shll	$1,%eax
 	movl	%eax,-24(%ebp)
 	cmpb	$31,-25(%ebp)
-	jb	Lj1113
+	jb	Lj1066
 	movl	-16(%ebp),%eax
 	leave
 	ret
@@ -3948,12 +3870,12 @@ SYSTEM_ABS$INT64$$INT64:
 	movl	8(%ebp),%eax
 	movl	12(%ebp),%edx
 	cmpl	$0,%edx
-	jl	Lj1169
-	jg	Lj1170
+	jl	Lj1122
+	jg	Lj1123
 	cmpl	$0,%eax
-	jb	Lj1169
-	jmp	Lj1170
-Lj1169:
+	jb	Lj1122
+	jmp	Lj1123
+Lj1122:
 	movl	8(%ebp),%eax
 	movl	12(%ebp),%edx
 	notl	%edx
@@ -3961,13 +3883,13 @@ Lj1169:
 	sbbl	$-1,%edx
 	movl	%eax,-8(%ebp)
 	movl	%edx,-4(%ebp)
-	jmp	Lj1173
-Lj1170:
+	jmp	Lj1126
+Lj1123:
 	movl	8(%ebp),%eax
 	movl	%eax,-8(%ebp)
 	movl	12(%ebp),%eax
 	movl	%eax,-4(%ebp)
-Lj1173:
+Lj1126:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	leave
@@ -4027,16 +3949,16 @@ SYSTEM_DECLOCKED$INT64$$BOOLEAN:
 	movl	(%eax),%edx
 	movl	4(%eax),%eax
 	cmpl	$0,%eax
-	jne	Lj1199
+	jne	Lj1152
 	cmpl	$0,%edx
-	jne	Lj1199
-	jmp	Lj1198
-Lj1198:
+	jne	Lj1152
+	jmp	Lj1151
+Lj1151:
 	movb	$1,-5(%ebp)
-	jmp	Lj1200
-Lj1199:
+	jmp	Lj1153
+Lj1152:
 	movb	$0,-5(%ebp)
-Lj1200:
+Lj1153:
 	movb	-5(%ebp),%al
 	leave
 	ret
@@ -4120,26 +4042,26 @@ SYSTEM_INT_STR$LONGINT$OPENSTRING:
 	movl	%eax,-36(%ebp)
 	movl	-4(%ebp),%eax
 	cmpl	$0,%eax
-	jl	Lj1221
-	jmp	Lj1222
-Lj1221:
+	jl	Lj1174
+	jmp	Lj1175
+Lj1174:
 	movl	-36(%ebp),%eax
 	movb	$45,(%eax)
 	incl	-36(%ebp)
 	movl	-4(%ebp),%eax
 	negl	%eax
 	movl	%eax,-16(%ebp)
-	jmp	Lj1227
-Lj1222:
+	jmp	Lj1180
+Lj1175:
 	movl	-4(%ebp),%eax
 	movl	%eax,-16(%ebp)
-Lj1227:
+Lj1180:
 	leal	-69(%ebp),%eax
 	movl	%eax,-24(%ebp)
 	movl	-24(%ebp),%eax
 	movl	%eax,-32(%ebp)
 	.balign 4,0x90
-Lj1234:
+Lj1187:
 	movl	-16(%ebp),%edx
 	movl	$-858993459,%eax
 	mull	%edx
@@ -4158,9 +4080,9 @@ Lj1234:
 	movl	%eax,-16(%ebp)
 	movl	-16(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj1236
-	jmp	Lj1234
-Lj1236:
+	je	Lj1189
+	jmp	Lj1187
+Lj1189:
 	movl	-32(%ebp),%ecx
 	movl	-24(%ebp),%eax
 	subl	%eax,%ecx
@@ -4173,27 +4095,27 @@ Lj1236:
 	movl	%ecx,-76(%ebp)
 	movl	-76(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj1245
-	jmp	Lj1246
-Lj1245:
+	jg	Lj1198
+	jmp	Lj1199
+Lj1198:
 	movl	-76(%ebp),%eax
 	addl	%eax,-24(%ebp)
-Lj1246:
-	jmp	Lj1248
+Lj1199:
+	jmp	Lj1201
 	.balign 4,0x90
-Lj1247:
+Lj1200:
 	movl	-36(%ebp),%edx
 	movl	-32(%ebp),%eax
 	movb	(%eax),%al
 	movb	%al,(%edx)
 	incl	-36(%ebp)
 	decl	-32(%ebp)
-Lj1248:
+Lj1201:
 	movl	-32(%ebp),%eax
 	cmpl	-24(%ebp),%eax
-	ja	Lj1247
-	jmp	Lj1249
-Lj1249:
+	ja	Lj1200
+	jmp	Lj1202
+Lj1202:
 	movl	-36(%ebp),%eax
 	movl	-28(%ebp),%edx
 	subl	%edx,%eax
@@ -4221,7 +4143,7 @@ SYSTEM_INT_STR$LONGWORD$OPENSTRING:
 	movl	-20(%ebp),%eax
 	movl	%eax,-28(%ebp)
 	.balign 4,0x90
-Lj1264:
+Lj1217:
 	incl	-28(%ebp)
 	movl	-4(%ebp),%edx
 	movl	$-858993459,%eax
@@ -4240,9 +4162,9 @@ Lj1264:
 	movl	%eax,-4(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj1266
-	jmp	Lj1264
-Lj1266:
+	je	Lj1219
+	jmp	Lj1217
+Lj1219:
 	movl	-28(%ebp),%edx
 	movl	-20(%ebp),%eax
 	subl	%eax,%edx
@@ -4251,27 +4173,27 @@ Lj1266:
 	movl	%edx,-72(%ebp)
 	movl	-72(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj1275
-	jmp	Lj1276
-Lj1275:
+	jg	Lj1228
+	jmp	Lj1229
+Lj1228:
 	movl	-72(%ebp),%eax
 	addl	%eax,-20(%ebp)
-Lj1276:
-	jmp	Lj1278
+Lj1229:
+	jmp	Lj1231
 	.balign 4,0x90
-Lj1277:
+Lj1230:
 	movl	-32(%ebp),%edx
 	movl	-28(%ebp),%eax
 	movb	(%eax),%al
 	movb	%al,(%edx)
 	incl	-32(%ebp)
 	decl	-28(%ebp)
-Lj1278:
+Lj1231:
 	movl	-28(%ebp),%eax
 	cmpl	-20(%ebp),%eax
-	ja	Lj1277
-	jmp	Lj1279
-Lj1279:
+	ja	Lj1230
+	jmp	Lj1232
+Lj1232:
 	movl	-32(%ebp),%eax
 	movl	-24(%ebp),%edx
 	subl	%edx,%eax
@@ -4296,12 +4218,12 @@ SYSTEM_INT_STR$INT64$OPENSTRING:
 	movl	8(%ebp),%edx
 	movl	12(%ebp),%eax
 	cmpl	$0,%eax
-	jl	Lj1290
-	jg	Lj1291
+	jl	Lj1243
+	jg	Lj1244
 	cmpl	$0,%edx
-	jb	Lj1290
-	jmp	Lj1291
-Lj1290:
+	jb	Lj1243
+	jmp	Lj1244
+Lj1243:
 	movl	-40(%ebp),%eax
 	movb	$45,(%eax)
 	incl	-40(%ebp)
@@ -4312,19 +4234,19 @@ Lj1290:
 	sbbl	$-1,%edx
 	movl	%eax,-16(%ebp)
 	movl	%edx,-12(%ebp)
-	jmp	Lj1296
-Lj1291:
+	jmp	Lj1249
+Lj1244:
 	movl	8(%ebp),%eax
 	movl	%eax,-16(%ebp)
 	movl	12(%ebp),%eax
 	movl	%eax,-12(%ebp)
-Lj1296:
+Lj1249:
 	leal	-73(%ebp),%eax
 	movl	%eax,-28(%ebp)
 	movl	-28(%ebp),%eax
 	movl	%eax,-36(%ebp)
 	.balign 4,0x90
-Lj1303:
+Lj1256:
 	pushl	$0
 	pushl	$10
 	pushl	-12(%ebp)
@@ -4356,11 +4278,11 @@ Lj1303:
 	movl	-16(%ebp),%eax
 	movl	-12(%ebp),%edx
 	cmpl	$0,%edx
-	jne	Lj1303
+	jne	Lj1256
 	cmpl	$0,%eax
-	jne	Lj1303
-	jmp	Lj1305
-Lj1305:
+	jne	Lj1256
+	jmp	Lj1258
+Lj1258:
 	movl	-36(%ebp),%ecx
 	movl	-28(%ebp),%eax
 	subl	%eax,%ecx
@@ -4373,27 +4295,27 @@ Lj1305:
 	movl	%ecx,-80(%ebp)
 	movl	-80(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj1324
-	jmp	Lj1325
-Lj1324:
+	jg	Lj1277
+	jmp	Lj1278
+Lj1277:
 	movl	-80(%ebp),%eax
 	addl	%eax,-28(%ebp)
-Lj1325:
-	jmp	Lj1327
+Lj1278:
+	jmp	Lj1280
 	.balign 4,0x90
-Lj1326:
+Lj1279:
 	movl	-40(%ebp),%edx
 	movl	-36(%ebp),%eax
 	movb	(%eax),%al
 	movb	%al,(%edx)
 	incl	-40(%ebp)
 	decl	-36(%ebp)
-Lj1327:
+Lj1280:
 	movl	-36(%ebp),%eax
 	cmpl	-28(%ebp),%eax
-	ja	Lj1326
-	jmp	Lj1328
-Lj1328:
+	ja	Lj1279
+	jmp	Lj1281
+Lj1281:
 	movl	-40(%ebp),%eax
 	movl	-32(%ebp),%edx
 	subl	%edx,%eax
@@ -4420,7 +4342,7 @@ SYSTEM_INT_STR$QWORD$OPENSTRING:
 	movl	-20(%ebp),%eax
 	movl	%eax,-28(%ebp)
 	.balign 4,0x90
-Lj1343:
+Lj1296:
 	incl	-28(%ebp)
 	pushl	$0
 	pushl	$10
@@ -4452,11 +4374,11 @@ Lj1343:
 	movl	8(%ebp),%edx
 	movl	12(%ebp),%eax
 	cmpl	$0,%eax
-	jne	Lj1343
+	jne	Lj1296
 	cmpl	$0,%edx
-	jne	Lj1343
-	jmp	Lj1345
-Lj1345:
+	jne	Lj1296
+	jmp	Lj1298
+Lj1298:
 	movl	-28(%ebp),%edx
 	movl	-20(%ebp),%eax
 	subl	%eax,%edx
@@ -4465,27 +4387,27 @@ Lj1345:
 	movl	%edx,-104(%ebp)
 	movl	-104(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj1364
-	jmp	Lj1365
-Lj1364:
+	jg	Lj1317
+	jmp	Lj1318
+Lj1317:
 	movl	-104(%ebp),%eax
 	addl	%eax,-20(%ebp)
-Lj1365:
-	jmp	Lj1367
+Lj1318:
+	jmp	Lj1320
 	.balign 4,0x90
-Lj1366:
+Lj1319:
 	movl	-32(%ebp),%edx
 	movl	-28(%ebp),%eax
 	movb	(%eax),%al
 	movb	%al,(%edx)
 	incl	-32(%ebp)
 	decl	-28(%ebp)
-Lj1367:
+Lj1320:
 	movl	-28(%ebp),%eax
 	cmpl	-20(%ebp),%eax
-	ja	Lj1366
-	jmp	Lj1368
-Lj1368:
+	ja	Lj1319
+	jmp	Lj1321
+Lj1321:
 	movl	-32(%ebp),%eax
 	movl	-24(%ebp),%edx
 	subl	%edx,%eax
@@ -5151,44 +5073,44 @@ SYSTEM_RORQWORD$QWORD$BYTE$$QWORD:
 	movl	8(%ebp),%edx
 	movl	12(%ebp),%eax
 	cmpl	$64,%ecx
-	jl	Lj1525
+	jl	Lj1478
 	xorl	%edx,%edx
 	xorl	%eax,%eax
-	jmp	Lj1527
-Lj1525:
+	jmp	Lj1480
+Lj1478:
 	cmpl	$32,%ecx
-	jl	Lj1526
+	jl	Lj1479
 	subl	$32,%ecx
 	shll	%cl,%edx
 	movl	%edx,%eax
 	xorl	%edx,%edx
-	jmp	Lj1527
-Lj1526:
+	jmp	Lj1480
+Lj1479:
 	shldl	%cl,%edx,%eax
 	shll	%cl,%edx
-Lj1527:
+Lj1480:
 	movb	-4(%ebp),%cl
 	andb	$63,%cl
 	movzbl	%cl,%ecx
 	movl	8(%ebp),%ebx
 	movl	12(%ebp),%esi
 	cmpl	$64,%ecx
-	jl	Lj1528
+	jl	Lj1481
 	xorl	%ebx,%ebx
 	xorl	%esi,%esi
-	jmp	Lj1530
-Lj1528:
+	jmp	Lj1483
+Lj1481:
 	cmpl	$32,%ecx
-	jl	Lj1529
+	jl	Lj1482
 	subl	$32,%ecx
 	shrl	%cl,%esi
 	movl	%esi,%ebx
 	xorl	%esi,%esi
-	jmp	Lj1530
-Lj1529:
+	jmp	Lj1483
+Lj1482:
 	shrdl	%cl,%esi,%ebx
 	shrl	%cl,%esi
-Lj1530:
+Lj1483:
 	orl	%ebx,%edx
 	orl	%esi,%eax
 	movl	%edx,-12(%ebp)
@@ -5245,44 +5167,44 @@ SYSTEM_ROLQWORD$QWORD$BYTE$$QWORD:
 	movl	8(%ebp),%eax
 	movl	12(%ebp),%edx
 	cmpl	$64,%ecx
-	jl	Lj1539
+	jl	Lj1492
 	xorl	%eax,%eax
 	xorl	%edx,%edx
-	jmp	Lj1541
-Lj1539:
+	jmp	Lj1494
+Lj1492:
 	cmpl	$32,%ecx
-	jl	Lj1540
+	jl	Lj1493
 	subl	$32,%ecx
 	shrl	%cl,%edx
 	movl	%edx,%eax
 	xorl	%edx,%edx
-	jmp	Lj1541
-Lj1540:
+	jmp	Lj1494
+Lj1493:
 	shrdl	%cl,%edx,%eax
 	shrl	%cl,%edx
-Lj1541:
+Lj1494:
 	movb	-4(%ebp),%cl
 	andb	$63,%cl
 	movzbl	%cl,%ecx
 	movl	8(%ebp),%esi
 	movl	12(%ebp),%ebx
 	cmpl	$64,%ecx
-	jl	Lj1542
+	jl	Lj1495
 	xorl	%esi,%esi
 	xorl	%ebx,%ebx
-	jmp	Lj1544
-Lj1542:
+	jmp	Lj1497
+Lj1495:
 	cmpl	$32,%ecx
-	jl	Lj1543
+	jl	Lj1496
 	subl	$32,%ecx
 	shll	%cl,%esi
 	movl	%esi,%ebx
 	xorl	%esi,%esi
-	jmp	Lj1544
-Lj1543:
+	jmp	Lj1497
+Lj1496:
 	shldl	%cl,%esi,%ebx
 	shll	%cl,%esi
-Lj1544:
+Lj1497:
 	orl	%esi,%eax
 	orl	%ebx,%edx
 	movl	%eax,-12(%ebp)
@@ -5329,44 +5251,44 @@ SYSTEM_SARINT64$INT64$BYTE$$INT64:
 	subl	%ecx,%ebx
 	movl	%ebx,%ecx
 	cmpl	$64,%ecx
-	jl	Lj1551
+	jl	Lj1504
 	xorl	%eax,%eax
 	xorl	%edx,%edx
-	jmp	Lj1553
-Lj1551:
+	jmp	Lj1506
+Lj1504:
 	cmpl	$32,%ecx
-	jl	Lj1552
+	jl	Lj1505
 	subl	$32,%ecx
 	shll	%cl,%eax
 	movl	%eax,%edx
 	xorl	%eax,%eax
-	jmp	Lj1553
-Lj1552:
+	jmp	Lj1506
+Lj1505:
 	shldl	%cl,%eax,%edx
 	shll	%cl,%eax
-Lj1553:
+Lj1506:
 	movb	-4(%ebp),%cl
 	andb	$63,%cl
 	movzbl	%cl,%ecx
 	movl	8(%ebp),%ebx
 	movl	12(%ebp),%esi
 	cmpl	$64,%ecx
-	jl	Lj1554
+	jl	Lj1507
 	xorl	%ebx,%ebx
 	xorl	%esi,%esi
-	jmp	Lj1556
-Lj1554:
+	jmp	Lj1509
+Lj1507:
 	cmpl	$32,%ecx
-	jl	Lj1555
+	jl	Lj1508
 	subl	$32,%ecx
 	shrl	%cl,%esi
 	movl	%esi,%ebx
 	xorl	%esi,%esi
-	jmp	Lj1556
-Lj1555:
+	jmp	Lj1509
+Lj1508:
 	shrdl	%cl,%esi,%ebx
 	shrl	%cl,%esi
-Lj1556:
+Lj1509:
 	orl	%ebx,%eax
 	orl	%esi,%edx
 	movl	%eax,-12(%ebp)
@@ -5394,9 +5316,9 @@ fpc_varset_load:
 	movl	%eax,-20(%ebp)
 	movl	8(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj1563
-	jmp	Lj1564
-Lj1563:
+	jg	Lj1516
+	jmp	Lj1517
+Lj1516:
 	movl	-20(%ebp),%eax
 	movl	8(%ebp),%edx
 	movb	$0,%cl
@@ -5405,27 +5327,27 @@ Lj1563:
 	addl	%eax,-20(%ebp)
 	movl	8(%ebp),%eax
 	subl	%eax,12(%ebp)
-	jmp	Lj1571
-Lj1564:
+	jmp	Lj1524
+Lj1517:
 	movl	8(%ebp),%eax
 	cmpl	$0,%eax
-	jl	Lj1572
-	jmp	Lj1573
-Lj1572:
+	jl	Lj1525
+	jmp	Lj1526
+Lj1525:
 	movl	8(%ebp),%eax
 	subl	%eax,-16(%ebp)
 	movl	8(%ebp),%eax
 	addl	%eax,-8(%ebp)
-Lj1573:
-Lj1571:
+Lj1526:
+Lj1524:
 	movl	-8(%ebp),%eax
 	cmpl	12(%ebp),%eax
-	jg	Lj1574
-	jmp	Lj1575
-Lj1574:
+	jg	Lj1527
+	jmp	Lj1528
+Lj1527:
 	movl	12(%ebp),%eax
 	movl	%eax,-8(%ebp)
-Lj1575:
+Lj1528:
 	movl	-20(%ebp),%edx
 	movl	-16(%ebp),%eax
 	movl	-8(%ebp),%ecx
@@ -5556,10 +5478,10 @@ fpc_varset_set_range:
 	movl	-12(%ebp),%eax
 	movl	%eax,-16(%ebp)
 	cmpl	-16(%ebp),%esi
-	jl	Lj1629
+	jl	Lj1582
 	decl	-16(%ebp)
 	.balign 4,0x90
-Lj1630:
+Lj1583:
 	incl	-16(%ebp)
 	movl	-8(%ebp),%ebx
 	movl	-16(%ebp),%ecx
@@ -5572,8 +5494,8 @@ Lj1630:
 	orl	%edi,%edx
 	movb	%dl,(%ebx,%eax)
 	cmpl	-16(%ebp),%esi
-	jg	Lj1630
-Lj1629:
+	jg	Lj1583
+Lj1582:
 	movl	-28(%ebp),%ebx
 	movl	-24(%ebp),%esi
 	movl	-20(%ebp),%edi
@@ -5596,10 +5518,10 @@ fpc_varset_add_sets:
 	decl	%eax
 	movl	$0,-16(%ebp)
 	cmpl	-16(%ebp),%eax
-	jl	Lj1636
+	jl	Lj1589
 	decl	-16(%ebp)
 	.balign 4,0x90
-Lj1637:
+Lj1590:
 	incl	-16(%ebp)
 	movl	-4(%ebp),%edx
 	movl	-16(%ebp),%ecx
@@ -5612,8 +5534,8 @@ Lj1637:
 	movl	-16(%ebp),%ebx
 	movb	%cl,(%edx,%ebx,1)
 	cmpl	-16(%ebp),%eax
-	jg	Lj1637
-Lj1636:
+	jg	Lj1590
+Lj1589:
 	movl	-24(%ebp),%ebx
 	movl	-20(%ebp),%esi
 	leave
@@ -5635,10 +5557,10 @@ fpc_varset_mul_sets:
 	decl	%eax
 	movl	$0,-16(%ebp)
 	cmpl	-16(%ebp),%eax
-	jl	Lj1643
+	jl	Lj1596
 	decl	-16(%ebp)
 	.balign 4,0x90
-Lj1644:
+Lj1597:
 	incl	-16(%ebp)
 	movl	-4(%ebp),%edx
 	movl	-16(%ebp),%ecx
@@ -5651,8 +5573,8 @@ Lj1644:
 	movl	-16(%ebp),%ebx
 	movb	%cl,(%edx,%ebx,1)
 	cmpl	-16(%ebp),%eax
-	jg	Lj1644
-Lj1643:
+	jg	Lj1597
+Lj1596:
 	movl	-24(%ebp),%ebx
 	movl	-20(%ebp),%esi
 	leave
@@ -5673,10 +5595,10 @@ fpc_varset_sub_sets:
 	decl	%eax
 	movl	$0,-16(%ebp)
 	cmpl	-16(%ebp),%eax
-	jl	Lj1650
+	jl	Lj1603
 	decl	-16(%ebp)
 	.balign 4,0x90
-Lj1651:
+Lj1604:
 	incl	-16(%ebp)
 	movl	-8(%ebp),%ecx
 	movl	-16(%ebp),%edx
@@ -5690,8 +5612,8 @@ Lj1651:
 	movl	-16(%ebp),%ecx
 	movb	%dl,(%ebx,%ecx,1)
 	cmpl	-16(%ebp),%eax
-	jg	Lj1651
-Lj1650:
+	jg	Lj1604
+Lj1603:
 	movl	-20(%ebp),%ebx
 	leave
 	ret	$4
@@ -5712,10 +5634,10 @@ fpc_varset_symdif_sets:
 	decl	%eax
 	movl	$0,-16(%ebp)
 	cmpl	-16(%ebp),%eax
-	jl	Lj1657
+	jl	Lj1610
 	decl	-16(%ebp)
 	.balign 4,0x90
-Lj1658:
+Lj1611:
 	incl	-16(%ebp)
 	movl	-4(%ebp),%edx
 	movl	-16(%ebp),%ecx
@@ -5728,8 +5650,8 @@ Lj1658:
 	movl	-16(%ebp),%ebx
 	movb	%cl,(%edx,%ebx,1)
 	cmpl	-16(%ebp),%eax
-	jg	Lj1658
-Lj1657:
+	jg	Lj1611
+Lj1610:
 	movl	-24(%ebp),%ebx
 	movl	-20(%ebp),%esi
 	leave
@@ -5752,10 +5674,10 @@ fpc_varset_comp_sets:
 	decl	%eax
 	movl	$0,-20(%ebp)
 	cmpl	-20(%ebp),%eax
-	jl	Lj1666
+	jl	Lj1619
 	decl	-20(%ebp)
 	.balign 4,0x90
-Lj1667:
+Lj1620:
 	incl	-20(%ebp)
 	movl	-4(%ebp),%esi
 	movl	-20(%ebp),%edx
@@ -5763,16 +5685,16 @@ Lj1667:
 	movl	-20(%ebp),%ebx
 	movb	(%esi,%edx,1),%dl
 	cmpb	(%ecx,%ebx,1),%dl
-	jne	Lj1668
-	jmp	Lj1669
-Lj1668:
-	jmp	Lj1661
-Lj1669:
+	jne	Lj1621
+	jmp	Lj1622
+Lj1621:
+	jmp	Lj1614
+Lj1622:
 	cmpl	-20(%ebp),%eax
-	jg	Lj1667
-Lj1666:
+	jg	Lj1620
+Lj1619:
 	movb	$1,-13(%ebp)
-Lj1661:
+Lj1614:
 	movb	-13(%ebp),%al
 	movl	-28(%ebp),%ebx
 	movl	-24(%ebp),%esi
@@ -5795,10 +5717,10 @@ fpc_varset_contains_sets:
 	decl	%eax
 	movl	$0,-20(%ebp)
 	cmpl	-20(%ebp),%eax
-	jl	Lj1677
+	jl	Lj1630
 	decl	-20(%ebp)
 	.balign 4,0x90
-Lj1678:
+Lj1631:
 	incl	-20(%ebp)
 	movl	-8(%ebp),%ecx
 	movl	-20(%ebp),%edx
@@ -5810,16 +5732,16 @@ Lj1678:
 	andb	%cl,%dl
 	movzbl	%dl,%edx
 	testl	%edx,%edx
-	jne	Lj1679
-	jmp	Lj1680
-Lj1679:
-	jmp	Lj1672
-Lj1680:
+	jne	Lj1632
+	jmp	Lj1633
+Lj1632:
+	jmp	Lj1625
+Lj1633:
 	cmpl	-20(%ebp),%eax
-	jg	Lj1678
-Lj1677:
+	jg	Lj1631
+Lj1630:
 	movb	$1,-13(%ebp)
-Lj1672:
+Lj1625:
 	movb	-13(%ebp),%al
 	movl	-24(%ebp),%ebx
 	leave
@@ -6315,46 +6237,46 @@ SYSTEM_POWER$EXTENDED$EXTENDED$$EXTENDED:
 	fcompp
 	fnstsw	%ax
 	sahf
-	je	Lj1805
-	jmp	Lj1806
-Lj1805:
+	je	Lj1758
+	jmp	Lj1759
+Lj1758:
 	fldz
 	fldt	8(%ebp)
 	fcompp
 	fnstsw	%ax
 	sahf
-	jne	Lj1807
-	jmp	Lj1808
-Lj1807:
+	jne	Lj1760
+	jmp	Lj1761
+Lj1760:
 	fldz
 	fstpt	-12(%ebp)
-	jmp	Lj1811
-Lj1808:
+	jmp	Lj1764
+Lj1761:
 	movl	$207,%eax
 	call	SYSTEM_HANDLEERROR$LONGINT
-Lj1811:
-	jmp	Lj1814
-Lj1806:
+Lj1764:
+	jmp	Lj1767
+Lj1759:
 	fldz
 	fldt	8(%ebp)
 	fcompp
 	fnstsw	%ax
 	sahf
-	je	Lj1815
-	jmp	Lj1816
-Lj1815:
+	je	Lj1768
+	jmp	Lj1769
+Lj1768:
 	fld1
 	fstpt	-12(%ebp)
-	jmp	Lj1819
-Lj1816:
+	jmp	Lj1772
+Lj1769:
 	fldz
 	fldt	20(%ebp)
 	fcompp
 	fnstsw	%ax
 	sahf
-	jb	Lj1822
-	jmp	Lj1821
-Lj1822:
+	jb	Lj1775
+	jmp	Lj1774
+Lj1775:
 	movzwl	16(%ebp),%eax
 	pushl	%eax
 	pushl	12(%ebp)
@@ -6364,13 +6286,13 @@ Lj1822:
 	fcompp
 	fnstsw	%ax
 	sahf
-	jne	Lj1820
-	jmp	Lj1821
-Lj1820:
+	jne	Lj1773
+	jmp	Lj1774
+Lj1773:
 	movl	$207,%eax
 	call	SYSTEM_HANDLEERROR$LONGINT
-	jmp	Lj1827
-Lj1821:
+	jmp	Lj1780
+Lj1774:
 	fldt	20(%ebp)
 	fabs
 	fldln2
@@ -6387,9 +6309,9 @@ Lj1821:
 	fcompp
 	fnstsw	%ax
 	sahf
-	jb	Lj1834
-	jmp	Lj1833
-Lj1834:
+	jb	Lj1787
+	jmp	Lj1786
+Lj1787:
 	fnstcw	-24(%ebp)
 	fnstcw	-22(%ebp)
 	orw	$3840,-24(%ebp)
@@ -6405,16 +6327,16 @@ Lj1834:
 	movl	-20(%ebp),%eax
 	andl	$1,%eax
 	testb	%al,%al
-	jne	Lj1832
-	jmp	Lj1833
-Lj1832:
+	jne	Lj1785
+	jmp	Lj1786
+Lj1785:
 	fldt	-12(%ebp)
 	fchs
 	fstpt	-12(%ebp)
-Lj1833:
-Lj1827:
-Lj1819:
-Lj1814:
+Lj1786:
+Lj1780:
+Lj1772:
+Lj1767:
 	fldt	-12(%ebp)
 	leave
 	ret	$24
@@ -6429,13 +6351,13 @@ SYSTEM_FLOAT_RAISE$SHORTINT:
 	movb	%al,-4(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj1847
+	je	Lj1800
 	movl	U_SYSTEM_SOFTFLOAT_EXCEPTION_FLAGS,%eax
 	call	*%edx
-	jmp	Lj1848
-Lj1847:
+	jmp	Lj1801
+Lj1800:
 	movl	$U_SYSTEM_SOFTFLOAT_EXCEPTION_FLAGS+4,%eax
-Lj1848:
+Lj1801:
 	movl	%eax,-8(%ebp)
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
@@ -6445,13 +6367,13 @@ Lj1848:
 	movb	%al,(%edx)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj1853
+	je	Lj1806
 	movl	U_SYSTEM_SOFTFLOAT_EXCEPTION_MASK,%eax
 	call	*%edx
-	jmp	Lj1854
-Lj1853:
+	jmp	Lj1807
+Lj1806:
 	movl	$U_SYSTEM_SOFTFLOAT_EXCEPTION_MASK+4,%eax
-Lj1854:
+Lj1807:
 	movb	(%eax),%dl
 	notb	%dl
 	movl	-8(%ebp),%eax
@@ -6462,60 +6384,60 @@ Lj1854:
 	andb	$1,%al
 	movzbl	%al,%eax
 	testl	%eax,%eax
-	jne	Lj1855
-	jmp	Lj1856
-Lj1855:
+	jne	Lj1808
+	jmp	Lj1809
+Lj1808:
 	movl	$207,%eax
 	call	SYSTEM_HANDLEERROR$LONGINT
-	jmp	Lj1859
-Lj1856:
+	jmp	Lj1812
+Lj1809:
 	movb	-9(%ebp),%al
 	andb	$4,%al
 	movzbl	%al,%eax
 	testl	%eax,%eax
-	jne	Lj1860
-	jmp	Lj1861
-Lj1860:
+	jne	Lj1813
+	jmp	Lj1814
+Lj1813:
 	movl	$200,%eax
 	call	SYSTEM_HANDLEERROR$LONGINT
-	jmp	Lj1864
-Lj1861:
+	jmp	Lj1817
+Lj1814:
 	movb	-9(%ebp),%al
 	andb	$8,%al
 	movzbl	%al,%eax
 	testl	%eax,%eax
-	jne	Lj1865
-	jmp	Lj1866
-Lj1865:
+	jne	Lj1818
+	jmp	Lj1819
+Lj1818:
 	movl	$205,%eax
 	call	SYSTEM_HANDLEERROR$LONGINT
-	jmp	Lj1869
-Lj1866:
+	jmp	Lj1822
+Lj1819:
 	movb	-9(%ebp),%al
 	andb	$16,%al
 	movzbl	%al,%eax
 	testl	%eax,%eax
-	jne	Lj1870
-	jmp	Lj1871
-Lj1870:
+	jne	Lj1823
+	jmp	Lj1824
+Lj1823:
 	movl	$206,%eax
 	call	SYSTEM_HANDLEERROR$LONGINT
-	jmp	Lj1874
-Lj1871:
+	jmp	Lj1827
+Lj1824:
 	movb	-9(%ebp),%al
 	andb	$32,%al
 	movzbl	%al,%eax
 	testl	%eax,%eax
-	jne	Lj1875
-	jmp	Lj1876
-Lj1875:
+	jne	Lj1828
+	jmp	Lj1829
+Lj1828:
 	movl	$207,%eax
 	call	SYSTEM_HANDLEERROR$LONGINT
-Lj1876:
-Lj1874:
-Lj1869:
-Lj1864:
-Lj1859:
+Lj1829:
+Lj1827:
+Lj1822:
+Lj1817:
+Lj1812:
 	leave
 	ret
 
@@ -6534,50 +6456,50 @@ SYSTEM_FREXP$REAL$SMALLINT$$REAL:
 	fcompp
 	fnstsw	%ax
 	sahf
-	ja	Lj1883
-	jmp	Lj1884
-Lj1883:
-	jmp	Lj1886
+	ja	Lj1836
+	jmp	Lj1837
+Lj1836:
+	jmp	Lj1839
 	.balign 4,0x90
-Lj1885:
+Lj1838:
 	fldl	_$SYSTEM$_Ld3
 	fldl	8(%ebp)
 	fmulp	%st,%st(1)
 	fstpl	8(%ebp)
 	movl	-4(%ebp),%eax
 	decw	(%eax)
-Lj1886:
+Lj1839:
 	fldl	8(%ebp)
 	fabs
 	fldt	_$SYSTEM$_Ld2
 	fcompp
 	fnstsw	%ax
 	sahf
-	ja	Lj1885
-	jmp	Lj1887
-Lj1887:
-	jmp	Lj1890
-Lj1884:
-	jmp	Lj1892
+	ja	Lj1838
+	jmp	Lj1840
+Lj1840:
+	jmp	Lj1843
+Lj1837:
+	jmp	Lj1845
 	.balign 4,0x90
-Lj1891:
+Lj1844:
 	fldl	_$SYSTEM$_Ld3
 	fldl	8(%ebp)
 	fdivp	%st,%st(1)
 	fstpl	8(%ebp)
 	movl	-4(%ebp),%eax
 	incw	(%eax)
-Lj1892:
+Lj1845:
 	fldl	8(%ebp)
 	fabs
 	fld1
 	fcompp
 	fnstsw	%ax
 	sahf
-	jb	Lj1891
-	jmp	Lj1893
-Lj1893:
-Lj1890:
+	jb	Lj1844
+	jmp	Lj1846
+Lj1846:
+Lj1843:
 	movl	8(%ebp),%eax
 	movl	%eax,-12(%ebp)
 	movl	12(%ebp),%eax
@@ -6597,40 +6519,40 @@ SYSTEM_LDEXP$REAL$SMALLINT$$REAL:
 	fstpl	-20(%ebp)
 	movw	-4(%ebp),%ax
 	cmpw	$0,%ax
-	jg	Lj1902
-	jmp	Lj1903
-Lj1902:
-	jmp	Lj1905
+	jg	Lj1855
+	jmp	Lj1856
+Lj1855:
+	jmp	Lj1858
 	.balign 4,0x90
-Lj1904:
+Lj1857:
 	fldl	_$SYSTEM$_Ld3
 	fldl	-20(%ebp)
 	fmulp	%st,%st(1)
 	fstpl	-20(%ebp)
 	decw	-4(%ebp)
-Lj1905:
+Lj1858:
 	movw	-4(%ebp),%ax
 	cmpw	$0,%ax
-	jg	Lj1904
-	jmp	Lj1906
-Lj1906:
-	jmp	Lj1909
-Lj1903:
-	jmp	Lj1911
+	jg	Lj1857
+	jmp	Lj1859
+Lj1859:
+	jmp	Lj1862
+Lj1856:
+	jmp	Lj1864
 	.balign 4,0x90
-Lj1910:
+Lj1863:
 	fldl	_$SYSTEM$_Ld3
 	fldl	-20(%ebp)
 	fdivp	%st,%st(1)
 	fstpl	-20(%ebp)
 	incw	-4(%ebp)
-Lj1911:
+Lj1864:
 	movw	-4(%ebp),%ax
 	cmpw	$0,%ax
-	jl	Lj1910
-	jmp	Lj1912
-Lj1912:
-Lj1909:
+	jl	Lj1863
+	jmp	Lj1865
+Lj1865:
+Lj1862:
 	fldl	-20(%ebp)
 	fldl	8(%ebp)
 	fmulp	%st,%st(1)
@@ -6656,10 +6578,10 @@ SYSTEM_POLEVL$REAL$TABCOEF$SMALLINT$$REAL:
 	movw	-12(%ebp),%cx
 	movw	$1,-30(%ebp)
 	cmpw	-30(%ebp),%cx
-	jl	Lj1922
+	jl	Lj1875
 	decw	-30(%ebp)
 	.balign 4,0x90
-Lj1923:
+Lj1876:
 	incw	-30(%ebp)
 	movl	-4(%ebp),%eax
 	fldl	(%eax)
@@ -6671,8 +6593,8 @@ Lj1923:
 	faddp	%st,%st(1)
 	fstpl	-28(%ebp)
 	cmpw	-30(%ebp),%cx
-	jg	Lj1923
-Lj1922:
+	jg	Lj1876
+Lj1875:
 	movl	-28(%ebp),%eax
 	movl	%eax,-20(%ebp)
 	movl	-24(%ebp),%eax
@@ -6700,10 +6622,10 @@ SYSTEM_P1EVL$REAL$TABCOEF$SMALLINT$$REAL:
 	decl	%eax
 	movw	$1,-30(%ebp)
 	cmpw	-30(%ebp),%ax
-	jl	Lj1933
+	jl	Lj1886
 	decw	-30(%ebp)
 	.balign 4,0x90
-Lj1934:
+Lj1887:
 	incw	-30(%ebp)
 	movl	-4(%ebp),%edx
 	fldl	(%edx)
@@ -6715,8 +6637,8 @@ Lj1934:
 	faddp	%st,%st(1)
 	fstpl	-28(%ebp)
 	cmpw	-30(%ebp),%ax
-	jg	Lj1934
-Lj1933:
+	jg	Lj1887
+Lj1886:
 	movl	-28(%ebp),%eax
 	movl	%eax,-20(%ebp)
 	movl	-24(%ebp),%eax
@@ -6740,13 +6662,13 @@ SYSTEM_REAL2DOUBLE$REAL48$$DOUBLE:
 	movw	%ax,-24(%ebp)
 	movzbl	-28(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj1941
-	jmp	Lj1942
-Lj1941:
+	je	Lj1894
+	jmp	Lj1895
+Lj1894:
 	fldz
 	fstpl	-12(%ebp)
-	jmp	Lj1939
-Lj1942:
+	jmp	Lj1892
+Lj1895:
 	movb	$0,-20(%ebp)
 	movzbl	-27(%ebp),%eax
 	shll	$5,%eax
@@ -6805,7 +6727,7 @@ Lj1942:
 	movl	%eax,-12(%ebp)
 	movl	-16(%ebp),%eax
 	movl	%eax,-8(%ebp)
-Lj1939:
+Lj1892:
 	fldl	-12(%ebp)
 	leave
 	ret
@@ -6820,9 +6742,9 @@ SYSTEM_FPOWER10$EXTENDED$LONGINT$$EXTENDED:
 	movl	%eax,-4(%ebp)
 	movl	-4(%ebp),%eax
 	cmpl	$0,%eax
-	jl	Lj1971
-	jmp	Lj1972
-Lj1971:
+	jl	Lj1924
+	jmp	Lj1925
+Lj1924:
 	movl	-4(%ebp),%eax
 	negl	%eax
 	movl	%eax,-4(%ebp)
@@ -6838,9 +6760,9 @@ Lj1971:
 	movl	%eax,-4(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj1979
-	jmp	Lj1980
-Lj1979:
+	jne	Lj1932
+	jmp	Lj1933
+Lj1932:
 	movl	-4(%ebp),%eax
 	andl	$15,%eax
 	imull	$10,%eax
@@ -6853,33 +6775,33 @@ Lj1979:
 	movl	%eax,-4(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj1985
-	jmp	Lj1986
-Lj1985:
+	jne	Lj1938
+	jmp	Lj1939
+Lj1938:
 	movl	-4(%ebp),%eax
 	cmpl	$9,%eax
-	jle	Lj1987
-	jmp	Lj1988
-Lj1987:
+	jle	Lj1940
+	jmp	Lj1941
+Lj1940:
 	movl	-4(%ebp),%eax
 	imull	$10,%eax
 	fldt	-16(%ebp)
 	fldt	TC_SYSTEM_FPOWER10$EXTENDED$LONGINT$$EXTENDED_NEGPOW4096(,%eax)
 	fmulp	%st,%st(1)
 	fstpt	-16(%ebp)
-	jmp	Lj1991
-Lj1988:
+	jmp	Lj1944
+Lj1941:
 	movl	_$SYSTEM$_Ld4,%eax
 	movl	%eax,-16(%ebp)
 	movl	_$SYSTEM$_Ld4+4,%eax
 	movl	%eax,-12(%ebp)
 	movw	_$SYSTEM$_Ld4+8,%ax
 	movw	%ax,-8(%ebp)
-Lj1991:
-Lj1986:
-Lj1980:
-	jmp	Lj1994
-Lj1972:
+Lj1944:
+Lj1939:
+Lj1933:
+	jmp	Lj1947
+Lj1925:
 	movl	-4(%ebp),%eax
 	andl	$31,%eax
 	imull	$10,%eax
@@ -6892,9 +6814,9 @@ Lj1972:
 	movl	%eax,-4(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj1999
-	jmp	Lj2000
-Lj1999:
+	jne	Lj1952
+	jmp	Lj1953
+Lj1952:
 	movl	-4(%ebp),%eax
 	andl	$15,%eax
 	imull	$10,%eax
@@ -6907,32 +6829,32 @@ Lj1999:
 	movl	%eax,-4(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj2005
-	jmp	Lj2006
-Lj2005:
+	jne	Lj1958
+	jmp	Lj1959
+Lj1958:
 	movl	-4(%ebp),%eax
 	cmpl	$9,%eax
-	jle	Lj2007
-	jmp	Lj2008
-Lj2007:
+	jle	Lj1960
+	jmp	Lj1961
+Lj1960:
 	movl	-4(%ebp),%eax
 	imull	$10,%eax
 	fldt	-16(%ebp)
 	fldt	TC_SYSTEM_FPOWER10$EXTENDED$LONGINT$$EXTENDED_POW4096(,%eax)
 	fmulp	%st,%st(1)
 	fstpt	-16(%ebp)
-	jmp	Lj2011
-Lj2008:
+	jmp	Lj1964
+Lj1961:
 	movl	_$SYSTEM$_Ld4,%eax
 	movl	%eax,-16(%ebp)
 	movl	_$SYSTEM$_Ld4+4,%eax
 	movl	%eax,-12(%ebp)
 	movw	_$SYSTEM$_Ld4+8,%ax
 	movw	%ax,-8(%ebp)
-Lj2011:
-Lj2006:
-Lj2000:
-Lj1994:
+Lj1964:
+Lj1959:
+Lj1953:
+Lj1947:
 	fldt	-16(%ebp)
 	leave
 	ret	$12
@@ -6964,11 +6886,11 @@ FPC_SHORTSTR_SETLENGTH:
 	movl	%ecx,-8(%ebp)
 	movl	-8(%ebp),%eax
 	cmpl	$255,%eax
-	jg	Lj2020
-	jmp	Lj2021
-Lj2020:
+	jg	Lj1973
+	jmp	Lj1974
+Lj1973:
 	movl	$255,-8(%ebp)
-Lj2021:
+Lj1974:
 	movl	-4(%ebp),%eax
 	movb	-8(%ebp),%dl
 	movb	%dl,(%eax)
@@ -6987,45 +6909,45 @@ fpc_shortstr_copy:
 	movl	%ecx,-12(%ebp)
 	movl	-12(%ebp),%eax
 	cmpl	$0,%eax
-	jl	Lj2028
-	jmp	Lj2029
-Lj2028:
+	jl	Lj1981
+	jmp	Lj1982
+Lj1981:
 	movl	$0,-12(%ebp)
-Lj2029:
+Lj1982:
 	movl	-8(%ebp),%eax
 	cmpl	$1,%eax
-	jg	Lj2032
-	jmp	Lj2033
-Lj2032:
+	jg	Lj1985
+	jmp	Lj1986
+Lj1985:
 	decl	-8(%ebp)
-	jmp	Lj2034
-Lj2033:
+	jmp	Lj1987
+Lj1986:
 	movl	$0,-8(%ebp)
-Lj2034:
+Lj1987:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%eax
 	cmpl	-8(%ebp),%eax
-	jl	Lj2037
-	jmp	Lj2038
-Lj2037:
+	jl	Lj1990
+	jmp	Lj1991
+Lj1990:
 	movl	$0,-12(%ebp)
-	jmp	Lj2041
-Lj2038:
+	jmp	Lj1994
+Lj1991:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%edx
 	movl	-8(%ebp),%eax
 	subl	%eax,%edx
 	cmpl	-12(%ebp),%edx
-	jl	Lj2042
-	jmp	Lj2043
-Lj2042:
+	jl	Lj1995
+	jmp	Lj1996
+Lj1995:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%eax
 	movl	-8(%ebp),%edx
 	subl	%edx,%eax
 	movl	%eax,-12(%ebp)
-Lj2043:
-Lj2041:
+Lj1996:
+Lj1994:
 	movl	8(%ebp),%eax
 	movb	-12(%ebp),%dl
 	movb	%dl,(%eax)
@@ -7054,37 +6976,37 @@ SYSTEM_DELETE$OPENSTRING$LONGINT$LONGINT:
 	movl	%ecx,-8(%ebp)
 	movl	-8(%ebp),%eax
 	cmpl	$0,%eax
-	jle	Lj2056
-	jmp	Lj2057
-Lj2056:
-	jmp	Lj2054
-Lj2057:
+	jle	Lj2009
+	jmp	Lj2010
+Lj2009:
+	jmp	Lj2007
+Lj2010:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%eax
 	cmpl	-8(%ebp),%eax
-	jge	Lj2060
-	jmp	Lj2059
-Lj2060:
+	jge	Lj2013
+	jmp	Lj2012
+Lj2013:
 	movl	8(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj2058
-	jmp	Lj2059
-Lj2058:
+	jg	Lj2011
+	jmp	Lj2012
+Lj2011:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%eax
 	movl	-8(%ebp),%edx
 	subl	%edx,%eax
 	cmpl	8(%ebp),%eax
-	jl	Lj2061
-	jmp	Lj2062
-Lj2061:
+	jl	Lj2014
+	jmp	Lj2015
+Lj2014:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%eax
 	movl	-8(%ebp),%edx
 	subl	%edx,%eax
 	incl	%eax
 	movl	%eax,8(%ebp)
-Lj2062:
+Lj2015:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%eax
 	movl	8(%ebp),%edx
@@ -7094,9 +7016,9 @@ Lj2062:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%eax
 	cmpl	-8(%ebp),%eax
-	jge	Lj2067
-	jmp	Lj2068
-Lj2067:
+	jge	Lj2020
+	jmp	Lj2021
+Lj2020:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%ecx
 	movl	-8(%ebp),%eax
@@ -7112,9 +7034,9 @@ Lj2067:
 	movzbl	-8(%ebp),%ebx
 	leal	(%edx,%ebx,1),%edx
 	call	SYSTEM_MOVE$formal$formal$LONGINT
-Lj2068:
-Lj2059:
-Lj2054:
+Lj2021:
+Lj2012:
+Lj2007:
 	movl	-16(%ebp),%ebx
 	leave
 	ret	$4
@@ -7131,29 +7053,29 @@ SYSTEM_INSERT$SHORTSTRING$OPENSTRING$LONGINT:
 	movl	%ecx,-12(%ebp)
 	movl	8(%ebp),%eax
 	cmpl	$1,%eax
-	jl	Lj2077
-	jmp	Lj2078
-Lj2077:
+	jl	Lj2030
+	jmp	Lj2031
+Lj2030:
 	movl	$1,8(%ebp)
-Lj2078:
+Lj2031:
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	cmpl	8(%ebp),%eax
-	jl	Lj2081
-	jmp	Lj2082
-Lj2081:
+	jl	Lj2034
+	jmp	Lj2035
+Lj2034:
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	incl	%eax
 	movl	%eax,8(%ebp)
 	movl	8(%ebp),%eax
 	cmpl	-12(%ebp),%eax
-	jg	Lj2085
-	jmp	Lj2086
-Lj2085:
-	jmp	Lj2075
-Lj2086:
-Lj2082:
+	jg	Lj2038
+	jmp	Lj2039
+Lj2038:
+	jmp	Lj2028
+Lj2039:
+Lj2035:
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%edx
 	movl	8(%ebp),%eax
@@ -7171,9 +7093,9 @@ Lj2082:
 	movl	-12(%ebp),%eax
 	incl	%eax
 	cmpl	%eax,%edx
-	jge	Lj2091
-	jmp	Lj2092
-Lj2091:
+	jge	Lj2044
+	jmp	Lj2045
+Lj2044:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%edx
 	movl	-8(%ebp),%eax
@@ -7186,20 +7108,20 @@ Lj2091:
 	movl	%edx,-16(%ebp)
 	movl	-16(%ebp),%eax
 	cmpl	-24(%ebp),%eax
-	jg	Lj2095
-	jmp	Lj2096
-Lj2095:
+	jg	Lj2048
+	jmp	Lj2049
+Lj2048:
 	movl	-16(%ebp),%eax
 	movl	-24(%ebp),%edx
 	subl	%edx,%eax
 	subl	%eax,-20(%ebp)
 	movl	$0,-24(%ebp)
-	jmp	Lj2099
-Lj2096:
+	jmp	Lj2052
+Lj2049:
 	movl	-16(%ebp),%eax
 	subl	%eax,-24(%ebp)
-Lj2099:
-Lj2092:
+Lj2052:
+Lj2045:
 	movl	-8(%ebp),%ecx
 	movl	8(%ebp),%eax
 	movl	-20(%ebp),%edx
@@ -7226,7 +7148,7 @@ Lj2092:
 	decl	%eax
 	movl	-8(%ebp),%edx
 	movb	%al,(%edx)
-Lj2075:
+Lj2028:
 	leave
 	ret	$4
 
@@ -7242,29 +7164,29 @@ SYSTEM_INSERT$CHAR$OPENSTRING$LONGINT:
 	movl	%ecx,-12(%ebp)
 	movl	8(%ebp),%eax
 	cmpl	$1,%eax
-	jl	Lj2116
-	jmp	Lj2117
-Lj2116:
+	jl	Lj2069
+	jmp	Lj2070
+Lj2069:
 	movl	$1,8(%ebp)
-Lj2117:
+Lj2070:
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	cmpl	8(%ebp),%eax
-	jl	Lj2120
-	jmp	Lj2121
-Lj2120:
+	jl	Lj2073
+	jmp	Lj2074
+Lj2073:
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	incl	%eax
 	movl	%eax,8(%ebp)
 	movl	8(%ebp),%eax
 	cmpl	-12(%ebp),%eax
-	jg	Lj2124
-	jmp	Lj2125
-Lj2124:
-	jmp	Lj2114
-Lj2125:
-Lj2121:
+	jg	Lj2077
+	jmp	Lj2078
+Lj2077:
+	jmp	Lj2067
+Lj2078:
+Lj2074:
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	movl	8(%ebp),%edx
@@ -7277,16 +7199,16 @@ Lj2121:
 	movl	-12(%ebp),%edx
 	incl	%edx
 	cmpl	%edx,%eax
-	je	Lj2130
-	jmp	Lj2129
-Lj2130:
+	je	Lj2083
+	jmp	Lj2082
+Lj2083:
 	movl	-16(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj2128
-	jmp	Lj2129
-Lj2128:
+	jg	Lj2081
+	jmp	Lj2082
+Lj2081:
 	decl	-16(%ebp)
-Lj2129:
+Lj2082:
 	movl	-8(%ebp),%edx
 	movl	8(%ebp),%eax
 	incl	%eax
@@ -7306,7 +7228,7 @@ Lj2129:
 	addl	%edx,%eax
 	movl	-8(%ebp),%edx
 	movb	%al,(%edx)
-Lj2114:
+Lj2067:
 	leave
 	ret	$4
 
@@ -7323,9 +7245,9 @@ SYSTEM_POS$SHORTSTRING$SHORTSTRING$$LONGINT:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%eax
 	cmpl	$0,%eax
-	jg	Lj2145
-	jmp	Lj2146
-Lj2145:
+	jg	Lj2098
+	jmp	Lj2099
+Lj2098:
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%edx
 	movl	-4(%ebp),%eax
@@ -7336,17 +7258,17 @@ Lj2145:
 	movl	-8(%ebp),%eax
 	leal	1(%eax),%eax
 	movl	%eax,-24(%ebp)
-	jmp	Lj2154
+	jmp	Lj2107
 	.balign 4,0x90
-Lj2153:
+Lj2106:
 	incl	-16(%ebp)
 	movl	-24(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movb	(%eax),%al
 	cmpb	1(%edx),%al
-	je	Lj2158
-	jmp	Lj2157
-Lj2158:
+	je	Lj2111
+	jmp	Lj2110
+Lj2111:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%ecx
 	movl	-24(%ebp),%edx
@@ -7354,22 +7276,22 @@ Lj2158:
 	leal	1(%eax),%eax
 	call	SYSTEM_COMPARECHAR$formal$formal$LONGINT$$LONGINT
 	testl	%eax,%eax
-	je	Lj2156
-	jmp	Lj2157
-Lj2156:
+	je	Lj2109
+	jmp	Lj2110
+Lj2109:
 	movl	-16(%ebp),%eax
 	movl	%eax,-12(%ebp)
-	jmp	Lj2141
-Lj2157:
+	jmp	Lj2094
+Lj2110:
 	incl	-24(%ebp)
-Lj2154:
+Lj2107:
 	movl	-16(%ebp),%eax
 	cmpl	-20(%ebp),%eax
-	jle	Lj2153
-	jmp	Lj2155
-Lj2155:
-Lj2146:
-Lj2141:
+	jle	Lj2106
+	jmp	Lj2108
+Lj2108:
+Lj2099:
+Lj2094:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -7390,27 +7312,27 @@ SYSTEM_POS$CHAR$SHORTSTRING$$LONGINT:
 	movzbl	(%eax),%eax
 	movl	$1,-16(%ebp)
 	cmpl	-16(%ebp),%eax
-	jl	Lj2172
+	jl	Lj2125
 	decl	-16(%ebp)
 	.balign 4,0x90
-Lj2173:
+Lj2126:
 	incl	-16(%ebp)
 	movl	-20(%ebp),%edx
 	movb	(%edx),%dl
 	cmpb	-4(%ebp),%dl
-	je	Lj2174
-	jmp	Lj2175
-Lj2174:
+	je	Lj2127
+	jmp	Lj2128
+Lj2127:
 	movl	-16(%ebp),%edx
 	movl	%edx,-12(%ebp)
-	jmp	Lj2167
-Lj2175:
+	jmp	Lj2120
+Lj2128:
 	incl	-20(%ebp)
 	cmpl	-16(%ebp),%eax
-	jg	Lj2173
-Lj2172:
+	jg	Lj2126
+Lj2125:
 	movl	$0,-12(%ebp)
-Lj2167:
+Lj2120:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -7427,23 +7349,23 @@ fpc_char_copy:
 	movl	%ecx,-12(%ebp)
 	movl	-8(%ebp),%eax
 	cmpl	$1,%eax
-	je	Lj2184
-	jmp	Lj2183
-Lj2184:
+	je	Lj2137
+	jmp	Lj2136
+Lj2137:
 	movl	-12(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj2182
-	jmp	Lj2183
-Lj2182:
+	jg	Lj2135
+	jmp	Lj2136
+Lj2135:
 	movl	8(%ebp),%eax
 	movb	$1,(%eax)
 	movb	-4(%ebp),%dl
 	movb	%dl,1(%eax)
-	jmp	Lj2187
-Lj2183:
+	jmp	Lj2140
+Lj2136:
 	movl	8(%ebp),%eax
 	movb	$0,(%eax)
-Lj2187:
+Lj2140:
 	leave
 	ret	$4
 
@@ -7459,20 +7381,20 @@ SYSTEM_POS$SHORTSTRING$CHAR$$LONGINT:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%eax
 	cmpl	$1,%eax
-	je	Lj2194
-	jmp	Lj2193
-Lj2194:
+	je	Lj2147
+	jmp	Lj2146
+Lj2147:
 	movl	-4(%ebp),%eax
 	movb	1(%eax),%al
 	cmpb	-8(%ebp),%al
-	je	Lj2192
-	jmp	Lj2193
-Lj2192:
+	je	Lj2145
+	jmp	Lj2146
+Lj2145:
 	movl	$1,-12(%ebp)
-	jmp	Lj2197
-Lj2193:
+	jmp	Lj2150
+Lj2146:
 	movl	$0,-12(%ebp)
-Lj2197:
+Lj2150:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -7488,19 +7410,19 @@ SYSTEM_UPCASE$CHAR$$CHAR:
 	movzbl	-4(%ebp),%eax
 	subl	$97,%eax
 	cmpl	$26,%eax
-	jb	Lj2204
-Lj2204:
-	jc	Lj2202
-	jmp	Lj2203
-Lj2202:
+	jb	Lj2157
+Lj2157:
+	jc	Lj2155
+	jmp	Lj2156
+Lj2155:
 	movzbl	-4(%ebp),%eax
 	subl	$32,%eax
 	movb	%al,-5(%ebp)
-	jmp	Lj2207
-Lj2203:
+	jmp	Lj2160
+Lj2156:
 	movb	-4(%ebp),%al
 	movb	%al,-5(%ebp)
-Lj2207:
+Lj2160:
 	movb	-5(%ebp),%al
 	leave
 	ret
@@ -7523,10 +7445,10 @@ SYSTEM_UPCASE$SHORTSTRING$$SHORTSTRING:
 	movzbl	(%eax),%ebx
 	movl	$1,-12(%ebp)
 	cmpl	-12(%ebp),%ebx
-	jl	Lj2215
+	jl	Lj2168
 	decl	-12(%ebp)
 	.balign 4,0x90
-Lj2216:
+Lj2169:
 	incl	-12(%ebp)
 	movl	-4(%ebp),%eax
 	movzbl	-12(%ebp),%edx
@@ -7536,8 +7458,8 @@ Lj2216:
 	movzbl	-12(%ebp),%ecx
 	movb	%al,(%edx,%ecx,1)
 	cmpl	-12(%ebp),%ebx
-	jg	Lj2216
-Lj2215:
+	jg	Lj2169
+Lj2168:
 	movl	-16(%ebp),%ebx
 	leave
 	ret
@@ -7553,19 +7475,19 @@ SYSTEM_LOWERCASE$CHAR$$CHAR:
 	movzbl	-4(%ebp),%eax
 	subl	$65,%eax
 	cmpl	$26,%eax
-	jb	Lj2225
-Lj2225:
-	jc	Lj2223
-	jmp	Lj2224
-Lj2223:
+	jb	Lj2178
+Lj2178:
+	jc	Lj2176
+	jmp	Lj2177
+Lj2176:
 	movzbl	-4(%ebp),%eax
 	addl	$32,%eax
 	movb	%al,-5(%ebp)
-	jmp	Lj2228
-Lj2224:
+	jmp	Lj2181
+Lj2177:
 	movb	-4(%ebp),%al
 	movb	%al,-5(%ebp)
-Lj2228:
+Lj2181:
 	movb	-5(%ebp),%al
 	leave
 	ret
@@ -7588,10 +7510,10 @@ SYSTEM_LOWERCASE$SHORTSTRING$$SHORTSTRING:
 	movzbl	(%eax),%ebx
 	movl	$1,-12(%ebp)
 	cmpl	-12(%ebp),%ebx
-	jl	Lj2236
+	jl	Lj2189
 	decl	-12(%ebp)
 	.balign 4,0x90
-Lj2237:
+Lj2190:
 	incl	-12(%ebp)
 	movl	-4(%ebp),%eax
 	movzbl	-12(%ebp),%edx
@@ -7601,8 +7523,8 @@ Lj2237:
 	movzbl	-12(%ebp),%ecx
 	movb	%al,(%edx,%ecx,1)
 	cmpl	-12(%ebp),%ebx
-	jg	Lj2237
-Lj2236:
+	jg	Lj2190
+Lj2189:
 	movl	-16(%ebp),%ebx
 	leave
 	ret
@@ -7623,10 +7545,10 @@ SYSTEM_HEXSTR$LONGINT$BYTE$$SHORTSTRING:
 	movzbl	-8(%ebp),%eax
 	movl	%eax,-16(%ebp)
 	cmpl	$1,-16(%ebp)
-	jl	Lj2247
+	jl	Lj2200
 	incl	-16(%ebp)
 	.balign 4,0x90
-Lj2248:
+Lj2201:
 	decl	-16(%ebp)
 	movl	-4(%ebp),%eax
 	andl	$15,%eax
@@ -7638,8 +7560,8 @@ Lj2248:
 	shrl	$4,%eax
 	movl	%eax,-4(%ebp)
 	cmpl	$1,-16(%ebp)
-	jg	Lj2248
-Lj2247:
+	jg	Lj2201
+Lj2200:
 	leave
 	ret
 
@@ -7659,10 +7581,10 @@ SYSTEM_OCTSTR$LONGINT$BYTE$$SHORTSTRING:
 	movzbl	-8(%ebp),%eax
 	movl	%eax,-16(%ebp)
 	cmpl	$1,-16(%ebp)
-	jl	Lj2258
+	jl	Lj2211
 	incl	-16(%ebp)
 	.balign 4,0x90
-Lj2259:
+Lj2212:
 	decl	-16(%ebp)
 	movl	-4(%ebp),%eax
 	andl	$7,%eax
@@ -7674,8 +7596,8 @@ Lj2259:
 	shrl	$3,%eax
 	movl	%eax,-4(%ebp)
 	cmpl	$1,-16(%ebp)
-	jg	Lj2259
-Lj2258:
+	jg	Lj2212
+Lj2211:
 	leave
 	ret
 
@@ -7695,10 +7617,10 @@ SYSTEM_BINSTR$LONGINT$BYTE$$SHORTSTRING:
 	movzbl	-8(%ebp),%eax
 	movl	%eax,-16(%ebp)
 	cmpl	$1,-16(%ebp)
-	jl	Lj2269
+	jl	Lj2222
 	incl	-16(%ebp)
 	.balign 4,0x90
-Lj2270:
+Lj2223:
 	decl	-16(%ebp)
 	movl	-4(%ebp),%eax
 	andl	$1,%eax
@@ -7710,8 +7632,8 @@ Lj2270:
 	shrl	$1,%eax
 	movl	%eax,-4(%ebp)
 	cmpl	$1,-16(%ebp)
-	jg	Lj2270
-Lj2269:
+	jg	Lj2223
+Lj2222:
 	leave
 	ret
 
@@ -7730,10 +7652,10 @@ SYSTEM_HEXSTR$INT64$BYTE$$SHORTSTRING:
 	movzbl	-4(%ebp),%eax
 	movl	%eax,-12(%ebp)
 	cmpl	$1,-12(%ebp)
-	jl	Lj2280
+	jl	Lj2233
 	incl	-12(%ebp)
 	.balign 4,0x90
-Lj2281:
+Lj2234:
 	decl	-12(%ebp)
 	movl	8(%ebp),%eax
 	movl	12(%ebp),%edx
@@ -7750,8 +7672,8 @@ Lj2281:
 	movl	%eax,8(%ebp)
 	movl	%edx,12(%ebp)
 	cmpl	$1,-12(%ebp)
-	jg	Lj2281
-Lj2280:
+	jg	Lj2234
+Lj2233:
 	leave
 	ret	$8
 
@@ -7770,10 +7692,10 @@ SYSTEM_OCTSTR$INT64$BYTE$$SHORTSTRING:
 	movzbl	-4(%ebp),%eax
 	movl	%eax,-12(%ebp)
 	cmpl	$1,-12(%ebp)
-	jl	Lj2291
+	jl	Lj2244
 	incl	-12(%ebp)
 	.balign 4,0x90
-Lj2292:
+Lj2245:
 	decl	-12(%ebp)
 	movl	8(%ebp),%eax
 	movl	12(%ebp),%edx
@@ -7790,8 +7712,8 @@ Lj2292:
 	movl	%eax,8(%ebp)
 	movl	%edx,12(%ebp)
 	cmpl	$1,-12(%ebp)
-	jg	Lj2292
-Lj2291:
+	jg	Lj2245
+Lj2244:
 	leave
 	ret	$8
 
@@ -7810,10 +7732,10 @@ SYSTEM_BINSTR$INT64$BYTE$$SHORTSTRING:
 	movzbl	-4(%ebp),%eax
 	movl	%eax,-12(%ebp)
 	cmpl	$1,-12(%ebp)
-	jl	Lj2302
+	jl	Lj2255
 	incl	-12(%ebp)
 	.balign 4,0x90
-Lj2303:
+Lj2256:
 	decl	-12(%ebp)
 	movl	8(%ebp),%eax
 	movl	12(%ebp),%edx
@@ -7831,8 +7753,8 @@ Lj2303:
 	movl	%edx,8(%ebp)
 	movl	%eax,12(%ebp)
 	cmpl	$1,-12(%ebp)
-	jg	Lj2303
-Lj2302:
+	jg	Lj2256
+Lj2255:
 	leave
 	ret	$8
 
@@ -7903,7 +7825,7 @@ SYSTEM_HEXSTR$POINTER$$SHORTSTRING:
 	movl	$8,-12(%ebp)
 	incl	-12(%ebp)
 	.balign 4,0x90
-Lj2340:
+Lj2293:
 	decl	-12(%ebp)
 	movl	-16(%ebp),%eax
 	andl	$15,%eax
@@ -7915,7 +7837,7 @@ Lj2340:
 	shrl	$4,%eax
 	movl	%eax,-16(%ebp)
 	cmpl	$1,-12(%ebp)
-	jg	Lj2340
+	jg	Lj2293
 	leave
 	ret
 
@@ -7958,9 +7880,9 @@ FPC_SHORTSTR_SINT:
 	movl	-12(%ebp),%eax
 	movzbl	(%eax),%eax
 	cmpl	-8(%ebp),%eax
-	jl	Lj2363
-	jmp	Lj2364
-Lj2363:
+	jl	Lj2316
+	jmp	Lj2317
+Lj2316:
 	movl	-12(%ebp),%eax
 	pushl	%eax
 	movl	-12(%ebp),%eax
@@ -7978,7 +7900,7 @@ Lj2363:
 	movl	8(%ebp),%edx
 	movl	-12(%ebp),%eax
 	call	fpc_shortstr_to_shortstr
-Lj2364:
+Lj2317:
 	leave
 	ret	$4
 
@@ -8001,9 +7923,9 @@ FPC_SHORTSTR_UINT:
 	movl	-12(%ebp),%eax
 	movzbl	(%eax),%eax
 	cmpl	-8(%ebp),%eax
-	jl	Lj2391
-	jmp	Lj2392
-Lj2391:
+	jl	Lj2344
+	jmp	Lj2345
+Lj2344:
 	movl	-12(%ebp),%eax
 	pushl	%eax
 	movl	-12(%ebp),%eax
@@ -8021,7 +7943,7 @@ Lj2391:
 	movl	8(%ebp),%edx
 	movl	-12(%ebp),%eax
 	call	fpc_shortstr_to_shortstr
-Lj2392:
+Lj2345:
 	leave
 	ret	$4
 
@@ -8045,9 +7967,9 @@ FPC_SHORTSTR_QWORD:
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	cmpl	-4(%ebp),%eax
-	jl	Lj2419
-	jmp	Lj2420
-Lj2419:
+	jl	Lj2372
+	jmp	Lj2373
+Lj2372:
 	movl	-8(%ebp),%eax
 	pushl	%eax
 	movl	-8(%ebp),%eax
@@ -8065,7 +7987,7 @@ Lj2419:
 	movl	-12(%ebp),%edx
 	movl	-8(%ebp),%eax
 	call	fpc_shortstr_to_shortstr
-Lj2420:
+Lj2373:
 	leave
 	ret	$8
 
@@ -8089,9 +8011,9 @@ FPC_SHORTSTR_INT64:
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	cmpl	-4(%ebp),%eax
-	jl	Lj2447
-	jmp	Lj2448
-Lj2447:
+	jl	Lj2400
+	jmp	Lj2401
+Lj2400:
 	movl	-8(%ebp),%eax
 	pushl	%eax
 	movl	-8(%ebp),%eax
@@ -8109,7 +8031,7 @@ Lj2447:
 	movl	-12(%ebp),%edx
 	movl	-8(%ebp),%eax
 	call	fpc_shortstr_to_shortstr
-Lj2448:
+Lj2401:
 	leave
 	ret	$8
 
@@ -8125,21 +8047,21 @@ SYSTEM_STR_REAL$LONGINT$LONGINT$EXTENDED$TREAL_TYPE$OPENSTRING:
 	movl	%ecx,-12(%ebp)
 	movl	-12(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj2475
+	je	Lj2428
 	decl	%eax
-	je	Lj2476
+	je	Lj2429
 	decl	%eax
-	jb	Lj2474
+	jb	Lj2427
 	subl	$1,%eax
-	jbe	Lj2477
+	jbe	Lj2430
 	decl	%eax
-	je	Lj2478
+	je	Lj2431
 	decl	%eax
-	je	Lj2479
+	je	Lj2432
 	decl	%eax
-	je	Lj2480
-	jmp	Lj2474
-Lj2475:
+	je	Lj2433
+	jmp	Lj2427
+Lj2428:
 	movl	$16,-344(%ebp)
 	movl	$8,-348(%ebp)
 	movl	$4,-352(%ebp)
@@ -8149,8 +8071,8 @@ Lj2475:
 	movl	%eax,-20(%ebp)
 	movw	_$SYSTEM$_Ld5+8,%ax
 	movw	%ax,-16(%ebp)
-	jmp	Lj2473
-Lj2476:
+	jmp	Lj2426
+Lj2429:
 	movl	$22,-344(%ebp)
 	movl	_$SYSTEM$_Ld6,%eax
 	movl	%eax,-24(%ebp)
@@ -8160,8 +8082,8 @@ Lj2476:
 	movw	%ax,-16(%ebp)
 	movl	$9,-348(%ebp)
 	movl	$5,-352(%ebp)
-	jmp	Lj2473
-Lj2477:
+	jmp	Lj2426
+Lj2430:
 	movl	$25,-344(%ebp)
 	movl	$10,-348(%ebp)
 	movl	$6,-352(%ebp)
@@ -8171,8 +8093,8 @@ Lj2477:
 	movl	%eax,-20(%ebp)
 	movw	_$SYSTEM$_Ld7+8,%ax
 	movw	%ax,-16(%ebp)
-	jmp	Lj2473
-Lj2478:
+	jmp	Lj2426
+Lj2431:
 	movl	$23,-344(%ebp)
 	movl	$10,-348(%ebp)
 	movl	$6,-352(%ebp)
@@ -8182,8 +8104,8 @@ Lj2478:
 	movl	%eax,-20(%ebp)
 	movw	_$SYSTEM$_Ld6+8,%ax
 	movw	%ax,-16(%ebp)
-	jmp	Lj2473
-Lj2479:
+	jmp	Lj2426
+Lj2432:
 	movl	$25,-344(%ebp)
 	movl	$10,-348(%ebp)
 	movl	$0,-352(%ebp)
@@ -8193,8 +8115,8 @@ Lj2479:
 	movl	%eax,-20(%ebp)
 	movw	_$SYSTEM$_Ld7+8,%ax
 	movw	%ax,-16(%ebp)
-	jmp	Lj2473
-Lj2480:
+	jmp	Lj2426
+Lj2433:
 	movl	$25,-344(%ebp)
 	movl	$10,-348(%ebp)
 	movl	$6,-352(%ebp)
@@ -8204,17 +8126,17 @@ Lj2480:
 	movl	%eax,-20(%ebp)
 	movw	_$SYSTEM$_Ld7+8,%ax
 	movw	%ax,-16(%ebp)
-	jmp	Lj2473
-Lj2474:
-Lj2473:
+	jmp	Lj2426
+Lj2427:
+Lj2426:
 	movl	-4(%ebp),%eax
 	cmpl	$-32767,%eax
-	je	Lj2529
-	jmp	Lj2530
-Lj2529:
+	je	Lj2482
+	jmp	Lj2483
+Lj2482:
 	movl	-344(%ebp),%eax
 	movl	%eax,-4(%ebp)
-Lj2530:
+Lj2483:
 	movw	24(%ebp),%ax
 	andw	$32768,%ax
 	movzwl	%ax,%eax
@@ -8227,60 +8149,60 @@ Lj2530:
 	seteb	-339(%ebp)
 	movl	16(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj2539
-	jmp	Lj2538
-Lj2539:
+	je	Lj2492
+	jmp	Lj2491
+Lj2492:
 	movl	20(%ebp),%eax
 	andl	$2147483647,%eax
 	testl	%eax,%eax
-	je	Lj2537
-	jmp	Lj2538
-Lj2537:
+	je	Lj2490
+	jmp	Lj2491
+Lj2490:
 	movb	$1,-338(%ebp)
-	jmp	Lj2540
-Lj2538:
+	jmp	Lj2493
+Lj2491:
 	movb	$0,-338(%ebp)
-Lj2540:
+Lj2493:
 	cmpb	$0,-339(%ebp)
-	jne	Lj2541
-	jmp	Lj2542
-Lj2541:
+	jne	Lj2494
+	jmp	Lj2495
+Lj2494:
 	cmpb	$0,-338(%ebp)
-	jne	Lj2543
-	jmp	Lj2544
-Lj2543:
+	jne	Lj2496
+	jmp	Lj2497
+Lj2496:
 	cmpb	$0,-336(%ebp)
-	jne	Lj2545
-	jmp	Lj2546
-Lj2545:
+	jne	Lj2498
+	jmp	Lj2499
+Lj2498:
 	leal	-324(%ebp),%eax
 	movl	$_$SYSTEM$_Ld8,%ecx
 	movl	$255,%edx
 	call	fpc_shortstr_to_shortstr
-	jmp	Lj2553
-Lj2546:
+	jmp	Lj2506
+Lj2499:
 	leal	-324(%ebp),%eax
 	movl	$_$SYSTEM$_Ld9,%ecx
 	movl	$255,%edx
 	call	fpc_shortstr_to_shortstr
-Lj2553:
-	jmp	Lj2560
-Lj2544:
+Lj2506:
+	jmp	Lj2513
+Lj2497:
 	leal	-324(%ebp),%eax
 	movl	$_$SYSTEM$_Ld10,%ecx
 	movl	$255,%edx
 	call	fpc_shortstr_to_shortstr
-Lj2560:
-	jmp	Lj2567
-Lj2542:
+Lj2513:
+	jmp	Lj2520
+Lj2495:
 	cmpb	$0,-336(%ebp)
-	jne	Lj2568
-	jmp	Lj2569
-Lj2568:
+	jne	Lj2521
+	jmp	Lj2522
+Lj2521:
 	fldt	16(%ebp)
 	fchs
 	fstpt	16(%ebp)
-Lj2569:
+Lj2522:
 	movl	-344(%ebp),%edx
 	movl	-352(%ebp),%eax
 	subl	%eax,%edx
@@ -8288,47 +8210,47 @@ Lj2569:
 	movl	%edx,-68(%ebp)
 	movl	-8(%ebp),%eax
 	cmpl	-68(%ebp),%eax
-	jg	Lj2574
-	jmp	Lj2575
-Lj2574:
+	jg	Lj2527
+	jmp	Lj2528
+Lj2527:
 	movl	-68(%ebp),%eax
 	movl	%eax,-8(%ebp)
-Lj2575:
+Lj2528:
 	movl	-8(%ebp),%eax
 	cmpl	$0,%eax
-	jl	Lj2578
-	jmp	Lj2579
-Lj2578:
+	jl	Lj2531
+	jmp	Lj2532
+Lj2531:
 	movl	-4(%ebp),%eax
 	cmpl	$0,%eax
-	jge	Lj2582
-	jmp	Lj2581
-Lj2582:
+	jge	Lj2535
+	jmp	Lj2534
+Lj2535:
 	movl	-4(%ebp),%eax
 	cmpl	-348(%ebp),%eax
-	jl	Lj2580
-	jmp	Lj2581
-Lj2580:
+	jl	Lj2533
+	jmp	Lj2534
+Lj2533:
 	movl	-348(%ebp),%eax
 	movl	%eax,-4(%ebp)
-Lj2581:
+Lj2534:
 	movl	-4(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj2587
-	jmp	Lj2586
-Lj2587:
+	jg	Lj2540
+	jmp	Lj2539
+Lj2540:
 	movl	-4(%ebp),%eax
 	cmpl	-344(%ebp),%eax
-	jl	Lj2585
-	jmp	Lj2586
-Lj2585:
+	jl	Lj2538
+	jmp	Lj2539
+Lj2538:
 	movl	-4(%ebp),%edx
 	movl	-352(%ebp),%eax
 	subl	%eax,%edx
 	subl	$2,%edx
 	movl	%edx,-68(%ebp)
-Lj2586:
-Lj2579:
+Lj2539:
+Lj2532:
 	leal	-324(%ebp),%eax
 	movl	$_$SYSTEM$_Ld11,%ecx
 	movl	$255,%edx
@@ -8348,45 +8270,45 @@ Lj2579:
 	fcompp
 	fnstsw	%ax
 	sahf
-	ja	Lj2604
-	jmp	Lj2605
-Lj2604:
+	ja	Lj2557
+	jmp	Lj2558
+Lj2557:
 	movzwl	24(%ebp),%eax
 	pushl	%eax
 	pushl	20(%ebp)
 	pushl	16(%ebp)
 	call	fpc_frac_real
 	fstpt	16(%ebp)
-Lj2605:
+Lj2558:
 	movl	-8(%ebp),%eax
 	cmpl	$0,%eax
-	jge	Lj2612
-	jmp	Lj2611
-Lj2612:
+	jge	Lj2565
+	jmp	Lj2564
+Lj2565:
 	movl	-68(%ebp),%eax
 	cmpl	-8(%ebp),%eax
-	jg	Lj2610
-	jmp	Lj2611
-Lj2610:
+	jg	Lj2563
+	jmp	Lj2564
+Lj2563:
 	movl	-8(%ebp),%eax
 	movl	%eax,-68(%ebp)
-Lj2611:
+Lj2564:
 	movl	-52(%ebp),%eax
 	cmpl	$2,%eax
-	je	Lj2617
-	jmp	Lj2616
-Lj2617:
+	je	Lj2570
+	jmp	Lj2569
+Lj2570:
 	fldz
 	fldt	16(%ebp)
 	fcompp
 	fnstsw	%ax
 	sahf
-	jne	Lj2615
-	jmp	Lj2616
-Lj2615:
-	jmp	Lj2619
+	jne	Lj2568
+	jmp	Lj2569
+Lj2568:
+	jmp	Lj2572
 	.balign 4,0x90
-Lj2618:
+Lj2571:
 	fldt	_$SYSTEM$_Ld12
 	fldt	16(%ebp)
 	fmulp	%st,%st(1)
@@ -8394,12 +8316,12 @@ Lj2618:
 	decl	-64(%ebp)
 	movl	-8(%ebp),%eax
 	cmpl	$0,%eax
-	jge	Lj2623
-	jmp	Lj2624
-Lj2623:
+	jge	Lj2576
+	jmp	Lj2577
+Lj2576:
 	decl	-68(%ebp)
-Lj2624:
-Lj2619:
+Lj2577:
+Lj2572:
 	fldt	-24(%ebp)
 	fldt	_$SYSTEM$_Ld13
 	fsubp	%st,%st(1)
@@ -8407,18 +8329,18 @@ Lj2619:
 	fcompp
 	fnstsw	%ax
 	sahf
-	jb	Lj2618
-	jmp	Lj2620
-Lj2620:
+	jb	Lj2571
+	jmp	Lj2573
+Lj2573:
 	decl	-64(%ebp)
-Lj2616:
+Lj2569:
 	movl	-52(%ebp),%eax
 	movl	%eax,-56(%ebp)
 	movl	-68(%ebp),%eax
 	cmpl	$0,%eax
-	jge	Lj2627
-	jmp	Lj2628
-Lj2627:
+	jge	Lj2580
+	jmp	Lj2581
+Lj2580:
 	movl	_$SYSTEM$_Ld2,%eax
 	movl	%eax,-36(%ebp)
 	movl	_$SYSTEM$_Ld2+4,%eax
@@ -8430,47 +8352,47 @@ Lj2627:
 	movl	-68(%ebp),%eax
 	movl	$1,-60(%ebp)
 	cmpl	-60(%ebp),%eax
-	jl	Lj2634
+	jl	Lj2587
 	decl	-60(%ebp)
 	.balign 4,0x90
-Lj2635:
+Lj2588:
 	incl	-60(%ebp)
 	fldt	_$SYSTEM$_Ld12
 	fldt	-48(%ebp)
 	fmulp	%st,%st(1)
 	fstpt	-48(%ebp)
 	cmpl	-60(%ebp),%eax
-	jg	Lj2635
-Lj2634:
+	jg	Lj2588
+Lj2587:
 	fldt	-48(%ebp)
 	fldt	-36(%ebp)
 	fdivp	%st,%st(1)
 	fstpt	-36(%ebp)
 	movl	-12(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj2640
-	jmp	Lj2641
-Lj2640:
+	jne	Lj2593
+	jmp	Lj2594
+Lj2593:
 	fldt	-24(%ebp)
 	fldt	16(%ebp)
 	fmulp	%st,%st(1)
 	fldt	16(%ebp)
 	faddp	%st,%st(1)
 	fstpt	16(%ebp)
-Lj2641:
+Lj2594:
 	fldt	-36(%ebp)
 	fldt	16(%ebp)
 	fcompp
 	fnstsw	%ax
 	sahf
-	jae	Lj2644
-	jmp	Lj2645
-Lj2644:
+	jae	Lj2597
+	jmp	Lj2598
+Lj2597:
 	fldt	-36(%ebp)
 	fldt	16(%ebp)
 	faddp	%st,%st(1)
 	fstpt	16(%ebp)
-Lj2645:
+Lj2598:
 	movzwl	24(%ebp),%eax
 	pushl	%eax
 	pushl	20(%ebp)
@@ -8480,9 +8402,9 @@ Lj2645:
 	fcompp
 	fnstsw	%ax
 	sahf
-	je	Lj2648
-	jmp	Lj2649
-Lj2648:
+	je	Lj2601
+	jmp	Lj2602
+Lj2601:
 	movzbl	-52(%ebp),%eax
 	pushl	%eax
 	leal	-324(%ebp),%edx
@@ -8495,23 +8417,23 @@ Lj2648:
 	pushl	16(%ebp)
 	call	fpc_frac_real
 	fstpt	16(%ebp)
-Lj2649:
+Lj2602:
 	movl	-68(%ebp),%ebx
 	movl	$1,-60(%ebp)
 	cmpl	-60(%ebp),%ebx
-	jl	Lj2665
+	jl	Lj2618
 	decl	-60(%ebp)
 	.balign 4,0x90
-Lj2666:
+Lj2619:
 	incl	-60(%ebp)
 	fld1
 	fldt	16(%ebp)
 	fcompp
 	fnstsw	%ax
 	sahf
-	ja	Lj2667
-	jmp	Lj2668
-Lj2667:
+	ja	Lj2620
+	jmp	Lj2621
+Lj2620:
 	movzwl	24(%ebp),%eax
 	pushl	%eax
 	pushl	20(%ebp)
@@ -8520,13 +8442,13 @@ Lj2667:
 	fldt	_$SYSTEM$_Ld12
 	fmulp	%st,%st(1)
 	fstpt	16(%ebp)
-	jmp	Lj2673
-Lj2668:
+	jmp	Lj2626
+Lj2621:
 	fldt	_$SYSTEM$_Ld12
 	fldt	16(%ebp)
 	fmulp	%st,%st(1)
 	fstpt	16(%ebp)
-Lj2673:
+Lj2626:
 	incl	-52(%ebp)
 	fnstcw	-356(%ebp)
 	fnstcw	-354(%ebp)
@@ -8545,9 +8467,9 @@ Lj2673:
 	movzbl	-52(%ebp),%eax
 	movb	-324(%ebp,%eax,1),%al
 	cmpb	$57,%al
-	ja	Lj2678
-	jmp	Lj2679
-Lj2678:
+	ja	Lj2631
+	jmp	Lj2632
+Lj2631:
 	movzbl	-52(%ebp),%eax
 	movzbl	-324(%ebp,%eax,1),%eax
 	subl	$10,%eax
@@ -8560,52 +8482,52 @@ Lj2678:
 	movl	%ebp,%eax
 	movl	$255,%ecx
 	call	SYSTEM_STR_REAL$crcC5C66959_ROUNDSTR$OPENSTRING$BYTE
-Lj2679:
+Lj2632:
 	cmpl	-60(%ebp),%ebx
-	jg	Lj2666
-Lj2665:
+	jg	Lj2619
+Lj2618:
 	movl	-52(%ebp),%eax
 	movl	%eax,-56(%ebp)
-Lj2628:
+Lj2581:
 	movl	-56(%ebp),%ecx
 	leal	-324(%ebp),%eax
 	movl	$255,%edx
 	call	fpc_shortstr_setlength
 	movb	-322(%ebp),%al
 	cmpb	$48,%al
-	je	Lj2698
-	jmp	Lj2699
-Lj2698:
+	je	Lj2651
+	jmp	Lj2652
+Lj2651:
 	pushl	$1
 	leal	-324(%ebp),%eax
 	movl	$2,%ecx
 	movl	$255,%edx
 	call	SYSTEM_DELETE$OPENSTRING$LONGINT$LONGINT
-	jmp	Lj2708
-Lj2699:
+	jmp	Lj2661
+Lj2652:
 	incl	-64(%ebp)
-Lj2708:
+Lj2661:
 	cmpb	$0,-336(%ebp)
-	jne	Lj2709
-	jmp	Lj2710
-Lj2709:
+	jne	Lj2662
+	jmp	Lj2663
+Lj2662:
 	movb	$45,-323(%ebp)
-Lj2710:
+Lj2663:
 	movl	-8(%ebp),%eax
 	cmpl	$0,%eax
-	jl	Lj2713
-	jmp	Lj2715
-Lj2715:
+	jl	Lj2666
+	jmp	Lj2668
+Lj2668:
 	movl	-64(%ebp),%edx
 	movl	%edx,%eax
 	sarl	$31,%eax
 	cmpl	$0,%eax
-	jg	Lj2713
-	jl	Lj2714
+	jg	Lj2666
+	jl	Lj2667
 	cmpl	$35,%edx
-	ja	Lj2713
-	jmp	Lj2714
-Lj2713:
+	ja	Lj2666
+	jmp	Lj2667
+Lj2666:
 	pushl	$3
 	leal	-324(%ebp),%edx
 	movl	$255,%ecx
@@ -8624,9 +8546,9 @@ Lj2713:
 	subl	$2,%eax
 	movzbl	-335(%ebp),%edx
 	cmpl	%edx,%eax
-	jg	Lj2732
-	jmp	Lj2733
-Lj2732:
+	jg	Lj2685
+	jmp	Lj2686
+Lj2685:
 	leal	-335(%ebp),%eax
 	pushl	%eax
 	leal	-876(%ebp),%eax
@@ -8646,12 +8568,12 @@ Lj2732:
 	leal	-335(%ebp),%eax
 	movl	$10,%edx
 	call	fpc_shortstr_to_shortstr
-Lj2733:
+Lj2686:
 	movl	-64(%ebp),%eax
 	cmpl	$0,%eax
-	jl	Lj2756
-	jmp	Lj2757
-Lj2756:
+	jl	Lj2709
+	jmp	Lj2710
+Lj2709:
 	leal	-335(%ebp),%eax
 	pushl	%eax
 	leal	-620(%ebp),%eax
@@ -8662,8 +8584,8 @@ Lj2756:
 	leal	-335(%ebp),%eax
 	movl	$10,%edx
 	call	fpc_shortstr_to_shortstr
-	jmp	Lj2772
-Lj2757:
+	jmp	Lj2725
+Lj2710:
 	leal	-335(%ebp),%eax
 	pushl	%eax
 	leal	-620(%ebp),%eax
@@ -8674,7 +8596,7 @@ Lj2757:
 	leal	-335(%ebp),%eax
 	movl	$10,%edx
 	call	fpc_shortstr_to_shortstr
-Lj2772:
+Lj2725:
 	pushl	$2
 	leal	-324(%ebp),%eax
 	movl	%eax,-376(%ebp)
@@ -8690,28 +8612,28 @@ Lj2772:
 	leal	-324(%ebp),%eax
 	movl	$255,%edx
 	call	fpc_shortstr_concat_multi
-	jmp	Lj2801
-Lj2714:
+	jmp	Lj2754
+Lj2667:
 	movb	-336(%ebp),%al
 	testb	%al,%al
-	je	Lj2802
-	jmp	Lj2803
-Lj2802:
+	je	Lj2755
+	jmp	Lj2756
+Lj2755:
 	pushl	$1
 	leal	-324(%ebp),%eax
 	movl	$1,%ecx
 	movl	$255,%edx
 	call	SYSTEM_DELETE$OPENSTRING$LONGINT$LONGINT
 	movb	$2,-337(%ebp)
-	jmp	Lj2814
-Lj2803:
+	jmp	Lj2767
+Lj2756:
 	movb	$3,-337(%ebp)
-Lj2814:
+Lj2767:
 	movl	-64(%ebp),%eax
 	cmpl	$0,%eax
-	jge	Lj2817
-	jmp	Lj2818
-Lj2817:
+	jge	Lj2770
+	jmp	Lj2771
+Lj2770:
 	movzbl	-337(%ebp),%eax
 	movl	-64(%ebp),%edx
 	addl	%eax,%edx
@@ -8720,9 +8642,9 @@ Lj2817:
 	decl	%edx
 	movzbl	-324(%ebp),%eax
 	cmpl	%eax,%edx
-	jg	Lj2819
-	jmp	Lj2820
-Lj2819:
+	jg	Lj2772
+	jmp	Lj2773
+Lj2772:
 	leal	-620(%ebp),%eax
 	pushl	%eax
 	movzbl	-337(%ebp),%eax
@@ -8741,7 +8663,7 @@ Lj2819:
 	leal	-324(%ebp),%eax
 	movl	$255,%edx
 	call	fpc_shortstr_concat
-Lj2820:
+Lj2773:
 	movzbl	-337(%ebp),%edx
 	movl	-64(%ebp),%eax
 	addl	%edx,%eax
@@ -8750,8 +8672,8 @@ Lj2820:
 	movl	$255,%ecx
 	movb	$46,%al
 	call	SYSTEM_INSERT$CHAR$OPENSTRING$LONGINT
-	jmp	Lj2845
-Lj2818:
+	jmp	Lj2798
+Lj2771:
 	movl	-64(%ebp),%edx
 	movl	%edx,%eax
 	sarl	$31,%edx
@@ -8777,12 +8699,12 @@ Lj2818:
 	movl	$255,%ecx
 	movb	$46,%al
 	call	SYSTEM_INSERT$CHAR$OPENSTRING$LONGINT
-Lj2845:
+Lj2798:
 	movl	-8(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj2872
-	jmp	Lj2873
-Lj2872:
+	jg	Lj2825
+	jmp	Lj2826
+Lj2825:
 	leal	-324(%ebp),%edx
 	movb	$46,%al
 	call	SYSTEM_POS$CHAR$SHORTSTRING$$LONGINT
@@ -8792,8 +8714,8 @@ Lj2872:
 	leal	-324(%ebp),%eax
 	movl	$255,%edx
 	call	fpc_shortstr_setlength
-	jmp	Lj2884
-Lj2873:
+	jmp	Lj2837
+Lj2826:
 	leal	-324(%ebp),%edx
 	movb	$46,%al
 	call	SYSTEM_POS$CHAR$SHORTSTRING$$LONGINT
@@ -8802,14 +8724,14 @@ Lj2873:
 	leal	-324(%ebp),%eax
 	movl	$255,%edx
 	call	fpc_shortstr_setlength
-Lj2884:
-Lj2801:
-Lj2567:
+Lj2837:
+Lj2754:
+Lj2520:
 	movzbl	-324(%ebp),%eax
 	cmpl	-4(%ebp),%eax
-	jl	Lj2895
-	jmp	Lj2896
-Lj2895:
+	jl	Lj2848
+	jmp	Lj2849
+Lj2848:
 	leal	-324(%ebp),%eax
 	pushl	%eax
 	movzbl	-324(%ebp),%eax
@@ -8826,13 +8748,13 @@ Lj2895:
 	movl	8(%ebp),%edx
 	movl	12(%ebp),%eax
 	call	fpc_shortstr_to_shortstr
-	jmp	Lj2915
-Lj2896:
+	jmp	Lj2868
+Lj2849:
 	leal	-324(%ebp),%ecx
 	movl	8(%ebp),%edx
 	movl	12(%ebp),%eax
 	call	fpc_shortstr_to_shortstr
-Lj2915:
+Lj2868:
 	movl	-880(%ebp),%ebx
 	leave
 	ret	$20
@@ -8847,19 +8769,19 @@ SYSTEM_STR_REAL$crcC5C66959_GETINTPART$EXTENDED:
 	movl	$0,-192(%ebp)
 	movl	$0,-200(%ebp)
 	movb	$0,-201(%ebp)
-	jmp	Lj2929
+	jmp	Lj2882
 	.balign 4,0x90
-Lj2928:
+Lj2881:
 	incl	-192(%ebp)
 	incl	-200(%ebp)
 	movl	-192(%ebp),%eax
 	cmpl	$18,%eax
-	jg	Lj2931
-	jmp	Lj2932
-Lj2931:
+	jg	Lj2884
+	jmp	Lj2885
+Lj2884:
 	movl	$1,-192(%ebp)
 	movb	$1,-201(%ebp)
-Lj2932:
+Lj2885:
 	movl	-192(%ebp),%eax
 	imull	$10,%eax
 	movl	8(%ebp),%edx
@@ -8872,7 +8794,7 @@ Lj2932:
 	fldt	8(%ebp)
 	fdivp	%st,%st(1)
 	fstpt	8(%ebp)
-Lj2929:
+Lj2882:
 	movl	-4(%ebp),%eax
 	fld1
 	fldt	-24(%eax)
@@ -8881,26 +8803,26 @@ Lj2929:
 	fcompp
 	fnstsw	%ax
 	sahf
-	ja	Lj2928
-	jmp	Lj2930
-Lj2930:
+	ja	Lj2881
+	jmp	Lj2883
+Lj2883:
 	movl	-200(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj2941
-	jmp	Lj2942
-Lj2941:
-	jmp	Lj2471
-Lj2942:
+	je	Lj2894
+	jmp	Lj2895
+Lj2894:
+	jmp	Lj2424
+Lj2895:
 	movl	-192(%ebp),%eax
 	incl	%eax
 	movl	%eax,-196(%ebp)
 	movl	-196(%ebp),%eax
 	cmpl	$18,%eax
-	jg	Lj2945
-	jmp	Lj2946
-Lj2945:
+	jg	Lj2898
+	jmp	Lj2899
+Lj2898:
 	movl	$1,-196(%ebp)
-Lj2946:
+Lj2899:
 	movl	-4(%ebp),%eax
 	fldz
 	fstpt	-36(%eax)
@@ -8909,13 +8831,13 @@ Lj2946:
 	movl	-4(%ebp),%eax
 	movl	%edx,-64(%eax)
 	.balign 4,0x90
-Lj2953:
+Lj2906:
 	movl	-4(%ebp),%eax
 	movl	-68(%eax),%eax
 	cmpl	$0,%eax
-	jg	Lj2956
-	jmp	Lj2957
-Lj2956:
+	jg	Lj2909
+	jmp	Lj2910
+Lj2909:
 	fnstcw	-206(%ebp)
 	fnstcw	-204(%ebp)
 	orw	$3840,-206(%ebp)
@@ -8946,9 +8868,9 @@ Lj2956:
 	movzbl	-52(%eax),%eax
 	movb	-324(%edx,%eax,1),%al
 	cmpb	$57,%al
-	ja	Lj2962
-	jmp	Lj2963
-Lj2962:
+	ja	Lj2915
+	jmp	Lj2916
+Lj2915:
 	movl	-4(%ebp),%edx
 	movl	-4(%ebp),%eax
 	movzbl	-52(%eax),%eax
@@ -8967,8 +8889,8 @@ Lj2962:
 	movl	-4(%ebp),%eax
 	movl	$255,%ecx
 	call	SYSTEM_STR_REAL$crcC5C66959_ROUNDSTR$OPENSTRING$BYTE
-Lj2963:
-Lj2957:
+Lj2916:
+Lj2910:
 	movl	-192(%ebp),%eax
 	imull	$10,%eax
 	movzwl	-186(%ebp,%eax),%edx
@@ -8983,45 +8905,45 @@ Lj2957:
 	decl	-192(%ebp)
 	movl	-192(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj2978
-	jmp	Lj2979
-Lj2978:
+	je	Lj2931
+	jmp	Lj2932
+Lj2931:
 	movl	$18,-192(%ebp)
-Lj2979:
+Lj2932:
 	cmpb	$0,-201(%ebp)
-	jne	Lj2984
-	jmp	Lj2983
-Lj2984:
+	jne	Lj2937
+	jmp	Lj2936
+Lj2937:
 	movl	-192(%ebp),%eax
 	cmpl	-196(%ebp),%eax
-	je	Lj2955
-	jmp	Lj2983
-Lj2983:
+	je	Lj2908
+	jmp	Lj2936
+Lj2936:
 	movb	-201(%ebp),%al
 	testb	%al,%al
-	je	Lj2985
-	jmp	Lj2982
-Lj2985:
+	je	Lj2938
+	jmp	Lj2935
+Lj2938:
 	movl	-192(%ebp),%eax
 	cmpl	$18,%eax
-	je	Lj2955
-	jmp	Lj2982
-Lj2982:
+	je	Lj2908
+	jmp	Lj2935
+Lj2935:
 	movl	-4(%ebp),%eax
 	movl	-68(%eax),%eax
 	testl	%eax,%eax
-	je	Lj2955
-	jmp	Lj2953
-Lj2955:
+	je	Lj2908
+	jmp	Lj2906
+Lj2908:
 	cmpb	$0,-201(%ebp)
-	jne	Lj2986
-	jmp	Lj2988
-Lj2988:
+	jne	Lj2939
+	jmp	Lj2941
+Lj2941:
 	movl	-192(%ebp),%eax
 	cmpl	$18,%eax
-	jl	Lj2986
-	jmp	Lj2987
-Lj2986:
+	jl	Lj2939
+	jmp	Lj2940
+Lj2939:
 	movl	-4(%ebp),%eax
 	movl	$-1,-68(%eax)
 	movl	-192(%ebp),%eax
@@ -9037,9 +8959,9 @@ Lj2986:
 	fcompp
 	fnstsw	%ax
 	sahf
-	jbe	Lj2991
-	jmp	Lj2992
-Lj2991:
+	jbe	Lj2944
+	jmp	Lj2945
+Lj2944:
 	movl	-4(%ebp),%eax
 	movzbl	-52(%eax),%eax
 	pushl	%eax
@@ -9048,9 +8970,9 @@ Lj2991:
 	movl	-4(%ebp),%eax
 	movl	$255,%ecx
 	call	SYSTEM_STR_REAL$crcC5C66959_ROUNDSTR$OPENSTRING$BYTE
-Lj2992:
-Lj2987:
-Lj2471:
+Lj2945:
+Lj2940:
+Lj2424:
 	leave
 	ret	$12
 
@@ -9065,7 +8987,7 @@ SYSTEM_STR_REAL$crcC5C66959_ROUNDSTR$OPENSTRING$BYTE:
 	movl	%ecx,-8(%ebp)
 	movl	$1,-16(%ebp)
 	.balign 4,0x90
-Lj3005:
+Lj2958:
 	movl	-4(%ebp),%edx
 	movzbl	8(%ebp),%eax
 	movzbl	(%edx,%eax,1),%eax
@@ -9079,20 +9001,20 @@ Lj3005:
 	movzbl	8(%ebp),%edx
 	movb	(%eax,%edx,1),%al
 	cmpb	$57,%al
-	ja	Lj3012
-	jmp	Lj3013
-Lj3012:
+	ja	Lj2965
+	jmp	Lj2966
+Lj2965:
 	movl	-4(%ebp),%eax
 	movzbl	8(%ebp),%edx
 	movb	$48,(%eax,%edx,1)
 	movl	$1,-16(%ebp)
-Lj3013:
+Lj2966:
 	decb	8(%ebp)
 	movl	-16(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj3007
-	jmp	Lj3005
-Lj3007:
+	je	Lj2960
+	jmp	Lj2958
+Lj2960:
 	leave
 	ret	$4
 
@@ -9120,25 +9042,25 @@ SYSTEM_STR_REAL_ISO$LONGINT$LONGINT$EXTENDED$TREAL_TYPE$OPENSTRING:
 	movzbw	(%eax),%ax
 	movw	$1,-14(%ebp)
 	cmpw	-14(%ebp),%ax
-	jl	Lj3033
+	jl	Lj2986
 	decw	-14(%ebp)
 	.balign 4,0x90
-Lj3034:
+Lj2987:
 	incw	-14(%ebp)
 	movl	12(%ebp),%edx
 	movzbl	-14(%ebp),%ecx
 	movb	(%edx,%ecx,1),%dl
 	cmpb	$69,%dl
-	je	Lj3035
-	jmp	Lj3036
-Lj3035:
+	je	Lj2988
+	jmp	Lj2989
+Lj2988:
 	movl	12(%ebp),%ecx
 	movzbl	-14(%ebp),%edx
 	movb	$101,(%ecx,%edx,1)
-Lj3036:
+Lj2989:
 	cmpw	-14(%ebp),%ax
-	jg	Lj3034
-Lj3033:
+	jg	Lj2987
+Lj2986:
 	leave
 	ret	$20
 
@@ -9184,9 +9106,9 @@ SYSTEM_FPC_SHORTSTR_ENUM_INTERN$LONGINT$LONGINT$POINTER$POINTER$OPENSTRING$$LONG
 	movl	-20(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj3059
-	jmp	Lj3060
-Lj3059:
+	je	Lj3012
+	jmp	Lj3013
+Lj3012:
 	movl	-12(%ebp),%eax
 	movl	%eax,-24(%ebp)
 	movl	-24(%ebp),%edx
@@ -9205,16 +9127,16 @@ Lj3059:
 	leal	1(%eax),%eax
 	movl	-4(%ebp),%edx
 	cmpl	(%eax),%edx
-	jl	Lj3074
-	jmp	Lj3076
-Lj3076:
+	jl	Lj3027
+	jmp	Lj3029
+Lj3029:
 	movl	-4(%ebp),%edx
 	cmpl	4(%eax),%edx
-	jg	Lj3074
-	jmp	Lj3075
-Lj3074:
-	jmp	Lj3053
-Lj3075:
+	jg	Lj3027
+	jmp	Lj3028
+Lj3027:
+	jmp	Lj3006
+Lj3028:
 	movl	(%eax),%edx
 	subl	%edx,-4(%ebp)
 	movl	-20(%ebp),%edx
@@ -9222,17 +9144,17 @@ Lj3075:
 	movl	4(%edx,%eax,4),%eax
 	movl	%eax,-32(%ebp)
 	cmpl	$0,-32(%ebp)
-	jne	Lj3080
-	jmp	Lj3079
-Lj3079:
-	jmp	Lj3053
-Lj3080:
+	jne	Lj3033
+	jmp	Lj3032
+Lj3032:
+	jmp	Lj3006
+Lj3033:
 	movl	-32(%ebp),%ecx
 	movl	8(%ebp),%edx
 	movl	12(%ebp),%eax
 	call	fpc_shortstr_to_shortstr
-	jmp	Lj3087
-Lj3060:
+	jmp	Lj3040
+Lj3013:
 	movl	-20(%ebp),%eax
 	leal	8(%eax),%eax
 	movl	%eax,-36(%ebp)
@@ -9242,7 +9164,7 @@ Lj3060:
 	decl	%eax
 	movl	%eax,-52(%ebp)
 	.balign 4,0x90
-Lj3094:
+Lj3047:
 	movl	-56(%ebp),%eax
 	movl	-52(%ebp),%edx
 	addl	%edx,%eax
@@ -9256,51 +9178,51 @@ Lj3094:
 	movl	-48(%ebp),%eax
 	movl	(%edx,%eax,8),%eax
 	cmpl	-4(%ebp),%eax
-	jl	Lj3099
-	jmp	Lj3100
-Lj3099:
+	jl	Lj3052
+	jmp	Lj3053
+Lj3052:
 	movl	-48(%ebp),%eax
 	incl	%eax
 	movl	%eax,-56(%ebp)
-	jmp	Lj3103
-Lj3100:
+	jmp	Lj3056
+Lj3053:
 	movl	-36(%ebp),%eax
 	movl	-48(%ebp),%edx
 	movl	(%eax,%edx,8),%eax
 	cmpl	-4(%ebp),%eax
-	jg	Lj3104
-	jmp	Lj3105
-Lj3104:
+	jg	Lj3057
+	jmp	Lj3058
+Lj3057:
 	movl	-48(%ebp),%eax
 	decl	%eax
 	movl	%eax,-52(%ebp)
-	jmp	Lj3108
-Lj3105:
-	jmp	Lj3096
-Lj3108:
-Lj3103:
+	jmp	Lj3061
+Lj3058:
+	jmp	Lj3049
+Lj3061:
+Lj3056:
 	movl	-56(%ebp),%eax
 	cmpl	-52(%ebp),%eax
-	jg	Lj3109
-	jmp	Lj3110
-Lj3109:
-	jmp	Lj3053
-Lj3110:
-	jmp	Lj3094
-Lj3096:
+	jg	Lj3062
+	jmp	Lj3063
+Lj3062:
+	jmp	Lj3006
+Lj3063:
+	jmp	Lj3047
+Lj3049:
 	movl	-36(%ebp),%eax
 	movl	-48(%ebp),%edx
 	movl	4(%eax,%edx,8),%ecx
 	movl	8(%ebp),%edx
 	movl	12(%ebp),%eax
 	call	fpc_shortstr_to_shortstr
-Lj3087:
+Lj3040:
 	movl	12(%ebp),%eax
 	movzbl	(%eax),%eax
 	cmpl	-8(%ebp),%eax
-	jl	Lj3117
-	jmp	Lj3118
-Lj3117:
+	jl	Lj3070
+	jmp	Lj3071
+Lj3070:
 	movl	12(%ebp),%eax
 	movzbl	(%eax),%edx
 	movl	-8(%ebp),%eax
@@ -9310,10 +9232,10 @@ Lj3117:
 	movl	-40(%ebp),%edx
 	movl	$1,-44(%ebp)
 	cmpl	-44(%ebp),%edx
-	jl	Lj3122
+	jl	Lj3075
 	decl	-44(%ebp)
 	.balign 4,0x90
-Lj3123:
+Lj3076:
 	incl	-44(%ebp)
 	movl	12(%ebp),%ecx
 	movl	12(%ebp),%eax
@@ -9323,14 +9245,14 @@ Lj3123:
 	movzbl	%al,%eax
 	movb	$32,(%ecx,%eax,1)
 	cmpl	-44(%ebp),%edx
-	jg	Lj3123
-Lj3122:
+	jg	Lj3076
+Lj3075:
 	movl	12(%ebp),%eax
 	movb	-40(%ebp),%dl
 	addb	%dl,(%eax)
-Lj3118:
+Lj3071:
 	movl	$0,-16(%ebp)
-Lj3053:
+Lj3006:
 	movl	-16(%ebp),%eax
 	movl	-68(%ebp),%ebx
 	leave
@@ -9359,12 +9281,12 @@ FPC_SHORTSTR_ENUM:
 	movl	%eax,-16(%ebp)
 	movl	-16(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj3144
-	jmp	Lj3145
-Lj3144:
+	jne	Lj3097
+	jmp	Lj3098
+Lj3097:
 	movw	$107,%ax
 	call	SYSTEM_RUNERROR$WORD
-Lj3145:
+Lj3098:
 	leave
 	ret	$12
 
@@ -9381,26 +9303,26 @@ FPC_SHORTSTR_BOOL:
 	movl	%edx,-8(%ebp)
 	movl	%ecx,-12(%ebp)
 	cmpb	$0,-4(%ebp)
-	jne	Lj3150
-	jmp	Lj3151
-Lj3150:
+	jne	Lj3103
+	jmp	Lj3104
+Lj3103:
 	movl	8(%ebp),%edx
 	movl	-12(%ebp),%eax
 	movl	$_$SYSTEM$_Ld19,%ecx
 	call	fpc_shortstr_to_shortstr
-	jmp	Lj3158
-Lj3151:
+	jmp	Lj3111
+Lj3104:
 	movl	8(%ebp),%edx
 	movl	-12(%ebp),%eax
 	movl	$_$SYSTEM$_Ld20,%ecx
 	call	fpc_shortstr_to_shortstr
-Lj3158:
+Lj3111:
 	movl	-12(%ebp),%eax
 	movzbl	(%eax),%eax
 	cmpl	-8(%ebp),%eax
-	jl	Lj3165
-	jmp	Lj3166
-Lj3165:
+	jl	Lj3118
+	jmp	Lj3119
+Lj3118:
 	movl	-12(%ebp),%eax
 	pushl	%eax
 	movl	-12(%ebp),%eax
@@ -9418,7 +9340,7 @@ Lj3165:
 	movl	8(%ebp),%edx
 	movl	-12(%ebp),%eax
 	call	fpc_shortstr_to_shortstr
-Lj3166:
+Lj3119:
 	leave
 	ret	$4
 
@@ -9441,29 +9363,29 @@ FPC_SHORTSTR_CURRENCY:
 	call	SYSTEM_FILLCHAR$formal$LONGINT$CHAR
 	movl	-4(%ebp),%eax
 	cmpl	$-32767,%eax
-	je	Lj3193
-	jmp	Lj3194
-Lj3193:
+	je	Lj3146
+	jmp	Lj3147
+Lj3146:
 	movl	$25,-4(%ebp)
-Lj3194:
+Lj3147:
 	leal	12(%ebp),%eax
 	movl	(%eax),%edx
 	movl	4(%eax),%eax
 	cmpl	$0,%eax
-	jg	Lj3197
-	jl	Lj3198
+	jg	Lj3150
+	jl	Lj3151
 	cmpl	$0,%edx
-	jae	Lj3197
-	jmp	Lj3198
-Lj3197:
+	jae	Lj3150
+	jmp	Lj3151
+Lj3150:
 	leal	12(%ebp),%eax
 	movl	(%eax),%edx
 	movl	%edx,-72(%ebp)
 	movl	4(%eax),%eax
 	movl	%eax,-68(%ebp)
 	movl	$0,-56(%ebp)
-	jmp	Lj3203
-Lj3198:
+	jmp	Lj3156
+Lj3151:
 	movl	$1,-56(%ebp)
 	leal	12(%ebp),%eax
 	movl	(%eax),%edx
@@ -9473,10 +9395,10 @@ Lj3198:
 	sbbl	$-1,%eax
 	movl	%edx,-72(%ebp)
 	movl	%eax,-68(%ebp)
-Lj3203:
+Lj3156:
 	movl	$0,-52(%ebp)
 	.balign 4,0x90
-Lj3210:
+Lj3163:
 	incl	-52(%ebp)
 	pushl	$0
 	pushl	$10
@@ -9497,78 +9419,78 @@ Lj3210:
 	movl	-72(%ebp),%eax
 	movl	-68(%ebp),%edx
 	cmpl	$0,%edx
-	jne	Lj3210
+	jne	Lj3163
 	cmpl	$0,%eax
-	jne	Lj3210
-	jmp	Lj3212
-Lj3212:
+	jne	Lj3163
+	jmp	Lj3165
+Lj3165:
 	movl	-52(%ebp),%eax
 	movl	%eax,-48(%ebp)
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj3227
-	jmp	Lj3228
-Lj3227:
+	jne	Lj3180
+	jmp	Lj3181
+Lj3180:
 	incl	-48(%ebp)
-Lj3228:
+Lj3181:
 	movl	-8(%ebp),%eax
 	cmpl	$0,%eax
-	jl	Lj3229
-	jmp	Lj3230
-Lj3229:
+	jl	Lj3182
+	jmp	Lj3183
+Lj3182:
 	addl	$5,-48(%ebp)
 	movl	-4(%ebp),%eax
 	cmpl	$8,%eax
-	jl	Lj3231
-	jmp	Lj3232
-Lj3231:
+	jl	Lj3184
+	jmp	Lj3185
+Lj3184:
 	movl	$8,-4(%ebp)
-Lj3232:
+Lj3185:
 	movl	-48(%ebp),%edx
 	movl	-4(%ebp),%eax
 	subl	%eax,%edx
 	movl	%edx,-60(%ebp)
 	movl	-48(%ebp),%eax
 	cmpl	-4(%ebp),%eax
-	jl	Lj3237
-	jmp	Lj3238
-Lj3237:
+	jl	Lj3190
+	jmp	Lj3191
+Lj3190:
 	movl	-4(%ebp),%eax
 	movl	%eax,-48(%ebp)
-Lj3238:
+Lj3191:
 	movl	-60(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj3241
-	jmp	Lj3242
-Lj3241:
+	jg	Lj3194
+	jmp	Lj3195
+Lj3194:
 	movl	-4(%ebp),%eax
 	movl	%eax,-48(%ebp)
 	movl	-52(%ebp),%edx
 	movl	-60(%ebp),%eax
 	subl	%eax,%edx
 	movl	%edx,-64(%ebp)
-	jmp	Lj3247
-Lj3242:
+	jmp	Lj3200
+Lj3195:
 	movl	-52(%ebp),%eax
 	movl	%eax,-64(%ebp)
-Lj3247:
-	jmp	Lj3250
-Lj3230:
+Lj3200:
+	jmp	Lj3203
+Lj3183:
 	movl	-56(%ebp),%eax
 	addl	%eax,-48(%ebp)
-	jmp	Lj3252
+	jmp	Lj3205
 	.balign 4,0x90
-Lj3251:
+Lj3204:
 	incl	-48(%ebp)
 	incl	-52(%ebp)
 	movl	-52(%ebp),%eax
 	movb	$48,-32(%ebp,%eax,1)
-Lj3252:
+Lj3205:
 	movl	-52(%ebp),%eax
 	cmpl	$5,%eax
-	jl	Lj3251
-	jmp	Lj3253
-Lj3253:
+	jl	Lj3204
+	jmp	Lj3206
+Lj3206:
 	movl	-8(%ebp),%edx
 	movl	$4,%eax
 	subl	%edx,%eax
@@ -9578,51 +9500,51 @@ Lj3253:
 	movl	%eax,-64(%ebp)
 	movl	-64(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj3260
-	jmp	Lj3261
-Lj3260:
+	jne	Lj3213
+	jmp	Lj3214
+Lj3213:
 	movl	-64(%ebp),%eax
 	cmpl	$4,%eax
-	jg	Lj3262
-	jmp	Lj3263
-Lj3262:
+	jg	Lj3215
+	jmp	Lj3216
+Lj3215:
 	movl	$4,-64(%ebp)
-Lj3263:
+Lj3216:
 	incl	-64(%ebp)
-Lj3261:
+Lj3214:
 	movl	-60(%ebp),%eax
 	subl	%eax,-48(%ebp)
-Lj3250:
+Lj3203:
 	movl	-60(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj3266
-	jmp	Lj3267
-Lj3266:
+	jg	Lj3219
+	jmp	Lj3220
+Lj3219:
 	movl	$1,-36(%ebp)
 	movl	$0,-44(%ebp)
 	movl	-60(%ebp),%edx
 	movl	$0,-40(%ebp)
 	cmpl	-40(%ebp),%edx
-	jl	Lj3273
+	jl	Lj3226
 	decl	-40(%ebp)
 	.balign 4,0x90
-Lj3274:
+Lj3227:
 	incl	-40(%ebp)
 	movl	-44(%ebp),%eax
 	cmpl	$1,%eax
-	je	Lj3277
-	jmp	Lj3276
-Lj3277:
+	je	Lj3230
+	jmp	Lj3229
+Lj3230:
 	movl	-36(%ebp),%eax
 	movb	-32(%ebp,%eax,1),%al
 	cmpb	$57,%al
-	je	Lj3275
-	jmp	Lj3276
-Lj3275:
+	je	Lj3228
+	jmp	Lj3229
+Lj3228:
 	movl	-36(%ebp),%eax
 	movb	$48,-32(%ebp,%eax,1)
-	jmp	Lj3280
-Lj3276:
+	jmp	Lj3233
+Lj3229:
 	movl	-36(%ebp),%eax
 	movzbl	-32(%ebp,%eax,1),%eax
 	movl	-44(%ebp),%ecx
@@ -9632,51 +9554,51 @@ Lj3276:
 	movl	-36(%ebp),%eax
 	movb	-32(%ebp,%eax,1),%al
 	cmpb	$53,%al
-	jae	Lj3283
-	jmp	Lj3284
-Lj3283:
+	jae	Lj3236
+	jmp	Lj3237
+Lj3236:
 	movl	$1,-44(%ebp)
-	jmp	Lj3287
-Lj3284:
+	jmp	Lj3240
+Lj3237:
 	movl	$0,-44(%ebp)
-Lj3287:
-Lj3280:
+Lj3240:
+Lj3233:
 	incl	-36(%ebp)
 	movl	-36(%ebp),%eax
 	cmpl	-52(%ebp),%eax
-	jg	Lj3290
-	jmp	Lj3291
-Lj3290:
-	jmp	Lj3273
-Lj3291:
+	jg	Lj3243
+	jmp	Lj3244
+Lj3243:
+	jmp	Lj3226
+Lj3244:
 	cmpl	-40(%ebp),%edx
-	jg	Lj3274
-Lj3273:
+	jg	Lj3227
+Lj3226:
 	movl	-44(%ebp),%eax
 	cmpl	$1,%eax
-	je	Lj3294
-	jmp	Lj3293
-Lj3294:
+	je	Lj3247
+	jmp	Lj3246
+Lj3247:
 	movl	-36(%ebp),%eax
 	decl	%eax
 	movb	-32(%ebp,%eax,1),%al
 	cmpb	$48,%al
-	je	Lj3292
-	jmp	Lj3293
-Lj3292:
-	jmp	Lj3296
+	je	Lj3245
+	jmp	Lj3246
+Lj3245:
+	jmp	Lj3249
 	.balign 4,0x90
-Lj3295:
+Lj3248:
 	movl	-36(%ebp),%eax
 	movb	$48,-32(%ebp,%eax,1)
 	incl	-36(%ebp)
-Lj3296:
+Lj3249:
 	movl	-36(%ebp),%eax
 	movb	-32(%ebp,%eax,1),%al
 	cmpb	$57,%al
-	je	Lj3295
-	jmp	Lj3297
-Lj3297:
+	je	Lj3248
+	jmp	Lj3250
+Lj3250:
 	movl	-36(%ebp),%eax
 	movzbl	-32(%ebp,%eax,1),%eax
 	incl	%eax
@@ -9684,40 +9606,40 @@ Lj3297:
 	movb	%al,-32(%ebp,%edx,1)
 	movl	-36(%ebp),%eax
 	cmpl	-48(%ebp),%eax
-	jg	Lj3302
-	jmp	Lj3303
-Lj3302:
+	jg	Lj3255
+	jmp	Lj3256
+Lj3255:
 	incl	-48(%ebp)
 	incl	-52(%ebp)
-Lj3303:
-Lj3293:
-Lj3267:
+Lj3256:
+Lj3246:
+Lj3220:
 	movl	-48(%ebp),%eax
 	cmpl	-4(%ebp),%eax
-	jl	Lj3304
-	jmp	Lj3305
-Lj3304:
+	jl	Lj3257
+	jmp	Lj3258
+Lj3257:
 	movl	-4(%ebp),%eax
 	movl	%eax,-48(%ebp)
-Lj3305:
+Lj3258:
 	movl	-48(%ebp),%eax
 	cmpl	8(%ebp),%eax
-	jg	Lj3308
-	jmp	Lj3309
-Lj3308:
+	jg	Lj3261
+	jmp	Lj3262
+Lj3261:
 	movl	-60(%ebp),%eax
 	cmpl	$0,%eax
-	jl	Lj3310
-	jmp	Lj3311
-Lj3310:
+	jl	Lj3263
+	jmp	Lj3264
+Lj3263:
 	movl	-48(%ebp),%eax
 	movl	8(%ebp),%edx
 	subl	%edx,%eax
 	addl	%eax,-60(%ebp)
-Lj3311:
+Lj3264:
 	movl	8(%ebp),%eax
 	movl	%eax,-48(%ebp)
-Lj3309:
+Lj3262:
 	movl	-48(%ebp),%ecx
 	movl	8(%ebp),%edx
 	movl	-12(%ebp),%eax
@@ -9726,37 +9648,37 @@ Lj3309:
 	movl	%eax,-40(%ebp)
 	movl	-8(%ebp),%eax
 	cmpl	$0,%eax
-	jl	Lj3322
-	jmp	Lj3323
-Lj3322:
+	jl	Lj3275
+	jmp	Lj3276
+Lj3275:
 	leal	12(%ebp),%eax
 	movl	(%eax),%edx
 	movl	4(%eax),%eax
 	cmpl	$0,%eax
-	jne	Lj3325
+	jne	Lj3278
 	cmpl	$0,%edx
-	jne	Lj3325
-	jmp	Lj3324
-Lj3324:
+	jne	Lj3278
+	jmp	Lj3277
+Lj3277:
 	movl	$0,-44(%ebp)
-	jmp	Lj3328
-Lj3325:
+	jmp	Lj3281
+Lj3278:
 	movl	-52(%ebp),%eax
 	subl	$5,%eax
 	movl	%eax,-44(%ebp)
-Lj3328:
+Lj3281:
 	movl	-44(%ebp),%eax
 	cmpl	$0,%eax
-	jge	Lj3331
-	jmp	Lj3332
-Lj3331:
+	jge	Lj3284
+	jmp	Lj3285
+Lj3284:
 	movl	-12(%ebp),%edx
 	movl	-40(%ebp),%eax
 	subl	$2,%eax
 	movzbl	%al,%eax
 	movb	$43,(%edx,%eax,1)
-	jmp	Lj3335
-Lj3332:
+	jmp	Lj3288
+Lj3285:
 	movl	-12(%ebp),%edx
 	movl	-40(%ebp),%eax
 	subl	$2,%eax
@@ -9765,7 +9687,7 @@ Lj3332:
 	movl	-44(%ebp),%eax
 	negl	%eax
 	movl	%eax,-44(%ebp)
-Lj3335:
+Lj3288:
 	movl	-44(%ebp),%eax
 	cltd
 	movl	$10,%ecx
@@ -9791,42 +9713,42 @@ Lj3335:
 	movzbl	-40(%ebp),%eax
 	movb	$69,(%edx,%eax,1)
 	decl	-40(%ebp)
-Lj3323:
-	jmp	Lj3347
+Lj3276:
+	jmp	Lj3300
 	.balign 4,0x90
-Lj3346:
+Lj3299:
 	movl	-12(%ebp),%edx
 	movzbl	-40(%ebp),%eax
 	movb	$48,(%edx,%eax,1)
 	decl	-40(%ebp)
 	incl	-60(%ebp)
-Lj3347:
+Lj3300:
 	movl	-60(%ebp),%eax
 	cmpl	$0,%eax
-	jl	Lj3346
-	jmp	Lj3348
-Lj3348:
+	jl	Lj3299
+	jmp	Lj3301
+Lj3301:
 	movl	-52(%ebp),%ecx
 	movl	-60(%ebp),%eax
 	incl	%eax
 	movl	%eax,-36(%ebp)
 	cmpl	-36(%ebp),%ecx
-	jl	Lj3352
+	jl	Lj3305
 	decl	-36(%ebp)
 	.balign 4,0x90
-Lj3353:
+Lj3306:
 	incl	-36(%ebp)
 	decl	-64(%ebp)
 	movl	-64(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj3354
-	jmp	Lj3355
-Lj3354:
+	je	Lj3307
+	jmp	Lj3308
+Lj3307:
 	movl	-12(%ebp),%eax
 	movzbl	-40(%ebp),%edx
 	movb	$46,(%eax,%edx,1)
 	decl	-40(%ebp)
-Lj3355:
+Lj3308:
 	movl	-12(%ebp),%edx
 	movzbl	-40(%ebp),%ebx
 	movl	-36(%ebp),%eax
@@ -9834,31 +9756,31 @@ Lj3355:
 	movb	%al,(%edx,%ebx,1)
 	decl	-40(%ebp)
 	cmpl	-36(%ebp),%ecx
-	jg	Lj3353
-Lj3352:
+	jg	Lj3306
+Lj3305:
 	movl	-56(%ebp),%eax
 	cmpl	$1,%eax
-	je	Lj3360
-	jmp	Lj3361
-Lj3360:
+	je	Lj3313
+	jmp	Lj3314
+Lj3313:
 	movl	-12(%ebp),%eax
 	movzbl	-40(%ebp),%edx
 	movb	$45,(%eax,%edx,1)
 	decl	-40(%ebp)
-Lj3361:
-	jmp	Lj3365
+Lj3314:
+	jmp	Lj3318
 	.balign 4,0x90
-Lj3364:
+Lj3317:
 	movl	-12(%ebp),%eax
 	movzbl	-40(%ebp),%edx
 	movb	$32,(%eax,%edx,1)
 	decl	-40(%ebp)
-Lj3365:
+Lj3318:
 	movl	-40(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj3364
-	jmp	Lj3366
-Lj3366:
+	jg	Lj3317
+	jmp	Lj3319
+Lj3319:
 	movl	-76(%ebp),%ebx
 	leave
 	ret	$12
@@ -9879,9 +9801,9 @@ fpc_chararray_sint:
 	call	SYSTEM_INT_STR$LONGINT$OPENSTRING
 	movzbl	-268(%ebp),%eax
 	cmpl	-8(%ebp),%eax
-	jl	Lj3377
-	jmp	Lj3378
-Lj3377:
+	jl	Lj3330
+	jmp	Lj3331
+Lj3330:
 	leal	-268(%ebp),%eax
 	pushl	%eax
 	movzbl	-268(%ebp),%eax
@@ -9894,22 +9816,22 @@ Lj3377:
 	leal	-268(%ebp),%eax
 	movl	$255,%edx
 	call	fpc_shortstr_concat
-Lj3378:
+Lj3331:
 	movl	8(%ebp),%eax
 	incl	%eax
 	movzbl	-268(%ebp),%edx
 	cmpl	%edx,%eax
-	jg	Lj3391
-	jmp	Lj3392
-Lj3391:
+	jg	Lj3344
+	jmp	Lj3345
+Lj3344:
 	movzbl	-268(%ebp),%eax
 	movl	%eax,-272(%ebp)
-	jmp	Lj3395
-Lj3392:
+	jmp	Lj3348
+Lj3345:
 	movl	8(%ebp),%eax
 	incl	%eax
 	movl	%eax,-272(%ebp)
-Lj3395:
+Lj3348:
 	movl	-12(%ebp),%edx
 	movl	-272(%ebp),%ecx
 	leal	-267(%ebp),%eax
@@ -9933,9 +9855,9 @@ fpc_chararray_uint:
 	call	SYSTEM_INT_STR$LONGWORD$OPENSTRING
 	movzbl	-268(%ebp),%eax
 	cmpl	-8(%ebp),%eax
-	jl	Lj3412
-	jmp	Lj3413
-Lj3412:
+	jl	Lj3365
+	jmp	Lj3366
+Lj3365:
 	leal	-268(%ebp),%eax
 	pushl	%eax
 	movzbl	-268(%ebp),%eax
@@ -9948,22 +9870,22 @@ Lj3412:
 	leal	-268(%ebp),%eax
 	movl	$255,%edx
 	call	fpc_shortstr_concat
-Lj3413:
+Lj3366:
 	movl	8(%ebp),%eax
 	incl	%eax
 	movzbl	-268(%ebp),%edx
 	cmpl	%edx,%eax
-	jg	Lj3426
-	jmp	Lj3427
-Lj3426:
+	jg	Lj3379
+	jmp	Lj3380
+Lj3379:
 	movzbl	-268(%ebp),%eax
 	movl	%eax,-272(%ebp)
-	jmp	Lj3430
-Lj3427:
+	jmp	Lj3383
+Lj3380:
 	movl	8(%ebp),%eax
 	incl	%eax
 	movl	%eax,-272(%ebp)
-Lj3430:
+Lj3383:
 	movl	-12(%ebp),%edx
 	movl	-272(%ebp),%ecx
 	leal	-267(%ebp),%eax
@@ -9988,9 +9910,9 @@ fpc_chararray_qword:
 	call	SYSTEM_INT_STR$QWORD$OPENSTRING
 	movzbl	-268(%ebp),%eax
 	cmpl	-4(%ebp),%eax
-	jl	Lj3447
-	jmp	Lj3448
-Lj3447:
+	jl	Lj3400
+	jmp	Lj3401
+Lj3400:
 	leal	-268(%ebp),%eax
 	pushl	%eax
 	movzbl	-268(%ebp),%eax
@@ -10003,22 +9925,22 @@ Lj3447:
 	leal	-268(%ebp),%eax
 	movl	$255,%edx
 	call	fpc_shortstr_concat
-Lj3448:
+Lj3401:
 	movl	-12(%ebp),%eax
 	incl	%eax
 	movzbl	-268(%ebp),%edx
 	cmpl	%edx,%eax
-	jg	Lj3461
-	jmp	Lj3462
-Lj3461:
+	jg	Lj3414
+	jmp	Lj3415
+Lj3414:
 	movzbl	-268(%ebp),%eax
 	movl	%eax,-272(%ebp)
-	jmp	Lj3465
-Lj3462:
+	jmp	Lj3418
+Lj3415:
 	movl	-12(%ebp),%eax
 	incl	%eax
 	movl	%eax,-272(%ebp)
-Lj3465:
+Lj3418:
 	movl	-8(%ebp),%edx
 	movl	-272(%ebp),%ecx
 	leal	-267(%ebp),%eax
@@ -10043,9 +9965,9 @@ fpc_chararray_int64:
 	call	SYSTEM_INT_STR$INT64$OPENSTRING
 	movzbl	-268(%ebp),%eax
 	cmpl	-4(%ebp),%eax
-	jl	Lj3482
-	jmp	Lj3483
-Lj3482:
+	jl	Lj3435
+	jmp	Lj3436
+Lj3435:
 	leal	-268(%ebp),%eax
 	pushl	%eax
 	movzbl	-268(%ebp),%eax
@@ -10058,22 +9980,22 @@ Lj3482:
 	leal	-268(%ebp),%eax
 	movl	$255,%edx
 	call	fpc_shortstr_concat
-Lj3483:
+Lj3436:
 	movl	-12(%ebp),%eax
 	incl	%eax
 	movzbl	-268(%ebp),%edx
 	cmpl	%edx,%eax
-	jg	Lj3496
-	jmp	Lj3497
-Lj3496:
+	jg	Lj3449
+	jmp	Lj3450
+Lj3449:
 	movzbl	-268(%ebp),%eax
 	movl	%eax,-272(%ebp)
-	jmp	Lj3500
-Lj3497:
+	jmp	Lj3453
+Lj3450:
 	movl	-12(%ebp),%eax
 	incl	%eax
 	movl	%eax,-272(%ebp)
-Lj3500:
+Lj3453:
 	movl	-8(%ebp),%edx
 	movl	-272(%ebp),%ecx
 	leal	-267(%ebp),%eax
@@ -10106,17 +10028,17 @@ fpc_chararray_float:
 	incl	%eax
 	movzbl	-268(%ebp),%edx
 	cmpl	%edx,%eax
-	jg	Lj3523
-	jmp	Lj3524
-Lj3523:
+	jg	Lj3476
+	jmp	Lj3477
+Lj3476:
 	movzbl	-268(%ebp),%eax
 	movl	%eax,-272(%ebp)
-	jmp	Lj3527
-Lj3524:
+	jmp	Lj3480
+Lj3477:
 	movl	8(%ebp),%eax
 	incl	%eax
 	movl	%eax,-272(%ebp)
-Lj3527:
+Lj3480:
 	movl	12(%ebp),%edx
 	movl	-272(%ebp),%ecx
 	leal	-267(%ebp),%eax
@@ -10146,17 +10068,17 @@ fpc_chararray_enum:
 	incl	%eax
 	movzbl	-268(%ebp),%edx
 	cmpl	%edx,%eax
-	jg	Lj3550
-	jmp	Lj3551
-Lj3550:
+	jg	Lj3503
+	jmp	Lj3504
+Lj3503:
 	movzbl	-268(%ebp),%eax
 	movl	%eax,-272(%ebp)
-	jmp	Lj3554
-Lj3551:
+	jmp	Lj3507
+Lj3504:
 	movl	8(%ebp),%eax
 	incl	%eax
 	movl	%eax,-272(%ebp)
-Lj3554:
+Lj3507:
 	movl	12(%ebp),%edx
 	movl	-272(%ebp),%ecx
 	leal	-267(%ebp),%eax
@@ -10183,17 +10105,17 @@ fpc_chararray_bool:
 	incl	%eax
 	movzbl	-268(%ebp),%edx
 	cmpl	%edx,%eax
-	jg	Lj3573
-	jmp	Lj3574
-Lj3573:
+	jg	Lj3526
+	jmp	Lj3527
+Lj3526:
 	movzbl	-268(%ebp),%eax
 	movl	%eax,-272(%ebp)
-	jmp	Lj3577
-Lj3574:
+	jmp	Lj3530
+Lj3527:
 	movl	8(%ebp),%eax
 	incl	%eax
 	movl	%eax,-272(%ebp)
-Lj3577:
+Lj3530:
 	movl	-12(%ebp),%edx
 	movl	-272(%ebp),%ecx
 	leal	-267(%ebp),%eax
@@ -10222,17 +10144,17 @@ fpc_chararray_currency:
 	incl	%eax
 	movzbl	-268(%ebp),%edx
 	cmpl	%edx,%eax
-	jg	Lj3598
-	jmp	Lj3599
-Lj3598:
+	jg	Lj3551
+	jmp	Lj3552
+Lj3551:
 	movzbl	-268(%ebp),%eax
 	movl	%eax,-272(%ebp)
-	jmp	Lj3602
-Lj3599:
+	jmp	Lj3555
+Lj3552:
 	movl	8(%ebp),%eax
 	incl	%eax
 	movl	%eax,-272(%ebp)
-Lj3602:
+Lj3555:
 	movl	-12(%ebp),%edx
 	movl	-272(%ebp),%ecx
 	leal	-267(%ebp),%eax
@@ -10257,143 +10179,143 @@ SYSTEM_INITVAL$SHORTSTRING$BOOLEAN$BYTE$$LONGINT:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj3619
-	jmp	Lj3620
-Lj3619:
+	je	Lj3572
+	jmp	Lj3573
+Lj3572:
 	movl	-20(%ebp),%eax
 	movl	%eax,-16(%ebp)
-	jmp	Lj3611
-Lj3620:
-	jmp	Lj3624
+	jmp	Lj3564
+Lj3573:
+	jmp	Lj3577
 	.balign 4,0x90
-Lj3623:
+Lj3576:
 	incl	-20(%ebp)
-Lj3624:
+Lj3577:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%eax
 	cmpl	-20(%ebp),%eax
-	jge	Lj3626
-	jmp	Lj3625
-Lj3626:
+	jge	Lj3579
+	jmp	Lj3578
+Lj3579:
 	movl	-4(%ebp),%edx
 	movzbl	-20(%ebp),%eax
 	movzbl	(%edx,%eax,1),%eax
 	cmpl	$9,%eax
-	je	Lj3627
+	je	Lj3580
 	cmpl	$32,%eax
-	je	Lj3627
-Lj3627:
-	je	Lj3623
-	jmp	Lj3625
-Lj3625:
+	je	Lj3580
+Lj3580:
+	je	Lj3576
+	jmp	Lj3578
+Lj3578:
 	movl	-4(%ebp),%eax
 	movzbl	-20(%ebp),%edx
 	movb	(%eax,%edx,1),%al
 	cmpb	$43,%al
-	jb	Lj3629
+	jb	Lj3582
 	subb	$43,%al
-	je	Lj3631
+	je	Lj3584
 	subb	$2,%al
-	je	Lj3630
-	jmp	Lj3629
-Lj3630:
+	je	Lj3583
+	jmp	Lj3582
+Lj3583:
 	movl	-8(%ebp),%eax
 	movb	$1,(%eax)
 	incl	-20(%ebp)
-	jmp	Lj3628
-Lj3631:
+	jmp	Lj3581
+Lj3584:
 	incl	-20(%ebp)
-	jmp	Lj3628
-Lj3629:
-Lj3628:
+	jmp	Lj3581
+Lj3582:
+Lj3581:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%eax
 	cmpl	-20(%ebp),%eax
-	jge	Lj3634
-	jmp	Lj3635
-Lj3634:
+	jge	Lj3587
+	jmp	Lj3588
+Lj3587:
 	movl	-4(%ebp),%eax
 	movzbl	-20(%ebp),%edx
 	movb	(%eax,%edx,1),%al
 	cmpb	$36,%al
-	jb	Lj3637
+	jb	Lj3590
 	subb	$36,%al
-	je	Lj3638
+	je	Lj3591
 	decb	%al
-	je	Lj3639
+	je	Lj3592
 	decb	%al
-	je	Lj3640
+	je	Lj3593
 	subb	$10,%al
-	je	Lj3641
+	je	Lj3594
 	subb	$40,%al
-	je	Lj3638
+	je	Lj3591
 	subb	$32,%al
-	je	Lj3638
-	jmp	Lj3637
-Lj3638:
+	je	Lj3591
+	jmp	Lj3590
+Lj3591:
 	movl	-12(%ebp),%eax
 	movb	$16,(%eax)
 	incl	-20(%ebp)
-	jmp	Lj3636
-Lj3639:
+	jmp	Lj3589
+Lj3592:
 	movl	-12(%ebp),%eax
 	movb	$2,(%eax)
 	incl	-20(%ebp)
-	jmp	Lj3636
-Lj3640:
+	jmp	Lj3589
+Lj3593:
 	movl	-12(%ebp),%eax
 	movb	$8,(%eax)
 	incl	-20(%ebp)
-	jmp	Lj3636
-Lj3641:
+	jmp	Lj3589
+Lj3594:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%eax
 	cmpl	-20(%ebp),%eax
-	jg	Lj3650
-	jmp	Lj3649
-Lj3650:
+	jg	Lj3603
+	jmp	Lj3602
+Lj3603:
 	movl	-4(%ebp),%edx
 	movl	-20(%ebp),%eax
 	incl	%eax
 	movzbl	%al,%eax
 	movzbl	(%edx,%eax,1),%eax
 	cmpl	$88,%eax
-	je	Lj3651
+	je	Lj3604
 	cmpl	$120,%eax
-	je	Lj3651
-Lj3651:
-	je	Lj3648
-	jmp	Lj3649
-Lj3648:
+	je	Lj3604
+Lj3604:
+	je	Lj3601
+	jmp	Lj3602
+Lj3601:
 	addl	$2,-20(%ebp)
 	movl	-12(%ebp),%eax
 	movb	$16,(%eax)
-Lj3649:
-	jmp	Lj3636
-Lj3637:
-Lj3636:
-Lj3635:
-	jmp	Lj3655
+Lj3602:
+	jmp	Lj3589
+Lj3590:
+Lj3589:
+Lj3588:
+	jmp	Lj3608
 	.balign 4,0x90
-Lj3654:
+Lj3607:
 	incl	-20(%ebp)
-Lj3655:
+Lj3608:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%eax
 	cmpl	-20(%ebp),%eax
-	jg	Lj3657
-	jmp	Lj3656
-Lj3657:
+	jg	Lj3610
+	jmp	Lj3609
+Lj3610:
 	movl	-4(%ebp),%edx
 	movzbl	-20(%ebp),%eax
 	movb	(%edx,%eax,1),%al
 	cmpb	$48,%al
-	je	Lj3654
-	jmp	Lj3656
-Lj3656:
+	je	Lj3607
+	jmp	Lj3609
+Lj3609:
 	movl	-20(%ebp),%eax
 	movl	%eax,-16(%ebp)
-Lj3611:
+Lj3564:
 	movl	-16(%ebp),%eax
 	leave
 	ret
@@ -10422,25 +10344,25 @@ FPC_VAL_SINT_SHORTSTR:
 	movzbl	(%eax),%edx
 	movl	-12(%ebp),%eax
 	cmpl	(%eax),%edx
-	jl	Lj3674
-	jmp	Lj3675
-Lj3674:
-	jmp	Lj3660
-Lj3675:
+	jl	Lj3627
+	jmp	Lj3628
+Lj3627:
+	jmp	Lj3613
+Lj3628:
 	movl	-8(%ebp),%edx
 	movl	-12(%ebp),%eax
 	movzbl	(%eax),%eax
 	movb	(%edx,%eax,1),%al
 	testb	%al,%al
-	je	Lj3676
-	jmp	Lj3677
-Lj3676:
+	je	Lj3629
+	jmp	Lj3630
+Lj3629:
 	movl	-12(%ebp),%eax
 	movl	(%eax),%eax
 	cmpl	$1,%eax
-	jg	Lj3680
-	jmp	Lj3679
-Lj3680:
+	jg	Lj3633
+	jmp	Lj3632
+Lj3633:
 	movl	-8(%ebp),%edx
 	movl	-12(%ebp),%eax
 	movl	(%eax),%eax
@@ -10448,14 +10370,14 @@ Lj3680:
 	movzbl	%al,%eax
 	movb	(%edx,%eax,1),%al
 	cmpb	$48,%al
-	je	Lj3678
-	jmp	Lj3679
-Lj3678:
+	je	Lj3631
+	jmp	Lj3632
+Lj3631:
 	movl	-12(%ebp),%eax
 	movl	$0,(%eax)
-Lj3679:
-	jmp	Lj3660
-Lj3677:
+Lj3632:
+	jmp	Lj3613
+Lj3630:
 	movzbl	-33(%ebp),%ecx
 	movl	$-1,%eax
 	xorl	%edx,%edx
@@ -10463,68 +10385,68 @@ Lj3677:
 	movl	%eax,-28(%ebp)
 	movzbl	-33(%ebp),%eax
 	cmpl	$10,%eax
-	je	Lj3685
-	jmp	Lj3686
-Lj3685:
+	je	Lj3638
+	jmp	Lj3639
+Lj3638:
 	movzbl	-35(%ebp),%eax
 	addl	$2147483647,%eax
 	movl	%eax,-32(%ebp)
-	jmp	Lj3691
-Lj3686:
+	jmp	Lj3644
+Lj3639:
 	movl	$-1,-32(%ebp)
-Lj3691:
-	jmp	Lj3695
+Lj3644:
+	jmp	Lj3648
 	.balign 4,0x90
-Lj3694:
+Lj3647:
 	movl	-8(%ebp),%edx
 	movl	-12(%ebp),%eax
 	movzbl	(%eax),%eax
 	movb	(%edx,%eax,1),%al
 	testb	%al,%al
-	je	Lj3702
+	je	Lj3655
 	subb	$48,%al
-	jb	Lj3698
+	jb	Lj3651
 	subb	$9,%al
-	jbe	Lj3699
+	jbe	Lj3652
 	subb	$8,%al
-	jb	Lj3698
+	jb	Lj3651
 	subb	$5,%al
-	jbe	Lj3700
+	jbe	Lj3653
 	subb	$27,%al
-	jb	Lj3698
+	jb	Lj3651
 	subb	$5,%al
-	jbe	Lj3701
-	jmp	Lj3698
-Lj3699:
+	jbe	Lj3654
+	jmp	Lj3651
+Lj3652:
 	movl	-8(%ebp),%edx
 	movl	-12(%ebp),%eax
 	movzbl	(%eax),%eax
 	movzbl	(%edx,%eax,1),%eax
 	subl	$48,%eax
 	movb	%al,-34(%ebp)
-	jmp	Lj3697
-Lj3700:
+	jmp	Lj3650
+Lj3653:
 	movl	-8(%ebp),%edx
 	movl	-12(%ebp),%eax
 	movzbl	(%eax),%eax
 	movzbl	(%edx,%eax,1),%eax
 	subl	$55,%eax
 	movb	%al,-34(%ebp)
-	jmp	Lj3697
-Lj3701:
+	jmp	Lj3650
+Lj3654:
 	movl	-8(%ebp),%edx
 	movl	-12(%ebp),%eax
 	movzbl	(%eax),%eax
 	movzbl	(%edx,%eax,1),%eax
 	subl	$87,%eax
 	movb	%al,-34(%ebp)
-	jmp	Lj3697
-Lj3702:
-	jmp	Lj3696
-	jmp	Lj3697
-Lj3698:
+	jmp	Lj3650
+Lj3655:
+	jmp	Lj3649
+	jmp	Lj3650
+Lj3651:
 	movb	$16,-34(%ebp)
-Lj3697:
+Lj3650:
 	movl	-20(%ebp),%eax
 	movl	%eax,-24(%ebp)
 	movzbl	-33(%ebp),%eax
@@ -10532,80 +10454,80 @@ Lj3697:
 	movl	%eax,-20(%ebp)
 	movb	-34(%ebp),%al
 	cmpb	-33(%ebp),%al
-	jae	Lj3715
-	jmp	Lj3718
-Lj3718:
+	jae	Lj3668
+	jmp	Lj3671
+Lj3671:
 	movzbl	-34(%ebp),%edx
 	movl	-32(%ebp),%eax
 	subl	%edx,%eax
 	cmpl	-20(%ebp),%eax
-	jb	Lj3715
-	jmp	Lj3717
-Lj3717:
+	jb	Lj3668
+	jmp	Lj3670
+Lj3670:
 	movl	-24(%ebp),%eax
 	cmpl	-28(%ebp),%eax
-	ja	Lj3715
-	jmp	Lj3716
-Lj3715:
+	ja	Lj3668
+	jmp	Lj3669
+Lj3668:
 	movl	$0,-16(%ebp)
-	jmp	Lj3660
-Lj3716:
+	jmp	Lj3613
+Lj3669:
 	movzbl	-34(%ebp),%edx
 	movl	-20(%ebp),%eax
 	addl	%edx,%eax
 	movl	%eax,-20(%ebp)
 	movl	-12(%ebp),%eax
 	incl	(%eax)
-Lj3695:
+Lj3648:
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%edx
 	movl	-12(%ebp),%eax
 	cmpl	(%eax),%edx
-	jge	Lj3694
-	jmp	Lj3696
-Lj3696:
+	jge	Lj3647
+	jmp	Lj3649
+Lj3649:
 	movl	-12(%ebp),%eax
 	movl	$0,(%eax)
 	movl	-20(%ebp),%eax
 	movl	%eax,-16(%ebp)
 	cmpb	$0,-35(%ebp)
-	jne	Lj3727
-	jmp	Lj3728
-Lj3727:
+	jne	Lj3680
+	jmp	Lj3681
+Lj3680:
 	movl	-16(%ebp),%eax
 	negl	%eax
 	movl	%eax,-16(%ebp)
-Lj3728:
+Lj3681:
 	movb	-35(%ebp),%al
 	testb	%al,%al
-	je	Lj3733
-	jmp	Lj3732
-Lj3733:
+	je	Lj3686
+	jmp	Lj3685
+Lj3686:
 	movzbl	-33(%ebp),%eax
 	cmpl	$10,%eax
-	jne	Lj3731
-	jmp	Lj3732
-Lj3731:
+	jne	Lj3684
+	jmp	Lj3685
+Lj3684:
 	movl	-4(%ebp),%eax
 	cmpl	$1,%eax
-	jl	Lj3735
+	jl	Lj3688
 	decl	%eax
-	je	Lj3736
+	je	Lj3689
 	decl	%eax
-	je	Lj3737
-	jmp	Lj3735
-Lj3736:
+	je	Lj3690
+	jmp	Lj3688
+Lj3689:
 	movsbl	-16(%ebp),%eax
 	movl	%eax,-16(%ebp)
-	jmp	Lj3734
-Lj3737:
+	jmp	Lj3687
+Lj3690:
 	movswl	-16(%ebp),%eax
 	movl	%eax,-16(%ebp)
-	jmp	Lj3734
-Lj3735:
-Lj3734:
-Lj3732:
-Lj3660:
+	jmp	Lj3687
+Lj3688:
+Lj3687:
+Lj3685:
+Lj3613:
 	movl	-16(%ebp),%eax
 	leave
 	ret
@@ -10629,32 +10551,32 @@ FPC_VAL_UINT_SHORTSTR:
 	movl	-8(%ebp),%edx
 	movl	%eax,(%edx)
 	cmpb	$0,-19(%ebp)
-	jne	Lj3754
-	jmp	Lj3756
-Lj3756:
+	jne	Lj3707
+	jmp	Lj3709
+Lj3709:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%eax
 	movl	-8(%ebp),%edx
 	cmpl	(%edx),%eax
-	jl	Lj3754
-	jmp	Lj3755
-Lj3754:
-	jmp	Lj3742
-Lj3755:
+	jl	Lj3707
+	jmp	Lj3708
+Lj3707:
+	jmp	Lj3695
+Lj3708:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	movb	(%edx,%eax,1),%al
 	testb	%al,%al
-	je	Lj3757
-	jmp	Lj3758
-Lj3757:
+	je	Lj3710
+	jmp	Lj3711
+Lj3710:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	cmpl	$1,%eax
-	jg	Lj3761
-	jmp	Lj3760
-Lj3761:
+	jg	Lj3714
+	jmp	Lj3713
+Lj3714:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
@@ -10662,73 +10584,73 @@ Lj3761:
 	movzbl	%al,%eax
 	movb	(%edx,%eax,1),%al
 	cmpb	$48,%al
-	je	Lj3759
-	jmp	Lj3760
-Lj3759:
+	je	Lj3712
+	jmp	Lj3713
+Lj3712:
 	movl	-8(%ebp),%eax
 	movl	$0,(%eax)
-Lj3760:
-	jmp	Lj3742
-Lj3758:
-	jmp	Lj3765
+Lj3713:
+	jmp	Lj3695
+Lj3711:
+	jmp	Lj3718
 	.balign 4,0x90
-Lj3764:
+Lj3717:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	movb	(%edx,%eax,1),%al
 	testb	%al,%al
-	je	Lj3772
+	je	Lj3725
 	subb	$48,%al
-	jb	Lj3768
+	jb	Lj3721
 	subb	$9,%al
-	jbe	Lj3769
+	jbe	Lj3722
 	subb	$8,%al
-	jb	Lj3768
+	jb	Lj3721
 	subb	$5,%al
-	jbe	Lj3770
+	jbe	Lj3723
 	subb	$27,%al
-	jb	Lj3768
+	jb	Lj3721
 	subb	$5,%al
-	jbe	Lj3771
-	jmp	Lj3768
-Lj3769:
+	jbe	Lj3724
+	jmp	Lj3721
+Lj3722:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	movzbl	(%edx,%eax,1),%eax
 	subl	$48,%eax
 	movb	%al,-18(%ebp)
-	jmp	Lj3767
-Lj3770:
+	jmp	Lj3720
+Lj3723:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	movzbl	(%edx,%eax,1),%eax
 	subl	$55,%eax
 	movb	%al,-18(%ebp)
-	jmp	Lj3767
-Lj3771:
+	jmp	Lj3720
+Lj3724:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	movzbl	(%edx,%eax,1),%eax
 	subl	$87,%eax
 	movb	%al,-18(%ebp)
-	jmp	Lj3767
-Lj3772:
-	jmp	Lj3766
-	jmp	Lj3767
-Lj3768:
+	jmp	Lj3720
+Lj3725:
+	jmp	Lj3719
+	jmp	Lj3720
+Lj3721:
 	movb	$16,-18(%ebp)
-Lj3767:
+Lj3720:
 	movl	-12(%ebp),%eax
 	movl	%eax,-16(%ebp)
 	movb	-18(%ebp),%al
 	cmpb	-17(%ebp),%al
-	jae	Lj3783
-	jmp	Lj3785
-Lj3785:
+	jae	Lj3736
+	jmp	Lj3738
+Lj3738:
 	movzbl	-18(%ebp),%eax
 	movl	$-1,%edx
 	subl	%eax,%edx
@@ -10737,12 +10659,12 @@ Lj3785:
 	xorl	%edx,%edx
 	divl	%ecx
 	cmpl	-16(%ebp),%eax
-	jb	Lj3783
-	jmp	Lj3784
-Lj3783:
+	jb	Lj3736
+	jmp	Lj3737
+Lj3736:
 	movl	$0,-12(%ebp)
-	jmp	Lj3742
-Lj3784:
+	jmp	Lj3695
+Lj3737:
 	movzbl	-17(%ebp),%eax
 	mull	-12(%ebp)
 	movzbl	-18(%ebp),%edx
@@ -10750,17 +10672,17 @@ Lj3784:
 	movl	%eax,-12(%ebp)
 	movl	-8(%ebp),%eax
 	incl	(%eax)
-Lj3765:
+Lj3718:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%eax
 	movl	-8(%ebp),%edx
 	cmpl	(%edx),%eax
-	jge	Lj3764
-	jmp	Lj3766
-Lj3766:
+	jge	Lj3717
+	jmp	Lj3719
+Lj3719:
 	movl	-8(%ebp),%eax
 	movl	$0,(%eax)
-Lj3742:
+Lj3695:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -10790,25 +10712,25 @@ FPC_VAL_INT64_SHORTSTR:
 	movzbl	(%eax),%edx
 	movl	-8(%ebp),%eax
 	cmpl	(%eax),%edx
-	jl	Lj3806
-	jmp	Lj3807
-Lj3806:
-	jmp	Lj3792
-Lj3807:
+	jl	Lj3759
+	jmp	Lj3760
+Lj3759:
+	jmp	Lj3745
+Lj3760:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	movb	(%edx,%eax,1),%al
 	testb	%al,%al
-	je	Lj3808
-	jmp	Lj3809
-Lj3808:
+	je	Lj3761
+	jmp	Lj3762
+Lj3761:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	cmpl	$1,%eax
-	jg	Lj3812
-	jmp	Lj3811
-Lj3812:
+	jg	Lj3765
+	jmp	Lj3764
+Lj3765:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
@@ -10816,14 +10738,14 @@ Lj3812:
 	movzbl	%al,%eax
 	movb	(%edx,%eax,1),%al
 	cmpb	$48,%al
-	je	Lj3810
-	jmp	Lj3811
-Lj3810:
+	je	Lj3763
+	jmp	Lj3764
+Lj3763:
 	movl	-8(%ebp),%eax
 	movl	$0,(%eax)
-Lj3811:
-	jmp	Lj3792
-Lj3809:
+Lj3764:
+	jmp	Lj3745
+Lj3762:
 	movzbl	-57(%ebp),%eax
 	movl	$0,%edx
 	pushl	%edx
@@ -10835,43 +10757,43 @@ Lj3809:
 	movl	%edx,-44(%ebp)
 	movzbl	-57(%ebp),%eax
 	cmpl	$10,%eax
-	je	Lj3821
-	jmp	Lj3822
-Lj3821:
+	je	Lj3774
+	jmp	Lj3775
+Lj3774:
 	movzbl	-58(%ebp),%edx
 	movl	$0,%eax
 	addl	$-1,%edx
 	adcl	$2147483647,%eax
 	movl	%edx,-56(%ebp)
 	movl	%eax,-52(%ebp)
-	jmp	Lj3827
-Lj3822:
+	jmp	Lj3780
+Lj3775:
 	movl	$-1,-56(%ebp)
 	movl	$-1,-52(%ebp)
-Lj3827:
-	jmp	Lj3831
+Lj3780:
+	jmp	Lj3784
 	.balign 4,0x90
-Lj3830:
+Lj3783:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	movb	(%edx,%eax,1),%al
 	testb	%al,%al
-	je	Lj3838
+	je	Lj3791
 	subb	$48,%al
-	jb	Lj3834
+	jb	Lj3787
 	subb	$9,%al
-	jbe	Lj3835
+	jbe	Lj3788
 	subb	$8,%al
-	jb	Lj3834
+	jb	Lj3787
 	subb	$5,%al
-	jbe	Lj3836
+	jbe	Lj3789
 	subb	$27,%al
-	jb	Lj3834
+	jb	Lj3787
 	subb	$5,%al
-	jbe	Lj3837
-	jmp	Lj3834
-Lj3835:
+	jbe	Lj3790
+	jmp	Lj3787
+Lj3788:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
@@ -10881,8 +10803,8 @@ Lj3835:
 	sarl	$31,%eax
 	movl	%edx,-24(%ebp)
 	movl	%eax,-20(%ebp)
-	jmp	Lj3833
-Lj3836:
+	jmp	Lj3786
+Lj3789:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
@@ -10892,8 +10814,8 @@ Lj3836:
 	sarl	$31,%eax
 	movl	%edx,-24(%ebp)
 	movl	%eax,-20(%ebp)
-	jmp	Lj3833
-Lj3837:
+	jmp	Lj3786
+Lj3790:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
@@ -10903,14 +10825,14 @@ Lj3837:
 	sarl	$31,%eax
 	movl	%edx,-24(%ebp)
 	movl	%eax,-20(%ebp)
-	jmp	Lj3833
-Lj3838:
-	jmp	Lj3832
-	jmp	Lj3833
-Lj3834:
+	jmp	Lj3786
+Lj3791:
+	jmp	Lj3785
+	jmp	Lj3786
+Lj3787:
 	movl	$16,-24(%ebp)
 	movl	$0,-20(%ebp)
-Lj3833:
+Lj3786:
 	movl	-32(%ebp),%eax
 	movl	%eax,-40(%ebp)
 	movl	-28(%ebp),%eax
@@ -10928,39 +10850,39 @@ Lj3833:
 	movzbl	-57(%ebp),%eax
 	movl	$0,%edx
 	cmpl	-20(%ebp),%edx
-	jb	Lj3857
-	ja	Lj3860
+	jb	Lj3810
+	ja	Lj3813
 	cmpl	-24(%ebp),%eax
-	jbe	Lj3857
-	jmp	Lj3860
-	jmp	Lj3860
-Lj3860:
+	jbe	Lj3810
+	jmp	Lj3813
+	jmp	Lj3813
+Lj3813:
 	movl	-56(%ebp),%edx
 	movl	-52(%ebp),%eax
 	subl	-24(%ebp),%edx
 	sbbl	-20(%ebp),%eax
 	cmpl	-28(%ebp),%eax
-	jb	Lj3857
-	ja	Lj3859
+	jb	Lj3810
+	ja	Lj3812
 	cmpl	-32(%ebp),%edx
-	jb	Lj3857
-	jmp	Lj3859
-	jmp	Lj3859
-Lj3859:
+	jb	Lj3810
+	jmp	Lj3812
+	jmp	Lj3812
+Lj3812:
 	movl	-40(%ebp),%eax
 	movl	-36(%ebp),%edx
 	cmpl	-44(%ebp),%edx
-	ja	Lj3857
-	jb	Lj3858
+	ja	Lj3810
+	jb	Lj3811
 	cmpl	-48(%ebp),%eax
-	ja	Lj3857
-	jmp	Lj3858
-	jmp	Lj3858
-Lj3857:
+	ja	Lj3810
+	jmp	Lj3811
+	jmp	Lj3811
+Lj3810:
 	movl	$0,-16(%ebp)
 	movl	$0,-12(%ebp)
-	jmp	Lj3792
-Lj3858:
+	jmp	Lj3745
+Lj3811:
 	movl	-32(%ebp),%eax
 	movl	-28(%ebp),%edx
 	addl	-24(%ebp),%eax
@@ -10969,14 +10891,14 @@ Lj3858:
 	movl	%edx,-28(%ebp)
 	movl	-8(%ebp),%eax
 	incl	(%eax)
-Lj3831:
+Lj3784:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%edx
 	movl	-8(%ebp),%eax
 	cmpl	(%eax),%edx
-	jge	Lj3830
-	jmp	Lj3832
-Lj3832:
+	jge	Lj3783
+	jmp	Lj3785
+Lj3785:
 	movl	-8(%ebp),%eax
 	movl	$0,(%eax)
 	movl	-32(%ebp),%eax
@@ -10984,9 +10906,9 @@ Lj3832:
 	movl	-28(%ebp),%eax
 	movl	%eax,-12(%ebp)
 	cmpb	$0,-58(%ebp)
-	jne	Lj3869
-	jmp	Lj3870
-Lj3869:
+	jne	Lj3822
+	jmp	Lj3823
+Lj3822:
 	movl	-16(%ebp),%eax
 	movl	-12(%ebp),%edx
 	notl	%edx
@@ -10994,8 +10916,8 @@ Lj3869:
 	sbbl	$-1,%edx
 	movl	%eax,-16(%ebp)
 	movl	%edx,-12(%ebp)
-Lj3870:
-Lj3792:
+Lj3823:
+Lj3745:
 	movl	-12(%ebp),%edx
 	movl	-16(%ebp),%eax
 	leave
@@ -11021,32 +10943,32 @@ FPC_VAL_QWORD_SHORTSTR:
 	movl	-8(%ebp),%edx
 	movl	%eax,(%edx)
 	cmpb	$0,-34(%ebp)
-	jne	Lj3885
-	jmp	Lj3887
-Lj3887:
+	jne	Lj3838
+	jmp	Lj3840
+Lj3840:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%eax
 	movl	-8(%ebp),%edx
 	cmpl	(%edx),%eax
-	jl	Lj3885
-	jmp	Lj3886
-Lj3885:
-	jmp	Lj3873
-Lj3886:
+	jl	Lj3838
+	jmp	Lj3839
+Lj3838:
+	jmp	Lj3826
+Lj3839:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	movb	(%edx,%eax,1),%al
 	testb	%al,%al
-	je	Lj3888
-	jmp	Lj3889
-Lj3888:
+	je	Lj3841
+	jmp	Lj3842
+Lj3841:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	cmpl	$1,%eax
-	jg	Lj3892
-	jmp	Lj3891
-Lj3892:
+	jg	Lj3845
+	jmp	Lj3844
+Lj3845:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
@@ -11054,37 +10976,37 @@ Lj3892:
 	movzbl	%al,%eax
 	movb	(%edx,%eax,1),%al
 	cmpb	$48,%al
-	je	Lj3890
-	jmp	Lj3891
-Lj3890:
+	je	Lj3843
+	jmp	Lj3844
+Lj3843:
 	movl	-8(%ebp),%eax
 	movl	$0,(%eax)
-Lj3891:
-	jmp	Lj3873
-Lj3889:
-	jmp	Lj3896
+Lj3844:
+	jmp	Lj3826
+Lj3842:
+	jmp	Lj3849
 	.balign 4,0x90
-Lj3895:
+Lj3848:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	movb	(%edx,%eax,1),%al
 	testb	%al,%al
-	je	Lj3903
+	je	Lj3856
 	subb	$48,%al
-	jb	Lj3899
+	jb	Lj3852
 	subb	$9,%al
-	jbe	Lj3900
+	jbe	Lj3853
 	subb	$8,%al
-	jb	Lj3899
+	jb	Lj3852
 	subb	$5,%al
-	jbe	Lj3901
+	jbe	Lj3854
 	subb	$27,%al
-	jb	Lj3899
+	jb	Lj3852
 	subb	$5,%al
-	jbe	Lj3902
-	jmp	Lj3899
-Lj3900:
+	jbe	Lj3855
+	jmp	Lj3852
+Lj3853:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
@@ -11094,8 +11016,8 @@ Lj3900:
 	sarl	$31,%eax
 	movl	%edx,-24(%ebp)
 	movl	%eax,-20(%ebp)
-	jmp	Lj3898
-Lj3901:
+	jmp	Lj3851
+Lj3854:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
@@ -11105,8 +11027,8 @@ Lj3901:
 	sarl	$31,%eax
 	movl	%edx,-24(%ebp)
 	movl	%eax,-20(%ebp)
-	jmp	Lj3898
-Lj3902:
+	jmp	Lj3851
+Lj3855:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
@@ -11116,14 +11038,14 @@ Lj3902:
 	sarl	$31,%eax
 	movl	%edx,-24(%ebp)
 	movl	%eax,-20(%ebp)
-	jmp	Lj3898
-Lj3903:
-	jmp	Lj3897
-	jmp	Lj3898
-Lj3899:
+	jmp	Lj3851
+Lj3856:
+	jmp	Lj3850
+	jmp	Lj3851
+Lj3852:
 	movl	$16,-24(%ebp)
 	movl	$0,-20(%ebp)
-Lj3898:
+Lj3851:
 	movl	-16(%ebp),%eax
 	movl	%eax,-32(%ebp)
 	movl	-12(%ebp),%eax
@@ -11131,13 +11053,13 @@ Lj3898:
 	movzbl	-33(%ebp),%edx
 	movl	$0,%eax
 	cmpl	-20(%ebp),%eax
-	jb	Lj3914
-	ja	Lj3916
+	jb	Lj3867
+	ja	Lj3869
 	cmpl	-24(%ebp),%edx
-	jbe	Lj3914
-	jmp	Lj3916
-	jmp	Lj3916
-Lj3916:
+	jbe	Lj3867
+	jmp	Lj3869
+	jmp	Lj3869
+Lj3869:
 	movzbl	-33(%ebp),%edx
 	movl	$0,%eax
 	pushl	%eax
@@ -11154,17 +11076,17 @@ Lj3916:
 	pushl	%eax
 	call	fpc_div_qword
 	cmpl	-28(%ebp),%edx
-	jb	Lj3914
-	ja	Lj3915
+	jb	Lj3867
+	ja	Lj3868
 	cmpl	-32(%ebp),%eax
-	jb	Lj3914
-	jmp	Lj3915
-	jmp	Lj3915
-Lj3914:
+	jb	Lj3867
+	jmp	Lj3868
+	jmp	Lj3868
+Lj3867:
 	movl	$0,-16(%ebp)
 	movl	$0,-12(%ebp)
-	jmp	Lj3873
-Lj3915:
+	jmp	Lj3826
+Lj3868:
 	pushl	-12(%ebp)
 	pushl	-16(%ebp)
 	movzbl	-33(%ebp),%eax
@@ -11179,17 +11101,17 @@ Lj3915:
 	movl	%edx,-12(%ebp)
 	movl	-8(%ebp),%eax
 	incl	(%eax)
-Lj3896:
+Lj3849:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%eax
 	movl	-8(%ebp),%edx
 	cmpl	(%edx),%eax
-	jge	Lj3895
-	jmp	Lj3897
-Lj3897:
+	jge	Lj3848
+	jmp	Lj3850
+Lj3850:
 	movl	-8(%ebp),%eax
 	movl	$0,(%eax)
-Lj3873:
+Lj3826:
 	movl	-12(%ebp),%edx
 	movl	-16(%ebp),%eax
 	leave
@@ -11217,54 +11139,54 @@ FPC_VAL_REAL_SHORTSTR:
 	movb	$0,-69(%ebp)
 	fld1
 	fstpt	-56(%ebp)
-	jmp	Lj3950
+	jmp	Lj3903
 	.balign 4,0x90
-Lj3949:
+Lj3902:
 	movl	-8(%ebp),%eax
 	incl	(%eax)
-Lj3950:
+Lj3903:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%edx
 	movl	-8(%ebp),%eax
 	cmpl	(%eax),%edx
-	jge	Lj3952
-	jmp	Lj3951
-Lj3952:
+	jge	Lj3905
+	jmp	Lj3904
+Lj3905:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	movzbl	(%edx,%eax,1),%eax
 	cmpl	$9,%eax
-	je	Lj3953
+	je	Lj3906
 	cmpl	$32,%eax
-	je	Lj3953
-Lj3953:
-	je	Lj3949
-	jmp	Lj3951
-Lj3951:
+	je	Lj3906
+Lj3906:
+	je	Lj3902
+	jmp	Lj3904
+Lj3904:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%eax
 	movl	-8(%ebp),%edx
 	cmpl	(%edx),%eax
-	jge	Lj3954
-	jmp	Lj3955
-Lj3954:
+	jge	Lj3907
+	jmp	Lj3908
+Lj3907:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	movb	(%edx,%eax,1),%al
 	cmpb	$43,%al
-	jb	Lj3957
+	jb	Lj3910
 	subb	$43,%al
-	je	Lj3958
+	je	Lj3911
 	subb	$2,%al
-	je	Lj3959
-	jmp	Lj3957
-Lj3958:
+	je	Lj3912
+	jmp	Lj3910
+Lj3911:
 	movl	-8(%ebp),%eax
 	incl	(%eax)
-	jmp	Lj3956
-Lj3959:
+	jmp	Lj3909
+Lj3912:
 	movl	_$SYSTEM$_Ld21,%eax
 	movl	%eax,-56(%ebp)
 	movl	_$SYSTEM$_Ld21+4,%eax
@@ -11273,13 +11195,13 @@ Lj3959:
 	movw	%ax,-48(%ebp)
 	movl	-8(%ebp),%eax
 	incl	(%eax)
-	jmp	Lj3956
-Lj3957:
-Lj3956:
-Lj3955:
-	jmp	Lj3963
+	jmp	Lj3909
+Lj3910:
+Lj3909:
+Lj3908:
+	jmp	Lj3916
 	.balign 4,0x90
-Lj3962:
+Lj3915:
 	movzbl	-69(%ebp),%eax
 	orl	$1,%eax
 	movb	%al,-69(%ebp)
@@ -11297,45 +11219,45 @@ Lj3962:
 	fstpt	-20(%ebp)
 	movl	-8(%ebp),%eax
 	incl	(%eax)
-Lj3963:
+Lj3916:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%edx
 	movl	-8(%ebp),%eax
 	cmpl	(%eax),%edx
-	jge	Lj3969
-	jmp	Lj3964
-Lj3969:
+	jge	Lj3922
+	jmp	Lj3917
+Lj3922:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	movzbl	(%edx,%eax,1),%eax
 	subl	$48,%eax
 	cmpl	$10,%eax
-	jb	Lj3970
-Lj3970:
-	jc	Lj3962
-	jmp	Lj3964
-Lj3964:
+	jb	Lj3923
+Lj3923:
+	jc	Lj3915
+	jmp	Lj3917
+Lj3917:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%edx
 	movl	-8(%ebp),%eax
 	cmpl	(%eax),%edx
-	jge	Lj3973
-	jmp	Lj3972
-Lj3973:
+	jge	Lj3926
+	jmp	Lj3925
+Lj3926:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	movb	(%edx,%eax,1),%al
 	cmpb	$46,%al
-	je	Lj3971
-	jmp	Lj3972
-Lj3971:
+	je	Lj3924
+	jmp	Lj3925
+Lj3924:
 	movl	-8(%ebp),%eax
 	incl	(%eax)
-	jmp	Lj3975
+	jmp	Lj3928
 	.balign 4,0x90
-Lj3974:
+Lj3927:
 	movzbl	-69(%ebp),%eax
 	orl	$2,%eax
 	movb	%al,-69(%ebp)
@@ -11354,83 +11276,83 @@ Lj3974:
 	incl	-64(%ebp)
 	movl	-8(%ebp),%eax
 	incl	(%eax)
-Lj3975:
+Lj3928:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%edx
 	movl	-8(%ebp),%eax
 	cmpl	(%eax),%edx
-	jge	Lj3981
-	jmp	Lj3976
-Lj3981:
+	jge	Lj3934
+	jmp	Lj3929
+Lj3934:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	movzbl	(%edx,%eax,1),%eax
 	subl	$48,%eax
 	cmpl	$10,%eax
-	jb	Lj3982
-Lj3982:
-	jc	Lj3974
-	jmp	Lj3976
-Lj3976:
-Lj3972:
+	jb	Lj3935
+Lj3935:
+	jc	Lj3927
+	jmp	Lj3929
+Lj3929:
+Lj3925:
 	movzbl	-69(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj3983
-	jmp	Lj3984
-Lj3983:
+	je	Lj3936
+	jmp	Lj3937
+Lj3936:
 	fldz
 	fstpt	-20(%ebp)
-	jmp	Lj3933
-Lj3984:
+	jmp	Lj3886
+Lj3937:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%eax
 	movl	-8(%ebp),%edx
 	cmpl	(%edx),%eax
-	jge	Lj3989
-	jmp	Lj3988
-Lj3989:
+	jge	Lj3942
+	jmp	Lj3941
+Lj3942:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	movzbl	(%edx,%eax,1),%eax
 	cmpl	$69,%eax
-	je	Lj3990
+	je	Lj3943
 	cmpl	$101,%eax
-	je	Lj3990
-Lj3990:
-	je	Lj3987
-	jmp	Lj3988
-Lj3987:
+	je	Lj3943
+Lj3943:
+	je	Lj3940
+	jmp	Lj3941
+Lj3940:
 	movl	-8(%ebp),%eax
 	incl	(%eax)
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%eax
 	movl	-8(%ebp),%edx
 	cmpl	(%edx),%eax
-	jge	Lj3991
-	jmp	Lj3992
-Lj3991:
+	jge	Lj3944
+	jmp	Lj3945
+Lj3944:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	movb	(%edx,%eax,1),%al
 	cmpb	$43,%al
-	je	Lj3993
-	jmp	Lj3994
-Lj3993:
+	je	Lj3946
+	jmp	Lj3947
+Lj3946:
 	movl	-8(%ebp),%eax
 	incl	(%eax)
-	jmp	Lj3995
-Lj3994:
+	jmp	Lj3948
+Lj3947:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	movb	(%edx,%eax,1),%al
 	cmpb	$45,%al
-	je	Lj3996
-	jmp	Lj3997
-Lj3996:
+	je	Lj3949
+	jmp	Lj3950
+Lj3949:
 	movl	_$SYSTEM$_Ld21,%eax
 	movl	%eax,-44(%ebp)
 	movl	_$SYSTEM$_Ld21+4,%eax
@@ -11439,34 +11361,34 @@ Lj3996:
 	movw	%ax,-36(%ebp)
 	movl	-8(%ebp),%eax
 	incl	(%eax)
-Lj3997:
-Lj3995:
-Lj3992:
+Lj3950:
+Lj3948:
+Lj3945:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%eax
 	movl	-8(%ebp),%edx
 	cmpl	(%edx),%eax
-	jl	Lj4000
-	jmp	Lj4002
-Lj4002:
+	jl	Lj3953
+	jmp	Lj3955
+Lj3955:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	movzbl	(%edx,%eax,1),%eax
 	subl	$48,%eax
 	cmpl	$10,%eax
-	jb	Lj4003
-Lj4003:
-	jnc	Lj4000
-	jmp	Lj4001
-Lj4000:
+	jb	Lj3956
+Lj3956:
+	jnc	Lj3953
+	jmp	Lj3954
+Lj3953:
 	fldz
 	fstpt	-20(%ebp)
-	jmp	Lj3933
-Lj4001:
-	jmp	Lj4007
+	jmp	Lj3886
+Lj3954:
+	jmp	Lj3960
 	.balign 4,0x90
-Lj4006:
+Lj3959:
 	movl	-60(%ebp),%eax
 	imull	$10,%eax
 	movl	%eax,-60(%ebp)
@@ -11480,41 +11402,41 @@ Lj4006:
 	movl	%edx,-60(%ebp)
 	movl	-8(%ebp),%eax
 	incl	(%eax)
-Lj4007:
+Lj3960:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%edx
 	movl	-8(%ebp),%eax
 	cmpl	(%eax),%edx
-	jge	Lj4013
-	jmp	Lj4008
-Lj4013:
+	jge	Lj3966
+	jmp	Lj3961
+Lj3966:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	movzbl	(%edx,%eax,1),%eax
 	subl	$48,%eax
 	cmpl	$10,%eax
-	jb	Lj4014
-Lj4014:
-	jc	Lj4006
-	jmp	Lj4008
-Lj4008:
-Lj3988:
+	jb	Lj3967
+Lj3967:
+	jc	Lj3959
+	jmp	Lj3961
+Lj3961:
+Lj3941:
 	fldz
 	fldt	-44(%ebp)
 	fcompp
 	fnstsw	%ax
 	sahf
-	ja	Lj4015
-	jmp	Lj4016
-Lj4015:
+	ja	Lj3968
+	jmp	Lj3969
+Lj3968:
 	movl	-64(%ebp),%eax
 	subl	%eax,-60(%ebp)
 	movl	-60(%ebp),%eax
 	cmpl	$0,%eax
-	jl	Lj4017
-	jmp	Lj4018
-Lj4017:
+	jl	Lj3970
+	jmp	Lj3971
+Lj3970:
 	movl	_$SYSTEM$_Ld21,%eax
 	movl	%eax,-44(%ebp)
 	movl	_$SYSTEM$_Ld21+4,%eax
@@ -11524,12 +11446,12 @@ Lj4017:
 	movl	-60(%ebp),%eax
 	negl	%eax
 	movl	%eax,-60(%ebp)
-Lj4018:
-	jmp	Lj4023
-Lj4016:
+Lj3971:
+	jmp	Lj3976
+Lj3969:
 	movl	-64(%ebp),%eax
 	addl	%eax,-60(%ebp)
-Lj4023:
+Lj3976:
 	fldt	-56(%ebp)
 	fldt	-20(%ebp)
 	fmulp	%st,%st(1)
@@ -11538,91 +11460,91 @@ Lj4023:
 	fstpt	-32(%ebp)
 	movl	-60(%ebp),%eax
 	cmpl	$4930,%eax
-	jg	Lj4028
-	jmp	Lj4029
-Lj4028:
+	jg	Lj3981
+	jmp	Lj3982
+Lj3981:
 	movl	$1,-68(%ebp)
 	decl	-68(%ebp)
 	.balign 4,0x90
-Lj4032:
+Lj3985:
 	incl	-68(%ebp)
 	fldt	_$SYSTEM$_Ld12
 	fldt	-32(%ebp)
 	fmulp	%st,%st(1)
 	fstpt	-32(%ebp)
 	cmpl	$4930,-68(%ebp)
-	jl	Lj4032
+	jl	Lj3985
 	fldz
 	fldt	-44(%ebp)
 	fcompp
 	fnstsw	%ax
 	sahf
-	ja	Lj4035
-	jmp	Lj4036
-Lj4035:
+	ja	Lj3988
+	jmp	Lj3989
+Lj3988:
 	fldt	-32(%ebp)
 	fldt	-20(%ebp)
 	fmulp	%st,%st(1)
 	fstpt	-20(%ebp)
-	jmp	Lj4039
-Lj4036:
+	jmp	Lj3992
+Lj3989:
 	fldt	-32(%ebp)
 	fldt	-20(%ebp)
 	fdivp	%st,%st(1)
 	fstpt	-20(%ebp)
-Lj4039:
+Lj3992:
 	subl	$4930,-60(%ebp)
 	fld1
 	fstpt	-32(%ebp)
-Lj4029:
+Lj3982:
 	movl	-60(%ebp),%eax
 	movl	$1,-68(%ebp)
 	cmpl	-68(%ebp),%eax
-	jl	Lj4045
+	jl	Lj3998
 	decl	-68(%ebp)
 	.balign 4,0x90
-Lj4046:
+Lj3999:
 	incl	-68(%ebp)
 	fldt	_$SYSTEM$_Ld12
 	fldt	-32(%ebp)
 	fmulp	%st,%st(1)
 	fstpt	-32(%ebp)
 	cmpl	-68(%ebp),%eax
-	jg	Lj4046
-Lj4045:
+	jg	Lj3999
+Lj3998:
 	fldz
 	fldt	-44(%ebp)
 	fcompp
 	fnstsw	%ax
 	sahf
-	ja	Lj4049
-	jmp	Lj4050
-Lj4049:
+	ja	Lj4002
+	jmp	Lj4003
+Lj4002:
 	fldt	-32(%ebp)
 	fldt	-20(%ebp)
 	fmulp	%st,%st(1)
 	fstpt	-20(%ebp)
-	jmp	Lj4053
-Lj4050:
+	jmp	Lj4006
+Lj4003:
 	fldt	-32(%ebp)
 	fldt	-20(%ebp)
 	fdivp	%st,%st(1)
 	fstpt	-20(%ebp)
-Lj4053:
+Lj4006:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%eax
 	movl	-8(%ebp),%edx
 	cmpl	(%edx),%eax
-	jge	Lj4056
-	jmp	Lj4057
-Lj4056:
+	jge	Lj4009
+	jmp	Lj4010
+Lj4009:
 	fldz
 	fstpt	-20(%ebp)
-	jmp	Lj3933
-Lj4057:
+	jmp	Lj3886
+Lj4010:
 	movl	-8(%ebp),%eax
 	movl	$0,(%eax)
-Lj3933:
+Lj3886:
 	fldt	-20(%ebp)
 	leave
 	ret
@@ -11642,24 +11564,24 @@ FPC_VAL_ENUM_SHORTSTR:
 	movb	$1,-37(%ebp)
 	movl	-12(%ebp),%eax
 	movl	$1,(%eax)
-	jmp	Lj4071
+	jmp	Lj4024
 	.balign 4,0x90
-Lj4070:
+Lj4023:
 	incb	-37(%ebp)
-Lj4071:
+Lj4024:
 	movl	-8(%ebp),%eax
 	movb	(%eax),%al
 	cmpb	-37(%ebp),%al
-	jae	Lj4073
-	jmp	Lj4072
-Lj4073:
+	jae	Lj4026
+	jmp	Lj4025
+Lj4026:
 	movl	-8(%ebp),%edx
 	movzbl	-37(%ebp),%eax
 	movb	(%edx,%eax,1),%al
 	cmpb	$32,%al
-	je	Lj4070
-	jmp	Lj4072
-Lj4072:
+	je	Lj4023
+	jmp	Lj4025
+Lj4025:
 	leal	-805(%ebp),%eax
 	pushl	%eax
 	movzbl	-37(%ebp),%edx
@@ -11681,7 +11603,7 @@ Lj4072:
 	movl	(%eax),%eax
 	movl	%eax,-24(%ebp)
 	.balign 4,0x90
-Lj4098:
+Lj4051:
 	movl	-20(%ebp),%eax
 	movl	-24(%ebp),%edx
 	addl	%edx,%eax
@@ -11700,40 +11622,40 @@ Lj4098:
 	movl	%eax,-32(%ebp)
 	movl	-32(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj4115
-	jmp	Lj4116
-Lj4115:
+	jg	Lj4068
+	jmp	Lj4069
+Lj4068:
 	movl	-28(%ebp),%eax
 	incl	%eax
 	movl	%eax,-20(%ebp)
-	jmp	Lj4119
-Lj4116:
+	jmp	Lj4072
+Lj4069:
 	movl	-32(%ebp),%eax
 	cmpl	$0,%eax
-	jl	Lj4120
-	jmp	Lj4121
-Lj4120:
+	jl	Lj4073
+	jmp	Lj4074
+Lj4073:
 	movl	-28(%ebp),%eax
 	decl	%eax
 	movl	%eax,-24(%ebp)
-	jmp	Lj4124
-Lj4121:
-	jmp	Lj4100
-Lj4124:
-Lj4119:
+	jmp	Lj4077
+Lj4074:
+	jmp	Lj4053
+Lj4077:
+Lj4072:
 	movl	-20(%ebp),%eax
 	cmpl	-24(%ebp),%eax
-	ja	Lj4125
-	jmp	Lj4126
-Lj4125:
+	ja	Lj4078
+	jmp	Lj4079
+Lj4078:
 	movzbl	-37(%ebp),%eax
 	decl	%eax
 	movl	-12(%ebp),%edx
 	addl	%eax,(%edx)
-	jmp	Lj4062
-Lj4126:
-	jmp	Lj4098
-Lj4100:
+	jmp	Lj4015
+Lj4079:
+	jmp	Lj4051
+Lj4053:
 	movl	-12(%ebp),%eax
 	movl	$0,(%eax)
 	movl	-36(%ebp),%edx
@@ -11741,7 +11663,7 @@ Lj4100:
 	decl	%eax
 	movl	(%edx,%eax,8),%eax
 	movl	%eax,-16(%ebp)
-Lj4062:
+Lj4015:
 	movl	-16(%ebp),%eax
 	leave
 	ret
@@ -11762,17 +11684,17 @@ SYSTEM_fpc_val_enum_shortstr$crcCF5712C8_STRING_COMPARE$SHORTSTRING$SHORTSTRING$
 	movl	-8(%ebp),%edx
 	movb	(%eax),%al
 	cmpb	(%edx),%al
-	ja	Lj4133
-	jmp	Lj4134
-Lj4133:
+	ja	Lj4086
+	jmp	Lj4087
+Lj4086:
 	movl	-8(%ebp),%eax
 	movb	(%eax),%al
 	movb	%al,-18(%ebp)
-Lj4134:
+Lj4087:
 	movb	$1,-17(%ebp)
-	jmp	Lj4140
+	jmp	Lj4093
 	.balign 4,0x90
-Lj4139:
+Lj4092:
 	movl	-4(%ebp),%eax
 	movzbl	-17(%ebp),%edx
 	movb	(%eax,%edx,1),%al
@@ -11783,48 +11705,48 @@ Lj4139:
 	movb	%al,-20(%ebp)
 	movb	-19(%ebp),%al
 	cmpb	-20(%ebp),%al
-	jne	Lj4146
-	jmp	Lj4147
-Lj4146:
-	jmp	Lj4141
-Lj4147:
+	jne	Lj4099
+	jmp	Lj4100
+Lj4099:
+	jmp	Lj4094
+Lj4100:
 	incb	-17(%ebp)
-Lj4140:
+Lj4093:
 	movb	-17(%ebp),%al
 	cmpb	-18(%ebp),%al
-	jbe	Lj4139
-	jmp	Lj4141
-Lj4141:
+	jbe	Lj4092
+	jmp	Lj4094
+Lj4094:
 	movl	-12(%ebp),%eax
 	movl	-12(%eax),%edx
 	movzbl	-17(%ebp),%eax
 	cmpl	(%edx),%eax
-	jg	Lj4148
-	jmp	Lj4149
-Lj4148:
+	jg	Lj4101
+	jmp	Lj4102
+Lj4101:
 	movl	-12(%ebp),%eax
 	movl	-12(%eax),%eax
 	movzbl	-17(%ebp),%edx
 	movl	%edx,(%eax)
-Lj4149:
+Lj4102:
 	movb	-17(%ebp),%al
 	cmpb	-18(%ebp),%al
-	jbe	Lj4152
-	jmp	Lj4153
-Lj4152:
+	jbe	Lj4105
+	jmp	Lj4106
+Lj4105:
 	movzbl	-19(%ebp),%eax
 	movzbl	-20(%ebp),%edx
 	subl	%edx,%eax
 	movl	%eax,-16(%ebp)
-	jmp	Lj4156
-Lj4153:
+	jmp	Lj4109
+Lj4106:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%edx
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	subl	%eax,%edx
 	movl	%edx,-16(%ebp)
-Lj4156:
+Lj4109:
 	movl	-16(%ebp),%eax
 	leave
 	ret
@@ -11852,81 +11774,81 @@ FPC_VAL_CURRENCY_SHORTSTR:
 	movl	$1,(%eax)
 	movl	$1,-40(%ebp)
 	movl	$0,-36(%ebp)
-	jmp	Lj4174
+	jmp	Lj4127
 	.balign 4,0x90
-Lj4173:
+Lj4126:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	cmpl	-44(%ebp),%eax
-	jg	Lj4176
-	jmp	Lj4177
-Lj4176:
-	jmp	Lj4159
-	jmp	Lj4178
-Lj4177:
+	jg	Lj4129
+	jmp	Lj4130
+Lj4129:
+	jmp	Lj4112
+	jmp	Lj4131
+Lj4130:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	movzbl	(%edx,%eax,1),%eax
 	cmpl	$9,%eax
-	je	Lj4181
+	je	Lj4134
 	cmpl	$32,%eax
-	je	Lj4181
-Lj4181:
-	je	Lj4179
-	jmp	Lj4180
-Lj4179:
+	je	Lj4134
+Lj4134:
+	je	Lj4132
+	jmp	Lj4133
+Lj4132:
 	movl	-8(%ebp),%eax
 	incl	(%eax)
-	jmp	Lj4182
-Lj4180:
-	jmp	Lj4175
-Lj4182:
-Lj4178:
-Lj4174:
-	jmp	Lj4173
-Lj4175:
+	jmp	Lj4135
+Lj4133:
+	jmp	Lj4128
+Lj4135:
+Lj4131:
+Lj4127:
+	jmp	Lj4126
+Lj4128:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	movb	(%edx,%eax,1),%al
 	cmpb	$43,%al
-	jb	Lj4184
+	jb	Lj4137
 	subb	$43,%al
-	je	Lj4185
+	je	Lj4138
 	subb	$2,%al
-	je	Lj4186
-	jmp	Lj4184
-Lj4185:
+	je	Lj4139
+	jmp	Lj4137
+Lj4138:
 	movl	-8(%ebp),%eax
 	incl	(%eax)
-	jmp	Lj4183
-Lj4186:
+	jmp	Lj4136
+Lj4139:
 	movl	$-1,-40(%ebp)
 	movl	-8(%ebp),%eax
 	incl	(%eax)
-	jmp	Lj4183
-Lj4184:
-Lj4183:
+	jmp	Lj4136
+Lj4137:
+Lj4136:
 	movb	$0,-45(%ebp)
 	movl	$0,-28(%ebp)
-	jmp	Lj4194
+	jmp	Lj4147
 	.balign 4,0x90
-Lj4193:
+Lj4146:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	movb	(%edx,%eax,1),%al
 	cmpb	$46,%al
-	jb	Lj4197
+	jb	Lj4150
 	subb	$46,%al
-	je	Lj4199
+	je	Lj4152
 	subb	$2,%al
-	jb	Lj4197
+	jb	Lj4150
 	subb	$9,%al
-	jbe	Lj4198
-	jmp	Lj4197
-Lj4198:
+	jbe	Lj4151
+	jmp	Lj4150
+Lj4151:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
@@ -11936,13 +11858,13 @@ Lj4198:
 	movl	-24(%ebp),%edx
 	movl	-20(%ebp),%eax
 	cmpl	TC_SYSTEM_fpc_val_currency_shortstr$SHORTSTRING$LONGINT$$CURRENCY_INT64EDGE+4,%eax
-	jl	Lj4202
-	jg	Lj4204
+	jl	Lj4155
+	jg	Lj4157
 	cmpl	TC_SYSTEM_fpc_val_currency_shortstr$SHORTSTRING$LONGINT$$CURRENCY_INT64EDGE,%edx
-	jbe	Lj4202
-	jmp	Lj4204
-	jmp	Lj4204
-Lj4204:
+	jbe	Lj4155
+	jmp	Lj4157
+	jmp	Lj4157
+Lj4157:
 	pushl	$0
 	pushl	$10
 	movl	-32(%ebp),%edx
@@ -11958,13 +11880,13 @@ Lj4204:
 	pushl	%edx
 	call	fpc_div_int64
 	cmpl	-20(%ebp),%edx
-	jg	Lj4202
-	jl	Lj4203
+	jg	Lj4155
+	jl	Lj4156
 	cmpl	-24(%ebp),%eax
-	jae	Lj4202
-	jmp	Lj4203
-	jmp	Lj4203
-Lj4202:
+	jae	Lj4155
+	jmp	Lj4156
+	jmp	Lj4156
+Lj4155:
 	pushl	-20(%ebp)
 	pushl	-24(%ebp)
 	pushl	$0
@@ -11979,88 +11901,88 @@ Lj4202:
 	movl	%eax,-24(%ebp)
 	movl	%edx,-20(%ebp)
 	incl	-28(%ebp)
-	jmp	Lj4217
-Lj4203:
+	jmp	Lj4170
+Lj4156:
 	movl	-36(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj4218
-	jmp	Lj4219
-Lj4218:
-	jmp	Lj4159
-	jmp	Lj4220
-Lj4219:
+	je	Lj4171
+	jmp	Lj4172
+Lj4171:
+	jmp	Lj4112
+	jmp	Lj4173
+Lj4172:
 	movb	-45(%ebp),%al
 	testb	%al,%al
-	je	Lj4224
-	jmp	Lj4222
-Lj4224:
+	je	Lj4177
+	jmp	Lj4175
+Lj4177:
 	movl	-32(%ebp),%eax
 	cmpl	$5,%eax
-	jge	Lj4223
-	jmp	Lj4222
-Lj4223:
+	jge	Lj4176
+	jmp	Lj4175
+Lj4176:
 	movl	-24(%ebp),%eax
 	movl	-20(%ebp),%edx
 	cmpl	TC_SYSTEM_fpc_val_currency_shortstr$SHORTSTRING$LONGINT$$CURRENCY_MAXINT64+4,%edx
-	jl	Lj4221
-	jg	Lj4222
+	jl	Lj4174
+	jg	Lj4175
 	cmpl	TC_SYSTEM_fpc_val_currency_shortstr$SHORTSTRING$LONGINT$$CURRENCY_MAXINT64,%eax
-	jb	Lj4221
-	jmp	Lj4222
-	jmp	Lj4222
-Lj4221:
+	jb	Lj4174
+	jmp	Lj4175
+	jmp	Lj4175
+Lj4174:
 	addl	$1,-24(%ebp)
 	adcl	$0,-20(%ebp)
-Lj4222:
+Lj4175:
 	movb	$1,-45(%ebp)
-Lj4220:
-Lj4217:
-	jmp	Lj4196
-Lj4199:
+Lj4173:
+Lj4170:
+	jmp	Lj4149
+Lj4152:
 	movl	-36(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj4227
-	jmp	Lj4228
-Lj4227:
+	je	Lj4180
+	jmp	Lj4181
+Lj4180:
 	movl	$1,-36(%ebp)
 	movl	$0,-28(%ebp)
-	jmp	Lj4233
-Lj4228:
-	jmp	Lj4159
-Lj4233:
-	jmp	Lj4196
-Lj4197:
-	jmp	Lj4195
-Lj4196:
+	jmp	Lj4186
+Lj4181:
+	jmp	Lj4112
+Lj4186:
+	jmp	Lj4149
+Lj4150:
+	jmp	Lj4148
+Lj4149:
 	movl	-8(%ebp),%eax
 	incl	(%eax)
-Lj4194:
+Lj4147:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	cmpl	-44(%ebp),%eax
-	jle	Lj4193
-	jmp	Lj4195
-Lj4195:
+	jle	Lj4146
+	jmp	Lj4148
+Lj4148:
 	movl	-28(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj4236
-	jmp	Lj4235
-Lj4236:
+	je	Lj4189
+	jmp	Lj4188
+Lj4189:
 	movl	-36(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj4234
-	jmp	Lj4235
-Lj4234:
-	jmp	Lj4159
-Lj4235:
+	je	Lj4187
+	jmp	Lj4188
+Lj4187:
+	jmp	Lj4112
+Lj4188:
 	movl	-36(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj4237
-	jmp	Lj4238
-Lj4237:
+	jne	Lj4190
+	jmp	Lj4191
+Lj4190:
 	movl	-28(%ebp),%eax
 	movl	%eax,-36(%ebp)
-Lj4238:
+Lj4191:
 	movl	-36(%ebp),%edx
 	movl	$4,%eax
 	subl	%edx,%eax
@@ -12069,76 +11991,76 @@ Lj4238:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	cmpl	-44(%ebp),%eax
-	jle	Lj4243
-	jmp	Lj4244
-Lj4243:
+	jle	Lj4196
+	jmp	Lj4197
+Lj4196:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	movzbl	(%edx,%eax,1),%eax
 	cmpl	$69,%eax
-	je	Lj4247
+	je	Lj4200
 	cmpl	$101,%eax
-	je	Lj4247
-Lj4247:
-	je	Lj4245
-	jmp	Lj4246
-Lj4245:
+	je	Lj4200
+Lj4200:
+	je	Lj4198
+	jmp	Lj4199
+Lj4198:
 	movl	-8(%ebp),%eax
 	incl	(%eax)
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	cmpl	-44(%ebp),%eax
-	jg	Lj4248
-	jmp	Lj4249
-Lj4248:
-	jmp	Lj4159
-Lj4249:
+	jg	Lj4201
+	jmp	Lj4202
+Lj4201:
+	jmp	Lj4112
+Lj4202:
 	movl	$1,-28(%ebp)
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	movb	(%edx,%eax,1),%al
 	cmpb	$43,%al
-	jb	Lj4253
+	jb	Lj4206
 	subb	$43,%al
-	je	Lj4254
+	je	Lj4207
 	subb	$2,%al
-	je	Lj4255
-	jmp	Lj4253
-Lj4254:
+	je	Lj4208
+	jmp	Lj4206
+Lj4207:
 	movl	-8(%ebp),%eax
 	incl	(%eax)
-	jmp	Lj4252
-Lj4255:
+	jmp	Lj4205
+Lj4208:
 	movl	$-1,-28(%ebp)
 	movl	-8(%ebp),%eax
 	incl	(%eax)
-	jmp	Lj4252
-Lj4253:
-Lj4252:
+	jmp	Lj4205
+Lj4206:
+Lj4205:
 	movl	$0,-32(%ebp)
-	jmp	Lj4261
+	jmp	Lj4214
 	.balign 4,0x90
-Lj4260:
+Lj4213:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	movzbl	(%edx,%eax,1),%eax
 	subl	$48,%eax
 	cmpl	$10,%eax
-	jb	Lj4265
-Lj4265:
-	jc	Lj4263
-	jmp	Lj4264
-Lj4263:
+	jb	Lj4218
+Lj4218:
+	jc	Lj4216
+	jmp	Lj4217
+Lj4216:
 	movl	-32(%ebp),%eax
 	cmpl	$4951,%eax
-	jg	Lj4266
-	jmp	Lj4267
-Lj4266:
-	jmp	Lj4159
-Lj4267:
+	jg	Lj4219
+	jmp	Lj4220
+Lj4219:
+	jmp	Lj4112
+Lj4220:
 	movl	-32(%ebp),%ecx
 	imull	$10,%ecx
 	movl	-4(%ebp),%edx
@@ -12150,51 +12072,51 @@ Lj4267:
 	movl	%ecx,-32(%ebp)
 	movl	-8(%ebp),%eax
 	incl	(%eax)
-	jmp	Lj4270
-Lj4264:
-	jmp	Lj4159
-Lj4270:
-Lj4261:
+	jmp	Lj4223
+Lj4217:
+	jmp	Lj4112
+Lj4223:
+Lj4214:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	cmpl	-44(%ebp),%eax
-	jle	Lj4260
-	jmp	Lj4262
-Lj4262:
+	jle	Lj4213
+	jmp	Lj4215
+Lj4215:
 	movl	-32(%ebp),%edx
 	movl	-28(%ebp),%eax
 	imull	%eax,%edx
 	movl	-36(%ebp),%eax
 	addl	%eax,%edx
 	movl	%edx,-36(%ebp)
-	jmp	Lj4273
-Lj4246:
-	jmp	Lj4159
-Lj4273:
-Lj4244:
+	jmp	Lj4226
+Lj4199:
+	jmp	Lj4112
+Lj4226:
+Lj4197:
 	movl	-36(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj4274
-	jmp	Lj4275
-Lj4274:
+	jg	Lj4227
+	jmp	Lj4228
+Lj4227:
 	movl	-36(%ebp),%ebx
 	movl	$1,-28(%ebp)
 	cmpl	-28(%ebp),%ebx
-	jl	Lj4277
+	jl	Lj4230
 	decl	-28(%ebp)
 	.balign 4,0x90
-Lj4278:
+Lj4231:
 	incl	-28(%ebp)
 	movl	-24(%ebp),%edx
 	movl	-20(%ebp),%eax
 	cmpl	TC_SYSTEM_fpc_val_currency_shortstr$SHORTSTRING$LONGINT$$CURRENCY_INT64EDGE2+4,%eax
-	jl	Lj4279
-	jg	Lj4280
+	jl	Lj4232
+	jg	Lj4233
 	cmpl	TC_SYSTEM_fpc_val_currency_shortstr$SHORTSTRING$LONGINT$$CURRENCY_INT64EDGE2,%edx
-	jbe	Lj4279
-	jmp	Lj4280
-	jmp	Lj4280
-Lj4279:
+	jbe	Lj4232
+	jmp	Lj4233
+	jmp	Lj4233
+Lj4232:
 	pushl	-20(%ebp)
 	pushl	-24(%ebp)
 	pushl	$0
@@ -12203,39 +12125,39 @@ Lj4279:
 	call	fpc_mul_int64
 	movl	%eax,-24(%ebp)
 	movl	%edx,-20(%ebp)
-	jmp	Lj4289
-Lj4280:
-	jmp	Lj4159
-Lj4289:
+	jmp	Lj4242
+Lj4233:
+	jmp	Lj4112
+Lj4242:
 	cmpl	-28(%ebp),%ebx
-	jg	Lj4278
-Lj4277:
-	jmp	Lj4290
-Lj4275:
+	jg	Lj4231
+Lj4230:
+	jmp	Lj4243
+Lj4228:
 	movl	-36(%ebp),%ebx
 	negl	%ebx
 	movl	$1,-28(%ebp)
 	cmpl	-28(%ebp),%ebx
-	jl	Lj4292
+	jl	Lj4245
 	decl	-28(%ebp)
 	.balign 4,0x90
-Lj4293:
+Lj4246:
 	incl	-28(%ebp)
 	movl	TC_SYSTEM_fpc_val_currency_shortstr$SHORTSTRING$LONGINT$$CURRENCY_MAXINT64,%edx
 	movl	TC_SYSTEM_fpc_val_currency_shortstr$SHORTSTRING$LONGINT$$CURRENCY_MAXINT64+4,%eax
 	subl	$5,%edx
 	sbbl	$0,%eax
 	cmpl	-20(%ebp),%eax
-	jg	Lj4294
-	jl	Lj4295
+	jg	Lj4247
+	jl	Lj4248
 	cmpl	-24(%ebp),%edx
-	jae	Lj4294
-	jmp	Lj4295
-	jmp	Lj4295
-Lj4294:
+	jae	Lj4247
+	jmp	Lj4248
+	jmp	Lj4248
+Lj4247:
 	addl	$5,-24(%ebp)
 	adcl	$0,-20(%ebp)
-Lj4295:
+Lj4248:
 	pushl	$0
 	pushl	$10
 	pushl	-20(%ebp)
@@ -12244,9 +12166,9 @@ Lj4295:
 	movl	%eax,-24(%ebp)
 	movl	%edx,-20(%ebp)
 	cmpl	-28(%ebp),%ebx
-	jg	Lj4293
-Lj4292:
-Lj4290:
+	jg	Lj4246
+Lj4245:
+Lj4243:
 	pushl	-20(%ebp)
 	pushl	-24(%ebp)
 	movl	-40(%ebp),%edx
@@ -12265,7 +12187,7 @@ Lj4290:
 	movl	%eax,-12(%ebp)
 	movl	-8(%ebp),%eax
 	movl	$0,(%eax)
-Lj4159:
+Lj4112:
 	fildq	-16(%ebp)
 	movl	-52(%ebp),%ebx
 	leave
@@ -12283,27 +12205,27 @@ SYSTEM_SETSTRING$OPENSTRING$PCHAR$LONGINT:
 	movl	%ecx,-8(%ebp)
 	movl	8(%ebp),%eax
 	cmpl	-12(%ebp),%eax
-	jg	Lj4316
-	jmp	Lj4317
-Lj4316:
+	jg	Lj4269
+	jmp	Lj4270
+Lj4269:
 	movl	-12(%ebp),%eax
 	movl	%eax,8(%ebp)
-Lj4317:
+Lj4270:
 	movl	8(%ebp),%ecx
 	movl	-12(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	fpc_shortstr_setlength
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj4326
-	jmp	Lj4327
-Lj4326:
+	jne	Lj4279
+	jmp	Lj4280
+Lj4279:
 	movl	-8(%ebp),%eax
 	movl	8(%ebp),%ecx
 	movl	-4(%ebp),%edx
 	leal	1(%edx),%edx
 	call	SYSTEM_MOVE$formal$formal$LONGINT
-Lj4327:
+Lj4280:
 	leave
 	ret	$4
 
@@ -12324,16 +12246,16 @@ SYSTEM_SHORTCOMPARETEXT$SHORTSTRING$SHORTSTRING$$LONGINT:
 	movl	%eax,-24(%ebp)
 	movl	-20(%ebp),%eax
 	cmpl	-24(%ebp),%eax
-	jg	Lj4340
-	jmp	Lj4341
-Lj4340:
+	jg	Lj4293
+	jmp	Lj4294
+Lj4293:
 	movl	-24(%ebp),%eax
 	movl	%eax,-28(%ebp)
-	jmp	Lj4344
-Lj4341:
+	jmp	Lj4297
+Lj4294:
 	movl	-20(%ebp),%eax
 	movl	%eax,-28(%ebp)
-Lj4344:
+Lj4297:
 	movw	$0,-16(%ebp)
 	movl	-4(%ebp),%eax
 	leal	1(%eax),%eax
@@ -12341,9 +12263,9 @@ Lj4344:
 	movl	-8(%ebp),%eax
 	leal	1(%eax),%eax
 	movl	%eax,-36(%ebp)
-	jmp	Lj4354
+	jmp	Lj4307
 	.balign 4,0x90
-Lj4353:
+Lj4306:
 	movl	-32(%ebp),%eax
 	movb	(%eax),%al
 	movb	%al,-13(%ebp)
@@ -12352,62 +12274,62 @@ Lj4353:
 	movb	%al,-14(%ebp)
 	movb	-13(%ebp),%al
 	cmpb	-14(%ebp),%al
-	jne	Lj4360
-	jmp	Lj4361
-Lj4360:
+	jne	Lj4313
+	jmp	Lj4314
+Lj4313:
 	movzbl	-13(%ebp),%eax
 	subl	$97,%eax
 	cmpl	$26,%eax
-	jb	Lj4364
-Lj4364:
-	jc	Lj4362
-	jmp	Lj4363
-Lj4362:
+	jb	Lj4317
+Lj4317:
+	jc	Lj4315
+	jmp	Lj4316
+Lj4315:
 	subb	$32,-13(%ebp)
-Lj4363:
+Lj4316:
 	movzbl	-14(%ebp),%eax
 	subl	$97,%eax
 	cmpl	$26,%eax
-	jb	Lj4367
-Lj4367:
-	jc	Lj4365
-	jmp	Lj4366
-Lj4365:
+	jb	Lj4320
+Lj4320:
+	jc	Lj4318
+	jmp	Lj4319
+Lj4318:
 	subb	$32,-14(%ebp)
-Lj4366:
+Lj4319:
 	movb	-13(%ebp),%al
 	cmpb	-14(%ebp),%al
-	jne	Lj4368
-	jmp	Lj4369
-Lj4368:
-	jmp	Lj4355
-Lj4369:
-Lj4361:
+	jne	Lj4321
+	jmp	Lj4322
+Lj4321:
+	jmp	Lj4308
+Lj4322:
+Lj4314:
 	incl	-32(%ebp)
 	incl	-36(%ebp)
 	incw	-16(%ebp)
-Lj4354:
+Lj4307:
 	movswl	-16(%ebp),%eax
 	cmpl	-28(%ebp),%eax
-	jl	Lj4353
-	jmp	Lj4355
-Lj4355:
+	jl	Lj4306
+	jmp	Lj4308
+Lj4308:
 	movswl	-16(%ebp),%eax
 	cmpl	-28(%ebp),%eax
-	jl	Lj4370
-	jmp	Lj4371
-Lj4370:
+	jl	Lj4323
+	jmp	Lj4324
+Lj4323:
 	movzbl	-13(%ebp),%edx
 	movzbl	-14(%ebp),%eax
 	subl	%eax,%edx
 	movl	%edx,-12(%ebp)
-	jmp	Lj4374
-Lj4371:
+	jmp	Lj4327
+Lj4324:
 	movl	-20(%ebp),%edx
 	movl	-24(%ebp),%eax
 	subl	%eax,%edx
 	movl	%edx,-12(%ebp)
-Lj4374:
+Lj4327:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -12427,22 +12349,22 @@ FPC_DIV_QWORD:
 	movl	16(%ebp),%ebx
 	movl	%ecx,%eax
 	orl	%ebx,%eax
-	jnz	Lj4379
+	jnz	Lj4332
 	movl	%ebp,%edx
 	movl	$200,%eax
 	call	SYSTEM_HANDLEERRORFRAME$LONGINT$POINTER
-	jmp	Lj4380
-Lj4379:
+	jmp	Lj4333
+Lj4332:
 	movl	12(%ebp),%edx
 	movl	8(%ebp),%eax
 	testl	%ecx,%ecx
-	jnz	Lj4381
+	jnz	Lj4334
 	cmpl	%ebx,%edx
-	jae	Lj4382
+	jae	Lj4335
 	divl	%ebx
 	movl	%ecx,%edx
-	jmp	Lj4380
-Lj4382:
+	jmp	Lj4333
+Lj4335:
 	movl	%eax,%ecx
 	movl	%edx,%eax
 	xorl	%edx,%edx
@@ -12450,8 +12372,8 @@ Lj4382:
 	xchgl	%ecx,%eax
 	divl	%ebx
 	movl	%ecx,%edx
-	jmp	Lj4380
-Lj4381:
+	jmp	Lj4333
+Lj4334:
 	movl	%ecx,%edi
 	shrl	$1,%edx
 	rcrl	$1,%eax
@@ -12474,7 +12396,7 @@ Lj4381:
 	sbbl	%edx,%ecx
 	sbbl	$0,%eax
 	xorl	%edx,%edx
-Lj4380:
+Lj4333:
 	movl	-24(%ebp),%ebx
 	movl	-28(%ebp),%edi
 	leave
@@ -12495,23 +12417,23 @@ FPC_MOD_QWORD:
 	movl	16(%ebp),%ebx
 	movl	%ecx,%eax
 	orl	%ebx,%eax
-	jnz	Lj4385
+	jnz	Lj4338
 	movl	%ebp,%edx
 	movl	$200,%eax
 	call	SYSTEM_HANDLEERRORFRAME$LONGINT$POINTER
-	jmp	Lj4386
-Lj4385:
+	jmp	Lj4339
+Lj4338:
 	movl	12(%ebp),%edx
 	movl	8(%ebp),%eax
 	testl	%ecx,%ecx
-	jnz	Lj4387
+	jnz	Lj4340
 	cmpl	%ebx,%edx
-	jae	Lj4388
+	jae	Lj4341
 	divl	%ebx
 	movl	%edx,%eax
 	movl	%ecx,%edx
-	jmp	Lj4386
-Lj4388:
+	jmp	Lj4339
+Lj4341:
 	movl	%eax,%ecx
 	movl	%edx,%eax
 	xorl	%edx,%edx
@@ -12520,8 +12442,8 @@ Lj4388:
 	divl	%ebx
 	movl	%edx,%eax
 	xorl	%edx,%edx
-	jmp	Lj4386
-Lj4387:
+	jmp	Lj4339
+Lj4340:
 	movl	%ecx,%edi
 	shrl	$1,%edx
 	rcrl	$1,%eax
@@ -12547,7 +12469,7 @@ Lj4387:
 	andl	20(%ebp),%edx
 	addl	%ebx,%eax
 	adcl	%ecx,%edx
-Lj4386:
+Lj4339:
 	movl	-24(%ebp),%ebx
 	movl	-28(%ebp),%edi
 	leave
@@ -12569,74 +12491,74 @@ FPC_MUL_QWORD:
 	movl	20(%ebp),%edx
 	movl	12(%ebp),%ecx
 	cmpl	$0,-4(%ebp)
-	jnz	Lj4391
+	jnz	Lj4344
 	orl	%ecx,%edx
 	movl	8(%ebp),%edx
 	movl	16(%ebp),%eax
-	jnz	Lj4392
+	jnz	Lj4345
 	mull	%edx
-	jmp	Lj4393
-Lj4392:
+	jmp	Lj4346
+Lj4345:
 	imull	20(%ebp),%edx
 	imull	%eax,%ecx
 	addl	%edx,%ecx
 	mull	8(%ebp)
 	addl	%ecx,%edx
-Lj4393:
+Lj4346:
 	movl	%eax,-20(%ebp)
 	movl	%edx,-16(%ebp)
-	jmp	Lj4394
-Lj4391:
+	jmp	Lj4347
+Lj4344:
 	orl	%ecx,%ecx
-	jz	Lj4395
+	jz	Lj4348
 	orl	%edx,%edx
-	jnz	Lj4396
-Lj4395:
+	jnz	Lj4349
+Lj4348:
 	orl	%ecx,%edx
 	movl	8(%ebp),%edi
 	movl	16(%ebp),%esi
-	jnz	Lj4397
+	jnz	Lj4350
 	movl	%edi,%eax
 	mull	%esi
 	movl	%eax,%esi
 	movl	%edx,%edi
-	jmp	Lj4398
-Lj4397:
+	jmp	Lj4351
+Lj4350:
 	movl	20(%ebp),%eax
 	mull	%edi
 	movl	%eax,%edi
-	jc	Lj4396
+	jc	Lj4349
 	movl	%esi,%eax
 	mull	%ecx
 	movl	%eax,%ecx
-	jc	Lj4396
+	jc	Lj4349
 	addl	%edi,%ecx
-	jc	Lj4396
+	jc	Lj4349
 	movl	8(%ebp),%eax
 	mull	%esi
 	movl	%eax,%esi
 	movl	%edx,%edi
 	addl	%ecx,%edi
-	jc	Lj4396
-Lj4398:
+	jc	Lj4349
+Lj4351:
 	movl	%esi,-20(%ebp)
 	movl	%edi,-16(%ebp)
-	jmp	Lj4394
-Lj4396:
+	jmp	Lj4347
+Lj4349:
 	movb	$1,-21(%ebp)
-Lj4394:
+Lj4347:
 	movl	-20(%ebp),%eax
 	movl	%eax,-12(%ebp)
 	movl	-16(%ebp),%eax
 	movl	%eax,-8(%ebp)
 	cmpb	$0,-21(%ebp)
-	jne	Lj4403
-	jmp	Lj4404
-Lj4403:
+	jne	Lj4356
+	jmp	Lj4357
+Lj4356:
 	movl	%ebp,%edx
 	movl	$215,%eax
 	call	SYSTEM_HANDLEERRORFRAME$LONGINT$POINTER
-Lj4404:
+Lj4357:
 	movl	-8(%ebp),%edx
 	movl	-12(%ebp),%eax
 	movl	-32(%ebp),%esi
@@ -12654,7 +12576,7 @@ SYSTEM_COUNT_LEADING_ZEROS$QWORD$$LONGINT:
 	movl	$0,-12(%ebp)
 	decl	-12(%ebp)
 	.balign 4,0x90
-Lj4415:
+Lj4368:
 	incl	-12(%ebp)
 	movl	$-2147483648,%eax
 	movl	-12(%ebp),%ecx
@@ -12662,20 +12584,20 @@ Lj4415:
 	movl	12(%ebp),%edx
 	andl	%edx,%eax
 	testl	%eax,%eax
-	jne	Lj4416
-	jmp	Lj4417
-Lj4416:
+	jne	Lj4369
+	jmp	Lj4370
+Lj4369:
 	movl	-8(%ebp),%eax
 	movl	%eax,-4(%ebp)
-	jmp	Lj4409
-Lj4417:
+	jmp	Lj4362
+Lj4370:
 	incl	-8(%ebp)
 	cmpl	$31,-12(%ebp)
-	jl	Lj4415
+	jl	Lj4368
 	movl	$0,-12(%ebp)
 	decl	-12(%ebp)
 	.balign 4,0x90
-Lj4422:
+Lj4375:
 	incl	-12(%ebp)
 	movl	$-2147483648,%eax
 	movl	-12(%ebp),%ecx
@@ -12683,19 +12605,19 @@ Lj4422:
 	movl	8(%ebp),%edx
 	andl	%edx,%eax
 	testl	%eax,%eax
-	jne	Lj4423
-	jmp	Lj4424
-Lj4423:
+	jne	Lj4376
+	jmp	Lj4377
+Lj4376:
 	movl	-8(%ebp),%eax
 	movl	%eax,-4(%ebp)
-	jmp	Lj4409
-Lj4424:
+	jmp	Lj4362
+Lj4377:
 	incl	-8(%ebp)
 	cmpl	$31,-12(%ebp)
-	jl	Lj4422
+	jl	Lj4375
 	movl	-8(%ebp),%eax
 	movl	%eax,-4(%ebp)
-Lj4409:
+Lj4362:
 	movl	-4(%ebp),%eax
 	leave
 	ret	$8
@@ -12712,25 +12634,25 @@ FPC_DIV_INT64:
 	movl	16(%ebp),%edx
 	movl	20(%ebp),%eax
 	cmpl	$0,%eax
-	jne	Lj4432
+	jne	Lj4385
 	cmpl	$0,%edx
-	jne	Lj4432
-	jmp	Lj4431
-Lj4431:
+	jne	Lj4385
+	jmp	Lj4384
+Lj4384:
 	movl	%ebp,%edx
 	movl	$200,%eax
 	call	SYSTEM_HANDLEERRORFRAME$LONGINT$POINTER
-Lj4432:
+Lj4385:
 	movb	$0,-9(%ebp)
 	movl	8(%ebp),%eax
 	movl	12(%ebp),%edx
 	cmpl	$0,%edx
-	jl	Lj4439
-	jg	Lj4440
+	jl	Lj4392
+	jg	Lj4393
 	cmpl	$0,%eax
-	jb	Lj4439
-	jmp	Lj4440
-Lj4439:
+	jb	Lj4392
+	jmp	Lj4393
+Lj4392:
 	movb	-9(%ebp),%al
 	testb	%al,%al
 	seteb	-9(%ebp)
@@ -12741,22 +12663,22 @@ Lj4439:
 	sbbl	$-1,%edx
 	movl	%eax,-20(%ebp)
 	movl	%edx,-16(%ebp)
-	jmp	Lj4445
-Lj4440:
+	jmp	Lj4398
+Lj4393:
 	movl	8(%ebp),%eax
 	movl	%eax,-20(%ebp)
 	movl	12(%ebp),%eax
 	movl	%eax,-16(%ebp)
-Lj4445:
+Lj4398:
 	movl	16(%ebp),%eax
 	movl	20(%ebp),%edx
 	cmpl	$0,%edx
-	jl	Lj4448
-	jg	Lj4449
+	jl	Lj4401
+	jg	Lj4402
 	cmpl	$0,%eax
-	jb	Lj4448
-	jmp	Lj4449
-Lj4448:
+	jb	Lj4401
+	jmp	Lj4402
+Lj4401:
 	movb	-9(%ebp),%al
 	testb	%al,%al
 	seteb	-9(%ebp)
@@ -12767,17 +12689,17 @@ Lj4448:
 	sbbl	$-1,%edx
 	movl	%eax,-28(%ebp)
 	movl	%edx,-24(%ebp)
-	jmp	Lj4454
-Lj4449:
+	jmp	Lj4407
+Lj4402:
 	movl	16(%ebp),%eax
 	movl	%eax,-28(%ebp)
 	movl	20(%ebp),%eax
 	movl	%eax,-24(%ebp)
-Lj4454:
+Lj4407:
 	cmpb	$0,-9(%ebp)
-	jne	Lj4457
-	jmp	Lj4458
-Lj4457:
+	jne	Lj4410
+	jmp	Lj4411
+Lj4410:
 	pushl	-24(%ebp)
 	pushl	-28(%ebp)
 	pushl	-16(%ebp)
@@ -12788,8 +12710,8 @@ Lj4457:
 	sbbl	$-1,%edx
 	movl	%eax,-8(%ebp)
 	movl	%edx,-4(%ebp)
-	jmp	Lj4465
-Lj4458:
+	jmp	Lj4418
+Lj4411:
 	pushl	-24(%ebp)
 	pushl	-28(%ebp)
 	pushl	-16(%ebp)
@@ -12797,7 +12719,7 @@ Lj4458:
 	call	fpc_div_qword
 	movl	%eax,-8(%ebp)
 	movl	%edx,-4(%ebp)
-Lj4465:
+Lj4418:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	leave
@@ -12815,24 +12737,24 @@ FPC_MOD_INT64:
 	movl	16(%ebp),%eax
 	movl	20(%ebp),%edx
 	cmpl	$0,%edx
-	jne	Lj4475
+	jne	Lj4428
 	cmpl	$0,%eax
-	jne	Lj4475
-	jmp	Lj4474
-Lj4474:
+	jne	Lj4428
+	jmp	Lj4427
+Lj4427:
 	movl	%ebp,%edx
 	movl	$200,%eax
 	call	SYSTEM_HANDLEERRORFRAME$LONGINT$POINTER
-Lj4475:
+Lj4428:
 	movl	16(%ebp),%eax
 	movl	20(%ebp),%edx
 	cmpl	$0,%edx
-	jl	Lj4480
-	jg	Lj4481
+	jl	Lj4433
+	jg	Lj4434
 	cmpl	$0,%eax
-	jb	Lj4480
-	jmp	Lj4481
-Lj4480:
+	jb	Lj4433
+	jmp	Lj4434
+Lj4433:
 	movl	16(%ebp),%eax
 	movl	20(%ebp),%edx
 	notl	%edx
@@ -12840,22 +12762,22 @@ Lj4480:
 	sbbl	$-1,%edx
 	movl	%eax,-28(%ebp)
 	movl	%edx,-24(%ebp)
-	jmp	Lj4484
-Lj4481:
+	jmp	Lj4437
+Lj4434:
 	movl	16(%ebp),%eax
 	movl	%eax,-28(%ebp)
 	movl	20(%ebp),%eax
 	movl	%eax,-24(%ebp)
-Lj4484:
+Lj4437:
 	movl	8(%ebp),%eax
 	movl	12(%ebp),%edx
 	cmpl	$0,%edx
-	jl	Lj4487
-	jg	Lj4488
+	jl	Lj4440
+	jg	Lj4441
 	cmpl	$0,%eax
-	jb	Lj4487
-	jmp	Lj4488
-Lj4487:
+	jb	Lj4440
+	jmp	Lj4441
+Lj4440:
 	movb	$1,-9(%ebp)
 	movl	8(%ebp),%eax
 	movl	12(%ebp),%edx
@@ -12864,14 +12786,14 @@ Lj4487:
 	sbbl	$-1,%edx
 	movl	%eax,-36(%ebp)
 	movl	%edx,-32(%ebp)
-	jmp	Lj4493
-Lj4488:
+	jmp	Lj4446
+Lj4441:
 	movb	$0,-9(%ebp)
 	movl	8(%ebp),%eax
 	movl	%eax,-36(%ebp)
 	movl	12(%ebp),%eax
 	movl	%eax,-32(%ebp)
-Lj4493:
+Lj4446:
 	pushl	-24(%ebp)
 	pushl	-28(%ebp)
 	pushl	-32(%ebp)
@@ -12880,9 +12802,9 @@ Lj4493:
 	movl	%eax,-20(%ebp)
 	movl	%edx,-16(%ebp)
 	cmpb	$0,-9(%ebp)
-	jne	Lj4504
-	jmp	Lj4505
-Lj4504:
+	jne	Lj4457
+	jmp	Lj4458
+Lj4457:
 	movl	-20(%ebp),%eax
 	movl	-16(%ebp),%edx
 	notl	%edx
@@ -12890,13 +12812,13 @@ Lj4504:
 	sbbl	$-1,%edx
 	movl	%eax,-8(%ebp)
 	movl	%edx,-4(%ebp)
-	jmp	Lj4508
-Lj4505:
+	jmp	Lj4461
+Lj4458:
 	movl	-20(%ebp),%eax
 	movl	%eax,-8(%ebp)
 	movl	-16(%ebp),%eax
 	movl	%eax,-4(%ebp)
-Lj4508:
+Lj4461:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	leave
@@ -12916,12 +12838,12 @@ FPC_MUL_INT64:
 	movl	16(%ebp),%edx
 	movl	20(%ebp),%eax
 	cmpl	$0,%eax
-	jl	Lj4515
-	jg	Lj4516
+	jl	Lj4468
+	jg	Lj4469
 	cmpl	$0,%edx
-	jb	Lj4515
-	jmp	Lj4516
-Lj4515:
+	jb	Lj4468
+	jmp	Lj4469
+Lj4468:
 	movb	-13(%ebp),%al
 	testb	%al,%al
 	seteb	-13(%ebp)
@@ -12932,22 +12854,22 @@ Lj4515:
 	sbbl	$-1,%eax
 	movl	%edx,-24(%ebp)
 	movl	%eax,-20(%ebp)
-	jmp	Lj4521
-Lj4516:
+	jmp	Lj4474
+Lj4469:
 	movl	16(%ebp),%eax
 	movl	%eax,-24(%ebp)
 	movl	20(%ebp),%eax
 	movl	%eax,-20(%ebp)
-Lj4521:
+Lj4474:
 	movl	8(%ebp),%eax
 	movl	12(%ebp),%edx
 	cmpl	$0,%edx
-	jl	Lj4524
-	jg	Lj4525
+	jl	Lj4477
+	jg	Lj4478
 	cmpl	$0,%eax
-	jb	Lj4524
-	jmp	Lj4525
-Lj4524:
+	jb	Lj4477
+	jmp	Lj4478
+Lj4477:
 	movb	-13(%ebp),%al
 	testb	%al,%al
 	seteb	-13(%ebp)
@@ -12958,13 +12880,13 @@ Lj4524:
 	sbbl	$-1,%edx
 	movl	%eax,-32(%ebp)
 	movl	%edx,-28(%ebp)
-	jmp	Lj4530
-Lj4525:
+	jmp	Lj4483
+Lj4478:
 	movl	8(%ebp),%eax
 	movl	%eax,-32(%ebp)
 	movl	12(%ebp),%eax
 	movl	%eax,-28(%ebp)
-Lj4530:
+Lj4483:
 	pushl	-20(%ebp)
 	pushl	-24(%ebp)
 	pushl	-28(%ebp)
@@ -12974,103 +12896,103 @@ Lj4530:
 	movl	%eax,-40(%ebp)
 	movl	%edx,-36(%ebp)
 	cmpl	$0,-4(%ebp)
-	jne	Lj4545
-	jmp	Lj4542
-Lj4545:
+	jne	Lj4498
+	jmp	Lj4495
+Lj4498:
 	movl	-24(%ebp),%eax
 	movl	-20(%ebp),%edx
 	cmpl	$0,%edx
-	jne	Lj4546
+	jne	Lj4499
 	cmpl	$0,%eax
-	jne	Lj4546
-	jmp	Lj4547
-Lj4546:
+	jne	Lj4499
+	jmp	Lj4500
+Lj4499:
 	movl	$-1,%eax
-	jmp	Lj4548
-Lj4547:
+	jmp	Lj4501
+Lj4500:
 	movl	$0,%eax
-Lj4548:
+Lj4501:
 	testl	%eax,%eax
-	jne	Lj4544
-	jmp	Lj4542
-Lj4544:
+	jne	Lj4497
+	jmp	Lj4495
+Lj4497:
 	movl	-32(%ebp),%edx
 	movl	-28(%ebp),%eax
 	cmpl	$0,%eax
-	jne	Lj4549
+	jne	Lj4502
 	cmpl	$0,%edx
-	jne	Lj4549
-	jmp	Lj4550
-Lj4549:
+	jne	Lj4502
+	jmp	Lj4503
+Lj4502:
 	movl	$-1,%eax
-	jmp	Lj4551
-Lj4550:
+	jmp	Lj4504
+Lj4503:
 	movl	$0,%eax
-Lj4551:
+Lj4504:
 	testl	%eax,%eax
-	jne	Lj4543
-	jmp	Lj4542
-Lj4543:
+	jne	Lj4496
+	jmp	Lj4495
+Lj4496:
 	movl	-24(%ebp),%eax
 	movl	-20(%ebp),%edx
 	cmpl	-36(%ebp),%edx
-	ja	Lj4552
-	jb	Lj4555
+	ja	Lj4505
+	jb	Lj4508
 	cmpl	-40(%ebp),%eax
-	ja	Lj4552
-	jmp	Lj4555
-	jmp	Lj4555
-Lj4555:
+	ja	Lj4505
+	jmp	Lj4508
+	jmp	Lj4508
+Lj4508:
 	movl	-32(%ebp),%eax
 	movl	-28(%ebp),%edx
 	cmpl	-36(%ebp),%edx
-	ja	Lj4552
-	jb	Lj4554
+	ja	Lj4505
+	jb	Lj4507
 	cmpl	-40(%ebp),%eax
-	ja	Lj4552
-	jmp	Lj4554
-	jmp	Lj4554
-Lj4554:
+	ja	Lj4505
+	jmp	Lj4507
+	jmp	Lj4507
+Lj4507:
 	movl	-40(%ebp),%edx
 	movl	-36(%ebp),%eax
 	xorl	%edx,%edx
 	shrl	$31,%eax
 	cmpl	$0,%edx
-	jne	Lj4556
+	jne	Lj4509
 	cmpl	$0,%eax
-	jne	Lj4556
-	jmp	Lj4553
-Lj4556:
+	jne	Lj4509
+	jmp	Lj4506
+Lj4509:
 	movl	-40(%ebp),%eax
 	movl	-36(%ebp),%edx
 	cmpl	$-2147483648,%edx
-	jne	Lj4552
+	jne	Lj4505
 	cmpl	$0,%eax
-	jne	Lj4552
-	jmp	Lj4557
-Lj4557:
+	jne	Lj4505
+	jmp	Lj4510
+Lj4510:
 	movb	-13(%ebp),%al
 	testb	%al,%al
-	je	Lj4552
-	jmp	Lj4553
-Lj4552:
+	je	Lj4505
+	jmp	Lj4506
+Lj4505:
 	movl	$-1,%eax
-	jmp	Lj4558
-Lj4553:
+	jmp	Lj4511
+Lj4506:
 	movl	$0,%eax
-Lj4558:
+Lj4511:
 	testl	%eax,%eax
-	jne	Lj4541
-	jmp	Lj4542
-Lj4541:
+	jne	Lj4494
+	jmp	Lj4495
+Lj4494:
 	movl	%ebp,%edx
 	movl	$215,%eax
 	call	SYSTEM_HANDLEERRORFRAME$LONGINT$POINTER
-Lj4542:
+Lj4495:
 	cmpb	$0,-13(%ebp)
-	jne	Lj4563
-	jmp	Lj4564
-Lj4563:
+	jne	Lj4516
+	jmp	Lj4517
+Lj4516:
 	movl	-40(%ebp),%eax
 	movl	-36(%ebp),%edx
 	notl	%edx
@@ -13078,13 +13000,13 @@ Lj4563:
 	sbbl	$-1,%edx
 	movl	%eax,-12(%ebp)
 	movl	%edx,-8(%ebp)
-	jmp	Lj4567
-Lj4564:
+	jmp	Lj4520
+Lj4517:
 	movl	-40(%ebp),%eax
 	movl	%eax,-12(%ebp)
 	movl	-36(%ebp),%eax
 	movl	%eax,-8(%ebp)
-Lj4567:
+Lj4520:
 	movl	-8(%ebp),%edx
 	movl	-12(%ebp),%eax
 	leave
@@ -13101,14 +13023,14 @@ SYSTEM_TRANSLATEPLACEHOLDERCP$WORD$$WORD:
 	movw	%ax,-6(%ebp)
 	movw	-4(%ebp),%ax
 	subw	$1,%ax
-	jbe	Lj4576
-	jmp	Lj4575
-Lj4576:
+	jbe	Lj4529
+	jmp	Lj4528
+Lj4529:
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%ax
 	movw	%ax,-6(%ebp)
-	jmp	Lj4574
-Lj4575:
-Lj4574:
+	jmp	Lj4527
+Lj4528:
+Lj4527:
 	movw	-6(%ebp),%ax
 	leave
 	ret
@@ -13188,9 +13110,9 @@ SYSTEM_NEWANSISTRING$LONGINT$$POINTER:
 	call	SYSTEM_GETMEM$POINTER$LONGWORD
 	movl	-12(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj4609
-	jmp	Lj4610
-Lj4609:
+	jne	Lj4562
+	jmp	Lj4563
+Lj4562:
 	movl	-12(%ebp),%eax
 	movl	$1,4(%eax)
 	movl	-12(%ebp),%eax
@@ -13203,7 +13125,7 @@ Lj4609:
 	addl	$12,-12(%ebp)
 	movl	-12(%ebp),%eax
 	movb	$0,(%eax)
-Lj4610:
+Lj4563:
 	movl	-12(%ebp),%eax
 	movl	%eax,-8(%ebp)
 	movl	-8(%ebp),%eax
@@ -13222,37 +13144,37 @@ FPC_ANSISTR_INCR_REF:
 	movl	%eax,-4(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj4625
-	jmp	Lj4626
-Lj4625:
-	jmp	Lj4623
-Lj4626:
+	je	Lj4578
+	jmp	Lj4579
+Lj4578:
+	jmp	Lj4576
+Lj4579:
 	movl	-4(%ebp),%eax
 	subl	$12,%eax
 	movl	4(%eax),%eax
 	cmpl	$0,%eax
-	jl	Lj4627
-	jmp	Lj4628
-Lj4627:
-	jmp	Lj4623
-Lj4628:
+	jl	Lj4580
+	jmp	Lj4581
+Lj4580:
+	jmp	Lj4576
+Lj4581:
 	movl	-4(%ebp),%eax
 	subl	$12,%eax
 	leal	4(%eax),%eax
 	movl	%eax,-8(%ebp)
 	movl	TC_SYSTEM_ISMULTITHREAD,%eax
 	testl	%eax,%eax
-	je	Lj4631
-	jmp	Lj4632
-Lj4631:
+	je	Lj4584
+	jmp	Lj4585
+Lj4584:
 	movl	-8(%ebp),%eax
 	incl	(%eax)
-	jmp	Lj4633
-Lj4632:
+	jmp	Lj4586
+Lj4585:
 	movl	-8(%ebp),%eax
 	call	SYSTEM_CPUINCLOCKED$LONGINT
-Lj4633:
-Lj4623:
+Lj4586:
+Lj4576:
 	leave
 	ret
 
@@ -13270,47 +13192,47 @@ FPC_ANSISTR_ASSIGN:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	cmpl	-8(%ebp),%eax
-	je	Lj4638
-	jmp	Lj4639
-Lj4638:
-	jmp	Lj4636
-Lj4639:
+	je	Lj4591
+	jmp	Lj4592
+Lj4591:
+	jmp	Lj4589
+Lj4592:
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj4640
-	jmp	Lj4641
-Lj4640:
+	jne	Lj4593
+	jmp	Lj4594
+Lj4593:
 	movl	-8(%ebp),%eax
 	subl	$12,%eax
 	movl	4(%eax),%eax
 	cmpl	$0,%eax
-	jg	Lj4642
-	jmp	Lj4643
-Lj4642:
+	jg	Lj4595
+	jmp	Lj4596
+Lj4595:
 	movl	-8(%ebp),%eax
 	subl	$12,%eax
 	leal	4(%eax),%eax
 	movl	%eax,-12(%ebp)
 	movl	TC_SYSTEM_ISMULTITHREAD,%eax
 	testl	%eax,%eax
-	je	Lj4646
-	jmp	Lj4647
-Lj4646:
+	je	Lj4599
+	jmp	Lj4600
+Lj4599:
 	movl	-12(%ebp),%eax
 	incl	(%eax)
-	jmp	Lj4648
-Lj4647:
+	jmp	Lj4601
+Lj4600:
 	movl	-12(%ebp),%eax
 	call	SYSTEM_CPUINCLOCKED$LONGINT
-Lj4648:
-Lj4643:
-Lj4641:
+Lj4601:
+Lj4596:
+Lj4594:
 	movl	-4(%ebp),%eax
 	call	FPC_ANSISTR_DECR_REF
 	movl	-4(%ebp),%eax
 	movl	-8(%ebp),%edx
 	movl	%edx,(%eax)
-Lj4636:
+Lj4589:
 	leave
 	ret
 
@@ -13334,7 +13256,7 @@ SYSTEM_ANSISTR_CONCAT_COMPLEX$ANSISTRING$ANSISTRING$ANSISTRING$WORD:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj4657
+	jne	Lj4610
 	leal	-60(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,-60(%ebp)
@@ -13354,17 +13276,17 @@ SYSTEM_ANSISTR_CONCAT_COMPLEX$ANSISTRING$ANSISTRING$ANSISTRING$WORD:
 	call	fpc_unicodestr_concat
 	movl	-16(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj4676
+	je	Lj4629
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj4676:
+Lj4629:
 	pushl	%eax
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%cx
 	movl	-4(%ebp),%edx
 	movl	-16(%ebp),%eax
 	movl	U_SYSTEM_WIDESTRINGMANAGER+80,%ebx
 	call	*%ebx
-Lj4657:
+Lj4610:
 	call	FPC_POPADDRSTACK
 	leal	-64(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
@@ -13377,9 +13299,9 @@ Lj4657:
 	movl	$0,-16(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj4658
+	je	Lj4611
 	call	FPC_RERAISE
-Lj4658:
+Lj4611:
 	movl	-68(%ebp),%ebx
 	leave
 	ret	$4
@@ -13402,85 +13324,85 @@ fpc_ansistr_concat:
 	movw	-28(%ebp),%ax
 	movw	-28(%ebp),%dx
 	subw	$1,%dx
-	jbe	Lj4702
-	jmp	Lj4701
-Lj4702:
+	jbe	Lj4655
+	jmp	Lj4654
+Lj4655:
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%ax
-	jmp	Lj4700
-Lj4701:
-Lj4700:
+	jmp	Lj4653
+Lj4654:
+Lj4653:
 	movw	%ax,-28(%ebp)
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj4705
-	jmp	Lj4706
-Lj4705:
+	je	Lj4658
+	jmp	Lj4659
+Lj4658:
 	movw	-28(%ebp),%ax
 	movw	%ax,-24(%ebp)
-	jmp	Lj4709
-Lj4706:
+	jmp	Lj4662
+Lj4659:
 	movl	-8(%ebp),%eax
 	call	SYSTEM_STRINGCODEPAGE$ANSISTRING$$WORD
 	movw	%ax,-24(%ebp)
-Lj4709:
+Lj4662:
 	movw	-24(%ebp),%ax
 	movw	-24(%ebp),%dx
 	subw	$1,%dx
-	jbe	Lj4721
-	jmp	Lj4720
-Lj4721:
+	jbe	Lj4674
+	jmp	Lj4673
+Lj4674:
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%ax
-	jmp	Lj4719
-Lj4720:
-Lj4719:
+	jmp	Lj4672
+Lj4673:
+Lj4672:
 	movw	%ax,-24(%ebp)
 	movl	-12(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj4724
-	jmp	Lj4725
-Lj4724:
+	je	Lj4677
+	jmp	Lj4678
+Lj4677:
 	movw	-28(%ebp),%ax
 	movw	%ax,-26(%ebp)
-	jmp	Lj4728
-Lj4725:
+	jmp	Lj4681
+Lj4678:
 	movl	-12(%ebp),%eax
 	call	SYSTEM_STRINGCODEPAGE$ANSISTRING$$WORD
 	movw	%ax,-26(%ebp)
-Lj4728:
+Lj4681:
 	movw	-26(%ebp),%ax
 	movw	-26(%ebp),%dx
 	subw	$1,%dx
-	jbe	Lj4740
-	jmp	Lj4739
-Lj4740:
+	jbe	Lj4693
+	jmp	Lj4692
+Lj4693:
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%ax
-	jmp	Lj4738
-Lj4739:
-Lj4738:
+	jmp	Lj4691
+Lj4692:
+Lj4691:
 	movw	%ax,-26(%ebp)
 	movw	-24(%ebp),%ax
 	cmpw	-28(%ebp),%ax
-	jne	Lj4743
-	jmp	Lj4745
-Lj4745:
+	jne	Lj4696
+	jmp	Lj4698
+Lj4698:
 	movw	-26(%ebp),%ax
 	cmpw	-28(%ebp),%ax
-	jne	Lj4743
-	jmp	Lj4744
-Lj4743:
+	jne	Lj4696
+	jmp	Lj4697
+Lj4696:
 	movzwl	-28(%ebp),%eax
 	pushl	%eax
 	movl	-12(%ebp),%ecx
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_ANSISTR_CONCAT_COMPLEX$ANSISTRING$ANSISTRING$ANSISTRING$WORD
-	jmp	Lj4689
-Lj4744:
+	jmp	Lj4642
+Lj4697:
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj4754
-	jmp	Lj4755
-Lj4754:
+	je	Lj4707
+	jmp	Lj4708
+Lj4707:
 	movl	-12(%ebp),%eax
 	call	FPC_ANSISTR_INCR_REF
 	movl	-4(%ebp),%ebx
@@ -13488,13 +13410,13 @@ Lj4754:
 	call	FPC_ANSISTR_DECR_REF
 	movl	-12(%ebp),%eax
 	movl	%eax,(%ebx)
-	jmp	Lj4689
-Lj4755:
+	jmp	Lj4642
+Lj4708:
 	movl	-12(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj4758
-	jmp	Lj4759
-Lj4758:
+	je	Lj4711
+	jmp	Lj4712
+Lj4711:
 	movl	-8(%ebp),%eax
 	call	FPC_ANSISTR_INCR_REF
 	movl	-4(%ebp),%ebx
@@ -13502,26 +13424,26 @@ Lj4758:
 	call	FPC_ANSISTR_DECR_REF
 	movl	-8(%ebp),%eax
 	movl	%eax,(%ebx)
-	jmp	Lj4689
-Lj4759:
+	jmp	Lj4642
+Lj4712:
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj4764
+	je	Lj4717
 	movl	-4(%eax),%eax
-Lj4764:
+Lj4717:
 	movl	%eax,-16(%ebp)
 	movl	-12(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj4767
+	je	Lj4720
 	movl	-4(%eax),%eax
-Lj4767:
+Lj4720:
 	movl	%eax,-20(%ebp)
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	cmpl	-8(%ebp),%eax
-	je	Lj4768
-	jmp	Lj4769
-Lj4768:
+	je	Lj4721
+	jmp	Lj4722
+Lj4721:
 	movl	-8(%ebp),%eax
 	cmpl	-12(%ebp),%eax
 	seteb	-21(%ebp)
@@ -13531,43 +13453,43 @@ Lj4768:
 	movl	-4(%ebp),%eax
 	call	fpc_ansistr_setlength
 	cmpb	$0,-21(%ebp)
-	jne	Lj4776
-	jmp	Lj4777
-Lj4776:
+	jne	Lj4729
+	jmp	Lj4730
+Lj4729:
 	pushl	-16(%ebp)
 	pushl	-20(%ebp)
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj4784
+	jne	Lj4737
 	movl	$FPC_EMPTYCHAR,%eax
-Lj4784:
+Lj4737:
 	movl	-4(%ebp),%ecx
 	movl	$0,%edx
 	call	SYSTEM_FPC_PCHAR_ANSISTR_INTERN_CHARMOVE$PCHAR$LONGINT$ANSISTRING$LONGINT$LONGINT
-	jmp	Lj4789
-Lj4777:
+	jmp	Lj4742
+Lj4730:
 	pushl	-16(%ebp)
 	movl	-20(%ebp),%eax
 	incl	%eax
 	pushl	%eax
 	movl	-12(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj4796
+	jne	Lj4749
 	movl	$FPC_EMPTYCHAR,%eax
-Lj4796:
+Lj4749:
 	movl	-4(%ebp),%ecx
 	movl	$0,%edx
 	call	SYSTEM_FPC_PCHAR_ANSISTR_INTERN_CHARMOVE$PCHAR$LONGINT$ANSISTRING$LONGINT$LONGINT
-Lj4789:
-	jmp	Lj4801
-Lj4769:
+Lj4742:
+	jmp	Lj4754
+Lj4722:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	cmpl	-12(%ebp),%eax
-	je	Lj4802
-	jmp	Lj4803
-Lj4802:
+	je	Lj4755
+	jmp	Lj4756
+Lj4755:
 	movl	-16(%ebp),%edx
 	movl	-20(%ebp),%eax
 	addl	%eax,%edx
@@ -13580,9 +13502,9 @@ Lj4802:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj4814
+	jne	Lj4767
 	movl	$FPC_EMPTYCHAR,%eax
-Lj4814:
+Lj4767:
 	movl	-4(%ebp),%ecx
 	movl	$0,%edx
 	call	SYSTEM_FPC_PCHAR_ANSISTR_INTERN_CHARMOVE$PCHAR$LONGINT$ANSISTRING$LONGINT$LONGINT
@@ -13590,14 +13512,14 @@ Lj4814:
 	pushl	-16(%ebp)
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj4825
+	jne	Lj4778
 	movl	$FPC_EMPTYCHAR,%eax
-Lj4825:
+Lj4778:
 	movl	-4(%ebp),%ecx
 	movl	$0,%edx
 	call	SYSTEM_FPC_PCHAR_ANSISTR_INTERN_CHARMOVE$PCHAR$LONGINT$ANSISTRING$LONGINT$LONGINT
-	jmp	Lj4830
-Lj4803:
+	jmp	Lj4783
+Lj4756:
 	movl	-16(%ebp),%edx
 	movl	-20(%ebp),%eax
 	addl	%eax,%edx
@@ -13607,9 +13529,9 @@ Lj4803:
 	pushl	-16(%ebp)
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj4841
+	jne	Lj4794
 	movl	$FPC_EMPTYCHAR,%eax
-Lj4841:
+Lj4794:
 	movl	-4(%ebp),%ecx
 	movl	$0,%edx
 	call	SYSTEM_FPC_PCHAR_ANSISTR_INTERN_CHARMOVE$PCHAR$LONGINT$ANSISTRING$LONGINT$LONGINT
@@ -13619,19 +13541,19 @@ Lj4841:
 	pushl	%eax
 	movl	-12(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj4852
+	jne	Lj4805
 	movl	$FPC_EMPTYCHAR,%eax
-Lj4852:
+Lj4805:
 	movl	-4(%ebp),%ecx
 	movl	$0,%edx
 	call	SYSTEM_FPC_PCHAR_ANSISTR_INTERN_CHARMOVE$PCHAR$LONGINT$ANSISTRING$LONGINT$LONGINT
-Lj4830:
-Lj4801:
+Lj4783:
+Lj4754:
 	movw	-28(%ebp),%dx
 	movl	-4(%ebp),%eax
 	movb	$0,%cl
 	call	SYSTEM_SETCODEPAGE$ANSISTRING$WORD$BOOLEAN
-Lj4689:
+Lj4642:
 	movl	-32(%ebp),%ebx
 	leave
 	ret
@@ -13656,61 +13578,61 @@ fpc_ansistr_concat_multi:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj4865
+	jne	Lj4818
 	movl	-12(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj4868
-	jmp	Lj4869
-Lj4868:
+	je	Lj4821
+	jmp	Lj4822
+Lj4821:
 	movl	-4(%ebp),%ebx
 	movl	%ebx,%eax
 	call	FPC_ANSISTR_DECR_REF
 	movl	$0,(%ebx)
-	jmp	Lj4865
-Lj4869:
+	jmp	Lj4818
+Lj4822:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	call	SYSTEM_STRINGCODEPAGE$ANSISTRING$$WORD
 	movw	%ax,-54(%ebp)
 	movl	$0,-16(%ebp)
-	jmp	Lj4879
+	jmp	Lj4832
 	.balign 4,0x90
-Lj4878:
+Lj4831:
 	incl	-16(%ebp)
-Lj4879:
+Lj4832:
 	movl	-16(%ebp),%eax
 	cmpl	-12(%ebp),%eax
-	jle	Lj4881
-	jmp	Lj4880
-Lj4881:
+	jle	Lj4834
+	jmp	Lj4833
+Lj4834:
 	movl	-8(%ebp),%eax
 	movl	-16(%ebp),%edx
 	movl	(%eax,%edx,4),%eax
 	testl	%eax,%eax
-	je	Lj4878
-	jmp	Lj4880
-Lj4880:
+	je	Lj4831
+	jmp	Lj4833
+Lj4833:
 	movl	-16(%ebp),%eax
 	cmpl	-12(%ebp),%eax
-	jg	Lj4882
-	jmp	Lj4883
-Lj4882:
+	jg	Lj4835
+	jmp	Lj4836
+Lj4835:
 	movl	-4(%ebp),%ebx
 	movl	%ebx,%eax
 	call	FPC_ANSISTR_DECR_REF
 	movl	$0,(%ebx)
-	jmp	Lj4865
-Lj4883:
+	jmp	Lj4818
+Lj4836:
 	movw	-54(%ebp),%dx
 	movw	-54(%ebp),%ax
 	subw	$1,%ax
-	jbe	Lj4893
-	jmp	Lj4892
-Lj4893:
+	jbe	Lj4846
+	jmp	Lj4845
+Lj4846:
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%dx
-	jmp	Lj4891
-Lj4892:
-Lj4891:
+	jmp	Lj4844
+Lj4845:
+Lj4844:
 	movw	%dx,-54(%ebp)
 	movb	$1,-57(%ebp)
 	movl	-8(%ebp),%edx
@@ -13721,31 +13643,31 @@ Lj4891:
 	movw	-102(%ebp),%ax
 	movw	-102(%ebp),%dx
 	subw	$1,%dx
-	jbe	Lj4909
-	jmp	Lj4908
-Lj4909:
+	jbe	Lj4862
+	jmp	Lj4861
+Lj4862:
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%ax
-	jmp	Lj4907
-Lj4908:
-Lj4907:
+	jmp	Lj4860
+Lj4861:
+Lj4860:
 	movw	%ax,-56(%ebp)
 	movl	-12(%ebp),%ebx
 	movl	-16(%ebp),%eax
 	incl	%eax
 	movl	%eax,-24(%ebp)
 	cmpl	-24(%ebp),%ebx
-	jl	Lj4913
+	jl	Lj4866
 	decl	-24(%ebp)
 	.balign 4,0x90
-Lj4914:
+Lj4867:
 	incl	-24(%ebp)
 	movl	-8(%ebp),%edx
 	movl	-24(%ebp),%eax
 	movl	(%edx,%eax,4),%eax
 	testl	%eax,%eax
-	jne	Lj4917
-	jmp	Lj4916
-Lj4917:
+	jne	Lj4870
+	jmp	Lj4869
+Lj4870:
 	movl	-8(%ebp),%eax
 	movl	-24(%ebp),%edx
 	movl	(%eax,%edx,4),%eax
@@ -13754,28 +13676,28 @@ Lj4917:
 	movw	-102(%ebp),%ax
 	movw	-102(%ebp),%dx
 	subw	$1,%dx
-	jbe	Lj4927
-	jmp	Lj4926
-Lj4927:
+	jbe	Lj4880
+	jmp	Lj4879
+Lj4880:
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%ax
-	jmp	Lj4925
-Lj4926:
-Lj4925:
+	jmp	Lj4878
+Lj4879:
+Lj4878:
 	cmpw	-56(%ebp),%ax
-	jne	Lj4915
-	jmp	Lj4916
-Lj4915:
+	jne	Lj4868
+	jmp	Lj4869
+Lj4868:
 	movb	$0,-57(%ebp)
-	jmp	Lj4913
-Lj4916:
+	jmp	Lj4866
+Lj4869:
 	cmpl	-24(%ebp),%ebx
-	jg	Lj4914
-Lj4913:
+	jg	Lj4867
+Lj4866:
 	movb	-57(%ebp),%al
 	testb	%al,%al
-	je	Lj4932
-	jmp	Lj4933
-Lj4932:
+	je	Lj4885
+	jmp	Lj4886
+Lj4885:
 	leal	-52(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,-52(%ebp)
@@ -13783,18 +13705,18 @@ Lj4932:
 	movl	-16(%ebp),%eax
 	movl	%eax,-24(%ebp)
 	cmpl	-24(%ebp),%ebx
-	jl	Lj4937
+	jl	Lj4890
 	decl	-24(%ebp)
 	.balign 4,0x90
-Lj4938:
+Lj4891:
 	incl	-24(%ebp)
 	movl	-8(%ebp),%eax
 	movl	-24(%ebp),%edx
 	movl	(%eax,%edx,4),%eax
 	testl	%eax,%eax
-	jne	Lj4939
-	jmp	Lj4940
-Lj4939:
+	jne	Lj4892
+	jmp	Lj4893
+Lj4892:
 	leal	-108(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,-108(%ebp)
@@ -13807,64 +13729,64 @@ Lj4939:
 	movl	-52(%ebp),%edx
 	leal	-52(%ebp),%eax
 	call	fpc_unicodestr_concat
-Lj4940:
+Lj4893:
 	cmpl	-24(%ebp),%ebx
-	jg	Lj4938
-Lj4937:
+	jg	Lj4891
+Lj4890:
 	movl	-4(%ebp),%ebx
 	movl	%ebx,%eax
 	call	FPC_ANSISTR_DECR_REF
 	movl	$0,(%ebx)
 	movl	-52(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj4955
+	je	Lj4908
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj4955:
+Lj4908:
 	pushl	%eax
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%cx
 	movl	-4(%ebp),%edx
 	movl	-52(%ebp),%eax
 	movl	U_SYSTEM_WIDESTRINGMANAGER+80,%ebx
 	call	*%ebx
-	jmp	Lj4865
-Lj4933:
+	jmp	Lj4818
+Lj4886:
 	movl	$0,-48(%ebp)
 	movl	-16(%ebp),%eax
 	movl	%eax,-20(%ebp)
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj4966
-	jmp	Lj4967
-Lj4966:
+	jne	Lj4919
+	jmp	Lj4920
+Lj4919:
 	movl	-8(%ebp),%edx
 	movl	-16(%ebp),%eax
 	movl	-4(%ebp),%ecx
 	movl	(%edx,%eax,4),%eax
 	cmpl	(%ecx),%eax
-	je	Lj4968
-	jmp	Lj4969
-Lj4968:
+	je	Lj4921
+	jmp	Lj4922
+Lj4921:
 	incl	-16(%ebp)
-Lj4969:
+Lj4922:
 	movl	-12(%ebp),%ebx
 	movl	-16(%ebp),%eax
 	movl	%eax,-24(%ebp)
 	cmpl	-24(%ebp),%ebx
-	jl	Lj4971
+	jl	Lj4924
 	decl	-24(%ebp)
 	.balign 4,0x90
-Lj4972:
+Lj4925:
 	incl	-24(%ebp)
 	movl	-8(%ebp),%eax
 	movl	-24(%ebp),%edx
 	movl	-4(%ebp),%ecx
 	movl	(%eax,%edx,4),%eax
 	cmpl	(%ecx),%eax
-	je	Lj4973
-	jmp	Lj4974
-Lj4973:
+	je	Lj4926
+	jmp	Lj4927
+Lj4926:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	movl	%eax,-48(%ebp)
@@ -13872,50 +13794,50 @@ Lj4973:
 	call	FPC_ANSISTR_INCR_REF
 	movl	-20(%ebp),%eax
 	movl	%eax,-16(%ebp)
-	jmp	Lj4971
-Lj4974:
+	jmp	Lj4924
+Lj4927:
 	cmpl	-24(%ebp),%ebx
-	jg	Lj4972
-Lj4971:
-Lj4967:
+	jg	Lj4925
+Lj4924:
+Lj4920:
 	movl	-16(%ebp),%eax
 	cmpl	-20(%ebp),%eax
-	je	Lj4981
-	jmp	Lj4982
-Lj4981:
+	je	Lj4934
+	jmp	Lj4935
+Lj4934:
 	movl	-4(%ebp),%ebx
 	movl	%ebx,%eax
 	call	FPC_ANSISTR_DECR_REF
 	movl	$0,(%ebx)
-Lj4982:
+Lj4935:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj4987
+	je	Lj4940
 	movl	-4(%eax),%eax
-Lj4987:
+Lj4940:
 	movl	%eax,-44(%ebp)
 	movl	$0,-40(%ebp)
 	movl	-12(%ebp),%ecx
 	movl	-20(%ebp),%eax
 	movl	%eax,-24(%ebp)
 	cmpl	-24(%ebp),%ecx
-	jl	Lj4991
+	jl	Lj4944
 	decl	-24(%ebp)
 	.balign 4,0x90
-Lj4992:
+Lj4945:
 	incl	-24(%ebp)
 	movl	-8(%ebp),%edx
 	movl	-24(%ebp),%eax
 	movl	(%edx,%eax,4),%eax
 	testl	%eax,%eax
-	je	Lj4993
+	je	Lj4946
 	movl	-4(%eax),%eax
-Lj4993:
+Lj4946:
 	addl	%eax,-40(%ebp)
 	cmpl	-24(%ebp),%ecx
-	jg	Lj4992
-Lj4991:
+	jg	Lj4945
+Lj4944:
 	movl	-40(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	fpc_ansistr_setlength
@@ -13928,24 +13850,24 @@ Lj4991:
 	movl	-16(%ebp),%eax
 	movl	%eax,-24(%ebp)
 	cmpl	-24(%ebp),%ebx
-	jl	Lj5001
+	jl	Lj4954
 	decl	-24(%ebp)
 	.balign 4,0x90
-Lj5002:
+Lj4955:
 	incl	-24(%ebp)
 	movl	-8(%ebp),%eax
 	movl	-24(%ebp),%edx
 	movl	(%eax,%edx,4),%eax
 	movl	%eax,-28(%ebp)
 	cmpl	$0,-28(%ebp)
-	jne	Lj5005
-	jmp	Lj5006
-Lj5005:
+	jne	Lj4958
+	jmp	Lj4959
+Lj4958:
 	movl	-28(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj5009
+	je	Lj4962
 	movl	-4(%eax),%eax
-Lj5009:
+Lj4962:
 	movl	%eax,-36(%ebp)
 	movl	-36(%ebp),%ecx
 	incl	%ecx
@@ -13954,10 +13876,10 @@ Lj5009:
 	call	SYSTEM_MOVE$formal$formal$LONGINT
 	movl	-36(%ebp),%eax
 	addl	%eax,-32(%ebp)
-Lj5006:
+Lj4959:
 	cmpl	-24(%ebp),%ebx
-	jg	Lj5002
-Lj5001:
+	jg	Lj4955
+Lj4954:
 	movw	-56(%ebp),%dx
 	movl	-4(%ebp),%eax
 	movb	$0,%cl
@@ -13968,7 +13890,7 @@ Lj5001:
 	call	SYSTEM_SETCODEPAGE$ANSISTRING$WORD$BOOLEAN
 	leal	-48(%ebp),%eax
 	call	FPC_ANSISTR_DECR_REF
-Lj4865:
+Lj4818:
 	call	FPC_POPADDRSTACK
 	leal	-108(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
@@ -13978,9 +13900,9 @@ Lj4865:
 	movl	$0,-52(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj4866
+	je	Lj4819
 	call	FPC_RERAISE
-Lj4866:
+Lj4819:
 	movl	-112(%ebp),%ebx
 	leave
 	ret
@@ -13999,27 +13921,27 @@ FPC_ANSISTR_TO_SHORTSTR:
 	movl	%ecx,-8(%ebp)
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj5038
-	jmp	Lj5039
-Lj5038:
+	je	Lj4991
+	jmp	Lj4992
+Lj4991:
 	movl	-4(%ebp),%eax
 	movb	$0,(%eax)
-	jmp	Lj5042
-Lj5039:
+	jmp	Lj4995
+Lj4992:
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj5045
+	je	Lj4998
 	movl	-4(%eax),%eax
-Lj5045:
+Lj4998:
 	movl	%eax,-16(%ebp)
 	movl	-16(%ebp),%eax
 	cmpl	-12(%ebp),%eax
-	jg	Lj5046
-	jmp	Lj5047
-Lj5046:
+	jg	Lj4999
+	jmp	Lj5000
+Lj4999:
 	movl	-12(%ebp),%eax
 	movl	%eax,-16(%ebp)
-Lj5047:
+Lj5000:
 	movl	-16(%ebp),%ecx
 	movl	-4(%ebp),%eax
 	leal	1(%eax),%edx
@@ -14028,7 +13950,7 @@ Lj5047:
 	movl	-4(%ebp),%eax
 	movb	-16(%ebp),%dl
 	movb	%dl,(%eax)
-Lj5042:
+Lj4995:
 	leave
 	ret
 
@@ -14051,9 +13973,9 @@ fpc_shortstr_to_ansistr:
 	call	fpc_ansistr_setlength
 	movl	-12(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj5068
-	jmp	Lj5069
-Lj5068:
+	jg	Lj5021
+	jmp	Lj5022
+Lj5021:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%edx
 	movl	-12(%ebp),%ecx
@@ -14064,7 +13986,7 @@ Lj5068:
 	movl	-8(%ebp),%eax
 	movb	$0,%cl
 	call	SYSTEM_SETCODEPAGE$ANSISTRING$WORD$BOOLEAN
-Lj5069:
+Lj5022:
 	leave
 	ret
 
@@ -14085,9 +14007,9 @@ fpc_char_to_ansistr:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj5092
+	jne	Lj5045
 	movl	$FPC_EMPTYCHAR,%eax
-Lj5092:
+Lj5045:
 	movb	-4(%ebp),%dl
 	movb	%dl,(%eax)
 	movw	-10(%ebp),%dx
@@ -14107,32 +14029,32 @@ fpc_pchar_to_ansistr:
 	movl	%eax,-4(%ebp)
 	movl	%edx,-8(%ebp)
 	cmpl	$0,-4(%ebp)
-	jne	Lj5103
-	jmp	Lj5101
-Lj5103:
+	jne	Lj5056
+	jmp	Lj5054
+Lj5056:
 	movl	-4(%ebp),%eax
 	movb	(%eax),%al
 	testb	%al,%al
-	je	Lj5101
-	jmp	Lj5102
-Lj5101:
+	je	Lj5054
+	jmp	Lj5055
+Lj5054:
 	movl	$0,-12(%ebp)
-	jmp	Lj5106
-Lj5102:
+	jmp	Lj5059
+Lj5055:
 	movl	-4(%ebp),%eax
 	movb	$0,%cl
 	movl	$-1,%edx
 	call	SYSTEM_INDEXCHAR$formal$LONGINT$CHAR$$LONGINT
 	movl	%eax,-12(%ebp)
-Lj5106:
+Lj5059:
 	movl	-12(%ebp),%edx
 	movl	-8(%ebp),%eax
 	call	fpc_ansistr_setlength
 	movl	-12(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj5119
-	jmp	Lj5120
-Lj5119:
+	jg	Lj5072
+	jmp	Lj5073
+Lj5072:
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%ax
 	movw	%ax,-14(%ebp)
 	movl	-8(%ebp),%eax
@@ -14144,7 +14066,7 @@ Lj5119:
 	movl	-8(%ebp),%eax
 	movb	$0,%cl
 	call	SYSTEM_SETCODEPAGE$ANSISTRING$WORD$BOOLEAN
-Lj5120:
+Lj5073:
 	leave
 	ret
 
@@ -14159,18 +14081,18 @@ fpc_chararray_to_ansistr:
 	movl	%edx,-12(%ebp)
 	movb	%cl,-8(%ebp)
 	cmpb	$0,-8(%ebp)
-	jne	Lj5137
-	jmp	Lj5138
-Lj5137:
+	jne	Lj5090
+	jmp	Lj5091
+Lj5090:
 	movl	-4(%ebp),%eax
 	movb	(%eax),%al
 	testb	%al,%al
-	je	Lj5139
-	jmp	Lj5140
-Lj5139:
+	je	Lj5092
+	jmp	Lj5093
+Lj5092:
 	movl	$0,-16(%ebp)
-	jmp	Lj5143
-Lj5140:
+	jmp	Lj5096
+Lj5093:
 	movl	-12(%ebp),%edx
 	incl	%edx
 	movl	-4(%ebp),%eax
@@ -14179,28 +14101,28 @@ Lj5140:
 	movl	%eax,-16(%ebp)
 	movl	-16(%ebp),%eax
 	cmpl	$-1,%eax
-	je	Lj5152
-	jmp	Lj5153
-Lj5152:
+	je	Lj5105
+	jmp	Lj5106
+Lj5105:
 	movl	-12(%ebp),%eax
 	incl	%eax
 	movl	%eax,-16(%ebp)
-Lj5153:
-Lj5143:
-	jmp	Lj5156
-Lj5138:
+Lj5106:
+Lj5096:
+	jmp	Lj5109
+Lj5091:
 	movl	-12(%ebp),%eax
 	incl	%eax
 	movl	%eax,-16(%ebp)
-Lj5156:
+Lj5109:
 	movl	-16(%ebp),%edx
 	movl	8(%ebp),%eax
 	call	fpc_ansistr_setlength
 	movl	-16(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj5163
-	jmp	Lj5164
-Lj5163:
+	jg	Lj5116
+	jmp	Lj5117
+Lj5116:
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%ax
 	movw	%ax,-18(%ebp)
 	movl	-4(%ebp),%eax
@@ -14214,7 +14136,7 @@ Lj5163:
 	movl	8(%ebp),%eax
 	movb	$0,%cl
 	call	SYSTEM_SETCODEPAGE$ANSISTRING$WORD$BOOLEAN
-Lj5164:
+Lj5117:
 	leave
 	ret	$4
 
@@ -14230,30 +14152,30 @@ fpc_ansistr_to_chararray:
 	movl	%ecx,-8(%ebp)
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj5185
+	je	Lj5138
 	movl	-4(%eax),%eax
-Lj5185:
+Lj5138:
 	movl	%eax,-16(%ebp)
 	movl	-12(%ebp),%eax
 	incl	%eax
 	cmpl	-16(%ebp),%eax
-	jl	Lj5186
-	jmp	Lj5187
-Lj5186:
+	jl	Lj5139
+	jmp	Lj5140
+Lj5139:
 	movl	-12(%ebp),%eax
 	incl	%eax
 	movl	%eax,-16(%ebp)
-Lj5187:
+Lj5140:
 	movl	-16(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj5190
-	jmp	Lj5191
-Lj5190:
+	jg	Lj5143
+	jmp	Lj5144
+Lj5143:
 	movl	-16(%ebp),%ecx
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	call	SYSTEM_MOVE$formal$formal$LONGINT
-Lj5191:
+Lj5144:
 	movl	-12(%ebp),%edx
 	incl	%edx
 	movl	-16(%ebp),%eax
@@ -14286,55 +14208,55 @@ FPC_ANSISTR_COMPARE:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj5206
+	jne	Lj5159
 	movl	-4(%ebp),%eax
 	cmpl	-8(%ebp),%eax
-	je	Lj5209
-	jmp	Lj5210
-Lj5209:
+	je	Lj5162
+	jmp	Lj5163
+Lj5162:
 	movl	$0,-12(%ebp)
-	jmp	Lj5206
-Lj5210:
+	jmp	Lj5159
+Lj5163:
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj5213
-	jmp	Lj5214
-Lj5213:
+	je	Lj5166
+	jmp	Lj5167
+Lj5166:
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj5217
+	je	Lj5170
 	movl	-4(%eax),%eax
-Lj5217:
+Lj5170:
 	negl	%eax
 	movl	%eax,-12(%ebp)
-	jmp	Lj5206
-Lj5214:
+	jmp	Lj5159
+Lj5167:
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj5218
-	jmp	Lj5219
-Lj5218:
+	je	Lj5171
+	jmp	Lj5172
+Lj5171:
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj5222
+	je	Lj5175
 	movl	-4(%eax),%eax
-Lj5222:
+Lj5175:
 	movl	%eax,-12(%ebp)
-	jmp	Lj5206
-Lj5219:
+	jmp	Lj5159
+Lj5172:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_STRINGCODEPAGE$ANSISTRING$$WORD
 	movw	%ax,-74(%ebp)
 	movw	-74(%ebp),%dx
 	movw	-74(%ebp),%ax
 	subw	$1,%ax
-	jbe	Lj5234
-	jmp	Lj5233
-Lj5234:
+	jbe	Lj5187
+	jmp	Lj5186
+Lj5187:
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%dx
-	jmp	Lj5232
-Lj5233:
-Lj5232:
+	jmp	Lj5185
+Lj5186:
+Lj5185:
 	movw	%dx,-22(%ebp)
 	movl	-8(%ebp),%eax
 	call	SYSTEM_STRINGCODEPAGE$ANSISTRING$$WORD
@@ -14342,44 +14264,44 @@ Lj5232:
 	movw	-74(%ebp),%ax
 	movw	-74(%ebp),%dx
 	subw	$1,%dx
-	jbe	Lj5248
-	jmp	Lj5247
-Lj5248:
+	jbe	Lj5201
+	jmp	Lj5200
+Lj5201:
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%ax
-	jmp	Lj5246
-Lj5247:
-Lj5246:
+	jmp	Lj5199
+Lj5200:
+Lj5199:
 	movw	%ax,-24(%ebp)
 	movw	-22(%ebp),%ax
 	cmpw	-24(%ebp),%ax
-	je	Lj5251
-	jmp	Lj5252
-Lj5251:
+	je	Lj5204
+	jmp	Lj5205
+Lj5204:
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj5255
+	je	Lj5208
 	movl	-4(%eax),%eax
-Lj5255:
+Lj5208:
 	movl	%eax,-16(%ebp)
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj5258
+	je	Lj5211
 	movl	-4(%eax),%eax
-Lj5258:
+Lj5211:
 	movl	%eax,-20(%ebp)
 	movl	-16(%ebp),%eax
 	cmpl	-20(%ebp),%eax
-	jg	Lj5259
-	jmp	Lj5260
-Lj5259:
+	jg	Lj5212
+	jmp	Lj5213
+Lj5212:
 	movl	-20(%ebp),%eax
 	movl	%eax,-16(%ebp)
-Lj5260:
+Lj5213:
 	movl	-16(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj5263
-	jmp	Lj5264
-Lj5263:
+	jg	Lj5216
+	jmp	Lj5217
+Lj5216:
 	movl	-16(%ebp),%ecx
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
@@ -14387,39 +14309,39 @@ Lj5263:
 	movl	%eax,-12(%ebp)
 	movl	-12(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj5273
-	jmp	Lj5274
-Lj5273:
+	je	Lj5226
+	jmp	Lj5227
+Lj5226:
 	movl	-4(%ebp),%edx
 	testl	%edx,%edx
-	je	Lj5277
+	je	Lj5230
 	movl	-4(%edx),%edx
-Lj5277:
+Lj5230:
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj5278
+	je	Lj5231
 	movl	-4(%eax),%eax
-Lj5278:
+Lj5231:
 	subl	%eax,%edx
 	movl	%edx,-12(%ebp)
-Lj5274:
-	jmp	Lj5279
-Lj5264:
+Lj5227:
+	jmp	Lj5232
+Lj5217:
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj5282
+	je	Lj5235
 	movl	-4(%eax),%eax
-Lj5282:
+Lj5235:
 	movl	-8(%ebp),%edx
 	testl	%edx,%edx
-	je	Lj5283
+	je	Lj5236
 	movl	-4(%edx),%edx
-Lj5283:
+Lj5236:
 	subl	%edx,%eax
 	movl	%eax,-12(%ebp)
-Lj5279:
-	jmp	Lj5284
-Lj5252:
+Lj5232:
+	jmp	Lj5237
+Lj5205:
 	movl	-4(%ebp),%eax
 	call	FPC_ANSISTR_INCR_REF
 	leal	-28(%ebp),%eax
@@ -14444,8 +14366,8 @@ Lj5252:
 	movl	-28(%ebp),%eax
 	call	fpc_ansistr_compare
 	movl	%eax,-12(%ebp)
-Lj5284:
-Lj5206:
+Lj5237:
+Lj5159:
 	call	FPC_POPADDRSTACK
 	leal	-28(%ebp),%eax
 	call	fpc_ansistr_decr_ref
@@ -14455,9 +14377,9 @@ Lj5206:
 	movl	$0,-32(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj5207
+	je	Lj5160
 	call	FPC_RERAISE
-Lj5207:
+Lj5160:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -14482,44 +14404,44 @@ FPC_ANSISTR_COMPARE_EQUAL:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj5321
+	jne	Lj5274
 	movl	-4(%ebp),%eax
 	cmpl	-8(%ebp),%eax
-	je	Lj5324
-	jmp	Lj5325
-Lj5324:
+	je	Lj5277
+	jmp	Lj5278
+Lj5277:
 	movl	$0,-12(%ebp)
-	jmp	Lj5321
-Lj5325:
+	jmp	Lj5274
+Lj5278:
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj5328
-	jmp	Lj5329
-Lj5328:
+	je	Lj5281
+	jmp	Lj5282
+Lj5281:
 	movl	$-1,-12(%ebp)
-	jmp	Lj5321
-Lj5329:
+	jmp	Lj5274
+Lj5282:
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj5332
-	jmp	Lj5333
-Lj5332:
+	je	Lj5285
+	jmp	Lj5286
+Lj5285:
 	movl	$1,-12(%ebp)
-	jmp	Lj5321
-Lj5333:
+	jmp	Lj5274
+Lj5286:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_STRINGCODEPAGE$ANSISTRING$$WORD
 	movw	%ax,-74(%ebp)
 	movw	-74(%ebp),%ax
 	movw	-74(%ebp),%dx
 	subw	$1,%dx
-	jbe	Lj5347
-	jmp	Lj5346
-Lj5347:
+	jbe	Lj5300
+	jmp	Lj5299
+Lj5300:
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%ax
-	jmp	Lj5345
-Lj5346:
-Lj5345:
+	jmp	Lj5298
+Lj5299:
+Lj5298:
 	movw	%ax,-22(%ebp)
 	movl	-8(%ebp),%eax
 	call	SYSTEM_STRINGCODEPAGE$ANSISTRING$$WORD
@@ -14527,30 +14449,30 @@ Lj5345:
 	movw	-74(%ebp),%dx
 	movw	-74(%ebp),%ax
 	subw	$1,%ax
-	jbe	Lj5361
-	jmp	Lj5360
-Lj5361:
+	jbe	Lj5314
+	jmp	Lj5313
+Lj5314:
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%dx
-	jmp	Lj5359
-Lj5360:
-Lj5359:
+	jmp	Lj5312
+Lj5313:
+Lj5312:
 	movw	%dx,-24(%ebp)
 	movw	-22(%ebp),%ax
 	cmpw	-24(%ebp),%ax
-	je	Lj5364
-	jmp	Lj5365
-Lj5364:
+	je	Lj5317
+	jmp	Lj5318
+Lj5317:
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj5368
+	je	Lj5321
 	movl	-4(%eax),%eax
-Lj5368:
+Lj5321:
 	movl	%eax,-16(%ebp)
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj5371
+	je	Lj5324
 	movl	-4(%eax),%eax
-Lj5371:
+Lj5324:
 	movl	%eax,-20(%ebp)
 	movl	-16(%ebp),%eax
 	movl	-20(%ebp),%edx
@@ -14558,23 +14480,23 @@ Lj5371:
 	movl	%eax,-12(%ebp)
 	movl	-12(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj5374
-	jmp	Lj5375
-Lj5374:
+	je	Lj5327
+	jmp	Lj5328
+Lj5327:
 	movl	-16(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj5376
-	jmp	Lj5377
-Lj5376:
+	jg	Lj5329
+	jmp	Lj5330
+Lj5329:
 	movl	-16(%ebp),%ecx
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_COMPAREBYTE$formal$formal$LONGINT$$LONGINT
 	movl	%eax,-12(%ebp)
-Lj5377:
-Lj5375:
-	jmp	Lj5386
-Lj5365:
+Lj5330:
+Lj5328:
+	jmp	Lj5339
+Lj5318:
 	movl	-4(%ebp),%eax
 	call	FPC_ANSISTR_INCR_REF
 	leal	-28(%ebp),%eax
@@ -14597,15 +14519,15 @@ Lj5365:
 	call	SYSTEM_SETCODEPAGE$ANSISTRING$WORD$BOOLEAN
 	movl	-28(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj5405
+	je	Lj5358
 	movl	-4(%eax),%eax
-Lj5405:
+Lj5358:
 	movl	%eax,-16(%ebp)
 	movl	-32(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj5408
+	je	Lj5361
 	movl	-4(%eax),%eax
-Lj5408:
+Lj5361:
 	movl	%eax,-20(%ebp)
 	movl	-16(%ebp),%eax
 	movl	-20(%ebp),%edx
@@ -14613,23 +14535,23 @@ Lj5408:
 	movl	%eax,-12(%ebp)
 	movl	-12(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj5411
-	jmp	Lj5412
-Lj5411:
+	je	Lj5364
+	jmp	Lj5365
+Lj5364:
 	movl	-16(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj5413
-	jmp	Lj5414
-Lj5413:
+	jg	Lj5366
+	jmp	Lj5367
+Lj5366:
 	movl	-16(%ebp),%ecx
 	movl	-32(%ebp),%edx
 	movl	-28(%ebp),%eax
 	call	SYSTEM_COMPAREBYTE$formal$formal$LONGINT$$LONGINT
 	movl	%eax,-12(%ebp)
-Lj5414:
-Lj5412:
-Lj5386:
-Lj5321:
+Lj5367:
+Lj5365:
+Lj5339:
+Lj5274:
 	call	FPC_POPADDRSTACK
 	leal	-28(%ebp),%eax
 	call	fpc_ansistr_decr_ref
@@ -14639,9 +14561,9 @@ Lj5321:
 	movl	$0,-32(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj5322
+	je	Lj5275
 	call	FPC_RERAISE
-Lj5322:
+Lj5275:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -14659,27 +14581,27 @@ FPC_ANSISTR_RANGECHECK:
 	movl	%edx,-8(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj5437
-	jmp	Lj5440
-Lj5440:
+	je	Lj5390
+	jmp	Lj5393
+Lj5393:
 	movl	-4(%ebp),%eax
 	subl	$12,%eax
 	movl	8(%eax),%eax
 	cmpl	-8(%ebp),%eax
-	jl	Lj5437
-	jmp	Lj5439
-Lj5439:
+	jl	Lj5390
+	jmp	Lj5392
+Lj5392:
 	movl	-8(%ebp),%eax
 	cmpl	$1,%eax
-	jl	Lj5437
-	jmp	Lj5438
-Lj5437:
+	jl	Lj5390
+	jmp	Lj5391
+Lj5390:
 	call	SYSTEM_GET_PC_ADDR$$POINTER
 	movl	%eax,%edx
 	movl	%ebp,%ecx
 	movl	$201,%eax
 	call	SYSTEM_HANDLEERRORADDRFRAMEIND$LONGINT$POINTER$POINTER
-Lj5438:
+Lj5391:
 	leave
 	ret
 
@@ -14696,15 +14618,15 @@ FPC_ANSISTR_SETLENGTH:
 	movl	%edx,-8(%ebp)
 	movl	-8(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj5449
-	jmp	Lj5450
-Lj5449:
+	jg	Lj5402
+	jmp	Lj5403
+Lj5402:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj5451
-	jmp	Lj5452
-Lj5451:
+	je	Lj5404
+	jmp	Lj5405
+Lj5404:
 	movl	-8(%ebp),%eax
 	call	SYSTEM_NEWANSISTRING$LONGINT$$POINTER
 	movl	-4(%ebp),%edx
@@ -14714,16 +14636,16 @@ Lj5451:
 	subl	$12,%eax
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%dx
 	movw	%dx,(%eax)
-	jmp	Lj5459
-Lj5452:
+	jmp	Lj5412
+Lj5405:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	subl	$12,%eax
 	movl	4(%eax),%eax
 	cmpl	$1,%eax
-	je	Lj5460
-	jmp	Lj5461
-Lj5460:
+	je	Lj5413
+	jmp	Lj5414
+Lj5413:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	subl	$12,%eax
@@ -14737,14 +14659,14 @@ Lj5460:
 	movl	%eax,-20(%ebp)
 	movl	-20(%ebp),%eax
 	cmpl	-16(%ebp),%eax
-	jg	Lj5470
-	jmp	Lj5472
-Lj5472:
+	jg	Lj5423
+	jmp	Lj5425
+Lj5425:
 	movl	-16(%ebp),%eax
 	cmpl	$32,%eax
-	jg	Lj5473
-	jmp	Lj5471
-Lj5473:
+	jg	Lj5426
+	jmp	Lj5424
+Lj5426:
 	movl	-16(%ebp),%edx
 	movl	%edx,%eax
 	sarl	$31,%eax
@@ -14752,9 +14674,9 @@ Lj5473:
 	addl	%eax,%edx
 	sarl	$1,%edx
 	cmpl	-20(%ebp),%edx
-	jge	Lj5470
-	jmp	Lj5471
-Lj5470:
+	jge	Lj5423
+	jmp	Lj5424
+Lj5423:
 	movl	-20(%ebp),%edx
 	leal	-12(%ebp),%eax
 	call	SYSTEM_REALLOCMEM$POINTER$LONGWORD$$POINTER
@@ -14762,9 +14684,9 @@ Lj5470:
 	addl	$12,%edx
 	movl	-4(%ebp),%eax
 	movl	%edx,(%eax)
-Lj5471:
-	jmp	Lj5480
-Lj5461:
+Lj5424:
+	jmp	Lj5433
+Lj5414:
 	movl	-8(%ebp),%eax
 	call	SYSTEM_NEWANSISTRING$LONGINT$$POINTER
 	movl	%eax,-12(%ebp)
@@ -14778,23 +14700,23 @@ Lj5461:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj5489
+	je	Lj5442
 	movl	-4(%eax),%eax
-Lj5489:
+Lj5442:
 	incl	%eax
 	movl	%eax,-16(%ebp)
 	movl	-8(%ebp),%eax
 	cmpl	-16(%ebp),%eax
-	jl	Lj5490
-	jmp	Lj5491
-Lj5490:
+	jl	Lj5443
+	jmp	Lj5444
+Lj5443:
 	movl	-8(%ebp),%eax
 	movl	%eax,-24(%ebp)
-	jmp	Lj5494
-Lj5491:
+	jmp	Lj5447
+Lj5444:
 	movl	-16(%ebp),%eax
 	movl	%eax,-24(%ebp)
-Lj5494:
+Lj5447:
 	movl	-12(%ebp),%edx
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
@@ -14805,8 +14727,8 @@ Lj5494:
 	movl	-4(%ebp),%eax
 	movl	-12(%ebp),%edx
 	movl	%edx,(%eax)
-Lj5480:
-Lj5459:
+Lj5433:
+Lj5412:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	movl	-8(%ebp),%edx
@@ -14817,11 +14739,11 @@ Lj5459:
 	subl	$12,%edx
 	movl	-8(%ebp),%eax
 	movl	%eax,8(%edx)
-	jmp	Lj5511
-Lj5450:
+	jmp	Lj5464
+Lj5403:
 	movl	-4(%ebp),%eax
 	call	FPC_ANSISTR_DECR_REF
-Lj5511:
+Lj5464:
 	leave
 	ret
 
@@ -14882,54 +14804,54 @@ fpc_ansistr_copy:
 	decl	-8(%ebp)
 	movl	-8(%ebp),%eax
 	cmpl	$0,%eax
-	jl	Lj5542
-	jmp	Lj5543
-Lj5542:
+	jl	Lj5495
+	jmp	Lj5496
+Lj5495:
 	movl	$0,-8(%ebp)
-Lj5543:
+Lj5496:
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj5549
+	je	Lj5502
 	movl	-4(%eax),%eax
-Lj5549:
+Lj5502:
 	cmpl	-12(%ebp),%eax
-	jl	Lj5546
-	jmp	Lj5548
-Lj5548:
+	jl	Lj5499
+	jmp	Lj5501
+Lj5501:
 	movl	-8(%ebp),%edx
 	movl	-12(%ebp),%eax
 	addl	%eax,%edx
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj5550
+	je	Lj5503
 	movl	-4(%eax),%eax
-Lj5550:
+Lj5503:
 	cmpl	%eax,%edx
-	jg	Lj5546
-	jmp	Lj5547
-Lj5546:
+	jg	Lj5499
+	jmp	Lj5500
+Lj5499:
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj5553
+	je	Lj5506
 	movl	-4(%eax),%eax
-Lj5553:
+Lj5506:
 	movl	-8(%ebp),%edx
 	subl	%edx,%eax
 	movl	%eax,-12(%ebp)
-Lj5547:
+Lj5500:
 	movl	-12(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj5554
-	jmp	Lj5555
-Lj5554:
+	jg	Lj5507
+	jmp	Lj5508
+Lj5507:
 	movl	-12(%ebp),%eax
 	call	SYSTEM_NEWANSISTRING$LONGINT$$POINTER
 	movl	%eax,-16(%ebp)
 	movl	-16(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj5560
-	jmp	Lj5561
-Lj5560:
+	jne	Lj5513
+	jmp	Lj5514
+Lj5513:
 	movl	-4(%ebp),%eax
 	movl	-8(%ebp),%edx
 	addl	%edx,%eax
@@ -14950,8 +14872,8 @@ Lj5560:
 	subl	$12,%eax
 	movw	(%eax),%ax
 	movw	%ax,(%edx)
-Lj5561:
-Lj5555:
+Lj5514:
+Lj5508:
 	movl	8(%ebp),%eax
 	call	FPC_ANSISTR_DECR_REF
 	movl	8(%ebp),%edx
@@ -14973,14 +14895,14 @@ SYSTEM_POS$SHORTSTRING$ANSISTRING$$LONGINT:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%eax
 	cmpl	$0,%eax
-	jg	Lj5582
-	jmp	Lj5583
-Lj5582:
+	jg	Lj5535
+	jmp	Lj5536
+Lj5535:
 	movl	-8(%ebp),%edx
 	testl	%edx,%edx
-	je	Lj5586
+	je	Lj5539
 	movl	-4(%edx),%edx
-Lj5586:
+Lj5539:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%eax
 	subl	%eax,%edx
@@ -14988,17 +14910,17 @@ Lj5586:
 	movl	$0,-16(%ebp)
 	movl	-8(%ebp),%eax
 	movl	%eax,-24(%ebp)
-	jmp	Lj5592
+	jmp	Lj5545
 	.balign 4,0x90
-Lj5591:
+Lj5544:
 	incl	-16(%ebp)
 	movl	-24(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movb	(%eax),%al
 	cmpb	1(%edx),%al
-	je	Lj5596
-	jmp	Lj5595
-Lj5596:
+	je	Lj5549
+	jmp	Lj5548
+Lj5549:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%ecx
 	movl	-24(%ebp),%edx
@@ -15006,22 +14928,22 @@ Lj5596:
 	leal	1(%eax),%eax
 	call	SYSTEM_COMPAREBYTE$formal$formal$LONGINT$$LONGINT
 	testl	%eax,%eax
-	je	Lj5594
-	jmp	Lj5595
-Lj5594:
+	je	Lj5547
+	jmp	Lj5548
+Lj5547:
 	movl	-16(%ebp),%eax
 	movl	%eax,-12(%ebp)
-	jmp	Lj5578
-Lj5595:
+	jmp	Lj5531
+Lj5548:
 	incl	-24(%ebp)
-Lj5592:
+Lj5545:
 	movl	-16(%ebp),%eax
 	cmpl	-20(%ebp),%eax
-	jle	Lj5591
-	jmp	Lj5593
-Lj5593:
-Lj5583:
-Lj5578:
+	jle	Lj5544
+	jmp	Lj5546
+Lj5546:
+Lj5536:
+Lj5531:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -15038,64 +14960,64 @@ SYSTEM_POS$ANSISTRING$ANSISTRING$$LONGINT:
 	movl	$0,-12(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj5611
+	je	Lj5564
 	movl	-4(%eax),%eax
-Lj5611:
+Lj5564:
 	cmpl	$0,%eax
-	jg	Lj5609
-	jmp	Lj5610
-Lj5609:
+	jg	Lj5562
+	jmp	Lj5563
+Lj5562:
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj5614
+	je	Lj5567
 	movl	-4(%eax),%eax
-Lj5614:
+Lj5567:
 	movl	-4(%ebp),%edx
 	testl	%edx,%edx
-	je	Lj5615
+	je	Lj5568
 	movl	-4(%edx),%edx
-Lj5615:
+Lj5568:
 	subl	%edx,%eax
 	movl	%eax,-20(%ebp)
 	movl	$0,-16(%ebp)
 	movl	-8(%ebp),%eax
 	movl	%eax,-24(%ebp)
-	jmp	Lj5621
+	jmp	Lj5574
 	.balign 4,0x90
-Lj5620:
+Lj5573:
 	incl	-16(%ebp)
 	movl	-24(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movb	(%eax),%al
 	cmpb	(%edx),%al
-	je	Lj5625
-	jmp	Lj5624
-Lj5625:
+	je	Lj5578
+	jmp	Lj5577
+Lj5578:
 	movl	-4(%ebp),%ecx
 	testl	%ecx,%ecx
-	je	Lj5628
+	je	Lj5581
 	movl	-4(%ecx),%ecx
-Lj5628:
+Lj5581:
 	movl	-24(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_COMPAREBYTE$formal$formal$LONGINT$$LONGINT
 	testl	%eax,%eax
-	je	Lj5623
-	jmp	Lj5624
-Lj5623:
+	je	Lj5576
+	jmp	Lj5577
+Lj5576:
 	movl	-16(%ebp),%eax
 	movl	%eax,-12(%ebp)
-	jmp	Lj5605
-Lj5624:
+	jmp	Lj5558
+Lj5577:
 	incl	-24(%ebp)
-Lj5621:
+Lj5574:
 	movl	-16(%ebp),%eax
 	cmpl	-20(%ebp),%eax
-	jle	Lj5620
-	jmp	Lj5622
-Lj5622:
-Lj5610:
-Lj5605:
+	jle	Lj5573
+	jmp	Lj5575
+Lj5575:
+Lj5563:
+Lj5558:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -15113,32 +15035,32 @@ SYSTEM_POS$CHAR$ANSISTRING$$LONGINT:
 	movl	%eax,-20(%ebp)
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj5642
+	je	Lj5595
 	movl	-4(%eax),%eax
-Lj5642:
+Lj5595:
 	movl	$1,-16(%ebp)
 	cmpl	-16(%ebp),%eax
-	jl	Lj5640
+	jl	Lj5593
 	decl	-16(%ebp)
 	.balign 4,0x90
-Lj5641:
+Lj5594:
 	incl	-16(%ebp)
 	movl	-20(%ebp),%edx
 	movb	(%edx),%dl
 	cmpb	-4(%ebp),%dl
-	je	Lj5643
-	jmp	Lj5644
-Lj5643:
+	je	Lj5596
+	jmp	Lj5597
+Lj5596:
 	movl	-16(%ebp),%edx
 	movl	%edx,-12(%ebp)
-	jmp	Lj5635
-Lj5644:
+	jmp	Lj5588
+Lj5597:
 	incl	-20(%ebp)
 	cmpl	-16(%ebp),%eax
-	jg	Lj5641
-Lj5640:
+	jg	Lj5594
+Lj5593:
 	movl	$0,-12(%ebp)
-Lj5635:
+Lj5588:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -15158,17 +15080,17 @@ FPC_VAL_REAL_ANSISTR:
 	fstpt	-20(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj5655
+	je	Lj5608
 	movl	-4(%eax),%eax
-Lj5655:
+Lj5608:
 	cmpl	$255,%eax
-	jg	Lj5653
-	jmp	Lj5654
-Lj5653:
+	jg	Lj5606
+	jmp	Lj5607
+Lj5606:
 	movl	-8(%ebp),%eax
 	movl	$256,(%eax)
-	jmp	Lj5658
-Lj5654:
+	jmp	Lj5611
+Lj5607:
 	movl	-4(%ebp),%ecx
 	leal	-276(%ebp),%eax
 	movl	$255,%edx
@@ -15177,7 +15099,7 @@ Lj5654:
 	leal	-276(%ebp),%eax
 	call	fpc_val_real_shortstr
 	fstpt	-20(%ebp)
-Lj5658:
+Lj5611:
 	fldt	-20(%ebp)
 	leave
 	ret
@@ -15195,19 +15117,19 @@ FPC_VAL_CURRENCY_ANSISTR:
 	movl	%edx,-8(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj5675
+	je	Lj5628
 	movl	-4(%eax),%eax
-Lj5675:
+Lj5628:
 	cmpl	$255,%eax
-	jg	Lj5673
-	jmp	Lj5674
-Lj5673:
+	jg	Lj5626
+	jmp	Lj5627
+Lj5626:
 	fldz
 	fistpq	-16(%ebp)
 	movl	-8(%ebp),%eax
 	movl	$256,(%eax)
-	jmp	Lj5680
-Lj5674:
+	jmp	Lj5633
+Lj5627:
 	movl	-4(%ebp),%ecx
 	leal	-272(%ebp),%eax
 	movl	$255,%edx
@@ -15218,7 +15140,7 @@ Lj5674:
 	fldt	_$SYSTEM$_Ld22
 	fmulp	%st,%st(1)
 	fistpq	-16(%ebp)
-Lj5680:
+Lj5633:
 	fildq	-16(%ebp)
 	leave
 	ret
@@ -15237,17 +15159,17 @@ FPC_VAL_UINT_ANSISTR:
 	movl	$0,-12(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj5699
+	je	Lj5652
 	movl	-4(%eax),%eax
-Lj5699:
+Lj5652:
 	cmpl	$255,%eax
-	jg	Lj5697
-	jmp	Lj5698
-Lj5697:
+	jg	Lj5650
+	jmp	Lj5651
+Lj5650:
 	movl	-8(%ebp),%eax
 	movl	$256,(%eax)
-	jmp	Lj5702
-Lj5698:
+	jmp	Lj5655
+Lj5651:
 	movl	-4(%ebp),%ecx
 	leal	-268(%ebp),%eax
 	movl	$255,%edx
@@ -15256,7 +15178,7 @@ Lj5698:
 	leal	-268(%ebp),%eax
 	call	fpc_val_uint_shortstr
 	movl	%eax,-12(%ebp)
-Lj5702:
+Lj5655:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -15276,17 +15198,17 @@ FPC_VAL_SINT_ANSISTR:
 	movl	$0,-16(%ebp)
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj5721
+	je	Lj5674
 	movl	-4(%eax),%eax
-Lj5721:
+Lj5674:
 	cmpl	$255,%eax
-	jg	Lj5719
-	jmp	Lj5720
-Lj5719:
+	jg	Lj5672
+	jmp	Lj5673
+Lj5672:
 	movl	-12(%ebp),%eax
 	movl	$256,(%eax)
-	jmp	Lj5724
-Lj5720:
+	jmp	Lj5677
+Lj5673:
 	movl	-8(%ebp),%ecx
 	leal	-272(%ebp),%eax
 	movl	$255,%edx
@@ -15296,7 +15218,7 @@ Lj5720:
 	movl	-4(%ebp),%eax
 	call	FPC_VAL_SINT_SHORTSTR
 	movl	%eax,-16(%ebp)
-Lj5724:
+Lj5677:
 	movl	-16(%ebp),%eax
 	leave
 	ret
@@ -15316,17 +15238,17 @@ FPC_VAL_QWORD_ANSISTR:
 	movl	$0,-12(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj5745
+	je	Lj5698
 	movl	-4(%eax),%eax
-Lj5745:
+Lj5698:
 	cmpl	$255,%eax
-	jg	Lj5743
-	jmp	Lj5744
-Lj5743:
+	jg	Lj5696
+	jmp	Lj5697
+Lj5696:
 	movl	-8(%ebp),%eax
 	movl	$256,(%eax)
-	jmp	Lj5748
-Lj5744:
+	jmp	Lj5701
+Lj5697:
 	movl	-4(%ebp),%ecx
 	leal	-272(%ebp),%eax
 	movl	$255,%edx
@@ -15336,7 +15258,7 @@ Lj5744:
 	call	fpc_val_qword_shortstr
 	movl	%eax,-16(%ebp)
 	movl	%edx,-12(%ebp)
-Lj5748:
+Lj5701:
 	movl	-12(%ebp),%edx
 	movl	-16(%ebp),%eax
 	leave
@@ -15357,17 +15279,17 @@ FPC_VAL_INT64_ANSISTR:
 	movl	$0,-12(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj5767
+	je	Lj5720
 	movl	-4(%eax),%eax
-Lj5767:
+Lj5720:
 	cmpl	$255,%eax
-	jg	Lj5765
-	jmp	Lj5766
-Lj5765:
+	jg	Lj5718
+	jmp	Lj5719
+Lj5718:
 	movl	-8(%ebp),%eax
 	movl	$256,(%eax)
-	jmp	Lj5770
-Lj5766:
+	jmp	Lj5723
+Lj5719:
 	movl	-4(%ebp),%ecx
 	leal	-272(%ebp),%eax
 	movl	$255,%edx
@@ -15377,7 +15299,7 @@ Lj5766:
 	call	fpc_val_int64_shortstr
 	movl	%eax,-16(%ebp)
 	movl	%edx,-12(%ebp)
-Lj5770:
+Lj5723:
 	movl	-12(%ebp),%edx
 	movl	-16(%ebp),%eax
 	leave
@@ -15406,7 +15328,7 @@ FPC_ANSISTR_FLOAT:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj5785
+	jne	Lj5738
 	movzwl	20(%ebp),%eax
 	pushl	%eax
 	pushl	16(%ebp)
@@ -15431,16 +15353,16 @@ FPC_ANSISTR_FLOAT:
 	call	FPC_ANSISTR_DECR_REF
 	movl	-312(%ebp),%eax
 	movl	%eax,(%ebx)
-Lj5785:
+Lj5738:
 	call	FPC_POPADDRSTACK
 	leal	-312(%ebp),%eax
 	call	FPC_ANSISTR_DECR_REF
 	movl	$0,-312(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj5786
+	je	Lj5739
 	call	FPC_RERAISE
-Lj5786:
+Lj5739:
 	movl	-316(%ebp),%ebx
 	leave
 	ret	$16
@@ -15468,7 +15390,7 @@ FPC_ANSISTR_ENUM:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj5808
+	jne	Lj5761
 	pushl	12(%ebp)
 	leal	-268(%ebp),%eax
 	pushl	%eax
@@ -15490,16 +15412,16 @@ FPC_ANSISTR_ENUM:
 	call	FPC_ANSISTR_DECR_REF
 	movl	-312(%ebp),%eax
 	movl	%eax,(%ebx)
-Lj5808:
+Lj5761:
 	call	FPC_POPADDRSTACK
 	leal	-312(%ebp),%eax
 	call	FPC_ANSISTR_DECR_REF
 	movl	$0,-312(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj5809
+	je	Lj5762
 	call	FPC_RERAISE
-Lj5809:
+Lj5762:
 	movl	-316(%ebp),%ebx
 	leave
 	ret	$8
@@ -15527,7 +15449,7 @@ FPC_ANSISTR_BOOL:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj5831
+	jne	Lj5784
 	pushl	$255
 	leal	-268(%ebp),%ecx
 	movl	-8(%ebp),%edx
@@ -15546,16 +15468,16 @@ FPC_ANSISTR_BOOL:
 	call	FPC_ANSISTR_DECR_REF
 	movl	-312(%ebp),%eax
 	movl	%eax,(%ebx)
-Lj5831:
+Lj5784:
 	call	FPC_POPADDRSTACK
 	leal	-312(%ebp),%eax
 	call	FPC_ANSISTR_DECR_REF
 	movl	$0,-312(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj5832
+	je	Lj5785
 	call	FPC_RERAISE
-Lj5832:
+Lj5785:
 	movl	-316(%ebp),%ebx
 	leave
 	ret
@@ -15608,7 +15530,7 @@ FPC_ANSISTR_CURRENCY:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj5866
+	jne	Lj5819
 	pushl	12(%ebp)
 	pushl	8(%ebp)
 	pushl	$255
@@ -15629,16 +15551,16 @@ FPC_ANSISTR_CURRENCY:
 	call	FPC_ANSISTR_DECR_REF
 	movl	-312(%ebp),%eax
 	movl	%eax,(%ebx)
-Lj5866:
+Lj5819:
 	call	FPC_POPADDRSTACK
 	leal	-312(%ebp),%eax
 	call	FPC_ANSISTR_DECR_REF
 	movl	$0,-312(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj5867
+	je	Lj5820
 	call	FPC_RERAISE
-Lj5867:
+Lj5820:
 	movl	-316(%ebp),%ebx
 	leave
 	ret	$8
@@ -15666,7 +15588,7 @@ FPC_ANSISTR_VALUINT:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj5887
+	jne	Lj5840
 	pushl	$255
 	leal	-268(%ebp),%ecx
 	movl	-8(%ebp),%edx
@@ -15685,16 +15607,16 @@ FPC_ANSISTR_VALUINT:
 	call	FPC_ANSISTR_DECR_REF
 	movl	-312(%ebp),%eax
 	movl	%eax,(%ebx)
-Lj5887:
+Lj5840:
 	call	FPC_POPADDRSTACK
 	leal	-312(%ebp),%eax
 	call	FPC_ANSISTR_DECR_REF
 	movl	$0,-312(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj5888
+	je	Lj5841
 	call	FPC_RERAISE
-Lj5888:
+Lj5841:
 	movl	-316(%ebp),%ebx
 	leave
 	ret
@@ -15722,7 +15644,7 @@ FPC_ANSISTR_VALSINT:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj5906
+	jne	Lj5859
 	pushl	$255
 	leal	-268(%ebp),%ecx
 	movl	-8(%ebp),%edx
@@ -15741,16 +15663,16 @@ FPC_ANSISTR_VALSINT:
 	call	FPC_ANSISTR_DECR_REF
 	movl	-312(%ebp),%eax
 	movl	%eax,(%ebx)
-Lj5906:
+Lj5859:
 	call	FPC_POPADDRSTACK
 	leal	-312(%ebp),%eax
 	call	FPC_ANSISTR_DECR_REF
 	movl	$0,-312(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj5907
+	je	Lj5860
 	call	FPC_RERAISE
-Lj5907:
+Lj5860:
 	movl	-316(%ebp),%ebx
 	leave
 	ret
@@ -15777,7 +15699,7 @@ FPC_ANSISTR_QWORD:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj5925
+	jne	Lj5878
 	pushl	12(%ebp)
 	pushl	8(%ebp)
 	leal	-264(%ebp),%edx
@@ -15797,16 +15719,16 @@ FPC_ANSISTR_QWORD:
 	call	FPC_ANSISTR_DECR_REF
 	movl	-308(%ebp),%eax
 	movl	%eax,(%ebx)
-Lj5925:
+Lj5878:
 	call	FPC_POPADDRSTACK
 	leal	-308(%ebp),%eax
 	call	FPC_ANSISTR_DECR_REF
 	movl	$0,-308(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj5926
+	je	Lj5879
 	call	FPC_RERAISE
-Lj5926:
+Lj5879:
 	movl	-312(%ebp),%ebx
 	leave
 	ret	$8
@@ -15833,7 +15755,7 @@ FPC_ANSISTR_INT64:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj5944
+	jne	Lj5897
 	pushl	12(%ebp)
 	pushl	8(%ebp)
 	leal	-264(%ebp),%edx
@@ -15853,16 +15775,16 @@ FPC_ANSISTR_INT64:
 	call	FPC_ANSISTR_DECR_REF
 	movl	-308(%ebp),%eax
 	movl	%eax,(%ebx)
-Lj5944:
+Lj5897:
 	call	FPC_POPADDRSTACK
 	leal	-308(%ebp),%eax
 	call	FPC_ANSISTR_DECR_REF
 	movl	$0,-308(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj5945
+	je	Lj5898
 	call	FPC_RERAISE
-Lj5945:
+Lj5898:
 	movl	-312(%ebp),%ebx
 	leave
 	ret	$8
@@ -15880,49 +15802,49 @@ SYSTEM_DELETE$ANSISTRING$LONGINT$LONGINT:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj5965
+	je	Lj5918
 	movl	-4(%eax),%eax
-Lj5965:
+Lj5918:
 	movl	%eax,-16(%ebp)
 	movl	-8(%ebp),%eax
 	cmpl	-16(%ebp),%eax
-	jg	Lj5966
-	jmp	Lj5969
-Lj5969:
+	jg	Lj5919
+	jmp	Lj5922
+Lj5922:
 	movl	-8(%ebp),%eax
 	cmpl	$0,%eax
-	jle	Lj5966
-	jmp	Lj5968
-Lj5968:
+	jle	Lj5919
+	jmp	Lj5921
+Lj5921:
 	movl	-12(%ebp),%eax
 	cmpl	$0,%eax
-	jle	Lj5966
-	jmp	Lj5967
-Lj5966:
-	jmp	Lj5961
-Lj5967:
+	jle	Lj5919
+	jmp	Lj5920
+Lj5919:
+	jmp	Lj5914
+Lj5920:
 	movl	-4(%ebp),%eax
 	call	FPC_ANSISTR_UNIQUE
 	movl	-16(%ebp),%eax
 	movl	-8(%ebp),%edx
 	subl	%edx,%eax
 	cmpl	-12(%ebp),%eax
-	jl	Lj5972
-	jmp	Lj5973
-Lj5972:
+	jl	Lj5925
+	jmp	Lj5926
+Lj5925:
 	movl	-16(%ebp),%eax
 	movl	-8(%ebp),%edx
 	subl	%edx,%eax
 	incl	%eax
 	movl	%eax,-12(%ebp)
-Lj5973:
+Lj5926:
 	movl	-16(%ebp),%eax
 	movl	-8(%ebp),%edx
 	subl	%edx,%eax
 	cmpl	-12(%ebp),%eax
-	jge	Lj5976
-	jmp	Lj5977
-Lj5976:
+	jge	Lj5929
+	jmp	Lj5930
+Lj5929:
 	decl	-8(%ebp)
 	pushl	-8(%ebp)
 	movl	-16(%ebp),%edx
@@ -15938,18 +15860,18 @@ Lj5976:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj5986
+	jne	Lj5939
 	movl	$FPC_EMPTYCHAR,%eax
-Lj5986:
+Lj5939:
 	movl	-4(%ebp),%ecx
 	call	SYSTEM_FPC_PCHAR_ANSISTR_INTERN_CHARMOVE$PCHAR$LONGINT$ANSISTRING$LONGINT$LONGINT
-Lj5977:
+Lj5930:
 	movl	-16(%ebp),%edx
 	movl	-12(%ebp),%eax
 	subl	%eax,%edx
 	movl	-4(%ebp),%eax
 	call	fpc_ansistr_setlength
-Lj5961:
+Lj5914:
 	leave
 	ret
 
@@ -15972,47 +15894,47 @@ SYSTEM_INSERT$ANSISTRING$ANSISTRING$LONGINT:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj5995
+	jne	Lj5948
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj6000
+	je	Lj5953
 	movl	-4(%eax),%eax
-Lj6000:
+Lj5953:
 	testl	%eax,%eax
-	je	Lj5998
-	jmp	Lj5999
-Lj5998:
-	jmp	Lj5995
-Lj5999:
+	je	Lj5951
+	jmp	Lj5952
+Lj5951:
+	jmp	Lj5948
+Lj5952:
 	movl	-12(%ebp),%eax
 	cmpl	$0,%eax
-	jle	Lj6001
-	jmp	Lj6002
-Lj6001:
+	jle	Lj5954
+	jmp	Lj5955
+Lj5954:
 	movl	$1,-12(%ebp)
-Lj6002:
+Lj5955:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj6007
+	je	Lj5960
 	movl	-4(%eax),%eax
-Lj6007:
+Lj5960:
 	movl	%eax,-20(%ebp)
 	movl	-12(%ebp),%eax
 	cmpl	-20(%ebp),%eax
-	jg	Lj6008
-	jmp	Lj6009
-Lj6008:
+	jg	Lj5961
+	jmp	Lj5962
+Lj5961:
 	movl	-20(%ebp),%eax
 	incl	%eax
 	movl	%eax,-12(%ebp)
-Lj6009:
+Lj5962:
 	decl	-12(%ebp)
 	movl	-4(%ebp),%edx
 	testl	%edx,%edx
-	je	Lj6014
+	je	Lj5967
 	movl	-4(%edx),%edx
-Lj6014:
+Lj5967:
 	movl	-20(%ebp),%eax
 	addl	%eax,%edx
 	leal	-16(%ebp),%eax
@@ -16020,13 +15942,13 @@ Lj6014:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj6019
+	je	Lj5972
 	movl	-4(%eax),%eax
-Lj6019:
+Lj5972:
 	testl	%eax,%eax
-	jne	Lj6017
-	jmp	Lj6018
-Lj6017:
+	jne	Lj5970
+	jmp	Lj5971
+Lj5970:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	call	SYSTEM_STRINGCODEPAGE$ANSISTRING$$WORD
@@ -16034,64 +15956,64 @@ Lj6017:
 	movw	-66(%ebp),%ax
 	movw	-66(%ebp),%dx
 	subw	$1,%dx
-	jbe	Lj6031
-	jmp	Lj6030
-Lj6031:
+	jbe	Lj5984
+	jmp	Lj5983
+Lj5984:
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%ax
-	jmp	Lj6029
-Lj6030:
-Lj6029:
+	jmp	Lj5982
+Lj5983:
+Lj5982:
 	movw	%ax,-22(%ebp)
-	jmp	Lj6034
-Lj6018:
+	jmp	Lj5987
+Lj5971:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_STRINGCODEPAGE$ANSISTRING$$WORD
 	movw	%ax,-66(%ebp)
 	movw	-66(%ebp),%dx
 	movw	-66(%ebp),%ax
 	subw	$1,%ax
-	jbe	Lj6046
-	jmp	Lj6045
-Lj6046:
+	jbe	Lj5999
+	jmp	Lj5998
+Lj5999:
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%dx
-	jmp	Lj6044
-Lj6045:
-Lj6044:
+	jmp	Lj5997
+Lj5998:
+Lj5997:
 	movw	%dx,-22(%ebp)
-Lj6034:
+Lj5987:
 	movw	-22(%ebp),%dx
 	leal	-16(%ebp),%eax
 	movb	$0,%cl
 	call	SYSTEM_SETCODEPAGE$ANSISTRING$WORD$BOOLEAN
 	movl	-12(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj6055
-	jmp	Lj6056
-Lj6055:
+	jg	Lj6008
+	jmp	Lj6009
+Lj6008:
 	pushl	$0
 	pushl	-12(%ebp)
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj6063
+	jne	Lj6016
 	movl	$FPC_EMPTYCHAR,%eax
-Lj6063:
+Lj6016:
 	leal	-16(%ebp),%ecx
 	movl	$0,%edx
 	call	SYSTEM_FPC_PCHAR_ANSISTR_INTERN_CHARMOVE$PCHAR$LONGINT$ANSISTRING$LONGINT$LONGINT
-Lj6056:
+Lj6009:
 	pushl	-12(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj6072
+	je	Lj6025
 	movl	-4(%eax),%eax
-Lj6072:
+Lj6025:
 	pushl	%eax
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj6075
+	jne	Lj6028
 	movl	$FPC_EMPTYCHAR,%eax
-Lj6075:
+Lj6028:
 	leal	-16(%ebp),%ecx
 	movl	$0,%edx
 	call	SYSTEM_FPC_PCHAR_ANSISTR_INTERN_CHARMOVE$PCHAR$LONGINT$ANSISTRING$LONGINT$LONGINT
@@ -16099,14 +16021,14 @@ Lj6075:
 	movl	-12(%ebp),%edx
 	subl	%edx,%eax
 	cmpl	$0,%eax
-	jg	Lj6080
-	jmp	Lj6081
-Lj6080:
+	jg	Lj6033
+	jmp	Lj6034
+Lj6033:
 	movl	-4(%ebp),%edx
 	testl	%edx,%edx
-	je	Lj6084
+	je	Lj6037
 	movl	-4(%edx),%edx
-Lj6084:
+Lj6037:
 	movl	-12(%ebp),%eax
 	addl	%eax,%edx
 	pushl	%edx
@@ -16117,13 +16039,13 @@ Lj6084:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj6089
+	jne	Lj6042
 	movl	$FPC_EMPTYCHAR,%eax
-Lj6089:
+Lj6042:
 	leal	-16(%ebp),%ecx
 	movl	-12(%ebp),%edx
 	call	SYSTEM_FPC_PCHAR_ANSISTR_INTERN_CHARMOVE$PCHAR$LONGINT$ANSISTRING$LONGINT$LONGINT
-Lj6081:
+Lj6034:
 	movl	-16(%ebp),%eax
 	call	FPC_ANSISTR_INCR_REF
 	movl	-8(%ebp),%ebx
@@ -16131,16 +16053,16 @@ Lj6081:
 	call	FPC_ANSISTR_DECR_REF
 	movl	-16(%ebp),%eax
 	movl	%eax,(%ebx)
-Lj5995:
+Lj5948:
 	call	FPC_POPADDRSTACK
 	leal	-16(%ebp),%eax
 	call	fpc_ansistr_decr_ref
 	movl	$0,-16(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj5996
+	je	Lj5949
 	call	FPC_RERAISE
-Lj5996:
+Lj5949:
 	movl	-72(%ebp),%ebx
 	leave
 	ret
@@ -16161,9 +16083,9 @@ SYSTEM_STRINGOFCHAR$CHAR$LONGINT$$ANSISTRING:
 	movl	-12(%ebp),%eax
 	movl	(%eax),%edx
 	testl	%edx,%edx
-	je	Lj6110
+	je	Lj6063
 	movl	-4(%edx),%edx
-Lj6110:
+Lj6063:
 	movl	-12(%ebp),%eax
 	movl	(%eax),%eax
 	movb	-4(%ebp),%cl
@@ -16188,15 +16110,15 @@ SYSTEM_SETSTRING$ANSISTRING$PCHAR$LONGINT:
 	call	fpc_ansistr_setlength
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj6121
-	jmp	Lj6122
-Lj6121:
+	jne	Lj6074
+	jmp	Lj6075
+Lj6074:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%edx
 	movl	-8(%ebp),%eax
 	movl	-12(%ebp),%ecx
 	call	SYSTEM_MOVE$formal$formal$LONGINT
-Lj6122:
+Lj6075:
 	leave
 	ret
 
@@ -16215,26 +16137,26 @@ SYSTEM_SETSTRING$ANSISTRING$PWIDECHAR$LONGINT:
 	movl	$0,(%eax)
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj6133
-	jmp	Lj6132
-Lj6133:
+	jne	Lj6086
+	jmp	Lj6085
+Lj6086:
 	movl	-12(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj6131
-	jmp	Lj6132
-Lj6131:
+	jg	Lj6084
+	jmp	Lj6085
+Lj6084:
 	pushl	-12(%ebp)
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%cx
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movl	U_SYSTEM_WIDESTRINGMANAGER,%ebx
 	call	*%ebx
-	jmp	Lj6142
-Lj6132:
+	jmp	Lj6095
+Lj6085:
 	movl	-12(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	fpc_ansistr_setlength
-Lj6142:
+Lj6095:
 	movl	-16(%ebp),%ebx
 	leave
 	ret
@@ -16253,22 +16175,22 @@ SYSTEM_UPCASE$ANSISTRING$$ANSISTRING:
 	movl	%edx,-8(%ebp)
 	movl	-4(%ebp),%edx
 	testl	%edx,%edx
-	je	Lj6151
+	je	Lj6104
 	movl	-4(%edx),%edx
-Lj6151:
+Lj6104:
 	movl	-8(%ebp),%eax
 	call	fpc_ansistr_setlength
 	movl	-4(%ebp),%ebx
 	testl	%ebx,%ebx
-	je	Lj6157
+	je	Lj6110
 	movl	-4(%ebx),%ebx
-Lj6157:
+Lj6110:
 	movl	$1,-12(%ebp)
 	cmpl	-12(%ebp),%ebx
-	jl	Lj6155
+	jl	Lj6108
 	decl	-12(%ebp)
 	.balign 4,0x90
-Lj6156:
+Lj6109:
 	incl	-12(%ebp)
 	movl	-8(%ebp),%eax
 	call	fpc_ansistr_unique
@@ -16280,8 +16202,8 @@ Lj6156:
 	call	SYSTEM_UPCASE$CHAR$$CHAR
 	movb	%al,-1(%esi,%edi,1)
 	cmpl	-12(%ebp),%ebx
-	jg	Lj6156
-Lj6155:
+	jg	Lj6109
+Lj6108:
 	movl	-24(%ebp),%ebx
 	movl	-20(%ebp),%esi
 	movl	-16(%ebp),%edi
@@ -16302,22 +16224,22 @@ SYSTEM_LOWERCASE$ANSISTRING$$ANSISTRING:
 	movl	%edx,-8(%ebp)
 	movl	-4(%ebp),%edx
 	testl	%edx,%edx
-	je	Lj6168
+	je	Lj6121
 	movl	-4(%edx),%edx
-Lj6168:
+Lj6121:
 	movl	-8(%ebp),%eax
 	call	fpc_ansistr_setlength
 	movl	-4(%ebp),%ebx
 	testl	%ebx,%ebx
-	je	Lj6174
+	je	Lj6127
 	movl	-4(%ebx),%ebx
-Lj6174:
+Lj6127:
 	movl	$1,-12(%ebp)
 	cmpl	-12(%ebp),%ebx
-	jl	Lj6172
+	jl	Lj6125
 	decl	-12(%ebp)
 	.balign 4,0x90
-Lj6173:
+Lj6126:
 	incl	-12(%ebp)
 	movl	-8(%ebp),%eax
 	call	fpc_ansistr_unique
@@ -16329,8 +16251,8 @@ Lj6173:
 	call	SYSTEM_LOWERCASE$CHAR$$CHAR
 	movb	%al,-1(%esi,%edi,1)
 	cmpl	-12(%ebp),%ebx
-	jg	Lj6173
-Lj6172:
+	jg	Lj6126
+Lj6125:
 	movl	-24(%ebp),%ebx
 	movl	-20(%ebp),%esi
 	movl	-16(%ebp),%edi
@@ -16346,18 +16268,18 @@ SYSTEM_STRINGCODEPAGE$ANSISTRING$$WORD:
 	subl	$6,%esp
 	movl	%eax,-4(%ebp)
 	cmpl	$0,-4(%ebp)
-	jne	Lj6183
-	jmp	Lj6184
-Lj6183:
+	jne	Lj6136
+	jmp	Lj6137
+Lj6136:
 	movl	-4(%ebp),%eax
 	subl	$12,%eax
 	movw	(%eax),%ax
 	movw	%ax,-6(%ebp)
-	jmp	Lj6187
-Lj6184:
+	jmp	Lj6140
+Lj6137:
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%ax
 	movw	%ax,-6(%ebp)
-Lj6187:
+Lj6140:
 	movw	-6(%ebp),%ax
 	leave
 	ret
@@ -16371,17 +16293,17 @@ SYSTEM_STRINGELEMENTSIZE$ANSISTRING$$WORD:
 	subl	$6,%esp
 	movl	%eax,-4(%ebp)
 	cmpl	$0,-4(%ebp)
-	jne	Lj6192
-	jmp	Lj6193
-Lj6192:
+	jne	Lj6145
+	jmp	Lj6146
+Lj6145:
 	movl	-4(%ebp),%eax
 	subl	$12,%eax
 	movw	2(%eax),%ax
 	movw	%ax,-6(%ebp)
-	jmp	Lj6196
-Lj6193:
+	jmp	Lj6149
+Lj6146:
 	movw	$1,-6(%ebp)
-Lj6196:
+Lj6149:
 	movw	-6(%ebp),%ax
 	leave
 	ret
@@ -16395,17 +16317,17 @@ SYSTEM_STRINGREFCOUNT$ANSISTRING$$LONGINT:
 	subl	$8,%esp
 	movl	%eax,-4(%ebp)
 	cmpl	$0,-4(%ebp)
-	jne	Lj6201
-	jmp	Lj6202
-Lj6201:
+	jne	Lj6154
+	jmp	Lj6155
+Lj6154:
 	movl	-4(%ebp),%eax
 	subl	$12,%eax
 	movl	4(%eax),%eax
 	movl	%eax,-8(%ebp)
-	jmp	Lj6205
-Lj6202:
+	jmp	Lj6158
+Lj6155:
 	movl	$0,-8(%ebp)
-Lj6205:
+Lj6158:
 	movl	-8(%ebp),%eax
 	leave
 	ret
@@ -16420,9 +16342,9 @@ SYSTEM_INTERNALSETCODEPAGE$ANSISTRING$WORD$BOOLEAN:
 	movw	%dx,-8(%ebp)
 	movb	%cl,-12(%ebp)
 	cmpb	$0,-12(%ebp)
-	jne	Lj6210
-	jmp	Lj6211
-Lj6210:
+	jne	Lj6163
+	jmp	Lj6164
+Lj6163:
 	movl	-4(%ebp),%eax
 	call	FPC_ANSISTR_UNIQUE
 	movl	-4(%ebp),%eax
@@ -16430,8 +16352,8 @@ Lj6210:
 	subl	$12,%edx
 	movw	-8(%ebp),%ax
 	movw	%ax,(%edx)
-	jmp	Lj6216
-Lj6211:
+	jmp	Lj6169
+Lj6164:
 	movl	-4(%ebp),%eax
 	call	FPC_ANSISTR_UNIQUE
 	movl	-4(%ebp),%eax
@@ -16439,7 +16361,7 @@ Lj6211:
 	subl	$12,%eax
 	movw	-8(%ebp),%dx
 	movw	%dx,(%eax)
-Lj6216:
+Lj6169:
 	leave
 	ret
 
@@ -16456,11 +16378,11 @@ SYSTEM_SETCODEPAGE$ANSISTRING$WORD$BOOLEAN:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj6223
-	jmp	Lj6224
-Lj6223:
-	jmp	Lj6221
-Lj6224:
+	je	Lj6176
+	jmp	Lj6177
+Lj6176:
+	jmp	Lj6174
+Lj6177:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	subl	$12,%eax
@@ -16468,73 +16390,73 @@ Lj6224:
 	movw	%ax,-14(%ebp)
 	movw	-14(%ebp),%ax
 	cmpw	-8(%ebp),%ax
-	je	Lj6227
-	jmp	Lj6228
-Lj6227:
-	jmp	Lj6221
-Lj6228:
+	je	Lj6180
+	jmp	Lj6181
+Lj6180:
+	jmp	Lj6174
+Lj6181:
 	movw	-14(%ebp),%ax
 	movw	-14(%ebp),%dx
 	subw	$1,%dx
-	jbe	Lj6236
-	jmp	Lj6235
-Lj6236:
+	jbe	Lj6189
+	jmp	Lj6188
+Lj6189:
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%ax
-	jmp	Lj6234
-Lj6235:
-Lj6234:
+	jmp	Lj6187
+Lj6188:
+Lj6187:
 	movw	%ax,-18(%ebp)
 	movw	-8(%ebp),%dx
 	movw	-8(%ebp),%ax
 	subw	$1,%ax
-	jbe	Lj6246
-	jmp	Lj6245
-Lj6246:
+	jbe	Lj6199
+	jmp	Lj6198
+Lj6199:
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%dx
-	jmp	Lj6244
-Lj6245:
-Lj6244:
+	jmp	Lj6197
+Lj6198:
+Lj6197:
 	movw	%dx,-16(%ebp)
 	cmpb	$0,-12(%ebp)
-	jne	Lj6251
-	jmp	Lj6250
-Lj6251:
+	jne	Lj6204
+	jmp	Lj6203
+Lj6204:
 	movw	-18(%ebp),%ax
 	cmpw	-16(%ebp),%ax
-	jne	Lj6249
-	jmp	Lj6250
-Lj6249:
+	jne	Lj6202
+	jmp	Lj6203
+Lj6202:
 	movb	$1,-12(%ebp)
-	jmp	Lj6252
-Lj6250:
+	jmp	Lj6205
+Lj6203:
 	movb	$0,-12(%ebp)
-Lj6252:
+Lj6205:
 	movb	-12(%ebp),%al
 	testb	%al,%al
-	je	Lj6255
-	jmp	Lj6254
-Lj6255:
+	je	Lj6208
+	jmp	Lj6207
+Lj6208:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	subl	$12,%eax
 	movl	4(%eax),%eax
 	cmpl	$1,%eax
-	je	Lj6253
-	jmp	Lj6254
-Lj6253:
+	je	Lj6206
+	jmp	Lj6207
+Lj6206:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%edx
 	subl	$12,%edx
 	movw	-8(%ebp),%ax
 	movw	%ax,(%edx)
-	jmp	Lj6258
-Lj6254:
+	jmp	Lj6211
+Lj6207:
 	movb	-12(%ebp),%cl
 	movw	-8(%ebp),%dx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_INTERNALSETCODEPAGE$ANSISTRING$WORD$BOOLEAN
-Lj6258:
-Lj6221:
+Lj6211:
+Lj6174:
 	leave
 	ret
 
@@ -16591,18 +16513,18 @@ FPC_ANSISTR_APPEND_CHAR:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%edx
 	testl	%edx,%edx
-	je	Lj6281
+	je	Lj6234
 	movl	-4(%edx),%edx
-Lj6281:
+Lj6234:
 	incl	%edx
 	movl	-4(%ebp),%eax
 	call	fpc_ansistr_setlength
 	movl	-4(%ebp),%eax
 	movl	(%eax),%edx
 	testl	%edx,%edx
-	je	Lj6286
+	je	Lj6239
 	movl	-4(%edx),%edx
-Lj6286:
+Lj6239:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	addl	%eax,%edx
@@ -16612,9 +16534,9 @@ Lj6286:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%edx
 	testl	%edx,%edx
-	je	Lj6289
+	je	Lj6242
 	movl	-4(%edx),%edx
-Lj6289:
+Lj6242:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	addl	%eax,%edx
@@ -16636,17 +16558,17 @@ FPC_ANSISTR_APPEND_SHORTSTRING:
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj6292
-	jmp	Lj6293
-Lj6292:
-	jmp	Lj6290
-Lj6293:
+	je	Lj6245
+	jmp	Lj6246
+Lj6245:
+	jmp	Lj6243
+Lj6246:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj6296
+	je	Lj6249
 	movl	-4(%eax),%eax
-Lj6296:
+Lj6249:
 	movl	%eax,-12(%ebp)
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%edx
@@ -16666,14 +16588,14 @@ Lj6296:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%edx
 	testl	%edx,%edx
-	je	Lj6309
+	je	Lj6262
 	movl	-4(%edx),%edx
-Lj6309:
+Lj6262:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	addl	%eax,%edx
 	movb	$0,(%edx)
-Lj6290:
+Lj6243:
 	leave
 	ret
 
@@ -16690,27 +16612,27 @@ FPC_ANSISTR_APPEND_ANSISTRING:
 	movl	%edx,-8(%ebp)
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj6312
-	jmp	Lj6313
-Lj6312:
-	jmp	Lj6310
-Lj6313:
+	je	Lj6265
+	jmp	Lj6266
+Lj6265:
+	jmp	Lj6263
+Lj6266:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	cmpl	-8(%ebp),%eax
 	seteb	-17(%ebp)
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj6318
+	je	Lj6271
 	movl	-4(%eax),%eax
-Lj6318:
+Lj6271:
 	movl	%eax,-16(%ebp)
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj6321
+	je	Lj6274
 	movl	-4(%eax),%eax
-Lj6321:
+Lj6274:
 	movl	%eax,-12(%ebp)
 	movl	-12(%ebp),%edx
 	movl	-16(%ebp),%eax
@@ -16719,9 +16641,9 @@ Lj6321:
 	call	fpc_ansistr_setlength
 	movb	-17(%ebp),%al
 	testb	%al,%al
-	je	Lj6326
-	jmp	Lj6327
-Lj6326:
+	je	Lj6279
+	jmp	Lj6280
+Lj6279:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%edx
 	movl	-12(%ebp),%eax
@@ -16730,8 +16652,8 @@ Lj6326:
 	incl	%ecx
 	movl	-8(%ebp),%eax
 	call	SYSTEM_MOVE$formal$formal$LONGINT
-	jmp	Lj6334
-Lj6327:
+	jmp	Lj6287
+Lj6280:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%edx
 	movl	-12(%ebp),%eax
@@ -16741,8 +16663,8 @@ Lj6327:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	call	SYSTEM_MOVE$formal$formal$LONGINT
-Lj6334:
-Lj6310:
+Lj6287:
+Lj6263:
 	leave
 	ret
 
@@ -16765,31 +16687,31 @@ SYSTEM_DEFAULTUNICODE2ANSIMOVE$PUNICODECHAR$ANSISTRING$WORD$LONGINT:
 	movl	8(%ebp),%edx
 	movl	$1,-16(%ebp)
 	cmpl	-16(%ebp),%edx
-	jl	Lj6350
+	jl	Lj6303
 	decl	-16(%ebp)
 	.balign 4,0x90
-Lj6351:
+Lj6304:
 	incl	-16(%ebp)
 	movl	-4(%ebp),%eax
 	movzwl	(%eax),%eax
 	cmpl	$256,%eax
-	jl	Lj6352
-	jmp	Lj6353
-Lj6352:
+	jl	Lj6305
+	jmp	Lj6306
+Lj6305:
 	movl	-20(%ebp),%ecx
 	movl	-4(%ebp),%eax
 	movb	(%eax),%al
 	movb	%al,(%ecx)
-	jmp	Lj6356
-Lj6353:
+	jmp	Lj6309
+Lj6306:
 	movl	-20(%ebp),%eax
 	movb	$63,(%eax)
-Lj6356:
+Lj6309:
 	addl	$2,-4(%ebp)
 	incl	-20(%ebp)
 	cmpl	-16(%ebp),%edx
-	jg	Lj6351
-Lj6350:
+	jg	Lj6304
+Lj6303:
 	leave
 	ret	$4
 
@@ -16812,10 +16734,10 @@ SYSTEM_DEFAULTANSI2UNICODEMOVE$PCHAR$WORD$UNICODESTRING$LONGINT:
 	movl	8(%ebp),%edx
 	movl	$1,-16(%ebp)
 	cmpl	-16(%ebp),%edx
-	jl	Lj6368
+	jl	Lj6321
 	decl	-16(%ebp)
 	.balign 4,0x90
-Lj6369:
+Lj6322:
 	incl	-16(%ebp)
 	movl	-20(%ebp),%ecx
 	movl	-4(%ebp),%eax
@@ -16824,8 +16746,8 @@ Lj6369:
 	incl	-4(%ebp)
 	addl	$2,-20(%ebp)
 	cmpl	-16(%ebp),%edx
-	jg	Lj6369
-Lj6368:
+	jg	Lj6322
+Lj6321:
 	leave
 	ret	$4
 
@@ -16854,14 +16776,14 @@ SYSTEM_DEFAULTCODEPOINTLENGTH$PCHAR$LONGINT$$LONGINT:
 	movl	-4(%ebp),%eax
 	movb	(%eax),%al
 	testb	%al,%al
-	jne	Lj6380
-	jmp	Lj6381
-Lj6380:
+	jne	Lj6333
+	jmp	Lj6334
+Lj6333:
 	movl	$1,-12(%ebp)
-	jmp	Lj6384
-Lj6381:
+	jmp	Lj6337
+Lj6334:
 	movl	$0,-12(%ebp)
-Lj6384:
+Lj6337:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -17031,9 +16953,9 @@ SYSTEM_NEWUNICODESTRING$LONGINT$$POINTER:
 	call	SYSTEM_GETMEM$POINTER$LONGWORD
 	movl	-12(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj6427
-	jmp	Lj6428
-Lj6427:
+	jne	Lj6380
+	jmp	Lj6381
+Lj6380:
 	movl	-4(%ebp),%eax
 	shll	$1,%eax
 	movl	-12(%ebp),%edx
@@ -17043,10 +16965,10 @@ Lj6427:
 	movl	-12(%ebp),%eax
 	movw	$0,8(%eax)
 	addl	$8,-12(%ebp)
-	jmp	Lj6435
-Lj6428:
+	jmp	Lj6388
+Lj6381:
 	call	SYSTEM_UNICODESTRINGERROR
-Lj6435:
+Lj6388:
 	movl	-12(%ebp),%eax
 	movl	%eax,-8(%ebp)
 	movl	-8(%ebp),%eax
@@ -17063,11 +16985,11 @@ SYSTEM_DISPOSEUNICODESTRING$POINTER:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj6440
-	jmp	Lj6441
-Lj6440:
-	jmp	Lj6438
-Lj6441:
+	je	Lj6393
+	jmp	Lj6394
+Lj6393:
+	jmp	Lj6391
+Lj6394:
 	movl	-4(%ebp),%eax
 	subl	$8,(%eax)
 	movl	-4(%ebp),%eax
@@ -17075,7 +16997,7 @@ Lj6441:
 	call	SYSTEM_FREEMEM$POINTER$$LONGWORD
 	movl	-4(%ebp),%eax
 	movl	$0,(%eax)
-Lj6438:
+Lj6391:
 	leave
 	ret
 
@@ -17093,11 +17015,11 @@ FPC_UNICODESTR_DECR_REF:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj6448
-	jmp	Lj6449
-Lj6448:
-	jmp	Lj6446
-Lj6449:
+	je	Lj6401
+	jmp	Lj6402
+Lj6401:
+	jmp	Lj6399
+Lj6402:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	subl	$8,%eax
@@ -17105,38 +17027,38 @@ Lj6449:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	cmpl	$0,%eax
-	jl	Lj6452
-	jmp	Lj6453
-Lj6452:
-	jmp	Lj6446
-Lj6453:
+	jl	Lj6405
+	jmp	Lj6406
+Lj6405:
+	jmp	Lj6399
+Lj6406:
 	movl	-8(%ebp),%eax
 	movl	%eax,-12(%ebp)
 	movl	TC_SYSTEM_ISMULTITHREAD,%eax
 	testl	%eax,%eax
-	je	Lj6458
-	jmp	Lj6459
-Lj6458:
+	je	Lj6411
+	jmp	Lj6412
+Lj6411:
 	movl	-12(%ebp),%eax
 	decl	(%eax)
 	movl	-12(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
 	seteb	%bl
-	jmp	Lj6462
-Lj6459:
+	jmp	Lj6415
+Lj6412:
 	movl	-12(%ebp),%eax
 	call	SYSTEM_CPUDECLOCKED$LONGINT$$BOOLEAN
 	movb	%al,%bl
-Lj6462:
+Lj6415:
 	testb	%bl,%bl
-	jne	Lj6454
-	jmp	Lj6455
-Lj6454:
+	jne	Lj6407
+	jmp	Lj6408
+Lj6407:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_DISPOSEUNICODESTRING$POINTER
-Lj6455:
-Lj6446:
+Lj6408:
+Lj6399:
 	movl	-16(%ebp),%ebx
 	leave
 	ret
@@ -17153,36 +17075,36 @@ FPC_UNICODESTR_INCR_REF:
 	movl	%eax,-4(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj6471
-	jmp	Lj6472
-Lj6471:
-	jmp	Lj6469
-Lj6472:
+	je	Lj6424
+	jmp	Lj6425
+Lj6424:
+	jmp	Lj6422
+Lj6425:
 	movl	-4(%ebp),%eax
 	subl	$8,%eax
 	movl	(%eax),%eax
 	cmpl	$0,%eax
-	jl	Lj6473
-	jmp	Lj6474
-Lj6473:
-	jmp	Lj6469
-Lj6474:
+	jl	Lj6426
+	jmp	Lj6427
+Lj6426:
+	jmp	Lj6422
+Lj6427:
 	movl	-4(%ebp),%eax
 	subl	$8,%eax
 	movl	%eax,-8(%ebp)
 	movl	TC_SYSTEM_ISMULTITHREAD,%eax
 	testl	%eax,%eax
-	je	Lj6477
-	jmp	Lj6478
-Lj6477:
+	je	Lj6430
+	jmp	Lj6431
+Lj6430:
 	movl	-8(%ebp),%eax
 	incl	(%eax)
-	jmp	Lj6479
-Lj6478:
+	jmp	Lj6432
+Lj6431:
 	movl	-8(%ebp),%eax
 	call	SYSTEM_CPUINCLOCKED$LONGINT
-Lj6479:
-Lj6469:
+Lj6432:
+Lj6422:
 	leave
 	ret
 
@@ -17207,35 +17129,35 @@ FPC_UNICODESTR_TO_SHORTSTR:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj6484
+	jne	Lj6437
 	movl	-4(%ebp),%eax
 	movb	$0,(%eax)
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj6491
+	je	Lj6444
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj6491:
+Lj6444:
 	movl	%eax,-16(%ebp)
 	movl	-16(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj6492
-	jmp	Lj6493
-Lj6492:
+	jg	Lj6445
+	jmp	Lj6446
+Lj6445:
 	movl	-16(%ebp),%eax
 	cmpl	-12(%ebp),%eax
-	jg	Lj6494
-	jmp	Lj6495
-Lj6494:
+	jg	Lj6447
+	jmp	Lj6448
+Lj6447:
 	movl	-12(%ebp),%eax
 	movl	%eax,-16(%ebp)
-Lj6495:
+Lj6448:
 	pushl	-16(%ebp)
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj6502
+	jne	Lj6455
 	movl	$FPC_EMPTYCHAR,%eax
-Lj6502:
+Lj6455:
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%cx
 	leal	-20(%ebp),%edx
 	movl	U_SYSTEM_WIDESTRINGMANAGER+80,%ebx
@@ -17244,17 +17166,17 @@ Lj6502:
 	movl	-12(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	fpc_ansistr_to_shortstr
-Lj6493:
-Lj6484:
+Lj6446:
+Lj6437:
 	call	FPC_POPADDRSTACK
 	leal	-20(%ebp),%eax
 	call	fpc_ansistr_decr_ref
 	movl	$0,-20(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj6485
+	je	Lj6438
 	call	FPC_RERAISE
-Lj6485:
+Lj6438:
 	movl	-64(%ebp),%ebx
 	leave
 	ret
@@ -17278,9 +17200,9 @@ fpc_shortstr_to_unicodestr:
 	movl	%eax,-12(%ebp)
 	movl	-12(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj6525
-	jmp	Lj6526
-Lj6525:
+	jg	Lj6478
+	jmp	Lj6479
+Lj6478:
 	pushl	-12(%ebp)
 	movl	-4(%ebp),%eax
 	leal	1(%eax),%eax
@@ -17294,7 +17216,7 @@ Lj6525:
 	movl	(%edx),%edx
 	addl	%edx,%eax
 	movw	$0,(%eax)
-Lj6526:
+Lj6479:
 	movl	-16(%ebp),%ebx
 	leave
 	ret
@@ -17315,23 +17237,23 @@ fpc_unicodestr_to_ansistr:
 	movl	$0,(%ebx)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj6543
+	je	Lj6496
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj6543:
+Lj6496:
 	movl	%eax,-12(%ebp)
 	movl	-12(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj6544
-	jmp	Lj6545
-Lj6544:
+	jg	Lj6497
+	jmp	Lj6498
+Lj6497:
 	pushl	-12(%ebp)
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%cx
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	movl	U_SYSTEM_WIDESTRINGMANAGER+80,%ebx
 	call	*%ebx
-Lj6545:
+Lj6498:
 	movl	-16(%ebp),%ebx
 	leave
 	ret
@@ -17352,26 +17274,26 @@ fpc_ansistr_to_unicodestr:
 	movl	$0,(%ebx)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj6560
+	je	Lj6513
 	movl	-4(%eax),%eax
-Lj6560:
+Lj6513:
 	movl	%eax,-12(%ebp)
 	movl	-12(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj6561
-	jmp	Lj6562
-Lj6561:
+	jg	Lj6514
+	jmp	Lj6515
+Lj6514:
 	pushl	-12(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj6567
+	jne	Lj6520
 	movl	$FPC_EMPTYCHAR,%eax
-Lj6567:
+Lj6520:
 	movl	-8(%ebp),%ecx
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%dx
 	movl	U_SYSTEM_WIDESTRINGMANAGER+84,%ebx
 	call	*%ebx
-Lj6562:
+Lj6515:
 	movl	-16(%ebp),%ebx
 	leave
 	ret
@@ -17387,18 +17309,18 @@ fpc_unicodestr_to_widestr:
 	movl	%edx,-8(%ebp)
 	movl	-4(%ebp),%edx
 	testl	%edx,%edx
-	je	Lj6576
+	je	Lj6529
 	movl	-4(%edx),%edx
 	shrl	$1,%edx
-Lj6576:
+Lj6529:
 	movl	-8(%ebp),%eax
 	call	fpc_unicodestr_setlength
 	movl	-4(%ebp),%ecx
 	testl	%ecx,%ecx
-	je	Lj6581
+	je	Lj6534
 	movl	-4(%ecx),%ecx
 	shrl	$1,%ecx
-Lj6581:
+Lj6534:
 	shll	$1,%ecx
 	movl	-8(%ebp),%eax
 	movl	(%eax),%edx
@@ -17418,18 +17340,18 @@ fpc_widestr_to_unicodestr:
 	movl	%edx,-8(%ebp)
 	movl	-4(%ebp),%edx
 	testl	%edx,%edx
-	je	Lj6590
+	je	Lj6543
 	movl	-4(%edx),%edx
 	shrl	$1,%edx
-Lj6590:
+Lj6543:
 	movl	-8(%ebp),%eax
 	call	fpc_unicodestr_setlength
 	movl	-4(%ebp),%ecx
 	testl	%ecx,%ecx
-	je	Lj6595
+	je	Lj6548
 	movl	-4(%ecx),%ecx
 	shrl	$1,%ecx
-Lj6595:
+Lj6548:
 	shll	$1,%ecx
 	movl	-8(%ebp),%eax
 	movl	(%eax),%edx
@@ -17454,11 +17376,11 @@ fpc_punicodechar_to_ansistr:
 	movl	$0,(%ebx)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj6604
-	jmp	Lj6605
-Lj6604:
-	jmp	Lj6600
-Lj6605:
+	je	Lj6557
+	jmp	Lj6558
+Lj6557:
+	jmp	Lj6553
+Lj6558:
 	movl	-4(%ebp),%eax
 	movw	$0,%cx
 	movl	$-1,%edx
@@ -17466,17 +17388,17 @@ Lj6605:
 	movl	%eax,-12(%ebp)
 	movl	-12(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj6614
-	jmp	Lj6615
-Lj6614:
+	jg	Lj6567
+	jmp	Lj6568
+Lj6567:
 	pushl	-12(%ebp)
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%cx
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	movl	U_SYSTEM_WIDESTRINGMANAGER+80,%ebx
 	call	*%ebx
-Lj6615:
-Lj6600:
+Lj6568:
+Lj6553:
 	movl	-16(%ebp),%ebx
 	leave
 	ret
@@ -17497,11 +17419,11 @@ fpc_punicodechar_to_unicodestr:
 	movl	$0,(%ebx)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj6628
-	jmp	Lj6629
-Lj6628:
-	jmp	Lj6624
-Lj6629:
+	je	Lj6581
+	jmp	Lj6582
+Lj6581:
+	jmp	Lj6577
+Lj6582:
 	movl	-4(%ebp),%eax
 	movw	$0,%cx
 	movl	$-1,%edx
@@ -17512,9 +17434,9 @@ Lj6629:
 	call	fpc_unicodestr_setlength
 	movl	-12(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj6642
-	jmp	Lj6643
-Lj6642:
+	jg	Lj6595
+	jmp	Lj6596
+Lj6595:
 	movl	-12(%ebp),%ecx
 	shll	$1,%ecx
 	movl	-8(%ebp),%eax
@@ -17527,8 +17449,8 @@ Lj6642:
 	movl	(%edx),%edx
 	addl	%edx,%eax
 	movw	$0,(%eax)
-Lj6643:
-Lj6624:
+Lj6596:
+Lj6577:
 	movl	-16(%ebp),%ebx
 	leave
 	ret
@@ -17549,11 +17471,11 @@ fpc_pwidechar_to_unicodestr:
 	movl	$0,(%ebx)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj6656
-	jmp	Lj6657
-Lj6656:
-	jmp	Lj6652
-Lj6657:
+	je	Lj6609
+	jmp	Lj6610
+Lj6609:
+	jmp	Lj6605
+Lj6610:
 	movl	-4(%ebp),%eax
 	movw	$0,%cx
 	movl	$-1,%edx
@@ -17564,9 +17486,9 @@ Lj6657:
 	call	fpc_unicodestr_setlength
 	movl	-12(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj6670
-	jmp	Lj6671
-Lj6670:
+	jg	Lj6623
+	jmp	Lj6624
+Lj6623:
 	movl	-12(%ebp),%ecx
 	shll	$1,%ecx
 	movl	-8(%ebp),%eax
@@ -17579,8 +17501,8 @@ Lj6670:
 	movl	(%edx),%edx
 	addl	%edx,%eax
 	movw	$0,(%eax)
-Lj6671:
-Lj6652:
+Lj6624:
+Lj6605:
 	movl	-16(%ebp),%ebx
 	leave
 	ret
@@ -17604,16 +17526,16 @@ fpc_punicodechar_to_shortstr:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj6682
+	jne	Lj6635
 	movl	-4(%ebp),%eax
 	movb	$0,(%eax)
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj6687
-	jmp	Lj6688
-Lj6687:
-	jmp	Lj6682
-Lj6688:
+	je	Lj6640
+	jmp	Lj6641
+Lj6640:
+	jmp	Lj6635
+Lj6641:
 	movl	-8(%ebp),%eax
 	movw	$0,%cx
 	movl	$2147483647,%edx
@@ -17621,9 +17543,9 @@ Lj6688:
 	movl	%eax,-16(%ebp)
 	movl	-16(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj6697
-	jmp	Lj6698
-Lj6697:
+	jg	Lj6650
+	jmp	Lj6651
+Lj6650:
 	pushl	-16(%ebp)
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%cx
 	leal	-20(%ebp),%edx
@@ -17634,17 +17556,17 @@ Lj6697:
 	movl	-12(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	fpc_ansistr_to_shortstr
-Lj6698:
-Lj6682:
+Lj6651:
+Lj6635:
 	call	FPC_POPADDRSTACK
 	leal	-20(%ebp),%eax
 	call	fpc_ansistr_decr_ref
 	movl	$0,-20(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj6683
+	je	Lj6636
 	call	FPC_RERAISE
-Lj6683:
+Lj6636:
 	movl	-64(%ebp),%ebx
 	leave
 	ret
@@ -17665,11 +17587,11 @@ fpc_pwidechar_to_ansistr:
 	movl	$0,(%ebx)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj6723
-	jmp	Lj6724
-Lj6723:
-	jmp	Lj6719
-Lj6724:
+	je	Lj6676
+	jmp	Lj6677
+Lj6676:
+	jmp	Lj6672
+Lj6677:
 	movl	-4(%ebp),%eax
 	movw	$0,%cx
 	movl	$-1,%edx
@@ -17677,17 +17599,17 @@ Lj6724:
 	movl	%eax,-12(%ebp)
 	movl	-12(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj6733
-	jmp	Lj6734
-Lj6733:
+	jg	Lj6686
+	jmp	Lj6687
+Lj6686:
 	pushl	-12(%ebp)
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%cx
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	movl	U_SYSTEM_WIDESTRINGMANAGER,%ebx
 	call	*%ebx
-Lj6734:
-Lj6719:
+Lj6687:
+Lj6672:
 	movl	-16(%ebp),%ebx
 	leave
 	ret
@@ -17711,16 +17633,16 @@ fpc_pwidechar_to_shortstr:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj6745
+	jne	Lj6698
 	movl	-4(%ebp),%eax
 	movb	$0,(%eax)
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj6750
-	jmp	Lj6751
-Lj6750:
-	jmp	Lj6745
-Lj6751:
+	je	Lj6703
+	jmp	Lj6704
+Lj6703:
+	jmp	Lj6698
+Lj6704:
 	movl	-8(%ebp),%eax
 	movw	$0,%cx
 	movl	$2147483647,%edx
@@ -17728,9 +17650,9 @@ Lj6751:
 	movl	%eax,-16(%ebp)
 	movl	-16(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj6760
-	jmp	Lj6761
-Lj6760:
+	jg	Lj6713
+	jmp	Lj6714
+Lj6713:
 	pushl	-16(%ebp)
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%cx
 	leal	-20(%ebp),%edx
@@ -17741,17 +17663,17 @@ Lj6760:
 	movl	-12(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	fpc_ansistr_to_shortstr
-Lj6761:
-Lj6745:
+Lj6714:
+Lj6698:
 	call	FPC_POPADDRSTACK
 	leal	-20(%ebp),%eax
 	call	fpc_ansistr_decr_ref
 	movl	$0,-20(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj6746
+	je	Lj6699
 	call	FPC_RERAISE
-Lj6746:
+Lj6699:
 	movl	-64(%ebp),%ebx
 	leave
 	ret
@@ -17769,33 +17691,33 @@ FPC_UNICODESTR_ASSIGN:
 	movl	%edx,-8(%ebp)
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj6784
-	jmp	Lj6785
-Lj6784:
+	jne	Lj6737
+	jmp	Lj6738
+Lj6737:
 	movl	-8(%ebp),%eax
 	subl	$8,%eax
 	movl	(%eax),%eax
 	cmpl	$0,%eax
-	jg	Lj6786
-	jmp	Lj6787
-Lj6786:
+	jg	Lj6739
+	jmp	Lj6740
+Lj6739:
 	movl	-8(%ebp),%eax
 	subl	$8,%eax
 	movl	%eax,-12(%ebp)
 	movl	TC_SYSTEM_ISMULTITHREAD,%eax
 	testl	%eax,%eax
-	je	Lj6790
-	jmp	Lj6791
-Lj6790:
+	je	Lj6743
+	jmp	Lj6744
+Lj6743:
 	movl	-12(%ebp),%eax
 	incl	(%eax)
-	jmp	Lj6792
-Lj6791:
+	jmp	Lj6745
+Lj6744:
 	movl	-12(%ebp),%eax
 	call	SYSTEM_CPUINCLOCKED$LONGINT
-Lj6792:
-Lj6787:
-Lj6785:
+Lj6745:
+Lj6740:
+Lj6738:
 	movl	-4(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	-4(%ebp),%eax
@@ -17817,9 +17739,9 @@ fpc_unicodestr_concat:
 	movl	%ecx,-12(%ebp)
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj6801
-	jmp	Lj6802
-Lj6801:
+	je	Lj6754
+	jmp	Lj6755
+Lj6754:
 	movl	-12(%ebp),%eax
 	call	FPC_UNICODESTR_INCR_REF
 	movl	-4(%ebp),%ebx
@@ -17827,13 +17749,13 @@ Lj6801:
 	call	FPC_UNICODESTR_DECR_REF
 	movl	-12(%ebp),%eax
 	movl	%eax,(%ebx)
-	jmp	Lj6799
-Lj6802:
+	jmp	Lj6752
+Lj6755:
 	movl	-12(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj6805
-	jmp	Lj6806
-Lj6805:
+	je	Lj6758
+	jmp	Lj6759
+Lj6758:
 	movl	-8(%ebp),%eax
 	call	FPC_UNICODESTR_INCR_REF
 	movl	-4(%ebp),%ebx
@@ -17841,28 +17763,28 @@ Lj6805:
 	call	FPC_UNICODESTR_DECR_REF
 	movl	-8(%ebp),%eax
 	movl	%eax,(%ebx)
-	jmp	Lj6799
-Lj6806:
+	jmp	Lj6752
+Lj6759:
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj6811
+	je	Lj6764
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj6811:
+Lj6764:
 	movl	%eax,-20(%ebp)
 	movl	-12(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj6814
+	je	Lj6767
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj6814:
+Lj6767:
 	movl	%eax,-16(%ebp)
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	cmpl	-8(%ebp),%eax
-	je	Lj6815
-	jmp	Lj6816
-Lj6815:
+	je	Lj6768
+	jmp	Lj6769
+Lj6768:
 	movl	-8(%ebp),%eax
 	cmpl	-12(%ebp),%eax
 	seteb	-21(%ebp)
@@ -17872,9 +17794,9 @@ Lj6815:
 	movl	-4(%ebp),%eax
 	call	fpc_unicodestr_setlength
 	cmpb	$0,-21(%ebp)
-	jne	Lj6823
-	jmp	Lj6824
-Lj6823:
+	jne	Lj6776
+	jmp	Lj6777
+Lj6776:
 	movl	-20(%ebp),%edx
 	shll	$1,%edx
 	movl	-4(%ebp),%eax
@@ -17885,8 +17807,8 @@ Lj6823:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	call	SYSTEM_MOVE$formal$formal$LONGINT
-	jmp	Lj6831
-Lj6824:
+	jmp	Lj6784
+Lj6777:
 	movl	-20(%ebp),%edx
 	shll	$1,%edx
 	movl	-4(%ebp),%eax
@@ -17897,15 +17819,15 @@ Lj6824:
 	shll	$1,%ecx
 	movl	-12(%ebp),%eax
 	call	SYSTEM_MOVE$formal$formal$LONGINT
-Lj6831:
-	jmp	Lj6838
-Lj6816:
+Lj6784:
+	jmp	Lj6791
+Lj6769:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	cmpl	-12(%ebp),%eax
-	je	Lj6839
-	jmp	Lj6840
-Lj6839:
+	je	Lj6792
+	jmp	Lj6793
+Lj6792:
 	movl	-16(%ebp),%edx
 	movl	-20(%ebp),%eax
 	addl	%eax,%edx
@@ -17928,8 +17850,8 @@ Lj6839:
 	movl	(%eax),%edx
 	movl	-8(%ebp),%eax
 	call	SYSTEM_MOVE$formal$formal$LONGINT
-	jmp	Lj6857
-Lj6840:
+	jmp	Lj6810
+Lj6793:
 	movl	-4(%ebp),%ebx
 	movl	%ebx,%eax
 	call	FPC_UNICODESTR_DECR_REF
@@ -17955,9 +17877,9 @@ Lj6840:
 	shll	$1,%ecx
 	movl	-12(%ebp),%eax
 	call	SYSTEM_MOVE$formal$formal$LONGINT
-Lj6857:
-Lj6838:
-Lj6799:
+Lj6810:
+Lj6791:
+Lj6752:
 	movl	-28(%ebp),%ebx
 	leave
 	ret
@@ -17975,15 +17897,15 @@ fpc_unicodestr_concat_multi:
 	movl	%ecx,-12(%ebp)
 	movl	-12(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj6878
-	jmp	Lj6879
-Lj6878:
+	je	Lj6831
+	jmp	Lj6832
+Lj6831:
 	movl	-4(%ebp),%ebx
 	movl	%ebx,%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,(%ebx)
-	jmp	Lj6876
-Lj6879:
+	jmp	Lj6829
+Lj6832:
 	movl	$0,-40(%ebp)
 	movl	$0,-36(%ebp)
 	movl	-8(%ebp),%eax
@@ -17991,78 +17913,78 @@ Lj6879:
 	movl	-4(%ebp),%ecx
 	movl	(%eax,%edx,4),%eax
 	cmpl	(%ecx),%eax
-	je	Lj6886
-	jmp	Lj6887
-Lj6886:
+	je	Lj6839
+	jmp	Lj6840
+Lj6839:
 	incl	-36(%ebp)
-Lj6887:
+Lj6840:
 	movl	-12(%ebp),%ebx
 	movl	-36(%ebp),%eax
 	movl	%eax,-16(%ebp)
 	cmpl	-16(%ebp),%ebx
-	jl	Lj6889
+	jl	Lj6842
 	decl	-16(%ebp)
 	.balign 4,0x90
-Lj6890:
+Lj6843:
 	incl	-16(%ebp)
 	movl	-8(%ebp),%edx
 	movl	-16(%ebp),%eax
 	movl	-4(%ebp),%ecx
 	movl	(%edx,%eax,4),%eax
 	cmpl	(%ecx),%eax
-	je	Lj6891
-	jmp	Lj6892
-Lj6891:
+	je	Lj6844
+	jmp	Lj6845
+Lj6844:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	movl	%eax,-40(%ebp)
 	movl	-40(%ebp),%eax
 	call	FPC_UNICODESTR_INCR_REF
 	movl	$0,-36(%ebp)
-	jmp	Lj6889
-Lj6892:
+	jmp	Lj6842
+Lj6845:
 	cmpl	-16(%ebp),%ebx
-	jg	Lj6890
-Lj6889:
+	jg	Lj6843
+Lj6842:
 	movl	-36(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj6899
-	jmp	Lj6900
-Lj6899:
+	je	Lj6852
+	jmp	Lj6853
+Lj6852:
 	movl	-4(%ebp),%ebx
 	movl	%ebx,%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,(%ebx)
-Lj6900:
+Lj6853:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj6905
+	je	Lj6858
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj6905:
+Lj6858:
 	movl	%eax,-44(%ebp)
 	movl	$0,-32(%ebp)
 	movl	-12(%ebp),%ecx
 	movl	$0,-16(%ebp)
 	cmpl	-16(%ebp),%ecx
-	jl	Lj6909
+	jl	Lj6862
 	decl	-16(%ebp)
 	.balign 4,0x90
-Lj6910:
+Lj6863:
 	incl	-16(%ebp)
 	movl	-8(%ebp),%edx
 	movl	-16(%ebp),%eax
 	movl	(%edx,%eax,4),%eax
 	testl	%eax,%eax
-	je	Lj6911
+	je	Lj6864
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj6911:
+Lj6864:
 	addl	%eax,-32(%ebp)
 	cmpl	-16(%ebp),%ecx
-	jg	Lj6910
-Lj6909:
+	jg	Lj6863
+Lj6862:
 	movl	-32(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	fpc_unicodestr_setlength
@@ -18076,25 +17998,25 @@ Lj6909:
 	movl	-36(%ebp),%eax
 	movl	%eax,-16(%ebp)
 	cmpl	-16(%ebp),%ebx
-	jl	Lj6919
+	jl	Lj6872
 	decl	-16(%ebp)
 	.balign 4,0x90
-Lj6920:
+Lj6873:
 	incl	-16(%ebp)
 	movl	-8(%ebp),%edx
 	movl	-16(%ebp),%eax
 	movl	(%edx,%eax,4),%eax
 	movl	%eax,-20(%ebp)
 	cmpl	$0,-20(%ebp)
-	jne	Lj6923
-	jmp	Lj6924
-Lj6923:
+	jne	Lj6876
+	jmp	Lj6877
+Lj6876:
 	movl	-20(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj6927
+	je	Lj6880
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj6927:
+Lj6880:
 	movl	%eax,-28(%ebp)
 	movl	-28(%ebp),%ecx
 	incl	%ecx
@@ -18105,13 +18027,13 @@ Lj6927:
 	movl	-28(%ebp),%eax
 	shll	$1,%eax
 	addl	%eax,-24(%ebp)
-Lj6924:
+Lj6877:
 	cmpl	-16(%ebp),%ebx
-	jg	Lj6920
-Lj6919:
+	jg	Lj6873
+Lj6872:
 	leal	-40(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
-Lj6876:
+Lj6829:
 	movl	-48(%ebp),%ebx
 	leave
 	ret
@@ -18133,7 +18055,7 @@ fpc_char_to_uchar:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj6938
+	jne	Lj6891
 	pushl	$1
 	leal	-4(%ebp),%eax
 	leal	-12(%ebp),%ecx
@@ -18143,16 +18065,16 @@ fpc_char_to_uchar:
 	movl	-12(%ebp),%eax
 	movw	(%eax),%ax
 	movw	%ax,-6(%ebp)
-Lj6938:
+Lj6891:
 	call	FPC_POPADDRSTACK
 	leal	-12(%ebp),%eax
 	call	fpc_unicodestr_decr_ref
 	movl	$0,-12(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj6939
+	je	Lj6892
 	call	FPC_RERAISE
-Lj6939:
+Lj6892:
 	movw	-6(%ebp),%ax
 	movl	-56(%ebp),%ebx
 	leave
@@ -18202,7 +18124,7 @@ fpc_uchar_to_char:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj6973
+	jne	Lj6926
 	pushl	$1
 	leal	-4(%ebp),%eax
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%cx
@@ -18211,30 +18133,30 @@ fpc_uchar_to_char:
 	call	*%ebx
 	movl	-12(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj6986
+	je	Lj6939
 	movl	-4(%eax),%eax
-Lj6986:
+Lj6939:
 	cmpl	$1,%eax
-	je	Lj6984
-	jmp	Lj6985
-Lj6984:
+	je	Lj6937
+	jmp	Lj6938
+Lj6937:
 	movl	-12(%ebp),%eax
 	movb	(%eax),%al
 	movb	%al,-5(%ebp)
-	jmp	Lj6989
-Lj6985:
+	jmp	Lj6942
+Lj6938:
 	movb	$63,-5(%ebp)
-Lj6989:
-Lj6973:
+Lj6942:
+Lj6926:
 	call	FPC_POPADDRSTACK
 	leal	-12(%ebp),%eax
 	call	fpc_ansistr_decr_ref
 	movl	$0,-12(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj6974
+	je	Lj6927
 	call	FPC_RERAISE
-Lj6974:
+Lj6927:
 	movb	-5(%ebp),%al
 	movl	-56(%ebp),%ebx
 	leave
@@ -18276,7 +18198,7 @@ fpc_char_to_wchar:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj7010
+	jne	Lj6963
 	pushl	$1
 	leal	-4(%ebp),%eax
 	leal	-12(%ebp),%ecx
@@ -18286,16 +18208,16 @@ fpc_char_to_wchar:
 	movl	-12(%ebp),%eax
 	movw	(%eax),%ax
 	movw	%ax,-6(%ebp)
-Lj7010:
+Lj6963:
 	call	FPC_POPADDRSTACK
 	leal	-12(%ebp),%eax
 	call	fpc_unicodestr_decr_ref
 	movl	$0,-12(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj7011
+	je	Lj6964
 	call	FPC_RERAISE
-Lj7011:
+Lj6964:
 	movw	-6(%ebp),%ax
 	movl	-56(%ebp),%ebx
 	leave
@@ -18318,7 +18240,7 @@ fpc_wchar_to_char:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj7031
+	jne	Lj6984
 	pushl	$1
 	leal	-4(%ebp),%eax
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%cx
@@ -18327,30 +18249,30 @@ fpc_wchar_to_char:
 	call	*%ebx
 	movl	-12(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj7044
+	je	Lj6997
 	movl	-4(%eax),%eax
-Lj7044:
+Lj6997:
 	cmpl	$1,%eax
-	je	Lj7042
-	jmp	Lj7043
-Lj7042:
+	je	Lj6995
+	jmp	Lj6996
+Lj6995:
 	movl	-12(%ebp),%eax
 	movb	(%eax),%al
 	movb	%al,-5(%ebp)
-	jmp	Lj7047
-Lj7043:
+	jmp	Lj7000
+Lj6996:
 	movb	$63,-5(%ebp)
-Lj7047:
-Lj7031:
+Lj7000:
+Lj6984:
 	call	FPC_POPADDRSTACK
 	leal	-12(%ebp),%eax
 	call	fpc_ansistr_decr_ref
 	movl	$0,-12(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj7032
+	je	Lj6985
 	call	FPC_RERAISE
-Lj7032:
+Lj6985:
 	movb	-5(%ebp),%al
 	movl	-56(%ebp),%ebx
 	leave
@@ -18375,7 +18297,7 @@ fpc_wchar_to_shortstr:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj7058
+	jne	Lj7011
 	pushl	$1
 	leal	-8(%ebp),%eax
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%cx
@@ -18386,16 +18308,16 @@ fpc_wchar_to_shortstr:
 	movl	-12(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	fpc_ansistr_to_shortstr
-Lj7058:
+Lj7011:
 	call	FPC_POPADDRSTACK
 	leal	-16(%ebp),%eax
 	call	fpc_ansistr_decr_ref
 	movl	$0,-16(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj7059
+	je	Lj7012
 	call	FPC_RERAISE
-Lj7059:
+Lj7012:
 	movl	-60(%ebp),%ebx
 	leave
 	ret
@@ -18457,7 +18379,7 @@ fpc_uchar_to_shortstr:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj7103
+	jne	Lj7056
 	pushl	$1
 	leal	-8(%ebp),%eax
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%cx
@@ -18468,16 +18390,16 @@ fpc_uchar_to_shortstr:
 	movl	-12(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	fpc_ansistr_to_shortstr
-Lj7103:
+Lj7056:
 	call	FPC_POPADDRSTACK
 	leal	-16(%ebp),%eax
 	call	fpc_ansistr_decr_ref
 	movl	$0,-16(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj7104
+	je	Lj7057
 	call	FPC_RERAISE
-Lj7104:
+Lj7057:
 	movl	-60(%ebp),%ebx
 	leave
 	ret
@@ -18493,21 +18415,21 @@ fpc_pchar_to_unicodestr:
 	movl	%eax,-4(%ebp)
 	movl	%edx,-8(%ebp)
 	cmpl	$0,-4(%ebp)
-	jne	Lj7130
-	jmp	Lj7128
-Lj7130:
+	jne	Lj7083
+	jmp	Lj7081
+Lj7083:
 	movl	-4(%ebp),%eax
 	movb	(%eax),%al
 	testb	%al,%al
-	je	Lj7128
-	jmp	Lj7129
-Lj7128:
+	je	Lj7081
+	jmp	Lj7082
+Lj7081:
 	movl	-8(%ebp),%ebx
 	movl	%ebx,%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,(%ebx)
-	jmp	Lj7126
-Lj7129:
+	jmp	Lj7079
+Lj7082:
 	movl	-4(%ebp),%eax
 	movb	$0,%cl
 	movl	$-1,%edx
@@ -18519,7 +18441,7 @@ Lj7129:
 	movl	-4(%ebp),%eax
 	movl	U_SYSTEM_WIDESTRINGMANAGER+84,%ebx
 	call	*%ebx
-Lj7126:
+Lj7079:
 	movl	-16(%ebp),%ebx
 	leave
 	ret
@@ -18536,21 +18458,21 @@ fpc_chararray_to_unicodestr:
 	movl	%edx,-12(%ebp)
 	movb	%cl,-8(%ebp)
 	cmpb	$0,-8(%ebp)
-	jne	Lj7151
-	jmp	Lj7152
-Lj7151:
+	jne	Lj7104
+	jmp	Lj7105
+Lj7104:
 	movl	-4(%ebp),%eax
 	movb	(%eax),%al
 	testb	%al,%al
-	je	Lj7153
-	jmp	Lj7154
-Lj7153:
+	je	Lj7106
+	jmp	Lj7107
+Lj7106:
 	movl	8(%ebp),%ebx
 	movl	%ebx,%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,(%ebx)
-	jmp	Lj7149
-Lj7154:
+	jmp	Lj7102
+Lj7107:
 	movl	-12(%ebp),%edx
 	incl	%edx
 	movl	-4(%ebp),%eax
@@ -18559,19 +18481,19 @@ Lj7154:
 	movl	%eax,-16(%ebp)
 	movl	-16(%ebp),%eax
 	cmpl	$-1,%eax
-	je	Lj7165
-	jmp	Lj7166
-Lj7165:
+	je	Lj7118
+	jmp	Lj7119
+Lj7118:
 	movl	-12(%ebp),%eax
 	incl	%eax
 	movl	%eax,-16(%ebp)
-Lj7166:
-	jmp	Lj7169
-Lj7152:
+Lj7119:
+	jmp	Lj7122
+Lj7105:
 	movl	-12(%ebp),%eax
 	incl	%eax
 	movl	%eax,-16(%ebp)
-Lj7169:
+Lj7122:
 	movl	-16(%ebp),%edx
 	movl	8(%ebp),%eax
 	call	fpc_unicodestr_setlength
@@ -18581,7 +18503,7 @@ Lj7169:
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%dx
 	movl	U_SYSTEM_WIDESTRINGMANAGER+84,%ebx
 	call	*%ebx
-Lj7149:
+Lj7102:
 	movl	-20(%ebp),%ebx
 	leave
 	ret	$4
@@ -18607,32 +18529,32 @@ FPC_UNICODECHARARRAY_TO_SHORTSTR:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj7186
+	jne	Lj7139
 	movl	12(%ebp),%eax
 	incl	%eax
 	movl	%eax,-16(%ebp)
 	movl	-12(%ebp),%eax
 	incl	%eax
 	cmpl	-16(%ebp),%eax
-	jle	Lj7191
-	jmp	Lj7192
-Lj7191:
+	jle	Lj7144
+	jmp	Lj7145
+Lj7144:
 	movl	-12(%ebp),%eax
 	movl	%eax,-16(%ebp)
-	jmp	Lj7195
-Lj7192:
+	jmp	Lj7148
+Lj7145:
 	movl	-16(%ebp),%eax
 	cmpl	$0,%eax
-	jl	Lj7196
-	jmp	Lj7197
-Lj7196:
+	jl	Lj7149
+	jmp	Lj7150
+Lj7149:
 	movl	$0,-16(%ebp)
-Lj7197:
-Lj7195:
+Lj7150:
+Lj7148:
 	cmpb	$0,8(%ebp)
-	jne	Lj7200
-	jmp	Lj7201
-Lj7200:
+	jne	Lj7153
+	jmp	Lj7154
+Lj7153:
 	movl	-16(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movw	$0,%cx
@@ -18640,21 +18562,21 @@ Lj7200:
 	movl	%eax,-20(%ebp)
 	movl	-20(%ebp),%eax
 	cmpl	$0,%eax
-	jl	Lj7210
-	jmp	Lj7211
-Lj7210:
+	jl	Lj7163
+	jmp	Lj7164
+Lj7163:
 	movb	-16(%ebp),%al
 	movb	%al,-21(%ebp)
-	jmp	Lj7214
-Lj7211:
+	jmp	Lj7167
+Lj7164:
 	movb	-20(%ebp),%al
 	movb	%al,-21(%ebp)
-Lj7214:
-	jmp	Lj7217
-Lj7201:
+Lj7167:
+	jmp	Lj7170
+Lj7154:
 	movb	-16(%ebp),%al
 	movb	%al,-21(%ebp)
-Lj7217:
+Lj7170:
 	movzbl	-21(%ebp),%eax
 	pushl	%eax
 	movl	-8(%ebp),%eax
@@ -18666,16 +18588,16 @@ Lj7217:
 	movl	-12(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	fpc_ansistr_to_shortstr
-Lj7186:
+Lj7139:
 	call	FPC_POPADDRSTACK
 	leal	-28(%ebp),%eax
 	call	fpc_ansistr_decr_ref
 	movl	$0,-28(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj7187
+	je	Lj7140
 	call	FPC_RERAISE
-Lj7187:
+Lj7140:
 	movl	-72(%ebp),%ebx
 	leave
 	ret	$8
@@ -18692,9 +18614,9 @@ fpc_unicodechararray_to_ansistr:
 	movl	%edx,-12(%ebp)
 	movb	%cl,-8(%ebp)
 	cmpb	$0,-8(%ebp)
-	jne	Lj7242
-	jmp	Lj7243
-Lj7242:
+	jne	Lj7195
+	jmp	Lj7196
+Lj7195:
 	movl	-12(%ebp),%edx
 	incl	%edx
 	movl	-4(%ebp),%eax
@@ -18703,19 +18625,19 @@ Lj7242:
 	movl	%eax,-16(%ebp)
 	movl	-16(%ebp),%eax
 	cmpl	$-1,%eax
-	je	Lj7252
-	jmp	Lj7253
-Lj7252:
+	je	Lj7205
+	jmp	Lj7206
+Lj7205:
 	movl	-12(%ebp),%eax
 	incl	%eax
 	movl	%eax,-16(%ebp)
-Lj7253:
-	jmp	Lj7256
-Lj7243:
+Lj7206:
+	jmp	Lj7209
+Lj7196:
 	movl	-12(%ebp),%eax
 	incl	%eax
 	movl	%eax,-16(%ebp)
-Lj7256:
+Lj7209:
 	movl	-16(%ebp),%edx
 	movl	8(%ebp),%eax
 	call	fpc_ansistr_setlength
@@ -18740,9 +18662,9 @@ fpc_unicodechararray_to_unicodestr:
 	movl	%edx,-12(%ebp)
 	movb	%cl,-8(%ebp)
 	cmpb	$0,-8(%ebp)
-	jne	Lj7273
-	jmp	Lj7274
-Lj7273:
+	jne	Lj7226
+	jmp	Lj7227
+Lj7226:
 	movl	-12(%ebp),%edx
 	incl	%edx
 	movl	-4(%ebp),%eax
@@ -18751,19 +18673,19 @@ Lj7273:
 	movl	%eax,-16(%ebp)
 	movl	-16(%ebp),%eax
 	cmpl	$-1,%eax
-	je	Lj7283
-	jmp	Lj7284
-Lj7283:
+	je	Lj7236
+	jmp	Lj7237
+Lj7236:
 	movl	-12(%ebp),%eax
 	incl	%eax
 	movl	%eax,-16(%ebp)
-Lj7284:
-	jmp	Lj7287
-Lj7274:
+Lj7237:
+	jmp	Lj7240
+Lj7227:
 	movl	-12(%ebp),%eax
 	incl	%eax
 	movl	%eax,-16(%ebp)
-Lj7287:
+Lj7240:
 	movl	-16(%ebp),%edx
 	movl	8(%ebp),%eax
 	call	fpc_unicodestr_setlength
@@ -18787,9 +18709,9 @@ fpc_widechararray_to_unicodestr:
 	movl	%edx,-12(%ebp)
 	movb	%cl,-8(%ebp)
 	cmpb	$0,-8(%ebp)
-	jne	Lj7302
-	jmp	Lj7303
-Lj7302:
+	jne	Lj7255
+	jmp	Lj7256
+Lj7255:
 	movl	-12(%ebp),%edx
 	incl	%edx
 	movl	-4(%ebp),%eax
@@ -18798,19 +18720,19 @@ Lj7302:
 	movl	%eax,-16(%ebp)
 	movl	-16(%ebp),%eax
 	cmpl	$-1,%eax
-	je	Lj7312
-	jmp	Lj7313
-Lj7312:
+	je	Lj7265
+	jmp	Lj7266
+Lj7265:
 	movl	-12(%ebp),%eax
 	incl	%eax
 	movl	%eax,-16(%ebp)
-Lj7313:
-	jmp	Lj7316
-Lj7303:
+Lj7266:
+	jmp	Lj7269
+Lj7256:
 	movl	-12(%ebp),%eax
 	incl	%eax
 	movl	%eax,-16(%ebp)
-Lj7316:
+Lj7269:
 	movl	-16(%ebp),%edx
 	movl	8(%ebp),%eax
 	call	fpc_unicodestr_setlength
@@ -18844,32 +18766,32 @@ FPC_WIDECHARARRAY_TO_SHORTSTR:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj7331
+	jne	Lj7284
 	movl	12(%ebp),%eax
 	incl	%eax
 	movl	%eax,-16(%ebp)
 	movl	-12(%ebp),%eax
 	incl	%eax
 	cmpl	-16(%ebp),%eax
-	jle	Lj7336
-	jmp	Lj7337
-Lj7336:
+	jle	Lj7289
+	jmp	Lj7290
+Lj7289:
 	movl	-12(%ebp),%eax
 	movl	%eax,-16(%ebp)
-	jmp	Lj7340
-Lj7337:
+	jmp	Lj7293
+Lj7290:
 	movl	-16(%ebp),%eax
 	cmpl	$0,%eax
-	jl	Lj7341
-	jmp	Lj7342
-Lj7341:
+	jl	Lj7294
+	jmp	Lj7295
+Lj7294:
 	movl	$0,-16(%ebp)
-Lj7342:
-Lj7340:
+Lj7295:
+Lj7293:
 	cmpb	$0,8(%ebp)
-	jne	Lj7345
-	jmp	Lj7346
-Lj7345:
+	jne	Lj7298
+	jmp	Lj7299
+Lj7298:
 	movl	-16(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movw	$0,%cx
@@ -18877,21 +18799,21 @@ Lj7345:
 	movl	%eax,-20(%ebp)
 	movl	-20(%ebp),%eax
 	cmpl	$0,%eax
-	jl	Lj7355
-	jmp	Lj7356
-Lj7355:
+	jl	Lj7308
+	jmp	Lj7309
+Lj7308:
 	movb	-16(%ebp),%al
 	movb	%al,-21(%ebp)
-	jmp	Lj7359
-Lj7356:
+	jmp	Lj7312
+Lj7309:
 	movb	-20(%ebp),%al
 	movb	%al,-21(%ebp)
-Lj7359:
-	jmp	Lj7362
-Lj7346:
+Lj7312:
+	jmp	Lj7315
+Lj7299:
 	movb	-16(%ebp),%al
 	movb	%al,-21(%ebp)
-Lj7362:
+Lj7315:
 	movzbl	-21(%ebp),%eax
 	pushl	%eax
 	movl	-8(%ebp),%eax
@@ -18903,16 +18825,16 @@ Lj7362:
 	movl	-12(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	fpc_ansistr_to_shortstr
-Lj7331:
+Lj7284:
 	call	FPC_POPADDRSTACK
 	leal	-28(%ebp),%eax
 	call	fpc_ansistr_decr_ref
 	movl	$0,-28(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj7332
+	je	Lj7285
 	call	FPC_RERAISE
-Lj7332:
+Lj7285:
 	movl	-72(%ebp),%ebx
 	leave
 	ret	$8
@@ -18929,9 +18851,9 @@ fpc_widechararray_to_ansistr:
 	movl	%edx,-12(%ebp)
 	movb	%cl,-8(%ebp)
 	cmpb	$0,-8(%ebp)
-	jne	Lj7387
-	jmp	Lj7388
-Lj7387:
+	jne	Lj7340
+	jmp	Lj7341
+Lj7340:
 	movl	-12(%ebp),%edx
 	incl	%edx
 	movl	-4(%ebp),%eax
@@ -18940,19 +18862,19 @@ Lj7387:
 	movl	%eax,-16(%ebp)
 	movl	-16(%ebp),%eax
 	cmpl	$-1,%eax
-	je	Lj7397
-	jmp	Lj7398
-Lj7397:
+	je	Lj7350
+	jmp	Lj7351
+Lj7350:
 	movl	-12(%ebp),%eax
 	incl	%eax
 	movl	%eax,-16(%ebp)
-Lj7398:
-	jmp	Lj7401
-Lj7388:
+Lj7351:
+	jmp	Lj7354
+Lj7341:
 	movl	-12(%ebp),%eax
 	incl	%eax
 	movl	%eax,-16(%ebp)
-Lj7401:
+Lj7354:
 	movl	-16(%ebp),%edx
 	movl	8(%ebp),%eax
 	call	fpc_ansistr_setlength
@@ -18977,9 +18899,9 @@ fpc_widechararray_to_widestr:
 	movl	%edx,-12(%ebp)
 	movb	%cl,-8(%ebp)
 	cmpb	$0,-8(%ebp)
-	jne	Lj7418
-	jmp	Lj7419
-Lj7418:
+	jne	Lj7371
+	jmp	Lj7372
+Lj7371:
 	movl	-12(%ebp),%edx
 	incl	%edx
 	movl	-4(%ebp),%eax
@@ -18988,19 +18910,19 @@ Lj7418:
 	movl	%eax,-16(%ebp)
 	movl	-16(%ebp),%eax
 	cmpl	$-1,%eax
-	je	Lj7428
-	jmp	Lj7429
-Lj7428:
+	je	Lj7381
+	jmp	Lj7382
+Lj7381:
 	movl	-12(%ebp),%eax
 	incl	%eax
 	movl	%eax,-16(%ebp)
-Lj7429:
-	jmp	Lj7432
-Lj7419:
+Lj7382:
+	jmp	Lj7385
+Lj7372:
 	movl	-12(%ebp),%eax
 	incl	%eax
 	movl	%eax,-16(%ebp)
-Lj7432:
+Lj7385:
 	movl	-16(%ebp),%edx
 	movl	8(%ebp),%eax
 	call	fpc_unicodestr_setlength
@@ -19032,42 +18954,42 @@ fpc_unicodestr_to_chararray:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj7447
+	jne	Lj7400
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj7452
+	je	Lj7405
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj7452:
+Lj7405:
 	movl	%eax,-16(%ebp)
 	movl	-16(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj7453
-	jmp	Lj7454
-Lj7453:
+	jg	Lj7406
+	jmp	Lj7407
+Lj7406:
 	pushl	-16(%ebp)
 	movl	-8(%ebp),%eax
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%cx
 	leal	-20(%ebp),%edx
 	movl	U_SYSTEM_WIDESTRINGMANAGER+80,%ebx
 	call	*%ebx
-Lj7454:
+Lj7407:
 	movl	-20(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj7465
+	je	Lj7418
 	movl	-4(%eax),%eax
-Lj7465:
+Lj7418:
 	movl	%eax,-16(%ebp)
 	movl	-12(%ebp),%eax
 	incl	%eax
 	cmpl	-16(%ebp),%eax
-	jl	Lj7466
-	jmp	Lj7467
-Lj7466:
+	jl	Lj7419
+	jmp	Lj7420
+Lj7419:
 	movl	-12(%ebp),%eax
 	incl	%eax
 	movl	%eax,-16(%ebp)
-Lj7467:
+Lj7420:
 	movl	-16(%ebp),%ecx
 	movl	-4(%ebp),%edx
 	movl	-20(%ebp),%eax
@@ -19081,16 +19003,16 @@ Lj7467:
 	leal	(%eax,%ecx,1),%eax
 	movb	$0,%cl
 	call	SYSTEM_FILLCHAR$formal$LONGINT$BYTE
-Lj7447:
+Lj7400:
 	call	FPC_POPADDRSTACK
 	leal	-20(%ebp),%eax
 	call	fpc_ansistr_decr_ref
 	movl	$0,-20(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj7448
+	je	Lj7401
 	call	FPC_RERAISE
-Lj7448:
+Lj7401:
 	movl	-64(%ebp),%ebx
 	leave
 	ret
@@ -19107,32 +19029,32 @@ fpc_unicodestr_to_unicodechararray:
 	movl	%ecx,-8(%ebp)
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj7492
+	je	Lj7445
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj7492:
+Lj7445:
 	movl	%eax,-16(%ebp)
 	movl	-12(%ebp),%eax
 	incl	%eax
 	cmpl	-16(%ebp),%eax
-	jl	Lj7493
-	jmp	Lj7494
-Lj7493:
+	jl	Lj7446
+	jmp	Lj7447
+Lj7446:
 	movl	-12(%ebp),%eax
 	incl	%eax
 	movl	%eax,-16(%ebp)
-Lj7494:
+Lj7447:
 	movl	-16(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj7497
-	jmp	Lj7498
-Lj7497:
+	jg	Lj7450
+	jmp	Lj7451
+Lj7450:
 	movl	-16(%ebp),%ecx
 	shll	$1,%ecx
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	call	SYSTEM_MOVE$formal$formal$LONGINT
-Lj7498:
+Lj7451:
 	movl	-12(%ebp),%edx
 	incl	%edx
 	movl	-16(%ebp),%eax
@@ -19165,42 +19087,42 @@ fpc_ansistr_to_unicodechararray:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj7513
+	jne	Lj7466
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj7518
+	je	Lj7471
 	movl	-4(%eax),%eax
-Lj7518:
+Lj7471:
 	movl	%eax,-16(%ebp)
 	movl	-16(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj7519
-	jmp	Lj7520
-Lj7519:
+	jg	Lj7472
+	jmp	Lj7473
+Lj7472:
 	pushl	-16(%ebp)
 	movl	-8(%ebp),%eax
 	leal	-20(%ebp),%ecx
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%dx
 	movl	U_SYSTEM_WIDESTRINGMANAGER+84,%ebx
 	call	*%ebx
-Lj7520:
+Lj7473:
 	movl	-20(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj7531
+	je	Lj7484
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj7531:
+Lj7484:
 	movl	%eax,-16(%ebp)
 	movl	-12(%ebp),%eax
 	incl	%eax
 	cmpl	-16(%ebp),%eax
-	jl	Lj7532
-	jmp	Lj7533
-Lj7532:
+	jl	Lj7485
+	jmp	Lj7486
+Lj7485:
 	movl	-12(%ebp),%eax
 	incl	%eax
 	movl	%eax,-16(%ebp)
-Lj7533:
+Lj7486:
 	movl	-16(%ebp),%ecx
 	shll	$1,%ecx
 	movl	-4(%ebp),%edx
@@ -19216,16 +19138,16 @@ Lj7533:
 	leal	(%eax,%ecx,2),%eax
 	movb	$0,%cl
 	call	SYSTEM_FILLCHAR$formal$LONGINT$BYTE
-Lj7513:
+Lj7466:
 	call	FPC_POPADDRSTACK
 	leal	-20(%ebp),%eax
 	call	fpc_unicodestr_decr_ref
 	movl	$0,-20(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj7514
+	je	Lj7467
 	call	FPC_RERAISE
-Lj7514:
+Lj7467:
 	movl	-64(%ebp),%ebx
 	leave
 	ret
@@ -19249,15 +19171,15 @@ fpc_shortstr_to_unicodechararray:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj7556
+	jne	Lj7509
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	movl	%eax,-16(%ebp)
 	movl	-16(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj7561
-	jmp	Lj7562
-Lj7561:
+	jg	Lj7514
+	jmp	Lj7515
+Lj7514:
 	pushl	-16(%ebp)
 	movl	-8(%ebp),%eax
 	leal	1(%eax),%eax
@@ -19265,24 +19187,24 @@ Lj7561:
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%dx
 	movl	U_SYSTEM_WIDESTRINGMANAGER+84,%ebx
 	call	*%ebx
-Lj7562:
+Lj7515:
 	movl	-20(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj7573
+	je	Lj7526
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj7573:
+Lj7526:
 	movl	%eax,-16(%ebp)
 	movl	-12(%ebp),%eax
 	incl	%eax
 	cmpl	-16(%ebp),%eax
-	jl	Lj7574
-	jmp	Lj7575
-Lj7574:
+	jl	Lj7527
+	jmp	Lj7528
+Lj7527:
 	movl	-12(%ebp),%eax
 	incl	%eax
 	movl	%eax,-16(%ebp)
-Lj7575:
+Lj7528:
 	movl	-16(%ebp),%ecx
 	shll	$1,%ecx
 	movl	-4(%ebp),%edx
@@ -19298,16 +19220,16 @@ Lj7575:
 	leal	(%eax,%ecx,2),%eax
 	movb	$0,%cl
 	call	SYSTEM_FILLCHAR$formal$LONGINT$BYTE
-Lj7556:
+Lj7509:
 	call	FPC_POPADDRSTACK
 	leal	-20(%ebp),%eax
 	call	fpc_unicodestr_decr_ref
 	movl	$0,-20(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj7557
+	je	Lj7510
 	call	FPC_RERAISE
-Lj7557:
+Lj7510:
 	movl	-64(%ebp),%ebx
 	leave
 	ret
@@ -19331,42 +19253,42 @@ fpc_ansistr_to_widechararray:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj7598
+	jne	Lj7551
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj7603
+	je	Lj7556
 	movl	-4(%eax),%eax
-Lj7603:
+Lj7556:
 	movl	%eax,-16(%ebp)
 	movl	-16(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj7604
-	jmp	Lj7605
-Lj7604:
+	jg	Lj7557
+	jmp	Lj7558
+Lj7557:
 	pushl	-16(%ebp)
 	movl	-8(%ebp),%eax
 	leal	-20(%ebp),%ecx
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%dx
 	movl	U_SYSTEM_WIDESTRINGMANAGER+4,%ebx
 	call	*%ebx
-Lj7605:
+Lj7558:
 	movl	-20(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj7616
+	je	Lj7569
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj7616:
+Lj7569:
 	movl	%eax,-16(%ebp)
 	movl	-12(%ebp),%eax
 	incl	%eax
 	cmpl	-16(%ebp),%eax
-	jl	Lj7617
-	jmp	Lj7618
-Lj7617:
+	jl	Lj7570
+	jmp	Lj7571
+Lj7570:
 	movl	-12(%ebp),%eax
 	incl	%eax
 	movl	%eax,-16(%ebp)
-Lj7618:
+Lj7571:
 	movl	-16(%ebp),%ecx
 	shll	$1,%ecx
 	movl	-4(%ebp),%edx
@@ -19382,16 +19304,16 @@ Lj7618:
 	leal	(%eax,%ecx,2),%eax
 	movb	$0,%cl
 	call	SYSTEM_FILLCHAR$formal$LONGINT$BYTE
-Lj7598:
+Lj7551:
 	call	FPC_POPADDRSTACK
 	leal	-20(%ebp),%eax
 	call	fpc_unicodestr_decr_ref
 	movl	$0,-20(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj7599
+	je	Lj7552
 	call	FPC_RERAISE
-Lj7599:
+Lj7552:
 	movl	-64(%ebp),%ebx
 	leave
 	ret
@@ -19415,15 +19337,15 @@ fpc_shortstr_to_widechararray:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj7641
+	jne	Lj7594
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	movl	%eax,-16(%ebp)
 	movl	-16(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj7646
-	jmp	Lj7647
-Lj7646:
+	jg	Lj7599
+	jmp	Lj7600
+Lj7599:
 	pushl	-16(%ebp)
 	movl	-8(%ebp),%eax
 	leal	1(%eax),%eax
@@ -19431,24 +19353,24 @@ Lj7646:
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%dx
 	movl	U_SYSTEM_WIDESTRINGMANAGER+4,%ebx
 	call	*%ebx
-Lj7647:
+Lj7600:
 	movl	-20(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj7658
+	je	Lj7611
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj7658:
+Lj7611:
 	movl	%eax,-16(%ebp)
 	movl	-12(%ebp),%eax
 	incl	%eax
 	cmpl	-16(%ebp),%eax
-	jl	Lj7659
-	jmp	Lj7660
-Lj7659:
+	jl	Lj7612
+	jmp	Lj7613
+Lj7612:
 	movl	-12(%ebp),%eax
 	incl	%eax
 	movl	%eax,-16(%ebp)
-Lj7660:
+Lj7613:
 	movl	-16(%ebp),%ecx
 	shll	$1,%ecx
 	movl	-4(%ebp),%edx
@@ -19464,16 +19386,16 @@ Lj7660:
 	leal	(%eax,%ecx,2),%eax
 	movb	$0,%cl
 	call	SYSTEM_FILLCHAR$formal$LONGINT$BYTE
-Lj7641:
+Lj7594:
 	call	FPC_POPADDRSTACK
 	leal	-20(%ebp),%eax
 	call	fpc_unicodestr_decr_ref
 	movl	$0,-20(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj7642
+	je	Lj7595
 	call	FPC_RERAISE
-Lj7642:
+Lj7595:
 	movl	-64(%ebp),%ebx
 	leave
 	ret
@@ -19490,32 +19412,32 @@ fpc_unicodestr_to_widechararray:
 	movl	%ecx,-8(%ebp)
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj7685
+	je	Lj7638
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj7685:
+Lj7638:
 	movl	%eax,-16(%ebp)
 	movl	-12(%ebp),%eax
 	incl	%eax
 	cmpl	-16(%ebp),%eax
-	jl	Lj7686
-	jmp	Lj7687
-Lj7686:
+	jl	Lj7639
+	jmp	Lj7640
+Lj7639:
 	movl	-12(%ebp),%eax
 	incl	%eax
 	movl	%eax,-16(%ebp)
-Lj7687:
+Lj7640:
 	movl	-16(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj7690
-	jmp	Lj7691
-Lj7690:
+	jg	Lj7643
+	jmp	Lj7644
+Lj7643:
 	movl	-16(%ebp),%ecx
 	shll	$1,%ecx
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	call	SYSTEM_MOVE$formal$formal$LONGINT
-Lj7691:
+Lj7644:
 	movl	-12(%ebp),%edx
 	incl	%edx
 	movl	-16(%ebp),%eax
@@ -19542,34 +19464,34 @@ FPC_UNICODESTR_COMPARE:
 	movl	%edx,-8(%ebp)
 	movl	-4(%ebp),%eax
 	cmpl	-8(%ebp),%eax
-	je	Lj7706
-	jmp	Lj7707
-Lj7706:
+	je	Lj7659
+	jmp	Lj7660
+Lj7659:
 	movl	$0,-12(%ebp)
-	jmp	Lj7704
-Lj7707:
+	jmp	Lj7657
+Lj7660:
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj7712
+	je	Lj7665
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj7712:
+Lj7665:
 	movl	%eax,-16(%ebp)
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj7715
+	je	Lj7668
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj7715:
+Lj7668:
 	movl	%eax,-20(%ebp)
 	movl	-16(%ebp),%eax
 	cmpl	-20(%ebp),%eax
-	jg	Lj7716
-	jmp	Lj7717
-Lj7716:
+	jg	Lj7669
+	jmp	Lj7670
+Lj7669:
 	movl	-20(%ebp),%eax
 	movl	%eax,-16(%ebp)
-Lj7717:
+Lj7670:
 	movl	-16(%ebp),%ecx
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
@@ -19577,27 +19499,27 @@ Lj7717:
 	movl	%eax,-20(%ebp)
 	movl	-20(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj7728
-	jmp	Lj7729
-Lj7728:
+	je	Lj7681
+	jmp	Lj7682
+Lj7681:
 	movl	-4(%ebp),%edx
 	testl	%edx,%edx
-	je	Lj7732
+	je	Lj7685
 	movl	-4(%edx),%edx
 	shrl	$1,%edx
-Lj7732:
+Lj7685:
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj7733
+	je	Lj7686
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj7733:
+Lj7686:
 	subl	%eax,%edx
 	movl	%edx,-20(%ebp)
-Lj7729:
+Lj7682:
 	movl	-20(%ebp),%eax
 	movl	%eax,-12(%ebp)
-Lj7704:
+Lj7657:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -19615,41 +19537,41 @@ FPC_UNICODESTR_COMPARE_EQUAL:
 	movl	%edx,-8(%ebp)
 	movl	-4(%ebp),%eax
 	cmpl	-8(%ebp),%eax
-	je	Lj7738
-	jmp	Lj7739
-Lj7738:
+	je	Lj7691
+	jmp	Lj7692
+Lj7691:
 	movl	$0,-12(%ebp)
-	jmp	Lj7736
-Lj7739:
+	jmp	Lj7689
+Lj7692:
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj7744
+	je	Lj7697
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj7744:
+Lj7697:
 	movl	%eax,-16(%ebp)
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj7747
+	je	Lj7700
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj7747:
+Lj7700:
 	cmpl	-16(%ebp),%eax
-	jne	Lj7745
-	jmp	Lj7746
-Lj7745:
+	jne	Lj7698
+	jmp	Lj7699
+Lj7698:
 	movl	$-1,-12(%ebp)
-	jmp	Lj7736
-	jmp	Lj7750
-Lj7746:
+	jmp	Lj7689
+	jmp	Lj7703
+Lj7699:
 	movl	-16(%ebp),%ecx
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_COMPAREWORD$formal$formal$LONGINT$$LONGINT
 	movl	%eax,-12(%ebp)
-	jmp	Lj7736
-Lj7750:
-Lj7736:
+	jmp	Lj7689
+Lj7703:
+Lj7689:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -19667,9 +19589,9 @@ FPC_UNICODESTR_RANGECHECK:
 	movl	%edx,-8(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj7761
-	jmp	Lj7764
-Lj7764:
+	je	Lj7714
+	jmp	Lj7717
+Lj7717:
 	movl	-4(%ebp),%eax
 	subl	$8,%eax
 	movl	4(%eax),%edx
@@ -19679,18 +19601,18 @@ Lj7764:
 	addl	%eax,%edx
 	sarl	$1,%edx
 	cmpl	-8(%ebp),%edx
-	jl	Lj7761
-	jmp	Lj7763
-Lj7763:
+	jl	Lj7714
+	jmp	Lj7716
+Lj7716:
 	movl	-8(%ebp),%eax
 	cmpl	$1,%eax
-	jl	Lj7761
-	jmp	Lj7762
-Lj7761:
+	jl	Lj7714
+	jmp	Lj7715
+Lj7714:
 	movl	%ebp,%edx
 	movl	$201,%eax
 	call	SYSTEM_HANDLEERRORFRAME$LONGINT$POINTER
-Lj7762:
+Lj7715:
 	leave
 	ret
 
@@ -19708,29 +19630,29 @@ FPC_UNICODESTR_SETLENGTH:
 	movl	%edx,-8(%ebp)
 	movl	-8(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj7771
-	jmp	Lj7772
-Lj7771:
+	jg	Lj7724
+	jmp	Lj7725
+Lj7724:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj7773
-	jmp	Lj7774
-Lj7773:
+	je	Lj7726
+	jmp	Lj7727
+Lj7726:
 	movl	-8(%ebp),%eax
 	call	SYSTEM_NEWUNICODESTRING$LONGINT$$POINTER
 	movl	-4(%ebp),%edx
 	movl	%eax,(%edx)
-	jmp	Lj7779
-Lj7774:
+	jmp	Lj7732
+Lj7727:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	subl	$8,%eax
 	movl	(%eax),%eax
 	cmpl	$1,%eax
-	je	Lj7780
-	jmp	Lj7781
-Lj7780:
+	je	Lj7733
+	jmp	Lj7734
+Lj7733:
 	movl	-4(%ebp),%eax
 	subl	$8,(%eax)
 	movl	-8(%ebp),%ebx
@@ -19740,73 +19662,73 @@ Lj7780:
 	movl	(%eax),%eax
 	call	SYSTEM_MEMSIZE$POINTER$$LONGWORD
 	cmpl	%eax,%ebx
-	ja	Lj7782
-	jmp	Lj7783
-Lj7782:
+	ja	Lj7735
+	jmp	Lj7736
+Lj7735:
 	movl	-8(%ebp),%edx
 	shll	$1,%edx
 	addl	$10,%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_REALLOCMEM$POINTER$LONGWORD$$POINTER
-Lj7783:
+Lj7736:
 	movl	-4(%ebp),%eax
 	addl	$8,(%eax)
-	jmp	Lj7790
-Lj7781:
+	jmp	Lj7743
+Lj7734:
 	movl	-8(%ebp),%eax
 	call	SYSTEM_NEWUNICODESTRING$LONGINT$$POINTER
 	movl	%eax,-12(%ebp)
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj7797
+	je	Lj7750
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj7797:
+Lj7750:
 	cmpl	$0,%eax
-	jg	Lj7795
-	jmp	Lj7796
-Lj7795:
+	jg	Lj7748
+	jmp	Lj7749
+Lj7748:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj7800
+	je	Lj7753
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj7800:
+Lj7753:
 	incl	%eax
 	cmpl	-8(%ebp),%eax
-	jg	Lj7798
-	jmp	Lj7799
-Lj7798:
+	jg	Lj7751
+	jmp	Lj7752
+Lj7751:
 	movl	-8(%ebp),%eax
 	movl	%eax,-16(%ebp)
-	jmp	Lj7803
-Lj7799:
+	jmp	Lj7756
+Lj7752:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj7806
+	je	Lj7759
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj7806:
+Lj7759:
 	incl	%eax
 	movl	%eax,-16(%ebp)
-Lj7803:
+Lj7756:
 	movl	-16(%ebp),%ecx
 	shll	$1,%ecx
 	movl	-12(%ebp),%edx
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	call	SYSTEM_MOVE$formal$formal$LONGINT
-Lj7796:
+Lj7749:
 	movl	-4(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	-4(%ebp),%edx
 	movl	-12(%ebp),%eax
 	movl	%eax,(%edx)
-Lj7790:
-Lj7779:
+Lj7743:
+Lj7732:
 	movl	-8(%ebp),%eax
 	shll	$1,%eax
 	movl	-4(%ebp),%edx
@@ -19819,20 +19741,20 @@ Lj7779:
 	movl	-8(%ebp),%eax
 	shll	$1,%eax
 	movl	%eax,4(%edx)
-	jmp	Lj7821
-Lj7772:
+	jmp	Lj7774
+Lj7725:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj7822
-	jmp	Lj7823
-Lj7822:
+	jne	Lj7775
+	jmp	Lj7776
+Lj7775:
 	movl	-4(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
-Lj7823:
+Lj7776:
 	movl	-4(%ebp),%eax
 	movl	$0,(%eax)
-Lj7821:
+Lj7774:
 	movl	-20(%ebp),%ebx
 	leave
 	ret
@@ -19854,7 +19776,7 @@ SYSTEM_UNICODECHARTOSTRING$PUNICODECHAR$$ANSISTRING:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj7830
+	jne	Lj7783
 	leal	-52(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,-52(%ebp)
@@ -19863,23 +19785,23 @@ SYSTEM_UNICODECHARTOSTRING$PUNICODECHAR$$ANSISTRING:
 	call	fpc_pwidechar_to_unicodestr
 	movl	-52(%ebp),%edx
 	testl	%edx,%edx
-	je	Lj7839
+	je	Lj7792
 	movl	-4(%edx),%edx
 	shrl	$1,%edx
-Lj7839:
+Lj7792:
 	movl	-8(%ebp),%ecx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_UNICODECHARLENTOSTRING$PUNICODECHAR$LONGINT$$ANSISTRING
-Lj7830:
+Lj7783:
 	call	FPC_POPADDRSTACK
 	leal	-52(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,-52(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj7831
+	je	Lj7784
 	call	FPC_RERAISE
-Lj7831:
+Lj7784:
 	leave
 	ret
 
@@ -19902,67 +19824,67 @@ SYSTEM_STRINGTOUNICODECHAR$ANSISTRING$PUNICODECHAR$LONGINT$$PUNICODECHAR:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj7846
+	jne	Lj7799
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj7851
+	je	Lj7804
 	movl	-4(%eax),%eax
-Lj7851:
+Lj7804:
 	pushl	%eax
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj7854
+	jne	Lj7807
 	movl	$FPC_EMPTYCHAR,%eax
-Lj7854:
+Lj7807:
 	leal	-20(%ebp),%ecx
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%dx
 	movl	U_SYSTEM_WIDESTRINGMANAGER+84,%ebx
 	call	*%ebx
 	movl	-20(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj7861
+	je	Lj7814
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj7861:
+Lj7814:
 	cmpl	-12(%ebp),%eax
-	jl	Lj7859
-	jmp	Lj7860
-Lj7859:
+	jl	Lj7812
+	jmp	Lj7813
+Lj7812:
 	movl	-20(%ebp),%ecx
 	testl	%ecx,%ecx
-	je	Lj7864
+	je	Lj7817
 	movl	-4(%ecx),%ecx
 	shrl	$1,%ecx
-Lj7864:
+Lj7817:
 	shll	$1,%ecx
 	movl	-8(%ebp),%edx
 	movl	-20(%ebp),%eax
 	call	SYSTEM_MOVE$formal$formal$LONGINT
-	jmp	Lj7869
-Lj7860:
+	jmp	Lj7822
+Lj7813:
 	movl	-12(%ebp),%ecx
 	decl	%ecx
 	shll	$1,%ecx
 	movl	-8(%ebp),%edx
 	movl	-20(%ebp),%eax
 	call	SYSTEM_MOVE$formal$formal$LONGINT
-Lj7869:
+Lj7822:
 	movl	-8(%ebp),%edx
 	movl	-12(%ebp),%eax
 	decl	%eax
 	movw	$0,(%edx,%eax,2)
 	movl	-8(%ebp),%eax
 	movl	%eax,-16(%ebp)
-Lj7846:
+Lj7799:
 	call	FPC_POPADDRSTACK
 	leal	-20(%ebp),%eax
 	call	fpc_unicodestr_decr_ref
 	movl	$0,-20(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj7847
+	je	Lj7800
 	call	FPC_RERAISE
-Lj7847:
+Lj7800:
 	movl	-16(%ebp),%eax
 	movl	-64(%ebp),%ebx
 	leave
@@ -19985,7 +19907,7 @@ SYSTEM_WIDECHARTOSTRING$PWIDECHAR$$ANSISTRING:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj7888
+	jne	Lj7841
 	leal	-52(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,-52(%ebp)
@@ -19994,23 +19916,23 @@ SYSTEM_WIDECHARTOSTRING$PWIDECHAR$$ANSISTRING:
 	call	fpc_pwidechar_to_unicodestr
 	movl	-52(%ebp),%edx
 	testl	%edx,%edx
-	je	Lj7897
+	je	Lj7850
 	movl	-4(%edx),%edx
 	shrl	$1,%edx
-Lj7897:
+Lj7850:
 	movl	-8(%ebp),%ecx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_WIDECHARLENTOSTRING$PWIDECHAR$LONGINT$$ANSISTRING
-Lj7888:
+Lj7841:
 	call	FPC_POPADDRSTACK
 	leal	-52(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,-52(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj7889
+	je	Lj7842
 	call	FPC_RERAISE
-Lj7889:
+Lj7842:
 	leave
 	ret
 
@@ -20033,67 +19955,67 @@ SYSTEM_STRINGTOWIDECHAR$ANSISTRING$PWIDECHAR$LONGINT$$PWIDECHAR:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj7904
+	jne	Lj7857
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj7909
+	je	Lj7862
 	movl	-4(%eax),%eax
-Lj7909:
+Lj7862:
 	pushl	%eax
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj7912
+	jne	Lj7865
 	movl	$FPC_EMPTYCHAR,%eax
-Lj7912:
+Lj7865:
 	leal	-20(%ebp),%ecx
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%dx
 	movl	U_SYSTEM_WIDESTRINGMANAGER+4,%ebx
 	call	*%ebx
 	movl	-20(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj7919
+	je	Lj7872
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj7919:
+Lj7872:
 	cmpl	-12(%ebp),%eax
-	jl	Lj7917
-	jmp	Lj7918
-Lj7917:
+	jl	Lj7870
+	jmp	Lj7871
+Lj7870:
 	movl	-20(%ebp),%ecx
 	testl	%ecx,%ecx
-	je	Lj7922
+	je	Lj7875
 	movl	-4(%ecx),%ecx
 	shrl	$1,%ecx
-Lj7922:
+Lj7875:
 	shll	$1,%ecx
 	movl	-8(%ebp),%edx
 	movl	-20(%ebp),%eax
 	call	SYSTEM_MOVE$formal$formal$LONGINT
-	jmp	Lj7927
-Lj7918:
+	jmp	Lj7880
+Lj7871:
 	movl	-12(%ebp),%ecx
 	decl	%ecx
 	shll	$1,%ecx
 	movl	-8(%ebp),%edx
 	movl	-20(%ebp),%eax
 	call	SYSTEM_MOVE$formal$formal$LONGINT
-Lj7927:
+Lj7880:
 	movl	-8(%ebp),%edx
 	movl	-12(%ebp),%eax
 	decl	%eax
 	movw	$0,(%edx,%eax,2)
 	movl	-8(%ebp),%eax
 	movl	%eax,-16(%ebp)
-Lj7904:
+Lj7857:
 	call	FPC_POPADDRSTACK
 	leal	-20(%ebp),%eax
 	call	fpc_unicodestr_decr_ref
 	movl	$0,-20(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj7905
+	je	Lj7858
 	call	FPC_RERAISE
-Lj7905:
+Lj7858:
 	movl	-16(%ebp),%eax
 	movl	-64(%ebp),%ebx
 	leave
@@ -20141,7 +20063,7 @@ SYSTEM_UNICODECHARLENTOSTRVAR$PUNICODECHAR$LONGINT$ANSISTRING:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj7956
+	jne	Lj7909
 	leal	-56(%ebp),%eax
 	call	FPC_ANSISTR_DECR_REF
 	movl	$0,-56(%ebp)
@@ -20156,16 +20078,16 @@ SYSTEM_UNICODECHARLENTOSTRVAR$PUNICODECHAR$LONGINT$ANSISTRING:
 	call	FPC_ANSISTR_DECR_REF
 	movl	-56(%ebp),%eax
 	movl	%eax,(%ebx)
-Lj7956:
+Lj7909:
 	call	FPC_POPADDRSTACK
 	leal	-56(%ebp),%eax
 	call	FPC_ANSISTR_DECR_REF
 	movl	$0,-56(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj7957
+	je	Lj7910
 	call	FPC_RERAISE
-Lj7957:
+Lj7910:
 	movl	-60(%ebp),%ebx
 	leave
 	ret
@@ -20190,7 +20112,7 @@ SYSTEM_UNICODECHARTOSTRVAR$PUNICODECHAR$ANSISTRING:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj7969
+	jne	Lj7922
 	leal	-52(%ebp),%eax
 	call	FPC_ANSISTR_DECR_REF
 	movl	$0,-52(%ebp)
@@ -20204,16 +20126,16 @@ SYSTEM_UNICODECHARTOSTRVAR$PUNICODECHAR$ANSISTRING:
 	call	FPC_ANSISTR_DECR_REF
 	movl	-52(%ebp),%eax
 	movl	%eax,(%ebx)
-Lj7969:
+Lj7922:
 	call	FPC_POPADDRSTACK
 	leal	-52(%ebp),%eax
 	call	FPC_ANSISTR_DECR_REF
 	movl	$0,-52(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj7970
+	je	Lj7923
 	call	FPC_RERAISE
-Lj7970:
+Lj7923:
 	movl	-56(%ebp),%ebx
 	leave
 	ret
@@ -20260,7 +20182,7 @@ SYSTEM_WIDECHARLENTOSTRVAR$PWIDECHAR$LONGINT$ANSISTRING:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj7990
+	jne	Lj7943
 	leal	-56(%ebp),%eax
 	call	FPC_ANSISTR_DECR_REF
 	movl	$0,-56(%ebp)
@@ -20275,16 +20197,16 @@ SYSTEM_WIDECHARLENTOSTRVAR$PWIDECHAR$LONGINT$ANSISTRING:
 	call	FPC_ANSISTR_DECR_REF
 	movl	-56(%ebp),%eax
 	movl	%eax,(%ebx)
-Lj7990:
+Lj7943:
 	call	FPC_POPADDRSTACK
 	leal	-56(%ebp),%eax
 	call	FPC_ANSISTR_DECR_REF
 	movl	$0,-56(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj7991
+	je	Lj7944
 	call	FPC_RERAISE
-Lj7991:
+Lj7944:
 	movl	-60(%ebp),%ebx
 	leave
 	ret
@@ -20309,7 +20231,7 @@ SYSTEM_WIDECHARTOSTRVAR$PWIDECHAR$ANSISTRING:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj8003
+	jne	Lj7956
 	leal	-52(%ebp),%eax
 	call	FPC_ANSISTR_DECR_REF
 	movl	$0,-52(%ebp)
@@ -20323,16 +20245,16 @@ SYSTEM_WIDECHARTOSTRVAR$PWIDECHAR$ANSISTRING:
 	call	FPC_ANSISTR_DECR_REF
 	movl	-52(%ebp),%eax
 	movl	%eax,(%ebx)
-Lj8003:
+Lj7956:
 	call	FPC_POPADDRSTACK
 	leal	-52(%ebp),%eax
 	call	FPC_ANSISTR_DECR_REF
 	movl	$0,-52(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj8004
+	je	Lj7957
 	call	FPC_RERAISE
-Lj8004:
+Lj7957:
 	movl	-56(%ebp),%ebx
 	leave
 	ret
@@ -20353,19 +20275,19 @@ FPC_UNICODESTR_UNIQUE:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj8016
-	jmp	Lj8017
-Lj8016:
-	jmp	Lj8012
-Lj8017:
+	je	Lj7969
+	jmp	Lj7970
+Lj7969:
+	jmp	Lj7965
+Lj7970:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	subl	$8,%eax
 	movl	(%eax),%eax
 	cmpl	$1,%eax
-	jne	Lj8018
-	jmp	Lj8019
-Lj8018:
+	jne	Lj7971
+	jmp	Lj7972
+Lj7971:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	subl	$8,%eax
@@ -20398,8 +20320,8 @@ Lj8018:
 	movl	%eax,(%edx)
 	movl	-12(%ebp),%eax
 	movl	%eax,-8(%ebp)
-Lj8019:
-Lj8012:
+Lj7972:
+Lj7965:
 	movl	-8(%ebp),%eax
 	leave
 	ret
@@ -20418,69 +20340,69 @@ fpc_unicodestr_copy:
 	decl	-8(%ebp)
 	movl	-8(%ebp),%eax
 	cmpl	$0,%eax
-	jl	Lj8044
-	jmp	Lj8045
-Lj8044:
+	jl	Lj7997
+	jmp	Lj7998
+Lj7997:
 	movl	$0,-8(%ebp)
-Lj8045:
+Lj7998:
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj8051
+	je	Lj8004
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj8051:
+Lj8004:
 	cmpl	-12(%ebp),%eax
-	jl	Lj8048
-	jmp	Lj8050
-Lj8050:
+	jl	Lj8001
+	jmp	Lj8003
+Lj8003:
 	movl	-8(%ebp),%edx
 	movl	-12(%ebp),%eax
 	addl	%eax,%edx
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj8052
+	je	Lj8005
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj8052:
+Lj8005:
 	cmpl	%eax,%edx
-	jg	Lj8048
-	jmp	Lj8049
-Lj8048:
+	jg	Lj8001
+	jmp	Lj8002
+Lj8001:
 	movl	-4(%ebp),%edx
 	testl	%edx,%edx
-	je	Lj8055
+	je	Lj8008
 	movl	-4(%edx),%edx
 	shrl	$1,%edx
-Lj8055:
+Lj8008:
 	movl	-8(%ebp),%eax
 	subl	%eax,%edx
 	movl	%edx,-12(%ebp)
-Lj8049:
+Lj8002:
 	movl	-12(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj8056
-	jmp	Lj8057
-Lj8056:
+	jg	Lj8009
+	jmp	Lj8010
+Lj8009:
 	movl	-8(%ebp),%eax
 	cmpl	$0,%eax
-	jl	Lj8058
-	jmp	Lj8059
-Lj8058:
+	jl	Lj8011
+	jmp	Lj8012
+Lj8011:
 	movl	$0,-8(%ebp)
-Lj8059:
+Lj8012:
 	movl	-12(%ebp),%eax
 	call	SYSTEM_NEWUNICODESTRING$LONGINT$$POINTER
 	movl	%eax,-16(%ebp)
 	movl	-16(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj8066
-	jmp	Lj8067
-Lj8066:
+	jne	Lj8019
+	jmp	Lj8020
+Lj8019:
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj8070
+	jne	Lj8023
 	movl	$FPC_EMPTYCHAR,%eax
-Lj8070:
+Lj8023:
 	movl	-8(%ebp),%edx
 	leal	(%eax,%edx,2),%eax
 	movl	-12(%ebp),%ecx
@@ -20497,8 +20419,8 @@ Lj8070:
 	movl	-16(%ebp),%edx
 	addl	%edx,%eax
 	movw	$0,(%eax)
-Lj8067:
-Lj8057:
+Lj8020:
+Lj8010:
 	movl	8(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	8(%ebp),%eax
@@ -20519,68 +20441,68 @@ SYSTEM_POS$UNICODESTRING$UNICODESTRING$$LONGINT:
 	movl	$0,-12(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj8089
+	je	Lj8042
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj8089:
+Lj8042:
 	cmpl	$0,%eax
-	jg	Lj8087
-	jmp	Lj8088
-Lj8087:
+	jg	Lj8040
+	jmp	Lj8041
+Lj8040:
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj8092
+	je	Lj8045
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj8092:
+Lj8045:
 	movl	-4(%ebp),%edx
 	testl	%edx,%edx
-	je	Lj8093
+	je	Lj8046
 	movl	-4(%edx),%edx
 	shrl	$1,%edx
-Lj8093:
+Lj8046:
 	subl	%edx,%eax
 	movl	%eax,-20(%ebp)
 	movl	$0,-16(%ebp)
 	movl	-8(%ebp),%eax
 	movl	%eax,-24(%ebp)
-	jmp	Lj8099
+	jmp	Lj8052
 	.balign 4,0x90
-Lj8098:
+Lj8051:
 	incl	-16(%ebp)
 	movl	-24(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movw	(%eax),%ax
 	cmpw	(%edx),%ax
-	je	Lj8103
-	jmp	Lj8102
-Lj8103:
+	je	Lj8056
+	jmp	Lj8055
+Lj8056:
 	movl	-4(%ebp),%ecx
 	testl	%ecx,%ecx
-	je	Lj8106
+	je	Lj8059
 	movl	-4(%ecx),%ecx
 	shrl	$1,%ecx
-Lj8106:
+Lj8059:
 	movl	-24(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_COMPAREWORD$formal$formal$LONGINT$$LONGINT
 	testl	%eax,%eax
-	je	Lj8101
-	jmp	Lj8102
-Lj8101:
+	je	Lj8054
+	jmp	Lj8055
+Lj8054:
 	movl	-16(%ebp),%eax
 	movl	%eax,-12(%ebp)
-	jmp	Lj8083
-Lj8102:
+	jmp	Lj8036
+Lj8055:
 	addl	$2,-24(%ebp)
-Lj8099:
+Lj8052:
 	movl	-16(%ebp),%eax
 	cmpl	-20(%ebp),%eax
-	jle	Lj8098
-	jmp	Lj8100
-Lj8100:
-Lj8088:
-Lj8083:
+	jle	Lj8051
+	jmp	Lj8053
+Lj8053:
+Lj8041:
+Lj8036:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -20598,33 +20520,33 @@ SYSTEM_POS$WIDECHAR$UNICODESTRING$$LONGINT:
 	movl	%eax,-20(%ebp)
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj8120
+	je	Lj8073
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj8120:
+Lj8073:
 	movl	$1,-16(%ebp)
 	cmpl	-16(%ebp),%eax
-	jl	Lj8118
+	jl	Lj8071
 	decl	-16(%ebp)
 	.balign 4,0x90
-Lj8119:
+Lj8072:
 	incl	-16(%ebp)
 	movl	-20(%ebp),%edx
 	movw	(%edx),%dx
 	cmpw	-4(%ebp),%dx
-	je	Lj8121
-	jmp	Lj8122
-Lj8121:
+	je	Lj8074
+	jmp	Lj8075
+Lj8074:
 	movl	-16(%ebp),%edx
 	movl	%edx,-12(%ebp)
-	jmp	Lj8113
-Lj8122:
+	jmp	Lj8066
+Lj8075:
 	addl	$2,-20(%ebp)
 	cmpl	-16(%ebp),%eax
-	jg	Lj8119
-Lj8118:
+	jg	Lj8072
+Lj8071:
 	movl	$0,-12(%ebp)
-Lj8113:
+Lj8066:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -20648,7 +20570,7 @@ SYSTEM_POS$ANSISTRING$UNICODESTRING$$LONGINT:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj8129
+	jne	Lj8082
 	leal	-56(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,-56(%ebp)
@@ -20659,7 +20581,7 @@ SYSTEM_POS$ANSISTRING$UNICODESTRING$$LONGINT:
 	movl	-8(%ebp),%edx
 	call	SYSTEM_POS$UNICODESTRING$UNICODESTRING$$LONGINT
 	movl	%eax,-12(%ebp)
-Lj8129:
+Lj8082:
 	call	FPC_POPADDRSTACK
 	leal	-56(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
@@ -20668,9 +20590,9 @@ Lj8129:
 	call	FPC_ANSISTR_DECR_REF
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj8130
+	je	Lj8083
 	call	FPC_RERAISE
-Lj8130:
+Lj8083:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -20696,7 +20618,7 @@ SYSTEM_POS$SHORTSTRING$UNICODESTRING$$LONGINT:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj8144
+	jne	Lj8097
 	leal	-308(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,-308(%ebp)
@@ -20707,16 +20629,16 @@ SYSTEM_POS$SHORTSTRING$UNICODESTRING$$LONGINT:
 	movl	-8(%ebp),%edx
 	call	SYSTEM_POS$UNICODESTRING$UNICODESTRING$$LONGINT
 	movl	%eax,-12(%ebp)
-Lj8144:
+Lj8097:
 	call	FPC_POPADDRSTACK
 	leal	-308(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,-308(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj8145
+	je	Lj8098
 	call	FPC_RERAISE
-Lj8145:
+Lj8098:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -20740,7 +20662,7 @@ SYSTEM_POS$UNICODESTRING$ANSISTRING$$LONGINT:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj8159
+	jne	Lj8112
 	leal	-56(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,-56(%ebp)
@@ -20751,7 +20673,7 @@ SYSTEM_POS$UNICODESTRING$ANSISTRING$$LONGINT:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_POS$UNICODESTRING$UNICODESTRING$$LONGINT
 	movl	%eax,-12(%ebp)
-Lj8159:
+Lj8112:
 	call	FPC_POPADDRSTACK
 	leal	-56(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
@@ -20760,9 +20682,9 @@ Lj8159:
 	call	FPC_UNICODESTR_DECR_REF
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj8160
+	je	Lj8113
 	call	FPC_RERAISE
-Lj8160:
+Lj8113:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -20783,33 +20705,33 @@ SYSTEM_POS$CHAR$UNICODESTRING$$LONGINT:
 	movl	%eax,-24(%ebp)
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj8183
+	je	Lj8136
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj8183:
+Lj8136:
 	movl	$1,-16(%ebp)
 	cmpl	-16(%ebp),%eax
-	jl	Lj8181
+	jl	Lj8134
 	decl	-16(%ebp)
 	.balign 4,0x90
-Lj8182:
+Lj8135:
 	incl	-16(%ebp)
 	movl	-24(%ebp),%edx
 	movw	(%edx),%dx
 	cmpw	-18(%ebp),%dx
-	je	Lj8184
-	jmp	Lj8185
-Lj8184:
+	je	Lj8137
+	jmp	Lj8138
+Lj8137:
 	movl	-16(%ebp),%edx
 	movl	%edx,-12(%ebp)
-	jmp	Lj8172
-Lj8185:
+	jmp	Lj8125
+Lj8138:
 	addl	$2,-24(%ebp)
 	cmpl	-16(%ebp),%eax
-	jg	Lj8182
-Lj8181:
+	jg	Lj8135
+Lj8134:
 	movl	$0,-12(%ebp)
-Lj8172:
+Lj8125:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -20828,50 +20750,50 @@ SYSTEM_DELETE$UNICODESTRING$LONGINT$LONGINT:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj8194
+	je	Lj8147
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj8194:
+Lj8147:
 	movl	%eax,-16(%ebp)
 	movl	-8(%ebp),%eax
 	cmpl	-16(%ebp),%eax
-	jg	Lj8195
-	jmp	Lj8198
-Lj8198:
+	jg	Lj8148
+	jmp	Lj8151
+Lj8151:
 	movl	-8(%ebp),%eax
 	cmpl	$0,%eax
-	jle	Lj8195
-	jmp	Lj8197
-Lj8197:
+	jle	Lj8148
+	jmp	Lj8150
+Lj8150:
 	movl	-12(%ebp),%eax
 	cmpl	$0,%eax
-	jle	Lj8195
-	jmp	Lj8196
-Lj8195:
-	jmp	Lj8190
-Lj8196:
+	jle	Lj8148
+	jmp	Lj8149
+Lj8148:
+	jmp	Lj8143
+Lj8149:
 	movl	-4(%ebp),%eax
 	call	FPC_UNICODESTR_UNIQUE
 	movl	-16(%ebp),%eax
 	movl	-8(%ebp),%edx
 	subl	%edx,%eax
 	cmpl	-12(%ebp),%eax
-	jl	Lj8201
-	jmp	Lj8202
-Lj8201:
+	jl	Lj8154
+	jmp	Lj8155
+Lj8154:
 	movl	-16(%ebp),%eax
 	movl	-8(%ebp),%edx
 	subl	%edx,%eax
 	incl	%eax
 	movl	%eax,-12(%ebp)
-Lj8202:
+Lj8155:
 	movl	-16(%ebp),%eax
 	movl	-8(%ebp),%edx
 	subl	%edx,%eax
 	cmpl	-12(%ebp),%eax
-	jge	Lj8205
-	jmp	Lj8206
-Lj8205:
+	jge	Lj8158
+	jmp	Lj8159
+Lj8158:
 	decl	-8(%ebp)
 	movl	-16(%ebp),%ecx
 	movl	-8(%ebp),%eax
@@ -20883,9 +20805,9 @@ Lj8205:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%ebx
 	testl	%ebx,%ebx
-	jne	Lj8211
+	jne	Lj8164
 	movl	$FPC_EMPTYCHAR,%ebx
-Lj8211:
+Lj8164:
 	movl	-8(%ebp),%eax
 	movl	-12(%ebp),%edx
 	addl	%edx,%eax
@@ -20893,19 +20815,19 @@ Lj8211:
 	movl	-4(%ebp),%edx
 	movl	(%edx),%ebx
 	testl	%ebx,%ebx
-	jne	Lj8214
+	jne	Lj8167
 	movl	$FPC_EMPTYCHAR,%ebx
-Lj8214:
+Lj8167:
 	movl	-8(%ebp),%edx
 	leal	(%ebx,%edx,2),%edx
 	call	SYSTEM_MOVE$formal$formal$LONGINT
-Lj8206:
+Lj8159:
 	movl	-16(%ebp),%edx
 	movl	-12(%ebp),%eax
 	subl	%eax,%edx
 	movl	-4(%ebp),%eax
 	call	fpc_unicodestr_setlength
-Lj8190:
+Lj8143:
 	movl	-20(%ebp),%ebx
 	leave
 	ret
@@ -20929,122 +20851,122 @@ SYSTEM_INSERT$UNICODESTRING$UNICODESTRING$LONGINT:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj8221
+	jne	Lj8174
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj8226
+	je	Lj8179
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj8226:
+Lj8179:
 	testl	%eax,%eax
-	je	Lj8224
-	jmp	Lj8225
-Lj8224:
-	jmp	Lj8221
-Lj8225:
+	je	Lj8177
+	jmp	Lj8178
+Lj8177:
+	jmp	Lj8174
+Lj8178:
 	movl	-12(%ebp),%eax
 	cmpl	$0,%eax
-	jle	Lj8227
-	jmp	Lj8228
-Lj8227:
+	jle	Lj8180
+	jmp	Lj8181
+Lj8180:
 	movl	$1,-12(%ebp)
-Lj8228:
+Lj8181:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj8233
+	je	Lj8186
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj8233:
+Lj8186:
 	movl	%eax,-20(%ebp)
 	movl	-12(%ebp),%eax
 	cmpl	-20(%ebp),%eax
-	jg	Lj8234
-	jmp	Lj8235
-Lj8234:
+	jg	Lj8187
+	jmp	Lj8188
+Lj8187:
 	movl	-20(%ebp),%eax
 	incl	%eax
 	movl	%eax,-12(%ebp)
-Lj8235:
+Lj8188:
 	decl	-12(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj8242
+	je	Lj8195
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj8242:
+Lj8195:
 	movl	-20(%ebp),%edx
 	addl	%edx,%eax
 	call	SYSTEM_NEWUNICODESTRING$LONGINT$$POINTER
 	movl	%eax,-16(%ebp)
 	movl	-4(%ebp),%edx
 	testl	%edx,%edx
-	je	Lj8245
+	je	Lj8198
 	movl	-4(%edx),%edx
 	shrl	$1,%edx
-Lj8245:
+Lj8198:
 	movl	-20(%ebp),%eax
 	addl	%eax,%edx
 	leal	-16(%ebp),%eax
 	call	fpc_unicodestr_setlength
 	movl	-12(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj8248
-	jmp	Lj8249
-Lj8248:
+	jg	Lj8201
+	jmp	Lj8202
+Lj8201:
 	movl	-12(%ebp),%ecx
 	shll	$1,%ecx
 	movl	-16(%ebp),%edx
 	testl	%edx,%edx
-	jne	Lj8254
+	jne	Lj8207
 	movl	$FPC_EMPTYCHAR,%edx
-Lj8254:
+Lj8207:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj8257
+	jne	Lj8210
 	movl	$FPC_EMPTYCHAR,%eax
-Lj8257:
+Lj8210:
 	call	SYSTEM_MOVE$formal$formal$LONGINT
-Lj8249:
+Lj8202:
 	movl	-4(%ebp),%ecx
 	testl	%ecx,%ecx
-	je	Lj8260
+	je	Lj8213
 	movl	-4(%ecx),%ecx
 	shrl	$1,%ecx
-Lj8260:
+Lj8213:
 	shll	$1,%ecx
 	movl	-16(%ebp),%edx
 	testl	%edx,%edx
-	jne	Lj8263
+	jne	Lj8216
 	movl	$FPC_EMPTYCHAR,%edx
-Lj8263:
+Lj8216:
 	movl	-12(%ebp),%eax
 	leal	(%edx,%eax,2),%edx
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj8266
+	jne	Lj8219
 	movl	$FPC_EMPTYCHAR,%eax
-Lj8266:
+Lj8219:
 	call	SYSTEM_MOVE$formal$formal$LONGINT
 	movl	-20(%ebp),%edx
 	movl	-12(%ebp),%eax
 	subl	%eax,%edx
 	cmpl	$0,%edx
-	jg	Lj8267
-	jmp	Lj8268
-Lj8267:
+	jg	Lj8220
+	jmp	Lj8221
+Lj8220:
 	movl	-16(%ebp),%ecx
 	testl	%ecx,%ecx
-	jne	Lj8271
+	jne	Lj8224
 	movl	$FPC_EMPTYCHAR,%ecx
-Lj8271:
+Lj8224:
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj8272
+	je	Lj8225
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj8272:
+Lj8225:
 	movl	-12(%ebp),%edx
 	addl	%edx,%eax
 	leal	(%ecx,%eax,2),%edx
@@ -21055,13 +20977,13 @@ Lj8272:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%ebx
 	testl	%ebx,%ebx
-	jne	Lj8277
+	jne	Lj8230
 	movl	$FPC_EMPTYCHAR,%ebx
-Lj8277:
+Lj8230:
 	movl	-12(%ebp),%eax
 	leal	(%ebx,%eax,2),%eax
 	call	SYSTEM_MOVE$formal$formal$LONGINT
-Lj8268:
+Lj8221:
 	movl	-16(%ebp),%eax
 	call	FPC_UNICODESTR_INCR_REF
 	movl	-8(%ebp),%ebx
@@ -21069,16 +20991,16 @@ Lj8268:
 	call	FPC_UNICODESTR_DECR_REF
 	movl	-16(%ebp),%eax
 	movl	%eax,(%ebx)
-Lj8221:
+Lj8174:
 	call	FPC_POPADDRSTACK
 	leal	-16(%ebp),%eax
 	call	fpc_unicodestr_decr_ref
 	movl	$0,-16(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj8222
+	je	Lj8175
 	call	FPC_RERAISE
-Lj8222:
+Lj8175:
 	movl	-64(%ebp),%ebx
 	leave
 	ret
@@ -21100,7 +21022,7 @@ SYSTEM_UPCASE$WIDECHAR$$WIDECHAR:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj8288
+	jne	Lj8241
 	leal	-12(%ebp),%edx
 	movw	-4(%ebp),%ax
 	call	fpc_uchar_to_unicodestr
@@ -21114,7 +21036,7 @@ SYSTEM_UPCASE$WIDECHAR$$WIDECHAR:
 	movl	-56(%ebp),%eax
 	movw	(%eax),%ax
 	movw	%ax,-6(%ebp)
-Lj8288:
+Lj8241:
 	call	FPC_POPADDRSTACK
 	leal	-56(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
@@ -21124,9 +21046,9 @@ Lj8288:
 	movl	$0,-12(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj8289
+	je	Lj8242
 	call	FPC_RERAISE
-Lj8289:
+Lj8242:
 	movw	-6(%ebp),%ax
 	leave
 	ret
@@ -21164,14 +21086,14 @@ SYSTEM_SETSTRING$UNICODESTRING$PUNICODECHAR$LONGINT:
 	call	fpc_unicodestr_setlength
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj8321
-	jmp	Lj8320
-Lj8321:
+	jne	Lj8274
+	jmp	Lj8273
+Lj8274:
 	movl	-12(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj8319
-	jmp	Lj8320
-Lj8319:
+	jg	Lj8272
+	jmp	Lj8273
+Lj8272:
 	movl	-4(%ebp),%eax
 	call	fpc_unicodestr_unique
 	movl	%eax,%edx
@@ -21179,7 +21101,7 @@ Lj8319:
 	shll	$1,%ecx
 	movl	-8(%ebp),%eax
 	call	SYSTEM_MOVE$formal$formal$LONGINT
-Lj8320:
+Lj8273:
 	leave
 	ret
 
@@ -21201,21 +21123,21 @@ SYSTEM_SETSTRING$UNICODESTRING$PCHAR$LONGINT:
 	call	fpc_unicodestr_setlength
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj8338
-	jmp	Lj8337
-Lj8338:
+	jne	Lj8291
+	jmp	Lj8290
+Lj8291:
 	movl	-12(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj8336
-	jmp	Lj8337
-Lj8336:
+	jg	Lj8289
+	jmp	Lj8290
+Lj8289:
 	pushl	-12(%ebp)
 	movl	-4(%ebp),%ecx
 	movw	U_SYSTEM_DEFAULTSYSTEMCODEPAGE,%dx
 	movl	-8(%ebp),%eax
 	movl	U_SYSTEM_WIDESTRINGMANAGER+84,%ebx
 	call	*%ebx
-Lj8337:
+Lj8290:
 	movl	-20(%ebp),%ebx
 	leave
 	ret
@@ -21235,18 +21157,18 @@ FPC_VAL_REAL_UNICODESTR:
 	fstpt	-20(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj8353
+	je	Lj8306
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj8353:
+Lj8306:
 	cmpl	$255,%eax
-	jg	Lj8351
-	jmp	Lj8352
-Lj8351:
+	jg	Lj8304
+	jmp	Lj8305
+Lj8304:
 	movl	-8(%ebp),%eax
 	movl	$256,(%eax)
-	jmp	Lj8356
-Lj8352:
+	jmp	Lj8309
+Lj8305:
 	movl	-4(%ebp),%ecx
 	leal	-276(%ebp),%eax
 	movl	$255,%edx
@@ -21255,7 +21177,7 @@ Lj8352:
 	leal	-276(%ebp),%eax
 	call	fpc_val_real_shortstr
 	fstpt	-20(%ebp)
-Lj8356:
+Lj8309:
 	fldt	-20(%ebp)
 	leave
 	ret
@@ -21272,18 +21194,18 @@ fpc_val_enum_unicodestr:
 	movl	%ecx,-12(%ebp)
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj8373
+	je	Lj8326
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj8373:
+Lj8326:
 	cmpl	$255,%eax
-	jg	Lj8371
-	jmp	Lj8372
-Lj8371:
+	jg	Lj8324
+	jmp	Lj8325
+Lj8324:
 	movl	-12(%ebp),%eax
 	movl	$256,(%eax)
-	jmp	Lj8376
-Lj8372:
+	jmp	Lj8329
+Lj8325:
 	movl	-8(%ebp),%ecx
 	leal	-272(%ebp),%eax
 	movl	$255,%edx
@@ -21293,7 +21215,7 @@ Lj8372:
 	movl	$4,%eax
 	call	fpc_val_sint_shortstr
 	movl	%eax,-16(%ebp)
-Lj8376:
+Lj8329:
 	movl	-16(%ebp),%eax
 	leave
 	ret
@@ -21311,20 +21233,20 @@ FPC_VAL_CURRENCY_UNICODESTR:
 	movl	%edx,-8(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj8395
+	je	Lj8348
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj8395:
+Lj8348:
 	cmpl	$255,%eax
-	jg	Lj8393
-	jmp	Lj8394
-Lj8393:
+	jg	Lj8346
+	jmp	Lj8347
+Lj8346:
 	fldz
 	fistpq	-16(%ebp)
 	movl	-8(%ebp),%eax
 	movl	$256,(%eax)
-	jmp	Lj8400
-Lj8394:
+	jmp	Lj8353
+Lj8347:
 	movl	-4(%ebp),%ecx
 	leal	-272(%ebp),%eax
 	movl	$255,%edx
@@ -21335,7 +21257,7 @@ Lj8394:
 	fldt	_$SYSTEM$_Ld22
 	fmulp	%st,%st(1)
 	fistpq	-16(%ebp)
-Lj8400:
+Lj8353:
 	fildq	-16(%ebp)
 	leave
 	ret
@@ -21354,18 +21276,18 @@ FPC_VAL_UINT_UNICODESTR:
 	movl	$0,-12(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj8419
+	je	Lj8372
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj8419:
+Lj8372:
 	cmpl	$255,%eax
-	jg	Lj8417
-	jmp	Lj8418
-Lj8417:
+	jg	Lj8370
+	jmp	Lj8371
+Lj8370:
 	movl	-8(%ebp),%eax
 	movl	$256,(%eax)
-	jmp	Lj8422
-Lj8418:
+	jmp	Lj8375
+Lj8371:
 	movl	-4(%ebp),%ecx
 	leal	-268(%ebp),%eax
 	movl	$255,%edx
@@ -21374,7 +21296,7 @@ Lj8418:
 	leal	-268(%ebp),%eax
 	call	fpc_val_uint_shortstr
 	movl	%eax,-12(%ebp)
-Lj8422:
+Lj8375:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -21394,18 +21316,18 @@ FPC_VAL_SINT_UNICODESTR:
 	movl	$0,-16(%ebp)
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj8441
+	je	Lj8394
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj8441:
+Lj8394:
 	cmpl	$255,%eax
-	jg	Lj8439
-	jmp	Lj8440
-Lj8439:
+	jg	Lj8392
+	jmp	Lj8393
+Lj8392:
 	movl	-12(%ebp),%eax
 	movl	$256,(%eax)
-	jmp	Lj8444
-Lj8440:
+	jmp	Lj8397
+Lj8393:
 	movl	-8(%ebp),%ecx
 	leal	-272(%ebp),%eax
 	movl	$255,%edx
@@ -21415,7 +21337,7 @@ Lj8440:
 	movl	-4(%ebp),%eax
 	call	FPC_VAL_SINT_SHORTSTR
 	movl	%eax,-16(%ebp)
-Lj8444:
+Lj8397:
 	movl	-16(%ebp),%eax
 	leave
 	ret
@@ -21435,18 +21357,18 @@ FPC_VAL_QWORD_UNICODESTR:
 	movl	$0,-12(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj8465
+	je	Lj8418
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj8465:
+Lj8418:
 	cmpl	$255,%eax
-	jg	Lj8463
-	jmp	Lj8464
-Lj8463:
+	jg	Lj8416
+	jmp	Lj8417
+Lj8416:
 	movl	-8(%ebp),%eax
 	movl	$256,(%eax)
-	jmp	Lj8468
-Lj8464:
+	jmp	Lj8421
+Lj8417:
 	movl	-4(%ebp),%ecx
 	leal	-272(%ebp),%eax
 	movl	$255,%edx
@@ -21456,7 +21378,7 @@ Lj8464:
 	call	fpc_val_qword_shortstr
 	movl	%eax,-16(%ebp)
 	movl	%edx,-12(%ebp)
-Lj8468:
+Lj8421:
 	movl	-12(%ebp),%edx
 	movl	-16(%ebp),%eax
 	leave
@@ -21477,18 +21399,18 @@ FPC_VAL_INT64_UNICODESTR:
 	movl	$0,-12(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj8487
+	je	Lj8440
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj8487:
+Lj8440:
 	cmpl	$255,%eax
-	jg	Lj8485
-	jmp	Lj8486
-Lj8485:
+	jg	Lj8438
+	jmp	Lj8439
+Lj8438:
 	movl	-8(%ebp),%eax
 	movl	$256,(%eax)
-	jmp	Lj8490
-Lj8486:
+	jmp	Lj8443
+Lj8439:
 	movl	-4(%ebp),%ecx
 	leal	-272(%ebp),%eax
 	movl	$255,%edx
@@ -21498,7 +21420,7 @@ Lj8486:
 	call	fpc_val_int64_shortstr
 	movl	%eax,-16(%ebp)
 	movl	%edx,-12(%ebp)
-Lj8490:
+Lj8443:
 	movl	-12(%ebp),%edx
 	movl	-16(%ebp),%eax
 	leave
@@ -21525,7 +21447,7 @@ fpc_unicodestr_float:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj8505
+	jne	Lj8458
 	movzwl	20(%ebp),%eax
 	pushl	%eax
 	pushl	16(%ebp)
@@ -21550,16 +21472,16 @@ fpc_unicodestr_float:
 	call	FPC_UNICODESTR_DECR_REF
 	movl	-312(%ebp),%eax
 	movl	%eax,(%ebx)
-Lj8505:
+Lj8458:
 	call	FPC_POPADDRSTACK
 	leal	-312(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,-312(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj8506
+	je	Lj8459
 	call	FPC_RERAISE
-Lj8506:
+Lj8459:
 	movl	-316(%ebp),%ebx
 	leave
 	ret	$16
@@ -21585,7 +21507,7 @@ fpc_unicodestr_enum:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj8528
+	jne	Lj8481
 	pushl	12(%ebp)
 	leal	-268(%ebp),%eax
 	pushl	%eax
@@ -21607,16 +21529,16 @@ fpc_unicodestr_enum:
 	call	FPC_UNICODESTR_DECR_REF
 	movl	-312(%ebp),%eax
 	movl	%eax,(%ebx)
-Lj8528:
+Lj8481:
 	call	FPC_POPADDRSTACK
 	leal	-312(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,-312(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj8529
+	je	Lj8482
 	call	FPC_RERAISE
-Lj8529:
+Lj8482:
 	movl	-316(%ebp),%ebx
 	leave
 	ret	$8
@@ -21642,7 +21564,7 @@ fpc_unicodestr_bool:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj8551
+	jne	Lj8504
 	pushl	$255
 	leal	-268(%ebp),%ecx
 	movl	-8(%ebp),%edx
@@ -21661,16 +21583,16 @@ fpc_unicodestr_bool:
 	call	FPC_UNICODESTR_DECR_REF
 	movl	-312(%ebp),%eax
 	movl	%eax,(%ebx)
-Lj8551:
+Lj8504:
 	call	FPC_POPADDRSTACK
 	leal	-312(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,-312(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj8552
+	je	Lj8505
 	call	FPC_RERAISE
-Lj8552:
+Lj8505:
 	movl	-316(%ebp),%ebx
 	leave
 	ret
@@ -21696,7 +21618,7 @@ fpc_unicodestr_currency:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj8570
+	jne	Lj8523
 	pushl	12(%ebp)
 	pushl	8(%ebp)
 	pushl	$255
@@ -21717,16 +21639,16 @@ fpc_unicodestr_currency:
 	call	FPC_UNICODESTR_DECR_REF
 	movl	-312(%ebp),%eax
 	movl	%eax,(%ebx)
-Lj8570:
+Lj8523:
 	call	FPC_POPADDRSTACK
 	leal	-312(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,-312(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj8571
+	je	Lj8524
 	call	FPC_RERAISE
-Lj8571:
+Lj8524:
 	movl	-316(%ebp),%ebx
 	leave
 	ret	$8
@@ -21752,7 +21674,7 @@ fpc_unicodestr_sint:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj8591
+	jne	Lj8544
 	pushl	$255
 	leal	-268(%ebp),%ecx
 	movl	-8(%ebp),%edx
@@ -21771,16 +21693,16 @@ fpc_unicodestr_sint:
 	call	FPC_UNICODESTR_DECR_REF
 	movl	-312(%ebp),%eax
 	movl	%eax,(%ebx)
-Lj8591:
+Lj8544:
 	call	FPC_POPADDRSTACK
 	leal	-312(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,-312(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj8592
+	je	Lj8545
 	call	FPC_RERAISE
-Lj8592:
+Lj8545:
 	movl	-316(%ebp),%ebx
 	leave
 	ret
@@ -21806,7 +21728,7 @@ fpc_unicodestr_uint:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj8610
+	jne	Lj8563
 	pushl	$255
 	leal	-268(%ebp),%ecx
 	movl	-8(%ebp),%edx
@@ -21825,16 +21747,16 @@ fpc_unicodestr_uint:
 	call	FPC_UNICODESTR_DECR_REF
 	movl	-312(%ebp),%eax
 	movl	%eax,(%ebx)
-Lj8610:
+Lj8563:
 	call	FPC_POPADDRSTACK
 	leal	-312(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,-312(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj8611
+	je	Lj8564
 	call	FPC_RERAISE
-Lj8611:
+Lj8564:
 	movl	-316(%ebp),%ebx
 	leave
 	ret
@@ -21859,7 +21781,7 @@ fpc_unicodestr_int64:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj8629
+	jne	Lj8582
 	pushl	12(%ebp)
 	pushl	8(%ebp)
 	leal	-264(%ebp),%edx
@@ -21879,16 +21801,16 @@ fpc_unicodestr_int64:
 	call	FPC_UNICODESTR_DECR_REF
 	movl	-308(%ebp),%eax
 	movl	%eax,(%ebx)
-Lj8629:
+Lj8582:
 	call	FPC_POPADDRSTACK
 	leal	-308(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,-308(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj8630
+	je	Lj8583
 	call	FPC_RERAISE
-Lj8630:
+Lj8583:
 	movl	-312(%ebp),%ebx
 	leave
 	ret	$8
@@ -21913,7 +21835,7 @@ fpc_unicodestr_qword:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj8648
+	jne	Lj8601
 	pushl	12(%ebp)
 	pushl	8(%ebp)
 	leal	-264(%ebp),%edx
@@ -21933,16 +21855,16 @@ fpc_unicodestr_qword:
 	call	FPC_UNICODESTR_DECR_REF
 	movl	-308(%ebp),%eax
 	movl	%eax,(%ebx)
-Lj8648:
+Lj8601:
 	call	FPC_POPADDRSTACK
 	leal	-308(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,-308(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj8649
+	je	Lj8602
 	call	FPC_RERAISE
-Lj8649:
+Lj8602:
 	movl	-312(%ebp),%ebx
 	leave
 	ret	$8
@@ -21965,51 +21887,51 @@ FPC_UTF16TOUTF32:
 	movw	%ax,-18(%ebp)
 	movw	-18(%ebp),%ax
 	cmpw	$55295,%ax
-	jbe	Lj8669
-	jmp	Lj8671
-Lj8671:
+	jbe	Lj8622
+	jmp	Lj8624
+Lj8624:
 	movw	-18(%ebp),%ax
 	cmpw	$57344,%ax
-	jae	Lj8669
-	jmp	Lj8670
-Lj8669:
+	jae	Lj8622
+	jmp	Lj8623
+Lj8622:
 	movzwl	-18(%ebp),%eax
 	movl	%eax,-16(%ebp)
 	movl	-12(%ebp),%eax
 	movl	$1,(%eax)
-	jmp	Lj8676
-Lj8670:
+	jmp	Lj8629
+Lj8623:
 	movw	-18(%ebp),%ax
 	cmpw	$56319,%ax
-	jbe	Lj8681
-	jmp	Lj8678
-Lj8681:
+	jbe	Lj8634
+	jmp	Lj8631
+Lj8634:
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj8682
+	je	Lj8635
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj8682:
+Lj8635:
 	cmpl	-8(%ebp),%eax
-	jg	Lj8680
-	jmp	Lj8678
-Lj8680:
+	jg	Lj8633
+	jmp	Lj8631
+Lj8633:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	incl	%eax
 	movw	-2(%edx,%eax,2),%ax
 	cmpw	$56320,%ax
-	jae	Lj8679
-	jmp	Lj8678
-Lj8679:
+	jae	Lj8632
+	jmp	Lj8631
+Lj8632:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	incl	%eax
 	movw	-2(%edx,%eax,2),%ax
 	cmpw	$57343,%ax
-	jbe	Lj8677
-	jmp	Lj8678
-Lj8677:
+	jbe	Lj8630
+	jmp	Lj8631
+Lj8630:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	incl	%eax
@@ -22023,14 +21945,14 @@ Lj8677:
 	movl	%edx,-16(%ebp)
 	movl	-12(%ebp),%eax
 	movl	$2,(%eax)
-	jmp	Lj8687
-Lj8678:
+	jmp	Lj8640
+Lj8631:
 	movzwl	-18(%ebp),%eax
 	movl	%eax,-16(%ebp)
 	movl	-12(%ebp),%eax
 	movl	$1,(%eax)
-Lj8687:
-Lj8676:
+Lj8640:
+Lj8629:
 	movl	-16(%ebp),%eax
 	leave
 	ret
@@ -22046,9 +21968,9 @@ SYSTEM_UNICODETOUTF8$PCHAR$PUNICODECHAR$LONGINT$$LONGINT:
 	movl	%edx,-8(%ebp)
 	movl	%ecx,-12(%ebp)
 	cmpl	$0,-8(%ebp)
-	jne	Lj8694
-	jmp	Lj8695
-Lj8694:
+	jne	Lj8647
+	jmp	Lj8648
+Lj8647:
 	movl	-8(%ebp),%eax
 	movw	$0,%cx
 	movl	$-1,%edx
@@ -22059,10 +21981,10 @@ Lj8694:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_UNICODETOUTF8$PCHAR$LONGWORD$PUNICODECHAR$LONGWORD$$LONGWORD
 	movl	%eax,-16(%ebp)
-	jmp	Lj8712
-Lj8695:
+	jmp	Lj8665
+Lj8648:
 	movl	$0,-16(%ebp)
-Lj8712:
+Lj8665:
 	movl	-16(%ebp),%eax
 	leave
 	ret
@@ -22088,61 +22010,61 @@ SYSTEM_UNICODETOUTF8$PCHAR$LONGWORD$PUNICODECHAR$LONGWORD$$LONGWORD:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj8717
+	jne	Lj8670
 	movl	$0,-16(%ebp)
 	movl	-12(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj8722
-	jmp	Lj8723
-Lj8722:
-	jmp	Lj8717
-Lj8723:
+	je	Lj8675
+	jmp	Lj8676
+Lj8675:
+	jmp	Lj8670
+Lj8676:
 	movl	$0,-20(%ebp)
 	movl	$0,-24(%ebp)
 	cmpl	$0,-4(%ebp)
-	jne	Lj8728
-	jmp	Lj8729
-Lj8728:
-	jmp	Lj8731
+	jne	Lj8681
+	jmp	Lj8682
+Lj8681:
+	jmp	Lj8684
 	.balign 4,0x90
-Lj8730:
+Lj8683:
 	movl	-12(%ebp),%eax
 	movl	-20(%ebp),%edx
 	movw	(%eax,%edx,2),%ax
 	movw	%ax,-26(%ebp)
 	movw	-26(%ebp),%ax
 	subw	$127,%ax
-	jbe	Lj8737
+	jbe	Lj8690
 	decw	%ax
 	subw	$1919,%ax
-	jbe	Lj8738
+	jbe	Lj8691
 	decw	%ax
 	subw	$53247,%ax
-	jbe	Lj8739
+	jbe	Lj8692
 	decw	%ax
 	subw	$1023,%ax
-	jbe	Lj8740
+	jbe	Lj8693
 	subw	$1025,%ax
-	jb	Lj8736
+	jb	Lj8689
 	subw	$8191,%ax
-	jbe	Lj8739
-	jmp	Lj8736
-Lj8737:
+	jbe	Lj8692
+	jmp	Lj8689
+Lj8690:
 	movl	-4(%ebp),%eax
 	movl	-24(%ebp),%edx
 	movb	-26(%ebp),%cl
 	movb	%cl,(%eax,%edx,1)
 	incl	-24(%ebp)
-	jmp	Lj8735
-Lj8738:
+	jmp	Lj8688
+Lj8691:
 	movl	-24(%ebp),%eax
 	incl	%eax
 	cmpl	-8(%ebp),%eax
-	jae	Lj8743
-	jmp	Lj8744
-Lj8743:
-	jmp	Lj8732
-Lj8744:
+	jae	Lj8696
+	jmp	Lj8697
+Lj8696:
+	jmp	Lj8685
+Lj8697:
 	movzwl	-26(%ebp),%eax
 	shrl	$6,%eax
 	orl	$192,%eax
@@ -22157,16 +22079,16 @@ Lj8744:
 	orw	$128,%dx
 	movb	%dl,(%ecx,%eax,1)
 	addl	$2,-24(%ebp)
-	jmp	Lj8735
-Lj8739:
+	jmp	Lj8688
+Lj8692:
 	movl	-24(%ebp),%eax
 	addl	$2,%eax
 	cmpl	-8(%ebp),%eax
-	jae	Lj8749
-	jmp	Lj8750
-Lj8749:
-	jmp	Lj8732
-Lj8750:
+	jae	Lj8702
+	jmp	Lj8703
+Lj8702:
+	jmp	Lj8685
+Lj8703:
 	movzwl	-26(%ebp),%eax
 	shrl	$12,%eax
 	orl	$224,%eax
@@ -22189,16 +22111,16 @@ Lj8750:
 	orw	$128,%dx
 	movb	%dl,(%ecx,%eax,1)
 	addl	$3,-24(%ebp)
-	jmp	Lj8735
-Lj8740:
+	jmp	Lj8688
+Lj8693:
 	movl	-24(%ebp),%eax
 	addl	$3,%eax
 	cmpl	-8(%ebp),%eax
-	jae	Lj8757
-	jmp	Lj8758
-Lj8757:
-	jmp	Lj8732
-Lj8758:
+	jae	Lj8710
+	jmp	Lj8711
+Lj8710:
+	jmp	Lj8685
+Lj8711:
 	movl	8(%ebp),%ebx
 	movl	$0,%edx
 	subl	$1,%ebx
@@ -22206,28 +22128,28 @@ Lj8758:
 	movl	-20(%ebp),%ecx
 	movl	$0,%eax
 	cmpl	%eax,%edx
-	jg	Lj8762
-	jl	Lj8760
+	jg	Lj8715
+	jl	Lj8713
 	cmpl	%ecx,%ebx
-	ja	Lj8762
-	jmp	Lj8760
-Lj8762:
+	ja	Lj8715
+	jmp	Lj8713
+Lj8715:
 	movl	-12(%ebp),%edx
 	movl	-20(%ebp),%eax
 	incl	%eax
 	movw	(%edx,%eax,2),%ax
 	cmpw	$56320,%ax
-	jae	Lj8761
-	jmp	Lj8760
-Lj8761:
+	jae	Lj8714
+	jmp	Lj8713
+Lj8714:
 	movl	-12(%ebp),%edx
 	movl	-20(%ebp),%eax
 	incl	%eax
 	movw	(%edx,%eax,2),%ax
 	cmpw	$57343,%ax
-	jbe	Lj8759
-	jmp	Lj8760
-Lj8759:
+	jbe	Lj8712
+	jmp	Lj8713
+Lj8712:
 	leal	-80(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,-80(%ebp)
@@ -22289,69 +22211,69 @@ Lj8759:
 	movb	%dl,(%ecx,%eax,1)
 	addl	$4,-24(%ebp)
 	incl	-20(%ebp)
-Lj8760:
-	jmp	Lj8735
-Lj8736:
-Lj8735:
+Lj8713:
+	jmp	Lj8688
+Lj8689:
+Lj8688:
 	incl	-20(%ebp)
-Lj8731:
+Lj8684:
 	movl	-20(%ebp),%eax
 	cmpl	8(%ebp),%eax
-	jb	Lj8793
-	jmp	Lj8732
-Lj8793:
+	jb	Lj8746
+	jmp	Lj8685
+Lj8746:
 	movl	-24(%ebp),%eax
 	cmpl	-8(%ebp),%eax
-	jb	Lj8730
-	jmp	Lj8732
-Lj8732:
+	jb	Lj8683
+	jmp	Lj8685
+Lj8685:
 	movl	-8(%ebp),%eax
 	decl	%eax
 	cmpl	-24(%ebp),%eax
-	jb	Lj8794
-	jmp	Lj8795
-Lj8794:
+	jb	Lj8747
+	jmp	Lj8748
+Lj8747:
 	movl	-8(%ebp),%eax
 	decl	%eax
 	movl	%eax,-24(%ebp)
-Lj8795:
+Lj8748:
 	movl	-4(%ebp),%edx
 	movl	-24(%ebp),%eax
 	movb	$0,(%edx,%eax,1)
-	jmp	Lj8800
-Lj8729:
-	jmp	Lj8802
+	jmp	Lj8753
+Lj8682:
+	jmp	Lj8755
 	.balign 4,0x90
-Lj8801:
+Lj8754:
 	movl	-12(%ebp),%edx
 	movl	-20(%ebp),%eax
 	movw	(%edx,%eax,2),%ax
 	subw	$127,%ax
-	jbe	Lj8806
+	jbe	Lj8759
 	decw	%ax
 	subw	$1919,%ax
-	jbe	Lj8807
+	jbe	Lj8760
 	decw	%ax
 	subw	$53247,%ax
-	jbe	Lj8808
+	jbe	Lj8761
 	decw	%ax
 	subw	$1023,%ax
-	jbe	Lj8809
+	jbe	Lj8762
 	subw	$1025,%ax
-	jb	Lj8805
+	jb	Lj8758
 	subw	$8191,%ax
-	jbe	Lj8808
-	jmp	Lj8805
-Lj8806:
+	jbe	Lj8761
+	jmp	Lj8758
+Lj8759:
 	incl	-24(%ebp)
-	jmp	Lj8804
-Lj8807:
+	jmp	Lj8757
+Lj8760:
 	addl	$2,-24(%ebp)
-	jmp	Lj8804
-Lj8808:
+	jmp	Lj8757
+Lj8761:
 	addl	$3,-24(%ebp)
-	jmp	Lj8804
-Lj8809:
+	jmp	Lj8757
+Lj8762:
 	movl	8(%ebp),%eax
 	movl	$0,%edx
 	subl	$1,%eax
@@ -22359,46 +22281,46 @@ Lj8809:
 	movl	-20(%ebp),%ecx
 	movl	$0,%ebx
 	cmpl	%ebx,%edx
-	jg	Lj8813
-	jl	Lj8811
+	jg	Lj8766
+	jl	Lj8764
 	cmpl	%ecx,%eax
-	ja	Lj8813
-	jmp	Lj8811
-Lj8813:
+	ja	Lj8766
+	jmp	Lj8764
+Lj8766:
 	movl	-12(%ebp),%edx
 	movl	-20(%ebp),%eax
 	incl	%eax
 	movw	(%edx,%eax,2),%ax
 	cmpw	$56320,%ax
-	jae	Lj8812
-	jmp	Lj8811
-Lj8812:
+	jae	Lj8765
+	jmp	Lj8764
+Lj8765:
 	movl	-12(%ebp),%edx
 	movl	-20(%ebp),%eax
 	incl	%eax
 	movw	(%edx,%eax,2),%ax
 	cmpw	$57343,%ax
-	jbe	Lj8810
-	jmp	Lj8811
-Lj8810:
+	jbe	Lj8763
+	jmp	Lj8764
+Lj8763:
 	addl	$4,-24(%ebp)
 	incl	-20(%ebp)
-Lj8811:
-	jmp	Lj8804
-Lj8805:
-Lj8804:
+Lj8764:
+	jmp	Lj8757
+Lj8758:
+Lj8757:
 	incl	-20(%ebp)
-Lj8802:
+Lj8755:
 	movl	-20(%ebp),%eax
 	cmpl	8(%ebp),%eax
-	jb	Lj8801
-	jmp	Lj8803
-Lj8803:
-Lj8800:
+	jb	Lj8754
+	jmp	Lj8756
+Lj8756:
+Lj8753:
 	movl	-24(%ebp),%eax
 	incl	%eax
 	movl	%eax,-16(%ebp)
-Lj8717:
+Lj8670:
 	call	FPC_POPADDRSTACK
 	leal	-88(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
@@ -22411,9 +22333,9 @@ Lj8717:
 	movl	$0,-80(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj8718
+	je	Lj8671
 	call	FPC_RERAISE
-Lj8718:
+Lj8671:
 	movl	-16(%ebp),%eax
 	movl	-92(%ebp),%ebx
 	leave
@@ -22430,9 +22352,9 @@ SYSTEM_UTF8TOUNICODE$PUNICODECHAR$PCHAR$LONGINT$$LONGINT:
 	movl	%edx,-8(%ebp)
 	movl	%ecx,-12(%ebp)
 	cmpl	$0,-8(%ebp)
-	jne	Lj8818
-	jmp	Lj8819
-Lj8818:
+	jne	Lj8771
+	jmp	Lj8772
+Lj8771:
 	movl	-8(%ebp),%eax
 	call	FPC_PCHAR_LENGTH
 	pushl	%eax
@@ -22441,10 +22363,10 @@ Lj8818:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_UTF8TOUNICODE$PUNICODECHAR$LONGWORD$PCHAR$LONGWORD$$LONGWORD
 	movl	%eax,-16(%ebp)
-	jmp	Lj8832
-Lj8819:
+	jmp	Lj8785
+Lj8772:
 	movl	$0,-16(%ebp)
-Lj8832:
+Lj8785:
 	movl	-16(%ebp),%eax
 	leave
 	ret
@@ -22461,23 +22383,23 @@ SYSTEM_UTF8TOUNICODE$PUNICODECHAR$LONGWORD$PCHAR$LONGWORD$$LONGWORD:
 	movl	%edx,-8(%ebp)
 	movl	%ecx,-12(%ebp)
 	cmpl	$0,-12(%ebp)
-	jne	Lj8838
-	jmp	Lj8837
-Lj8837:
+	jne	Lj8791
+	jmp	Lj8790
+Lj8790:
 	movl	$0,-16(%ebp)
-	jmp	Lj8835
-Lj8838:
+	jmp	Lj8788
+Lj8791:
 	movl	$-1,-16(%ebp)
 	movl	$0,-20(%ebp)
 	movl	$0,-28(%ebp)
 	movl	$0,-32(%ebp)
 	cmpl	$0,-4(%ebp)
-	jne	Lj8849
-	jmp	Lj8850
-Lj8849:
-	jmp	Lj8852
+	jne	Lj8802
+	jmp	Lj8803
+Lj8802:
+	jmp	Lj8805
 	.balign 4,0x90
-Lj8851:
+Lj8804:
 	movl	-12(%ebp),%edx
 	movl	-20(%ebp),%eax
 	movb	(%edx,%eax,1),%al
@@ -22486,26 +22408,26 @@ Lj8851:
 	andb	$128,%al
 	movzbl	%al,%eax
 	testl	%eax,%eax
-	je	Lj8856
-	jmp	Lj8857
-Lj8856:
+	je	Lj8809
+	jmp	Lj8810
+Lj8809:
 	movzbl	-21(%ebp),%eax
 	cmpl	$10,%eax
-	je	Lj8858
-	jmp	Lj8859
-Lj8858:
+	je	Lj8811
+	jmp	Lj8812
+Lj8811:
 	movl	-32(%ebp),%eax
 	cmpl	$13,%eax
-	jne	Lj8862
-	jmp	Lj8861
-Lj8862:
-	jmp	Lj8861
+	jne	Lj8815
+	jmp	Lj8814
+Lj8815:
+	jmp	Lj8814
 	movl	-28(%ebp),%eax
 	incl	%eax
 	cmpl	-8(%ebp),%eax
-	jb	Lj8863
-	jmp	Lj8864
-Lj8863:
+	jb	Lj8816
+	jmp	Lj8817
+Lj8816:
 	movl	-4(%ebp),%eax
 	movl	-28(%ebp),%edx
 	movw	$13,(%eax,%edx,2)
@@ -22515,15 +22437,15 @@ Lj8863:
 	movw	$10,(%eax,%edx,2)
 	incl	-28(%ebp)
 	movl	$10,-32(%ebp)
-	jmp	Lj8871
-Lj8864:
+	jmp	Lj8824
+Lj8817:
 	movl	-4(%ebp),%eax
 	movl	-28(%ebp),%edx
 	movw	$13,(%eax,%edx,2)
 	incl	-28(%ebp)
-Lj8871:
-	jmp	Lj8874
-Lj8861:
+Lj8824:
+	jmp	Lj8827
+Lj8814:
 	movl	-4(%ebp),%eax
 	movl	-28(%ebp),%ecx
 	movzbw	-21(%ebp),%dx
@@ -22531,9 +22453,9 @@ Lj8861:
 	incl	-28(%ebp)
 	movzbl	-21(%ebp),%eax
 	movl	%eax,-32(%ebp)
-Lj8874:
-	jmp	Lj8879
-Lj8859:
+Lj8827:
+	jmp	Lj8832
+Lj8812:
 	movl	-4(%ebp),%eax
 	movl	-28(%ebp),%edx
 	movzbw	-21(%ebp),%cx
@@ -22541,47 +22463,47 @@ Lj8859:
 	incl	-28(%ebp)
 	movzbl	-21(%ebp),%eax
 	movl	%eax,-32(%ebp)
-Lj8879:
+Lj8832:
 	incl	-20(%ebp)
-	jmp	Lj8884
-Lj8857:
+	jmp	Lj8837
+Lj8810:
 	movb	-21(%ebp),%al
 	movb	%al,-33(%ebp)
 	movl	$0,-40(%ebp)
-	jmp	Lj8890
+	jmp	Lj8843
 	.balign 4,0x90
-Lj8889:
+Lj8842:
 	movzbl	-33(%ebp),%eax
 	shll	$1,%eax
 	andl	$254,%eax
 	movb	%al,-33(%ebp)
 	incl	-40(%ebp)
-Lj8890:
+Lj8843:
 	movb	-33(%ebp),%al
 	andb	$128,%al
 	movzbl	%al,%eax
 	testl	%eax,%eax
-	jne	Lj8889
-	jmp	Lj8891
-Lj8891:
+	jne	Lj8842
+	jmp	Lj8844
+Lj8844:
 	movl	-20(%ebp),%edx
 	movl	-40(%ebp),%eax
 	addl	%eax,%edx
 	decl	%edx
 	cmpl	8(%ebp),%edx
-	ja	Lj8894
-	jmp	Lj8895
-Lj8894:
+	ja	Lj8847
+	jmp	Lj8848
+Lj8847:
 	movl	$1,-40(%ebp)
-Lj8895:
+Lj8848:
 	movl	-40(%ebp),%eax
 	decl	%eax
 	movl	$1,-44(%ebp)
 	cmpl	-44(%ebp),%eax
-	jb	Lj8899
+	jb	Lj8852
 	decl	-44(%ebp)
 	.balign 4,0x90
-Lj8900:
+Lj8853:
 	incl	-44(%ebp)
 	movl	-12(%ebp),%ebx
 	movl	-20(%ebp),%edx
@@ -22590,9 +22512,9 @@ Lj8900:
 	movb	(%ebx,%edx,1),%dl
 	andb	$128,%dl
 	cmpb	$128,%dl
-	jne	Lj8901
-	jmp	Lj8903
-Lj8903:
+	jne	Lj8854
+	jmp	Lj8856
+Lj8856:
 	movl	-12(%ebp),%ebx
 	movl	-20(%ebp),%edx
 	movl	-44(%ebp),%ecx
@@ -22601,37 +22523,37 @@ Lj8903:
 	andb	$64,%dl
 	movzbl	%dl,%edx
 	testl	%edx,%edx
-	jne	Lj8901
-	jmp	Lj8902
-Lj8901:
+	jne	Lj8854
+	jmp	Lj8855
+Lj8854:
 	movl	-44(%ebp),%edx
 	movl	%edx,-40(%ebp)
-	jmp	Lj8899
-Lj8902:
+	jmp	Lj8852
+Lj8855:
 	cmpl	-44(%ebp),%eax
-	ja	Lj8900
-Lj8899:
+	ja	Lj8853
+Lj8852:
 	movl	$65535,-48(%ebp)
 	movl	-40(%ebp),%eax
 	cmpl	$1,%eax
-	jb	Lj8909
+	jb	Lj8862
 	decl	%eax
-	je	Lj8910
+	je	Lj8863
 	decl	%eax
-	je	Lj8911
+	je	Lj8864
 	decl	%eax
-	je	Lj8912
+	je	Lj8865
 	decl	%eax
-	je	Lj8913
+	je	Lj8866
 	decl	%eax
-	jb	Lj8909
+	jb	Lj8862
 	subl	$2,%eax
-	jbe	Lj8914
-	jmp	Lj8909
-Lj8910:
+	jbe	Lj8867
+	jmp	Lj8862
+Lj8863:
 	movl	$63,-48(%ebp)
-	jmp	Lj8908
-Lj8911:
+	jmp	Lj8861
+Lj8864:
 	movl	-12(%ebp),%eax
 	movl	-20(%ebp),%edx
 	movb	(%eax,%edx,1),%al
@@ -22650,13 +22572,13 @@ Lj8911:
 	movl	%eax,-48(%ebp)
 	movl	-48(%ebp),%eax
 	cmpl	$127,%eax
-	jbe	Lj8921
-	jmp	Lj8922
-Lj8921:
+	jbe	Lj8874
+	jmp	Lj8875
+Lj8874:
 	movl	$63,-48(%ebp)
-Lj8922:
-	jmp	Lj8908
-Lj8912:
+Lj8875:
+	jmp	Lj8861
+Lj8865:
 	movl	-12(%ebp),%edx
 	movl	-20(%ebp),%eax
 	movb	(%edx,%eax,1),%al
@@ -22685,28 +22607,28 @@ Lj8912:
 	movl	%eax,-48(%ebp)
 	movl	-48(%ebp),%eax
 	cmpl	$2047,%eax
-	jbe	Lj8931
-	jmp	Lj8934
-Lj8934:
+	jbe	Lj8884
+	jmp	Lj8887
+Lj8887:
 	movl	-48(%ebp),%eax
 	cmpl	$65534,%eax
-	jae	Lj8931
-	jmp	Lj8933
-Lj8933:
+	jae	Lj8884
+	jmp	Lj8886
+Lj8886:
 	movl	-48(%ebp),%eax
 	cmpl	$55296,%eax
-	jae	Lj8935
-	jmp	Lj8932
-Lj8935:
+	jae	Lj8888
+	jmp	Lj8885
+Lj8888:
 	movl	-48(%ebp),%eax
 	cmpl	$57343,%eax
-	jbe	Lj8931
-	jmp	Lj8932
-Lj8931:
+	jbe	Lj8884
+	jmp	Lj8885
+Lj8884:
 	movl	$63,-48(%ebp)
-Lj8932:
-	jmp	Lj8908
-Lj8913:
+Lj8885:
+	jmp	Lj8861
+Lj8866:
 	movl	-12(%ebp),%edx
 	movl	-20(%ebp),%eax
 	movb	(%edx,%eax,1),%al
@@ -22745,17 +22667,17 @@ Lj8913:
 	movl	%eax,-48(%ebp)
 	movl	-48(%ebp),%eax
 	cmpl	$65536,%eax
-	jb	Lj8946
-	jmp	Lj8948
-Lj8948:
+	jb	Lj8899
+	jmp	Lj8901
+Lj8901:
 	movl	-48(%ebp),%eax
 	cmpl	$1114111,%eax
-	ja	Lj8946
-	jmp	Lj8947
-Lj8946:
+	ja	Lj8899
+	jmp	Lj8900
+Lj8899:
 	movl	$63,-48(%ebp)
-	jmp	Lj8951
-Lj8947:
+	jmp	Lj8904
+Lj8900:
 	subl	$65536,-48(%ebp)
 	movl	-8(%ebp),%edx
 	movl	$0,%ebx
@@ -22764,12 +22686,12 @@ Lj8947:
 	movl	-28(%ebp),%ecx
 	movl	$0,%eax
 	cmpl	%eax,%ebx
-	jg	Lj8952
-	jl	Lj8953
+	jg	Lj8905
+	jl	Lj8906
 	cmpl	%ecx,%edx
-	ja	Lj8952
-	jmp	Lj8953
-Lj8952:
+	ja	Lj8905
+	jmp	Lj8906
+Lj8905:
 	movl	-48(%ebp),%eax
 	shrl	$10,%eax
 	addl	$55296,%eax
@@ -22781,26 +22703,26 @@ Lj8952:
 	andl	$1023,%eax
 	addl	$56320,%eax
 	movl	%eax,-48(%ebp)
-	jmp	Lj8958
-Lj8953:
+	jmp	Lj8911
+Lj8906:
 	movl	-20(%ebp),%eax
 	movl	-40(%ebp),%edx
 	addl	%edx,%eax
 	movl	%eax,-20(%ebp)
 	movl	$0,-40(%ebp)
-Lj8958:
-Lj8951:
-	jmp	Lj8908
-Lj8914:
+Lj8911:
+Lj8904:
+	jmp	Lj8861
+Lj8867:
 	movl	$63,-48(%ebp)
-	jmp	Lj8908
-Lj8909:
-Lj8908:
+	jmp	Lj8861
+Lj8862:
+Lj8861:
 	movl	-40(%ebp),%eax
 	cmpl	$0,%eax
-	ja	Lj8965
-	jmp	Lj8966
-Lj8965:
+	ja	Lj8918
+	jmp	Lj8919
+Lj8918:
 	movl	-48(%ebp),%eax
 	movl	%eax,-32(%ebp)
 	movl	-4(%ebp),%edx
@@ -22808,31 +22730,31 @@ Lj8965:
 	movw	-48(%ebp),%ax
 	movw	%ax,(%edx,%ecx,2)
 	incl	-28(%ebp)
-Lj8966:
+Lj8919:
 	movl	-20(%ebp),%edx
 	movl	-40(%ebp),%eax
 	addl	%eax,%edx
 	movl	%edx,-20(%ebp)
-Lj8884:
-Lj8852:
+Lj8837:
+Lj8805:
 	movl	-28(%ebp),%eax
 	cmpl	-8(%ebp),%eax
-	jb	Lj8973
-	jmp	Lj8853
-Lj8973:
+	jb	Lj8926
+	jmp	Lj8806
+Lj8926:
 	movl	-20(%ebp),%eax
 	cmpl	8(%ebp),%eax
-	jb	Lj8851
-	jmp	Lj8853
-Lj8853:
+	jb	Lj8804
+	jmp	Lj8806
+Lj8806:
 	movl	-28(%ebp),%eax
 	incl	%eax
 	movl	%eax,-16(%ebp)
-	jmp	Lj8976
-Lj8850:
-	jmp	Lj8978
+	jmp	Lj8929
+Lj8803:
+	jmp	Lj8931
 	.balign 4,0x90
-Lj8977:
+Lj8930:
 	movl	-12(%ebp),%eax
 	movl	-20(%ebp),%edx
 	movb	(%eax,%edx,1),%al
@@ -22841,74 +22763,74 @@ Lj8977:
 	andb	$128,%al
 	movzbl	%al,%eax
 	testl	%eax,%eax
-	je	Lj8982
-	jmp	Lj8983
-Lj8982:
+	je	Lj8935
+	jmp	Lj8936
+Lj8935:
 	movzbl	-21(%ebp),%eax
 	cmpl	$10,%eax
-	je	Lj8984
-	jmp	Lj8985
-Lj8984:
+	je	Lj8937
+	jmp	Lj8938
+Lj8937:
 	movl	-32(%ebp),%eax
 	cmpl	$13,%eax
-	jne	Lj8988
-	jmp	Lj8987
-Lj8988:
-	jmp	Lj8987
+	jne	Lj8941
+	jmp	Lj8940
+Lj8941:
+	jmp	Lj8940
 	addl	$2,-28(%ebp)
 	movl	$10,-32(%ebp)
-	jmp	Lj8991
-Lj8987:
+	jmp	Lj8944
+Lj8940:
 	incl	-28(%ebp)
 	movzbl	-21(%ebp),%eax
 	movl	%eax,-32(%ebp)
-Lj8991:
-	jmp	Lj8994
-Lj8985:
+Lj8944:
+	jmp	Lj8947
+Lj8938:
 	incl	-28(%ebp)
 	movzbl	-21(%ebp),%eax
 	movl	%eax,-32(%ebp)
-Lj8994:
+Lj8947:
 	incl	-20(%ebp)
-	jmp	Lj8997
-Lj8983:
+	jmp	Lj8950
+Lj8936:
 	movb	-21(%ebp),%al
 	movb	%al,-33(%ebp)
 	movl	$0,-40(%ebp)
-	jmp	Lj9003
+	jmp	Lj8956
 	.balign 4,0x90
-Lj9002:
+Lj8955:
 	movzbl	-33(%ebp),%eax
 	shll	$1,%eax
 	andl	$254,%eax
 	movb	%al,-33(%ebp)
 	incl	-40(%ebp)
-Lj9003:
+Lj8956:
 	movb	-33(%ebp),%al
 	andb	$128,%al
 	movzbl	%al,%eax
 	testl	%eax,%eax
-	jne	Lj9002
-	jmp	Lj9004
-Lj9004:
+	jne	Lj8955
+	jmp	Lj8957
+Lj8957:
 	movl	-20(%ebp),%eax
 	movl	-40(%ebp),%edx
 	addl	%edx,%eax
 	decl	%eax
 	cmpl	8(%ebp),%eax
-	ja	Lj9007
-	jmp	Lj9008
-Lj9007:
+	ja	Lj8960
+	jmp	Lj8961
+Lj8960:
 	movl	$1,-40(%ebp)
-Lj9008:
+Lj8961:
 	movl	-40(%ebp),%eax
 	decl	%eax
 	movl	$1,-44(%ebp)
 	cmpl	-44(%ebp),%eax
-	jb	Lj9012
+	jb	Lj8965
 	decl	-44(%ebp)
 	.balign 4,0x90
-Lj9013:
+Lj8966:
 	incl	-44(%ebp)
 	movl	-12(%ebp),%ebx
 	movl	-20(%ebp),%edx
@@ -22917,9 +22839,9 @@ Lj9013:
 	movb	(%ebx,%edx,1),%dl
 	andb	$128,%dl
 	cmpb	$128,%dl
-	jne	Lj9014
-	jmp	Lj9016
-Lj9016:
+	jne	Lj8967
+	jmp	Lj8969
+Lj8969:
 	movl	-12(%ebp),%ebx
 	movl	-20(%ebp),%edx
 	movl	-44(%ebp),%ecx
@@ -22928,37 +22850,37 @@ Lj9016:
 	andb	$64,%dl
 	movzbl	%dl,%edx
 	testl	%edx,%edx
-	jne	Lj9014
-	jmp	Lj9015
-Lj9014:
+	jne	Lj8967
+	jmp	Lj8968
+Lj8967:
 	movl	-44(%ebp),%edx
 	movl	%edx,-40(%ebp)
-	jmp	Lj9012
-Lj9015:
+	jmp	Lj8965
+Lj8968:
 	cmpl	-44(%ebp),%eax
-	ja	Lj9013
-Lj9012:
+	ja	Lj8966
+Lj8965:
 	movl	$65535,-48(%ebp)
 	movl	-40(%ebp),%eax
 	cmpl	$1,%eax
-	jb	Lj9022
+	jb	Lj8975
 	decl	%eax
-	je	Lj9023
+	je	Lj8976
 	decl	%eax
-	je	Lj9024
+	je	Lj8977
 	decl	%eax
-	je	Lj9025
+	je	Lj8978
 	decl	%eax
-	je	Lj9026
+	je	Lj8979
 	decl	%eax
-	jb	Lj9022
+	jb	Lj8975
 	subl	$2,%eax
-	jbe	Lj9027
-	jmp	Lj9022
-Lj9023:
+	jbe	Lj8980
+	jmp	Lj8975
+Lj8976:
 	movl	$63,-48(%ebp)
-	jmp	Lj9021
-Lj9024:
+	jmp	Lj8974
+Lj8977:
 	movl	-12(%ebp),%eax
 	movl	-20(%ebp),%edx
 	movb	(%eax,%edx,1),%al
@@ -22977,13 +22899,13 @@ Lj9024:
 	movl	%eax,-48(%ebp)
 	movl	-48(%ebp),%eax
 	cmpl	$127,%eax
-	jbe	Lj9034
-	jmp	Lj9035
-Lj9034:
+	jbe	Lj8987
+	jmp	Lj8988
+Lj8987:
 	movl	$63,-48(%ebp)
-Lj9035:
-	jmp	Lj9021
-Lj9025:
+Lj8988:
+	jmp	Lj8974
+Lj8978:
 	movl	-12(%ebp),%eax
 	movl	-20(%ebp),%edx
 	movb	(%eax,%edx,1),%al
@@ -23012,28 +22934,28 @@ Lj9025:
 	movl	%eax,-48(%ebp)
 	movl	-48(%ebp),%eax
 	cmpl	$2047,%eax
-	jbe	Lj9044
-	jmp	Lj9047
-Lj9047:
+	jbe	Lj8997
+	jmp	Lj9000
+Lj9000:
 	movl	-48(%ebp),%eax
 	cmpl	$65534,%eax
-	jae	Lj9044
-	jmp	Lj9046
-Lj9046:
+	jae	Lj8997
+	jmp	Lj8999
+Lj8999:
 	movl	-48(%ebp),%eax
 	cmpl	$55296,%eax
-	jae	Lj9048
-	jmp	Lj9045
-Lj9048:
+	jae	Lj9001
+	jmp	Lj8998
+Lj9001:
 	movl	-48(%ebp),%eax
 	cmpl	$57343,%eax
-	jbe	Lj9044
-	jmp	Lj9045
-Lj9044:
+	jbe	Lj8997
+	jmp	Lj8998
+Lj8997:
 	movl	$63,-48(%ebp)
-Lj9045:
-	jmp	Lj9021
-Lj9026:
+Lj8998:
+	jmp	Lj8974
+Lj8979:
 	movl	-12(%ebp),%eax
 	movl	-20(%ebp),%edx
 	movb	(%eax,%edx,1),%al
@@ -23072,50 +22994,50 @@ Lj9026:
 	movl	%eax,-48(%ebp)
 	movl	-48(%ebp),%eax
 	cmpl	$65536,%eax
-	jb	Lj9059
-	jmp	Lj9061
-Lj9061:
+	jb	Lj9012
+	jmp	Lj9014
+Lj9014:
 	movl	-48(%ebp),%eax
 	cmpl	$1114111,%eax
-	ja	Lj9059
-	jmp	Lj9060
-Lj9059:
+	ja	Lj9012
+	jmp	Lj9013
+Lj9012:
 	movl	$63,-48(%ebp)
-	jmp	Lj9064
-Lj9060:
+	jmp	Lj9017
+Lj9013:
 	incl	-28(%ebp)
-Lj9064:
-	jmp	Lj9021
-Lj9027:
+Lj9017:
+	jmp	Lj8974
+Lj8980:
 	movl	$63,-48(%ebp)
-	jmp	Lj9021
-Lj9022:
-Lj9021:
+	jmp	Lj8974
+Lj8975:
+Lj8974:
 	movl	-40(%ebp),%eax
 	cmpl	$0,%eax
-	ja	Lj9067
-	jmp	Lj9068
-Lj9067:
+	ja	Lj9020
+	jmp	Lj9021
+Lj9020:
 	movl	-48(%ebp),%eax
 	movl	%eax,-32(%ebp)
 	incl	-28(%ebp)
-Lj9068:
+Lj9021:
 	movl	-20(%ebp),%edx
 	movl	-40(%ebp),%eax
 	addl	%eax,%edx
 	movl	%edx,-20(%ebp)
-Lj8997:
-Lj8978:
+Lj8950:
+Lj8931:
 	movl	-20(%ebp),%eax
 	cmpl	8(%ebp),%eax
-	jb	Lj8977
-	jmp	Lj8979
-Lj8979:
+	jb	Lj8930
+	jmp	Lj8932
+Lj8932:
 	movl	-28(%ebp),%eax
 	incl	%eax
 	movl	%eax,-16(%ebp)
-Lj8976:
-Lj8835:
+Lj8929:
+Lj8788:
 	movl	-16(%ebp),%eax
 	movl	-52(%ebp),%ebx
 	leave
@@ -23138,7 +23060,7 @@ SYSTEM_UTF8ENCODE$ANSISTRING$$UTF8STRING:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj9077
+	jne	Lj9030
 	leal	-52(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,-52(%ebp)
@@ -23148,16 +23070,16 @@ SYSTEM_UTF8ENCODE$ANSISTRING$$UTF8STRING:
 	movl	-52(%ebp),%eax
 	movl	-8(%ebp),%edx
 	call	SYSTEM_UTF8ENCODE$UNICODESTRING$$UTF8STRING
-Lj9077:
+Lj9030:
 	call	FPC_POPADDRSTACK
 	leal	-52(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,-52(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj9078
+	je	Lj9031
 	call	FPC_RERAISE
-Lj9078:
+Lj9031:
 	leave
 	ret
 
@@ -23179,57 +23101,57 @@ SYSTEM_UTF8ENCODE$UNICODESTRING$$UTF8STRING:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj9090
+	jne	Lj9043
 	movl	-8(%ebp),%ebx
 	movl	%ebx,%eax
 	call	FPC_ANSISTR_DECR_REF
 	movl	$0,(%ebx)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj9095
-	jmp	Lj9096
-Lj9095:
-	jmp	Lj9090
-Lj9096:
+	je	Lj9048
+	jmp	Lj9049
+Lj9048:
+	jmp	Lj9043
+Lj9049:
 	movl	-4(%ebp),%edx
 	testl	%edx,%edx
-	je	Lj9099
+	je	Lj9052
 	movl	-4(%edx),%edx
 	shrl	$1,%edx
-Lj9099:
+Lj9052:
 	imull	$3,%edx
 	leal	-16(%ebp),%eax
 	call	fpc_ansistr_setlength
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj9106
+	je	Lj9059
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj9106:
+Lj9059:
 	pushl	%eax
 	movl	-16(%ebp),%edx
 	testl	%edx,%edx
-	je	Lj9109
+	je	Lj9062
 	movl	-4(%edx),%edx
-Lj9109:
+Lj9062:
 	incl	%edx
 	movl	-4(%ebp),%ecx
 	testl	%ecx,%ecx
-	jne	Lj9112
+	jne	Lj9065
 	movl	$FPC_EMPTYCHAR,%ecx
-Lj9112:
+Lj9065:
 	movl	-16(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj9115
+	jne	Lj9068
 	movl	$FPC_EMPTYCHAR,%eax
-Lj9115:
+Lj9068:
 	call	SYSTEM_UNICODETOUTF8$PCHAR$LONGWORD$PUNICODECHAR$LONGWORD$$LONGWORD
 	movl	%eax,-12(%ebp)
 	movl	-12(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj9116
-	jmp	Lj9117
-Lj9116:
+	jg	Lj9069
+	jmp	Lj9070
+Lj9069:
 	movl	-12(%ebp),%edx
 	decl	%edx
 	leal	-16(%ebp),%eax
@@ -23241,17 +23163,17 @@ Lj9116:
 	call	FPC_ANSISTR_DECR_REF
 	movl	-16(%ebp),%eax
 	movl	%eax,(%ebx)
-Lj9117:
-Lj9090:
+Lj9070:
+Lj9043:
 	call	FPC_POPADDRSTACK
 	leal	-16(%ebp),%eax
 	call	fpc_ansistr_decr_ref
 	movl	$0,-16(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj9091
+	je	Lj9044
 	call	FPC_RERAISE
-Lj9091:
+Lj9044:
 	movl	-60(%ebp),%ebx
 	leave
 	ret
@@ -23274,55 +23196,55 @@ SYSTEM_UTF8DECODE$UTF8STRING$$UNICODESTRING:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj9132
+	jne	Lj9085
 	movl	-8(%ebp),%ebx
 	movl	%ebx,%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,(%ebx)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj9137
-	jmp	Lj9138
-Lj9137:
-	jmp	Lj9132
-Lj9138:
+	je	Lj9090
+	jmp	Lj9091
+Lj9090:
+	jmp	Lj9085
+Lj9091:
 	movl	-4(%ebp),%edx
 	testl	%edx,%edx
-	je	Lj9141
+	je	Lj9094
 	movl	-4(%edx),%edx
-Lj9141:
+Lj9094:
 	leal	-16(%ebp),%eax
 	call	fpc_unicodestr_setlength
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj9148
+	je	Lj9101
 	movl	-4(%eax),%eax
-Lj9148:
+Lj9101:
 	pushl	%eax
 	movl	-16(%ebp),%edx
 	testl	%edx,%edx
-	je	Lj9151
+	je	Lj9104
 	movl	-4(%edx),%edx
 	shrl	$1,%edx
-Lj9151:
+Lj9104:
 	incl	%edx
 	movl	-4(%ebp),%ecx
 	testl	%ecx,%ecx
-	jne	Lj9154
+	jne	Lj9107
 	movl	$FPC_EMPTYCHAR,%ecx
-Lj9154:
+Lj9107:
 	movl	-16(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj9157
+	jne	Lj9110
 	movl	$FPC_EMPTYCHAR,%eax
-Lj9157:
+Lj9110:
 	call	SYSTEM_UTF8TOUNICODE$PUNICODECHAR$LONGWORD$PCHAR$LONGWORD$$LONGWORD
 	movl	%eax,-12(%ebp)
 	movl	-12(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj9158
-	jmp	Lj9159
-Lj9158:
+	jg	Lj9111
+	jmp	Lj9112
+Lj9111:
 	movl	-12(%ebp),%edx
 	decl	%edx
 	leal	-16(%ebp),%eax
@@ -23334,17 +23256,17 @@ Lj9158:
 	call	FPC_UNICODESTR_DECR_REF
 	movl	-16(%ebp),%eax
 	movl	%eax,(%ebx)
-Lj9159:
-Lj9132:
+Lj9112:
+Lj9085:
 	call	FPC_POPADDRSTACK
 	leal	-16(%ebp),%eax
 	call	fpc_unicodestr_decr_ref
 	movl	$0,-16(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj9133
+	je	Lj9086
 	call	FPC_RERAISE
-Lj9133:
+Lj9086:
 	movl	-60(%ebp),%ebx
 	leave
 	ret
@@ -23366,7 +23288,7 @@ SYSTEM_ANSITOUTF8$ANSISTRING$$UTF8STRING:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj9174
+	jne	Lj9127
 	leal	-52(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,-52(%ebp)
@@ -23377,16 +23299,16 @@ SYSTEM_ANSITOUTF8$ANSISTRING$$UTF8STRING:
 	movl	-8(%ebp),%edx
 	call	SYSTEM_UTF8ENCODE$UNICODESTRING$$UTF8STRING
 	movl	-8(%ebp),%eax
-Lj9174:
+Lj9127:
 	call	FPC_POPADDRSTACK
 	leal	-52(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,-52(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj9175
+	je	Lj9128
 	call	FPC_RERAISE
-Lj9175:
+Lj9128:
 	leave
 	ret
 
@@ -23407,7 +23329,7 @@ SYSTEM_UTF8TOANSI$UTF8STRING$$ANSISTRING:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj9187
+	jne	Lj9140
 	leal	-52(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,-52(%ebp)
@@ -23417,16 +23339,16 @@ SYSTEM_UTF8TOANSI$UTF8STRING$$ANSISTRING:
 	movl	-52(%ebp),%eax
 	movl	-8(%ebp),%edx
 	call	fpc_unicodestr_to_ansistr
-Lj9187:
+Lj9140:
 	call	FPC_POPADDRSTACK
 	leal	-52(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,-52(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj9188
+	je	Lj9141
 	call	FPC_RERAISE
-Lj9188:
+Lj9141:
 	leave
 	ret
 
@@ -23446,13 +23368,13 @@ SYSTEM_UNICODESTRINGTOUCS4STRING$UNICODESTRING$$UCS4STRING:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj9200
+	jne	Lj9153
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj9205
+	je	Lj9158
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj9205:
+Lj9158:
 	movl	%eax,-16(%ebp)
 	movl	-16(%ebp),%eax
 	incl	%eax
@@ -23465,9 +23387,9 @@ Lj9205:
 	call	fpc_dynarray_setlength
 	movl	$1,-12(%ebp)
 	movl	$0,-20(%ebp)
-	jmp	Lj9221
+	jmp	Lj9174
 	.balign 4,0x90
-Lj9220:
+Lj9173:
 	leal	-24(%ebp),%ecx
 	movl	-12(%ebp),%edx
 	movl	-4(%ebp),%eax
@@ -23478,12 +23400,12 @@ Lj9220:
 	incl	-20(%ebp)
 	movl	-24(%ebp),%eax
 	addl	%eax,-12(%ebp)
-Lj9221:
+Lj9174:
 	movl	-12(%ebp),%eax
 	cmpl	-16(%ebp),%eax
-	jle	Lj9220
-	jmp	Lj9222
-Lj9222:
+	jle	Lj9173
+	jmp	Lj9175
+Lj9175:
 	movl	-20(%ebp),%eax
 	incl	%eax
 	movl	%eax,-68(%ebp)
@@ -23493,16 +23415,16 @@ Lj9222:
 	leal	-8(%ebp),%eax
 	movl	$1,%ecx
 	call	fpc_dynarray_setlength
-Lj9200:
+Lj9153:
 	call	FPC_POPADDRSTACK
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj9201
+	je	Lj9154
 	movl	$INIT_SYSTEM_UCS4STRING,%edx
 	leal	-8(%ebp),%eax
 	call	fpc_finalize
 	call	FPC_RERAISE
-Lj9201:
+Lj9154:
 	movl	-8(%ebp),%eax
 	leave
 	ret
@@ -23526,57 +23448,57 @@ SYSTEM_CONCATUTF32TOUNICODESTR$UCS4CHAR$UNICODESTRING$LONGINT:
 	movl	-8(%ebp),%edx
 	movl	(%edx),%edx
 	testl	%edx,%edx
-	je	Lj9253
+	je	Lj9206
 	movl	-4(%edx),%edx
 	shrl	$1,%edx
-Lj9253:
+Lj9206:
 	cmpl	%edx,%eax
-	jg	Lj9249
-	jmp	Lj9250
-Lj9249:
+	jg	Lj9202
+	jmp	Lj9203
+Lj9202:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj9256
+	je	Lj9209
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj9256:
+Lj9209:
 	cmpl	$2560,%eax
-	jl	Lj9254
-	jmp	Lj9255
-Lj9254:
+	jl	Lj9207
+	jmp	Lj9208
+Lj9207:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%edx
 	testl	%edx,%edx
-	je	Lj9259
+	je	Lj9212
 	movl	-4(%edx),%edx
 	shrl	$1,%edx
-Lj9259:
+Lj9212:
 	addl	$10,%edx
 	movl	-8(%ebp),%eax
 	call	fpc_unicodestr_setlength
-	jmp	Lj9262
-Lj9255:
+	jmp	Lj9215
+Lj9208:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%edx
 	testl	%edx,%edx
-	je	Lj9265
+	je	Lj9218
 	movl	-4(%edx),%edx
 	shrl	$1,%edx
-Lj9265:
+Lj9218:
 	shrl	$8,%edx
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj9266
+	je	Lj9219
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj9266:
+Lj9219:
 	addl	%eax,%edx
 	movl	-8(%ebp),%eax
 	call	fpc_unicodestr_setlength
-Lj9262:
-Lj9250:
+Lj9215:
+Lj9203:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%edx
 	movl	-12(%ebp),%eax
@@ -23585,21 +23507,21 @@ Lj9250:
 	movl	%eax,-16(%ebp)
 	movl	-4(%ebp),%eax
 	cmpl	$65535,%eax
-	jb	Lj9271
-	jmp	Lj9272
-Lj9271:
+	jb	Lj9224
+	jmp	Lj9225
+Lj9224:
 	movl	-16(%ebp),%edx
 	movw	-4(%ebp),%ax
 	movw	%ax,(%edx)
 	movl	-12(%ebp),%eax
 	incl	(%eax)
-	jmp	Lj9275
-Lj9272:
+	jmp	Lj9228
+Lj9225:
 	movl	-4(%ebp),%eax
 	cmpl	$1114111,%eax
-	jbe	Lj9276
-	jmp	Lj9277
-Lj9276:
+	jbe	Lj9229
+	jmp	Lj9230
+Lj9229:
 	movl	-4(%ebp),%eax
 	subl	$65536,%eax
 	shrl	$10,%eax
@@ -23615,14 +23537,14 @@ Lj9276:
 	movw	%ax,(%edx)
 	movl	-12(%ebp),%eax
 	addl	$2,(%eax)
-	jmp	Lj9282
-Lj9277:
+	jmp	Lj9235
+Lj9230:
 	movl	-16(%ebp),%eax
 	movw	$63,(%eax)
 	movl	-12(%ebp),%eax
 	incl	(%eax)
-Lj9282:
-Lj9275:
+Lj9235:
+Lj9228:
 	leave
 	ret
 
@@ -23648,10 +23570,10 @@ SYSTEM_UCS4STRINGTOUNICODESTRING$UCS4STRING$$UNICODESTRING:
 	decl	%ebx
 	movl	$0,-8(%ebp)
 	cmpl	-8(%ebp),%ebx
-	jl	Lj9296
+	jl	Lj9249
 	decl	-8(%ebp)
 	.balign 4,0x90
-Lj9297:
+Lj9250:
 	incl	-8(%ebp)
 	movl	8(%ebp),%edx
 	movl	-8(%ebp),%eax
@@ -23660,8 +23582,8 @@ Lj9297:
 	movl	-4(%ebp),%edx
 	call	SYSTEM_CONCATUTF32TOUNICODESTR$UCS4CHAR$UNICODESTRING$LONGINT
 	cmpl	-8(%ebp),%ebx
-	jg	Lj9297
-Lj9296:
+	jg	Lj9250
+Lj9249:
 	movl	-12(%ebp),%edx
 	decl	%edx
 	movl	-4(%ebp),%eax
@@ -23686,13 +23608,13 @@ SYSTEM_WIDESTRINGTOUCS4STRING$WIDESTRING$$UCS4STRING:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj9312
+	jne	Lj9265
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj9317
+	je	Lj9270
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj9317:
+Lj9270:
 	movl	%eax,-16(%ebp)
 	movl	-16(%ebp),%eax
 	incl	%eax
@@ -23705,9 +23627,9 @@ Lj9317:
 	call	fpc_dynarray_setlength
 	movl	$1,-12(%ebp)
 	movl	$0,-20(%ebp)
-	jmp	Lj9333
+	jmp	Lj9286
 	.balign 4,0x90
-Lj9332:
+Lj9285:
 	leal	-24(%ebp),%ecx
 	movl	-12(%ebp),%edx
 	movl	-4(%ebp),%eax
@@ -23718,12 +23640,12 @@ Lj9332:
 	incl	-20(%ebp)
 	movl	-24(%ebp),%eax
 	addl	%eax,-12(%ebp)
-Lj9333:
+Lj9286:
 	movl	-12(%ebp),%eax
 	cmpl	-16(%ebp),%eax
-	jle	Lj9332
-	jmp	Lj9334
-Lj9334:
+	jle	Lj9285
+	jmp	Lj9287
+Lj9287:
 	movl	-20(%ebp),%eax
 	incl	%eax
 	movl	%eax,-68(%ebp)
@@ -23733,16 +23655,16 @@ Lj9334:
 	leal	-8(%ebp),%eax
 	movl	$1,%ecx
 	call	fpc_dynarray_setlength
-Lj9312:
+Lj9265:
 	call	FPC_POPADDRSTACK
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj9313
+	je	Lj9266
 	movl	$INIT_SYSTEM_UCS4STRING,%edx
 	leal	-8(%ebp),%eax
 	call	fpc_finalize
 	call	FPC_RERAISE
-Lj9313:
+Lj9266:
 	movl	-8(%ebp),%eax
 	leave
 	ret
@@ -23766,57 +23688,57 @@ SYSTEM_CONCATUTF32TOWIDESTR$UCS4CHAR$WIDESTRING$LONGINT:
 	movl	-8(%ebp),%edx
 	movl	(%edx),%edx
 	testl	%edx,%edx
-	je	Lj9365
+	je	Lj9318
 	movl	-4(%edx),%edx
 	shrl	$1,%edx
-Lj9365:
+Lj9318:
 	cmpl	%edx,%eax
-	jg	Lj9361
-	jmp	Lj9362
-Lj9361:
+	jg	Lj9314
+	jmp	Lj9315
+Lj9314:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj9368
+	je	Lj9321
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj9368:
+Lj9321:
 	cmpl	$2560,%eax
-	jl	Lj9366
-	jmp	Lj9367
-Lj9366:
+	jl	Lj9319
+	jmp	Lj9320
+Lj9319:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%edx
 	testl	%edx,%edx
-	je	Lj9371
+	je	Lj9324
 	movl	-4(%edx),%edx
 	shrl	$1,%edx
-Lj9371:
+Lj9324:
 	addl	$10,%edx
 	movl	-8(%ebp),%eax
 	call	fpc_unicodestr_setlength
-	jmp	Lj9374
-Lj9367:
+	jmp	Lj9327
+Lj9320:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%edx
 	testl	%edx,%edx
-	je	Lj9377
+	je	Lj9330
 	movl	-4(%edx),%edx
 	shrl	$1,%edx
-Lj9377:
+Lj9330:
 	shrl	$8,%edx
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj9378
+	je	Lj9331
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj9378:
+Lj9331:
 	addl	%eax,%edx
 	movl	-8(%ebp),%eax
 	call	fpc_unicodestr_setlength
-Lj9374:
-Lj9362:
+Lj9327:
+Lj9315:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%edx
 	movl	-12(%ebp),%eax
@@ -23825,21 +23747,21 @@ Lj9362:
 	movl	%eax,-16(%ebp)
 	movl	-4(%ebp),%eax
 	cmpl	$65535,%eax
-	jb	Lj9383
-	jmp	Lj9384
-Lj9383:
+	jb	Lj9336
+	jmp	Lj9337
+Lj9336:
 	movl	-16(%ebp),%edx
 	movw	-4(%ebp),%ax
 	movw	%ax,(%edx)
 	movl	-12(%ebp),%eax
 	incl	(%eax)
-	jmp	Lj9387
-Lj9384:
+	jmp	Lj9340
+Lj9337:
 	movl	-4(%ebp),%eax
 	cmpl	$1114111,%eax
-	jbe	Lj9388
-	jmp	Lj9389
-Lj9388:
+	jbe	Lj9341
+	jmp	Lj9342
+Lj9341:
 	movl	-4(%ebp),%eax
 	subl	$65536,%eax
 	shrl	$10,%eax
@@ -23855,14 +23777,14 @@ Lj9388:
 	movw	%ax,(%edx)
 	movl	-12(%ebp),%eax
 	addl	$2,(%eax)
-	jmp	Lj9394
-Lj9389:
+	jmp	Lj9347
+Lj9342:
 	movl	-16(%ebp),%eax
 	movw	$63,(%eax)
 	movl	-12(%ebp),%eax
 	incl	(%eax)
-Lj9394:
-Lj9387:
+Lj9347:
+Lj9340:
 	leave
 	ret
 
@@ -23888,10 +23810,10 @@ SYSTEM_UCS4STRINGTOWIDESTRING$UCS4STRING$$WIDESTRING:
 	decl	%ebx
 	movl	$0,-8(%ebp)
 	cmpl	-8(%ebp),%ebx
-	jl	Lj9408
+	jl	Lj9361
 	decl	-8(%ebp)
 	.balign 4,0x90
-Lj9409:
+Lj9362:
 	incl	-8(%ebp)
 	movl	8(%ebp),%edx
 	movl	-8(%ebp),%eax
@@ -23900,8 +23822,8 @@ Lj9409:
 	movl	-4(%ebp),%edx
 	call	SYSTEM_CONCATUTF32TOWIDESTR$UCS4CHAR$WIDESTRING$LONGINT
 	cmpl	-8(%ebp),%ebx
-	jg	Lj9409
-Lj9408:
+	jg	Lj9362
+Lj9361:
 	movl	-12(%ebp),%edx
 	decl	%edx
 	movl	-4(%ebp),%eax
@@ -23916,56 +23838,56 @@ SYSTEM_UNIMPLEMENTEDUNICODESTRING:
 	pushl	%ebp
 	movl	%esp,%ebp
 	cmpb	$0,operatingsystem_isconsole
-	jne	Lj9424
-	jmp	Lj9425
-Lj9424:
+	jne	Lj9377
+	jmp	Lj9378
+Lj9377:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj9428
+	je	Lj9381
 	movl	U_SYSTEM_STDERR,%eax
 	call	*%edx
 	movl	%eax,%edx
-	jmp	Lj9429
-Lj9428:
+	jmp	Lj9382
+Lj9381:
 	movl	$U_SYSTEM_STDERR+4,%edx
-Lj9429:
+Lj9382:
 	movl	$_$SYSTEM$_Ld23,%ecx
 	movl	$0,%eax
 	call	fpc_write_text_shortstr
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj9436
+	je	Lj9389
 	movl	U_SYSTEM_STDERR,%eax
 	call	*%edx
-	jmp	Lj9437
-Lj9436:
+	jmp	Lj9390
+Lj9389:
 	movl	$U_SYSTEM_STDERR+4,%eax
-Lj9437:
+Lj9390:
 	call	fpc_writeln_end
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj9440
+	je	Lj9393
 	movl	U_SYSTEM_STDERR,%eax
 	call	*%edx
 	movl	%eax,%edx
-	jmp	Lj9441
-Lj9440:
+	jmp	Lj9394
+Lj9393:
 	movl	$U_SYSTEM_STDERR+4,%edx
-Lj9441:
+Lj9394:
 	movl	$_$SYSTEM$_Ld24,%ecx
 	movl	$0,%eax
 	call	fpc_write_text_shortstr
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj9448
+	je	Lj9401
 	movl	U_SYSTEM_STDERR,%eax
 	call	*%edx
-	jmp	Lj9449
-Lj9448:
+	jmp	Lj9402
+Lj9401:
 	movl	$U_SYSTEM_STDERR+4,%eax
-Lj9449:
+Lj9402:
 	call	fpc_writeln_end
-Lj9425:
+Lj9378:
 	movl	%ebp,%edx
 	movl	$233,%eax
 	call	SYSTEM_HANDLEERRORFRAME$LONGINT$POINTER
@@ -24056,25 +23978,25 @@ FPC_DYNARRAY_RANGECHECK:
 	movl	%eax,-4(%ebp)
 	movl	%edx,-8(%ebp)
 	cmpl	$0,-4(%ebp)
-	jne	Lj9495
-	jmp	Lj9492
-Lj9495:
+	jne	Lj9448
+	jmp	Lj9445
+Lj9448:
 	movl	-8(%ebp),%eax
 	cmpl	$0,%eax
-	jl	Lj9492
-	jmp	Lj9494
-Lj9494:
+	jl	Lj9445
+	jmp	Lj9447
+Lj9447:
 	movl	-4(%ebp),%eax
 	subl	$8,%eax
 	movl	4(%eax),%eax
 	cmpl	-8(%ebp),%eax
-	jl	Lj9492
-	jmp	Lj9493
-Lj9492:
+	jl	Lj9445
+	jmp	Lj9446
+Lj9445:
 	movl	%ebp,%edx
 	movl	$201,%eax
 	call	SYSTEM_HANDLEERRORFRAME$LONGINT$POINTER
-Lj9493:
+Lj9446:
 	leave
 	ret
 
@@ -24089,18 +24011,18 @@ FPC_DYNARRAY_LENGTH:
 	subl	$8,%esp
 	movl	%eax,-4(%ebp)
 	cmpl	$0,-4(%ebp)
-	jne	Lj9502
-	jmp	Lj9503
-Lj9502:
+	jne	Lj9455
+	jmp	Lj9456
+Lj9455:
 	movl	-4(%ebp),%eax
 	subl	$8,%eax
 	movl	4(%eax),%eax
 	incl	%eax
 	movl	%eax,-8(%ebp)
-	jmp	Lj9506
-Lj9503:
+	jmp	Lj9459
+Lj9456:
 	movl	$0,-8(%ebp)
-Lj9506:
+Lj9459:
 	movl	-8(%ebp),%eax
 	leave
 	ret
@@ -24116,17 +24038,17 @@ FPC_DYNARRAY_HIGH:
 	subl	$8,%esp
 	movl	%eax,-4(%ebp)
 	cmpl	$0,-4(%ebp)
-	jne	Lj9511
-	jmp	Lj9512
-Lj9511:
+	jne	Lj9464
+	jmp	Lj9465
+Lj9464:
 	movl	-4(%ebp),%eax
 	subl	$8,%eax
 	movl	4(%eax),%eax
 	movl	%eax,-8(%ebp)
-	jmp	Lj9515
-Lj9512:
+	jmp	Lj9468
+Lj9465:
 	movl	$-1,-8(%ebp)
-Lj9515:
+Lj9468:
 	movl	-8(%ebp),%eax
 	leave
 	ret
@@ -24141,11 +24063,11 @@ SYSTEM_FPC_DYNARRAY_CLEAR_INTERNAL$POINTER$POINTER:
 	movl	%edx,-8(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj9520
-	jmp	Lj9521
-Lj9520:
-	jmp	Lj9518
-Lj9521:
+	je	Lj9473
+	jmp	Lj9474
+Lj9473:
+	jmp	Lj9471
+Lj9474:
 	movl	-8(%ebp),%eax
 	movzbl	1(%eax),%eax
 	addl	$2,%eax
@@ -24165,7 +24087,7 @@ Lj9521:
 	call	FPC_FINALIZE_ARRAY
 	movl	-4(%ebp),%eax
 	call	SYSTEM_FREEMEM$POINTER$$LONGWORD
-Lj9518:
+Lj9471:
 	leave
 	ret
 
@@ -24184,11 +24106,11 @@ FPC_DYNARRAY_CLEAR:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj9538
-	jmp	Lj9539
-Lj9538:
-	jmp	Lj9536
-Lj9539:
+	je	Lj9491
+	jmp	Lj9492
+Lj9491:
+	jmp	Lj9489
+Lj9492:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	subl	$8,%eax
@@ -24197,34 +24119,34 @@ Lj9539:
 	movl	%eax,-16(%ebp)
 	movl	TC_SYSTEM_ISMULTITHREAD,%eax
 	testl	%eax,%eax
-	je	Lj9546
-	jmp	Lj9547
-Lj9546:
+	je	Lj9499
+	jmp	Lj9500
+Lj9499:
 	movl	-16(%ebp),%eax
 	decl	(%eax)
 	movl	-16(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
 	seteb	%bl
-	jmp	Lj9550
-Lj9547:
+	jmp	Lj9503
+Lj9500:
 	movl	-16(%ebp),%eax
 	call	SYSTEM_CPUDECLOCKED$LONGINT$$BOOLEAN
 	movb	%al,%bl
-Lj9550:
+Lj9503:
 	testb	%bl,%bl
-	jne	Lj9542
-	jmp	Lj9543
-Lj9542:
+	jne	Lj9495
+	jmp	Lj9496
+Lj9495:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	subl	$8,%eax
 	movl	-8(%ebp),%edx
 	call	SYSTEM_FPC_DYNARRAY_CLEAR_INTERNAL$POINTER$POINTER
-Lj9543:
+Lj9496:
 	movl	-4(%ebp),%eax
 	movl	$0,(%eax)
-Lj9536:
+Lj9489:
 	movl	-20(%ebp),%ebx
 	leave
 	ret
@@ -24244,11 +24166,11 @@ FPC_DYNARRAY_DECR_REF:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj9563
-	jmp	Lj9564
-Lj9563:
-	jmp	Lj9561
-Lj9564:
+	je	Lj9516
+	jmp	Lj9517
+Lj9516:
+	jmp	Lj9514
+Lj9517:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	subl	$8,%eax
@@ -24256,43 +24178,43 @@ Lj9564:
 	movl	-12(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj9567
-	jmp	Lj9568
-Lj9567:
+	je	Lj9520
+	jmp	Lj9521
+Lj9520:
 	movl	%ebp,%edx
 	movl	$204,%eax
 	call	SYSTEM_HANDLEERRORFRAME$LONGINT$POINTER
-Lj9568:
+Lj9521:
 	movl	-12(%ebp),%eax
 	movl	%eax,-16(%ebp)
 	movl	TC_SYSTEM_ISMULTITHREAD,%eax
 	testl	%eax,%eax
-	je	Lj9577
-	jmp	Lj9578
-Lj9577:
+	je	Lj9530
+	jmp	Lj9531
+Lj9530:
 	movl	-16(%ebp),%eax
 	decl	(%eax)
 	movl	-16(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
 	seteb	%bl
-	jmp	Lj9581
-Lj9578:
+	jmp	Lj9534
+Lj9531:
 	movl	-16(%ebp),%eax
 	call	SYSTEM_CPUDECLOCKED$LONGINT$$BOOLEAN
 	movb	%al,%bl
-Lj9581:
+Lj9534:
 	testb	%bl,%bl
-	jne	Lj9573
-	jmp	Lj9574
-Lj9573:
+	jne	Lj9526
+	jmp	Lj9527
+Lj9526:
 	movl	-8(%ebp),%edx
 	movl	-12(%ebp),%eax
 	call	SYSTEM_FPC_DYNARRAY_CLEAR_INTERNAL$POINTER$POINTER
 	movl	-4(%ebp),%eax
 	movl	$0,(%eax)
-Lj9574:
-Lj9561:
+Lj9527:
+Lj9514:
 	movl	-20(%ebp),%ebx
 	leave
 	ret
@@ -24309,39 +24231,39 @@ FPC_DYNARRAY_INCR_REF:
 	movl	%eax,-4(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj9594
-	jmp	Lj9595
-Lj9594:
-	jmp	Lj9592
-Lj9595:
+	je	Lj9547
+	jmp	Lj9548
+Lj9547:
+	jmp	Lj9545
+Lj9548:
 	movl	-4(%ebp),%eax
 	subl	$8,%eax
 	movl	%eax,-8(%ebp)
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj9598
-	jmp	Lj9599
-Lj9598:
+	je	Lj9551
+	jmp	Lj9552
+Lj9551:
 	movl	%ebp,%edx
 	movl	$204,%eax
 	call	SYSTEM_HANDLEERRORFRAME$LONGINT$POINTER
-Lj9599:
+Lj9552:
 	movl	-8(%ebp),%eax
 	movl	%eax,-12(%ebp)
 	movl	TC_SYSTEM_ISMULTITHREAD,%eax
 	testl	%eax,%eax
-	je	Lj9606
-	jmp	Lj9607
-Lj9606:
+	je	Lj9559
+	jmp	Lj9560
+Lj9559:
 	movl	-12(%ebp),%eax
 	incl	(%eax)
-	jmp	Lj9608
-Lj9607:
+	jmp	Lj9561
+Lj9560:
 	movl	-12(%ebp),%eax
 	call	SYSTEM_CPUINCLOCKED$LONGINT
-Lj9608:
-Lj9592:
+Lj9561:
+Lj9545:
 	leave
 	ret
 
@@ -24384,31 +24306,31 @@ FPC_DYNARR_SETLENGTH:
 	movb	$0,-37(%ebp)
 	movl	-4(%ebp),%eax
 	cmpl	$0,(%eax)
-	jne	Lj9628
-	jmp	Lj9627
-Lj9627:
+	jne	Lj9581
+	jmp	Lj9580
+Lj9580:
 	movl	8(%ebp),%edx
 	movl	-12(%ebp),%eax
 	decl	%eax
 	movl	(%edx,%eax,4),%eax
 	cmpl	$0,%eax
-	jl	Lj9629
-	jmp	Lj9630
-Lj9629:
+	jl	Lj9582
+	jmp	Lj9583
+Lj9582:
 	movl	%ebp,%edx
 	movl	$201,%eax
 	call	SYSTEM_HANDLEERRORFRAME$LONGINT$POINTER
-Lj9630:
+Lj9583:
 	movl	8(%ebp),%edx
 	movl	-12(%ebp),%eax
 	decl	%eax
 	movl	(%edx,%eax,4),%eax
 	testl	%eax,%eax
-	je	Lj9635
-	jmp	Lj9636
-Lj9635:
-	jmp	Lj9611
-Lj9636:
+	je	Lj9588
+	jmp	Lj9589
+Lj9588:
+	jmp	Lj9564
+Lj9589:
 	movl	-24(%ebp),%edx
 	leal	-32(%ebp),%eax
 	call	SYSTEM_GETMEM$POINTER$LONGWORD
@@ -24417,8 +24339,8 @@ Lj9636:
 	movb	$0,%cl
 	call	SYSTEM_FILLCHAR$formal$LONGINT$BYTE
 	movb	$1,-37(%ebp)
-	jmp	Lj9649
-Lj9628:
+	jmp	Lj9602
+Lj9581:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	subl	$8,%eax
@@ -24430,58 +24352,58 @@ Lj9628:
 	decl	%eax
 	movl	(%edx,%eax,4),%eax
 	cmpl	$0,%eax
-	jle	Lj9654
-	jmp	Lj9655
-Lj9654:
+	jle	Lj9607
+	jmp	Lj9608
+Lj9607:
 	movl	8(%ebp),%edx
 	movl	-12(%ebp),%eax
 	decl	%eax
 	movl	(%edx,%eax,4),%eax
 	cmpl	$0,%eax
-	jl	Lj9656
-	jmp	Lj9657
-Lj9656:
+	jl	Lj9609
+	jmp	Lj9610
+Lj9609:
 	movl	%ebp,%edx
 	movl	$201,%eax
 	call	SYSTEM_HANDLEERRORFRAME$LONGINT$POINTER
-Lj9657:
+Lj9610:
 	movl	-28(%ebp),%eax
 	movl	%eax,-52(%ebp)
 	movl	TC_SYSTEM_ISMULTITHREAD,%eax
 	testl	%eax,%eax
-	je	Lj9666
-	jmp	Lj9667
-Lj9666:
+	je	Lj9619
+	jmp	Lj9620
+Lj9619:
 	movl	-52(%ebp),%eax
 	decl	(%eax)
 	movl	-52(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
 	seteb	%bl
-	jmp	Lj9670
-Lj9667:
+	jmp	Lj9623
+Lj9620:
 	movl	-52(%ebp),%eax
 	call	SYSTEM_CPUDECLOCKED$LONGINT$$BOOLEAN
 	movb	%al,%bl
-Lj9670:
+Lj9623:
 	testb	%bl,%bl
-	jne	Lj9662
-	jmp	Lj9663
-Lj9662:
+	jne	Lj9615
+	jmp	Lj9616
+Lj9615:
 	movl	-8(%ebp),%edx
 	movl	-28(%ebp),%eax
 	call	SYSTEM_FPC_DYNARRAY_CLEAR_INTERNAL$POINTER$POINTER
-Lj9663:
+Lj9616:
 	movl	-4(%ebp),%eax
 	movl	$0,(%eax)
-	jmp	Lj9611
-Lj9655:
+	jmp	Lj9564
+Lj9608:
 	movl	-28(%ebp),%eax
 	movl	(%eax),%eax
 	cmpl	$1,%eax
-	jne	Lj9681
-	jmp	Lj9682
-Lj9681:
+	jne	Lj9634
+	jmp	Lj9635
+Lj9634:
 	movb	$1,-37(%ebp)
 	movl	-24(%ebp),%edx
 	leal	-32(%ebp),%eax
@@ -24496,21 +24418,21 @@ Lj9681:
 	movl	-28(%ebp),%ecx
 	movl	(%edx,%eax,4),%eax
 	cmpl	4(%ecx),%eax
-	jg	Lj9695
-	jmp	Lj9696
-Lj9695:
+	jg	Lj9648
+	jmp	Lj9649
+Lj9648:
 	movl	-28(%ebp),%eax
 	movl	4(%eax),%eax
 	incl	%eax
 	movl	%eax,-20(%ebp)
-	jmp	Lj9699
-Lj9696:
+	jmp	Lj9652
+Lj9649:
 	movl	8(%ebp),%edx
 	movl	-12(%ebp),%eax
 	decl	%eax
 	movl	(%edx,%eax,4),%eax
 	movl	%eax,-20(%ebp)
-Lj9699:
+Lj9652:
 	movl	-44(%ebp),%ecx
 	movl	-20(%ebp),%eax
 	imull	%eax,%ecx
@@ -24523,10 +24445,10 @@ Lj9699:
 	decl	%ebx
 	movl	$0,-16(%ebp)
 	cmpl	-16(%ebp),%ebx
-	jl	Lj9709
+	jl	Lj9662
 	decl	-16(%ebp)
 	.balign 4,0x90
-Lj9710:
+Lj9663:
 	incl	-16(%ebp)
 	movl	-44(%ebp),%eax
 	movl	-16(%ebp),%edx
@@ -24537,37 +24459,37 @@ Lj9710:
 	movl	-48(%ebp),%edx
 	call	FPC_ADDREF
 	cmpl	-16(%ebp),%ebx
-	jg	Lj9710
-Lj9709:
+	jg	Lj9663
+Lj9662:
 	movl	-28(%ebp),%eax
 	movl	%eax,-52(%ebp)
 	movl	TC_SYSTEM_ISMULTITHREAD,%eax
 	testl	%eax,%eax
-	je	Lj9719
-	jmp	Lj9720
-Lj9719:
+	je	Lj9672
+	jmp	Lj9673
+Lj9672:
 	movl	-52(%ebp),%eax
 	decl	(%eax)
 	movl	-52(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
 	seteb	%bl
-	jmp	Lj9723
-Lj9720:
+	jmp	Lj9676
+Lj9673:
 	movl	-52(%ebp),%eax
 	call	SYSTEM_CPUDECLOCKED$LONGINT$$BOOLEAN
 	movb	%al,%bl
-Lj9723:
+Lj9676:
 	testb	%bl,%bl
-	jne	Lj9715
-	jmp	Lj9716
-Lj9715:
+	jne	Lj9668
+	jmp	Lj9669
+Lj9668:
 	movl	-36(%ebp),%edx
 	movl	-28(%ebp),%eax
 	call	SYSTEM_FPC_DYNARRAY_CLEAR_INTERNAL$POINTER$POINTER
-Lj9716:
-	jmp	Lj9732
-Lj9682:
+Lj9669:
+	jmp	Lj9685
+Lj9635:
 	movl	8(%ebp),%ecx
 	movl	-12(%ebp),%eax
 	decl	%eax
@@ -24575,34 +24497,34 @@ Lj9682:
 	movl	4(%edx),%edx
 	incl	%edx
 	cmpl	(%ecx,%eax,4),%edx
-	jne	Lj9733
-	jmp	Lj9734
-Lj9733:
+	jne	Lj9686
+	jmp	Lj9687
+Lj9686:
 	movl	-24(%ebp),%eax
 	cmpl	$8,%eax
-	jl	Lj9735
-	jmp	Lj9737
-Lj9737:
+	jl	Lj9688
+	jmp	Lj9690
+Lj9690:
 	movl	-44(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj9738
-	jmp	Lj9736
-Lj9738:
+	jg	Lj9691
+	jmp	Lj9689
+Lj9691:
 	movl	-24(%ebp),%eax
 	cmpl	-44(%ebp),%eax
-	jl	Lj9735
-	jmp	Lj9736
-Lj9735:
+	jl	Lj9688
+	jmp	Lj9689
+Lj9688:
 	movl	%ebp,%edx
 	movl	$201,%eax
 	call	SYSTEM_HANDLEERRORFRAME$LONGINT$POINTER
-Lj9736:
+Lj9689:
 	movl	-28(%ebp),%eax
 	movl	(%eax),%eax
 	cmpl	$1,%eax
-	je	Lj9743
-	jmp	Lj9744
-Lj9743:
+	je	Lj9696
+	jmp	Lj9697
+Lj9696:
 	movl	8(%ebp),%ecx
 	movl	-12(%ebp),%eax
 	decl	%eax
@@ -24610,9 +24532,9 @@ Lj9743:
 	movl	4(%edx),%edx
 	incl	%edx
 	cmpl	(%ecx,%eax,4),%edx
-	jg	Lj9745
-	jmp	Lj9746
-Lj9745:
+	jg	Lj9698
+	jmp	Lj9699
+Lj9698:
 	movl	8(%ebp),%edx
 	movl	-12(%ebp),%eax
 	decl	%eax
@@ -24636,8 +24558,8 @@ Lj9745:
 	movl	-24(%ebp),%edx
 	leal	-28(%ebp),%eax
 	call	SYSTEM_REALLOCMEM$POINTER$LONGWORD$$POINTER
-	jmp	Lj9757
-Lj9746:
+	jmp	Lj9710
+Lj9699:
 	movl	8(%ebp),%ecx
 	movl	-12(%ebp),%eax
 	decl	%eax
@@ -24645,9 +24567,9 @@ Lj9746:
 	movl	4(%edx),%edx
 	incl	%edx
 	cmpl	(%ecx,%eax,4),%edx
-	jl	Lj9758
-	jmp	Lj9759
-Lj9758:
+	jl	Lj9711
+	jmp	Lj9712
+Lj9711:
 	movl	-24(%ebp),%edx
 	leal	-28(%ebp),%eax
 	call	SYSTEM_REALLOCMEM$POINTER$LONGWORD$$POINTER
@@ -24671,20 +24593,20 @@ Lj9758:
 	addl	%ecx,%eax
 	movb	$0,%cl
 	call	SYSTEM_FILLCHAR$formal$LONGINT$BYTE
-Lj9759:
-Lj9757:
+Lj9712:
+Lj9710:
 	movl	-28(%ebp),%eax
 	movl	%eax,-32(%ebp)
 	movb	$1,-37(%ebp)
-Lj9744:
-Lj9734:
-Lj9732:
-Lj9649:
+Lj9697:
+Lj9687:
+Lj9685:
+Lj9602:
 	movl	-12(%ebp),%eax
 	cmpl	$1,%eax
-	ja	Lj9774
-	jmp	Lj9775
-Lj9774:
+	ja	Lj9727
+	jmp	Lj9728
+Lj9727:
 	movl	8(%ebp),%edx
 	movl	-12(%ebp),%eax
 	decl	%eax
@@ -24692,10 +24614,10 @@ Lj9774:
 	decl	%ebx
 	movl	$0,-16(%ebp)
 	cmpl	-16(%ebp),%ebx
-	jl	Lj9777
+	jl	Lj9730
 	decl	-16(%ebp)
 	.balign 4,0x90
-Lj9778:
+Lj9731:
 	incl	-16(%ebp)
 	pushl	8(%ebp)
 	movl	-16(%ebp),%eax
@@ -24709,13 +24631,13 @@ Lj9778:
 	movl	-48(%ebp),%edx
 	call	FPC_DYNARR_SETLENGTH
 	cmpl	-16(%ebp),%ebx
-	jg	Lj9778
-Lj9777:
-Lj9775:
+	jg	Lj9731
+Lj9730:
+Lj9728:
 	cmpb	$0,-37(%ebp)
-	jne	Lj9787
-	jmp	Lj9788
-Lj9787:
+	jne	Lj9740
+	jmp	Lj9741
+Lj9740:
 	movl	-32(%ebp),%eax
 	addl	$8,%eax
 	movl	-4(%ebp),%edx
@@ -24729,8 +24651,8 @@ Lj9787:
 	decl	%edx
 	movl	-32(%ebp),%eax
 	movl	%edx,4(%eax)
-Lj9788:
-Lj9611:
+Lj9741:
+Lj9564:
 	movl	-56(%ebp),%ebx
 	leave
 	ret	$4
@@ -24758,11 +24680,11 @@ FPC_DYNARR_COPY:
 	movl	%eax,-16(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj9803
-	jmp	Lj9804
-Lj9803:
-	jmp	Lj9795
-Lj9804:
+	je	Lj9756
+	jmp	Lj9757
+Lj9756:
+	jmp	Lj9748
+Lj9757:
 	movl	-4(%ebp),%eax
 	subl	$8,%eax
 	movl	%eax,-24(%ebp)
@@ -24781,39 +24703,39 @@ Lj9804:
 	movl	%eax,-48(%ebp)
 	movl	-12(%ebp),%eax
 	cmpl	$-1,%eax
-	je	Lj9817
-	jmp	Lj9816
-Lj9817:
+	je	Lj9770
+	jmp	Lj9769
+Lj9770:
 	movl	-40(%ebp),%eax
 	cmpl	$-3,%eax
-	je	Lj9815
-	jmp	Lj9816
-Lj9815:
+	je	Lj9768
+	jmp	Lj9769
+Lj9768:
 	movl	$0,-12(%ebp)
 	movl	-24(%ebp),%eax
 	movl	4(%eax),%eax
 	movl	%eax,-40(%ebp)
-Lj9816:
+Lj9769:
 	movl	-12(%ebp),%eax
 	cmpl	$0,%eax
-	jl	Lj9822
-	jmp	Lj9825
-Lj9825:
+	jl	Lj9775
+	jmp	Lj9778
+Lj9778:
 	movl	-40(%ebp),%eax
 	cmpl	$0,%eax
-	jl	Lj9822
-	jmp	Lj9824
-Lj9824:
+	jl	Lj9775
+	jmp	Lj9777
+Lj9777:
 	movl	-24(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	-12(%ebp),%eax
-	jl	Lj9822
-	jmp	Lj9823
-Lj9822:
+	jl	Lj9775
+	jmp	Lj9776
+Lj9775:
 	movl	%ebp,%edx
 	movl	$201,%eax
 	call	SYSTEM_HANDLEERRORFRAME$LONGINT$POINTER
-Lj9823:
+Lj9776:
 	movl	-40(%ebp),%edx
 	movl	-12(%ebp),%eax
 	subl	%eax,%edx
@@ -24825,16 +24747,16 @@ Lj9823:
 	subl	%eax,%edx
 	incl	%edx
 	cmpl	-28(%ebp),%edx
-	jl	Lj9832
-	jmp	Lj9833
-Lj9832:
+	jl	Lj9785
+	jmp	Lj9786
+Lj9785:
 	movl	-24(%ebp),%eax
 	movl	4(%eax),%edx
 	movl	-12(%ebp),%eax
 	subl	%eax,%edx
 	incl	%edx
 	movl	%edx,-28(%ebp)
-Lj9833:
+Lj9786:
 	movl	-44(%ebp),%eax
 	movl	-28(%ebp),%edx
 	imull	%edx,%eax
@@ -24864,29 +24786,29 @@ Lj9833:
 	movzbl	(%eax),%eax
 	subl	$9,%eax
 	cmpl	$6,%eax
-	jb	Lj9856
+	jb	Lj9809
 	cmpl	$7,%eax
 	stc
-	je	Lj9856
+	je	Lj9809
 	cmpl	$12,%eax
 	stc
-	je	Lj9856
+	je	Lj9809
 	cmpl	$15,%eax
 	stc
-	je	Lj9856
+	je	Lj9809
 	clc
-Lj9856:
-	jc	Lj9854
-	jmp	Lj9855
-Lj9854:
+Lj9809:
+	jc	Lj9807
+	jmp	Lj9808
+Lj9807:
 	movl	-28(%ebp),%ebx
 	decl	%ebx
 	movl	$0,-32(%ebp)
 	cmpl	-32(%ebp),%ebx
-	jl	Lj9858
+	jl	Lj9811
 	decl	-32(%ebp)
 	.balign 4,0x90
-Lj9859:
+Lj9812:
 	incl	-32(%ebp)
 	movl	-44(%ebp),%eax
 	movl	-32(%ebp),%edx
@@ -24896,12 +24818,12 @@ Lj9859:
 	movl	-48(%ebp),%edx
 	call	FPC_ADDREF
 	cmpl	-32(%ebp),%ebx
-	jg	Lj9859
-Lj9858:
-Lj9855:
+	jg	Lj9812
+Lj9811:
+Lj9808:
 	movl	-52(%ebp),%eax
 	movl	%eax,-16(%ebp)
-Lj9795:
+Lj9748:
 	movl	-16(%ebp),%eax
 	movl	-56(%ebp),%ebx
 	leave
@@ -24921,26 +24843,26 @@ SYSTEM_DYNARRAYSETLENGTH$POINTER$POINTER$LONGINT$PSIZEINT:
 	movl	%ecx,-12(%ebp)
 	movl	-12(%ebp),%eax
 	cmpl	$11,%eax
-	jle	Lj9868
-	jmp	Lj9869
-Lj9868:
+	jle	Lj9821
+	jmp	Lj9822
+Lj9821:
 	leal	-56(%ebp),%eax
 	movl	%eax,-64(%ebp)
-	jmp	Lj9872
-Lj9869:
+	jmp	Lj9825
+Lj9822:
 	movl	-12(%ebp),%edx
 	shll	$2,%edx
 	leal	-64(%ebp),%eax
 	call	SYSTEM_GETMEM$POINTER$LONGWORD
-Lj9872:
+Lj9825:
 	movl	-12(%ebp),%eax
 	decl	%eax
 	movl	$0,-60(%ebp)
 	cmpl	-60(%ebp),%eax
-	jl	Lj9878
+	jl	Lj9831
 	decl	-60(%ebp)
 	.balign 4,0x90
-Lj9879:
+Lj9832:
 	incl	-60(%ebp)
 	movl	8(%ebp),%ebx
 	movl	-12(%ebp),%edx
@@ -24952,8 +24874,8 @@ Lj9879:
 	movl	(%ebx,%edx,4),%edx
 	movl	%edx,(%esi,%ecx,4)
 	cmpl	-60(%ebp),%eax
-	jg	Lj9879
-Lj9878:
+	jg	Lj9832
+Lj9831:
 	pushl	-64(%ebp)
 	movl	-12(%ebp),%ecx
 	movl	-8(%ebp),%edx
@@ -24961,12 +24883,12 @@ Lj9878:
 	call	FPC_DYNARR_SETLENGTH
 	leal	-56(%ebp),%eax
 	cmpl	-64(%ebp),%eax
-	jne	Lj9890
-	jmp	Lj9891
-Lj9890:
+	jne	Lj9843
+	jmp	Lj9844
+Lj9843:
 	movl	-64(%ebp),%eax
 	call	SYSTEM_FREEMEM$POINTER$$LONGWORD
-Lj9891:
+Lj9844:
 	movl	-72(%ebp),%ebx
 	movl	-68(%ebp),%esi
 	leave
@@ -25020,26 +24942,26 @@ FPC_DO_IS:
 	movl	%eax,-4(%ebp)
 	movl	%edx,-8(%ebp)
 	cmpl	$0,-8(%ebp)
-	jne	Lj9915
-	jmp	Lj9913
-Lj9915:
+	jne	Lj9868
+	jmp	Lj9866
+Lj9868:
 	cmpl	$0,-4(%ebp)
-	jne	Lj9914
-	jmp	Lj9913
-Lj9914:
+	jne	Lj9867
+	jmp	Lj9866
+Lj9867:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	call	SYSTEM_TOBJECT_$__INHERITSFROM$TCLASS$$BOOLEAN
 	testb	%al,%al
-	jne	Lj9912
-	jmp	Lj9913
-Lj9912:
+	jne	Lj9865
+	jmp	Lj9866
+Lj9865:
 	movb	$1,-9(%ebp)
-	jmp	Lj9920
-Lj9913:
+	jmp	Lj9873
+Lj9866:
 	movb	$0,-9(%ebp)
-Lj9920:
+Lj9873:
 	movb	-9(%ebp),%al
 	leave
 	ret
@@ -25056,21 +24978,21 @@ FPC_DO_AS:
 	movl	%eax,-4(%ebp)
 	movl	%edx,-8(%ebp)
 	cmpl	$0,-8(%ebp)
-	jne	Lj9925
-	jmp	Lj9924
-Lj9925:
+	jne	Lj9878
+	jmp	Lj9877
+Lj9878:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	call	SYSTEM_TOBJECT_$__INHERITSFROM$TCLASS$$BOOLEAN
 	testb	%al,%al
-	je	Lj9923
-	jmp	Lj9924
-Lj9923:
+	je	Lj9876
+	jmp	Lj9877
+Lj9876:
 	movl	%ebp,%edx
 	movl	$219,%eax
 	call	SYSTEM_HANDLEERRORFRAME$LONGINT$POINTER
-Lj9924:
+Lj9877:
 	movl	-8(%ebp),%eax
 	movl	%eax,-12(%ebp)
 	movl	-12(%ebp),%eax
@@ -25090,9 +25012,9 @@ FPC_INTF_DECR_REF:
 	movl	%eax,-4(%ebp)
 	movl	-4(%ebp),%eax
 	cmpl	$0,(%eax)
-	jne	Lj9938
-	jmp	Lj9939
-Lj9938:
+	jne	Lj9891
+	jmp	Lj9892
+Lj9891:
 	movl	-4(%ebp),%eax
 	pushl	(%eax)
 	movl	-4(%ebp),%eax
@@ -25102,7 +25024,7 @@ Lj9938:
 	popl	%ebx
 	movl	-4(%ebp),%eax
 	movl	$0,(%eax)
-Lj9939:
+Lj9892:
 	movl	-8(%ebp),%ebx
 	leave
 	ret
@@ -25119,15 +25041,15 @@ FPC_INTF_INCR_REF:
 	movl	%ebx,-8(%ebp)
 	movl	%eax,-4(%ebp)
 	cmpl	$0,-4(%ebp)
-	jne	Lj9946
-	jmp	Lj9947
-Lj9946:
+	jne	Lj9899
+	jmp	Lj9900
+Lj9899:
 	pushl	-4(%ebp)
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	call	*4(%eax)
 	popl	%ebx
-Lj9947:
+Lj9900:
 	movl	-8(%ebp),%ebx
 	leave
 	ret
@@ -25145,20 +25067,20 @@ FPC_INTF_ASSIGN:
 	movl	%eax,-4(%ebp)
 	movl	%edx,-8(%ebp)
 	cmpl	$0,-8(%ebp)
-	jne	Lj9952
-	jmp	Lj9953
-Lj9952:
+	jne	Lj9905
+	jmp	Lj9906
+Lj9905:
 	pushl	-8(%ebp)
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	call	*4(%eax)
 	popl	%ebx
-Lj9953:
+Lj9906:
 	movl	-4(%ebp),%eax
 	cmpl	$0,(%eax)
-	jne	Lj9956
-	jmp	Lj9957
-Lj9956:
+	jne	Lj9909
+	jmp	Lj9910
+Lj9909:
 	movl	-4(%ebp),%eax
 	pushl	(%eax)
 	movl	-4(%ebp),%eax
@@ -25166,7 +25088,7 @@ Lj9956:
 	movl	(%eax),%eax
 	call	*8(%eax)
 	popl	%ebx
-Lj9957:
+Lj9910:
 	movl	-4(%ebp),%eax
 	movl	-8(%ebp),%edx
 	movl	%edx,(%eax)
@@ -25188,9 +25110,9 @@ FPC_INTF_IS:
 	movl	%edx,-8(%ebp)
 	movl	$0,-16(%ebp)
 	cmpl	$0,-4(%ebp)
-	jne	Lj9968
-	jmp	Lj9967
-Lj9968:
+	jne	Lj9921
+	jmp	Lj9920
+Lj9921:
 	leal	-16(%ebp),%eax
 	pushl	%eax
 	movl	-8(%ebp),%eax
@@ -25201,24 +25123,24 @@ Lj9968:
 	call	*(%eax)
 	addl	$12,%esp
 	testl	%eax,%eax
-	je	Lj9966
-	jmp	Lj9967
-Lj9966:
+	je	Lj9919
+	jmp	Lj9920
+Lj9919:
 	movb	$1,-9(%ebp)
-	jmp	Lj9975
-Lj9967:
+	jmp	Lj9928
+Lj9920:
 	movb	$0,-9(%ebp)
-Lj9975:
+Lj9928:
 	cmpl	$0,-16(%ebp)
-	jne	Lj9976
-	jmp	Lj9977
-Lj9976:
+	jne	Lj9929
+	jmp	Lj9930
+Lj9929:
 	pushl	-16(%ebp)
 	movl	-16(%ebp),%eax
 	movl	(%eax),%eax
 	call	*8(%eax)
 	popl	%ebx
-Lj9977:
+Lj9930:
 	movb	-9(%ebp),%al
 	movl	-20(%ebp),%ebx
 	leave
@@ -25236,9 +25158,9 @@ FPC_INTF_IS_CLASS:
 	movl	%eax,-4(%ebp)
 	movl	%edx,-8(%ebp)
 	cmpl	$0,-4(%ebp)
-	jne	Lj9985
-	jmp	Lj9983
-Lj9985:
+	jne	Lj9938
+	jmp	Lj9936
+Lj9938:
 	leal	-16(%ebp),%eax
 	pushl	%eax
 	pushl	$TC_SYSTEM_IOBJECTINSTANCE
@@ -25248,22 +25170,22 @@ Lj9985:
 	call	*(%eax)
 	addl	$12,%esp
 	testl	%eax,%eax
-	je	Lj9984
-	jmp	Lj9983
-Lj9984:
+	je	Lj9937
+	jmp	Lj9936
+Lj9937:
 	movl	-8(%ebp),%edx
 	movl	-16(%ebp),%eax
 	movl	(%eax),%eax
 	call	SYSTEM_TOBJECT_$__INHERITSFROM$TCLASS$$BOOLEAN
 	testb	%al,%al
-	jne	Lj9982
-	jmp	Lj9983
-Lj9982:
+	jne	Lj9935
+	jmp	Lj9936
+Lj9935:
 	movb	$1,-9(%ebp)
-	jmp	Lj9996
-Lj9983:
+	jmp	Lj9949
+Lj9936:
 	movb	$0,-9(%ebp)
-Lj9996:
+Lj9949:
 	movb	-9(%ebp),%al
 	leave
 	ret
@@ -25283,17 +25205,17 @@ FPC_CLASS_IS_INTF:
 	movl	$0,-16(%ebp)
 	movl	$0,-20(%ebp)
 	cmpl	$0,-4(%ebp)
-	jne	Lj10005
-	jmp	Lj10004
-Lj10005:
+	jne	Lj9958
+	jmp	Lj9957
+Lj9958:
 	movl	$_$SYSTEM$_Ld25,%edx
 	leal	-20(%ebp),%ecx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_TOBJECT_$__GETINTERFACEWEAK$TGUID$formal$$BOOLEAN
 	testb	%al,%al
-	jne	Lj10007
-	jmp	Lj10006
-Lj10007:
+	jne	Lj9960
+	jmp	Lj9959
+Lj9960:
 	leal	-16(%ebp),%eax
 	pushl	%eax
 	movl	-8(%ebp),%eax
@@ -25304,32 +25226,32 @@ Lj10007:
 	call	*(%eax)
 	addl	$12,%esp
 	testl	%eax,%eax
-	je	Lj10003
-	jmp	Lj10006
-Lj10006:
+	je	Lj9956
+	jmp	Lj9959
+Lj9959:
 	leal	-16(%ebp),%ecx
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_TOBJECT_$__GETINTERFACE$TGUID$formal$$BOOLEAN
 	testb	%al,%al
-	jne	Lj10003
-	jmp	Lj10004
-Lj10003:
+	jne	Lj9956
+	jmp	Lj9957
+Lj9956:
 	movb	$1,-9(%ebp)
-	jmp	Lj10026
-Lj10004:
+	jmp	Lj9979
+Lj9957:
 	movb	$0,-9(%ebp)
-Lj10026:
+Lj9979:
 	cmpl	$0,-16(%ebp)
-	jne	Lj10027
-	jmp	Lj10028
-Lj10027:
+	jne	Lj9980
+	jmp	Lj9981
+Lj9980:
 	pushl	-16(%ebp)
 	movl	-16(%ebp),%eax
 	movl	(%eax),%eax
 	call	*8(%eax)
 	popl	%ebx
-Lj10028:
+Lj9981:
 	movb	-9(%ebp),%al
 	movl	-24(%ebp),%ebx
 	leave
@@ -25347,22 +25269,22 @@ FPC_CLASS_IS_CORBAINTF:
 	movl	%eax,-4(%ebp)
 	movl	%edx,-8(%ebp)
 	cmpl	$0,-4(%ebp)
-	jne	Lj10035
-	jmp	Lj10034
-Lj10035:
+	jne	Lj9988
+	jmp	Lj9987
+Lj9988:
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	call	SYSTEM_TOBJECT_$__GETINTERFACEENTRYBYSTR$SHORTSTRING$$PINTERFACEENTRY
 	testl	%eax,%eax
-	jne	Lj10033
-	jmp	Lj10034
-Lj10033:
+	jne	Lj9986
+	jmp	Lj9987
+Lj9986:
 	movb	$1,-9(%ebp)
-	jmp	Lj10040
-Lj10034:
+	jmp	Lj9993
+Lj9987:
 	movb	$0,-9(%ebp)
-Lj10040:
+Lj9993:
 	movb	-9(%ebp),%al
 	leave
 	ret
@@ -25382,9 +25304,9 @@ FPC_INTF_CAST:
 	movl	%ecx,-12(%ebp)
 	movl	$0,-16(%ebp)
 	cmpl	$0,-4(%ebp)
-	jne	Lj10047
-	jmp	Lj10046
-Lj10047:
+	jne	Lj10000
+	jmp	Lj9999
+Lj10000:
 	leal	-16(%ebp),%eax
 	pushl	%eax
 	movl	-8(%ebp),%eax
@@ -25395,19 +25317,19 @@ Lj10047:
 	call	*(%eax)
 	addl	$12,%esp
 	testl	%eax,%eax
-	je	Lj10045
-	jmp	Lj10046
-Lj10045:
+	je	Lj9998
+	jmp	Lj9999
+Lj9998:
 	movl	-12(%ebp),%eax
 	movl	-16(%ebp),%edx
 	movl	%edx,(%eax)
-	jmp	Lj10056
-Lj10046:
+	jmp	Lj10009
+Lj9999:
 	movl	-12(%ebp),%ebx
 	movl	%ebx,%eax
 	call	FPC_INTF_DECR_REF
 	movl	$0,(%ebx)
-Lj10056:
+Lj10009:
 	movl	-20(%ebp),%ebx
 	leave
 	ret
@@ -25424,9 +25346,9 @@ FPC_INTF_CAST_CLASS:
 	movl	%eax,-4(%ebp)
 	movl	%edx,-8(%ebp)
 	cmpl	$0,-4(%ebp)
-	jne	Lj10064
-	jmp	Lj10062
-Lj10064:
+	jne	Lj10017
+	jmp	Lj10015
+Lj10017:
 	leal	-16(%ebp),%eax
 	pushl	%eax
 	pushl	$TC_SYSTEM_IOBJECTINSTANCE
@@ -25436,23 +25358,23 @@ Lj10064:
 	call	*(%eax)
 	addl	$12,%esp
 	testl	%eax,%eax
-	je	Lj10063
-	jmp	Lj10062
-Lj10063:
+	je	Lj10016
+	jmp	Lj10015
+Lj10016:
 	movl	-8(%ebp),%edx
 	movl	-16(%ebp),%eax
 	movl	(%eax),%eax
 	call	SYSTEM_TOBJECT_$__INHERITSFROM$TCLASS$$BOOLEAN
 	testb	%al,%al
-	jne	Lj10061
-	jmp	Lj10062
-Lj10061:
+	jne	Lj10014
+	jmp	Lj10015
+Lj10014:
 	movl	-16(%ebp),%eax
 	movl	%eax,-12(%ebp)
-	jmp	Lj10077
-Lj10062:
+	jmp	Lj10030
+Lj10015:
 	movl	$0,-12(%ebp)
-Lj10077:
+Lj10030:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -25473,17 +25395,17 @@ FPC_CLASS_CAST_INTF:
 	movl	$0,-16(%ebp)
 	movl	$0,-20(%ebp)
 	cmpl	$0,-4(%ebp)
-	jne	Lj10088
-	jmp	Lj10087
-Lj10088:
+	jne	Lj10041
+	jmp	Lj10040
+Lj10041:
 	movl	$_$SYSTEM$_Ld26,%edx
 	leal	-20(%ebp),%ecx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_TOBJECT_$__GETINTERFACEWEAK$TGUID$formal$$BOOLEAN
 	testb	%al,%al
-	jne	Lj10090
-	jmp	Lj10089
-Lj10090:
+	jne	Lj10043
+	jmp	Lj10042
+Lj10043:
 	leal	-16(%ebp),%eax
 	pushl	%eax
 	movl	-8(%ebp),%eax
@@ -25494,27 +25416,27 @@ Lj10090:
 	call	*(%eax)
 	addl	$12,%esp
 	testl	%eax,%eax
-	je	Lj10086
-	jmp	Lj10089
-Lj10089:
+	je	Lj10039
+	jmp	Lj10042
+Lj10042:
 	leal	-16(%ebp),%ecx
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_TOBJECT_$__GETINTERFACE$TGUID$formal$$BOOLEAN
 	testb	%al,%al
-	jne	Lj10086
-	jmp	Lj10087
-Lj10086:
+	jne	Lj10039
+	jmp	Lj10040
+Lj10039:
 	movl	-12(%ebp),%eax
 	movl	-16(%ebp),%edx
 	movl	%edx,(%eax)
-	jmp	Lj10111
-Lj10087:
+	jmp	Lj10064
+Lj10040:
 	movl	-12(%ebp),%ebx
 	movl	%ebx,%eax
 	call	FPC_INTF_DECR_REF
 	movl	$0,(%ebx)
-Lj10111:
+Lj10064:
 	movl	-24(%ebp),%ebx
 	leave
 	ret
@@ -25531,23 +25453,23 @@ FPC_CLASS_CAST_CORBAINTF:
 	movl	%eax,-4(%ebp)
 	movl	%edx,-8(%ebp)
 	cmpl	$0,-4(%ebp)
-	jne	Lj10118
-	jmp	Lj10117
-Lj10118:
+	jne	Lj10071
+	jmp	Lj10070
+Lj10071:
 	leal	-16(%ebp),%ecx
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_TOBJECT_$__GETINTERFACE$SHORTSTRING$formal$$BOOLEAN
 	testb	%al,%al
-	jne	Lj10116
-	jmp	Lj10117
-Lj10116:
+	jne	Lj10069
+	jmp	Lj10070
+Lj10069:
 	movl	-16(%ebp),%eax
 	movl	%eax,-12(%ebp)
-	jmp	Lj10127
-Lj10117:
+	jmp	Lj10080
+Lj10070:
 	movl	$0,-12(%ebp)
-Lj10127:
+Lj10080:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -25566,9 +25488,9 @@ FPC_INTF_AS:
 	movl	%edx,-8(%ebp)
 	movl	%ecx,-12(%ebp)
 	cmpl	$0,-4(%ebp)
-	jne	Lj10132
-	jmp	Lj10133
-Lj10132:
+	jne	Lj10085
+	jmp	Lj10086
+Lj10085:
 	movl	$0,-16(%ebp)
 	leal	-16(%ebp),%eax
 	pushl	%eax
@@ -25580,22 +25502,22 @@ Lj10132:
 	call	*(%eax)
 	addl	$12,%esp
 	testl	%eax,%eax
-	jne	Lj10136
-	jmp	Lj10137
-Lj10136:
+	jne	Lj10089
+	jmp	Lj10090
+Lj10089:
 	movl	$219,%eax
 	call	SYSTEM_HANDLEERROR$LONGINT
-Lj10137:
+Lj10090:
 	movl	-12(%ebp),%eax
 	movl	-16(%ebp),%edx
 	movl	%edx,(%eax)
-	jmp	Lj10148
-Lj10133:
+	jmp	Lj10101
+Lj10086:
 	movl	-12(%ebp),%ebx
 	movl	%ebx,%eax
 	call	FPC_INTF_DECR_REF
 	movl	$0,(%ebx)
-Lj10148:
+Lj10101:
 	movl	-20(%ebp),%ebx
 	leave
 	ret
@@ -25612,9 +25534,9 @@ FPC_INTF_AS_CLASS:
 	movl	%eax,-4(%ebp)
 	movl	%edx,-8(%ebp)
 	cmpl	$0,-4(%ebp)
-	jne	Lj10153
-	jmp	Lj10154
-Lj10153:
+	jne	Lj10106
+	jmp	Lj10107
+Lj10106:
 	leal	-16(%ebp),%eax
 	pushl	%eax
 	pushl	$TC_SYSTEM_IOBJECTINSTANCE
@@ -25624,26 +25546,26 @@ Lj10153:
 	call	*(%eax)
 	addl	$12,%esp
 	testl	%eax,%eax
-	je	Lj10157
-	jmp	Lj10155
-Lj10157:
+	je	Lj10110
+	jmp	Lj10108
+Lj10110:
 	movl	-8(%ebp),%edx
 	movl	-16(%ebp),%eax
 	movl	(%eax),%eax
 	call	SYSTEM_TOBJECT_$__INHERITSFROM$TCLASS$$BOOLEAN
 	testb	%al,%al
-	jne	Lj10156
-	jmp	Lj10155
-Lj10155:
+	jne	Lj10109
+	jmp	Lj10108
+Lj10108:
 	movl	$219,%eax
 	call	SYSTEM_HANDLEERROR$LONGINT
-Lj10156:
+Lj10109:
 	movl	-16(%ebp),%eax
 	movl	%eax,-12(%ebp)
-	jmp	Lj10172
-Lj10154:
+	jmp	Lj10125
+Lj10107:
 	movl	$0,-12(%ebp)
-Lj10172:
+Lj10125:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -25662,9 +25584,9 @@ FPC_CLASS_AS_INTF:
 	movl	%edx,-8(%ebp)
 	movl	%ecx,-12(%ebp)
 	cmpl	$0,-4(%ebp)
-	jne	Lj10177
-	jmp	Lj10178
-Lj10177:
+	jne	Lj10130
+	jmp	Lj10131
+Lj10130:
 	movl	$0,-16(%ebp)
 	movl	$0,-20(%ebp)
 	movl	$_$SYSTEM$_Ld27,%edx
@@ -25672,9 +25594,9 @@ Lj10177:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_TOBJECT_$__GETINTERFACEWEAK$TGUID$formal$$BOOLEAN
 	testb	%al,%al
-	jne	Lj10186
-	jmp	Lj10185
-Lj10186:
+	jne	Lj10139
+	jmp	Lj10138
+Lj10139:
 	leal	-16(%ebp),%eax
 	pushl	%eax
 	movl	-8(%ebp),%eax
@@ -25685,30 +25607,30 @@ Lj10186:
 	call	*(%eax)
 	addl	$12,%esp
 	testl	%eax,%eax
-	je	Lj10184
-	jmp	Lj10185
-Lj10185:
+	je	Lj10137
+	jmp	Lj10138
+Lj10138:
 	leal	-16(%ebp),%ecx
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_TOBJECT_$__GETINTERFACE$TGUID$formal$$BOOLEAN
 	testb	%al,%al
-	jne	Lj10184
-	jmp	Lj10183
-Lj10183:
+	jne	Lj10137
+	jmp	Lj10136
+Lj10136:
 	movl	$219,%eax
 	call	SYSTEM_HANDLEERROR$LONGINT
-Lj10184:
+Lj10137:
 	movl	-12(%ebp),%eax
 	movl	-16(%ebp),%edx
 	movl	%edx,(%eax)
-	jmp	Lj10209
-Lj10178:
+	jmp	Lj10162
+Lj10131:
 	movl	-12(%ebp),%ebx
 	movl	%ebx,%eax
 	call	FPC_INTF_DECR_REF
 	movl	$0,(%ebx)
-Lj10209:
+Lj10162:
 	movl	-24(%ebp),%ebx
 	leave
 	ret
@@ -25725,27 +25647,27 @@ FPC_CLASS_AS_CORBAINTF:
 	movl	%eax,-4(%ebp)
 	movl	%edx,-8(%ebp)
 	cmpl	$0,-4(%ebp)
-	jne	Lj10214
-	jmp	Lj10215
-Lj10214:
+	jne	Lj10167
+	jmp	Lj10168
+Lj10167:
 	movl	$0,-16(%ebp)
 	leal	-16(%ebp),%ecx
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_TOBJECT_$__GETINTERFACE$SHORTSTRING$formal$$BOOLEAN
 	testb	%al,%al
-	je	Lj10218
-	jmp	Lj10219
-Lj10218:
+	je	Lj10171
+	jmp	Lj10172
+Lj10171:
 	movl	$219,%eax
 	call	SYSTEM_HANDLEERROR$LONGINT
-Lj10219:
+Lj10172:
 	movl	-16(%ebp),%eax
 	movl	%eax,-12(%ebp)
-	jmp	Lj10230
-Lj10215:
+	jmp	Lj10183
+Lj10168:
 	movl	$0,-12(%ebp)
-Lj10230:
+Lj10183:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -25761,21 +25683,21 @@ SYSTEM_TOBJECT_$__CREATE$$TOBJECT:
 	movl	%edx,-4(%ebp)
 	movl	-4(%ebp),%eax
 	cmpl	$1,%eax
-	ja	Lj10235
-	jmp	Lj10236
-Lj10235:
+	ja	Lj10188
+	jmp	Lj10189
+Lj10188:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	call	*52(%edx)
 	movl	%eax,-8(%ebp)
-Lj10236:
+Lj10189:
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj10241
-	jmp	Lj10242
-Lj10241:
-	jmp	Lj10233
-Lj10242:
+	je	Lj10194
+	jmp	Lj10195
+Lj10194:
+	jmp	Lj10186
+Lj10195:
 	leal	-20(%ebp),%ecx
 	leal	-44(%ebp),%edx
 	movl	$1,%eax
@@ -25783,27 +25705,27 @@ Lj10242:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj10245
+	jne	Lj10198
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj10251
-	jmp	Lj10250
-Lj10251:
+	jne	Lj10204
+	jmp	Lj10203
+Lj10204:
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj10249
-	jmp	Lj10250
-Lj10249:
+	jne	Lj10202
+	jmp	Lj10203
+Lj10202:
 	movl	-8(%ebp),%eax
 	movl	-8(%ebp),%edx
 	movl	(%edx),%edx
 	call	*68(%edx)
-Lj10250:
-Lj10245:
+Lj10203:
+Lj10198:
 	call	FPC_POPADDRSTACK
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj10247
+	je	Lj10200
 	leal	-60(%ebp),%ecx
 	leal	-84(%ebp),%edx
 	movl	$1,%eax
@@ -25811,34 +25733,34 @@ Lj10245:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj10255
+	jne	Lj10208
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj10256
-	jmp	Lj10257
-Lj10256:
+	jne	Lj10209
+	jmp	Lj10210
+Lj10209:
 	movl	-8(%ebp),%eax
 	movl	$-1,%edx
 	movl	-8(%ebp),%ecx
 	movl	(%ecx),%ecx
 	call	*48(%ecx)
-Lj10257:
+Lj10210:
 	call	FPC_POPADDRSTACK
 	call	FPC_RERAISE
-Lj10255:
+Lj10208:
 	call	FPC_POPADDRSTACK
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj10254
+	je	Lj10207
 	call	FPC_POPSECONDOBJECTSTACK
 	call	FPC_DESTROYEXCEPTION
 	call	FPC_RERAISE
-Lj10254:
+Lj10207:
 	call	FPC_POPOBJECTSTACK
 	call	FPC_DESTROYEXCEPTION
-	jmp	Lj10247
-Lj10247:
-Lj10233:
+	jmp	Lj10200
+Lj10200:
+Lj10186:
 	movl	-8(%ebp),%eax
 	leave
 	ret
@@ -25854,29 +25776,29 @@ SYSTEM_TOBJECT_$__DESTROY:
 	movl	%edx,-4(%ebp)
 	movl	-4(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj10264
-	jmp	Lj10265
-Lj10264:
+	jg	Lj10217
+	jmp	Lj10218
+Lj10217:
 	movl	-8(%ebp),%eax
 	movl	-8(%ebp),%edx
 	movl	(%edx),%edx
 	call	*72(%edx)
-Lj10265:
+Lj10218:
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj10270
-	jmp	Lj10269
-Lj10270:
+	jne	Lj10223
+	jmp	Lj10222
+Lj10223:
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj10268
-	jmp	Lj10269
-Lj10268:
+	jne	Lj10221
+	jmp	Lj10222
+Lj10221:
 	movl	-8(%ebp),%eax
 	movl	-8(%ebp),%edx
 	movl	(%edx),%edx
 	call	*56(%edx)
-Lj10269:
+Lj10222:
 	leave
 	ret
 
@@ -25890,15 +25812,15 @@ SYSTEM_TOBJECT_$__FREE:
 	movl	%eax,-4(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj10275
-	jmp	Lj10276
-Lj10275:
+	jne	Lj10228
+	jmp	Lj10229
+Lj10228:
 	movl	-4(%ebp),%eax
 	movl	$1,%edx
 	movl	-4(%ebp),%ecx
 	movl	(%ecx),%ecx
 	call	*48(%ecx)
-Lj10276:
+Lj10229:
 	leave
 	ret
 
@@ -25927,31 +25849,31 @@ SYSTEM_INITINTERFACEPOINTERS$TCLASS$POINTER:
 	movl	%edx,-8(%ebp)
 	movl	-4(%ebp),%eax
 	movl	%eax,-12(%ebp)
-	jmp	Lj10290
+	jmp	Lj10243
 	.balign 4,0x90
-Lj10289:
+Lj10242:
 	movl	-12(%ebp),%eax
 	movl	40(%eax),%eax
 	movl	%eax,-20(%ebp)
 	cmpl	$0,-20(%ebp)
-	jne	Lj10294
-	jmp	Lj10295
-Lj10294:
+	jne	Lj10247
+	jmp	Lj10248
+Lj10247:
 	movl	-20(%ebp),%eax
 	movl	(%eax),%eax
 	movl	%eax,-16(%ebp)
 	movl	-20(%ebp),%eax
 	leal	4(%eax),%eax
 	movl	%eax,-24(%ebp)
-	jmp	Lj10301
+	jmp	Lj10254
 	.balign 4,0x90
-Lj10300:
+Lj10253:
 	movl	-24(%ebp),%eax
 	movl	16(%eax),%eax
 	testl	%eax,%eax
-	je	Lj10303
-	jmp	Lj10304
-Lj10303:
+	je	Lj10256
+	jmp	Lj10257
+Lj10256:
 	movl	-8(%ebp),%edx
 	movl	-24(%ebp),%eax
 	movl	8(%eax),%eax
@@ -25959,30 +25881,30 @@ Lj10303:
 	movl	-24(%ebp),%eax
 	movl	4(%eax),%eax
 	movl	%eax,(%edx)
-Lj10304:
+Lj10257:
 	addl	$20,-24(%ebp)
 	decl	-16(%ebp)
-Lj10301:
+Lj10254:
 	movl	-16(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj10300
-	jmp	Lj10302
-Lj10302:
-Lj10295:
+	jg	Lj10253
+	jmp	Lj10255
+Lj10255:
+Lj10248:
 	movl	-12(%ebp),%eax
 	movl	8(%eax),%eax
 	movl	%eax,-12(%ebp)
-Lj10290:
+Lj10243:
 	cmpl	$0,-12(%ebp)
-	jne	Lj10309
-	jmp	Lj10291
-Lj10309:
+	jne	Lj10262
+	jmp	Lj10244
+Lj10262:
 	movl	$FPC_EMPTYINTF,%eax
 	movl	-12(%ebp),%edx
 	cmpl	40(%edx),%eax
-	jne	Lj10289
-	jmp	Lj10291
-Lj10291:
+	jne	Lj10242
+	jmp	Lj10244
+Lj10244:
 	leave
 	ret
 
@@ -26006,13 +25928,13 @@ SYSTEM_TOBJECT_$__INITINSTANCE$POINTER$$TOBJECT:
 	movl	$FPC_EMPTYINTF,%eax
 	movl	-8(%ebp),%edx
 	cmpl	40(%edx),%eax
-	jne	Lj10322
-	jmp	Lj10323
-Lj10322:
+	jne	Lj10275
+	jmp	Lj10276
+Lj10275:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	call	SYSTEM_INITINTERFACEPOINTERS$TCLASS$POINTER
-Lj10323:
+Lj10276:
 	movl	-4(%ebp),%eax
 	movl	%eax,-12(%ebp)
 	movl	-12(%ebp),%eax
@@ -26048,9 +25970,9 @@ SYSTEM_TOBJECT_$__NEWINSTANCE$$TOBJECT:
 	call	SYSTEM_GETMEM$POINTER$LONGWORD
 	movl	-12(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj10342
-	jmp	Lj10343
-Lj10342:
+	jne	Lj10295
+	jmp	Lj10296
+Lj10295:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%edx
 	movl	-12(%ebp),%eax
@@ -26062,15 +25984,15 @@ Lj10342:
 	movl	$FPC_EMPTYINTF,%eax
 	movl	-4(%ebp),%edx
 	cmpl	40(%edx),%eax
-	jne	Lj10355
-	jmp	Lj10356
-Lj10355:
+	jne	Lj10308
+	jmp	Lj10309
+Lj10308:
 	movl	-12(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_INITINTERFACEPOINTERS$TCLASS$POINTER
-Lj10356:
+Lj10309:
 	movl	-12(%ebp),%eax
-Lj10343:
+Lj10296:
 	movl	-12(%ebp),%eax
 	movl	%eax,-8(%ebp)
 	movl	-8(%ebp),%eax
@@ -26118,25 +26040,25 @@ SYSTEM_TOBJECT_$__METHODADDRESS$SHORTSTRING$$POINTER:
 	movl	%edx,-4(%ebp)
 	movl	-8(%ebp),%eax
 	movl	%eax,-24(%ebp)
-	jmp	Lj10380
+	jmp	Lj10333
 	.balign 4,0x90
-Lj10379:
+Lj10332:
 	movl	-24(%ebp),%eax
 	movl	20(%eax),%eax
 	movl	%eax,-16(%ebp)
 	cmpl	$0,-16(%ebp)
-	jne	Lj10384
-	jmp	Lj10385
-Lj10384:
+	jne	Lj10337
+	jmp	Lj10338
+Lj10337:
 	movl	-16(%ebp),%eax
 	movl	(%eax),%ebx
 	decl	%ebx
 	movl	$0,-20(%ebp)
 	cmpl	-20(%ebp),%ebx
-	jb	Lj10387
+	jb	Lj10340
 	decl	-20(%ebp)
 	.balign 4,0x90
-Lj10388:
+Lj10341:
 	incl	-20(%ebp)
 	movl	-16(%ebp),%eax
 	movl	-20(%ebp),%edx
@@ -26144,29 +26066,29 @@ Lj10388:
 	movl	-4(%ebp),%edx
 	call	SYSTEM_SHORTCOMPARETEXT$SHORTSTRING$SHORTSTRING$$LONGINT
 	testl	%eax,%eax
-	je	Lj10389
-	jmp	Lj10390
-Lj10389:
+	je	Lj10342
+	jmp	Lj10343
+Lj10342:
 	movl	-16(%ebp),%edx
 	movl	-20(%ebp),%eax
 	movl	8(%edx,%eax,8),%eax
 	movl	%eax,-12(%ebp)
-	jmp	Lj10375
-Lj10390:
+	jmp	Lj10328
+Lj10343:
 	cmpl	-20(%ebp),%ebx
-	ja	Lj10388
-Lj10387:
-Lj10385:
+	ja	Lj10341
+Lj10340:
+Lj10338:
 	movl	-24(%ebp),%eax
 	movl	8(%eax),%eax
 	movl	%eax,-24(%ebp)
-Lj10380:
+Lj10333:
 	cmpl	$0,-24(%ebp)
-	jne	Lj10379
-	jmp	Lj10381
-Lj10381:
+	jne	Lj10332
+	jmp	Lj10334
+Lj10334:
 	movl	$0,-12(%ebp)
-Lj10375:
+Lj10328:
 	movl	-12(%ebp),%eax
 	movl	-28(%ebp),%ebx
 	leave
@@ -26185,56 +26107,56 @@ SYSTEM_TOBJECT_$__METHODNAME$POINTER$$SHORTSTRING:
 	movl	%ecx,-12(%ebp)
 	movl	-8(%ebp),%eax
 	movl	%eax,-24(%ebp)
-	jmp	Lj10406
+	jmp	Lj10359
 	.balign 4,0x90
-Lj10405:
+Lj10358:
 	movl	-24(%ebp),%eax
 	movl	20(%eax),%eax
 	movl	%eax,-16(%ebp)
 	cmpl	$0,-16(%ebp)
-	jne	Lj10410
-	jmp	Lj10411
-Lj10410:
+	jne	Lj10363
+	jmp	Lj10364
+Lj10363:
 	movl	-16(%ebp),%eax
 	movl	(%eax),%ebx
 	decl	%ebx
 	movl	$0,-20(%ebp)
 	cmpl	-20(%ebp),%ebx
-	jb	Lj10413
+	jb	Lj10366
 	decl	-20(%ebp)
 	.balign 4,0x90
-Lj10414:
+Lj10367:
 	incl	-20(%ebp)
 	movl	-16(%ebp),%eax
 	movl	-20(%ebp),%edx
 	movl	8(%eax,%edx,8),%eax
 	cmpl	-4(%ebp),%eax
-	je	Lj10415
-	jmp	Lj10416
-Lj10415:
+	je	Lj10368
+	jmp	Lj10369
+Lj10368:
 	movl	-16(%ebp),%edx
 	movl	-20(%ebp),%eax
 	movl	4(%edx,%eax,8),%ecx
 	movl	-12(%ebp),%eax
 	movl	$255,%edx
 	call	fpc_shortstr_to_shortstr
-	jmp	Lj10401
-Lj10416:
+	jmp	Lj10354
+Lj10369:
 	cmpl	-20(%ebp),%ebx
-	ja	Lj10414
-Lj10413:
-Lj10411:
+	ja	Lj10367
+Lj10366:
+Lj10364:
 	movl	-24(%ebp),%eax
 	movl	8(%eax),%eax
 	movl	%eax,-24(%ebp)
-Lj10406:
+Lj10359:
 	cmpl	$0,-24(%ebp)
-	jne	Lj10405
-	jmp	Lj10407
-Lj10407:
+	jne	Lj10358
+	jmp	Lj10360
+Lj10360:
 	movl	-12(%ebp),%eax
 	movb	$0,(%eax)
-Lj10401:
+Lj10354:
 	movl	-28(%ebp),%ebx
 	leave
 	ret
@@ -26252,25 +26174,25 @@ SYSTEM_TOBJECT_$__FIELDADDRESS$SHORTSTRING$$POINTER:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%eax
 	cmpl	$0,%eax
-	jg	Lj10429
-	jmp	Lj10430
-Lj10429:
+	jg	Lj10382
+	jmp	Lj10383
+Lj10382:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	movl	%eax,-32(%ebp)
 	movl	-32(%ebp),%eax
 	movl	%eax,-16(%ebp)
-	jmp	Lj10438
+	jmp	Lj10391
 	.balign 4,0x90
-Lj10437:
+Lj10390:
 	movl	-16(%ebp),%eax
 	movl	24(%eax),%eax
 	movl	%eax,-20(%ebp)
 	movl	-20(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj10442
-	jmp	Lj10443
-Lj10442:
+	jne	Lj10395
+	jmp	Lj10396
+Lj10395:
 	movl	-20(%ebp),%eax
 	leal	6(%eax),%eax
 	movl	%eax,-24(%ebp)
@@ -26279,26 +26201,26 @@ Lj10442:
 	decl	%ebx
 	movl	$0,-28(%ebp)
 	cmpl	-28(%ebp),%ebx
-	jl	Lj10447
+	jl	Lj10400
 	decl	-28(%ebp)
 	.balign 4,0x90
-Lj10448:
+Lj10401:
 	incl	-28(%ebp)
 	movl	-24(%ebp),%eax
 	leal	6(%eax),%eax
 	movl	-4(%ebp),%edx
 	call	SYSTEM_SHORTCOMPARETEXT$SHORTSTRING$SHORTSTRING$$LONGINT
 	testl	%eax,%eax
-	je	Lj10449
-	jmp	Lj10450
-Lj10449:
+	je	Lj10402
+	jmp	Lj10403
+Lj10402:
 	movl	-24(%ebp),%eax
 	movl	(%eax),%edx
 	movl	-8(%ebp),%eax
 	addl	%eax,%edx
 	movl	%edx,-12(%ebp)
-	jmp	Lj10427
-Lj10450:
+	jmp	Lj10380
+Lj10403:
 	movl	-24(%ebp),%eax
 	leal	6(%eax),%edx
 	incl	%edx
@@ -26307,21 +26229,21 @@ Lj10450:
 	addl	%eax,%edx
 	movl	%edx,-24(%ebp)
 	cmpl	-28(%ebp),%ebx
-	jg	Lj10448
-Lj10447:
-Lj10443:
+	jg	Lj10401
+Lj10400:
+Lj10396:
 	movl	-16(%ebp),%eax
 	movl	8(%eax),%eax
 	movl	%eax,-16(%ebp)
-Lj10438:
+Lj10391:
 	movl	-16(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj10437
-	jmp	Lj10439
-Lj10439:
-Lj10430:
+	jne	Lj10390
+	jmp	Lj10392
+Lj10392:
+Lj10383:
 	movl	$0,-12(%ebp)
-Lj10427:
+Lj10380:
 	movl	-12(%ebp),%eax
 	movl	-36(%ebp),%ebx
 	leave
@@ -26403,34 +26325,34 @@ SYSTEM_TOBJECT_$__INHERITSFROM$TCLASS$$BOOLEAN:
 	movl	%eax,-8(%ebp)
 	movl	%edx,-4(%ebp)
 	cmpl	$0,-4(%ebp)
-	jne	Lj10489
-	jmp	Lj10490
-Lj10489:
+	jne	Lj10442
+	jmp	Lj10443
+Lj10442:
 	movl	-8(%ebp),%eax
 	movl	%eax,-16(%ebp)
-	jmp	Lj10494
+	jmp	Lj10447
 	.balign 4,0x90
-Lj10493:
+Lj10446:
 	movl	-16(%ebp),%eax
 	movl	8(%eax),%eax
 	movl	%eax,-16(%ebp)
-Lj10494:
+Lj10447:
 	cmpl	$0,-16(%ebp)
-	jne	Lj10498
-	jmp	Lj10495
-Lj10498:
+	jne	Lj10451
+	jmp	Lj10448
+Lj10451:
 	movl	-16(%ebp),%eax
 	cmpl	-4(%ebp),%eax
-	jne	Lj10493
-	jmp	Lj10495
-Lj10495:
+	jne	Lj10446
+	jmp	Lj10448
+Lj10448:
 	movl	-16(%ebp),%eax
 	cmpl	-4(%ebp),%eax
 	seteb	-9(%ebp)
-	jmp	Lj10501
-Lj10490:
+	jmp	Lj10454
+Lj10443:
 	movb	$0,-9(%ebp)
-Lj10501:
+Lj10454:
 	movb	-9(%ebp),%al
 	leave
 	ret
@@ -26468,42 +26390,42 @@ SYSTEM_TOBJECT_$__DISPATCH$formal:
 	movl	%eax,-44(%ebp)
 	movl	-44(%ebp),%eax
 	movl	%eax,-32(%ebp)
-	jmp	Lj10519
+	jmp	Lj10472
 	.balign 4,0x90
-Lj10518:
+Lj10471:
 	movl	-32(%ebp),%eax
 	movl	16(%eax),%eax
 	movl	%eax,-28(%ebp)
 	cmpl	$0,-28(%ebp)
-	jne	Lj10523
-	jmp	Lj10524
-Lj10523:
+	jne	Lj10476
+	jmp	Lj10477
+Lj10476:
 	movl	-28(%ebp),%eax
 	leal	4(%eax),%eax
 	movl	%eax,-24(%ebp)
 	movl	-28(%ebp),%eax
 	movl	(%eax),%eax
 	movl	%eax,-16(%ebp)
-	jmp	Lj10529
-Lj10524:
+	jmp	Lj10482
+Lj10477:
 	movl	$0,-16(%ebp)
-Lj10529:
+Lj10482:
 	movl	-16(%ebp),%ebx
 	decl	%ebx
 	movl	$0,-20(%ebp)
 	cmpl	-20(%ebp),%ebx
-	jl	Lj10533
+	jl	Lj10486
 	decl	-20(%ebp)
 	.balign 4,0x90
-Lj10534:
+Lj10487:
 	incl	-20(%ebp)
 	movl	-24(%ebp),%edx
 	movl	-20(%ebp),%eax
 	movl	(%edx,%eax,8),%eax
 	cmpl	-12(%ebp),%eax
-	je	Lj10535
-	jmp	Lj10536
-Lj10535:
+	je	Lj10488
+	jmp	Lj10489
+Lj10488:
 	movl	-24(%ebp),%eax
 	movl	-20(%ebp),%edx
 	movl	4(%eax,%edx,8),%eax
@@ -26514,25 +26436,25 @@ Lj10535:
 	movl	-36(%ebp),%eax
 	movl	-40(%ebp),%ecx
 	call	*%ecx
-	jmp	Lj10508
-Lj10536:
+	jmp	Lj10461
+Lj10489:
 	cmpl	-20(%ebp),%ebx
-	jg	Lj10534
-Lj10533:
+	jg	Lj10487
+Lj10486:
 	movl	-32(%ebp),%eax
 	movl	8(%eax),%eax
 	movl	%eax,-32(%ebp)
-Lj10519:
+Lj10472:
 	cmpl	$0,-32(%ebp)
-	jne	Lj10518
-	jmp	Lj10520
-Lj10520:
+	jne	Lj10471
+	jmp	Lj10473
+Lj10473:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movl	-8(%ebp),%ecx
 	movl	(%ecx),%ecx
 	call	*64(%ecx)
-Lj10508:
+Lj10461:
 	movl	-48(%ebp),%ebx
 	leave
 	ret
@@ -26556,41 +26478,41 @@ SYSTEM_TOBJECT_$__DISPATCHSTR$formal:
 	movl	%eax,-296(%ebp)
 	movl	-296(%ebp),%eax
 	movl	%eax,-284(%ebp)
-	jmp	Lj10566
+	jmp	Lj10519
 	.balign 4,0x90
-Lj10565:
+Lj10518:
 	movl	-284(%ebp),%eax
 	movl	44(%eax),%eax
 	movl	%eax,-280(%ebp)
 	movl	-280(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj10572
-	jmp	Lj10571
-Lj10572:
+	jne	Lj10525
+	jmp	Lj10524
+Lj10525:
 	movl	-280(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj10570
-	jmp	Lj10571
-Lj10570:
+	jne	Lj10523
+	jmp	Lj10524
+Lj10523:
 	movl	-280(%ebp),%eax
 	movl	(%eax),%eax
 	movl	%eax,-268(%ebp)
 	movl	-280(%ebp),%eax
 	leal	4(%eax),%eax
 	movl	%eax,-276(%ebp)
-	jmp	Lj10577
-Lj10571:
+	jmp	Lj10530
+Lj10524:
 	movl	$0,-268(%ebp)
-Lj10577:
+Lj10530:
 	movl	-268(%ebp),%ebx
 	decl	%ebx
 	movl	$0,-272(%ebp)
 	cmpl	-272(%ebp),%ebx
-	jl	Lj10581
+	jl	Lj10534
 	decl	-272(%ebp)
 	.balign 4,0x90
-Lj10582:
+Lj10535:
 	incl	-272(%ebp)
 	movl	-276(%ebp),%edx
 	movl	-272(%ebp),%eax
@@ -26598,9 +26520,9 @@ Lj10582:
 	leal	-264(%ebp),%eax
 	call	fpc_shortstr_compare_equal
 	testl	%eax,%eax
-	je	Lj10583
-	jmp	Lj10584
-Lj10583:
+	je	Lj10536
+	jmp	Lj10537
+Lj10536:
 	movl	-276(%ebp),%eax
 	movl	-272(%ebp),%edx
 	movl	4(%eax,%edx,8),%eax
@@ -26611,25 +26533,25 @@ Lj10583:
 	movl	-288(%ebp),%eax
 	movl	-292(%ebp),%ecx
 	call	*%ecx
-	jmp	Lj10551
-Lj10584:
+	jmp	Lj10504
+Lj10537:
 	cmpl	-272(%ebp),%ebx
-	jg	Lj10582
-Lj10581:
+	jg	Lj10535
+Lj10534:
 	movl	-284(%ebp),%eax
 	movl	8(%eax),%eax
 	movl	%eax,-284(%ebp)
-Lj10566:
+Lj10519:
 	cmpl	$0,-284(%ebp)
-	jne	Lj10565
-	jmp	Lj10567
-Lj10567:
+	jne	Lj10518
+	jmp	Lj10520
+Lj10520:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movl	-8(%ebp),%ecx
 	movl	(%ecx),%ecx
 	call	*76(%ecx)
-Lj10551:
+Lj10504:
 	movl	-300(%ebp),%ebx
 	leave
 	ret
@@ -26673,16 +26595,16 @@ SYSTEM_TOBJECT_$__CLEANUPINSTANCE:
 	movl	%eax,-24(%ebp)
 	movl	-24(%ebp),%eax
 	movl	%eax,-8(%ebp)
-	jmp	Lj10616
+	jmp	Lj10569
 	.balign 4,0x90
-Lj10615:
+Lj10568:
 	movl	-8(%ebp),%eax
 	movl	32(%eax),%eax
 	movl	%eax,-12(%ebp)
 	cmpl	$0,-12(%ebp)
-	jne	Lj10620
-	jmp	Lj10621
-Lj10620:
+	jne	Lj10573
+	jmp	Lj10574
+Lj10573:
 	incl	-12(%ebp)
 	movl	-12(%ebp),%eax
 	movzbl	(%eax),%eax
@@ -26698,10 +26620,10 @@ Lj10620:
 	movl	-16(%ebp),%esi
 	movl	$1,-20(%ebp)
 	cmpl	-20(%ebp),%esi
-	jl	Lj10631
+	jl	Lj10584
 	decl	-20(%ebp)
 	.balign 4,0x90
-Lj10632:
+Lj10585:
 	incl	-20(%ebp)
 	movl	-12(%ebp),%eax
 	movl	-20(%ebp),%edx
@@ -26712,18 +26634,18 @@ Lj10632:
 	addl	%ecx,%eax
 	call	FPC_FINALIZE
 	cmpl	-20(%ebp),%esi
-	jg	Lj10632
-Lj10631:
-Lj10621:
+	jg	Lj10585
+Lj10584:
+Lj10574:
 	movl	-8(%ebp),%eax
 	movl	8(%eax),%eax
 	movl	%eax,-8(%ebp)
-Lj10616:
+Lj10569:
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj10615
-	jmp	Lj10617
-Lj10617:
+	jne	Lj10568
+	jmp	Lj10570
+Lj10570:
 	movl	-32(%ebp),%ebx
 	movl	-28(%ebp),%esi
 	leave
@@ -26763,41 +26685,41 @@ SYSTEM_ISGUIDEQUAL$TGUID$TGUID$$BOOLEAN:
 	movl	-8(%ebp),%edx
 	movl	(%eax),%eax
 	cmpl	(%edx),%eax
-	je	Lj10651
-	jmp	Lj10648
-Lj10651:
+	je	Lj10604
+	jmp	Lj10601
+Lj10604:
 	movl	-4(%ebp),%eax
 	leal	4(%eax),%ecx
 	movl	-8(%ebp),%eax
 	leal	4(%eax),%edx
 	movl	(%ecx),%eax
 	cmpl	(%edx),%eax
-	je	Lj10650
-	jmp	Lj10648
-Lj10650:
+	je	Lj10603
+	jmp	Lj10601
+Lj10603:
 	movl	-4(%ebp),%eax
 	leal	8(%eax),%edx
 	movl	-8(%ebp),%eax
 	leal	8(%eax),%ecx
 	movl	(%edx),%eax
 	cmpl	(%ecx),%eax
-	je	Lj10649
-	jmp	Lj10648
-Lj10649:
+	je	Lj10602
+	jmp	Lj10601
+Lj10602:
 	movl	-4(%ebp),%eax
 	leal	12(%eax),%edx
 	movl	-8(%ebp),%eax
 	leal	12(%eax),%ecx
 	movl	(%edx),%eax
 	cmpl	(%ecx),%eax
-	je	Lj10647
-	jmp	Lj10648
-Lj10647:
+	je	Lj10600
+	jmp	Lj10601
+Lj10600:
 	movb	$1,-9(%ebp)
-	jmp	Lj10652
-Lj10648:
+	jmp	Lj10605
+Lj10601:
 	movb	$0,-9(%ebp)
-Lj10652:
+Lj10605:
 	movb	-9(%ebp),%al
 	leave
 	ret
@@ -26816,39 +26738,39 @@ SYSTEM_GETINTERFACEBYENTRY$POINTER$PINTERFACEENTRY$formal$$BOOLEAN:
 	movl	-4(%ebp),%eax
 	movl	%eax,-20(%ebp)
 	cmpl	$0,-8(%ebp)
-	jne	Lj10661
-	jmp	Lj10660
-Lj10661:
+	jne	Lj10614
+	jmp	Lj10613
+Lj10614:
 	cmpl	$0,-4(%ebp)
-	jne	Lj10659
-	jmp	Lj10660
-Lj10659:
+	jne	Lj10612
+	jmp	Lj10613
+Lj10612:
 	movl	-8(%ebp),%eax
 	movl	16(%eax),%eax
 	testl	%eax,%eax
-	je	Lj10664
+	je	Lj10617
 	decl	%eax
-	je	Lj10666
+	je	Lj10619
 	decl	%eax
-	je	Lj10668
+	je	Lj10621
 	decl	%eax
-	je	Lj10665
+	je	Lj10618
 	decl	%eax
-	je	Lj10667
+	je	Lj10620
 	decl	%eax
-	je	Lj10669
+	je	Lj10622
 	decl	%eax
-	je	Lj10665
-	jmp	Lj10663
-Lj10664:
+	je	Lj10618
+	jmp	Lj10616
+Lj10617:
 	movl	-8(%ebp),%eax
 	movl	8(%eax),%edx
 	movl	-4(%ebp),%eax
 	addl	%eax,%edx
 	movl	-12(%ebp),%eax
 	movl	%edx,(%eax)
-	jmp	Lj10662
-Lj10665:
+	jmp	Lj10615
+Lj10618:
 	movl	-8(%ebp),%eax
 	movl	8(%eax),%ecx
 	movl	-4(%ebp),%eax
@@ -26856,8 +26778,8 @@ Lj10665:
 	movl	-12(%ebp),%edx
 	movl	(%ecx),%eax
 	movl	%eax,(%edx)
-	jmp	Lj10662
-Lj10666:
+	jmp	Lj10615
+Lj10619:
 	movl	-4(%ebp),%eax
 	movl	-8(%ebp),%ecx
 	movl	(%eax),%edx
@@ -26869,8 +26791,8 @@ Lj10666:
 	movl	-20(%ebp),%eax
 	movl	-24(%ebp),%ecx
 	call	*%ecx
-	jmp	Lj10662
-Lj10667:
+	jmp	Lj10615
+Lj10620:
 	movl	-4(%ebp),%eax
 	movl	-8(%ebp),%edx
 	movl	(%eax),%ecx
@@ -26883,8 +26805,8 @@ Lj10667:
 	call	*%edx
 	movl	-12(%ebp),%edx
 	movl	%eax,(%edx)
-	jmp	Lj10662
-Lj10668:
+	jmp	Lj10615
+Lj10621:
 	movl	-8(%ebp),%eax
 	movl	8(%eax),%eax
 	movl	%eax,-24(%ebp)
@@ -26892,8 +26814,8 @@ Lj10668:
 	movl	-20(%ebp),%eax
 	movl	-24(%ebp),%ecx
 	call	*%ecx
-	jmp	Lj10662
-Lj10669:
+	jmp	Lj10615
+Lj10622:
 	movl	-8(%ebp),%eax
 	movl	8(%eax),%eax
 	movl	%eax,-24(%ebp)
@@ -26902,20 +26824,20 @@ Lj10669:
 	call	*%edx
 	movl	-12(%ebp),%edx
 	movl	%eax,(%edx)
-	jmp	Lj10662
-Lj10663:
-Lj10662:
-Lj10660:
+	jmp	Lj10615
+Lj10616:
+Lj10615:
+Lj10613:
 	movl	-12(%ebp),%eax
 	cmpl	$0,(%eax)
-	jne	Lj10698
-	jmp	Lj10699
-Lj10698:
+	jne	Lj10651
+	jmp	Lj10652
+Lj10651:
 	movb	$1,-13(%ebp)
-	jmp	Lj10700
-Lj10699:
+	jmp	Lj10653
+Lj10652:
 	movb	$0,-13(%ebp)
-Lj10700:
+Lj10653:
 	movb	-13(%ebp),%al
 	leave
 	ret
@@ -26935,19 +26857,19 @@ SYSTEM_TOBJECT_$__GETINTERFACE$TGUID$formal$$BOOLEAN:
 	movl	$TC_SYSTEM_IOBJECTINSTANCE,%eax
 	call	SYSTEM_ISGUIDEQUAL$TGUID$TGUID$$BOOLEAN
 	testb	%al,%al
-	jne	Lj10703
-	jmp	Lj10704
-Lj10703:
+	jne	Lj10656
+	jmp	Lj10657
+Lj10656:
 	movl	-8(%ebp),%edx
 	movl	-12(%ebp),%eax
 	movl	%eax,(%edx)
 	movb	$1,-13(%ebp)
-	jmp	Lj10701
-Lj10704:
+	jmp	Lj10654
+Lj10657:
 	movl	-12(%ebp),%eax
 	movl	%eax,-24(%ebp)
 	.balign 4,0x90
-Lj10715:
+Lj10668:
 	movl	-4(%ebp),%edx
 	movl	-24(%ebp),%eax
 	movl	(%eax),%eax
@@ -26960,38 +26882,38 @@ Lj10715:
 	movb	%al,-13(%ebp)
 	movb	-13(%ebp),%al
 	testb	%al,%al
-	je	Lj10732
-	jmp	Lj10734
-Lj10734:
+	je	Lj10685
+	jmp	Lj10687
+Lj10687:
 	movl	-20(%ebp),%eax
 	movl	16(%eax),%eax
 	cmpl	$4,%eax
-	jb	Lj10735
-Lj10735:
-	jc	Lj10732
-	jmp	Lj10733
-Lj10732:
-	jmp	Lj10717
-Lj10733:
+	jb	Lj10688
+Lj10688:
+	jc	Lj10685
+	jmp	Lj10686
+Lj10685:
+	jmp	Lj10670
+Lj10686:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	movl	%eax,-24(%ebp)
-	jmp	Lj10715
-Lj10717:
+	jmp	Lj10668
+Lj10670:
 	cmpb	$0,-13(%ebp)
-	jne	Lj10740
-	jmp	Lj10739
-Lj10740:
+	jne	Lj10693
+	jmp	Lj10692
+Lj10693:
 	movl	-20(%ebp),%eax
 	movl	16(%eax),%eax
 	cmpl	$0,%eax
-	je	Lj10741
+	je	Lj10694
 	cmpl	$3,%eax
-	je	Lj10741
-Lj10741:
-	je	Lj10738
-	jmp	Lj10739
-Lj10738:
+	je	Lj10694
+Lj10694:
+	je	Lj10691
+	jmp	Lj10692
+Lj10691:
 	movl	-8(%ebp),%eax
 	pushl	(%eax)
 	movl	-8(%ebp),%eax
@@ -26999,8 +26921,8 @@ Lj10738:
 	movl	(%eax),%eax
 	call	*4(%eax)
 	popl	%ebx
-Lj10739:
-Lj10701:
+Lj10692:
+Lj10654:
 	movb	-13(%ebp),%al
 	movl	-28(%ebp),%ebx
 	leave
@@ -27021,19 +26943,19 @@ SYSTEM_TOBJECT_$__GETINTERFACEWEAK$TGUID$formal$$BOOLEAN:
 	movl	$TC_SYSTEM_IOBJECTINSTANCE,%eax
 	call	SYSTEM_ISGUIDEQUAL$TGUID$TGUID$$BOOLEAN
 	testb	%al,%al
-	jne	Lj10746
-	jmp	Lj10747
-Lj10746:
+	jne	Lj10699
+	jmp	Lj10700
+Lj10699:
 	movl	-8(%ebp),%edx
 	movl	-12(%ebp),%eax
 	movl	%eax,(%edx)
 	movb	$1,-13(%ebp)
-	jmp	Lj10744
-Lj10747:
+	jmp	Lj10697
+Lj10700:
 	movl	-12(%ebp),%eax
 	movl	%eax,-24(%ebp)
 	.balign 4,0x90
-Lj10758:
+Lj10711:
 	movl	-4(%ebp),%edx
 	movl	-24(%ebp),%eax
 	movl	(%eax),%eax
@@ -27046,38 +26968,38 @@ Lj10758:
 	movb	%al,-13(%ebp)
 	movb	-13(%ebp),%al
 	testb	%al,%al
-	je	Lj10775
-	jmp	Lj10777
-Lj10777:
+	je	Lj10728
+	jmp	Lj10730
+Lj10730:
 	movl	-20(%ebp),%eax
 	movl	16(%eax),%eax
 	cmpl	$4,%eax
-	jb	Lj10778
-Lj10778:
-	jc	Lj10775
-	jmp	Lj10776
-Lj10775:
-	jmp	Lj10760
-Lj10776:
+	jb	Lj10731
+Lj10731:
+	jc	Lj10728
+	jmp	Lj10729
+Lj10728:
+	jmp	Lj10713
+Lj10729:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	movl	%eax,-24(%ebp)
-	jmp	Lj10758
-Lj10760:
+	jmp	Lj10711
+Lj10713:
 	cmpb	$0,-13(%ebp)
-	jne	Lj10783
-	jmp	Lj10782
-Lj10783:
+	jne	Lj10736
+	jmp	Lj10735
+Lj10736:
 	movl	-20(%ebp),%eax
 	movl	16(%eax),%eax
 	cmpl	$0,%eax
-	je	Lj10784
+	je	Lj10737
 	cmpl	$3,%eax
-	je	Lj10784
-Lj10784:
-	jne	Lj10781
-	jmp	Lj10782
-Lj10781:
+	je	Lj10737
+Lj10737:
+	jne	Lj10734
+	jmp	Lj10735
+Lj10734:
 	movl	-8(%ebp),%eax
 	pushl	(%eax)
 	movl	-8(%ebp),%eax
@@ -27085,8 +27007,8 @@ Lj10781:
 	movl	(%eax),%eax
 	call	*8(%eax)
 	popl	%ebx
-Lj10782:
-Lj10744:
+Lj10735:
+Lj10697:
 	movb	-13(%ebp),%al
 	movl	-28(%ebp),%ebx
 	leave
@@ -27106,7 +27028,7 @@ SYSTEM_TOBJECT_$__GETINTERFACEBYSTR$SHORTSTRING$formal$$BOOLEAN:
 	movl	-12(%ebp),%eax
 	movl	%eax,-24(%ebp)
 	.balign 4,0x90
-Lj10791:
+Lj10744:
 	movl	-4(%ebp),%edx
 	movl	-24(%ebp),%eax
 	movl	(%eax),%eax
@@ -27119,43 +27041,43 @@ Lj10791:
 	movb	%al,-13(%ebp)
 	movb	-13(%ebp),%al
 	testb	%al,%al
-	je	Lj10808
-	jmp	Lj10810
-Lj10810:
+	je	Lj10761
+	jmp	Lj10763
+Lj10763:
 	movl	-20(%ebp),%eax
 	movl	16(%eax),%eax
 	cmpl	$4,%eax
-	jb	Lj10811
-Lj10811:
-	jc	Lj10808
-	jmp	Lj10809
-Lj10808:
-	jmp	Lj10793
-Lj10809:
+	jb	Lj10764
+Lj10764:
+	jc	Lj10761
+	jmp	Lj10762
+Lj10761:
+	jmp	Lj10746
+Lj10762:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	movl	%eax,-24(%ebp)
-	jmp	Lj10791
-Lj10793:
+	jmp	Lj10744
+Lj10746:
 	cmpb	$0,-13(%ebp)
-	jne	Lj10817
-	jmp	Lj10815
-Lj10817:
+	jne	Lj10770
+	jmp	Lj10768
+Lj10770:
 	movl	-20(%ebp),%eax
 	cmpl	$0,(%eax)
-	jne	Lj10816
-	jmp	Lj10815
-Lj10816:
+	jne	Lj10769
+	jmp	Lj10768
+Lj10769:
 	movl	-20(%ebp),%eax
 	movl	16(%eax),%eax
 	cmpl	$0,%eax
-	je	Lj10818
+	je	Lj10771
 	cmpl	$3,%eax
-	je	Lj10818
-Lj10818:
-	je	Lj10814
-	jmp	Lj10815
-Lj10814:
+	je	Lj10771
+Lj10771:
+	je	Lj10767
+	jmp	Lj10768
+Lj10767:
 	movl	-8(%ebp),%eax
 	pushl	(%eax)
 	movl	-8(%ebp),%eax
@@ -27163,7 +27085,7 @@ Lj10814:
 	movl	(%eax),%eax
 	call	*4(%eax)
 	popl	%ebx
-Lj10815:
+Lj10768:
 	movb	-13(%ebp),%al
 	movl	-28(%ebp),%ebx
 	leave
@@ -27200,25 +27122,25 @@ SYSTEM_TOBJECT_$__GETINTERFACEENTRY$TGUID$$PINTERFACEENTRY:
 	movl	%edx,-4(%ebp)
 	movl	-8(%ebp),%eax
 	movl	%eax,-24(%ebp)
-	jmp	Lj10836
+	jmp	Lj10789
 	.balign 4,0x90
-Lj10835:
+Lj10788:
 	movl	-24(%ebp),%eax
 	movl	40(%eax),%eax
 	movl	%eax,-20(%ebp)
 	cmpl	$0,-20(%ebp)
-	jne	Lj10840
-	jmp	Lj10841
-Lj10840:
+	jne	Lj10793
+	jmp	Lj10794
+Lj10793:
 	movl	-20(%ebp),%eax
 	movl	(%eax),%ebx
 	decl	%ebx
 	movl	$0,-16(%ebp)
 	cmpl	-16(%ebp),%ebx
-	jl	Lj10843
+	jl	Lj10796
 	decl	-16(%ebp)
 	.balign 4,0x90
-Lj10844:
+Lj10797:
 	incl	-16(%ebp)
 	movl	-20(%ebp),%edx
 	movl	-16(%ebp),%eax
@@ -27227,39 +27149,39 @@ Lj10844:
 	movl	%eax,-12(%ebp)
 	movl	-12(%ebp),%eax
 	cmpl	$0,(%eax)
-	jne	Lj10849
-	jmp	Lj10848
-Lj10849:
+	jne	Lj10802
+	jmp	Lj10801
+Lj10802:
 	movl	-12(%ebp),%eax
 	movl	(%eax),%eax
 	movl	-4(%ebp),%edx
 	call	SYSTEM_ISGUIDEQUAL$TGUID$TGUID$$BOOLEAN
 	testb	%al,%al
-	jne	Lj10847
-	jmp	Lj10848
-Lj10847:
-	jmp	Lj10831
-Lj10848:
+	jne	Lj10800
+	jmp	Lj10801
+Lj10800:
+	jmp	Lj10784
+Lj10801:
 	cmpl	-16(%ebp),%ebx
-	jg	Lj10844
-Lj10843:
-Lj10841:
+	jg	Lj10797
+Lj10796:
+Lj10794:
 	movl	-24(%ebp),%eax
 	movl	8(%eax),%eax
 	movl	%eax,-24(%ebp)
-Lj10836:
+Lj10789:
 	cmpl	$0,-24(%ebp)
-	jne	Lj10856
-	jmp	Lj10837
-Lj10856:
+	jne	Lj10809
+	jmp	Lj10790
+Lj10809:
 	movl	$FPC_EMPTYINTF,%eax
 	movl	-24(%ebp),%edx
 	cmpl	40(%edx),%eax
-	jne	Lj10835
-	jmp	Lj10837
-Lj10837:
+	jne	Lj10788
+	jmp	Lj10790
+Lj10790:
 	movl	$0,-12(%ebp)
-Lj10831:
+Lj10784:
 	movl	-12(%ebp),%eax
 	movl	-28(%ebp),%ebx
 	leave
@@ -27277,25 +27199,25 @@ SYSTEM_TOBJECT_$__GETINTERFACEENTRYBYSTR$SHORTSTRING$$PINTERFACEENTRY:
 	movl	%edx,-4(%ebp)
 	movl	-8(%ebp),%eax
 	movl	%eax,-24(%ebp)
-	jmp	Lj10864
+	jmp	Lj10817
 	.balign 4,0x90
-Lj10863:
+Lj10816:
 	movl	-24(%ebp),%eax
 	movl	40(%eax),%eax
 	movl	%eax,-20(%ebp)
 	cmpl	$0,-20(%ebp)
-	jne	Lj10868
-	jmp	Lj10869
-Lj10868:
+	jne	Lj10821
+	jmp	Lj10822
+Lj10821:
 	movl	-20(%ebp),%eax
 	movl	(%eax),%ebx
 	decl	%ebx
 	movl	$0,-16(%ebp)
 	cmpl	-16(%ebp),%ebx
-	jl	Lj10871
+	jl	Lj10824
 	decl	-16(%ebp)
 	.balign 4,0x90
-Lj10872:
+Lj10825:
 	incl	-16(%ebp)
 	movl	-20(%ebp),%edx
 	movl	-16(%ebp),%eax
@@ -27304,39 +27226,39 @@ Lj10872:
 	movl	%eax,-12(%ebp)
 	movl	-12(%ebp),%eax
 	cmpl	$0,12(%eax)
-	jne	Lj10877
-	jmp	Lj10876
-Lj10877:
+	jne	Lj10830
+	jmp	Lj10829
+Lj10830:
 	movl	-12(%ebp),%eax
 	movl	12(%eax),%eax
 	movl	-4(%ebp),%edx
 	call	fpc_shortstr_compare_equal
 	testl	%eax,%eax
-	je	Lj10875
-	jmp	Lj10876
-Lj10875:
-	jmp	Lj10859
-Lj10876:
+	je	Lj10828
+	jmp	Lj10829
+Lj10828:
+	jmp	Lj10812
+Lj10829:
 	cmpl	-16(%ebp),%ebx
-	jg	Lj10872
-Lj10871:
-Lj10869:
+	jg	Lj10825
+Lj10824:
+Lj10822:
 	movl	-24(%ebp),%eax
 	movl	8(%eax),%eax
 	movl	%eax,-24(%ebp)
-Lj10864:
+Lj10817:
 	cmpl	$0,-24(%ebp)
-	jne	Lj10884
-	jmp	Lj10865
-Lj10884:
+	jne	Lj10837
+	jmp	Lj10818
+Lj10837:
 	movl	$FPC_EMPTYINTF,%eax
 	movl	-24(%ebp),%edx
 	cmpl	40(%edx),%eax
-	jne	Lj10863
-	jmp	Lj10865
-Lj10865:
+	jne	Lj10816
+	jmp	Lj10818
+Lj10818:
 	movl	$0,-12(%ebp)
-Lj10859:
+Lj10812:
 	movl	-12(%ebp),%eax
 	movl	-28(%ebp),%ebx
 	leave
@@ -27371,9 +27293,9 @@ SYSTEM_TOBJECT_$__UNITNAME$$ANSISTRING:
 	call	SYSTEM_TOBJECT_$__CLASSINFO$$POINTER
 	movl	%eax,-12(%ebp)
 	cmpl	$0,-12(%ebp)
-	jne	Lj10897
-	jmp	Lj10898
-Lj10897:
+	jne	Lj10850
+	jmp	Lj10851
+Lj10850:
 	movl	-12(%ebp),%eax
 	incl	%eax
 	movzbl	(%eax),%eax
@@ -27383,13 +27305,13 @@ Lj10897:
 	leal	10(%eax),%eax
 	movl	-8(%ebp),%edx
 	call	fpc_shortstr_to_ansistr
-	jmp	Lj10903
-Lj10898:
+	jmp	Lj10856
+Lj10851:
 	movl	-8(%ebp),%ebx
 	movl	%ebx,%eax
 	call	FPC_ANSISTR_DECR_REF
 	movl	$0,(%ebx)
-Lj10903:
+Lj10856:
 	movl	-16(%ebp),%ebx
 	leave
 	ret
@@ -27455,14 +27377,14 @@ SYSTEM_TINTERFACEDOBJECT_$__QUERYINTERFACE$TGUID$formal$$LONGINT:
 	movl	8(%ebp),%eax
 	call	SYSTEM_TOBJECT_$__GETINTERFACE$TGUID$formal$$BOOLEAN
 	testb	%al,%al
-	jne	Lj10926
-	jmp	Lj10927
-Lj10926:
+	jne	Lj10879
+	jmp	Lj10880
+Lj10879:
 	movl	$0,-4(%ebp)
-	jmp	Lj10936
-Lj10927:
+	jmp	Lj10889
+Lj10880:
 	movl	$-2147467262,-4(%ebp)
-Lj10936:
+Lj10889:
 	movl	-4(%ebp),%eax
 	leave
 	ret
@@ -27495,15 +27417,15 @@ SYSTEM_TINTERFACEDOBJECT_$___RELEASE$$LONGINT:
 	movl	%eax,-4(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj10951
-	jmp	Lj10952
-Lj10951:
+	je	Lj10904
+	jmp	Lj10905
+Lj10904:
 	movl	8(%ebp),%eax
 	movl	$1,%edx
 	movl	8(%ebp),%ecx
 	movl	(%ecx),%ecx
 	call	*48(%ecx)
-Lj10952:
+Lj10905:
 	movl	-4(%ebp),%eax
 	leave
 	ret
@@ -27522,21 +27444,21 @@ SYSTEM_TINTERFACEDOBJECT_$__AFTERCONSTRUCTION:
 	movl	%eax,-8(%ebp)
 	movl	TC_SYSTEM_ISMULTITHREAD,%eax
 	testl	%eax,%eax
-	je	Lj10961
-	jmp	Lj10962
-Lj10961:
+	je	Lj10914
+	jmp	Lj10915
+Lj10914:
 	movl	-8(%ebp),%eax
 	decl	(%eax)
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
 	seteb	%bl
-	jmp	Lj10965
-Lj10962:
+	jmp	Lj10918
+Lj10915:
 	movl	-8(%ebp),%eax
 	call	SYSTEM_CPUDECLOCKED$LONGINT$$BOOLEAN
 	movb	%al,%bl
-Lj10965:
+Lj10918:
 	movl	-12(%ebp),%ebx
 	leave
 	ret
@@ -27552,12 +27474,12 @@ SYSTEM_TINTERFACEDOBJECT_$__BEFOREDESTRUCTION:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj10972
-	jmp	Lj10973
-Lj10972:
+	jne	Lj10925
+	jmp	Lj10926
+Lj10925:
 	movl	$204,%eax
 	call	SYSTEM_HANDLEERROR$LONGINT
-Lj10973:
+Lj10926:
 	leave
 	ret
 
@@ -27574,12 +27496,12 @@ SYSTEM_TINTERFACEDOBJECT_$__NEWINSTANCE$$TOBJECT:
 	movl	%eax,-8(%ebp)
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj10982
-	jmp	Lj10983
-Lj10982:
+	jne	Lj10935
+	jmp	Lj10936
+Lj10935:
 	movl	-8(%ebp),%eax
 	movl	$1,4(%eax)
-Lj10983:
+Lj10936:
 	movl	-8(%ebp),%eax
 	leave
 	ret
@@ -27596,21 +27518,21 @@ SYSTEM_TAGGREGATEDOBJECT_$__CREATE$IUNKNOWN$$TAGGREGATEDOBJECT:
 	movl	%ecx,-4(%ebp)
 	movl	-8(%ebp),%eax
 	cmpl	$1,%eax
-	ja	Lj10988
-	jmp	Lj10989
-Lj10988:
+	ja	Lj10941
+	jmp	Lj10942
+Lj10941:
 	movl	-8(%ebp),%eax
 	movl	-8(%ebp),%edx
 	call	*52(%edx)
 	movl	%eax,-12(%ebp)
-Lj10989:
+Lj10942:
 	movl	-12(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj10994
-	jmp	Lj10995
-Lj10994:
-	jmp	Lj10986
-Lj10995:
+	je	Lj10947
+	jmp	Lj10948
+Lj10947:
+	jmp	Lj10939
+Lj10948:
 	leal	-24(%ebp),%ecx
 	leal	-48(%ebp),%edx
 	movl	$1,%eax
@@ -27618,7 +27540,7 @@ Lj10995:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj10998
+	jne	Lj10951
 	leal	-64(%ebp),%ecx
 	leal	-88(%ebp),%edx
 	movl	$1,%eax
@@ -27626,40 +27548,40 @@ Lj10995:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj11002
+	jne	Lj10955
 	movl	-12(%ebp),%eax
 	movl	$0,%edx
 	call	SYSTEM_TOBJECT_$__CREATE$$TOBJECT
 	movl	-12(%ebp),%edx
 	movl	-4(%ebp),%eax
 	movl	%eax,4(%edx)
-Lj11002:
+Lj10955:
 	call	FPC_POPADDRSTACK
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj11003
+	je	Lj10956
 	call	FPC_RERAISE
-Lj11003:
+Lj10956:
 	movl	-12(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj11013
-	jmp	Lj11012
-Lj11013:
+	jne	Lj10966
+	jmp	Lj10965
+Lj10966:
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj11011
-	jmp	Lj11012
-Lj11011:
+	jne	Lj10964
+	jmp	Lj10965
+Lj10964:
 	movl	-12(%ebp),%eax
 	movl	-12(%ebp),%edx
 	movl	(%edx),%edx
 	call	*68(%edx)
-Lj11012:
-Lj10998:
+Lj10965:
+Lj10951:
 	call	FPC_POPADDRSTACK
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj11000
+	je	Lj10953
 	leal	-64(%ebp),%ecx
 	leal	-88(%ebp),%edx
 	movl	$1,%eax
@@ -27667,34 +27589,34 @@ Lj10998:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj11017
+	jne	Lj10970
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj11018
-	jmp	Lj11019
-Lj11018:
+	jne	Lj10971
+	jmp	Lj10972
+Lj10971:
 	movl	-12(%ebp),%eax
 	movl	$-1,%edx
 	movl	-12(%ebp),%ecx
 	movl	(%ecx),%ecx
 	call	*48(%ecx)
-Lj11019:
+Lj10972:
 	call	FPC_POPADDRSTACK
 	call	FPC_RERAISE
-Lj11017:
+Lj10970:
 	call	FPC_POPADDRSTACK
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj11016
+	je	Lj10969
 	call	FPC_POPSECONDOBJECTSTACK
 	call	FPC_DESTROYEXCEPTION
 	call	FPC_RERAISE
-Lj11016:
+Lj10969:
 	call	FPC_POPOBJECTSTACK
 	call	FPC_DESTROYEXCEPTION
-	jmp	Lj11000
-Lj11000:
-Lj10986:
+	jmp	Lj10953
+Lj10953:
+Lj10939:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -27800,14 +27722,14 @@ SYSTEM_TCONTAINEDOBJECT_$__QUERYINTERFACE$TGUID$formal$$LONGINT:
 	movl	8(%ebp),%eax
 	call	SYSTEM_TOBJECT_$__GETINTERFACE$TGUID$formal$$BOOLEAN
 	testb	%al,%al
-	jne	Lj11052
-	jmp	Lj11053
-Lj11052:
+	jne	Lj11005
+	jmp	Lj11006
+Lj11005:
 	movl	$0,-4(%ebp)
-	jmp	Lj11062
-Lj11053:
+	jmp	Lj11015
+Lj11006:
 	movl	$-2147467262,-4(%ebp)
-Lj11062:
+Lj11015:
 	movl	-4(%ebp),%eax
 	leave
 	ret
@@ -27821,13 +27743,13 @@ SYSTEM_RAISELIST$$PEXCEPTOBJECT:
 	subl	$4,%esp
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj11069
+	je	Lj11022
 	movl	U_SYSTEM_EXCEPTOBJECTSTACK,%eax
 	call	*%edx
-	jmp	Lj11070
-Lj11069:
+	jmp	Lj11023
+Lj11022:
 	movl	$U_SYSTEM_EXCEPTOBJECTSTACK+4,%eax
-Lj11070:
+Lj11023:
 	movl	(%eax),%eax
 	movl	%eax,-4(%ebp)
 	movl	-4(%ebp),%eax
@@ -27843,30 +27765,30 @@ SYSTEM_ACQUIREEXCEPTIONOBJECT$$POINTER:
 	subl	$8,%esp
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj11075
+	je	Lj11028
 	movl	U_SYSTEM_EXCEPTOBJECTSTACK,%eax
 	call	*%edx
-	jmp	Lj11076
-Lj11075:
+	jmp	Lj11029
+Lj11028:
 	movl	$U_SYSTEM_EXCEPTOBJECTSTACK+4,%eax
-Lj11076:
+Lj11029:
 	movl	(%eax),%eax
 	movl	%eax,-8(%ebp)
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj11077
-	jmp	Lj11078
-Lj11077:
+	jne	Lj11030
+	jmp	Lj11031
+Lj11030:
 	movl	-8(%ebp),%eax
 	incl	12(%eax)
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	movl	%eax,-4(%ebp)
-	jmp	Lj11081
-Lj11078:
+	jmp	Lj11034
+Lj11031:
 	movw	$231,%ax
 	call	SYSTEM_RUNERROR$WORD
-Lj11081:
+Lj11034:
 	movl	-4(%ebp),%eax
 	leave
 	ret
@@ -27880,34 +27802,34 @@ SYSTEM_RELEASEEXCEPTIONOBJECT:
 	subl	$4,%esp
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj11088
+	je	Lj11041
 	movl	U_SYSTEM_EXCEPTOBJECTSTACK,%eax
 	call	*%edx
-	jmp	Lj11089
-Lj11088:
+	jmp	Lj11042
+Lj11041:
 	movl	$U_SYSTEM_EXCEPTOBJECTSTACK+4,%eax
-Lj11089:
+Lj11042:
 	movl	(%eax),%eax
 	movl	%eax,-4(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj11090
-	jmp	Lj11091
-Lj11090:
+	jne	Lj11043
+	jmp	Lj11044
+Lj11043:
 	movl	-4(%ebp),%eax
 	movl	12(%eax),%eax
 	cmpl	$0,%eax
-	jg	Lj11092
-	jmp	Lj11093
-Lj11092:
+	jg	Lj11045
+	jmp	Lj11046
+Lj11045:
 	movl	-4(%ebp),%eax
 	decl	12(%eax)
-Lj11093:
-	jmp	Lj11094
-Lj11091:
+Lj11046:
+	jmp	Lj11047
+Lj11044:
 	movw	$231,%ax
 	call	SYSTEM_RUNERROR$WORD
-Lj11094:
+Lj11047:
 	leave
 	ret
 
@@ -27925,13 +27847,13 @@ FPC_PUSHEXCEPTADDR:
 	movl	%ecx,-12(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj11101
+	je	Lj11054
 	movl	U_SYSTEM_EXCEPTADDRSTACK,%eax
 	call	*%edx
-	jmp	Lj11102
-Lj11101:
+	jmp	Lj11055
+Lj11054:
 	movl	$U_SYSTEM_EXCEPTADDRSTACK+4,%eax
-Lj11102:
+Lj11055:
 	movl	%eax,-20(%ebp)
 	movl	-12(%ebp),%edx
 	movl	-20(%ebp),%eax
@@ -27967,20 +27889,20 @@ FPC_PUSHEXCEPTOBJECT:
 	movl	%ecx,-12(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj11117
+	je	Lj11070
 	movl	U_SYSTEM_EXCEPTOBJECTSTACK,%eax
 	call	*%edx
-	jmp	Lj11118
-Lj11117:
+	jmp	Lj11071
+Lj11070:
 	movl	$U_SYSTEM_EXCEPTOBJECTSTACK+4,%eax
-Lj11118:
+Lj11071:
 	movl	%eax,-20(%ebp)
 	movl	-20(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj11119
-	jmp	Lj11120
-Lj11119:
+	je	Lj11072
+	jmp	Lj11073
+Lj11072:
 	movl	$24,%eax
 	call	fpc_getmem
 	movl	-20(%ebp),%edx
@@ -27988,8 +27910,8 @@ Lj11119:
 	movl	-20(%ebp),%eax
 	movl	(%eax),%eax
 	movl	$0,8(%eax)
-	jmp	Lj11129
-Lj11120:
+	jmp	Lj11082
+Lj11073:
 	movl	$24,%eax
 	call	fpc_getmem
 	movl	%eax,-16(%ebp)
@@ -28000,7 +27922,7 @@ Lj11120:
 	movl	-20(%ebp),%edx
 	movl	-16(%ebp),%eax
 	movl	%eax,(%edx)
-Lj11129:
+Lj11082:
 	movl	-20(%ebp),%eax
 	movl	(%eax),%eax
 	movl	-4(%ebp),%edx
@@ -28014,9 +27936,9 @@ Lj11129:
 	movl	$0,-32(%ebp)
 	movl	$0,-24(%ebp)
 	movl	$0,-28(%ebp)
-	jmp	Lj11159
+	jmp	Lj11112
 	.balign 4,0x90
-Lj11158:
+Lj11111:
 	movl	-40(%ebp),%eax
 	call	SYSTEM_GET_CALLER_ADDR$POINTER$$POINTER
 	movl	%eax,-48(%ebp)
@@ -28025,27 +27947,27 @@ Lj11158:
 	movl	%eax,-44(%ebp)
 	movl	-48(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj11169
-	jmp	Lj11171
-Lj11171:
+	je	Lj11122
+	jmp	Lj11124
+Lj11124:
 	movl	-44(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj11169
-	jmp	Lj11170
-Lj11169:
-	jmp	Lj11160
-Lj11170:
+	je	Lj11122
+	jmp	Lj11123
+Lj11122:
+	jmp	Lj11113
+Lj11123:
 	movl	-28(%ebp),%eax
 	cmpl	-24(%ebp),%eax
-	jge	Lj11172
-	jmp	Lj11173
-Lj11172:
+	jge	Lj11125
+	jmp	Lj11126
+Lj11125:
 	addl	$16,-24(%ebp)
 	movl	-24(%ebp),%edx
 	shll	$2,%edx
 	leal	-32(%ebp),%eax
 	call	SYSTEM_REALLOCMEM$POINTER$LONGWORD$$POINTER
-Lj11173:
+Lj11126:
 	movl	-32(%ebp),%ecx
 	movl	-28(%ebp),%eax
 	movl	-48(%ebp),%edx
@@ -28055,43 +27977,43 @@ Lj11173:
 	movl	%eax,-36(%ebp)
 	movl	-44(%ebp),%eax
 	movl	%eax,-40(%ebp)
-Lj11159:
+Lj11112:
 	movl	-28(%ebp),%eax
 	cmpl	TC_SYSTEM_RAISEMAXFRAMECOUNT,%eax
-	jl	Lj11185
-	jmp	Lj11160
-Lj11185:
+	jl	Lj11138
+	jmp	Lj11113
+Lj11138:
 	movl	-40(%ebp),%eax
 	cmpl	-36(%ebp),%eax
-	ja	Lj11184
-	jmp	Lj11160
-Lj11184:
+	ja	Lj11137
+	jmp	Lj11113
+Lj11137:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj11186
+	je	Lj11139
 	movl	U_SYSTEM_STACKBOTTOM,%eax
 	call	*%edx
 	movl	%eax,%ebx
-	jmp	Lj11187
-Lj11186:
+	jmp	Lj11140
+Lj11139:
 	movl	$U_SYSTEM_STACKBOTTOM+4,%ebx
-Lj11187:
+Lj11140:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj11188
+	je	Lj11141
 	movl	U_SYSTEM_STACKLENGTH,%eax
 	call	*%edx
-	jmp	Lj11189
-Lj11188:
+	jmp	Lj11142
+Lj11141:
 	movl	$U_SYSTEM_STACKLENGTH+4,%eax
-Lj11189:
+Lj11142:
 	movl	(%ebx),%edx
 	movl	(%eax),%eax
 	addl	%eax,%edx
 	cmpl	-40(%ebp),%edx
-	ja	Lj11158
-	jmp	Lj11160
-Lj11160:
+	ja	Lj11111
+	jmp	Lj11113
+Lj11113:
 	movl	-20(%ebp),%eax
 	movl	(%eax),%edx
 	movl	-28(%ebp),%eax
@@ -28114,25 +28036,25 @@ SYSTEM_DOUNHANDLEDEXCEPTION:
 	movl	%esi,-8(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj11198
+	je	Lj11151
 	movl	U_SYSTEM_EXCEPTOBJECTSTACK,%eax
 	call	*%edx
-	jmp	Lj11199
-Lj11198:
+	jmp	Lj11152
+Lj11151:
 	movl	$U_SYSTEM_EXCEPTOBJECTSTACK+4,%eax
-Lj11199:
+Lj11152:
 	movl	(%eax),%eax
 	movl	%eax,-4(%ebp)
 	movl	TC_SYSTEM_EXCEPTPROC,%eax
 	testl	%eax,%eax
-	jne	Lj11202
-	jmp	Lj11201
-Lj11202:
+	jne	Lj11155
+	jmp	Lj11154
+Lj11155:
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj11200
-	jmp	Lj11201
-Lj11200:
+	jne	Lj11153
+	jmp	Lj11154
+Lj11153:
 	movl	-4(%ebp),%ebx
 	pushl	20(%ebx)
 	movl	16(%ebx),%ecx
@@ -28142,19 +28064,29 @@ Lj11200:
 	call	*%esi
 	movl	$217,%eax
 	call	SYSTEM_HALT$LONGINT
-Lj11201:
+Lj11154:
 	movl	TC_SYSTEM_ERRORADDR,%eax
 	testl	%eax,%eax
-	je	Lj11215
-	jmp	Lj11216
-Lj11215:
+	je	Lj11168
+	jmp	Lj11169
+Lj11168:
 	movw	$217,%ax
 	call	SYSTEM_RUNERROR$WORD
-	jmp	Lj11219
-Lj11216:
+	jmp	Lj11172
+Lj11169:
+	movw	TC_SYSTEM_ERRORCODE,%ax
+	cmpw	$255,%ax
+	ja	Lj11173
+	jmp	Lj11174
+Lj11173:
+	movl	$255,%eax
+	call	SYSTEM_HALT$LONGINT
+	jmp	Lj11177
+Lj11174:
 	movzwl	TC_SYSTEM_ERRORCODE,%eax
 	call	SYSTEM_HALT$LONGINT
-Lj11219:
+Lj11177:
+Lj11172:
 	movl	-12(%ebp),%ebx
 	movl	-8(%ebp),%esi
 	leave
@@ -28181,43 +28113,43 @@ FPC_RAISEEXCEPTION:
 	call	FPC_PUSHEXCEPTOBJECT
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj11234
+	je	Lj11192
 	movl	U_SYSTEM_EXCEPTADDRSTACK,%eax
 	call	*%edx
-	jmp	Lj11235
-Lj11234:
+	jmp	Lj11193
+Lj11192:
 	movl	$U_SYSTEM_EXCEPTADDRSTACK+4,%eax
-Lj11235:
+Lj11193:
 	movl	(%eax),%eax
 	movl	%eax,-24(%ebp)
 	movl	-24(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj11236
-	jmp	Lj11237
-Lj11236:
+	je	Lj11194
+	jmp	Lj11195
+Lj11194:
 	call	SYSTEM_DOUNHANDLEDEXCEPTION
-Lj11237:
+Lj11195:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj11240
+	je	Lj11198
 	movl	U_SYSTEM_EXCEPTOBJECTSTACK,%eax
 	call	*%edx
-	jmp	Lj11241
-Lj11240:
+	jmp	Lj11199
+Lj11198:
 	movl	$U_SYSTEM_EXCEPTOBJECTSTACK+4,%eax
-Lj11241:
+Lj11199:
 	movl	(%eax),%eax
 	movl	%eax,-20(%ebp)
 	movl	TC_SYSTEM_RAISEPROC,%eax
 	testl	%eax,%eax
-	jne	Lj11244
-	jmp	Lj11243
-Lj11244:
+	jne	Lj11202
+	jmp	Lj11201
+Lj11202:
 	movl	-20(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj11242
-	jmp	Lj11243
-Lj11242:
+	jne	Lj11200
+	jmp	Lj11201
+Lj11200:
 	movl	-20(%ebp),%ebx
 	pushl	20(%ebx)
 	movl	16(%ebx),%ecx
@@ -28225,7 +28157,7 @@ Lj11242:
 	movl	(%ebx),%eax
 	movl	TC_SYSTEM_RAISEPROC,%esi
 	call	*%esi
-Lj11243:
+Lj11201:
 	movl	-24(%ebp),%eax
 	movl	(%eax),%eax
 	movl	$1,%edx
@@ -28247,30 +28179,30 @@ FPC_POPADDRSTACK:
 	subl	$4,%esp
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj11263
+	je	Lj11221
 	movl	U_SYSTEM_EXCEPTADDRSTACK,%eax
 	call	*%edx
-	jmp	Lj11264
-Lj11263:
+	jmp	Lj11222
+Lj11221:
 	movl	$U_SYSTEM_EXCEPTADDRSTACK+4,%eax
-Lj11264:
+Lj11222:
 	movl	%eax,-4(%ebp)
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj11265
-	jmp	Lj11266
-Lj11265:
+	je	Lj11223
+	jmp	Lj11224
+Lj11223:
 	movl	$255,%eax
 	call	SYSTEM_HALT$LONGINT
-	jmp	Lj11269
-Lj11266:
+	jmp	Lj11227
+Lj11224:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	movl	-4(%ebp),%edx
 	movl	4(%eax),%eax
 	movl	%eax,(%edx)
-Lj11269:
+Lj11227:
 	leave
 	ret
 
@@ -28285,64 +28217,64 @@ FPC_POPOBJECTSTACK:
 	subl	$12,%esp
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj11276
+	je	Lj11234
 	movl	U_SYSTEM_EXCEPTOBJECTSTACK,%eax
 	call	*%edx
-	jmp	Lj11277
-Lj11276:
+	jmp	Lj11235
+Lj11234:
 	movl	$U_SYSTEM_EXCEPTOBJECTSTACK+4,%eax
-Lj11277:
+Lj11235:
 	movl	(%eax),%eax
 	movl	%eax,-12(%ebp)
 	movl	-12(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj11278
-	jmp	Lj11279
-Lj11278:
+	je	Lj11236
+	jmp	Lj11237
+Lj11236:
 	movl	$1,%eax
 	call	SYSTEM_HALT$LONGINT
-	jmp	Lj11282
-Lj11279:
+	jmp	Lj11240
+Lj11237:
 	movl	-12(%ebp),%eax
 	movl	12(%eax),%eax
 	testl	%eax,%eax
-	je	Lj11283
-	jmp	Lj11284
-Lj11283:
+	je	Lj11241
+	jmp	Lj11242
+Lj11241:
 	movl	-12(%ebp),%eax
 	movl	(%eax),%eax
 	movl	%eax,-4(%ebp)
-	jmp	Lj11287
-Lj11284:
+	jmp	Lj11245
+Lj11242:
 	movl	$0,-4(%ebp)
-Lj11287:
+Lj11245:
 	movl	-12(%ebp),%eax
 	movl	%eax,-8(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj11294
+	je	Lj11252
 	movl	U_SYSTEM_EXCEPTOBJECTSTACK,%eax
 	call	*%edx
-	jmp	Lj11295
-Lj11294:
+	jmp	Lj11253
+Lj11252:
 	movl	$U_SYSTEM_EXCEPTOBJECTSTACK+4,%eax
-Lj11295:
+Lj11253:
 	movl	-12(%ebp),%edx
 	movl	8(%edx),%edx
 	movl	%edx,(%eax)
 	movl	-8(%ebp),%eax
 	cmpl	$0,20(%eax)
-	jne	Lj11296
-	jmp	Lj11297
-Lj11296:
+	jne	Lj11254
+	jmp	Lj11255
+Lj11254:
 	movl	-8(%ebp),%eax
 	movl	20(%eax),%eax
 	call	SYSTEM_FREEMEM$POINTER$$LONGWORD
-Lj11297:
+Lj11255:
 	movl	-8(%ebp),%eax
 	call	fpc_freemem
 	movl	$0,TC_SYSTEM_ERRORADDR
-Lj11282:
+Lj11240:
 	movl	-4(%ebp),%eax
 	leave
 	ret
@@ -28358,43 +28290,43 @@ FPC_POPSECONDOBJECTSTACK:
 	subl	$12,%esp
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj11308
+	je	Lj11266
 	movl	U_SYSTEM_EXCEPTOBJECTSTACK,%eax
 	call	*%edx
-	jmp	Lj11309
-Lj11308:
+	jmp	Lj11267
+Lj11266:
 	movl	$U_SYSTEM_EXCEPTOBJECTSTACK+4,%eax
-Lj11309:
+Lj11267:
 	movl	(%eax),%eax
 	movl	%eax,-12(%ebp)
 	cmpl	$0,-12(%ebp)
-	jne	Lj11312
-	jmp	Lj11310
-Lj11312:
+	jne	Lj11270
+	jmp	Lj11268
+Lj11270:
 	movl	-12(%ebp),%eax
 	cmpl	$0,8(%eax)
-	jne	Lj11311
-	jmp	Lj11310
-Lj11310:
+	jne	Lj11269
+	jmp	Lj11268
+Lj11268:
 	movl	$1,%eax
 	call	SYSTEM_HALT$LONGINT
-	jmp	Lj11315
-Lj11311:
+	jmp	Lj11273
+Lj11269:
 	movl	-12(%ebp),%eax
 	movl	8(%eax),%eax
 	movl	12(%eax),%eax
 	testl	%eax,%eax
-	je	Lj11316
-	jmp	Lj11317
-Lj11316:
+	je	Lj11274
+	jmp	Lj11275
+Lj11274:
 	movl	-12(%ebp),%eax
 	movl	8(%eax),%eax
 	movl	(%eax),%eax
 	movl	%eax,-4(%ebp)
-	jmp	Lj11320
-Lj11317:
+	jmp	Lj11278
+Lj11275:
 	movl	$0,-4(%ebp)
-Lj11320:
+Lj11278:
 	movl	-12(%ebp),%eax
 	movl	8(%eax),%eax
 	movl	%eax,-8(%ebp)
@@ -28404,16 +28336,16 @@ Lj11320:
 	movl	%eax,8(%edx)
 	movl	-8(%ebp),%eax
 	cmpl	$0,20(%eax)
-	jne	Lj11327
-	jmp	Lj11328
-Lj11327:
+	jne	Lj11285
+	jmp	Lj11286
+Lj11285:
 	movl	-8(%ebp),%eax
 	movl	20(%eax),%eax
 	call	SYSTEM_FREEMEM$POINTER$$LONGWORD
-Lj11328:
+Lj11286:
 	movl	-8(%ebp),%eax
 	call	fpc_freemem
-Lj11315:
+Lj11273:
 	movl	-4(%ebp),%eax
 	leave
 	ret
@@ -28429,31 +28361,31 @@ FPC_RERAISE:
 	subl	$4,%esp
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj11337
+	je	Lj11295
 	movl	U_SYSTEM_EXCEPTADDRSTACK,%eax
 	call	*%edx
-	jmp	Lj11338
-Lj11337:
+	jmp	Lj11296
+Lj11295:
 	movl	$U_SYSTEM_EXCEPTADDRSTACK+4,%eax
-Lj11338:
+Lj11296:
 	movl	(%eax),%eax
 	movl	%eax,-4(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj11339
-	jmp	Lj11340
-Lj11339:
+	je	Lj11297
+	jmp	Lj11298
+Lj11297:
 	call	SYSTEM_DOUNHANDLEDEXCEPTION
-Lj11340:
+Lj11298:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj11343
+	je	Lj11301
 	movl	U_SYSTEM_EXCEPTOBJECTSTACK,%eax
 	call	*%edx
-	jmp	Lj11344
-Lj11343:
+	jmp	Lj11302
+Lj11301:
 	movl	$U_SYSTEM_EXCEPTOBJECTSTACK+4,%eax
-Lj11344:
+Lj11302:
 	movl	(%eax),%eax
 	movl	$0,12(%eax)
 	movl	-4(%ebp),%eax
@@ -28475,45 +28407,45 @@ FPC_CATCHES:
 	movl	%eax,-4(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj11353
+	je	Lj11311
 	movl	U_SYSTEM_EXCEPTOBJECTSTACK,%eax
 	call	*%edx
-	jmp	Lj11354
-Lj11353:
+	jmp	Lj11312
+Lj11311:
 	movl	$U_SYSTEM_EXCEPTOBJECTSTACK+4,%eax
-Lj11354:
+Lj11312:
 	movl	(%eax),%eax
 	movl	%eax,-16(%ebp)
 	movl	-16(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj11355
-	jmp	Lj11356
-Lj11355:
+	je	Lj11313
+	jmp	Lj11314
+Lj11313:
 	movl	$255,%eax
 	call	SYSTEM_HALT$LONGINT
-Lj11356:
+Lj11314:
 	movl	-4(%ebp),%eax
 	movl	%eax,-12(%ebp)
 	movl	-12(%ebp),%eax
 	cmpl	TC_SYSTEM_CATCHALLEXCEPTIONS,%eax
-	je	Lj11362
-	jmp	Lj11363
-Lj11363:
+	je	Lj11320
+	jmp	Lj11321
+Lj11321:
 	movl	-16(%ebp),%eax
 	movl	(%eax),%edx
 	movl	-12(%ebp),%eax
 	call	fpc_do_is
 	testb	%al,%al
-	jne	Lj11362
-	jmp	Lj11361
-Lj11361:
+	jne	Lj11320
+	jmp	Lj11319
+Lj11319:
 	movl	$0,-8(%ebp)
-	jmp	Lj11370
-Lj11362:
+	jmp	Lj11328
+Lj11320:
 	movl	-16(%ebp),%eax
 	movl	(%eax),%eax
 	movl	%eax,-8(%ebp)
-Lj11370:
+Lj11328:
 	movl	-8(%ebp),%eax
 	leave
 	ret
@@ -28544,27 +28476,27 @@ FPC_GETEXCEPTIONADDR:
 	subl	$8,%esp
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj11381
+	je	Lj11339
 	movl	U_SYSTEM_EXCEPTOBJECTSTACK,%eax
 	call	*%edx
-	jmp	Lj11382
-Lj11381:
+	jmp	Lj11340
+Lj11339:
 	movl	$U_SYSTEM_EXCEPTOBJECTSTACK+4,%eax
-Lj11382:
+Lj11340:
 	movl	(%eax),%eax
 	movl	%eax,-8(%ebp)
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj11383
-	jmp	Lj11384
-Lj11383:
+	je	Lj11341
+	jmp	Lj11342
+Lj11341:
 	movl	$0,-4(%ebp)
-	jmp	Lj11387
-Lj11384:
+	jmp	Lj11345
+Lj11342:
 	movl	-8(%ebp),%eax
 	movl	4(%eax),%eax
 	movl	%eax,-4(%ebp)
-Lj11387:
+Lj11345:
 	movl	-4(%ebp),%eax
 	leave
 	ret
@@ -28577,23 +28509,23 @@ SYSTEM_SYSINITEXCEPTIONS:
 	movl	%esp,%ebp
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj11394
+	je	Lj11352
 	movl	U_SYSTEM_EXCEPTOBJECTSTACK,%eax
 	call	*%edx
-	jmp	Lj11395
-Lj11394:
+	jmp	Lj11353
+Lj11352:
 	movl	$U_SYSTEM_EXCEPTOBJECTSTACK+4,%eax
-Lj11395:
+Lj11353:
 	movl	$0,(%eax)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj11398
+	je	Lj11356
 	movl	U_SYSTEM_EXCEPTADDRSTACK,%eax
 	call	*%edx
-	jmp	Lj11399
-Lj11398:
+	jmp	Lj11357
+Lj11356:
 	movl	$U_SYSTEM_EXCEPTADDRSTACK+4,%eax
-Lj11399:
+Lj11357:
 	movl	$0,(%eax)
 	leave
 	ret
@@ -28626,13 +28558,13 @@ FPC_VARIANT_CLEAR:
 	subl	$4,%esp
 	movl	%eax,-4(%ebp)
 	cmpl	$0,TC_SYSTEM_VARCLEARPROC
-	jne	Lj11410
-	jmp	Lj11411
-Lj11410:
+	jne	Lj11368
+	jmp	Lj11369
+Lj11368:
 	movl	-4(%ebp),%eax
 	movl	TC_SYSTEM_VARCLEARPROC,%edx
 	call	*%edx
-Lj11411:
+Lj11369:
 	leave
 	ret
 
@@ -28647,13 +28579,13 @@ FPC_VARIANT_ADDREF:
 	subl	$4,%esp
 	movl	%eax,-4(%ebp)
 	cmpl	$0,TC_SYSTEM_VARADDREFPROC
-	jne	Lj11416
-	jmp	Lj11417
-Lj11416:
+	jne	Lj11374
+	jmp	Lj11375
+Lj11374:
 	movl	-4(%ebp),%eax
 	movl	TC_SYSTEM_VARADDREFPROC,%edx
 	call	*%edx
-Lj11417:
+Lj11375:
 	leave
 	ret
 
@@ -28669,14 +28601,14 @@ FPC_VARIANT_COPY:
 	movl	%eax,-4(%ebp)
 	movl	%edx,-8(%ebp)
 	cmpl	$0,TC_SYSTEM_VARCOPYPROC
-	jne	Lj11422
-	jmp	Lj11423
-Lj11422:
+	jne	Lj11380
+	jmp	Lj11381
+Lj11380:
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	movl	TC_SYSTEM_VARCOPYPROC,%ecx
 	call	*%ecx
-Lj11423:
+Lj11381:
 	leave
 	ret
 
@@ -28694,14 +28626,14 @@ FPC_VARIANT_COPY_OVERWRITE:
 	movl	-8(%ebp),%eax
 	movw	$0,(%eax)
 	cmpl	$0,TC_SYSTEM_VARCOPYPROC
-	jne	Lj11432
-	jmp	Lj11433
-Lj11432:
+	jne	Lj11390
+	jmp	Lj11391
+Lj11390:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movl	TC_SYSTEM_VARCOPYPROC,%ecx
 	call	*%ecx
-Lj11433:
+Lj11391:
 	leave
 	ret
 
@@ -28720,73 +28652,73 @@ FPC_WRITE_TEXT_VARIANT:
 	movl	%ecx,-12(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj11442
+	je	Lj11400
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj11443
-Lj11442:
+	jmp	Lj11401
+Lj11400:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj11443:
+Lj11401:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj11440
-	jmp	Lj11441
-Lj11440:
-	jmp	Lj11438
-Lj11441:
+	jne	Lj11398
+	jmp	Lj11399
+Lj11398:
+	jmp	Lj11396
+Lj11399:
 	movl	-8(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55217,%eax
-	jl	Lj11445
+	jl	Lj11403
 	subl	$55217,%eax
-	je	Lj11447
+	je	Lj11405
 	decl	%eax
-	je	Lj11446
-	jmp	Lj11445
-Lj11446:
+	je	Lj11404
+	jmp	Lj11403
+Lj11404:
 	movl	-4(%ebp),%eax
 	cmpl	$-1,%eax
-	je	Lj11448
-	jmp	Lj11449
-Lj11448:
+	je	Lj11406
+	jmp	Lj11407
+Lj11406:
 	movl	-12(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movl	U_SYSTEM_VARIANTMANAGER+180,%ecx
 	call	*%ecx
-	jmp	Lj11454
-Lj11449:
+	jmp	Lj11412
+Lj11407:
 	movl	-4(%ebp),%ecx
 	movl	-12(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movl	U_SYSTEM_VARIANTMANAGER+176,%ebx
 	call	*%ebx
-Lj11454:
-	jmp	Lj11444
-Lj11447:
+Lj11412:
+	jmp	Lj11402
+Lj11405:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj11463
+	je	Lj11421
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj11464
-Lj11463:
+	jmp	Lj11422
+Lj11421:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj11464:
+Lj11422:
 	movw	$105,(%eax)
-	jmp	Lj11444
-Lj11445:
+	jmp	Lj11402
+Lj11403:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj11467
+	je	Lj11425
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj11468
-Lj11467:
+	jmp	Lj11426
+Lj11425:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj11468:
+Lj11426:
 	movw	$103,(%eax)
-Lj11444:
-Lj11438:
+Lj11402:
+Lj11396:
 	movl	-16(%ebp),%ebx
 	leave
 	ret
@@ -28813,7 +28745,7 @@ fpc_vararray_get:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj11471
+	jne	Lj11429
 	movl	$INIT_SYSTEM_VARIANT,%edx
 	leal	-68(%ebp),%eax
 	call	FPC_FINALIZE
@@ -28834,16 +28766,16 @@ fpc_vararray_get:
 	leal	-68(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	fpc_variant_copy
-Lj11471:
+Lj11429:
 	call	FPC_POPADDRSTACK
 	movl	$INIT_SYSTEM_VARIANT,%edx
 	leal	-68(%ebp),%eax
 	call	FPC_FINALIZE
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj11472
+	je	Lj11430
 	call	FPC_RERAISE
-Lj11472:
+Lj11430:
 	movl	-76(%ebp),%esi
 	movl	-72(%ebp),%edi
 	leave
@@ -29317,7 +29249,7 @@ SYSTEM_assign$UTF8STRING$$VARIANT:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj11664
+	jne	Lj11622
 	leal	-52(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,-52(%ebp)
@@ -29328,16 +29260,16 @@ SYSTEM_assign$UTF8STRING$$VARIANT:
 	movl	-8(%ebp),%eax
 	movl	U_SYSTEM_VARIANTMANAGER+88,%ecx
 	call	*%ecx
-Lj11664:
+Lj11622:
 	call	FPC_POPADDRSTACK
 	leal	-52(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,-52(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj11665
+	je	Lj11623
 	call	FPC_RERAISE
-Lj11665:
+Lj11623:
 	leave
 	ret
 
@@ -29357,7 +29289,7 @@ SYSTEM_assign$UCS4STRING$$VARIANT:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj11677
+	jne	Lj11635
 	leal	-48(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,-48(%ebp)
@@ -29368,16 +29300,16 @@ SYSTEM_assign$UCS4STRING$$VARIANT:
 	movl	-4(%ebp),%eax
 	movl	U_SYSTEM_VARIANTMANAGER+88,%ecx
 	call	*%ecx
-Lj11677:
+Lj11635:
 	call	FPC_POPADDRSTACK
 	leal	-48(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,-48(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj11678
+	je	Lj11636
 	call	FPC_RERAISE
-Lj11678:
+Lj11636:
 	leave
 	ret	$4
 
@@ -29723,12 +29655,12 @@ SYSTEM_assign$VARIANT$$CHAR:
 	call	*%ecx
 	movzbl	-261(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj11814
-	jmp	Lj11815
-Lj11814:
+	jg	Lj11772
+	jmp	Lj11773
+Lj11772:
 	movb	-260(%ebp),%al
 	movb	%al,-5(%ebp)
-Lj11815:
+Lj11773:
 	movb	-5(%ebp),%al
 	leave
 	ret
@@ -29814,7 +29746,7 @@ SYSTEM_assign$VARIANT$$UTF8STRING:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj11844
+	jne	Lj11802
 	movl	-4(%ebp),%edx
 	leal	-12(%ebp),%eax
 	movl	U_SYSTEM_VARIANTMANAGER+36,%ecx
@@ -29822,16 +29754,16 @@ SYSTEM_assign$VARIANT$$UTF8STRING:
 	movl	-8(%ebp),%edx
 	movl	-12(%ebp),%eax
 	call	SYSTEM_UTF8ENCODE$UNICODESTRING$$UTF8STRING
-Lj11844:
+Lj11802:
 	call	FPC_POPADDRSTACK
 	leal	-12(%ebp),%eax
 	call	fpc_unicodestr_decr_ref
 	movl	$0,-12(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj11845
+	je	Lj11803
 	call	FPC_RERAISE
-Lj11845:
+Lj11803:
 	leave
 	ret
 
@@ -30427,9 +30359,9 @@ SYSTEM_VARARRAYPUT$VARIANT$VARIANT$array_of_LONGINT:
 	movl	8(%ebp),%eax
 	incl	%eax
 	cmpl	$0,%eax
-	jg	Lj12133
-	jmp	Lj12134
-Lj12133:
+	jg	Lj12091
+	jmp	Lj12092
+Lj12091:
 	movl	-12(%ebp),%eax
 	pushl	%eax
 	movl	8(%ebp),%eax
@@ -30447,8 +30379,8 @@ Lj12133:
 	movl	U_SYSTEM_VARIANTMANAGER+172,%eax
 	call	*%eax
 	addl	$28,%esp
-	jmp	Lj12143
-Lj12134:
+	jmp	Lj12101
+Lj12092:
 	pushl	$0
 	pushl	$0
 	movl	-8(%ebp),%esi
@@ -30463,7 +30395,7 @@ Lj12134:
 	movl	U_SYSTEM_VARIANTMANAGER+172,%eax
 	call	*%eax
 	addl	$28,%esp
-Lj12143:
+Lj12101:
 	movl	-20(%ebp),%esi
 	movl	-16(%ebp),%edi
 	leave
@@ -30484,9 +30416,9 @@ SYSTEM_VARARRAYGET$VARIANT$array_of_LONGINT$$VARIANT:
 	movl	-12(%ebp),%eax
 	incl	%eax
 	cmpl	$0,%eax
-	jg	Lj12154
-	jmp	Lj12155
-Lj12154:
+	jg	Lj12112
+	jmp	Lj12113
+Lj12112:
 	movl	-8(%ebp),%eax
 	pushl	%eax
 	movl	-12(%ebp),%eax
@@ -30504,8 +30436,8 @@ Lj12154:
 	movl	U_SYSTEM_VARIANTMANAGER+168,%eax
 	call	*%eax
 	addl	$24,%esp
-	jmp	Lj12164
-Lj12155:
+	jmp	Lj12122
+Lj12113:
 	pushl	$0
 	pushl	$0
 	movl	-4(%ebp),%esi
@@ -30520,7 +30452,7 @@ Lj12155:
 	movl	U_SYSTEM_VARIANTMANAGER+168,%eax
 	call	*%eax
 	addl	$24,%esp
-Lj12164:
+Lj12122:
 	movl	-20(%ebp),%esi
 	movl	-16(%ebp),%edi
 	leave
@@ -30748,15 +30680,15 @@ SYSTEM_assign$OLEVARIANT$$CHAR:
 	call	*%ecx
 	movzbl	-261(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj12257
-	jmp	Lj12258
-Lj12257:
+	jg	Lj12215
+	jmp	Lj12216
+Lj12215:
 	movb	-260(%ebp),%al
 	movb	%al,-5(%ebp)
-	jmp	Lj12261
-Lj12258:
+	jmp	Lj12219
+Lj12216:
 	movb	$0,-5(%ebp)
-Lj12261:
+Lj12219:
 	movb	-5(%ebp),%al
 	leave
 	ret
@@ -30777,38 +30709,38 @@ SYSTEM_assign$OLEVARIANT$$WIDECHAR:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj12266
+	jne	Lj12224
 	movl	-4(%ebp),%edx
 	leal	-12(%ebp),%eax
 	movl	U_SYSTEM_VARIANTMANAGER+36,%ecx
 	call	*%ecx
 	movl	-12(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj12275
+	je	Lj12233
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj12275:
+Lj12233:
 	cmpl	$0,%eax
-	jg	Lj12273
-	jmp	Lj12274
-Lj12273:
+	jg	Lj12231
+	jmp	Lj12232
+Lj12231:
 	movl	-12(%ebp),%eax
 	movw	(%eax),%ax
 	movw	%ax,-6(%ebp)
-	jmp	Lj12278
-Lj12274:
+	jmp	Lj12236
+Lj12232:
 	movw	$0,-6(%ebp)
-Lj12278:
-Lj12266:
+Lj12236:
+Lj12224:
 	call	FPC_POPADDRSTACK
 	leal	-12(%ebp),%eax
 	call	fpc_unicodestr_decr_ref
 	movl	$0,-12(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj12267
+	je	Lj12225
 	call	FPC_RERAISE
-Lj12267:
+Lj12225:
 	movw	-6(%ebp),%ax
 	leave
 	ret
@@ -31228,7 +31160,7 @@ SYSTEM_assign$WIDECHAR$$OLEVARIANT:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj12447
+	jne	Lj12405
 	leal	-52(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,-52(%ebp)
@@ -31239,16 +31171,16 @@ SYSTEM_assign$WIDECHAR$$OLEVARIANT:
 	movl	-8(%ebp),%eax
 	movl	U_SYSTEM_VARIANTMANAGER+88,%ecx
 	call	*%ecx
-Lj12447:
+Lj12405:
 	call	FPC_POPADDRSTACK
 	leal	-52(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,-52(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj12448
+	je	Lj12406
 	call	FPC_RERAISE
-Lj12448:
+Lj12406:
 	leave
 	ret
 
@@ -31587,7 +31519,7 @@ SYSTEM_POS$ANSISTRING$VARIANT$$LONGINT:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj12574
+	jne	Lj12532
 	leal	-56(%ebp),%eax
 	call	FPC_ANSISTR_DECR_REF
 	movl	$0,-56(%ebp)
@@ -31599,7 +31531,7 @@ SYSTEM_POS$ANSISTRING$VARIANT$$LONGINT:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_POS$ANSISTRING$ANSISTRING$$LONGINT
 	movl	%eax,-12(%ebp)
-Lj12574:
+Lj12532:
 	call	FPC_POPADDRSTACK
 	leal	-56(%ebp),%eax
 	call	FPC_ANSISTR_DECR_REF
@@ -31608,9 +31540,9 @@ Lj12574:
 	call	FPC_ANSISTR_DECR_REF
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj12575
+	je	Lj12533
 	call	FPC_RERAISE
-Lj12575:
+Lj12533:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -31634,7 +31566,7 @@ SYSTEM_POS$WIDESTRING$VARIANT$$LONGINT:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj12589
+	jne	Lj12547
 	leal	-56(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,-56(%ebp)
@@ -31646,7 +31578,7 @@ SYSTEM_POS$WIDESTRING$VARIANT$$LONGINT:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_POS$UNICODESTRING$UNICODESTRING$$LONGINT
 	movl	%eax,-12(%ebp)
-Lj12589:
+Lj12547:
 	call	FPC_POPADDRSTACK
 	leal	-56(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
@@ -31655,9 +31587,9 @@ Lj12589:
 	call	FPC_UNICODESTR_DECR_REF
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj12590
+	je	Lj12548
 	call	FPC_RERAISE
-Lj12590:
+Lj12548:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -31681,7 +31613,7 @@ SYSTEM_POS$VARIANT$CHAR$$LONGINT:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj12604
+	jne	Lj12562
 	leal	-28(%ebp),%edx
 	leal	-320(%ebp),%eax
 	movl	U_SYSTEM_VARIANTMANAGER+28,%ecx
@@ -31690,16 +31622,16 @@ SYSTEM_POS$VARIANT$CHAR$$LONGINT:
 	movb	-8(%ebp),%dl
 	call	SYSTEM_POS$SHORTSTRING$CHAR$$LONGINT
 	movl	%eax,-12(%ebp)
-Lj12604:
+Lj12562:
 	call	FPC_POPADDRSTACK
 	movl	$INIT_SYSTEM_VARIANT,%edx
 	leal	-28(%ebp),%eax
 	call	FPC_DECREF
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj12605
+	je	Lj12563
 	call	FPC_RERAISE
-Lj12605:
+Lj12563:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -31723,7 +31655,7 @@ SYSTEM_POS$VARIANT$SHORTSTRING$$LONGINT:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj12619
+	jne	Lj12577
 	leal	-28(%ebp),%edx
 	leal	-320(%ebp),%eax
 	movl	U_SYSTEM_VARIANTMANAGER+28,%ecx
@@ -31732,16 +31664,16 @@ SYSTEM_POS$VARIANT$SHORTSTRING$$LONGINT:
 	movl	-8(%ebp),%edx
 	call	SYSTEM_POS$SHORTSTRING$SHORTSTRING$$LONGINT
 	movl	%eax,-12(%ebp)
-Lj12619:
+Lj12577:
 	call	FPC_POPADDRSTACK
 	movl	$INIT_SYSTEM_VARIANT,%edx
 	leal	-28(%ebp),%eax
 	call	FPC_DECREF
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj12620
+	je	Lj12578
 	call	FPC_RERAISE
-Lj12620:
+Lj12578:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -31766,7 +31698,7 @@ SYSTEM_POS$VARIANT$ANSISTRING$$LONGINT:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj12634
+	jne	Lj12592
 	leal	-68(%ebp),%eax
 	call	FPC_ANSISTR_DECR_REF
 	movl	$0,-68(%ebp)
@@ -31778,7 +31710,7 @@ SYSTEM_POS$VARIANT$ANSISTRING$$LONGINT:
 	movl	-8(%ebp),%edx
 	call	SYSTEM_POS$ANSISTRING$ANSISTRING$$LONGINT
 	movl	%eax,-12(%ebp)
-Lj12634:
+Lj12592:
 	call	FPC_POPADDRSTACK
 	leal	-68(%ebp),%eax
 	call	FPC_ANSISTR_DECR_REF
@@ -31788,9 +31720,9 @@ Lj12634:
 	call	FPC_DECREF
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj12635
+	je	Lj12593
 	call	FPC_RERAISE
-Lj12635:
+Lj12593:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -31815,7 +31747,7 @@ SYSTEM_POS$VARIANT$WIDESTRING$$LONGINT:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj12649
+	jne	Lj12607
 	leal	-68(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,-68(%ebp)
@@ -31827,7 +31759,7 @@ SYSTEM_POS$VARIANT$WIDESTRING$$LONGINT:
 	movl	-8(%ebp),%edx
 	call	SYSTEM_POS$UNICODESTRING$UNICODESTRING$$LONGINT
 	movl	%eax,-12(%ebp)
-Lj12649:
+Lj12607:
 	call	FPC_POPADDRSTACK
 	leal	-68(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
@@ -31837,9 +31769,9 @@ Lj12649:
 	call	FPC_DECREF
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj12650
+	je	Lj12608
 	call	FPC_RERAISE
-Lj12650:
+Lj12608:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -31866,7 +31798,7 @@ SYSTEM_POS$VARIANT$VARIANT$$LONGINT:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj12664
+	jne	Lj12622
 	leal	-68(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	$0,-68(%ebp)
@@ -31886,7 +31818,7 @@ SYSTEM_POS$VARIANT$VARIANT$$LONGINT:
 	movl	%ebx,%edx
 	call	SYSTEM_POS$UNICODESTRING$UNICODESTRING$$LONGINT
 	movl	%eax,-12(%ebp)
-Lj12664:
+Lj12622:
 	call	FPC_POPADDRSTACK
 	leal	-72(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
@@ -31899,9 +31831,9 @@ Lj12664:
 	call	FPC_DECREF
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj12665
+	je	Lj12623
 	call	FPC_RERAISE
-Lj12665:
+Lj12623:
 	movl	-12(%ebp),%eax
 	movl	-76(%ebp),%ebx
 	leave
@@ -31964,44 +31896,44 @@ SYSTEM_RTTISIZE$POINTER$$LONGINT:
 	movl	-4(%ebp),%eax
 	movb	(%eax),%al
 	cmpb	$9,%al
-	jb	Lj12704
+	jb	Lj12662
 	subb	$9,%al
 	subb	$1,%al
-	jbe	Lj12705
+	jbe	Lj12663
 	decb	%al
-	je	Lj12706
+	je	Lj12664
 	decb	%al
-	je	Lj12707
+	je	Lj12665
 	decb	%al
-	je	Lj12708
+	je	Lj12666
 	decb	%al
-	je	Lj12705
+	je	Lj12663
 	subb	$2,%al
-	je	Lj12708
+	je	Lj12666
 	subb	$5,%al
-	je	Lj12705
+	je	Lj12663
 	subb	$3,%al
-	je	Lj12705
-	jmp	Lj12704
-Lj12705:
+	je	Lj12663
+	jmp	Lj12662
+Lj12663:
 	movl	$4,-8(%ebp)
-	jmp	Lj12703
-Lj12706:
+	jmp	Lj12661
+Lj12664:
 	movl	$16,-8(%ebp)
-	jmp	Lj12703
-Lj12707:
+	jmp	Lj12661
+Lj12665:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_RTTIARRAYSIZE$POINTER$$LONGINT
 	movl	%eax,-8(%ebp)
-	jmp	Lj12703
-Lj12708:
+	jmp	Lj12661
+Lj12666:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_RTTIRECORDSIZE$POINTER$$LONGINT
 	movl	%eax,-8(%ebp)
-	jmp	Lj12703
-Lj12704:
+	jmp	Lj12661
+Lj12662:
 	movl	$-1,-8(%ebp)
-Lj12703:
+Lj12661:
 	movl	-8(%ebp),%eax
 	leave
 	ret
@@ -32031,10 +31963,10 @@ SYSTEM_RECORDRTTI$POINTER$POINTER$TRTTIPROC:
 	movl	-16(%ebp),%ebx
 	movl	$1,-20(%ebp)
 	cmpl	-20(%ebp),%ebx
-	jl	Lj12734
+	jl	Lj12692
 	decl	-20(%ebp)
 	.balign 4,0x90
-Lj12735:
+Lj12693:
 	incl	-20(%ebp)
 	movl	-8(%ebp),%eax
 	movl	4(%eax),%eax
@@ -32046,8 +31978,8 @@ Lj12735:
 	call	*%ecx
 	addl	$8,-8(%ebp)
 	cmpl	-20(%ebp),%ebx
-	jg	Lj12735
-Lj12734:
+	jg	Lj12693
+Lj12692:
 	movl	-28(%ebp),%ebx
 	leave
 	ret
@@ -32075,10 +32007,10 @@ SYSTEM_ARRAYRTTI$POINTER$POINTER$TRTTIPROC:
 	decl	%ebx
 	movl	$0,-16(%ebp)
 	cmpl	-16(%ebp),%ebx
-	jl	Lj12749
+	jl	Lj12707
 	decl	-16(%ebp)
 	.balign 4,0x90
-Lj12750:
+Lj12708:
 	incl	-16(%ebp)
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
@@ -32091,8 +32023,8 @@ Lj12750:
 	movl	-12(%ebp),%ecx
 	call	*%ecx
 	cmpl	-16(%ebp),%ebx
-	jg	Lj12750
-Lj12749:
+	jg	Lj12708
+Lj12707:
 	movl	-24(%ebp),%ebx
 	leave
 	ret
@@ -32111,47 +32043,47 @@ FPC_INITIALIZE:
 	movl	-8(%ebp),%eax
 	movb	(%eax),%al
 	cmpb	$9,%al
-	jb	Lj12758
+	jb	Lj12716
 	subb	$9,%al
 	subb	$1,%al
-	jbe	Lj12759
+	jbe	Lj12717
 	decb	%al
-	je	Lj12762
+	je	Lj12720
 	decb	%al
-	je	Lj12760
+	je	Lj12718
 	decb	%al
-	je	Lj12761
+	je	Lj12719
 	decb	%al
-	je	Lj12759
+	je	Lj12717
 	subb	$2,%al
-	je	Lj12761
+	je	Lj12719
 	subb	$5,%al
-	je	Lj12759
+	je	Lj12717
 	subb	$3,%al
-	je	Lj12759
-	jmp	Lj12758
-Lj12759:
+	je	Lj12717
+	jmp	Lj12716
+Lj12717:
 	movl	-4(%ebp),%eax
 	movl	$0,(%eax)
-	jmp	Lj12757
-Lj12760:
+	jmp	Lj12715
+Lj12718:
 	movl	$FPC_INITIALIZE,%ecx
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_ARRAYRTTI$POINTER$POINTER$TRTTIPROC
-	jmp	Lj12757
-Lj12761:
+	jmp	Lj12715
+Lj12719:
 	movl	$FPC_INITIALIZE,%ecx
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_RECORDRTTI$POINTER$POINTER$TRTTIPROC
-	jmp	Lj12757
-Lj12762:
+	jmp	Lj12715
+Lj12720:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_VARIANT_INIT$TVARDATA
-	jmp	Lj12757
-Lj12758:
-Lj12757:
+	jmp	Lj12715
+Lj12716:
+Lj12715:
 	leave
 	ret
 
@@ -32169,67 +32101,67 @@ FPC_FINALIZE:
 	movl	-8(%ebp),%eax
 	movb	(%eax),%al
 	cmpb	$9,%al
-	jb	Lj12782
+	jb	Lj12740
 	subb	$9,%al
-	je	Lj12783
+	je	Lj12741
 	subb	$2,%al
-	je	Lj12789
+	je	Lj12747
 	decb	%al
-	je	Lj12785
+	je	Lj12743
 	decb	%al
-	je	Lj12786
+	je	Lj12744
 	decb	%al
-	je	Lj12787
+	je	Lj12745
 	subb	$2,%al
-	je	Lj12786
+	je	Lj12744
 	subb	$5,%al
-	je	Lj12788
+	je	Lj12746
 	subb	$3,%al
-	je	Lj12784
-	jmp	Lj12782
-Lj12783:
+	je	Lj12742
+	jmp	Lj12740
+Lj12741:
 	movl	-4(%ebp),%eax
 	call	FPC_ANSISTR_DECR_REF
 	movl	-4(%ebp),%eax
 	movl	$0,(%eax)
-	jmp	Lj12781
-Lj12784:
+	jmp	Lj12739
+Lj12742:
 	movl	-4(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
 	movl	-4(%ebp),%eax
 	movl	$0,(%eax)
-	jmp	Lj12781
-Lj12785:
+	jmp	Lj12739
+Lj12743:
 	movl	$FPC_FINALIZE,%ecx
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_ARRAYRTTI$POINTER$POINTER$TRTTIPROC
-	jmp	Lj12781
-Lj12786:
+	jmp	Lj12739
+Lj12744:
 	movl	$FPC_FINALIZE,%ecx
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_RECORDRTTI$POINTER$POINTER$TRTTIPROC
-	jmp	Lj12781
-Lj12787:
+	jmp	Lj12739
+Lj12745:
 	movl	-4(%ebp),%eax
 	call	FPC_INTF_DECR_REF
 	movl	-4(%ebp),%eax
 	movl	$0,(%eax)
-	jmp	Lj12781
-Lj12788:
+	jmp	Lj12739
+Lj12746:
 	movl	-4(%ebp),%eax
 	movl	-8(%ebp),%edx
 	call	FPC_DYNARRAY_DECR_REF
 	movl	-4(%ebp),%eax
 	movl	$0,(%eax)
-	jmp	Lj12781
-Lj12789:
+	jmp	Lj12739
+Lj12747:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_VARIANT_CLEAR$TVARDATA
-	jmp	Lj12781
-Lj12782:
-Lj12781:
+	jmp	Lj12739
+Lj12740:
+Lj12739:
 	leave
 	ret
 
@@ -32247,62 +32179,62 @@ FPC_ADDREF:
 	movl	-8(%ebp),%eax
 	movb	(%eax),%al
 	cmpb	$9,%al
-	jb	Lj12825
+	jb	Lj12783
 	subb	$9,%al
-	je	Lj12826
+	je	Lj12784
 	subb	$2,%al
-	je	Lj12832
+	je	Lj12790
 	decb	%al
-	je	Lj12828
+	je	Lj12786
 	decb	%al
-	je	Lj12829
+	je	Lj12787
 	decb	%al
-	je	Lj12831
+	je	Lj12789
 	subb	$2,%al
-	je	Lj12829
+	je	Lj12787
 	subb	$5,%al
-	je	Lj12830
+	je	Lj12788
 	subb	$3,%al
-	je	Lj12827
-	jmp	Lj12825
-Lj12826:
+	je	Lj12785
+	jmp	Lj12783
+Lj12784:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	call	FPC_ANSISTR_INCR_REF
-	jmp	Lj12824
-Lj12827:
+	jmp	Lj12782
+Lj12785:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	call	FPC_UNICODESTR_INCR_REF
-	jmp	Lj12824
-Lj12828:
+	jmp	Lj12782
+Lj12786:
 	movl	$FPC_ADDREF,%ecx
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_ARRAYRTTI$POINTER$POINTER$TRTTIPROC
-	jmp	Lj12824
-Lj12829:
+	jmp	Lj12782
+Lj12787:
 	movl	$FPC_ADDREF,%ecx
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_RECORDRTTI$POINTER$POINTER$TRTTIPROC
-	jmp	Lj12824
-Lj12830:
+	jmp	Lj12782
+Lj12788:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	call	FPC_DYNARRAY_INCR_REF
-	jmp	Lj12824
-Lj12831:
+	jmp	Lj12782
+Lj12789:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	call	FPC_INTF_INCR_REF
-	jmp	Lj12824
-Lj12832:
+	jmp	Lj12782
+Lj12790:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_VARIANT_ADDREF$TVARDATA
-	jmp	Lj12824
-Lj12825:
-Lj12824:
+	jmp	Lj12782
+Lj12783:
+Lj12782:
 	leave
 	ret
 
@@ -32320,59 +32252,59 @@ FPC_DECREF:
 	movl	-8(%ebp),%eax
 	movb	(%eax),%al
 	cmpb	$9,%al
-	jb	Lj12858
+	jb	Lj12816
 	subb	$9,%al
-	je	Lj12859
+	je	Lj12817
 	subb	$2,%al
-	je	Lj12865
+	je	Lj12823
 	decb	%al
-	je	Lj12861
+	je	Lj12819
 	decb	%al
-	je	Lj12862
+	je	Lj12820
 	decb	%al
-	je	Lj12864
+	je	Lj12822
 	subb	$2,%al
-	je	Lj12862
+	je	Lj12820
 	subb	$5,%al
-	je	Lj12863
+	je	Lj12821
 	subb	$3,%al
-	je	Lj12860
-	jmp	Lj12858
-Lj12859:
+	je	Lj12818
+	jmp	Lj12816
+Lj12817:
 	movl	-4(%ebp),%eax
 	call	FPC_ANSISTR_DECR_REF
-	jmp	Lj12857
-Lj12860:
+	jmp	Lj12815
+Lj12818:
 	movl	-4(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
-	jmp	Lj12857
-Lj12861:
+	jmp	Lj12815
+Lj12819:
 	movl	$FPC_DECREF,%ecx
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_ARRAYRTTI$POINTER$POINTER$TRTTIPROC
-	jmp	Lj12857
-Lj12862:
+	jmp	Lj12815
+Lj12820:
 	movl	$FPC_DECREF,%ecx
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_RECORDRTTI$POINTER$POINTER$TRTTIPROC
-	jmp	Lj12857
-Lj12863:
+	jmp	Lj12815
+Lj12821:
 	movl	-4(%ebp),%eax
 	movl	-8(%ebp),%edx
 	call	FPC_DYNARRAY_DECR_REF
-	jmp	Lj12857
-Lj12864:
+	jmp	Lj12815
+Lj12822:
 	movl	-4(%ebp),%eax
 	call	FPC_INTF_DECR_REF
-	jmp	Lj12857
-Lj12865:
+	jmp	Lj12815
+Lj12823:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_VARIANT_CLEAR$TVARDATA
-	jmp	Lj12857
-Lj12858:
-Lj12857:
+	jmp	Lj12815
+Lj12816:
+Lj12815:
 	leave
 	ret
 
@@ -32394,25 +32326,25 @@ FPC_COPY:
 	movl	-12(%ebp),%eax
 	movb	(%eax),%al
 	cmpb	$9,%al
-	jb	Lj12895
+	jb	Lj12853
 	subb	$9,%al
-	je	Lj12896
+	je	Lj12854
 	subb	$2,%al
-	je	Lj12902
+	je	Lj12860
 	decb	%al
-	je	Lj12898
+	je	Lj12856
 	decb	%al
-	je	Lj12899
+	je	Lj12857
 	decb	%al
-	je	Lj12901
+	je	Lj12859
 	subb	$2,%al
-	je	Lj12899
+	je	Lj12857
 	subb	$5,%al
-	je	Lj12900
+	je	Lj12858
 	subb	$3,%al
-	je	Lj12897
-	jmp	Lj12895
-Lj12896:
+	je	Lj12855
+	jmp	Lj12853
+Lj12854:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	call	FPC_ANSISTR_INCR_REF
@@ -32422,14 +32354,14 @@ Lj12896:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	movl	%eax,(%edx)
-	jmp	Lj12894
-Lj12897:
+	jmp	Lj12852
+Lj12855:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%edx
 	movl	-8(%ebp),%eax
 	call	FPC_UNICODESTR_ASSIGN
-	jmp	Lj12894
-Lj12898:
+	jmp	Lj12852
+Lj12856:
 	movl	-12(%ebp),%edx
 	addl	$2,%edx
 	movl	-12(%ebp),%eax
@@ -32443,10 +32375,10 @@ Lj12898:
 	decl	%ebx
 	movl	$0,-44(%ebp)
 	cmpl	-44(%ebp),%ebx
-	jl	Lj12920
+	jl	Lj12878
 	decl	-44(%ebp)
 	.balign 4,0x90
-Lj12921:
+Lj12879:
 	incl	-44(%ebp)
 	movl	-20(%ebp),%eax
 	movl	(%eax),%edx
@@ -32464,16 +32396,16 @@ Lj12921:
 	movl	8(%ecx),%ecx
 	call	FPC_COPY
 	cmpl	-44(%ebp),%ebx
-	jg	Lj12921
-Lj12920:
+	jg	Lj12879
+Lj12878:
 	movl	-20(%ebp),%eax
 	movl	-20(%ebp),%edx
 	movl	(%eax),%ecx
 	movl	4(%edx),%eax
 	imull	%eax,%ecx
 	movl	%ecx,-16(%ebp)
-	jmp	Lj12894
-Lj12899:
+	jmp	Lj12852
+Lj12857:
 	movl	-12(%ebp),%edx
 	addl	$2,%edx
 	movl	-12(%ebp),%eax
@@ -32493,10 +32425,10 @@ Lj12899:
 	movl	-36(%ebp),%ebx
 	movl	$1,-44(%ebp)
 	cmpl	-44(%ebp),%ebx
-	jl	Lj12943
+	jl	Lj12901
 	decl	-44(%ebp)
 	.balign 4,0x90
-Lj12944:
+Lj12902:
 	incl	-44(%ebp)
 	movl	-24(%ebp),%eax
 	movl	(%eax),%eax
@@ -32507,9 +32439,9 @@ Lj12944:
 	addl	$8,-24(%ebp)
 	movl	-40(%ebp),%eax
 	cmpl	-32(%ebp),%eax
-	jg	Lj12949
-	jmp	Lj12950
-Lj12949:
+	jg	Lj12907
+	jmp	Lj12908
+Lj12907:
 	movl	-8(%ebp),%edx
 	movl	-32(%ebp),%eax
 	addl	%eax,%edx
@@ -32520,7 +32452,7 @@ Lj12949:
 	movl	-32(%ebp),%esi
 	subl	%esi,%ecx
 	call	SYSTEM_MOVE$formal$formal$LONGINT
-Lj12950:
+Lj12908:
 	movl	-8(%ebp),%edx
 	movl	-40(%ebp),%eax
 	addl	%eax,%edx
@@ -32535,13 +32467,13 @@ Lj12950:
 	addl	%edx,%eax
 	movl	%eax,-32(%ebp)
 	cmpl	-44(%ebp),%ebx
-	jg	Lj12944
-Lj12943:
+	jg	Lj12902
+Lj12901:
 	movl	-16(%ebp),%eax
 	cmpl	-32(%ebp),%eax
-	jg	Lj12967
-	jmp	Lj12968
-Lj12967:
+	jg	Lj12925
+	jmp	Lj12926
+Lj12925:
 	movl	-8(%ebp),%edx
 	movl	-32(%ebp),%eax
 	addl	%eax,%edx
@@ -32552,9 +32484,9 @@ Lj12967:
 	movl	-32(%ebp),%ebx
 	subl	%ebx,%ecx
 	call	SYSTEM_MOVE$formal$formal$LONGINT
-Lj12968:
-	jmp	Lj12894
-Lj12900:
+Lj12926:
+	jmp	Lj12852
+Lj12858:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	call	FPC_DYNARRAY_INCR_REF
@@ -32565,8 +32497,8 @@ Lj12900:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	movl	%eax,(%edx)
-	jmp	Lj12894
-Lj12901:
+	jmp	Lj12852
+Lj12859:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	call	FPC_INTF_INCR_REF
@@ -32576,16 +32508,16 @@ Lj12901:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	movl	%eax,(%edx)
-	jmp	Lj12894
-Lj12902:
+	jmp	Lj12852
+Lj12860:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movl	TC_SYSTEM_VARCOPYPROC,%ecx
 	call	*%ecx
 	movl	$16,-16(%ebp)
-	jmp	Lj12894
-Lj12895:
-Lj12894:
+	jmp	Lj12852
+Lj12853:
+Lj12852:
 	movl	-16(%ebp),%eax
 	movl	-60(%ebp),%ebx
 	movl	-56(%ebp),%esi
@@ -32627,17 +32559,17 @@ FPC_INITIALIZE_ARRAY:
 	movl	%eax,-20(%ebp)
 	movl	-20(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj13009
-	jmp	Lj13010
-Lj13009:
+	jg	Lj12967
+	jmp	Lj12968
+Lj12967:
 	movl	-12(%ebp),%ebx
 	decl	%ebx
 	movl	$0,-16(%ebp)
 	cmpl	-16(%ebp),%ebx
-	jl	Lj13012
+	jl	Lj12970
 	decl	-16(%ebp)
 	.balign 4,0x90
-Lj13013:
+Lj12971:
 	incl	-16(%ebp)
 	movl	-20(%ebp),%eax
 	movl	-16(%ebp),%edx
@@ -32647,9 +32579,9 @@ Lj13013:
 	movl	-8(%ebp),%edx
 	call	FPC_INITIALIZE
 	cmpl	-16(%ebp),%ebx
-	jg	Lj13013
-Lj13012:
-Lj13010:
+	jg	Lj12971
+Lj12970:
+Lj12968:
 	movl	-24(%ebp),%ebx
 	leave
 	ret
@@ -32672,17 +32604,17 @@ FPC_FINALIZE_ARRAY:
 	movl	%eax,-20(%ebp)
 	movl	-20(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj13024
-	jmp	Lj13025
-Lj13024:
+	jg	Lj12982
+	jmp	Lj12983
+Lj12982:
 	movl	-12(%ebp),%ebx
 	decl	%ebx
 	movl	$0,-16(%ebp)
 	cmpl	-16(%ebp),%ebx
-	jl	Lj13027
+	jl	Lj12985
 	decl	-16(%ebp)
 	.balign 4,0x90
-Lj13028:
+Lj12986:
 	incl	-16(%ebp)
 	movl	-20(%ebp),%eax
 	movl	-16(%ebp),%edx
@@ -32692,9 +32624,9 @@ Lj13028:
 	movl	-8(%ebp),%edx
 	call	FPC_FINALIZE
 	cmpl	-16(%ebp),%ebx
-	jg	Lj13028
-Lj13027:
-Lj13025:
+	jg	Lj12986
+Lj12985:
+Lj12983:
 	movl	-24(%ebp),%ebx
 	leave
 	ret
@@ -32717,17 +32649,17 @@ FPC_ADDREF_ARRAY:
 	movl	%eax,-20(%ebp)
 	movl	-20(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj13039
-	jmp	Lj13040
-Lj13039:
+	jg	Lj12997
+	jmp	Lj12998
+Lj12997:
 	movl	-12(%ebp),%ebx
 	decl	%ebx
 	movl	$0,-16(%ebp)
 	cmpl	-16(%ebp),%ebx
-	jl	Lj13042
+	jl	Lj13000
 	decl	-16(%ebp)
 	.balign 4,0x90
-Lj13043:
+Lj13001:
 	incl	-16(%ebp)
 	movl	-20(%ebp),%eax
 	movl	-16(%ebp),%edx
@@ -32737,9 +32669,9 @@ Lj13043:
 	movl	-8(%ebp),%edx
 	call	FPC_ADDREF
 	cmpl	-16(%ebp),%ebx
-	jg	Lj13043
-Lj13042:
-Lj13040:
+	jg	Lj13001
+Lj13000:
+Lj12998:
 	movl	-24(%ebp),%ebx
 	leave
 	ret
@@ -32762,17 +32694,17 @@ FPC_DECREF_ARRAY:
 	movl	%eax,-20(%ebp)
 	movl	-20(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj13054
-	jmp	Lj13055
-Lj13054:
+	jg	Lj13012
+	jmp	Lj13013
+Lj13012:
 	movl	-12(%ebp),%ebx
 	decl	%ebx
 	movl	$0,-16(%ebp)
 	cmpl	-16(%ebp),%ebx
-	jl	Lj13057
+	jl	Lj13015
 	decl	-16(%ebp)
 	.balign 4,0x90
-Lj13058:
+Lj13016:
 	incl	-16(%ebp)
 	movl	-20(%ebp),%eax
 	movl	-16(%ebp),%edx
@@ -32782,9 +32714,9 @@ Lj13058:
 	movl	-8(%ebp),%edx
 	call	FPC_DECREF
 	cmpl	-16(%ebp),%ebx
-	jg	Lj13058
-Lj13057:
-Lj13055:
+	jg	Lj13016
+Lj13015:
+Lj13013:
 	movl	-24(%ebp),%ebx
 	leave
 	ret
@@ -32801,7 +32733,7 @@ SYSTEM_SGENRAND_MT19937$LONGINT:
 	movl	$1,-8(%ebp)
 	decl	-8(%ebp)
 	.balign 4,0x90
-Lj13069:
+Lj13027:
 	incl	-8(%ebp)
 	movl	-8(%ebp),%eax
 	decl	%eax
@@ -32817,7 +32749,7 @@ Lj13069:
 	movl	-8(%ebp),%edx
 	movl	%eax,U_SYSTEM_MT(,%edx,4)
 	cmpl	$623,-8(%ebp)
-	jl	Lj13069
+	jl	Lj13027
 	movl	$624,TC_SYSTEM_MTI
 	leave
 	ret
@@ -32830,21 +32762,21 @@ SYSTEM_GENRAND_MT19937$$LONGINT:
 	subl	$12,%esp
 	movl	U_SYSTEM_RANDSEED,%eax
 	cmpl	TC_SYSTEM_OLDRANDSEED,%eax
-	jne	Lj13076
-	jmp	Lj13077
-Lj13076:
+	jne	Lj13034
+	jmp	Lj13035
+Lj13034:
 	movl	$625,TC_SYSTEM_MTI
-Lj13077:
+Lj13035:
 	movl	TC_SYSTEM_MTI,%eax
 	cmpl	$624,%eax
-	jge	Lj13080
-	jmp	Lj13081
-Lj13080:
+	jge	Lj13038
+	jmp	Lj13039
+Lj13038:
 	movl	TC_SYSTEM_MTI,%eax
 	cmpl	$625,%eax
-	je	Lj13082
-	jmp	Lj13083
-Lj13082:
+	je	Lj13040
+	jmp	Lj13041
+Lj13040:
 	movl	U_SYSTEM_RANDSEED,%eax
 	call	SYSTEM_SGENRAND_MT19937$LONGINT
 	movl	U_SYSTEM_RANDSEED,%eax
@@ -32852,11 +32784,11 @@ Lj13082:
 	movl	%eax,U_SYSTEM_RANDSEED
 	movl	U_SYSTEM_RANDSEED,%eax
 	movl	%eax,TC_SYSTEM_OLDRANDSEED
-Lj13083:
+Lj13041:
 	movl	$0,-12(%ebp)
 	decl	-12(%ebp)
 	.balign 4,0x90
-Lj13092:
+Lj13050:
 	incl	-12(%ebp)
 	movl	-12(%ebp),%eax
 	incl	%eax
@@ -32880,11 +32812,11 @@ Lj13092:
 	movl	-12(%ebp),%eax
 	movl	%ecx,U_SYSTEM_MT(,%eax,4)
 	cmpl	$226,-12(%ebp)
-	jl	Lj13092
+	jl	Lj13050
 	movl	$227,-12(%ebp)
 	decl	-12(%ebp)
 	.balign 4,0x90
-Lj13099:
+Lj13057:
 	incl	-12(%ebp)
 	movl	-12(%ebp),%eax
 	incl	%eax
@@ -32908,7 +32840,7 @@ Lj13099:
 	movl	-12(%ebp),%eax
 	movl	%ecx,U_SYSTEM_MT(,%eax,4)
 	cmpl	$622,-12(%ebp)
-	jl	Lj13099
+	jl	Lj13057
 	movl	U_SYSTEM_MT+2492,%eax
 	andl	$-2147483648,%eax
 	movl	U_SYSTEM_MT,%edx
@@ -32925,7 +32857,7 @@ Lj13099:
 	xorl	%edx,%eax
 	movl	%eax,U_SYSTEM_MT+2492
 	movl	$0,TC_SYSTEM_MTI
-Lj13081:
+Lj13039:
 	movl	TC_SYSTEM_MTI,%eax
 	movl	U_SYSTEM_MT(,%eax,4),%eax
 	movl	%eax,-8(%ebp)
@@ -32968,11 +32900,11 @@ SYSTEM_RANDOM$LONGINT$$LONGINT:
 	movl	%eax,-4(%ebp)
 	movl	-4(%ebp),%eax
 	cmpl	$0,%eax
-	jl	Lj13124
-	jmp	Lj13125
-Lj13124:
+	jl	Lj13082
+	jmp	Lj13083
+Lj13082:
 	incl	-4(%ebp)
-Lj13125:
+Lj13083:
 	call	SYSTEM_GENRAND_MT19937$$LONGINT
 	movl	$0,%edx
 	pushl	%edx
@@ -33013,11 +32945,11 @@ SYSTEM_RANDOM$INT64$$INT64:
 	movl	8(%ebp),%edx
 	movl	12(%ebp),%eax
 	cmpl	$0,%eax
-	jne	Lj13138
+	jne	Lj13096
 	cmpl	$0,%edx
-	jne	Lj13138
-	jmp	Lj13139
-Lj13138:
+	jne	Lj13096
+	jmp	Lj13097
+Lj13096:
 	pushl	12(%ebp)
 	pushl	8(%ebp)
 	pushl	-4(%ebp)
@@ -33025,11 +32957,11 @@ Lj13138:
 	call	fpc_mod_int64
 	movl	%eax,-8(%ebp)
 	movl	%edx,-4(%ebp)
-	jmp	Lj13146
-Lj13139:
+	jmp	Lj13104
+Lj13097:
 	movl	$0,-8(%ebp)
 	movl	$0,-4(%ebp)
-Lj13146:
+Lj13104:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movl	-16(%ebp),%ebx
@@ -33178,20 +33110,20 @@ FPC_IOCHECK:
 	subl	$8,%esp
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj13197
+	je	Lj13155
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj13198
-Lj13197:
+	jmp	Lj13156
+Lj13155:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj13198:
+Lj13156:
 	movl	%eax,-8(%ebp)
 	movl	-8(%ebp),%eax
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj13199
-	jmp	Lj13200
-Lj13199:
+	jne	Lj13157
+	jmp	Lj13158
+Lj13157:
 	movl	-8(%ebp),%eax
 	movzwl	(%eax),%eax
 	movl	%eax,-4(%ebp)
@@ -33200,7 +33132,7 @@ Lj13199:
 	movl	%ebp,%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_HANDLEERRORFRAME$LONGINT$POINTER
-Lj13200:
+Lj13158:
 	leave
 	ret
 
@@ -33213,13 +33145,13 @@ SYSTEM_IORESULT$$WORD:
 	subl	$8,%esp
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj13213
+	je	Lj13171
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj13214
-Lj13213:
+	jmp	Lj13172
+Lj13171:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj13214:
+Lj13172:
 	movl	%eax,-8(%ebp)
 	movl	-8(%ebp),%eax
 	movw	(%eax),%ax
@@ -33239,13 +33171,13 @@ SYSTEM_GETTHREADID$$LONGWORD:
 	subl	$4,%esp
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj13223
+	je	Lj13181
 	movl	U_SYSTEM_THREADID,%eax
 	call	*%edx
-	jmp	Lj13224
-Lj13223:
+	jmp	Lj13182
+Lj13181:
 	movl	$U_SYSTEM_THREADID+4,%eax
-Lj13224:
+Lj13182:
 	movl	(%eax),%eax
 	movl	%eax,-4(%ebp)
 	movl	-4(%ebp),%eax
@@ -33264,22 +33196,22 @@ FPC_SAFECALLCHECK:
 	movl	%eax,-4(%ebp)
 	movl	-4(%ebp),%eax
 	cmpl	$0,%eax
-	jl	Lj13227
-	jmp	Lj13228
-Lj13227:
+	jl	Lj13185
+	jmp	Lj13186
+Lj13185:
 	cmpl	$0,TC_SYSTEM_SAFECALLERRORPROC
-	jne	Lj13229
-	jmp	Lj13230
-Lj13229:
+	jne	Lj13187
+	jmp	Lj13188
+Lj13187:
 	movl	%ebp,%edx
 	movl	-4(%ebp),%eax
 	movl	TC_SYSTEM_SAFECALLERRORPROC,%ecx
 	call	*%ecx
-Lj13230:
+Lj13188:
 	movl	%ebp,%edx
 	movl	$229,%eax
 	call	SYSTEM_HANDLEERRORFRAME$LONGINT$POINTER
-Lj13228:
+Lj13186:
 	movl	-4(%ebp),%eax
 	movl	%eax,-8(%ebp)
 	movl	-8(%ebp),%eax
@@ -33297,33 +33229,33 @@ FPC_STACKCHECK:
 	subl	$8,%esp
 	movl	%eax,-4(%ebp)
 	cmpb	$0,TC_SYSTEM_STACKERROR
-	jne	Lj13243
-	jmp	Lj13244
-Lj13243:
-	jmp	Lj13241
-Lj13244:
+	jne	Lj13201
+	jmp	Lj13202
+Lj13201:
+	jmp	Lj13199
+Lj13202:
 	call	SYSTEM_SPTR$$POINTER
 	subl	$16384,%eax
 	movl	%eax,-8(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj13249
+	je	Lj13207
 	movl	U_SYSTEM_STACKBOTTOM,%eax
 	call	*%edx
-	jmp	Lj13250
-Lj13249:
+	jmp	Lj13208
+Lj13207:
 	movl	$U_SYSTEM_STACKBOTTOM+4,%eax
-Lj13250:
+Lj13208:
 	movl	(%eax),%eax
 	cmpl	-8(%ebp),%eax
-	jae	Lj13247
-	jmp	Lj13248
-Lj13247:
+	jae	Lj13205
+	jmp	Lj13206
+Lj13205:
 	movb	$1,TC_SYSTEM_STACKERROR
 	movl	$202,%eax
 	call	SYSTEM_HANDLEERROR$LONGINT
-Lj13248:
-Lj13241:
+Lj13206:
+Lj13199:
 	leave
 	ret
 
@@ -33341,32 +33273,32 @@ FPC_INITIALIZEUNITS:
 	movl	INITFINAL,%ebx
 	movl	$1,-4(%ebp)
 	cmpl	-4(%ebp),%ebx
-	jl	Lj13258
+	jl	Lj13216
 	decl	-4(%ebp)
 	.balign 4,0x90
-Lj13259:
+Lj13217:
 	incl	-4(%ebp)
 	movl	-4(%ebp),%eax
 	cmpl	$0,INITFINAL(,%eax,8)
-	jne	Lj13260
-	jmp	Lj13261
-Lj13260:
+	jne	Lj13218
+	jmp	Lj13219
+Lj13218:
 	movl	-4(%ebp),%eax
 	movl	INITFINAL(,%eax,8),%eax
 	call	*%eax
-Lj13261:
+Lj13219:
 	movl	-4(%ebp),%eax
 	movl	%eax,INITFINAL+4
 	cmpl	-4(%ebp),%ebx
-	jg	Lj13259
-Lj13258:
+	jg	Lj13217
+Lj13216:
 	cmpl	$0,TC_SYSTEM_INITPROC
-	jne	Lj13264
-	jmp	Lj13265
-Lj13264:
+	jne	Lj13222
+	jmp	Lj13223
+Lj13222:
 	movl	TC_SYSTEM_INITPROC,%eax
 	call	*%eax
-Lj13265:
+Lj13223:
 	movl	-8(%ebp),%ebx
 	leave
 	ret
@@ -33393,27 +33325,27 @@ SYSTEM_FINALIZEUNITS:
 FPC_FINALIZEUNITS:
 	pushl	%ebp
 	movl	%esp,%ebp
-	jmp	Lj13275
+	jmp	Lj13233
 	.balign 4,0x90
-Lj13274:
+Lj13232:
 	decl	INITFINAL+4
 	movl	INITFINAL+4,%eax
 	incl	%eax
 	cmpl	$0,INITFINAL+4(,%eax,8)
-	jne	Lj13277
-	jmp	Lj13278
-Lj13277:
+	jne	Lj13235
+	jmp	Lj13236
+Lj13235:
 	movl	INITFINAL+4,%eax
 	incl	%eax
 	movl	INITFINAL+4(,%eax,8),%eax
 	call	*%eax
-Lj13278:
-Lj13275:
+Lj13236:
+Lj13233:
 	movl	INITFINAL+4,%eax
 	cmpl	$0,%eax
-	jg	Lj13274
-	jmp	Lj13276
-Lj13276:
+	jg	Lj13232
+	jmp	Lj13234
+Lj13234:
 	leave
 	ret
 
@@ -33425,104 +33357,104 @@ SYSTEM_SYSFLUSHSTDIO:
 	movl	%esp,%ebp
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj13283
+	je	Lj13241
 	movl	U_SYSTEM_OUTPUT,%eax
 	call	*%edx
-	jmp	Lj13284
-Lj13283:
+	jmp	Lj13242
+Lj13241:
 	movl	$U_SYSTEM_OUTPUT+4,%eax
-Lj13284:
+Lj13242:
 	movl	4(%eax),%eax
 	cmpl	$55218,%eax
-	je	Lj13281
-	jmp	Lj13282
-Lj13281:
+	je	Lj13239
+	jmp	Lj13240
+Lj13239:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj13287
+	je	Lj13245
 	movl	U_SYSTEM_OUTPUT,%eax
 	call	*%edx
-	jmp	Lj13288
-Lj13287:
+	jmp	Lj13246
+Lj13245:
 	movl	$U_SYSTEM_OUTPUT+4,%eax
-Lj13288:
+Lj13246:
 	call	SYSTEM_FLUSH$TEXT
-Lj13282:
+Lj13240:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj13291
+	je	Lj13249
 	movl	U_SYSTEM_ERROUTPUT,%eax
 	call	*%edx
-	jmp	Lj13292
-Lj13291:
+	jmp	Lj13250
+Lj13249:
 	movl	$U_SYSTEM_ERROUTPUT+4,%eax
-Lj13292:
+Lj13250:
 	movl	4(%eax),%eax
 	cmpl	$55218,%eax
-	je	Lj13289
-	jmp	Lj13290
-Lj13289:
+	je	Lj13247
+	jmp	Lj13248
+Lj13247:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj13295
+	je	Lj13253
 	movl	U_SYSTEM_ERROUTPUT,%eax
 	call	*%edx
-	jmp	Lj13296
-Lj13295:
+	jmp	Lj13254
+Lj13253:
 	movl	$U_SYSTEM_ERROUTPUT+4,%eax
-Lj13296:
+Lj13254:
 	call	SYSTEM_FLUSH$TEXT
-Lj13290:
+Lj13248:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj13299
+	je	Lj13257
 	movl	U_SYSTEM_STDOUT,%eax
 	call	*%edx
-	jmp	Lj13300
-Lj13299:
+	jmp	Lj13258
+Lj13257:
 	movl	$U_SYSTEM_STDOUT+4,%eax
-Lj13300:
+Lj13258:
 	movl	4(%eax),%eax
 	cmpl	$55218,%eax
-	je	Lj13297
-	jmp	Lj13298
-Lj13297:
+	je	Lj13255
+	jmp	Lj13256
+Lj13255:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj13303
+	je	Lj13261
 	movl	U_SYSTEM_STDOUT,%eax
 	call	*%edx
-	jmp	Lj13304
-Lj13303:
+	jmp	Lj13262
+Lj13261:
 	movl	$U_SYSTEM_STDOUT+4,%eax
-Lj13304:
+Lj13262:
 	call	SYSTEM_FLUSH$TEXT
-Lj13298:
+Lj13256:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj13307
+	je	Lj13265
 	movl	U_SYSTEM_STDERR,%eax
 	call	*%edx
-	jmp	Lj13308
-Lj13307:
+	jmp	Lj13266
+Lj13265:
 	movl	$U_SYSTEM_STDERR+4,%eax
-Lj13308:
+Lj13266:
 	movl	4(%eax),%eax
 	cmpl	$55218,%eax
-	je	Lj13305
-	jmp	Lj13306
-Lj13305:
+	je	Lj13263
+	jmp	Lj13264
+Lj13263:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj13311
+	je	Lj13269
 	movl	U_SYSTEM_STDERR,%eax
 	call	*%edx
-	jmp	Lj13312
-Lj13311:
+	jmp	Lj13270
+Lj13269:
 	movl	$U_SYSTEM_STDERR+4,%eax
-Lj13312:
+Lj13270:
 	call	SYSTEM_FLUSH$TEXT
-Lj13306:
+Lj13264:
 	leave
 	ret
 
@@ -33533,46 +33465,46 @@ SYSTEM_INTERNALEXIT:
 	movl	%esp,%ebp
 	subl	$272,%esp
 	movl	%ebx,-272(%ebp)
-	jmp	Lj13316
+	jmp	Lj13274
 	.balign 4,0x90
-Lj13315:
+Lj13273:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj13320
+	je	Lj13278
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj13321
-Lj13320:
+	jmp	Lj13279
+Lj13278:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj13321:
+Lj13279:
 	movw	$0,(%eax)
 	movl	TC_SYSTEM_EXITPROC,%eax
 	movl	%eax,-4(%ebp)
 	movl	$0,TC_SYSTEM_EXITPROC
 	movl	-4(%ebp),%eax
 	call	*%eax
-Lj13316:
+Lj13274:
 	movl	TC_SYSTEM_EXITPROC,%eax
 	testl	%eax,%eax
-	jne	Lj13315
-	jmp	Lj13317
-Lj13317:
+	jne	Lj13273
+	jmp	Lj13275
+Lj13275:
 	call	SYSTEM_FINALIZEUNITS
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj13328
+	je	Lj13286
 	movl	U_SYSTEM_STDOUT,%eax
 	call	*%edx
-	jmp	Lj13329
-Lj13328:
+	jmp	Lj13287
+Lj13286:
 	movl	$U_SYSTEM_STDOUT+4,%eax
-Lj13329:
+Lj13287:
 	movl	%eax,-8(%ebp)
 	movl	TC_SYSTEM_ERRORADDR,%eax
 	testl	%eax,%eax
-	jne	Lj13330
-	jmp	Lj13331
-Lj13330:
+	jne	Lj13288
+	jmp	Lj13289
+Lj13288:
 	movl	-8(%ebp),%ebx
 	movl	%ebx,%edx
 	movl	$_$SYSTEM$_Ld29,%ecx
@@ -33616,42 +33548,42 @@ Lj13330:
 	call	fpc_write_text_shortstr
 	movl	%ebx,%eax
 	call	fpc_writeln_end
-Lj13331:
+Lj13289:
 	call	SYSTEM_SYSFLUSHSTDIO
-	cmpl	$0,U_SYSTEM_ARGV
-	jne	Lj13392
-	jmp	Lj13393
-Lj13392:
-	movl	U_SYSTEM_ARGC,%ebx
+	cmpl	$0,_argv
+	jne	Lj13350
+	jmp	Lj13351
+Lj13350:
+	movl	_argc,%ebx
 	decl	%ebx
 	movl	$0,-12(%ebp)
 	cmpl	-12(%ebp),%ebx
-	jl	Lj13395
+	jl	Lj13353
 	decl	-12(%ebp)
 	.balign 4,0x90
-Lj13396:
+Lj13354:
 	incl	-12(%ebp)
-	movl	U_SYSTEM_ARGV,%edx
+	movl	_argv,%edx
 	movl	-12(%ebp),%eax
 	cmpl	$0,(%edx,%eax,4)
-	jne	Lj13397
-	jmp	Lj13398
-Lj13397:
-	movl	U_SYSTEM_ARGV,%eax
+	jne	Lj13355
+	jmp	Lj13356
+Lj13355:
+	movl	_argv,%eax
 	movl	-12(%ebp),%edx
 	movl	(%eax,%edx,4),%eax
 	call	SYSTEM_SYSFREEMEM$POINTER$$LONGWORD
-	movl	U_SYSTEM_ARGV,%eax
+	movl	_argv,%eax
 	movl	-12(%ebp),%edx
 	movl	$0,(%eax,%edx,4)
-Lj13398:
+Lj13356:
 	cmpl	-12(%ebp),%ebx
-	jg	Lj13396
-Lj13395:
-	movl	U_SYSTEM_ARGV,%eax
+	jg	Lj13354
+Lj13353:
+	movl	_argv,%eax
 	call	SYSTEM_SYSFREEMEM$POINTER$$LONGWORD
-	movl	$0,U_SYSTEM_ARGV
-Lj13393:
+	movl	$0,_argv
+Lj13351:
 	call	SYSTEM_FINALIZEHEAP
 	movl	-272(%ebp),%ebx
 	leave
@@ -33732,15 +33664,15 @@ FPC_BREAK_ERROR:
 	movl	%ecx,-12(%ebp)
 	movl	TC_SYSTEM_ERRORPROC,%eax
 	testl	%eax,%eax
-	jne	Lj13431
-	jmp	Lj13432
-Lj13431:
+	jne	Lj13389
+	jmp	Lj13390
+Lj13389:
 	movl	-12(%ebp),%ecx
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	movl	TC_SYSTEM_ERRORPROC,%ebx
 	call	*%ebx
-Lj13432:
+Lj13390:
 	movw	-4(%ebp),%ax
 	movw	%ax,TC_SYSTEM_ERRORCODE
 	movl	-8(%ebp),%eax
@@ -33749,25 +33681,35 @@ Lj13432:
 	movl	%eax,TC_SYSTEM_ERRORBASE
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj13447
+	je	Lj13405
 	movl	U_SYSTEM_EXCEPTADDRSTACK,%eax
 	call	*%edx
-	jmp	Lj13448
-Lj13447:
+	jmp	Lj13406
+Lj13405:
 	movl	$U_SYSTEM_EXCEPTADDRSTACK+4,%eax
-Lj13448:
+Lj13406:
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj13445
-	jmp	Lj13446
-Lj13445:
+	jne	Lj13403
+	jmp	Lj13404
+Lj13403:
 	movl	-12(%ebp),%ecx
 	movl	-8(%ebp),%edx
 	movl	$0,%eax
 	call	FPC_RAISEEXCEPTION
-Lj13446:
+Lj13404:
+	movw	TC_SYSTEM_ERRORCODE,%ax
+	cmpw	$255,%ax
+	ja	Lj13407
+	jmp	Lj13408
+Lj13407:
+	movl	$255,%eax
+	call	SYSTEM_HALT$LONGINT
+	jmp	Lj13411
+Lj13408:
 	movzwl	TC_SYSTEM_ERRORCODE,%eax
 	call	SYSTEM_HALT$LONGINT
+Lj13411:
 	movl	-16(%ebp),%ebx
 	leave
 	ret
@@ -33851,8 +33793,18 @@ FPC_RUNERROR:
 	movl	%ebp,%eax
 	call	SYSTEM_GET_CALLER_FRAME$POINTER$$POINTER
 	movl	%eax,TC_SYSTEM_ERRORBASE
+	movw	TC_SYSTEM_ERRORCODE,%ax
+	cmpw	$255,%ax
+	ja	Lj13456
+	jmp	Lj13457
+Lj13456:
+	movl	$255,%eax
+	call	SYSTEM_HALT$LONGINT
+	jmp	Lj13460
+Lj13457:
 	movzwl	TC_SYSTEM_ERRORCODE,%eax
 	call	SYSTEM_HALT$LONGINT
+Lj13460:
 	leave
 	ret
 
@@ -33908,7 +33860,7 @@ SYSTEM_DUMP_STACK$TEXT$POINTER:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj13511
+	jne	Lj13479
 	movl	-8(%ebp),%eax
 	decl	%eax
 	movl	%eax,-16(%ebp)
@@ -33917,9 +33869,9 @@ SYSTEM_DUMP_STACK$TEXT$POINTER:
 	movl	(%eax),%eax
 	call	SYSTEM_DO_ISDEVICE$LONGINT$$BOOLEAN
 	movb	%al,-17(%ebp)
-	jmp	Lj13524
+	jmp	Lj13492
 	.balign 4,0x90
-Lj13523:
+Lj13491:
 	movl	-8(%ebp),%eax
 	call	SYSTEM_GET_CALLER_ADDR$POINTER$$POINTER
 	movl	%eax,-28(%ebp)
@@ -33928,11 +33880,11 @@ Lj13523:
 	movl	%eax,-24(%ebp)
 	movl	-28(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj13534
-	jmp	Lj13535
-Lj13534:
-	jmp	Lj13525
-Lj13535:
+	je	Lj13502
+	jmp	Lj13503
+Lj13502:
+	jmp	Lj13493
+Lj13503:
 	leal	-324(%ebp),%edx
 	movl	-28(%ebp),%eax
 	movl	TC_SYSTEM_BACKTRACESTRFUNC,%ecx
@@ -33945,47 +33897,47 @@ Lj13535:
 	call	fpc_writeln_end
 	movl	-24(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj13548
-	jmp	Lj13549
-Lj13548:
-	jmp	Lj13525
-Lj13549:
+	je	Lj13516
+	jmp	Lj13517
+Lj13516:
+	jmp	Lj13493
+Lj13517:
 	incl	-12(%ebp)
 	movzwl	TC_SYSTEM_MAX_FRAME_DUMP,%eax
 	cmpl	-12(%ebp),%eax
-	jl	Lj13553
-	jmp	Lj13552
-Lj13553:
+	jl	Lj13521
+	jmp	Lj13520
+Lj13521:
 	cmpb	$0,-17(%ebp)
-	jne	Lj13550
-	jmp	Lj13552
-Lj13552:
+	jne	Lj13518
+	jmp	Lj13520
+Lj13520:
 	movl	-12(%ebp),%eax
 	cmpl	$256,%eax
-	jg	Lj13550
-	jmp	Lj13551
-Lj13550:
-	jmp	Lj13525
-Lj13551:
+	jg	Lj13518
+	jmp	Lj13519
+Lj13518:
+	jmp	Lj13493
+Lj13519:
 	movl	-8(%ebp),%eax
 	movl	%eax,-16(%ebp)
 	movl	-24(%ebp),%eax
 	movl	%eax,-8(%ebp)
-Lj13524:
+Lj13492:
 	movl	-8(%ebp),%eax
 	cmpl	-16(%ebp),%eax
-	ja	Lj13523
-	jmp	Lj13525
-Lj13525:
-Lj13511:
+	ja	Lj13491
+	jmp	Lj13493
+Lj13493:
+Lj13479:
 	call	FPC_POPADDRSTACK
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj13513
+	je	Lj13481
 	call	FPC_POPOBJECTSTACK
 	call	FPC_DESTROYEXCEPTION
-	jmp	Lj13513
-Lj13513:
+	jmp	Lj13481
+Lj13481:
 	leave
 	ret
 
@@ -34000,11 +33952,11 @@ SYSTEM_DUMPEXCEPTIONBACKTRACE$TEXT:
 	movl	%eax,-4(%ebp)
 	call	SYSTEM_RAISELIST$$PEXCEPTOBJECT
 	testl	%eax,%eax
-	je	Lj13560
-	jmp	Lj13561
-Lj13560:
-	jmp	Lj13558
-Lj13561:
+	je	Lj13528
+	jmp	Lj13529
+Lj13528:
+	jmp	Lj13526
+Lj13529:
 	call	SYSTEM_RAISELIST$$PEXCEPTOBJECT
 	movl	4(%eax),%eax
 	leal	-272(%ebp),%edx
@@ -34026,10 +33978,10 @@ Lj13561:
 	decl	%ebx
 	movl	$0,-8(%ebp)
 	cmpl	-8(%ebp),%ebx
-	jl	Lj13579
+	jl	Lj13547
 	decl	-8(%ebp)
 	.balign 4,0x90
-Lj13580:
+Lj13548:
 	incl	-8(%ebp)
 	movl	-16(%ebp),%edx
 	movl	-8(%ebp),%eax
@@ -34044,9 +33996,9 @@ Lj13580:
 	movl	-4(%ebp),%eax
 	call	fpc_writeln_end
 	cmpl	-8(%ebp),%ebx
-	jg	Lj13580
-Lj13579:
-Lj13558:
+	jg	Lj13548
+Lj13547:
+Lj13526:
 	movl	-276(%ebp),%ebx
 	leave
 	ret
@@ -34116,12 +34068,12 @@ SYSTEM_ARRAYSTRINGTOPPCHAR$array_of_ANSISTRING$LONGINT$$PPCHAR:
 	movl	%ecx,-8(%ebp)
 	movl	-12(%ebp),%eax
 	cmpl	$0,%eax
-	jl	Lj13625
-	jmp	Lj13626
-Lj13625:
+	jl	Lj13593
+	jmp	Lj13594
+Lj13593:
 	movl	$0,-16(%ebp)
-	jmp	Lj13623
-Lj13626:
+	jmp	Lj13591
+Lj13594:
 	movl	-12(%ebp),%edx
 	movl	-8(%ebp),%eax
 	addl	%eax,%edx
@@ -34131,19 +34083,19 @@ Lj13626:
 	call	SYSTEM_GETMEM$POINTER$LONGWORD
 	movl	-20(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj13633
-	jmp	Lj13634
-Lj13633:
+	je	Lj13601
+	jmp	Lj13602
+Lj13601:
 	movl	$0,-16(%ebp)
-	jmp	Lj13623
-Lj13634:
+	jmp	Lj13591
+Lj13602:
 	movl	-12(%ebp),%ecx
 	movl	$0,-24(%ebp)
 	cmpl	-24(%ebp),%ecx
-	jl	Lj13638
+	jl	Lj13606
 	decl	-24(%ebp)
 	.balign 4,0x90
-Lj13639:
+Lj13607:
 	incl	-24(%ebp)
 	movl	-20(%ebp),%ebx
 	movl	-24(%ebp),%eax
@@ -34153,13 +34105,13 @@ Lj13639:
 	movl	-24(%ebp),%esi
 	movl	(%edx,%esi,4),%edx
 	testl	%edx,%edx
-	jne	Lj13642
+	jne	Lj13610
 	movl	$FPC_EMPTYCHAR,%edx
-Lj13642:
+Lj13610:
 	movl	%edx,(%ebx,%eax,4)
 	cmpl	-24(%ebp),%ecx
-	jg	Lj13639
-Lj13638:
+	jg	Lj13607
+Lj13606:
 	movl	-20(%ebp),%ecx
 	movl	-12(%ebp),%eax
 	incl	%eax
@@ -34168,7 +34120,7 @@ Lj13638:
 	movl	$0,(%ecx,%eax,4)
 	movl	-20(%ebp),%eax
 	movl	%eax,-16(%ebp)
-Lj13623:
+Lj13591:
 	movl	-16(%ebp),%eax
 	movl	-32(%ebp),%ebx
 	movl	-28(%ebp),%esi
@@ -34187,9 +34139,9 @@ SYSTEM_STRINGTOPPCHAR$ANSISTRING$SMALLINT$$PPCHAR:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj13653
+	jne	Lj13621
 	movl	$FPC_EMPTYCHAR,%eax
-Lj13653:
+Lj13621:
 	movw	-8(%ebp),%dx
 	call	SYSTEM_STRINGTOPPCHAR$PCHAR$SMALLINT$$PPCHAR
 	movl	%eax,-12(%ebp)
@@ -34209,89 +34161,89 @@ SYSTEM_STRINGTOPPCHAR$PCHAR$SMALLINT$$PPCHAR:
 	movl	-4(%ebp),%eax
 	movl	%eax,-24(%ebp)
 	movl	$1,-20(%ebp)
-	jmp	Lj13663
+	jmp	Lj13631
 	.balign 4,0x90
-Lj13662:
-	jmp	Lj13666
+Lj13630:
+	jmp	Lj13634
 	.balign 4,0x90
-Lj13665:
+Lj13633:
 	incl	-24(%ebp)
-Lj13666:
+Lj13634:
 	movl	-24(%ebp),%eax
 	movzbl	(%eax),%eax
 	subl	$9,%eax
 	cmpl	$2,%eax
-	jb	Lj13668
+	jb	Lj13636
 	cmpl	$23,%eax
 	stc
-	je	Lj13668
+	je	Lj13636
 	clc
-Lj13668:
-	jc	Lj13665
-	jmp	Lj13667
-Lj13667:
+Lj13636:
+	jc	Lj13633
+	jmp	Lj13635
+Lj13635:
 	incl	-20(%ebp)
 	movl	-24(%ebp),%eax
 	movb	(%eax),%al
 	cmpb	$34,%al
-	je	Lj13669
-	jmp	Lj13670
-Lj13669:
+	je	Lj13637
+	jmp	Lj13638
+Lj13637:
 	incl	-24(%ebp)
-	jmp	Lj13672
+	jmp	Lj13640
 	.balign 4,0x90
-Lj13671:
+Lj13639:
 	incl	-24(%ebp)
-Lj13672:
+Lj13640:
 	movl	-24(%ebp),%eax
 	movzbl	(%eax),%eax
 	cmpl	$0,%eax
-	je	Lj13674
+	je	Lj13642
 	cmpl	$34,%eax
-	je	Lj13674
-Lj13674:
-	je	Lj13673
-	jmp	Lj13671
-Lj13673:
+	je	Lj13642
+Lj13642:
+	je	Lj13641
+	jmp	Lj13639
+Lj13641:
 	movl	-24(%ebp),%eax
 	movb	(%eax),%al
 	cmpb	$34,%al
-	je	Lj13675
-	jmp	Lj13676
-Lj13675:
+	je	Lj13643
+	jmp	Lj13644
+Lj13643:
 	incl	-24(%ebp)
-Lj13676:
-	jmp	Lj13677
-Lj13670:
-	jmp	Lj13679
+Lj13644:
+	jmp	Lj13645
+Lj13638:
+	jmp	Lj13647
 	.balign 4,0x90
-Lj13678:
+Lj13646:
 	incl	-24(%ebp)
-Lj13679:
+Lj13647:
 	movl	-24(%ebp),%eax
 	movzbl	(%eax),%eax
 	cmpl	$0,%eax
 	stc
-	je	Lj13681
+	je	Lj13649
 	subl	$9,%eax
 	cmpl	$2,%eax
-	jb	Lj13681
+	jb	Lj13649
 	cmpl	$23,%eax
 	stc
-	je	Lj13681
+	je	Lj13649
 	clc
-Lj13681:
-	jc	Lj13680
-	jmp	Lj13678
-Lj13680:
-Lj13677:
-Lj13663:
+Lj13649:
+	jc	Lj13648
+	jmp	Lj13646
+Lj13648:
+Lj13645:
+Lj13631:
 	movl	-24(%ebp),%eax
 	movb	(%eax),%al
 	testb	%al,%al
-	jne	Lj13662
-	jmp	Lj13664
-Lj13664:
+	jne	Lj13630
+	jmp	Lj13632
+Lj13632:
 	movswl	-8(%ebp),%edx
 	movl	-20(%ebp),%eax
 	addl	%eax,%edx
@@ -34302,54 +34254,54 @@ Lj13664:
 	movl	%eax,-12(%ebp)
 	movl	-28(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj13688
-	jmp	Lj13689
-Lj13688:
-	jmp	Lj13656
-Lj13689:
+	je	Lj13656
+	jmp	Lj13657
+Lj13656:
+	jmp	Lj13624
+Lj13657:
 	movswl	-8(%ebp),%eax
 	movl	$1,-16(%ebp)
 	cmpl	-16(%ebp),%eax
-	jl	Lj13691
+	jl	Lj13659
 	decl	-16(%ebp)
 	.balign 4,0x90
-Lj13692:
+Lj13660:
 	incl	-16(%ebp)
 	addl	$4,-28(%ebp)
 	cmpl	-16(%ebp),%eax
-	jg	Lj13692
-Lj13691:
+	jg	Lj13660
+Lj13659:
 	movl	-4(%ebp),%eax
 	movl	%eax,-24(%ebp)
-	jmp	Lj13696
+	jmp	Lj13664
 	.balign 4,0x90
-Lj13695:
-	jmp	Lj13699
+Lj13663:
+	jmp	Lj13667
 	.balign 4,0x90
-Lj13698:
+Lj13666:
 	movl	-24(%ebp),%eax
 	movb	$0,(%eax)
 	incl	-24(%ebp)
-Lj13699:
+Lj13667:
 	movl	-24(%ebp),%eax
 	movzbl	(%eax),%eax
 	subl	$9,%eax
 	cmpl	$2,%eax
-	jb	Lj13703
+	jb	Lj13671
 	cmpl	$23,%eax
 	stc
-	je	Lj13703
+	je	Lj13671
 	clc
-Lj13703:
-	jc	Lj13698
-	jmp	Lj13700
-Lj13700:
+Lj13671:
+	jc	Lj13666
+	jmp	Lj13668
+Lj13668:
 	movl	-24(%ebp),%eax
 	movb	(%eax),%al
 	cmpb	$34,%al
-	je	Lj13704
-	jmp	Lj13705
-Lj13704:
+	je	Lj13672
+	jmp	Lj13673
+Lj13672:
 	incl	-24(%ebp)
 	movl	-28(%ebp),%eax
 	movl	-24(%ebp),%edx
@@ -34357,69 +34309,69 @@ Lj13704:
 	addl	$4,-28(%ebp)
 	movl	-28(%ebp),%eax
 	movl	$0,(%eax)
-	jmp	Lj13711
+	jmp	Lj13679
 	.balign 4,0x90
-Lj13710:
+Lj13678:
 	incl	-24(%ebp)
-Lj13711:
+Lj13679:
 	movl	-24(%ebp),%eax
 	movzbl	(%eax),%eax
 	cmpl	$0,%eax
-	je	Lj13713
+	je	Lj13681
 	cmpl	$34,%eax
-	je	Lj13713
-Lj13713:
-	je	Lj13712
-	jmp	Lj13710
-Lj13712:
+	je	Lj13681
+Lj13681:
+	je	Lj13680
+	jmp	Lj13678
+Lj13680:
 	movl	-24(%ebp),%eax
 	movb	(%eax),%al
 	cmpb	$34,%al
-	je	Lj13714
-	jmp	Lj13715
-Lj13714:
+	je	Lj13682
+	jmp	Lj13683
+Lj13682:
 	movl	-24(%ebp),%eax
 	movb	$0,(%eax)
 	incl	-24(%ebp)
-Lj13715:
-	jmp	Lj13718
-Lj13705:
+Lj13683:
+	jmp	Lj13686
+Lj13673:
 	movl	-28(%ebp),%eax
 	movl	-24(%ebp),%edx
 	movl	%edx,(%eax)
 	addl	$4,-28(%ebp)
 	movl	-28(%ebp),%eax
 	movl	$0,(%eax)
-	jmp	Lj13724
+	jmp	Lj13692
 	.balign 4,0x90
-Lj13723:
+Lj13691:
 	incl	-24(%ebp)
-Lj13724:
+Lj13692:
 	movl	-24(%ebp),%eax
 	movzbl	(%eax),%eax
 	cmpl	$0,%eax
 	stc
-	je	Lj13726
+	je	Lj13694
 	subl	$9,%eax
 	cmpl	$2,%eax
-	jb	Lj13726
+	jb	Lj13694
 	cmpl	$23,%eax
 	stc
-	je	Lj13726
+	je	Lj13694
 	clc
-Lj13726:
-	jc	Lj13725
-	jmp	Lj13723
-Lj13725:
-Lj13718:
-Lj13696:
+Lj13694:
+	jc	Lj13693
+	jmp	Lj13691
+Lj13693:
+Lj13686:
+Lj13664:
 	movl	-24(%ebp),%eax
 	movb	(%eax),%al
 	testb	%al,%al
-	jne	Lj13695
-	jmp	Lj13697
-Lj13697:
-Lj13656:
+	jne	Lj13663
+	jmp	Lj13665
+Lj13665:
+Lj13624:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -34434,12 +34386,12 @@ FPC_ABSTRACTERROR:
 	movl	%esp,%ebp
 	movl	TC_SYSTEM_ABSTRACTERRORPROC,%eax
 	testl	%eax,%eax
-	jne	Lj13729
-	jmp	Lj13730
-Lj13729:
+	jne	Lj13697
+	jmp	Lj13698
+Lj13697:
 	movl	TC_SYSTEM_ABSTRACTERRORPROC,%eax
 	call	*%eax
-Lj13730:
+Lj13698:
 	movl	%ebp,%edx
 	movl	$211,%eax
 	call	SYSTEM_HANDLEERRORFRAME$LONGINT$POINTER
@@ -34461,21 +34413,21 @@ FPC_ASSERT:
 	movl	%ecx,-12(%ebp)
 	movl	TC_SYSTEM_ASSERTERRORPROC,%eax
 	testl	%eax,%eax
-	jne	Lj13737
-	jmp	Lj13738
-Lj13737:
+	jne	Lj13705
+	jmp	Lj13706
+Lj13705:
 	pushl	8(%ebp)
 	movl	-12(%ebp),%ecx
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	movl	TC_SYSTEM_ASSERTERRORPROC,%ebx
 	call	*%ebx
-	jmp	Lj13747
-Lj13738:
+	jmp	Lj13715
+Lj13706:
 	movl	%ebp,%edx
 	movl	$227,%eax
 	call	SYSTEM_HANDLEERRORFRAME$LONGINT$POINTER
-Lj13747:
+Lj13715:
 	movl	-16(%ebp),%ebx
 	leave
 	ret	$4
@@ -34493,58 +34445,110 @@ SYSTEM_SYSASSERT$SHORTSTRING$SHORTSTRING$LONGINT$POINTER:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj13754
-	jmp	Lj13755
-Lj13754:
+	je	Lj13722
+	jmp	Lj13723
+Lj13722:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj13758
+	je	Lj13726
 	movl	U_SYSTEM_STDERR,%eax
 	call	*%edx
 	movl	%eax,%edx
-	jmp	Lj13759
-Lj13758:
+	jmp	Lj13727
+Lj13726:
 	movl	$U_SYSTEM_STDERR+4,%edx
-Lj13759:
+Lj13727:
 	movl	$_$SYSTEM$_Ld32,%ecx
 	movl	$0,%eax
 	call	fpc_write_text_shortstr
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj13766
+	je	Lj13734
 	movl	U_SYSTEM_STDERR,%eax
 	call	*%edx
-	jmp	Lj13767
-Lj13766:
+	jmp	Lj13735
+Lj13734:
 	movl	$U_SYSTEM_STDERR+4,%eax
-Lj13767:
+Lj13735:
 	call	fpc_write_end
-	jmp	Lj13768
-Lj13755:
+	jmp	Lj13736
+Lj13723:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj13771
+	je	Lj13739
 	movl	U_SYSTEM_STDERR,%eax
 	call	*%edx
 	movl	%eax,%edx
-	jmp	Lj13772
-Lj13771:
+	jmp	Lj13740
+Lj13739:
 	movl	$U_SYSTEM_STDERR+4,%edx
-Lj13772:
+Lj13740:
 	movl	-4(%ebp),%ecx
 	movl	$0,%eax
 	call	fpc_write_text_shortstr
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj13779
+	je	Lj13747
 	movl	U_SYSTEM_STDERR,%eax
 	call	*%edx
-	jmp	Lj13780
-Lj13779:
+	jmp	Lj13748
+Lj13747:
 	movl	$U_SYSTEM_STDERR+4,%eax
-Lj13780:
+Lj13748:
 	call	fpc_write_end
+Lj13736:
+	movl	FPC_THREADVAR_RELOCATE,%edx
+	testl	%edx,%edx
+	je	Lj13751
+	movl	U_SYSTEM_STDERR,%eax
+	call	*%edx
+	movl	%eax,%edx
+	jmp	Lj13752
+Lj13751:
+	movl	$U_SYSTEM_STDERR+4,%edx
+Lj13752:
+	movl	$_$SYSTEM$_Ld33,%ecx
+	movl	$0,%eax
+	call	fpc_write_text_shortstr
+	movl	FPC_THREADVAR_RELOCATE,%edx
+	testl	%edx,%edx
+	je	Lj13759
+	movl	U_SYSTEM_STDERR,%eax
+	call	*%edx
+	movl	%eax,%edx
+	jmp	Lj13760
+Lj13759:
+	movl	$U_SYSTEM_STDERR+4,%edx
+Lj13760:
+	movl	-8(%ebp),%ecx
+	movl	$0,%eax
+	call	fpc_write_text_shortstr
+	movl	FPC_THREADVAR_RELOCATE,%edx
+	testl	%edx,%edx
+	je	Lj13767
+	movl	U_SYSTEM_STDERR,%eax
+	call	*%edx
+	movl	%eax,%edx
+	jmp	Lj13768
+Lj13767:
+	movl	$U_SYSTEM_STDERR+4,%edx
 Lj13768:
+	movl	$_$SYSTEM$_Ld34,%ecx
+	movl	$0,%eax
+	call	fpc_write_text_shortstr
+	movl	FPC_THREADVAR_RELOCATE,%edx
+	testl	%edx,%edx
+	je	Lj13775
+	movl	U_SYSTEM_STDERR,%eax
+	call	*%edx
+	movl	%eax,%edx
+	jmp	Lj13776
+Lj13775:
+	movl	$U_SYSTEM_STDERR+4,%edx
+Lj13776:
+	movl	-12(%ebp),%ecx
+	movl	$0,%eax
+	call	fpc_write_text_sint
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
 	je	Lj13783
@@ -34555,7 +34559,7 @@ Lj13768:
 Lj13783:
 	movl	$U_SYSTEM_STDERR+4,%edx
 Lj13784:
-	movl	$_$SYSTEM$_Ld33,%ecx
+	movl	$_$SYSTEM$_Ld35,%ecx
 	movl	$0,%eax
 	call	fpc_write_text_shortstr
 	movl	FPC_THREADVAR_RELOCATE,%edx
@@ -34563,85 +34567,33 @@ Lj13784:
 	je	Lj13791
 	movl	U_SYSTEM_STDERR,%eax
 	call	*%edx
-	movl	%eax,%edx
 	jmp	Lj13792
 Lj13791:
-	movl	$U_SYSTEM_STDERR+4,%edx
-Lj13792:
-	movl	-8(%ebp),%ecx
-	movl	$0,%eax
-	call	fpc_write_text_shortstr
-	movl	FPC_THREADVAR_RELOCATE,%edx
-	testl	%edx,%edx
-	je	Lj13799
-	movl	U_SYSTEM_STDERR,%eax
-	call	*%edx
-	movl	%eax,%edx
-	jmp	Lj13800
-Lj13799:
-	movl	$U_SYSTEM_STDERR+4,%edx
-Lj13800:
-	movl	$_$SYSTEM$_Ld34,%ecx
-	movl	$0,%eax
-	call	fpc_write_text_shortstr
-	movl	FPC_THREADVAR_RELOCATE,%edx
-	testl	%edx,%edx
-	je	Lj13807
-	movl	U_SYSTEM_STDERR,%eax
-	call	*%edx
-	movl	%eax,%edx
-	jmp	Lj13808
-Lj13807:
-	movl	$U_SYSTEM_STDERR+4,%edx
-Lj13808:
-	movl	-12(%ebp),%ecx
-	movl	$0,%eax
-	call	fpc_write_text_sint
-	movl	FPC_THREADVAR_RELOCATE,%edx
-	testl	%edx,%edx
-	je	Lj13815
-	movl	U_SYSTEM_STDERR,%eax
-	call	*%edx
-	movl	%eax,%edx
-	jmp	Lj13816
-Lj13815:
-	movl	$U_SYSTEM_STDERR+4,%edx
-Lj13816:
-	movl	$_$SYSTEM$_Ld35,%ecx
-	movl	$0,%eax
-	call	fpc_write_text_shortstr
-	movl	FPC_THREADVAR_RELOCATE,%edx
-	testl	%edx,%edx
-	je	Lj13823
-	movl	U_SYSTEM_STDERR,%eax
-	call	*%edx
-	jmp	Lj13824
-Lj13823:
 	movl	$U_SYSTEM_STDERR+4,%eax
-Lj13824:
+Lj13792:
 	call	fpc_writeln_end
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj13827
+	je	Lj13795
 	movl	U_SYSTEM_STDERR,%eax
 	call	*%edx
 	movl	%eax,%edx
-	jmp	Lj13828
-Lj13827:
+	jmp	Lj13796
+Lj13795:
 	movl	$U_SYSTEM_STDERR+4,%edx
-Lj13828:
+Lj13796:
 	movl	$_$SYSTEM$_Ld1,%ecx
 	movl	$0,%eax
 	call	fpc_write_text_shortstr
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj13835
+	je	Lj13803
 	movl	U_SYSTEM_STDERR,%eax
 	call	*%edx
-	jmp	Lj13836
-Lj13835:
+	jmp	Lj13804
+Lj13803:
 	movl	$U_SYSTEM_STDERR+4,%eax
-Lj13836:
+Lj13804:
 	call	fpc_writeln_end
 	movl	$227,%eax
 	call	SYSTEM_HALT$LONGINT
@@ -34683,29 +34635,30 @@ FPC_LONGJMP:
 
 .text
 	.balign 4,0x90
+SYSTEM_SBRK$LONGINT$$POINTER:
+	pushl	%ebp
+	movl	%esp,%ebp
+	subl	$4,%esp
+	movl	%eax,%edx
+	movw	$32512,%ax
+	call	___SYSCALL
+	incl	%eax
+	jz	Lj13813
+	decl	%eax
+Lj13813:
+	leave
+	ret
+
+.text
+	.balign 4,0x90
 SYSTEM_SYSOSALLOC$LONGWORD$$POINTER:
 	pushl	%ebp
 	movl	%esp,%ebp
-	subl	$16,%esp
+	subl	$8,%esp
 	movl	%eax,-4(%ebp)
-	pushl	TC_SYSTEM_HEAPALLOCFLAGS
-	pushl	-4(%ebp)
-	leal	-12(%ebp),%eax
-	pushl	%eax
-	call	_$dll$doscalls$_index_299
-	addl	$12,%esp
-	movl	%eax,-16(%ebp)
-	movl	-16(%ebp),%eax
-	testl	%eax,%eax
-	je	Lj13853
-	jmp	Lj13854
-Lj13853:
-	movl	-12(%ebp),%eax
+	movl	-4(%ebp),%eax
+	call	SYSTEM_SBRK$LONGINT$$POINTER
 	movl	%eax,-8(%ebp)
-	jmp	Lj13857
-Lj13854:
-	movl	$0,-8(%ebp)
-Lj13857:
 	movl	-8(%ebp),%eax
 	leave
 	ret
@@ -34715,53 +34668,9 @@ Lj13857:
 SYSTEM_SYSOSFREE$POINTER$LONGWORD:
 	pushl	%ebp
 	movl	%esp,%ebp
-	subl	$12,%esp
-	movl	%ebx,-12(%ebp)
+	subl	$8,%esp
 	movl	%eax,-4(%ebp)
 	movl	%edx,-8(%ebp)
-	pushl	-4(%ebp)
-	call	_$dll$doscalls$_index_304
-	popl	%ebx
-	movl	-12(%ebp),%ebx
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-.globl	SYSTEM_READUSEHIGHMEM$$BOOLEAN
-SYSTEM_READUSEHIGHMEM$$BOOLEAN:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$1,%esp
-	movl	TC_SYSTEM_HEAPALLOCFLAGS,%eax
-	andl	$1024,%eax
-	cmpl	$1024,%eax
-	seteb	-1(%ebp)
-	movb	-1(%ebp),%al
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-.globl	SYSTEM_WRITEUSEHIGHMEM$BOOLEAN
-SYSTEM_WRITEUSEHIGHMEM$BOOLEAN:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$4,%esp
-	movb	%al,-4(%ebp)
-	cmpb	$0,-4(%ebp)
-	jne	Lj13870
-	jmp	Lj13871
-Lj13870:
-	movl	TC_SYSTEM_HEAPALLOCFLAGS,%eax
-	orl	$1024,%eax
-	movl	%eax,TC_SYSTEM_HEAPALLOCFLAGS
-	jmp	Lj13874
-Lj13871:
-	movl	TC_SYSTEM_HEAPALLOCFLAGS,%eax
-	andl	$-1025,%eax
-	movl	%eax,TC_SYSTEM_HEAPALLOCFLAGS
-Lj13874:
 	leave
 	ret
 
@@ -34816,19 +34725,19 @@ SYSTEM_ISMEMORYMANAGERSET$$BOOLEAN:
 	subl	$1,%esp
 	movl	$SYSTEM_SYSGETMEM$LONGWORD$$POINTER,%eax
 	cmpl	TC_SYSTEM_MEMORYMANAGER+4,%eax
-	jne	Lj13887
-	jmp	Lj13889
-Lj13889:
+	jne	Lj13832
+	jmp	Lj13834
+Lj13834:
 	movl	$SYSTEM_SYSFREEMEM$POINTER$$LONGWORD,%eax
 	cmpl	TC_SYSTEM_MEMORYMANAGER+8,%eax
-	jne	Lj13887
-	jmp	Lj13888
-Lj13887:
+	jne	Lj13832
+	jmp	Lj13833
+Lj13832:
 	movb	$1,-1(%ebp)
-	jmp	Lj13890
-Lj13888:
+	jmp	Lj13835
+Lj13833:
 	movb	$0,-1(%ebp)
-Lj13890:
+Lj13835:
 	movb	-1(%ebp),%al
 	leave
 	ret
@@ -35097,13 +35006,13 @@ SYSTEM_SYSGETFPCHEAPSTATUS$$TFPCHEAPSTATUS:
 	movl	%eax,-4(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj13989
+	je	Lj13934
 	movl	U_SYSTEM_FREELISTS,%eax
 	call	*%edx
-	jmp	Lj13990
-Lj13989:
+	jmp	Lj13935
+Lj13934:
 	movl	$U_SYSTEM_FREELISTS+4,%eax
-Lj13990:
+Lj13935:
 	leal	164(%eax),%eax
 	movl	%eax,-8(%ebp)
 	movl	-8(%ebp),%eax
@@ -35134,13 +35043,13 @@ SYSTEM_SYSGETHEAPSTATUS$$THEAPSTATUS:
 	movl	%eax,-4(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj13999
+	je	Lj13944
 	movl	U_SYSTEM_FREELISTS,%eax
 	call	*%edx
-	jmp	Lj14000
-Lj13999:
+	jmp	Lj13945
+Lj13944:
 	movl	$U_SYSTEM_FREELISTS+4,%eax
-Lj14000:
+Lj13945:
 	leal	164(%eax),%eax
 	movl	%eax,-8(%ebp)
 	movl	-8(%ebp),%eax
@@ -35199,14 +35108,14 @@ SYSTEM_APPEND_TO_LIST_VAR$PMEMCHUNK_VAR:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj14031
-	jmp	Lj14032
-Lj14031:
+	jne	Lj13976
+	jmp	Lj13977
+Lj13976:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	movl	-4(%ebp),%edx
 	movl	%edx,16(%eax)
-Lj14032:
+Lj13977:
 	movl	-8(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	%edx,(%eax)
@@ -35223,32 +35132,32 @@ SYSTEM_REMOVE_FROM_LIST_FIXED$PMEMCHUNK_FIXED$PPMEMCHUNK_FIXED:
 	movl	%edx,-8(%ebp)
 	movl	-4(%ebp),%eax
 	cmpl	$0,4(%eax)
-	jne	Lj14039
-	jmp	Lj14040
-Lj14039:
+	jne	Lj13984
+	jmp	Lj13985
+Lj13984:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%edx
 	movl	-4(%ebp),%eax
 	movl	8(%eax),%eax
 	movl	%eax,8(%edx)
-Lj14040:
+Lj13985:
 	movl	-4(%ebp),%eax
 	cmpl	$0,8(%eax)
-	jne	Lj14043
-	jmp	Lj14044
-Lj14043:
+	jne	Lj13988
+	jmp	Lj13989
+Lj13988:
 	movl	-4(%ebp),%eax
 	movl	8(%eax),%edx
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	movl	%eax,4(%edx)
-	jmp	Lj14047
-Lj14044:
+	jmp	Lj13992
+Lj13989:
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	movl	%eax,(%edx)
-Lj14047:
+Lj13992:
 	leave
 	ret
 
@@ -35261,33 +35170,33 @@ SYSTEM_REMOVE_FROM_LIST_VAR$PMEMCHUNK_VAR:
 	movl	%eax,-4(%ebp)
 	movl	-4(%ebp),%eax
 	cmpl	$0,12(%eax)
-	jne	Lj14052
-	jmp	Lj14053
-Lj14052:
+	jne	Lj13997
+	jmp	Lj13998
+Lj13997:
 	movl	-4(%ebp),%eax
 	movl	12(%eax),%edx
 	movl	-4(%ebp),%eax
 	movl	16(%eax),%eax
 	movl	%eax,16(%edx)
-Lj14053:
+Lj13998:
 	movl	-4(%ebp),%eax
 	cmpl	$0,16(%eax)
-	jne	Lj14056
-	jmp	Lj14057
-Lj14056:
+	jne	Lj14001
+	jmp	Lj14002
+Lj14001:
 	movl	-4(%ebp),%eax
 	movl	16(%eax),%edx
 	movl	-4(%ebp),%eax
 	movl	12(%eax),%eax
 	movl	%eax,12(%edx)
-	jmp	Lj14060
-Lj14057:
+	jmp	Lj14005
+Lj14002:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%edx
 	movl	-4(%ebp),%eax
 	movl	12(%eax),%eax
 	movl	%eax,152(%edx)
-Lj14060:
+Lj14005:
 	leave
 	ret
 
@@ -35301,11 +35210,11 @@ SYSTEM_REMOVE_FREED_FIXED_CHUNKS$POSCHUNK:
 	movl	-4(%ebp),%eax
 	movl	16(%eax),%eax
 	cmpl	$0,%eax
-	jl	Lj14065
-	jmp	Lj14066
-Lj14065:
-	jmp	Lj14063
-Lj14066:
+	jl	Lj14010
+	jmp	Lj14011
+Lj14010:
+	jmp	Lj14008
+Lj14011:
 	movl	-4(%ebp),%eax
 	addl	$28,%eax
 	movl	%eax,-8(%ebp)
@@ -35328,45 +35237,45 @@ Lj14066:
 	leal	(%edx,%eax,4),%eax
 	movl	%eax,-16(%ebp)
 	.balign 4,0x90
-Lj14075:
+Lj14020:
 	movl	-8(%ebp),%eax
 	cmpl	$0,4(%eax)
-	jne	Lj14079
-	jmp	Lj14080
-Lj14079:
+	jne	Lj14024
+	jmp	Lj14025
+Lj14024:
 	movl	-8(%ebp),%eax
 	movl	4(%eax),%edx
 	movl	-8(%ebp),%eax
 	movl	8(%eax),%eax
 	movl	%eax,8(%edx)
-Lj14080:
+Lj14025:
 	movl	-8(%ebp),%eax
 	cmpl	$0,8(%eax)
-	jne	Lj14083
-	jmp	Lj14084
-Lj14083:
+	jne	Lj14028
+	jmp	Lj14029
+Lj14028:
 	movl	-8(%ebp),%eax
 	movl	8(%eax),%edx
 	movl	-8(%ebp),%eax
 	movl	4(%eax),%eax
 	movl	%eax,4(%edx)
-	jmp	Lj14087
-Lj14084:
+	jmp	Lj14032
+Lj14029:
 	movl	-16(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movl	4(%eax),%eax
 	movl	%eax,(%edx)
-Lj14087:
+Lj14032:
 	movl	-8(%ebp),%edx
 	movl	-20(%ebp),%eax
 	addl	%eax,%edx
 	movl	%edx,-8(%ebp)
 	movl	-8(%ebp),%eax
 	cmpl	-12(%ebp),%eax
-	ja	Lj14077
-	jmp	Lj14075
-Lj14077:
-Lj14063:
+	ja	Lj14022
+	jmp	Lj14020
+Lj14022:
+Lj14008:
 	leave
 	ret
 
@@ -35382,41 +35291,41 @@ SYSTEM_FREE_OSCHUNK$PFREELISTS$POSCHUNK:
 	call	SYSTEM_REMOVE_FREED_FIXED_CHUNKS$POSCHUNK
 	movl	-8(%ebp),%eax
 	cmpl	$0,8(%eax)
-	jne	Lj14096
-	jmp	Lj14097
-Lj14096:
+	jne	Lj14041
+	jmp	Lj14042
+Lj14041:
 	movl	-8(%ebp),%eax
 	movl	8(%eax),%edx
 	movl	-8(%ebp),%eax
 	movl	12(%eax),%eax
 	movl	%eax,12(%edx)
-	jmp	Lj14100
-Lj14097:
+	jmp	Lj14045
+Lj14042:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movl	12(%eax),%eax
 	movl	%eax,148(%edx)
-Lj14100:
+Lj14045:
 	movl	-8(%ebp),%eax
 	cmpl	$0,12(%eax)
-	jne	Lj14103
-	jmp	Lj14104
-Lj14103:
+	jne	Lj14048
+	jmp	Lj14049
+Lj14048:
 	movl	-8(%ebp),%eax
 	movl	12(%eax),%edx
 	movl	-8(%ebp),%eax
 	movl	8(%eax),%eax
 	movl	%eax,8(%edx)
-Lj14104:
+Lj14049:
 	movl	-8(%ebp),%eax
 	movl	16(%eax),%eax
 	cmpl	$0,%eax
-	jge	Lj14107
-	jmp	Lj14108
-Lj14107:
+	jge	Lj14052
+	jmp	Lj14053
+Lj14052:
 	movl	-4(%ebp),%eax
 	decl	140(%eax)
-Lj14108:
+Lj14053:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	andl	$-16,%eax
@@ -35444,9 +35353,9 @@ SYSTEM_APPEND_TO_OSLIST$POSCHUNK:
 	movl	(%eax),%eax
 	andl	$1,%eax
 	testl	%eax,%eax
-	jne	Lj14119
-	jmp	Lj14120
-Lj14119:
+	jne	Lj14064
+	jmp	Lj14065
+Lj14064:
 	movl	-8(%ebp),%eax
 	incl	136(%eax)
 	movl	-4(%ebp),%eax
@@ -35454,26 +35363,8 @@ Lj14119:
 	andl	$-2,%eax
 	movl	-4(%ebp),%edx
 	movl	%eax,(%edx)
-	jmp	Lj14115
-Lj14120:
-	movl	-8(%ebp),%eax
-	movl	136(%eax),%eax
-	cmpl	TC_SYSTEM_MAXKEPTOSCHUNKS,%eax
-	jae	Lj14123
-	jmp	Lj14125
-Lj14125:
-	movl	-4(%ebp),%eax
-	movl	(%eax),%eax
-	andl	$-16,%eax
-	cmpl	TC_SYSTEM_GROWHEAPSIZE2,%eax
-	ja	Lj14123
-	jmp	Lj14124
-Lj14123:
-	movl	-4(%ebp),%edx
-	movl	-8(%ebp),%eax
-	call	SYSTEM_FREE_OSCHUNK$PFREELISTS$POSCHUNK
-	jmp	Lj14130
-Lj14124:
+	jmp	Lj14060
+Lj14065:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
@@ -35483,8 +35374,7 @@ Lj14124:
 	movl	%eax,(%edx)
 	movl	-8(%ebp),%eax
 	incl	136(%eax)
-Lj14130:
-Lj14115:
+Lj14060:
 	leave
 	ret
 
@@ -35500,33 +35390,33 @@ SYSTEM_APPEND_TO_OSLIST_VAR$PMEMCHUNK_VAR:
 	movl	%eax,-8(%ebp)
 	movl	-4(%ebp),%eax
 	cmpl	$0,12(%eax)
-	jne	Lj14140
-	jmp	Lj14141
-Lj14140:
+	jne	Lj14077
+	jmp	Lj14078
+Lj14077:
 	movl	-4(%ebp),%eax
 	movl	12(%eax),%edx
 	movl	-4(%ebp),%eax
 	movl	16(%eax),%eax
 	movl	%eax,16(%edx)
-Lj14141:
+Lj14078:
 	movl	-4(%ebp),%eax
 	cmpl	$0,16(%eax)
-	jne	Lj14144
-	jmp	Lj14145
-Lj14144:
+	jne	Lj14081
+	jmp	Lj14082
+Lj14081:
 	movl	-4(%ebp),%eax
 	movl	16(%eax),%edx
 	movl	-4(%ebp),%eax
 	movl	12(%eax),%eax
 	movl	%eax,12(%edx)
-	jmp	Lj14148
-Lj14145:
+	jmp	Lj14085
+Lj14082:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%edx
 	movl	-4(%ebp),%eax
 	movl	12(%eax),%eax
 	movl	%eax,152(%edx)
-Lj14148:
+Lj14085:
 	movl	-8(%ebp),%eax
 	call	SYSTEM_APPEND_TO_OSLIST$POSCHUNK
 	leave
@@ -35546,16 +35436,16 @@ SYSTEM_MODIFY_OSCHUNK_FREELISTS$POSCHUNK$PFREELISTS:
 	movl	-4(%ebp),%eax
 	movl	16(%eax),%eax
 	cmpl	$-1,%eax
-	jne	Lj14157
-	jmp	Lj14158
-Lj14157:
-	jmp	Lj14153
-Lj14158:
+	jne	Lj14094
+	jmp	Lj14095
+Lj14094:
+	jmp	Lj14090
+Lj14095:
 	movl	-4(%ebp),%eax
 	addl	$36,%eax
 	movl	%eax,-12(%ebp)
 	.balign 4,0x90
-Lj14161:
+Lj14098:
 	movl	-12(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movl	%eax,4(%edx)
@@ -35563,20 +35453,20 @@ Lj14161:
 	movl	8(%eax),%eax
 	andl	$4,%eax
 	testl	%eax,%eax
-	jne	Lj14166
-	jmp	Lj14167
-Lj14166:
-	jmp	Lj14163
-Lj14167:
+	jne	Lj14103
+	jmp	Lj14104
+Lj14103:
+	jmp	Lj14100
+Lj14104:
 	movl	-12(%ebp),%eax
 	movl	8(%eax),%eax
 	andl	$-16,%eax
 	movl	-12(%ebp),%edx
 	addl	%edx,%eax
 	movl	%eax,-12(%ebp)
-	jmp	Lj14161
-Lj14163:
-Lj14153:
+	jmp	Lj14098
+Lj14100:
+Lj14090:
 	leave
 	ret
 
@@ -35592,30 +35482,30 @@ SYSTEM_MODIFY_FREELISTS$PFREELISTS$PFREELISTS$$POSCHUNK:
 	movl	148(%eax),%eax
 	movl	%eax,-16(%ebp)
 	cmpl	$0,-16(%ebp)
-	jne	Lj14174
-	jmp	Lj14175
-Lj14174:
+	jne	Lj14111
+	jmp	Lj14112
+Lj14111:
 	.balign 4,0x90
-Lj14176:
+Lj14113:
 	movl	-8(%ebp),%edx
 	movl	-16(%ebp),%eax
 	call	SYSTEM_MODIFY_OSCHUNK_FREELISTS$POSCHUNK$PFREELISTS
 	movl	-16(%ebp),%eax
 	cmpl	$0,12(%eax)
-	jne	Lj14184
-	jmp	Lj14183
-Lj14183:
+	jne	Lj14121
+	jmp	Lj14120
+Lj14120:
 	movl	-16(%ebp),%eax
 	movl	%eax,-12(%ebp)
-	jmp	Lj14170
-Lj14184:
+	jmp	Lj14107
+Lj14121:
 	movl	-16(%ebp),%eax
 	movl	12(%eax),%eax
 	movl	%eax,-16(%ebp)
-	jmp	Lj14176
-Lj14175:
+	jmp	Lj14113
+Lj14112:
 	movl	$0,-12(%ebp)
-Lj14170:
+Lj14107:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -35640,9 +35530,9 @@ SYSTEM_SPLIT_BLOCK$PMEMCHUNK_VAR$LONGWORD$$LONGWORD:
 	movl	%eax,-28(%ebp)
 	movl	-28(%ebp),%eax
 	cmpl	$20,%eax
-	jae	Lj14199
-	jmp	Lj14200
-Lj14199:
+	jae	Lj14136
+	jmp	Lj14137
+Lj14136:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	addl	%eax,%edx
@@ -35650,15 +35540,15 @@ Lj14199:
 	movl	-20(%ebp),%eax
 	andl	$4,%eax
 	testl	%eax,%eax
-	je	Lj14203
-	jmp	Lj14204
-Lj14203:
+	je	Lj14140
+	jmp	Lj14141
+Lj14140:
 	movl	-4(%ebp),%edx
 	movl	-24(%ebp),%eax
 	addl	%eax,%edx
 	movl	-28(%ebp),%eax
 	movl	%eax,(%edx)
-Lj14204:
+Lj14141:
 	movl	-20(%ebp),%edx
 	andl	$4,%edx
 	movl	-28(%ebp),%eax
@@ -35691,24 +35581,24 @@ Lj14204:
 	movl	-32(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj14222
-	jmp	Lj14223
-Lj14222:
+	jne	Lj14159
+	jmp	Lj14160
+Lj14159:
 	movl	-32(%ebp),%eax
 	movl	(%eax),%eax
 	movl	-16(%ebp),%edx
 	movl	%edx,16(%eax)
-Lj14223:
+Lj14160:
 	movl	-32(%ebp),%edx
 	movl	-16(%ebp),%eax
 	movl	%eax,(%edx)
 	movl	-8(%ebp),%eax
 	movl	%eax,-12(%ebp)
-	jmp	Lj14230
-Lj14200:
+	jmp	Lj14167
+Lj14137:
 	movl	-24(%ebp),%eax
 	movl	%eax,-12(%ebp)
-Lj14230:
+Lj14167:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -35725,12 +35615,12 @@ SYSTEM_CONCAT_TWO_BLOCKS$PMEMCHUNK_VAR$PMEMCHUNK_VAR:
 	movl	8(%eax),%eax
 	andl	$1,%eax
 	testl	%eax,%eax
-	jne	Lj14235
-	jmp	Lj14236
-Lj14235:
+	jne	Lj14172
+	jmp	Lj14173
+Lj14172:
 	movl	$204,%eax
 	call	SYSTEM_HANDLEERROR$LONGINT
-Lj14236:
+Lj14173:
 	movl	-8(%ebp),%eax
 	movl	8(%eax),%eax
 	andl	$-16,%eax
@@ -35742,16 +35632,16 @@ Lj14236:
 	movl	8(%eax),%eax
 	andl	$4,%eax
 	testl	%eax,%eax
-	jne	Lj14241
-	jmp	Lj14242
-Lj14241:
+	jne	Lj14178
+	jmp	Lj14179
+Lj14178:
 	movl	-4(%ebp),%eax
 	movl	8(%eax),%eax
 	orl	$4,%eax
 	movl	-4(%ebp),%edx
 	movl	%eax,8(%edx)
-	jmp	Lj14245
-Lj14242:
+	jmp	Lj14182
+Lj14179:
 	movl	-8(%ebp),%eax
 	movl	-16(%ebp),%edx
 	addl	%edx,%eax
@@ -35761,36 +35651,36 @@ Lj14242:
 	andl	$-16,%edx
 	movl	-12(%ebp),%eax
 	movl	%edx,(%eax)
-Lj14245:
+Lj14182:
 	movl	-8(%ebp),%eax
 	cmpl	$0,12(%eax)
-	jne	Lj14251
-	jmp	Lj14252
-Lj14251:
+	jne	Lj14188
+	jmp	Lj14189
+Lj14188:
 	movl	-8(%ebp),%eax
 	movl	12(%eax),%edx
 	movl	-8(%ebp),%eax
 	movl	16(%eax),%eax
 	movl	%eax,16(%edx)
-Lj14252:
+Lj14189:
 	movl	-8(%ebp),%eax
 	cmpl	$0,16(%eax)
-	jne	Lj14255
-	jmp	Lj14256
-Lj14255:
+	jne	Lj14192
+	jmp	Lj14193
+Lj14192:
 	movl	-8(%ebp),%eax
 	movl	16(%eax),%edx
 	movl	-8(%ebp),%eax
 	movl	12(%eax),%eax
 	movl	%eax,12(%edx)
-	jmp	Lj14259
-Lj14256:
+	jmp	Lj14196
+Lj14193:
 	movl	-8(%ebp),%eax
 	movl	4(%eax),%edx
 	movl	-8(%ebp),%eax
 	movl	12(%eax),%eax
 	movl	%eax,152(%edx)
-Lj14259:
+Lj14196:
 	leave
 	ret
 
@@ -35806,9 +35696,9 @@ SYSTEM_TRY_CONCAT_FREE_CHUNK_FORWARD$PMEMCHUNK_VAR$$BOOLEAN:
 	movl	8(%eax),%eax
 	andl	$4,%eax
 	testl	%eax,%eax
-	je	Lj14266
-	jmp	Lj14267
-Lj14266:
+	je	Lj14203
+	jmp	Lj14204
+Lj14203:
 	movl	-4(%ebp),%eax
 	movl	8(%eax),%eax
 	andl	$-16,%eax
@@ -35819,15 +35709,15 @@ Lj14266:
 	movl	8(%eax),%eax
 	andl	$2,%eax
 	testl	%eax,%eax
-	je	Lj14270
-	jmp	Lj14271
-Lj14270:
+	je	Lj14207
+	jmp	Lj14208
+Lj14207:
 	movl	-12(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_CONCAT_TWO_BLOCKS$PMEMCHUNK_VAR$PMEMCHUNK_VAR
 	movb	$1,-5(%ebp)
-Lj14271:
-Lj14267:
+Lj14208:
+Lj14204:
 	movb	-5(%ebp),%al
 	leave
 	ret
@@ -35845,9 +35735,9 @@ SYSTEM_TRY_CONCAT_FREE_CHUNK$PMEMCHUNK_VAR$$PMEMCHUNK_VAR:
 	movl	8(%eax),%eax
 	andl	$8,%eax
 	testl	%eax,%eax
-	je	Lj14282
-	jmp	Lj14283
-Lj14282:
+	je	Lj14219
+	jmp	Lj14220
+Lj14219:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%edx
 	movl	-4(%ebp),%eax
@@ -35858,16 +35748,16 @@ Lj14282:
 	movl	8(%eax),%eax
 	andl	$2,%eax
 	testl	%eax,%eax
-	je	Lj14286
-	jmp	Lj14287
-Lj14286:
+	je	Lj14223
+	jmp	Lj14224
+Lj14223:
 	movl	-4(%ebp),%edx
 	movl	-12(%ebp),%eax
 	call	SYSTEM_CONCAT_TWO_BLOCKS$PMEMCHUNK_VAR$PMEMCHUNK_VAR
 	movl	-12(%ebp),%eax
 	movl	%eax,-4(%ebp)
-Lj14287:
-Lj14283:
+Lj14224:
+Lj14220:
 	movl	-4(%ebp),%eax
 	movl	%eax,-8(%ebp)
 	movl	-8(%ebp),%eax
@@ -35887,16 +35777,16 @@ SYSTEM_FIND_FREE_OSCHUNK$PFREELISTS$LONGWORD$LONGWORD$LONGWORD$$POSCHUNK:
 	movl	(%eax),%eax
 	movl	%eax,-24(%ebp)
 	movl	$0,-20(%ebp)
-	jmp	Lj14303
+	jmp	Lj14240
 	.balign 4,0x90
-Lj14302:
+Lj14239:
 	movl	-24(%ebp),%eax
 	movl	(%eax),%eax
 	andl	$1,%eax
 	testl	%eax,%eax
-	jne	Lj14305
-	jmp	Lj14306
-Lj14305:
+	jne	Lj14242
+	jmp	Lj14243
+Lj14242:
 	movl	-24(%ebp),%eax
 	movl	(%eax),%eax
 	andl	$-2,%eax
@@ -35907,70 +35797,70 @@ Lj14305:
 	movl	%eax,-24(%ebp)
 	movl	-20(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj14311
-	jmp	Lj14312
-Lj14311:
+	je	Lj14248
+	jmp	Lj14249
+Lj14248:
 	movl	-4(%ebp),%eax
 	movl	-24(%ebp),%edx
 	movl	%edx,(%eax)
-	jmp	Lj14315
-Lj14312:
+	jmp	Lj14252
+Lj14249:
 	movl	-20(%ebp),%edx
 	movl	-24(%ebp),%eax
 	movl	%eax,4(%edx)
-Lj14315:
-	jmp	Lj14303
-Lj14306:
+Lj14252:
+	jmp	Lj14240
+Lj14243:
 	movl	-24(%ebp),%eax
 	movl	(%eax),%eax
 	andl	$-16,%eax
 	movl	%eax,-28(%ebp)
 	movl	-28(%ebp),%eax
 	cmpl	-8(%ebp),%eax
-	jae	Lj14322
-	jmp	Lj14321
-Lj14322:
+	jae	Lj14259
+	jmp	Lj14258
+Lj14259:
 	movl	-28(%ebp),%eax
 	cmpl	-12(%ebp),%eax
-	jbe	Lj14320
-	jmp	Lj14321
-Lj14320:
+	jbe	Lj14257
+	jmp	Lj14258
+Lj14257:
 	movl	8(%ebp),%eax
 	movl	-28(%ebp),%edx
 	movl	%edx,(%eax)
 	movl	-20(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj14325
-	jmp	Lj14326
-Lj14325:
+	je	Lj14262
+	jmp	Lj14263
+Lj14262:
 	movl	-4(%ebp),%edx
 	movl	-24(%ebp),%eax
 	movl	4(%eax),%eax
 	movl	%eax,(%edx)
-	jmp	Lj14329
-Lj14326:
+	jmp	Lj14266
+Lj14263:
 	movl	-20(%ebp),%edx
 	movl	-24(%ebp),%eax
 	movl	4(%eax),%eax
 	movl	%eax,4(%edx)
-Lj14329:
+Lj14266:
 	movl	-4(%ebp),%eax
 	decl	136(%eax)
 	movl	-24(%ebp),%eax
 	call	SYSTEM_REMOVE_FREED_FIXED_CHUNKS$POSCHUNK
-	jmp	Lj14304
-Lj14321:
+	jmp	Lj14241
+Lj14258:
 	movl	-24(%ebp),%eax
 	movl	%eax,-20(%ebp)
 	movl	-24(%ebp),%eax
 	movl	4(%eax),%eax
 	movl	%eax,-24(%ebp)
-Lj14303:
+Lj14240:
 	movl	-24(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj14302
-	jmp	Lj14304
-Lj14304:
+	jne	Lj14239
+	jmp	Lj14241
+Lj14241:
 	movl	-24(%ebp),%eax
 	movl	%eax,-16(%ebp)
 	movl	-16(%ebp),%eax
@@ -35991,21 +35881,21 @@ SYSTEM_ALLOC_OSCHUNK$PFREELISTS$LONGWORD$LONGWORD$$POINTER:
 	movl	%eax,-36(%ebp)
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj14344
-	jmp	Lj14345
-Lj14344:
+	jne	Lj14281
+	jmp	Lj14282
+Lj14281:
 	movl	$1048576,-40(%ebp)
-	jmp	Lj14348
-Lj14345:
+	jmp	Lj14285
+Lj14282:
 	movl	$-1,-40(%ebp)
-Lj14348:
+Lj14285:
 	movl	$0,-32(%ebp)
 	movl	-4(%ebp),%eax
 	movl	136(%eax),%eax
 	cmpl	TC_SYSTEM_MAXKEPTOSCHUNKS,%eax
-	jae	Lj14353
-	jmp	Lj14354
-Lj14353:
+	jae	Lj14290
+	jmp	Lj14291
+Lj14290:
 	leal	-12(%ebp),%eax
 	pushl	%eax
 	movl	-40(%ebp),%ecx
@@ -36013,24 +35903,24 @@ Lj14353:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_FIND_FREE_OSCHUNK$PFREELISTS$LONGWORD$LONGWORD$LONGWORD$$POSCHUNK
 	movl	%eax,-32(%ebp)
-Lj14354:
+Lj14291:
 	cmpl	$0,-32(%ebp)
-	jne	Lj14366
-	jmp	Lj14367
-Lj14367:
+	jne	Lj14303
+	jmp	Lj14304
+Lj14304:
 	cmpl	$0,U_SYSTEM_ORPHANED_FREELISTS+156
-	jne	Lj14365
-	jmp	Lj14369
-Lj14369:
+	jne	Lj14302
+	jmp	Lj14306
+Lj14306:
 	cmpl	$0,U_SYSTEM_ORPHANED_FREELISTS+160
-	jne	Lj14365
-	jmp	Lj14368
-Lj14368:
+	jne	Lj14302
+	jmp	Lj14305
+Lj14305:
 	movl	U_SYSTEM_ORPHANED_FREELISTS+136,%eax
 	cmpl	$0,%eax
-	ja	Lj14365
-	jmp	Lj14366
-Lj14365:
+	ja	Lj14302
+	jmp	Lj14303
+Lj14302:
 	movl	$U_SYSTEM_HEAP_LOCK,%eax
 	call	SYSTEM_ENTERCRITICALSECTION$TRTLCRITICALSECTION
 	movl	$U_SYSTEM_ORPHANED_FREELISTS,%eax
@@ -36039,9 +35929,9 @@ Lj14365:
 	call	SYSTEM_FINISH_WAITVARLIST$PFREELISTS
 	movl	U_SYSTEM_ORPHANED_FREELISTS+136,%eax
 	cmpl	$0,%eax
-	ja	Lj14376
-	jmp	Lj14377
-Lj14376:
+	ja	Lj14313
+	jmp	Lj14314
+Lj14313:
 	leal	-12(%ebp),%eax
 	pushl	%eax
 	movl	$U_SYSTEM_ORPHANED_FREELISTS,%eax
@@ -36050,68 +35940,68 @@ Lj14376:
 	call	SYSTEM_FIND_FREE_OSCHUNK$PFREELISTS$LONGWORD$LONGWORD$LONGWORD$$POSCHUNK
 	movl	%eax,-32(%ebp)
 	cmpl	$0,-32(%ebp)
-	jne	Lj14388
-	jmp	Lj14389
-Lj14388:
+	jne	Lj14325
+	jmp	Lj14326
+Lj14325:
 	movl	-32(%ebp),%edx
 	movl	-4(%ebp),%eax
 	movl	%eax,20(%edx)
 	movl	-32(%ebp),%eax
 	cmpl	$0,8(%eax)
-	jne	Lj14392
-	jmp	Lj14393
-Lj14392:
+	jne	Lj14329
+	jmp	Lj14330
+Lj14329:
 	movl	-32(%ebp),%eax
 	movl	8(%eax),%edx
 	movl	-32(%ebp),%eax
 	movl	12(%eax),%eax
 	movl	%eax,12(%edx)
-	jmp	Lj14396
-Lj14393:
+	jmp	Lj14333
+Lj14330:
 	movl	-32(%ebp),%eax
 	movl	12(%eax),%eax
 	movl	%eax,U_SYSTEM_ORPHANED_FREELISTS+148
-Lj14396:
+Lj14333:
 	movl	-32(%ebp),%eax
 	cmpl	$0,12(%eax)
-	jne	Lj14399
-	jmp	Lj14400
-Lj14399:
+	jne	Lj14336
+	jmp	Lj14337
+Lj14336:
 	movl	-32(%ebp),%eax
 	movl	12(%eax),%edx
 	movl	-32(%ebp),%eax
 	movl	8(%eax),%eax
 	movl	%eax,8(%edx)
-Lj14400:
+Lj14337:
 	movl	-32(%ebp),%edx
 	movl	-4(%ebp),%eax
 	movl	148(%eax),%eax
 	movl	%eax,12(%edx)
 	movl	-4(%ebp),%eax
 	cmpl	$0,148(%eax)
-	jne	Lj14405
-	jmp	Lj14406
-Lj14405:
+	jne	Lj14342
+	jmp	Lj14343
+Lj14342:
 	movl	-4(%ebp),%eax
 	movl	148(%eax),%eax
 	movl	-32(%ebp),%edx
 	movl	%edx,8(%eax)
-Lj14406:
+Lj14343:
 	movl	-32(%ebp),%eax
 	movl	$0,8(%eax)
 	movl	-4(%ebp),%edx
 	movl	-32(%ebp),%eax
 	movl	%eax,148(%edx)
-Lj14389:
-Lj14377:
+Lj14326:
+Lj14314:
 	movl	$U_SYSTEM_HEAP_LOCK,%eax
 	call	SYSTEM_LEAVECRITICALSECTION$TRTLCRITICALSECTION
-Lj14366:
+Lj14303:
 	movl	-32(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj14415
-	jmp	Lj14416
-Lj14415:
+	je	Lj14352
+	jmp	Lj14353
+Lj14352:
 	movl	-12(%ebp),%eax
 	addl	$36,%eax
 	addl	$65535,%eax
@@ -36119,92 +36009,92 @@ Lj14415:
 	movl	%eax,-12(%ebp)
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj14419
-	jmp	Lj14420
-Lj14419:
+	jne	Lj14356
+	jmp	Lj14357
+Lj14356:
 	movl	-4(%ebp),%eax
 	movl	144(%eax),%eax
 	call	SYSTEM_SYSOSALLOC$LONGWORD$$POINTER
 	movl	%eax,-32(%ebp)
 	movl	-32(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj14425
-	jmp	Lj14426
-Lj14425:
+	jne	Lj14362
+	jmp	Lj14363
+Lj14362:
 	movl	-4(%ebp),%eax
 	movl	144(%eax),%eax
 	movl	%eax,-12(%ebp)
-Lj14426:
-	jmp	Lj14429
-Lj14420:
+Lj14363:
+	jmp	Lj14366
+Lj14357:
 	movl	-12(%ebp),%eax
 	cmpl	TC_SYSTEM_GROWHEAPSIZE1,%eax
-	jbe	Lj14430
-	jmp	Lj14431
-Lj14430:
+	jbe	Lj14367
+	jmp	Lj14368
+Lj14367:
 	movl	TC_SYSTEM_GROWHEAPSIZE1,%eax
 	call	SYSTEM_SYSOSALLOC$LONGWORD$$POINTER
 	movl	%eax,-32(%ebp)
 	movl	-32(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj14436
-	jmp	Lj14437
-Lj14436:
+	jne	Lj14373
+	jmp	Lj14374
+Lj14373:
 	movl	TC_SYSTEM_GROWHEAPSIZE1,%eax
 	movl	%eax,-12(%ebp)
-Lj14437:
-	jmp	Lj14440
-Lj14431:
+Lj14374:
+	jmp	Lj14377
+Lj14368:
 	movl	-12(%ebp),%eax
 	cmpl	TC_SYSTEM_GROWHEAPSIZE2,%eax
-	jbe	Lj14441
-	jmp	Lj14442
-Lj14441:
+	jbe	Lj14378
+	jmp	Lj14379
+Lj14378:
 	movl	TC_SYSTEM_GROWHEAPSIZE2,%eax
 	call	SYSTEM_SYSOSALLOC$LONGWORD$$POINTER
 	movl	%eax,-32(%ebp)
 	movl	-32(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj14447
-	jmp	Lj14448
-Lj14447:
+	jne	Lj14384
+	jmp	Lj14385
+Lj14384:
 	movl	TC_SYSTEM_GROWHEAPSIZE2,%eax
 	movl	%eax,-12(%ebp)
-Lj14448:
-	jmp	Lj14451
-Lj14442:
+Lj14385:
+	jmp	Lj14388
+Lj14379:
 	movl	-12(%ebp),%eax
 	call	SYSTEM_SYSOSALLOC$LONGWORD$$POINTER
 	movl	%eax,-32(%ebp)
-Lj14451:
-Lj14440:
-Lj14429:
+Lj14388:
+Lj14377:
+Lj14366:
 	movl	-32(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj14456
-	jmp	Lj14457
-Lj14456:
+	je	Lj14393
+	jmp	Lj14394
+Lj14393:
 	movl	-12(%ebp),%eax
 	call	SYSTEM_SYSOSALLOC$LONGWORD$$POINTER
 	movl	%eax,-32(%ebp)
 	movl	-32(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj14462
-	jmp	Lj14463
-Lj14462:
+	je	Lj14399
+	jmp	Lj14400
+Lj14399:
 	cmpb	$0,U_SYSTEM_RETURNNILIFGROWHEAPFAILS
-	jne	Lj14464
-	jmp	Lj14465
-Lj14464:
+	jne	Lj14401
+	jmp	Lj14402
+Lj14401:
 	movl	$0,-16(%ebp)
-	jmp	Lj14340
-	jmp	Lj14468
-Lj14465:
+	jmp	Lj14277
+	jmp	Lj14405
+Lj14402:
 	movl	$203,%eax
 	call	SYSTEM_HANDLEERROR$LONGINT
-Lj14468:
-Lj14463:
-Lj14457:
+Lj14405:
+Lj14400:
+Lj14394:
 	movl	-32(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	%edx,20(%eax)
@@ -36216,14 +36106,14 @@ Lj14457:
 	movl	%eax,12(%edx)
 	movl	-4(%ebp),%eax
 	cmpl	$0,148(%eax)
-	jne	Lj14477
-	jmp	Lj14478
-Lj14477:
+	jne	Lj14414
+	jmp	Lj14415
+Lj14414:
 	movl	-4(%ebp),%eax
 	movl	148(%eax),%eax
 	movl	-32(%ebp),%edx
 	movl	%edx,8(%eax)
-Lj14478:
+Lj14415:
 	movl	-4(%ebp),%edx
 	movl	-32(%ebp),%eax
 	movl	%eax,148(%edx)
@@ -36237,23 +36127,23 @@ Lj14478:
 	movl	-52(%ebp),%edx
 	movl	8(%eax),%eax
 	cmpl	(%edx),%eax
-	ja	Lj14485
-	jmp	Lj14486
-Lj14485:
+	ja	Lj14422
+	jmp	Lj14423
+Lj14422:
 	movl	-52(%ebp),%edx
 	movl	-52(%ebp),%eax
 	movl	8(%eax),%eax
 	movl	%eax,(%edx)
-Lj14486:
-Lj14416:
+Lj14423:
+Lj14353:
 	movl	-32(%ebp),%eax
 	movl	-12(%ebp),%edx
 	movl	%edx,(%eax)
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj14491
-	jmp	Lj14492
-Lj14491:
+	jne	Lj14428
+	jmp	Lj14429
+Lj14428:
 	movl	-32(%ebp),%eax
 	movl	$0,16(%eax)
 	movl	-8(%ebp),%eax
@@ -36263,12 +36153,12 @@ Lj14491:
 	movl	-48(%ebp),%edx
 	subl	%edx,%eax
 	cmpl	-40(%ebp),%eax
-	ja	Lj14497
-	jmp	Lj14498
-Lj14497:
+	ja	Lj14434
+	jmp	Lj14435
+Lj14434:
 	movl	$204,%eax
 	call	SYSTEM_HANDLEERROR$LONGINT
-Lj14498:
+Lj14435:
 	movl	$28,-44(%ebp)
 	movl	-32(%ebp),%edx
 	movl	-44(%ebp),%eax
@@ -36279,7 +36169,7 @@ Lj14498:
 	movl	-20(%ebp),%eax
 	movl	$0,8(%eax)
 	.balign 4,0x90
-Lj14509:
+Lj14446:
 	movl	-48(%ebp),%edx
 	orl	$1,%edx
 	movl	-44(%ebp),%eax
@@ -36293,11 +36183,11 @@ Lj14509:
 	movl	-48(%ebp),%eax
 	subl	%eax,%edx
 	cmpl	-44(%ebp),%edx
-	jb	Lj14514
-	jmp	Lj14515
-Lj14514:
-	jmp	Lj14511
-Lj14515:
+	jb	Lj14451
+	jmp	Lj14452
+Lj14451:
+	jmp	Lj14448
+Lj14452:
 	movl	-20(%ebp),%eax
 	movl	-48(%ebp),%edx
 	addl	%edx,%eax
@@ -36310,8 +36200,8 @@ Lj14515:
 	movl	%edx,8(%eax)
 	movl	-24(%ebp),%eax
 	movl	%eax,-20(%ebp)
-	jmp	Lj14509
-Lj14511:
+	jmp	Lj14446
+Lj14448:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movl	(%edx,%eax,4),%eax
@@ -36321,13 +36211,13 @@ Lj14511:
 	movl	%edx,4(%eax)
 	movl	-24(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj14528
-	jmp	Lj14529
-Lj14528:
+	jne	Lj14465
+	jmp	Lj14466
+Lj14465:
 	movl	-24(%ebp),%edx
 	movl	-20(%ebp),%eax
 	movl	%eax,8(%edx)
-Lj14529:
+Lj14466:
 	movl	-4(%ebp),%eax
 	movl	-8(%ebp),%ecx
 	movl	-16(%ebp),%edx
@@ -36337,25 +36227,25 @@ Lj14529:
 	movl	-4(%ebp),%eax
 	movl	140(%eax),%eax
 	cmpl	$264,%eax
-	ja	Lj14534
-	jmp	Lj14535
-Lj14534:
+	ja	Lj14471
+	jmp	Lj14472
+Lj14471:
 	movl	-4(%ebp),%eax
 	movl	144(%eax),%eax
 	cmpl	$262144,%eax
-	jb	Lj14536
-	jmp	Lj14537
-Lj14536:
+	jb	Lj14473
+	jmp	Lj14474
+Lj14473:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	144(%eax),%eax
 	addl	%eax,144(%edx)
-Lj14537:
+Lj14474:
 	movl	-4(%ebp),%eax
 	movl	$0,140(%eax)
-Lj14535:
-	jmp	Lj14540
-Lj14492:
+Lj14472:
+	jmp	Lj14477
+Lj14429:
 	movl	-32(%ebp),%eax
 	movl	$-1,16(%eax)
 	movl	-32(%ebp),%eax
@@ -36387,19 +36277,19 @@ Lj14492:
 	movl	-56(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj14560
-	jmp	Lj14561
-Lj14560:
+	jne	Lj14497
+	jmp	Lj14498
+Lj14497:
 	movl	-56(%ebp),%eax
 	movl	(%eax),%edx
 	movl	-28(%ebp),%eax
 	movl	%eax,16(%edx)
-Lj14561:
+Lj14498:
 	movl	-56(%ebp),%eax
 	movl	-28(%ebp),%edx
 	movl	%edx,(%eax)
-Lj14540:
-Lj14340:
+Lj14477:
+Lj14277:
 	movl	-16(%ebp),%eax
 	leave
 	ret
@@ -36416,22 +36306,22 @@ SYSTEM_SYSGETMEM_FIXED$LONGWORD$$POINTER:
 	movl	%eax,-24(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj14572
+	je	Lj14509
 	movl	U_SYSTEM_FREELISTS,%eax
 	call	*%edx
-	jmp	Lj14573
-Lj14572:
+	jmp	Lj14510
+Lj14509:
 	movl	$U_SYSTEM_FREELISTS+4,%eax
-Lj14573:
+Lj14510:
 	movl	%eax,-28(%ebp)
 	movl	-28(%ebp),%eax
 	movl	-24(%ebp),%edx
 	movl	(%eax,%edx,4),%eax
 	movl	%eax,-12(%ebp)
 	cmpl	$0,-12(%ebp)
-	jne	Lj14576
-	jmp	Lj14577
-Lj14576:
+	jne	Lj14513
+	jmp	Lj14514
+Lj14513:
 	movl	-12(%ebp),%eax
 	movl	(%eax),%eax
 	shrl	$12,%eax
@@ -36442,9 +36332,9 @@ Lj14576:
 	movl	-20(%ebp),%eax
 	movl	16(%eax),%eax
 	testl	%eax,%eax
-	je	Lj14580
-	jmp	Lj14581
-Lj14580:
+	je	Lj14517
+	jmp	Lj14518
+Lj14517:
 	movl	-20(%ebp),%eax
 	movl	(%eax),%edx
 	orl	$1,%edx
@@ -36452,38 +36342,38 @@ Lj14580:
 	movl	%edx,(%eax)
 	movl	-28(%ebp),%eax
 	decl	136(%eax)
-Lj14581:
-	jmp	Lj14584
-Lj14577:
+Lj14518:
+	jmp	Lj14521
+Lj14514:
 	movl	-28(%ebp),%eax
 	call	SYSTEM_TRY_FINISH_WAITFIXEDLIST$PFREELISTS$$BOOLEAN
 	testb	%al,%al
-	jne	Lj14585
-	jmp	Lj14586
-Lj14585:
+	jne	Lj14522
+	jmp	Lj14523
+Lj14522:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_SYSGETMEM_FIXED$LONGWORD$$POINTER
 	movl	%eax,-8(%ebp)
-	jmp	Lj14566
-	jmp	Lj14593
-Lj14586:
+	jmp	Lj14503
+	jmp	Lj14530
+Lj14523:
 	movl	-4(%ebp),%ecx
 	movl	-24(%ebp),%edx
 	movl	-28(%ebp),%eax
 	call	SYSTEM_ALLOC_OSCHUNK$PFREELISTS$LONGWORD$LONGWORD$$POINTER
 	movl	%eax,-12(%ebp)
 	cmpl	$0,-12(%ebp)
-	jne	Lj14603
-	jmp	Lj14602
-Lj14602:
+	jne	Lj14540
+	jmp	Lj14539
+Lj14539:
 	movl	$0,-8(%ebp)
-	jmp	Lj14566
-Lj14603:
+	jmp	Lj14503
+Lj14540:
 	movl	-12(%ebp),%eax
 	subl	$28,%eax
 	movl	%eax,-20(%ebp)
-Lj14593:
-Lj14584:
+Lj14530:
+Lj14521:
 	movl	-12(%ebp),%eax
 	addl	$4,%eax
 	movl	%eax,-8(%ebp)
@@ -36495,27 +36385,27 @@ Lj14584:
 	movl	-16(%ebp),%eax
 	movl	%eax,(%edx,%ecx,4)
 	cmpl	$0,-16(%ebp)
-	jne	Lj14614
-	jmp	Lj14615
-Lj14614:
+	jne	Lj14551
+	jmp	Lj14552
+Lj14551:
 	movl	-16(%ebp),%eax
 	movl	$0,8(%eax)
-Lj14615:
+Lj14552:
 	movl	-28(%ebp),%eax
 	leal	164(%eax),%eax
 	movl	-4(%ebp),%edx
 	addl	%edx,12(%eax)
 	movl	12(%eax),%edx
 	cmpl	4(%eax),%edx
-	ja	Lj14620
-	jmp	Lj14621
-Lj14620:
+	ja	Lj14557
+	jmp	Lj14558
+Lj14557:
 	movl	12(%eax),%edx
 	movl	%edx,4(%eax)
-Lj14621:
+Lj14558:
 	movl	-20(%ebp),%eax
 	incl	16(%eax)
-Lj14566:
+Lj14503:
 	movl	-8(%ebp),%eax
 	leave
 	ret
@@ -36530,29 +36420,29 @@ SYSTEM_SYSGETMEM_VAR$LONGWORD$$POINTER:
 	movl	$0,-8(%ebp)
 	movl	-4(%ebp),%eax
 	cmpl	$-65536,%eax
-	ja	Lj14628
-	jmp	Lj14629
-Lj14628:
+	ja	Lj14565
+	jmp	Lj14566
+Lj14565:
 	cmpb	$0,U_SYSTEM_RETURNNILIFGROWHEAPFAILS
-	jne	Lj14630
-	jmp	Lj14631
-Lj14630:
-	jmp	Lj14624
-	jmp	Lj14632
-Lj14631:
+	jne	Lj14567
+	jmp	Lj14568
+Lj14567:
+	jmp	Lj14561
+	jmp	Lj14569
+Lj14568:
 	movl	$204,%eax
 	call	SYSTEM_HANDLEERROR$LONGINT
-Lj14632:
-Lj14629:
+Lj14569:
+Lj14566:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj14637
+	je	Lj14574
 	movl	U_SYSTEM_FREELISTS,%eax
 	call	*%edx
-	jmp	Lj14638
-Lj14637:
+	jmp	Lj14575
+Lj14574:
 	movl	$U_SYSTEM_FREELISTS+4,%eax
-Lj14638:
+Lj14575:
 	movl	%eax,-20(%ebp)
 	movl	-20(%ebp),%eax
 	call	SYSTEM_TRY_FINISH_WAITVARLIST$PFREELISTS
@@ -36561,103 +36451,103 @@ Lj14638:
 	movl	152(%eax),%eax
 	movl	%eax,-12(%ebp)
 	movl	$-1,-24(%ebp)
-	jmp	Lj14648
+	jmp	Lj14585
 	.balign 4,0x90
-Lj14647:
+Lj14584:
 	movl	-12(%ebp),%eax
 	movl	8(%eax),%eax
 	cmpl	-4(%ebp),%eax
-	jae	Lj14650
-	jmp	Lj14651
-Lj14650:
+	jae	Lj14587
+	jmp	Lj14588
+Lj14587:
 	cmpl	$0,-16(%ebp)
-	jne	Lj14654
-	jmp	Lj14652
-Lj14654:
+	jne	Lj14591
+	jmp	Lj14589
+Lj14591:
 	movl	-12(%ebp),%eax
 	movl	-16(%ebp),%edx
 	movl	8(%eax),%eax
 	cmpl	8(%edx),%eax
-	jb	Lj14652
-	jmp	Lj14653
-Lj14652:
+	jb	Lj14589
+	jmp	Lj14590
+Lj14589:
 	movl	-12(%ebp),%eax
 	movl	%eax,-16(%ebp)
 	movl	-12(%ebp),%eax
 	movl	8(%eax),%eax
 	cmpl	-4(%ebp),%eax
-	je	Lj14657
-	jmp	Lj14658
-Lj14657:
-	jmp	Lj14649
-Lj14658:
+	je	Lj14594
+	jmp	Lj14595
+Lj14594:
+	jmp	Lj14586
+Lj14595:
 	movl	$10,-24(%ebp)
-Lj14653:
-Lj14651:
+Lj14590:
+Lj14588:
 	movl	-12(%ebp),%eax
 	movl	12(%eax),%eax
 	movl	%eax,-12(%ebp)
 	decl	-24(%ebp)
-Lj14648:
+Lj14585:
 	cmpl	$0,-12(%ebp)
-	jne	Lj14663
-	jmp	Lj14649
-Lj14663:
+	jne	Lj14600
+	jmp	Lj14586
+Lj14600:
 	movl	-24(%ebp),%eax
 	cmpl	$0,%eax
-	ja	Lj14647
-	jmp	Lj14649
-Lj14649:
+	ja	Lj14584
+	jmp	Lj14586
+Lj14586:
 	movl	-16(%ebp),%eax
 	movl	%eax,-12(%ebp)
 	cmpl	$0,-12(%ebp)
-	jne	Lj14667
-	jmp	Lj14666
-Lj14666:
+	jne	Lj14604
+	jmp	Lj14603
+Lj14603:
 	movl	-4(%ebp),%ecx
 	movl	-20(%ebp),%eax
 	movl	$0,%edx
 	call	SYSTEM_ALLOC_OSCHUNK$PFREELISTS$LONGWORD$LONGWORD$$POINTER
 	movl	%eax,-12(%ebp)
 	cmpl	$0,-12(%ebp)
-	jne	Lj14677
-	jmp	Lj14676
-Lj14676:
-	jmp	Lj14624
-Lj14677:
-Lj14667:
+	jne	Lj14614
+	jmp	Lj14613
+Lj14613:
+	jmp	Lj14561
+Lj14614:
+Lj14604:
 	movl	-12(%ebp),%eax
 	addl	$12,%eax
 	movl	%eax,-8(%ebp)
 	movl	-12(%ebp),%eax
 	cmpl	$0,12(%eax)
-	jne	Lj14681
-	jmp	Lj14682
-Lj14681:
+	jne	Lj14618
+	jmp	Lj14619
+Lj14618:
 	movl	-12(%ebp),%eax
 	movl	12(%eax),%edx
 	movl	-12(%ebp),%eax
 	movl	16(%eax),%eax
 	movl	%eax,16(%edx)
-Lj14682:
+Lj14619:
 	movl	-12(%ebp),%eax
 	cmpl	$0,16(%eax)
-	jne	Lj14685
-	jmp	Lj14686
-Lj14685:
+	jne	Lj14622
+	jmp	Lj14623
+Lj14622:
 	movl	-12(%ebp),%eax
 	movl	16(%eax),%edx
 	movl	-12(%ebp),%eax
 	movl	12(%eax),%eax
 	movl	%eax,12(%edx)
-	jmp	Lj14689
-Lj14686:
+	jmp	Lj14626
+Lj14623:
 	movl	-12(%ebp),%eax
 	movl	4(%eax),%edx
 	movl	-12(%ebp),%eax
 	movl	12(%eax),%eax
 	movl	%eax,152(%edx)
-Lj14689:
+Lj14626:
 	movl	-4(%ebp),%edx
 	movl	-12(%ebp),%eax
 	call	SYSTEM_SPLIT_BLOCK$PMEMCHUNK_VAR$LONGWORD$$LONGWORD
@@ -36673,13 +36563,13 @@ Lj14689:
 	addl	%edx,12(%eax)
 	movl	12(%eax),%edx
 	cmpl	4(%eax),%edx
-	ja	Lj14702
-	jmp	Lj14703
-Lj14702:
+	ja	Lj14639
+	jmp	Lj14640
+Lj14639:
 	movl	12(%eax),%edx
 	movl	%edx,4(%eax)
-Lj14703:
-Lj14624:
+Lj14640:
+Lj14561:
 	movl	-8(%ebp),%eax
 	leave
 	ret
@@ -36694,16 +36584,16 @@ SYSTEM_SYSGETMEM$LONGWORD$$POINTER:
 	movl	%eax,-4(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj14708
-	jmp	Lj14709
-Lj14708:
+	je	Lj14645
+	jmp	Lj14646
+Lj14645:
 	movl	$1,-4(%ebp)
-Lj14709:
+Lj14646:
 	movl	-4(%ebp),%eax
 	cmpl	$524,%eax
-	jbe	Lj14712
-	jmp	Lj14713
-Lj14712:
+	jbe	Lj14649
+	jmp	Lj14650
+Lj14649:
 	movl	-4(%ebp),%eax
 	addl	$19,%eax
 	andl	$4080,%eax
@@ -36711,22 +36601,22 @@ Lj14712:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_SYSGETMEM_FIXED$LONGWORD$$POINTER
 	movl	%eax,-8(%ebp)
-	jmp	Lj14720
-Lj14713:
+	jmp	Lj14657
+Lj14650:
 	movl	-4(%ebp),%eax
 	cmpl	$-28,%eax
-	jb	Lj14721
-	jmp	Lj14722
-Lj14721:
+	jb	Lj14658
+	jmp	Lj14659
+Lj14658:
 	movl	-4(%ebp),%eax
 	addl	$27,%eax
 	andl	$-16,%eax
 	movl	%eax,-4(%ebp)
-Lj14722:
+Lj14659:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_SYSGETMEM_VAR$LONGWORD$$POINTER
 	movl	%eax,-8(%ebp)
-Lj14720:
+Lj14657:
 	movl	-8(%ebp),%eax
 	leave
 	ret
@@ -36802,9 +36692,9 @@ SYSTEM_SYSFREEMEM_FIXED$PFREELISTS$PMEMCHUNK_FIXED$$LONGWORD:
 	movl	%eax,-20(%ebp)
 	movl	-4(%ebp),%eax
 	cmpl	-32(%ebp),%eax
-	je	Lj14757
-	jmp	Lj14758
-Lj14757:
+	je	Lj14694
+	jmp	Lj14695
+Lj14694:
 	movl	-24(%ebp),%eax
 	decl	16(%eax)
 	movl	-20(%ebp),%eax
@@ -36820,13 +36710,13 @@ Lj14757:
 	movl	-28(%ebp),%edx
 	movl	%edx,4(%eax)
 	cmpl	$0,-28(%ebp)
-	jne	Lj14767
-	jmp	Lj14768
-Lj14767:
+	jne	Lj14704
+	jmp	Lj14705
+Lj14704:
 	movl	-28(%ebp),%eax
 	movl	-8(%ebp),%edx
 	movl	%edx,8(%eax)
-Lj14768:
+Lj14705:
 	movl	-4(%ebp),%edx
 	movl	-16(%ebp),%ecx
 	movl	-8(%ebp),%eax
@@ -36837,27 +36727,27 @@ Lj14768:
 	movl	-24(%ebp),%eax
 	movl	16(%eax),%eax
 	cmpl	$0,%eax
-	jle	Lj14773
-	jmp	Lj14774
-Lj14773:
+	jle	Lj14710
+	jmp	Lj14711
+Lj14710:
 	movl	-24(%ebp),%eax
 	movl	16(%eax),%eax
 	cmpl	$0,%eax
-	jl	Lj14775
-	jmp	Lj14776
-Lj14775:
+	jl	Lj14712
+	jmp	Lj14713
+Lj14712:
 	movl	$204,%eax
 	call	SYSTEM_HANDLEERROR$LONGINT
-Lj14776:
+Lj14713:
 	movl	-24(%ebp),%eax
 	call	SYSTEM_APPEND_TO_OSLIST$POSCHUNK
-Lj14774:
-	jmp	Lj14781
-Lj14758:
+Lj14711:
+	jmp	Lj14718
+Lj14695:
 	movl	-24(%ebp),%edx
 	movl	-8(%ebp),%eax
 	call	SYSTEM_WAITFREE_FIXED$PMEMCHUNK_FIXED$POSCHUNK
-Lj14781:
+Lj14718:
 	movl	-20(%ebp),%eax
 	movl	%eax,-12(%ebp)
 	movl	-12(%ebp),%eax
@@ -36879,15 +36769,15 @@ SYSTEM_SYSFREEMEM_VAR$PFREELISTS$PMEMCHUNK_VAR$$LONGWORD:
 	movl	-8(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	-4(%ebp),%eax
-	jne	Lj14792
-	jmp	Lj14793
-Lj14792:
+	jne	Lj14729
+	jmp	Lj14730
+Lj14729:
 	movl	-8(%ebp),%eax
 	call	SYSTEM_WAITFREE_VAR$PMEMCHUNK_VAR
 	movl	-16(%ebp),%eax
 	movl	%eax,-12(%ebp)
-	jmp	Lj14788
-Lj14793:
+	jmp	Lj14725
+Lj14730:
 	movl	-8(%ebp),%eax
 	movl	8(%eax),%eax
 	andl	$-3,%eax
@@ -36906,14 +36796,14 @@ Lj14793:
 	movl	-20(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj14807
-	jmp	Lj14808
-Lj14807:
+	jne	Lj14744
+	jmp	Lj14745
+Lj14744:
 	movl	-20(%ebp),%eax
 	movl	(%eax),%edx
 	movl	-8(%ebp),%eax
 	movl	%eax,16(%edx)
-Lj14808:
+Lj14745:
 	movl	-20(%ebp),%eax
 	movl	-8(%ebp),%edx
 	movl	%edx,(%eax)
@@ -36924,18 +36814,18 @@ Lj14808:
 	movl	8(%eax),%eax
 	andl	$12,%eax
 	cmpl	$12,%eax
-	je	Lj14817
-	jmp	Lj14818
-Lj14817:
+	je	Lj14754
+	jmp	Lj14755
+Lj14754:
 	movl	-8(%ebp),%eax
 	call	SYSTEM_APPEND_TO_OSLIST_VAR$PMEMCHUNK_VAR
-Lj14818:
+Lj14755:
 	movl	-4(%ebp),%eax
 	movl	-16(%ebp),%edx
 	subl	%edx,176(%eax)
 	movl	-16(%ebp),%eax
 	movl	%eax,-12(%ebp)
-Lj14788:
+Lj14725:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -36953,42 +36843,42 @@ SYSTEM_SYSFREEMEM$POINTER$$LONGWORD:
 	movl	%eax,-12(%ebp)
 	movl	-4(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj14827
-	jmp	Lj14828
-Lj14827:
+	je	Lj14764
+	jmp	Lj14765
+Lj14764:
 	movl	$0,-8(%ebp)
-	jmp	Lj14823
-Lj14828:
+	jmp	Lj14760
+Lj14765:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj14833
+	je	Lj14770
 	movl	U_SYSTEM_FREELISTS,%eax
 	call	*%edx
-	jmp	Lj14834
-Lj14833:
+	jmp	Lj14771
+Lj14770:
 	movl	$U_SYSTEM_FREELISTS+4,%eax
-Lj14834:
+Lj14771:
 	movl	%eax,-16(%ebp)
 	movl	-12(%ebp),%eax
 	movl	(%eax),%eax
 	andl	$1,%eax
 	testl	%eax,%eax
-	je	Lj14835
-	jmp	Lj14836
-Lj14835:
+	je	Lj14772
+	jmp	Lj14773
+Lj14772:
 	movl	-4(%ebp),%edx
 	subl	$12,%edx
 	movl	-16(%ebp),%eax
 	call	SYSTEM_SYSFREEMEM_VAR$PFREELISTS$PMEMCHUNK_VAR$$LONGWORD
 	movl	%eax,-8(%ebp)
-	jmp	Lj14843
-Lj14836:
+	jmp	Lj14780
+Lj14773:
 	movl	-12(%ebp),%edx
 	movl	-16(%ebp),%eax
 	call	SYSTEM_SYSFREEMEM_FIXED$PFREELISTS$PMEMCHUNK_FIXED$$LONGWORD
 	movl	%eax,-8(%ebp)
-Lj14843:
-Lj14823:
+Lj14780:
+Lj14760:
 	movl	-8(%ebp),%eax
 	leave
 	ret
@@ -37000,9 +36890,9 @@ SYSTEM_FINISH_WAITFIXEDLIST$PFREELISTS:
 	movl	%esp,%ebp
 	subl	$8,%esp
 	movl	%eax,-4(%ebp)
-	jmp	Lj14853
+	jmp	Lj14790
 	.balign 4,0x90
-Lj14852:
+Lj14789:
 	movl	-4(%ebp),%eax
 	movl	156(%eax),%eax
 	movl	%eax,-8(%ebp)
@@ -37013,13 +36903,13 @@ Lj14852:
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_SYSFREEMEM_FIXED$PFREELISTS$PMEMCHUNK_FIXED$$LONGWORD
-Lj14853:
+Lj14790:
 	movl	-4(%ebp),%eax
 	movl	156(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj14852
-	jmp	Lj14854
-Lj14854:
+	jne	Lj14789
+	jmp	Lj14791
+Lj14791:
 	leave
 	ret
 
@@ -37033,12 +36923,12 @@ SYSTEM_TRY_FINISH_WAITFIXEDLIST$PFREELISTS$$BOOLEAN:
 	movl	-4(%ebp),%eax
 	movl	156(%eax),%eax
 	testl	%eax,%eax
-	je	Lj14865
-	jmp	Lj14866
-Lj14865:
+	je	Lj14802
+	jmp	Lj14803
+Lj14802:
 	movb	$0,-5(%ebp)
-	jmp	Lj14863
-Lj14866:
+	jmp	Lj14800
+Lj14803:
 	movl	$U_SYSTEM_HEAP_LOCK,%eax
 	call	SYSTEM_ENTERCRITICALSECTION$TRTLCRITICALSECTION
 	movl	-4(%ebp),%eax
@@ -37046,7 +36936,7 @@ Lj14866:
 	movl	$U_SYSTEM_HEAP_LOCK,%eax
 	call	SYSTEM_LEAVECRITICALSECTION$TRTLCRITICALSECTION
 	movb	$1,-5(%ebp)
-Lj14863:
+Lj14800:
 	movb	-5(%ebp),%al
 	leave
 	ret
@@ -37058,9 +36948,9 @@ SYSTEM_FINISH_WAITVARLIST$PFREELISTS:
 	movl	%esp,%ebp
 	subl	$8,%esp
 	movl	%eax,-4(%ebp)
-	jmp	Lj14880
+	jmp	Lj14817
 	.balign 4,0x90
-Lj14879:
+Lj14816:
 	movl	-4(%ebp),%eax
 	movl	160(%eax),%eax
 	movl	%eax,-8(%ebp)
@@ -37071,13 +36961,13 @@ Lj14879:
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_SYSFREEMEM_VAR$PFREELISTS$PMEMCHUNK_VAR$$LONGWORD
-Lj14880:
+Lj14817:
 	movl	-4(%ebp),%eax
 	movl	160(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj14879
-	jmp	Lj14881
-Lj14881:
+	jne	Lj14816
+	jmp	Lj14818
+Lj14818:
 	leave
 	ret
 
@@ -37091,18 +36981,18 @@ SYSTEM_TRY_FINISH_WAITVARLIST$PFREELISTS:
 	movl	-4(%ebp),%eax
 	movl	160(%eax),%eax
 	testl	%eax,%eax
-	je	Lj14892
-	jmp	Lj14893
-Lj14892:
-	jmp	Lj14890
-Lj14893:
+	je	Lj14829
+	jmp	Lj14830
+Lj14829:
+	jmp	Lj14827
+Lj14830:
 	movl	$U_SYSTEM_HEAP_LOCK,%eax
 	call	SYSTEM_ENTERCRITICALSECTION$TRTLCRITICALSECTION
 	movl	-4(%ebp),%eax
 	call	SYSTEM_FINISH_WAITVARLIST$PFREELISTS
 	movl	$U_SYSTEM_HEAP_LOCK,%eax
 	call	SYSTEM_LEAVECRITICALSECTION$TRTLCRITICALSECTION
-Lj14890:
+Lj14827:
 	leave
 	ret
 
@@ -37117,16 +37007,16 @@ SYSTEM_SYSFREEMEMSIZE$POINTER$LONGWORD$$LONGWORD:
 	movl	%edx,-8(%ebp)
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj14902
-	jmp	Lj14903
-Lj14902:
+	je	Lj14839
+	jmp	Lj14840
+Lj14839:
 	movl	$0,-12(%ebp)
-	jmp	Lj14900
-Lj14903:
+	jmp	Lj14837
+Lj14840:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_SYSFREEMEM$POINTER$$LONGWORD
 	movl	%eax,-12(%ebp)
-Lj14900:
+Lj14837:
 	movl	-12(%ebp),%eax
 	leave
 	ret
@@ -37146,20 +37036,20 @@ SYSTEM_SYSMEMSIZE$POINTER$$LONGWORD:
 	movl	-8(%ebp),%eax
 	andl	$1,%eax
 	testl	%eax,%eax
-	je	Lj14914
-	jmp	Lj14915
-Lj14914:
+	je	Lj14851
+	jmp	Lj14852
+Lj14851:
 	movl	-8(%ebp),%eax
 	andl	$-16,%eax
 	movl	%eax,-8(%ebp)
 	subl	$12,-8(%ebp)
-	jmp	Lj14918
-Lj14915:
+	jmp	Lj14855
+Lj14852:
 	movl	-8(%ebp),%eax
 	andl	$4080,%eax
 	movl	%eax,-8(%ebp)
 	subl	$4,-8(%ebp)
-Lj14918:
+Lj14855:
 	movl	-8(%ebp),%eax
 	leave
 	ret
@@ -37178,9 +37068,9 @@ SYSTEM_SYSALLOCMEM$LONGWORD$$POINTER:
 	movl	%eax,-8(%ebp)
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj14927
-	jmp	Lj14928
-Lj14927:
+	jne	Lj14864
+	jmp	Lj14865
+Lj14864:
 	movl	-8(%ebp),%eax
 	movl	TC_SYSTEM_MEMORYMANAGER+24,%edx
 	call	*%edx
@@ -37188,7 +37078,7 @@ Lj14927:
 	movl	-8(%ebp),%eax
 	movb	$0,%cl
 	call	SYSTEM_FILLCHAR$formal$LONGINT$BYTE
-Lj14928:
+Lj14865:
 	movl	-8(%ebp),%eax
 	leave
 	ret
@@ -37211,37 +37101,37 @@ SYSTEM_SYSTRYRESIZEMEM$POINTER$LONGWORD$$BOOLEAN:
 	movl	-16(%ebp),%eax
 	andl	$1,%eax
 	testl	%eax,%eax
-	jne	Lj14943
-	jmp	Lj14944
-Lj14943:
+	jne	Lj14880
+	jmp	Lj14881
+Lj14880:
 	movl	-16(%ebp),%eax
 	andl	$4080,%eax
 	movl	%eax,-24(%ebp)
 	movl	-8(%ebp),%eax
 	cmpl	$524,%eax
-	jbe	Lj14949
-	jmp	Lj14948
-Lj14949:
+	jbe	Lj14886
+	jmp	Lj14885
+Lj14886:
 	movl	-8(%ebp),%eax
 	addl	$19,%eax
 	andl	$-16,%eax
 	cmpl	-24(%ebp),%eax
-	jbe	Lj14947
-	jmp	Lj14948
-Lj14947:
+	jbe	Lj14884
+	jmp	Lj14885
+Lj14884:
 	movb	$1,-9(%ebp)
-	jmp	Lj14937
-Lj14948:
-	jmp	Lj14937
-Lj14944:
+	jmp	Lj14874
+Lj14885:
+	jmp	Lj14874
+Lj14881:
 	movl	-8(%ebp),%eax
 	cmpl	$264,%eax
-	jb	Lj14952
-	jmp	Lj14953
-Lj14952:
+	jb	Lj14889
+	jmp	Lj14890
+Lj14889:
 	movb	$0,-9(%ebp)
-	jmp	Lj14937
-Lj14953:
+	jmp	Lj14874
+Lj14890:
 	movl	-16(%ebp),%eax
 	andl	$-16,%eax
 	movl	%eax,-24(%ebp)
@@ -37252,27 +37142,27 @@ Lj14953:
 	movl	%eax,-8(%ebp)
 	movl	-24(%ebp),%eax
 	cmpl	-8(%ebp),%eax
-	jae	Lj14962
-	jmp	Lj14961
-Lj14962:
+	jae	Lj14899
+	jmp	Lj14898
+Lj14899:
 	movl	-24(%ebp),%eax
 	subl	$16,%eax
 	cmpl	-8(%ebp),%eax
-	jb	Lj14960
-	jmp	Lj14961
-Lj14960:
+	jb	Lj14897
+	jmp	Lj14898
+Lj14897:
 	movb	$1,-9(%ebp)
-	jmp	Lj14937
-Lj14961:
+	jmp	Lj14874
+Lj14898:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj14967
+	je	Lj14904
 	movl	U_SYSTEM_FREELISTS,%eax
 	call	*%edx
-	jmp	Lj14968
-Lj14967:
+	jmp	Lj14905
+Lj14904:
 	movl	$U_SYSTEM_FREELISTS+4,%eax
-Lj14968:
+Lj14905:
 	movl	%eax,-32(%ebp)
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
@@ -37281,29 +37171,29 @@ Lj14968:
 	movl	-28(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	-32(%ebp),%eax
-	jne	Lj14971
-	jmp	Lj14972
-Lj14971:
-	jmp	Lj14937
-Lj14972:
+	jne	Lj14908
+	jmp	Lj14909
+Lj14908:
+	jmp	Lj14874
+Lj14909:
 	movl	-24(%ebp),%eax
 	movl	%eax,-20(%ebp)
 	movl	-28(%ebp),%eax
 	call	SYSTEM_TRY_CONCAT_FREE_CHUNK_FORWARD$PMEMCHUNK_VAR$$BOOLEAN
 	testb	%al,%al
-	jne	Lj14975
-	jmp	Lj14976
-Lj14975:
+	jne	Lj14912
+	jmp	Lj14913
+Lj14912:
 	movl	-28(%ebp),%eax
 	movl	8(%eax),%eax
 	andl	$-16,%eax
 	movl	%eax,-24(%ebp)
-Lj14976:
+Lj14913:
 	movl	-8(%ebp),%eax
 	cmpl	-24(%ebp),%eax
-	ja	Lj14981
-	jmp	Lj14982
-Lj14981:
+	ja	Lj14918
+	jmp	Lj14919
+Lj14918:
 	movl	-32(%ebp),%eax
 	leal	164(%eax),%eax
 	movl	-24(%ebp),%edx
@@ -37312,26 +37202,26 @@ Lj14981:
 	addl	%edx,12(%eax)
 	movl	12(%eax),%edx
 	cmpl	4(%eax),%edx
-	ja	Lj14985
-	jmp	Lj14986
-Lj14985:
+	ja	Lj14922
+	jmp	Lj14923
+Lj14922:
 	movl	12(%eax),%edx
 	movl	%edx,4(%eax)
-Lj14986:
-	jmp	Lj14937
-	jmp	Lj14989
-Lj14982:
+Lj14923:
+	jmp	Lj14874
+	jmp	Lj14926
+Lj14919:
 	movl	-24(%ebp),%eax
 	cmpl	-8(%ebp),%eax
-	ja	Lj14990
-	jmp	Lj14991
-Lj14990:
+	ja	Lj14927
+	jmp	Lj14928
+Lj14927:
 	movl	-8(%ebp),%edx
 	movl	-28(%ebp),%eax
 	call	SYSTEM_SPLIT_BLOCK$PMEMCHUNK_VAR$LONGWORD$$LONGWORD
 	movl	%eax,-24(%ebp)
-Lj14991:
-Lj14989:
+Lj14928:
+Lj14926:
 	movl	-32(%ebp),%eax
 	leal	164(%eax),%eax
 	movl	-24(%ebp),%edx
@@ -37340,14 +37230,14 @@ Lj14989:
 	addl	%edx,12(%eax)
 	movl	12(%eax),%edx
 	cmpl	4(%eax),%edx
-	ja	Lj15000
-	jmp	Lj15001
-Lj15000:
+	ja	Lj14937
+	jmp	Lj14938
+Lj14937:
 	movl	12(%eax),%edx
 	movl	%edx,4(%eax)
-Lj15001:
+Lj14938:
 	movb	$1,-9(%ebp)
-Lj14937:
+Lj14874:
 	movb	-9(%ebp),%al
 	leave
 	ret
@@ -37363,44 +37253,44 @@ SYSTEM_SYSREALLOCMEM$POINTER$LONGWORD$$POINTER:
 	movl	%edx,-8(%ebp)
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj15008
-	jmp	Lj15009
-Lj15008:
+	je	Lj14945
+	jmp	Lj14946
+Lj14945:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj15010
-	jmp	Lj15011
-Lj15010:
+	jne	Lj14947
+	jmp	Lj14948
+Lj14947:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	movl	TC_SYSTEM_MEMORYMANAGER+8,%edx
 	call	*%edx
 	movl	-4(%ebp),%eax
 	movl	$0,(%eax)
-Lj15011:
-	jmp	Lj15016
-Lj15009:
+Lj14948:
+	jmp	Lj14953
+Lj14946:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj15017
-	jmp	Lj15018
-Lj15017:
+	je	Lj14954
+	jmp	Lj14955
+Lj14954:
 	movl	-8(%ebp),%eax
 	movl	TC_SYSTEM_MEMORYMANAGER+4,%edx
 	call	*%edx
 	movl	-4(%ebp),%edx
 	movl	%eax,(%edx)
-	jmp	Lj15023
-Lj15018:
+	jmp	Lj14960
+Lj14955:
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_SYSTRYRESIZEMEM$POINTER$LONGWORD$$BOOLEAN
 	testb	%al,%al
-	je	Lj15024
-	jmp	Lj15025
-Lj15024:
+	je	Lj14961
+	jmp	Lj14962
+Lj14961:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	movl	TC_SYSTEM_MEMORYMANAGER+24,%edx
@@ -37408,51 +37298,51 @@ Lj15024:
 	movl	%eax,-20(%ebp)
 	movl	-20(%ebp),%eax
 	cmpl	$528,%eax
-	jb	Lj15034
-	jmp	Lj15035
-Lj15034:
+	jb	Lj14971
+	jmp	Lj14972
+Lj14971:
 	movl	-20(%ebp),%eax
 	shll	$1,%eax
 	addl	$16,%eax
 	movl	%eax,-16(%ebp)
 	movl	-8(%ebp),%eax
 	cmpl	-16(%ebp),%eax
-	ja	Lj15038
-	jmp	Lj15039
-Lj15038:
+	ja	Lj14975
+	jmp	Lj14976
+Lj14975:
 	movl	-8(%ebp),%eax
 	movl	%eax,-16(%ebp)
-Lj15039:
-	jmp	Lj15042
-Lj15035:
+Lj14976:
+	jmp	Lj14979
+Lj14972:
 	movl	-8(%ebp),%eax
 	movl	%eax,-16(%ebp)
-Lj15042:
+Lj14979:
 	movl	-20(%ebp),%eax
 	movl	%eax,-24(%ebp)
 	movl	-16(%ebp),%eax
 	cmpl	-24(%ebp),%eax
-	jb	Lj15047
-	jmp	Lj15048
-Lj15047:
+	jb	Lj14984
+	jmp	Lj14985
+Lj14984:
 	movl	-16(%ebp),%eax
 	movl	%eax,-24(%ebp)
-Lj15048:
+Lj14985:
 	movl	-16(%ebp),%eax
 	movl	TC_SYSTEM_MEMORYMANAGER+4,%edx
 	call	*%edx
 	movl	%eax,-28(%ebp)
 	movl	-28(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj15055
-	jmp	Lj15056
-Lj15055:
+	jne	Lj14992
+	jmp	Lj14993
+Lj14992:
 	movl	-28(%ebp),%edx
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	movl	-24(%ebp),%ecx
 	call	SYSTEM_MOVE$formal$formal$LONGINT
-Lj15056:
+Lj14993:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	movl	TC_SYSTEM_MEMORYMANAGER+8,%edx
@@ -37460,9 +37350,9 @@ Lj15056:
 	movl	-4(%ebp),%eax
 	movl	-28(%ebp),%edx
 	movl	%edx,(%eax)
-Lj15025:
-Lj15023:
-Lj15016:
+Lj14962:
+Lj14960:
+Lj14953:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	movl	%eax,-12(%ebp)
@@ -37478,24 +37368,24 @@ SYSTEM_INITHEAPTHREAD:
 	subl	$4,%esp
 	movw	U_SYSTEM_HEAP_LOCK_USE,%ax
 	cmpw	$0,%ax
-	jg	Lj15071
-	jmp	Lj15072
-Lj15071:
+	jg	Lj15008
+	jmp	Lj15009
+Lj15008:
 	movl	$U_SYSTEM_HEAP_LOCK,%eax
 	call	SYSTEM_ENTERCRITICALSECTION$TRTLCRITICALSECTION
 	incw	U_SYSTEM_HEAP_LOCK_USE
 	movl	$U_SYSTEM_HEAP_LOCK,%eax
 	call	SYSTEM_LEAVECRITICALSECTION$TRTLCRITICALSECTION
-Lj15072:
+Lj15009:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj15079
+	je	Lj15016
 	movl	U_SYSTEM_FREELISTS,%eax
 	call	*%edx
-	jmp	Lj15080
-Lj15079:
+	jmp	Lj15017
+Lj15016:
 	movl	$U_SYSTEM_FREELISTS+4,%eax
-Lj15080:
+Lj15017:
 	movl	%eax,-4(%ebp)
 	movl	-4(%ebp),%eax
 	movb	$0,%cl
@@ -37516,13 +37406,13 @@ SYSTEM_INITHEAP:
 	movw	$0,U_SYSTEM_HEAP_LOCK_USE
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj15095
+	je	Lj15032
 	movl	U_SYSTEM_FREELISTS,%eax
 	call	*%edx
-	jmp	Lj15096
-Lj15095:
+	jmp	Lj15033
+Lj15032:
 	movl	$U_SYSTEM_FREELISTS+4,%eax
-Lj15096:
+Lj15033:
 	movl	%eax,-4(%ebp)
 	movl	-4(%ebp),%eax
 	movb	$0,%cl
@@ -37546,36 +37436,36 @@ SYSTEM_RELOCATEHEAP:
 	subl	$4,%esp
 	movw	U_SYSTEM_HEAP_LOCK_USE,%ax
 	cmpw	$0,%ax
-	jg	Lj15113
-	jmp	Lj15114
-Lj15113:
-	jmp	Lj15111
-Lj15114:
+	jg	Lj15050
+	jmp	Lj15051
+Lj15050:
+	jmp	Lj15048
+Lj15051:
 	movw	$1,U_SYSTEM_HEAP_LOCK_USE
 	movl	$U_SYSTEM_HEAP_LOCK,%eax
 	call	SYSTEM_INITCRITICALSECTION$TRTLCRITICALSECTION
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj15121
+	je	Lj15058
 	movl	U_SYSTEM_FREELISTS,%eax
 	call	*%edx
-	jmp	Lj15122
-Lj15121:
+	jmp	Lj15059
+Lj15058:
 	movl	$U_SYSTEM_FREELISTS+4,%eax
-Lj15122:
+Lj15059:
 	movl	%eax,-4(%ebp)
 	movl	-4(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_MODIFY_FREELISTS$PFREELISTS$PFREELISTS$$POSCHUNK
 	movl	TC_SYSTEM_MEMORYMANAGER+36,%eax
 	testl	%eax,%eax
-	jne	Lj15127
-	jmp	Lj15128
-Lj15127:
+	jne	Lj15064
+	jmp	Lj15065
+Lj15064:
 	movl	TC_SYSTEM_MEMORYMANAGER+36,%eax
 	call	*%eax
-Lj15128:
-Lj15111:
+Lj15065:
+Lj15048:
 	leave
 	ret
 
@@ -37587,92 +37477,54 @@ SYSTEM_FINALIZEHEAP:
 	subl	$13,%esp
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj15133
+	je	Lj15070
 	movl	U_SYSTEM_FREELISTS,%eax
 	call	*%edx
-	jmp	Lj15134
-Lj15133:
+	jmp	Lj15071
+Lj15070:
 	movl	$U_SYSTEM_FREELISTS+4,%eax
-Lj15134:
+Lj15071:
 	movl	%eax,-12(%ebp)
 	movw	U_SYSTEM_HEAP_LOCK_USE,%ax
 	cmpw	$0,%ax
-	jg	Lj15135
-	jmp	Lj15136
-Lj15135:
+	jg	Lj15072
+	jmp	Lj15073
+Lj15072:
 	movl	$U_SYSTEM_HEAP_LOCK,%eax
 	call	SYSTEM_ENTERCRITICALSECTION$TRTLCRITICALSECTION
 	movl	-12(%ebp),%eax
 	call	SYSTEM_FINISH_WAITFIXEDLIST$PFREELISTS
 	movl	-12(%ebp),%eax
 	call	SYSTEM_FINISH_WAITVARLIST$PFREELISTS
-Lj15136:
-	movl	-12(%ebp),%eax
-	movl	(%eax),%eax
-	movl	%eax,-4(%ebp)
-	jmp	Lj15146
-	.balign 4,0x90
-Lj15145:
-	movl	-4(%ebp),%eax
-	movl	4(%eax),%eax
-	movl	%eax,-8(%ebp)
-	movl	-4(%ebp),%eax
-	movl	(%eax),%eax
-	andl	$1,%eax
-	testl	%eax,%eax
-	je	Lj15150
-	jmp	Lj15151
-Lj15150:
-	movl	-4(%ebp),%edx
-	movl	-12(%ebp),%eax
-	call	SYSTEM_FREE_OSCHUNK$PFREELISTS$POSCHUNK
-	jmp	Lj15156
-Lj15151:
-	movl	-4(%ebp),%eax
-	movl	(%eax),%edx
-	andl	$-2,%edx
-	movl	-4(%ebp),%eax
-	movl	%edx,(%eax)
-Lj15156:
-	movl	-8(%ebp),%eax
-	movl	%eax,-4(%ebp)
-Lj15146:
-	cmpl	$0,-4(%ebp)
-	jne	Lj15145
-	jmp	Lj15147
-Lj15147:
-	movl	-12(%ebp),%eax
-	movl	$0,(%eax)
-	movl	-12(%ebp),%eax
-	movl	$0,136(%eax)
+Lj15073:
 	movw	U_SYSTEM_HEAP_LOCK_USE,%ax
 	cmpw	$0,%ax
-	jg	Lj15165
-	jmp	Lj15166
-Lj15165:
+	jg	Lj15080
+	jmp	Lj15081
+Lj15080:
 	movl	$U_SYSTEM_ORPHANED_FREELISTS,%edx
 	movl	-12(%ebp),%eax
 	call	SYSTEM_MODIFY_FREELISTS$PFREELISTS$PFREELISTS$$POSCHUNK
 	movl	%eax,-4(%ebp)
 	cmpl	$0,-4(%ebp)
-	jne	Lj15173
-	jmp	Lj15174
-Lj15173:
-	movl	-4(%ebp),%eax
-	movl	U_SYSTEM_ORPHANED_FREELISTS+148,%edx
-	movl	%edx,12(%eax)
+	jne	Lj15088
+	jmp	Lj15089
+Lj15088:
+	movl	-4(%ebp),%edx
+	movl	U_SYSTEM_ORPHANED_FREELISTS+148,%eax
+	movl	%eax,12(%edx)
 	cmpl	$0,U_SYSTEM_ORPHANED_FREELISTS+148
-	jne	Lj15177
-	jmp	Lj15178
-Lj15177:
+	jne	Lj15092
+	jmp	Lj15093
+Lj15092:
 	movl	U_SYSTEM_ORPHANED_FREELISTS+148,%edx
 	movl	-4(%ebp),%eax
 	movl	%eax,8(%edx)
-Lj15178:
+Lj15093:
 	movl	-12(%ebp),%eax
 	movl	148(%eax),%eax
 	movl	%eax,U_SYSTEM_ORPHANED_FREELISTS+148
-Lj15174:
+Lj15089:
 	decw	U_SYSTEM_HEAP_LOCK_USE
 	movw	U_SYSTEM_HEAP_LOCK_USE,%ax
 	testw	%ax,%ax
@@ -37680,13 +37532,13 @@ Lj15174:
 	movl	$U_SYSTEM_HEAP_LOCK,%eax
 	call	SYSTEM_LEAVECRITICALSECTION$TRTLCRITICALSECTION
 	cmpb	$0,-13(%ebp)
-	jne	Lj15187
-	jmp	Lj15188
-Lj15187:
+	jne	Lj15102
+	jmp	Lj15103
+Lj15102:
 	movl	$U_SYSTEM_HEAP_LOCK,%eax
 	call	SYSTEM_DONECRITICALSECTION$TRTLCRITICALSECTION
-Lj15188:
-Lj15166:
+Lj15103:
+Lj15081:
 	leave
 	ret
 
@@ -37704,79 +37556,79 @@ SYSTEM_INITTHREAD$LONGWORD:
 	call	SYSTEM_INITHEAPTHREAD
 	movl	TC_SYSTEM_MEMORYMANAGER+28,%eax
 	testl	%eax,%eax
-	jne	Lj15193
-	jmp	Lj15194
-Lj15193:
+	jne	Lj15108
+	jmp	Lj15109
+Lj15108:
 	movl	TC_SYSTEM_MEMORYMANAGER+28,%eax
 	call	*%eax
-Lj15194:
+Lj15109:
 	cmpl	$0,U_SYSTEM_WIDESTRINGMANAGER+72
-	jne	Lj15195
-	jmp	Lj15196
-Lj15195:
+	jne	Lj15110
+	jmp	Lj15111
+Lj15110:
 	movl	U_SYSTEM_WIDESTRINGMANAGER+72,%eax
 	call	*%eax
-Lj15196:
+Lj15111:
 	call	SYSTEM_SYSINITEXCEPTIONS
 	call	SYSTEM_SYSINITSTDIO
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj15199
+	je	Lj15114
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj15200
-Lj15199:
+	jmp	Lj15115
+Lj15114:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj15200:
+Lj15115:
 	movw	$0,(%eax)
 	movl	-4(%ebp),%eax
 	call	SYSTEM_CHECKINITIALSTKLEN$LONGWORD$$LONGWORD
 	movl	%eax,%ebx
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj15205
+	je	Lj15120
 	movl	U_SYSTEM_STACKLENGTH,%eax
 	call	*%edx
-	jmp	Lj15206
-Lj15205:
+	jmp	Lj15121
+Lj15120:
 	movl	$U_SYSTEM_STACKLENGTH+4,%eax
-Lj15206:
+Lj15121:
 	movl	%ebx,(%eax)
 	call	SYSTEM_SPTR$$POINTER
 	movl	%eax,%ebx
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj15209
+	je	Lj15124
 	movl	U_SYSTEM_STACKLENGTH,%eax
 	call	*%edx
-	jmp	Lj15210
-Lj15209:
+	jmp	Lj15125
+Lj15124:
 	movl	$U_SYSTEM_STACKLENGTH+4,%eax
-Lj15210:
+Lj15125:
 	movl	(%eax),%eax
 	subl	%eax,%ebx
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj15211
+	je	Lj15126
 	movl	U_SYSTEM_STACKBOTTOM,%eax
 	call	*%edx
-	jmp	Lj15212
-Lj15211:
+	jmp	Lj15127
+Lj15126:
 	movl	$U_SYSTEM_STACKBOTTOM+4,%eax
-Lj15212:
+Lj15127:
 	movl	%ebx,(%eax)
 	movl	U_SYSTEM_CURRENTTM+48,%eax
 	call	*%eax
 	movl	%eax,%ebx
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj15215
+	je	Lj15130
 	movl	U_SYSTEM_THREADID,%eax
 	call	*%edx
-	jmp	Lj15216
-Lj15215:
+	jmp	Lj15131
+Lj15130:
 	movl	$U_SYSTEM_THREADID+4,%eax
-Lj15216:
+Lj15131:
 	movl	%ebx,(%eax)
 	movl	-8(%ebp),%ebx
 	leave
@@ -37789,39 +37641,39 @@ SYSTEM_DONETHREAD:
 	pushl	%ebp
 	movl	%esp,%ebp
 	cmpl	$0,U_SYSTEM_WIDESTRINGMANAGER+76
-	jne	Lj15219
-	jmp	Lj15220
-Lj15219:
+	jne	Lj15134
+	jmp	Lj15135
+Lj15134:
 	movl	U_SYSTEM_WIDESTRINGMANAGER+76,%eax
 	call	*%eax
-Lj15220:
+Lj15135:
 	call	SYSTEM_FINALIZEHEAP
 	movl	TC_SYSTEM_MEMORYMANAGER+32,%eax
 	testl	%eax,%eax
-	jne	Lj15221
-	jmp	Lj15222
-Lj15221:
+	jne	Lj15136
+	jmp	Lj15137
+Lj15136:
 	movl	TC_SYSTEM_MEMORYMANAGER+32,%eax
 	call	*%eax
-Lj15222:
+Lj15137:
 	call	SYSTEM_SYSFLUSHSTDIO
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj15225
+	je	Lj15140
 	movl	U_SYSTEM_THREADID,%eax
 	call	*%edx
-	jmp	Lj15226
-Lj15225:
+	jmp	Lj15141
+Lj15140:
 	movl	$U_SYSTEM_THREADID+4,%eax
-Lj15226:
+Lj15141:
 	movl	$0,(%eax)
 	cmpl	$0,U_SYSTEM_CURRENTTM+84
-	jne	Lj15227
-	jmp	Lj15228
-Lj15227:
+	jne	Lj15142
+	jmp	Lj15143
+Lj15142:
 	movl	U_SYSTEM_CURRENTTM+84,%eax
 	call	*%eax
-Lj15228:
+Lj15143:
 	leave
 	ret
 
@@ -38241,17 +38093,17 @@ SYSTEM_SETTHREADMANAGER$TTHREADMANAGER$$BOOLEAN:
 	movl	%eax,-4(%ebp)
 	movb	$1,-5(%ebp)
 	cmpl	$0,U_SYSTEM_CURRENTTM+4
-	jne	Lj15411
-	jmp	Lj15412
-Lj15411:
+	jne	Lj15326
+	jmp	Lj15327
+Lj15326:
 	movl	U_SYSTEM_CURRENTTM+4,%eax
 	call	*%eax
 	movb	%al,-5(%ebp)
-Lj15412:
+Lj15327:
 	cmpb	$0,-5(%ebp)
-	jne	Lj15415
-	jmp	Lj15416
-Lj15415:
+	jne	Lj15330
+	jmp	Lj15331
+Lj15330:
 	movl	-4(%ebp),%esi
 	movl	$U_SYSTEM_CURRENTTM,%edi
 	cld
@@ -38259,14 +38111,14 @@ Lj15415:
 	rep
 	movsl
 	cmpl	$0,U_SYSTEM_CURRENTTM
-	jne	Lj15419
-	jmp	Lj15420
-Lj15419:
+	jne	Lj15334
+	jmp	Lj15335
+Lj15334:
 	movl	U_SYSTEM_CURRENTTM,%eax
 	call	*%eax
 	movb	%al,-5(%ebp)
-Lj15420:
-Lj15416:
+Lj15335:
+Lj15331:
 	movb	-5(%ebp),%al
 	movl	-16(%ebp),%esi
 	movl	-12(%ebp),%edi
@@ -38469,14 +38321,703 @@ SYSTEM_RTLEVENTSYNC$TRTLMETHOD$TPROCEDURE:
 
 .text
 	.balign 4,0x90
+SYSTEM_NOTHREADERROR:
+	pushl	%ebp
+	movl	%esp,%ebp
+	cmpb	$0,operatingsystem_isconsole
+	jne	Lj15404
+	jmp	Lj15405
+Lj15404:
+	movl	FPC_THREADVAR_RELOCATE,%edx
+	testl	%edx,%edx
+	je	Lj15408
+	movl	U_SYSTEM_STDERR,%eax
+	call	*%edx
+	movl	%eax,%edx
+	jmp	Lj15409
+Lj15408:
+	movl	$U_SYSTEM_STDERR+4,%edx
+Lj15409:
+	movl	$_$SYSTEM$_Ld36,%ecx
+	movl	$0,%eax
+	call	fpc_write_text_shortstr
+	movl	FPC_THREADVAR_RELOCATE,%edx
+	testl	%edx,%edx
+	je	Lj15416
+	movl	U_SYSTEM_STDERR,%eax
+	call	*%edx
+	jmp	Lj15417
+Lj15416:
+	movl	$U_SYSTEM_STDERR+4,%eax
+Lj15417:
+	call	fpc_writeln_end
+	movl	FPC_THREADVAR_RELOCATE,%edx
+	testl	%edx,%edx
+	je	Lj15420
+	movl	U_SYSTEM_STDERR,%eax
+	call	*%edx
+	movl	%eax,%edx
+	jmp	Lj15421
+Lj15420:
+	movl	$U_SYSTEM_STDERR+4,%edx
+Lj15421:
+	movl	$_$SYSTEM$_Ld37,%ecx
+	movl	$0,%eax
+	call	fpc_write_text_shortstr
+	movl	FPC_THREADVAR_RELOCATE,%edx
+	testl	%edx,%edx
+	je	Lj15428
+	movl	U_SYSTEM_STDERR,%eax
+	call	*%edx
+	jmp	Lj15429
+Lj15428:
+	movl	$U_SYSTEM_STDERR+4,%eax
+Lj15429:
+	call	fpc_writeln_end
+Lj15405:
+	movw	$232,%ax
+	call	SYSTEM_RUNERROR$WORD
+	leave
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_NOBEGINTHREAD$crc81B914C6:
+	pushl	%ebp
+	movl	%esp,%ebp
+	subl	$16,%esp
+	movl	%eax,-4(%ebp)
+	movl	%edx,-8(%ebp)
+	movl	%ecx,-12(%ebp)
+	call	SYSTEM_NOTHREADERROR
+	movl	$-1,-16(%ebp)
+	movl	-16(%ebp),%eax
+	leave
+	ret	$12
+
+.text
+	.balign 4,0x90
+SYSTEM_NOENDTHREAD$LONGWORD:
+	pushl	%ebp
+	movl	%esp,%ebp
+	subl	$4,%esp
+	movl	%eax,-4(%ebp)
+	call	SYSTEM_NOTHREADERROR
+	leave
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_NOTHREADHANDLER$LONGWORD$$LONGWORD:
+	pushl	%ebp
+	movl	%esp,%ebp
+	subl	$8,%esp
+	movl	%eax,-4(%ebp)
+	call	SYSTEM_NOTHREADERROR
+	movl	$-1,-8(%ebp)
+	movl	-8(%ebp),%eax
+	leave
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_NOTHREADSWITCH:
+	pushl	%ebp
+	movl	%esp,%ebp
+	call	SYSTEM_NOTHREADERROR
+	leave
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_NOCLOSETHREAD$LONGWORD$$LONGWORD:
+	pushl	%ebp
+	movl	%esp,%ebp
+	subl	$8,%esp
+	movl	%eax,-4(%ebp)
+	movl	$0,-8(%ebp)
+	call	SYSTEM_NOTHREADERROR
+	movl	-8(%ebp),%eax
+	leave
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_NOWAITFORTHREADTERMINATE$LONGWORD$LONGINT$$LONGWORD:
+	pushl	%ebp
+	movl	%esp,%ebp
+	subl	$12,%esp
+	movl	%eax,-4(%ebp)
+	movl	%edx,-8(%ebp)
+	call	SYSTEM_NOTHREADERROR
+	movl	$-1,-12(%ebp)
+	movl	-12(%ebp),%eax
+	leave
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_NOTHREADSETPRIORITY$LONGWORD$LONGINT$$BOOLEAN:
+	pushl	%ebp
+	movl	%esp,%ebp
+	subl	$9,%esp
+	movl	%eax,-4(%ebp)
+	movl	%edx,-8(%ebp)
+	call	SYSTEM_NOTHREADERROR
+	movb	$0,-9(%ebp)
+	movb	-9(%ebp),%al
+	leave
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_NOTHREADGETPRIORITY$LONGWORD$$LONGINT:
+	pushl	%ebp
+	movl	%esp,%ebp
+	subl	$8,%esp
+	movl	%eax,-4(%ebp)
+	call	SYSTEM_NOTHREADERROR
+	movl	$-1,-8(%ebp)
+	movl	-8(%ebp),%eax
+	leave
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_NOGETCURRENTTHREADID$$LONGWORD:
+	pushl	%ebp
+	movl	%esp,%ebp
+	subl	$4,%esp
+	cmpl	$0,TC_SYSTEM_ISMULTITHREAD
+	jne	Lj15462
+	jmp	Lj15463
+Lj15462:
+	call	SYSTEM_NOTHREADERROR
+	jmp	Lj15464
+Lj15463:
+	movb	$1,TC_SYSTEM_THREADINGALREADYUSED
+Lj15464:
+	movl	FPC_THREADVAR_RELOCATE,%edx
+	testl	%edx,%edx
+	je	Lj15469
+	movl	U_SYSTEM_THREADID,%eax
+	call	*%edx
+	jmp	Lj15470
+Lj15469:
+	movl	$U_SYSTEM_THREADID+4,%eax
+Lj15470:
+	movl	(%eax),%eax
+	movl	%eax,-4(%ebp)
+	movl	-4(%ebp),%eax
+	leave
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_NOCRITICALSECTION$formal:
+	pushl	%ebp
+	movl	%esp,%ebp
+	subl	$4,%esp
+	movl	%eax,-4(%ebp)
+	cmpl	$0,TC_SYSTEM_ISMULTITHREAD
+	jne	Lj15473
+	jmp	Lj15474
+Lj15473:
+	call	SYSTEM_NOTHREADERROR
+	jmp	Lj15475
+Lj15474:
+	movb	$1,TC_SYSTEM_THREADINGALREADYUSED
+Lj15475:
+	leave
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_NOTRYENTERCRITICALSECTION$formal$$LONGINT:
+	pushl	%ebp
+	movl	%esp,%ebp
+	subl	$8,%esp
+	movl	%eax,-4(%ebp)
+	cmpl	$0,TC_SYSTEM_ISMULTITHREAD
+	jne	Lj15480
+	jmp	Lj15481
+Lj15480:
+	call	SYSTEM_NOTHREADERROR
+	jmp	Lj15482
+Lj15481:
+	movb	$1,TC_SYSTEM_THREADINGALREADYUSED
+Lj15482:
+	leave
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_NOINITTHREADVAR$LONGWORD$LONGWORD:
+	pushl	%ebp
+	movl	%esp,%ebp
+	subl	$8,%esp
+	movl	%eax,-4(%ebp)
+	movl	%edx,-8(%ebp)
+	call	SYSTEM_NOTHREADERROR
+	leave
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_NORELOCATETHREADVAR$LONGWORD$$POINTER:
+	pushl	%ebp
+	movl	%esp,%ebp
+	subl	$8,%esp
+	movl	%eax,-4(%ebp)
+	call	SYSTEM_NOTHREADERROR
+	movl	$0,-8(%ebp)
+	movl	-8(%ebp),%eax
+	leave
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_NOALLOCATETHREADVARS:
+	pushl	%ebp
+	movl	%esp,%ebp
+	call	SYSTEM_NOTHREADERROR
+	leave
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_NORELEASETHREADVARS:
+	pushl	%ebp
+	movl	%esp,%ebp
+	call	SYSTEM_NOTHREADERROR
+	leave
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_NOBASICEVENTCREATE$POINTER$BOOLEAN$BOOLEAN$ANSISTRING$$POINTER:
+	pushl	%ebp
+	movl	%esp,%ebp
+	subl	$16,%esp
+	movl	%eax,-4(%ebp)
+	movb	%dl,-8(%ebp)
+	movb	%cl,-12(%ebp)
+	cmpl	$0,TC_SYSTEM_ISMULTITHREAD
+	jne	Lj15497
+	jmp	Lj15498
+Lj15497:
+	call	SYSTEM_NOTHREADERROR
+	jmp	Lj15499
+Lj15498:
+	movb	$1,TC_SYSTEM_THREADINGALREADYUSED
+Lj15499:
+	movl	$0,-16(%ebp)
+	movl	-16(%ebp),%eax
+	leave
+	ret	$4
+
+.text
+	.balign 4,0x90
+SYSTEM_NOBASICEVENTDESTROY$POINTER:
+	pushl	%ebp
+	movl	%esp,%ebp
+	subl	$4,%esp
+	movl	%eax,-4(%ebp)
+	cmpl	$0,TC_SYSTEM_ISMULTITHREAD
+	jne	Lj15506
+	jmp	Lj15507
+Lj15506:
+	call	SYSTEM_NOTHREADERROR
+	jmp	Lj15508
+Lj15507:
+	movb	$1,TC_SYSTEM_THREADINGALREADYUSED
+Lj15508:
+	leave
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_NOBASICEVENTRESETEVENT$POINTER:
+	pushl	%ebp
+	movl	%esp,%ebp
+	subl	$4,%esp
+	movl	%eax,-4(%ebp)
+	cmpl	$0,TC_SYSTEM_ISMULTITHREAD
+	jne	Lj15513
+	jmp	Lj15514
+Lj15513:
+	call	SYSTEM_NOTHREADERROR
+	jmp	Lj15515
+Lj15514:
+	movb	$1,TC_SYSTEM_THREADINGALREADYUSED
+Lj15515:
+	leave
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_NOBASICEVENTSETEVENT$POINTER:
+	pushl	%ebp
+	movl	%esp,%ebp
+	subl	$4,%esp
+	movl	%eax,-4(%ebp)
+	cmpl	$0,TC_SYSTEM_ISMULTITHREAD
+	jne	Lj15520
+	jmp	Lj15521
+Lj15520:
+	call	SYSTEM_NOTHREADERROR
+	jmp	Lj15522
+Lj15521:
+	movb	$1,TC_SYSTEM_THREADINGALREADYUSED
+Lj15522:
+	leave
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_NOBASICEVENTWAITFOR$LONGWORD$POINTER$$LONGINT:
+	pushl	%ebp
+	movl	%esp,%ebp
+	subl	$12,%esp
+	movl	%eax,-4(%ebp)
+	movl	%edx,-8(%ebp)
+	cmpl	$0,TC_SYSTEM_ISMULTITHREAD
+	jne	Lj15527
+	jmp	Lj15528
+Lj15527:
+	call	SYSTEM_NOTHREADERROR
+	jmp	Lj15529
+Lj15528:
+	movb	$1,TC_SYSTEM_THREADINGALREADYUSED
+Lj15529:
+	movl	$-1,-12(%ebp)
+	movl	-12(%ebp),%eax
+	leave
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_NORTLEVENTCREATE$$PRTLEVENT:
+	pushl	%ebp
+	movl	%esp,%ebp
+	subl	$4,%esp
+	cmpl	$0,TC_SYSTEM_ISMULTITHREAD
+	jne	Lj15536
+	jmp	Lj15537
+Lj15536:
+	call	SYSTEM_NOTHREADERROR
+	jmp	Lj15538
+Lj15537:
+	movb	$1,TC_SYSTEM_THREADINGALREADYUSED
+Lj15538:
+	movl	$0,-4(%ebp)
+	movl	-4(%ebp),%eax
+	leave
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_NORTLEVENTDESTROY$PRTLEVENT:
+	pushl	%ebp
+	movl	%esp,%ebp
+	subl	$4,%esp
+	movl	%eax,-4(%ebp)
+	cmpl	$0,TC_SYSTEM_ISMULTITHREAD
+	jne	Lj15545
+	jmp	Lj15546
+Lj15545:
+	call	SYSTEM_NOTHREADERROR
+	jmp	Lj15547
+Lj15546:
+	movb	$1,TC_SYSTEM_THREADINGALREADYUSED
+Lj15547:
+	leave
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_NORTLEVENTSETEVENT$PRTLEVENT:
+	pushl	%ebp
+	movl	%esp,%ebp
+	subl	$4,%esp
+	movl	%eax,-4(%ebp)
+	cmpl	$0,TC_SYSTEM_ISMULTITHREAD
+	jne	Lj15552
+	jmp	Lj15553
+Lj15552:
+	call	SYSTEM_NOTHREADERROR
+	jmp	Lj15554
+Lj15553:
+	movb	$1,TC_SYSTEM_THREADINGALREADYUSED
+Lj15554:
+	leave
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_NORTLEVENTRESETEVENT$PRTLEVENT:
+	pushl	%ebp
+	movl	%esp,%ebp
+	subl	$4,%esp
+	movl	%eax,-4(%ebp)
+	cmpl	$0,TC_SYSTEM_ISMULTITHREAD
+	jne	Lj15559
+	jmp	Lj15560
+Lj15559:
+	call	SYSTEM_NOTHREADERROR
+	jmp	Lj15561
+Lj15560:
+	movb	$1,TC_SYSTEM_THREADINGALREADYUSED
+Lj15561:
+	leave
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_NORTLEVENTWAITFOR$PRTLEVENT:
+	pushl	%ebp
+	movl	%esp,%ebp
+	subl	$4,%esp
+	movl	%eax,-4(%ebp)
+	cmpl	$0,TC_SYSTEM_ISMULTITHREAD
+	jne	Lj15566
+	jmp	Lj15567
+Lj15566:
+	call	SYSTEM_NOTHREADERROR
+	jmp	Lj15568
+Lj15567:
+	movb	$1,TC_SYSTEM_THREADINGALREADYUSED
+Lj15568:
+	leave
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_NORTLEVENTWAITFORTIMEOUT$PRTLEVENT$LONGINT:
+	pushl	%ebp
+	movl	%esp,%ebp
+	subl	$8,%esp
+	movl	%eax,-4(%ebp)
+	movl	%edx,-8(%ebp)
+	cmpl	$0,TC_SYSTEM_ISMULTITHREAD
+	jne	Lj15573
+	jmp	Lj15574
+Lj15573:
+	call	SYSTEM_NOTHREADERROR
+	jmp	Lj15575
+Lj15574:
+	movb	$1,TC_SYSTEM_THREADINGALREADYUSED
+Lj15575:
+	leave
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_NORTLEVENTSYNC$TRTLMETHOD$TPROCEDURE:
+	pushl	%ebp
+	movl	%esp,%ebp
+	subl	$16,%esp
+	movl	%eax,-4(%ebp)
+	movl	%edx,-8(%ebp)
+	movl	-4(%ebp),%edx
+	movl	(%edx),%eax
+	movl	%eax,-16(%ebp)
+	movl	4(%edx),%eax
+	movl	%eax,-12(%ebp)
+	cmpl	$0,TC_SYSTEM_ISMULTITHREAD
+	jne	Lj15580
+	jmp	Lj15581
+Lj15580:
+	call	SYSTEM_NOTHREADERROR
+	jmp	Lj15582
+Lj15581:
+	movb	$1,TC_SYSTEM_THREADINGALREADYUSED
+Lj15582:
+	leave
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_NOSEMAPHOREINIT$$POINTER:
+	pushl	%ebp
+	movl	%esp,%ebp
+	subl	$4,%esp
+	cmpl	$0,TC_SYSTEM_ISMULTITHREAD
+	jne	Lj15587
+	jmp	Lj15588
+Lj15587:
+	call	SYSTEM_NOTHREADERROR
+	jmp	Lj15589
+Lj15588:
+	movb	$1,TC_SYSTEM_THREADINGALREADYUSED
+Lj15589:
+	movl	$0,-4(%ebp)
+	movl	-4(%ebp),%eax
+	leave
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_NOSEMAPHOREWAIT$POINTER:
+	pushl	%ebp
+	movl	%esp,%ebp
+	subl	$4,%esp
+	movl	%eax,-4(%ebp)
+	call	SYSTEM_NOTHREADERROR
+	leave
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_NOSEMAPHOREPOST$POINTER:
+	pushl	%ebp
+	movl	%esp,%ebp
+	subl	$4,%esp
+	movl	%eax,-4(%ebp)
+	cmpl	$0,TC_SYSTEM_ISMULTITHREAD
+	jne	Lj15598
+	jmp	Lj15599
+Lj15598:
+	call	SYSTEM_NOTHREADERROR
+	jmp	Lj15600
+Lj15599:
+	movb	$1,TC_SYSTEM_THREADINGALREADYUSED
+Lj15600:
+	leave
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_NOSEMAPHOREDESTROY$POINTER:
+	pushl	%ebp
+	movl	%esp,%ebp
+	subl	$4,%esp
+	movl	%eax,-4(%ebp)
+	cmpl	$0,TC_SYSTEM_ISMULTITHREAD
+	jne	Lj15605
+	jmp	Lj15606
+Lj15605:
+	call	SYSTEM_NOTHREADERROR
+	jmp	Lj15607
+Lj15606:
+	movb	$1,TC_SYSTEM_THREADINGALREADYUSED
+Lj15607:
+	leave
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_SETNOTHREADMANAGER:
+	pushl	%ebp
+	movl	%esp,%ebp
+	movl	$0,U_SYSTEM_NOTHREADMANAGER
+	movl	$0,U_SYSTEM_NOTHREADMANAGER+4
+	movl	$SYSTEM_NOBEGINTHREAD$crc81B914C6,%eax
+	movl	%eax,U_SYSTEM_NOTHREADMANAGER+8
+	movl	$SYSTEM_NOENDTHREAD$LONGWORD,%eax
+	movl	%eax,U_SYSTEM_NOTHREADMANAGER+12
+	movl	$SYSTEM_NOTHREADHANDLER$LONGWORD$$LONGWORD,%eax
+	movl	%eax,U_SYSTEM_NOTHREADMANAGER+16
+	movl	$SYSTEM_NOTHREADHANDLER$LONGWORD$$LONGWORD,%eax
+	movl	%eax,U_SYSTEM_NOTHREADMANAGER+20
+	movl	$SYSTEM_NOTHREADHANDLER$LONGWORD$$LONGWORD,%eax
+	movl	%eax,U_SYSTEM_NOTHREADMANAGER+24
+	movl	$SYSTEM_NOCLOSETHREAD$LONGWORD$$LONGWORD,%eax
+	movl	%eax,U_SYSTEM_NOTHREADMANAGER+28
+	movl	$SYSTEM_NOTHREADSWITCH,%eax
+	movl	%eax,U_SYSTEM_NOTHREADMANAGER+32
+	movl	$SYSTEM_NOWAITFORTHREADTERMINATE$LONGWORD$LONGINT$$LONGWORD,%eax
+	movl	%eax,U_SYSTEM_NOTHREADMANAGER+36
+	movl	$SYSTEM_NOTHREADSETPRIORITY$LONGWORD$LONGINT$$BOOLEAN,%eax
+	movl	%eax,U_SYSTEM_NOTHREADMANAGER+40
+	movl	$SYSTEM_NOTHREADGETPRIORITY$LONGWORD$$LONGINT,%eax
+	movl	%eax,U_SYSTEM_NOTHREADMANAGER+44
+	movl	$SYSTEM_NOGETCURRENTTHREADID$$LONGWORD,%eax
+	movl	%eax,U_SYSTEM_NOTHREADMANAGER+48
+	movl	$SYSTEM_NOCRITICALSECTION$formal,%eax
+	movl	%eax,U_SYSTEM_NOTHREADMANAGER+52
+	movl	$SYSTEM_NOCRITICALSECTION$formal,%eax
+	movl	%eax,U_SYSTEM_NOTHREADMANAGER+56
+	movl	$SYSTEM_NOCRITICALSECTION$formal,%eax
+	movl	%eax,U_SYSTEM_NOTHREADMANAGER+60
+	movl	$SYSTEM_NOTRYENTERCRITICALSECTION$formal$$LONGINT,%eax
+	movl	%eax,U_SYSTEM_NOTHREADMANAGER+64
+	movl	$SYSTEM_NOCRITICALSECTION$formal,%eax
+	movl	%eax,U_SYSTEM_NOTHREADMANAGER+68
+	movl	$SYSTEM_NOINITTHREADVAR$LONGWORD$LONGWORD,%eax
+	movl	%eax,U_SYSTEM_NOTHREADMANAGER+72
+	movl	$SYSTEM_NORELOCATETHREADVAR$LONGWORD$$POINTER,%eax
+	movl	%eax,U_SYSTEM_NOTHREADMANAGER+76
+	movl	$SYSTEM_NOALLOCATETHREADVARS,%eax
+	movl	%eax,U_SYSTEM_NOTHREADMANAGER+80
+	movl	$SYSTEM_NORELEASETHREADVARS,%eax
+	movl	%eax,U_SYSTEM_NOTHREADMANAGER+84
+	movl	$SYSTEM_NOBASICEVENTCREATE$POINTER$BOOLEAN$BOOLEAN$ANSISTRING$$POINTER,%eax
+	movl	%eax,U_SYSTEM_NOTHREADMANAGER+88
+	movl	$SYSTEM_NOBASICEVENTDESTROY$POINTER,%eax
+	movl	%eax,U_SYSTEM_NOTHREADMANAGER+92
+	movl	$SYSTEM_NOBASICEVENTRESETEVENT$POINTER,%eax
+	movl	%eax,U_SYSTEM_NOTHREADMANAGER+96
+	movl	$SYSTEM_NOBASICEVENTSETEVENT$POINTER,%eax
+	movl	%eax,U_SYSTEM_NOTHREADMANAGER+100
+	movl	$SYSTEM_NOBASICEVENTWAITFOR$LONGWORD$POINTER$$LONGINT,%eax
+	movl	%eax,U_SYSTEM_NOTHREADMANAGER+104
+	movl	$SYSTEM_NORTLEVENTCREATE$$PRTLEVENT,%eax
+	movl	%eax,U_SYSTEM_NOTHREADMANAGER+108
+	movl	$SYSTEM_NORTLEVENTDESTROY$PRTLEVENT,%eax
+	movl	%eax,U_SYSTEM_NOTHREADMANAGER+112
+	movl	$SYSTEM_NORTLEVENTSETEVENT$PRTLEVENT,%eax
+	movl	%eax,U_SYSTEM_NOTHREADMANAGER+116
+	movl	$SYSTEM_NORTLEVENTRESETEVENT$PRTLEVENT,%eax
+	movl	%eax,U_SYSTEM_NOTHREADMANAGER+120
+	movl	$SYSTEM_NORTLEVENTWAITFOR$PRTLEVENT,%eax
+	movl	%eax,U_SYSTEM_NOTHREADMANAGER+124
+	movl	$SYSTEM_NORTLEVENTSYNC$TRTLMETHOD$TPROCEDURE,%eax
+	movl	%eax,U_SYSTEM_NOTHREADMANAGER+128
+	movl	$SYSTEM_NORTLEVENTWAITFORTIMEOUT$PRTLEVENT$LONGINT,%eax
+	movl	%eax,U_SYSTEM_NOTHREADMANAGER+132
+	movl	$SYSTEM_NOSEMAPHOREINIT$$POINTER,%eax
+	movl	%eax,U_SYSTEM_NOTHREADMANAGER+136
+	movl	$SYSTEM_NOSEMAPHOREDESTROY$POINTER,%eax
+	movl	%eax,U_SYSTEM_NOTHREADMANAGER+140
+	movl	$SYSTEM_NOSEMAPHOREWAIT$POINTER,%eax
+	movl	%eax,U_SYSTEM_NOTHREADMANAGER+148
+	movl	$SYSTEM_NOSEMAPHOREPOST$POINTER,%eax
+	movl	%eax,U_SYSTEM_NOTHREADMANAGER+144
+	movl	$U_SYSTEM_NOTHREADMANAGER,%eax
+	call	SYSTEM_SETTHREADMANAGER$TTHREADMANAGER$$BOOLEAN
+	leave
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_INITSYSTEMTHREADS:
+	pushl	%ebp
+	movl	%esp,%ebp
+	movl	FPC_THREADVAR_RELOCATE,%edx
+	testl	%edx,%edx
+	je	Lj15694
+	movl	U_SYSTEM_THREADID,%eax
+	call	*%edx
+	jmp	Lj15695
+Lj15694:
+	movl	$U_SYSTEM_THREADID+4,%eax
+Lj15695:
+	movl	$1,(%eax)
+	call	SYSTEM_SETNOTHREADMANAGER
+	leave
+	ret
+
+.text
+	.balign 4,0x90
 SYSTEM_INIT_UNIT_THREADVARS$PLTVINITENTRY:
 	pushl	%ebp
 	movl	%esp,%ebp
 	subl	$4,%esp
 	movl	%eax,-4(%ebp)
-	jmp	Lj15490
+	jmp	Lj15699
 	.balign 4,0x90
-Lj15489:
+Lj15698:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	movl	-4(%ebp),%edx
@@ -38484,13 +39025,13 @@ Lj15489:
 	movl	U_SYSTEM_CURRENTTM+72,%ecx
 	call	*%ecx
 	addl	$8,-4(%ebp)
-Lj15490:
+Lj15699:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj15489
-	jmp	Lj15491
-Lj15491:
+	jne	Lj15698
+	jmp	Lj15700
+Lj15700:
 	leave
 	ret
 
@@ -38504,17 +39045,17 @@ SYSTEM_INIT_ALL_UNIT_THREADVARS:
 	movw	FPC_THREADVARTABLES,%bx
 	movw	$1,-2(%ebp)
 	cmpw	-2(%ebp),%bx
-	jl	Lj15499
+	jl	Lj15708
 	decw	-2(%ebp)
 	.balign 4,0x90
-Lj15500:
+Lj15709:
 	incw	-2(%ebp)
 	movzwl	-2(%ebp),%eax
 	movl	FPC_THREADVARTABLES(,%eax,4),%eax
 	call	SYSTEM_INIT_UNIT_THREADVARS$PLTVINITENTRY
 	cmpw	-2(%ebp),%bx
-	jg	Lj15500
-Lj15499:
+	jg	Lj15709
+Lj15708:
 	movl	-8(%ebp),%ebx
 	leave
 	ret
@@ -38526,9 +39067,9 @@ SYSTEM_COPY_UNIT_THREADVARS$PLTVINITENTRY:
 	movl	%esp,%ebp
 	subl	$12,%esp
 	movl	%eax,-4(%ebp)
-	jmp	Lj15506
+	jmp	Lj15715
 	.balign 4,0x90
-Lj15505:
+Lj15714:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	movl	(%eax),%eax
@@ -38545,13 +39086,13 @@ Lj15505:
 	movl	-8(%ebp),%eax
 	call	SYSTEM_MOVE$formal$formal$LONGINT
 	addl	$8,-4(%ebp)
-Lj15506:
+Lj15715:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj15505
-	jmp	Lj15507
-Lj15507:
+	jne	Lj15714
+	jmp	Lj15716
+Lj15716:
 	leave
 	ret
 
@@ -38565,17 +39106,17 @@ SYSTEM_COPY_ALL_UNIT_THREADVARS:
 	movw	FPC_THREADVARTABLES,%bx
 	movw	$1,-2(%ebp)
 	cmpw	-2(%ebp),%bx
-	jl	Lj15523
+	jl	Lj15732
 	decw	-2(%ebp)
 	.balign 4,0x90
-Lj15524:
+Lj15733:
 	incw	-2(%ebp)
 	movzwl	-2(%ebp),%eax
 	movl	FPC_THREADVARTABLES(,%eax,4),%eax
 	call	SYSTEM_COPY_UNIT_THREADVARS$PLTVINITENTRY
 	cmpw	-2(%ebp),%bx
-	jg	Lj15524
-Lj15523:
+	jg	Lj15733
+Lj15732:
 	movl	-8(%ebp),%ebx
 	leave
 	ret
@@ -38600,1174 +39141,6 @@ SYSTEM_INITTHREADVARS$POINTER:
 
 .text
 	.balign 4,0x90
-SYSTEM_SYSINITTHREADVAR$LONGWORD$LONGWORD:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$8,%esp
-	movl	%eax,-4(%ebp)
-	movl	%edx,-8(%ebp)
-	movl	-4(%ebp),%edx
-	movl	TC_SYSTEM_THREADVARBLOCKSIZE,%eax
-	movl	%eax,(%edx)
-	movl	-8(%ebp),%eax
-	addl	%eax,TC_SYSTEM_THREADVARBLOCKSIZE
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_SYSALLOCATETHREADVARS:
-	pushl	%ebp
-	movl	%esp,%ebp
-	pushl	$19
-	pushl	TC_SYSTEM_THREADVARBLOCKSIZE
-	movl	TC_SYSTEM_DATAINDEX,%eax
-	pushl	%eax
-	call	_$dll$doscalls$_index_299
-	addl	$12,%esp
-	testl	%eax,%eax
-	jne	Lj15537
-	jmp	Lj15538
-Lj15537:
-	movl	$8,%eax
-	call	SYSTEM_HANDLEERROR$LONGINT
-Lj15538:
-	movl	TC_SYSTEM_DATAINDEX,%eax
-	movl	(%eax),%eax
-	movb	TC_SYSTEM_THREADVARBLOCKSIZE,%cl
-	movl	$0,%edx
-	call	SYSTEM_FILLCHAR$formal$LONGINT$BYTE
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_SYSRELOCATETHREADVAR$LONGWORD$$POINTER:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$8,%esp
-	movl	%eax,-4(%ebp)
-	movl	TC_SYSTEM_DATAINDEX,%eax
-	movl	(%eax),%eax
-	testl	%eax,%eax
-	je	Lj15555
-	jmp	Lj15556
-Lj15555:
-	call	SYSTEM_SYSALLOCATETHREADVARS
-	movl	$16777216,%eax
-	call	SYSTEM_INITTHREAD$LONGWORD
-Lj15556:
-	movl	TC_SYSTEM_DATAINDEX,%eax
-	movl	(%eax),%eax
-	movl	-4(%ebp),%edx
-	addl	%edx,%eax
-	movl	%eax,-8(%ebp)
-	movl	-8(%ebp),%eax
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_SYSINITMULTITHREADING:
-	pushl	%ebp
-	movl	%esp,%ebp
-	movl	TC_SYSTEM_DATAINDEX,%eax
-	testl	%eax,%eax
-	je	Lj15563
-	jmp	Lj15564
-Lj15563:
-	pushl	$TC_SYSTEM_DATAINDEX
-	pushl	$1
-	call	_$dll$doscalls$_index_454
-	addl	$8,%esp
-	testl	%eax,%eax
-	jne	Lj15565
-	jmp	Lj15566
-Lj15565:
-	movw	$8,%ax
-	call	SYSTEM_RUNERROR$WORD
-Lj15566:
-	movl	$SYSTEM_SYSRELOCATETHREADVAR$LONGWORD$$POINTER,%eax
-	call	SYSTEM_INITTHREADVARS$POINTER
-	movl	$-1,TC_SYSTEM_ISMULTITHREAD
-Lj15564:
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_SYSFINIMULTITHREADING:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$4,%esp
-	movl	%ebx,-4(%ebp)
-	cmpl	$0,TC_SYSTEM_ISMULTITHREAD
-	jne	Lj15579
-	jmp	Lj15580
-Lj15579:
-	pushl	TC_SYSTEM_DATAINDEX
-	call	_$dll$doscalls$_index_455
-	popl	%ebx
-	testl	%eax,%eax
-	jne	Lj15581
-	jmp	Lj15582
-Lj15581:
-Lj15582:
-	movl	$0,TC_SYSTEM_DATAINDEX
-Lj15580:
-	movl	-4(%ebp),%ebx
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_SYSRELEASETHREADVARS:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$4,%esp
-	movl	%ebx,-4(%ebp)
-	movl	TC_SYSTEM_DATAINDEX,%eax
-	pushl	(%eax)
-	call	_$dll$doscalls$_index_304
-	popl	%ebx
-	movl	TC_SYSTEM_DATAINDEX,%eax
-	movl	$0,(%eax)
-	movl	-4(%ebp),%ebx
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_THREADMAIN$POINTER$$POINTER:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$16,%esp
-	call	SYSTEM_SYSALLOCATETHREADVARS
-	movl	8(%ebp),%edx
-	movl	(%edx),%eax
-	movl	%eax,-16(%ebp)
-	movl	4(%edx),%eax
-	movl	%eax,-12(%ebp)
-	movl	8(%edx),%eax
-	movl	%eax,-8(%ebp)
-	movl	8(%ebp),%eax
-	call	fpc_freemem
-	movl	-8(%ebp),%eax
-	call	SYSTEM_INITTHREAD$LONGWORD
-	movl	-12(%ebp),%eax
-	movl	-16(%ebp),%edx
-	call	*%edx
-	movl	%eax,-4(%ebp)
-	movl	-4(%ebp),%eax
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_SYSBEGINTHREAD$crc81B914C6:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$20,%esp
-	movl	%eax,-4(%ebp)
-	movl	%edx,-8(%ebp)
-	movl	%ecx,-12(%ebp)
-	call	SYSTEM_SYSINITMULTITHREADING
-	movl	$12,%eax
-	call	fpc_getmem
-	movl	%eax,-20(%ebp)
-	movl	-20(%ebp),%eax
-	movl	-12(%ebp),%edx
-	movl	%edx,(%eax)
-	movl	-20(%ebp),%edx
-	movl	16(%ebp),%eax
-	movl	%eax,4(%edx)
-	movl	-20(%ebp),%edx
-	movl	-8(%ebp),%eax
-	movl	%eax,8(%edx)
-	movl	8(%ebp),%eax
-	movl	$0,(%eax)
-	pushl	-8(%ebp)
-	pushl	12(%ebp)
-	pushl	-20(%ebp)
-	movl	$SYSTEM_THREADMAIN$POINTER$$POINTER,%eax
-	pushl	%eax
-	movl	8(%ebp),%eax
-	pushl	%eax
-	call	_$dll$doscalls$_index_311
-	addl	$20,%esp
-	testl	%eax,%eax
-	je	Lj15621
-	jmp	Lj15622
-Lj15621:
-	movl	8(%ebp),%eax
-	movl	(%eax),%eax
-	movl	%eax,-16(%ebp)
-	jmp	Lj15635
-Lj15622:
-	movl	$0,-16(%ebp)
-	movl	-20(%ebp),%eax
-	call	fpc_freemem
-Lj15635:
-	movl	-16(%ebp),%eax
-	leave
-	ret	$12
-
-.text
-	.balign 4,0x90
-SYSTEM_SYSENDTHREAD$LONGWORD:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$4,%esp
-	movl	%eax,-4(%ebp)
-	call	SYSTEM_DONETHREAD
-	pushl	-4(%ebp)
-	pushl	$0
-	call	_$dll$doscalls$_index_234
-	addl	$8,%esp
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_SYSTHREADSWITCH:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$4,%esp
-	movl	%ebx,-4(%ebp)
-	pushl	$0
-	call	_$dll$doscalls$_index_229
-	popl	%ebx
-	movl	-4(%ebp),%ebx
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_SYSSUSPENDTHREAD$LONGWORD$$LONGWORD:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$12,%esp
-	movl	%ebx,-12(%ebp)
-	movl	%eax,-4(%ebp)
-	pushl	-4(%ebp)
-	call	_$dll$doscalls$_index_238
-	popl	%ebx
-	movl	%eax,-8(%ebp)
-	movl	-8(%ebp),%eax
-	movl	-12(%ebp),%ebx
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_SYSRESUMETHREAD$LONGWORD$$LONGWORD:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$12,%esp
-	movl	%ebx,-12(%ebp)
-	movl	%eax,-4(%ebp)
-	pushl	-4(%ebp)
-	call	_$dll$doscalls$_index_237
-	popl	%ebx
-	movl	%eax,-8(%ebp)
-	movl	-8(%ebp),%eax
-	movl	-12(%ebp),%ebx
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_SYSKILLTHREAD$LONGWORD$$LONGWORD:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$12,%esp
-	movl	%ebx,-12(%ebp)
-	movl	%eax,-4(%ebp)
-	pushl	-4(%ebp)
-	call	_$dll$doscalls$_index_111
-	popl	%ebx
-	movl	%eax,-8(%ebp)
-	movl	-8(%ebp),%eax
-	movl	-12(%ebp),%ebx
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_SYSCLOSETHREAD$LONGWORD$$LONGWORD:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$8,%esp
-	movl	%eax,-4(%ebp)
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_SYSWAITFORTHREADTERMINATE$LONGWORD$LONGINT$$LONGWORD:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$20,%esp
-	movl	%ebx,-20(%ebp)
-	movl	%eax,-4(%ebp)
-	movl	%edx,-8(%ebp)
-	movl	-8(%ebp),%eax
-	testl	%eax,%eax
-	je	Lj15672
-	jmp	Lj15673
-Lj15672:
-	pushl	$0
-	leal	-4(%ebp),%eax
-	pushl	%eax
-	call	_$dll$doscalls$_index_349
-	addl	$8,%esp
-	movl	%eax,-16(%ebp)
-	jmp	Lj15680
-Lj15673:
-	.balign 4,0x90
-Lj15681:
-	pushl	$1
-	leal	-4(%ebp),%eax
-	pushl	%eax
-	call	_$dll$doscalls$_index_349
-	addl	$8,%esp
-	movl	%eax,-16(%ebp)
-	movl	-16(%ebp),%eax
-	cmpl	$294,%eax
-	je	Lj15690
-	jmp	Lj15691
-Lj15690:
-	movl	-8(%ebp),%eax
-	cmpl	$100,%eax
-	jg	Lj15692
-	jmp	Lj15693
-Lj15692:
-	pushl	$100
-	call	_$dll$doscalls$_index_229
-	popl	%ebx
-	jmp	Lj15696
-Lj15693:
-	pushl	-8(%ebp)
-	call	_$dll$doscalls$_index_229
-	popl	%ebx
-	pushl	$1
-	leal	-4(%ebp),%eax
-	pushl	%eax
-	call	_$dll$doscalls$_index_349
-	addl	$8,%esp
-Lj15696:
-	subl	$100,-8(%ebp)
-Lj15691:
-	movl	-16(%ebp),%eax
-	cmpl	$294,%eax
-	jne	Lj15683
-	jmp	Lj15703
-Lj15703:
-	movl	-8(%ebp),%eax
-	cmpl	$0,%eax
-	jle	Lj15683
-	jmp	Lj15681
-Lj15683:
-Lj15680:
-	movl	-16(%ebp),%eax
-	movl	%eax,-12(%ebp)
-	movl	-12(%ebp),%eax
-	movl	-20(%ebp),%ebx
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_GETOS2THREADPRIORITY$LONGWORD$$LONGWORD:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$24,%esp
-	movl	%eax,-4(%ebp)
-	movl	$-1,-8(%ebp)
-	leal	-12(%ebp),%eax
-	movl	$32768,%edx
-	call	SYSTEM_GETMEM$POINTER$LONGWORD
-	movl	-12(%ebp),%eax
-	testl	%eax,%eax
-	je	Lj15714
-	jmp	Lj15715
-Lj15714:
-	movl	-12(%ebp),%eax
-	movl	$32768,%edx
-	call	SYSTEM_FREEMEM$POINTER$LONGWORD
-	call	SYSTEM_FPC_THREADERROR
-	jmp	Lj15720
-Lj15715:
-	pushl	$32768
-	movl	-12(%ebp),%eax
-	pushl	%eax
-	pushl	$0
-	pushl	U_SYSTEM_PROCESSID
-	pushl	$0
-	pushl	$1
-	call	_$dll$doscalls$_index_368
-	addl	$24,%esp
-	movl	%eax,-24(%ebp)
-	movl	-24(%ebp),%eax
-	testl	%eax,%eax
-	je	Lj15738
-	jmp	Lj15736
-Lj15738:
-	movl	-12(%ebp),%eax
-	movl	4(%eax),%eax
-	testl	%eax,%eax
-	jne	Lj15737
-	jmp	Lj15736
-Lj15737:
-	movl	-12(%ebp),%eax
-	movl	4(%eax),%eax
-	movl	4(%eax),%eax
-	testl	%eax,%eax
-	jne	Lj15735
-	jmp	Lj15736
-Lj15735:
-	movl	-12(%ebp),%eax
-	addl	$32768,%eax
-	movl	%eax,-20(%ebp)
-	movl	-12(%ebp),%eax
-	movl	4(%eax),%eax
-	movl	4(%eax),%eax
-	movl	%eax,-16(%ebp)
-	jmp	Lj15744
-	.balign 4,0x90
-Lj15743:
-	addl	$28,-16(%ebp)
-Lj15744:
-	movl	-16(%ebp),%eax
-	movl	(%eax),%eax
-	cmpl	$256,%eax
-	je	Lj15747
-	jmp	Lj15745
-Lj15747:
-	movl	-16(%ebp),%eax
-	movzwl	4(%eax),%eax
-	cmpl	-4(%ebp),%eax
-	jne	Lj15746
-	jmp	Lj15745
-Lj15746:
-	movl	-16(%ebp),%eax
-	addl	$28,%eax
-	cmpl	-20(%ebp),%eax
-	jb	Lj15743
-	jmp	Lj15745
-Lj15745:
-	movl	-16(%ebp),%eax
-	movl	(%eax),%eax
-	cmpl	$256,%eax
-	je	Lj15750
-	jmp	Lj15749
-Lj15750:
-	movl	-16(%ebp),%eax
-	movzwl	4(%eax),%eax
-	cmpl	-4(%ebp),%eax
-	je	Lj15748
-	jmp	Lj15749
-Lj15748:
-	movl	-16(%ebp),%eax
-	movl	12(%eax),%eax
-	movl	%eax,-8(%ebp)
-Lj15749:
-Lj15736:
-	movl	-12(%ebp),%eax
-	movl	$32768,%edx
-	call	SYSTEM_FREEMEM$POINTER$LONGWORD
-Lj15720:
-	movl	-8(%ebp),%eax
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_SYSTHREADSETPRIORITY$LONGWORD$LONGINT$$BOOLEAN:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$20,%esp
-	movl	%eax,-4(%ebp)
-	movl	%edx,-8(%ebp)
-	movl	-4(%ebp),%eax
-	call	SYSTEM_GETOS2THREADPRIORITY$LONGWORD$$LONGWORD
-	movl	%eax,-20(%ebp)
-	movl	-20(%ebp),%eax
-	cmpl	$65535,%eax
-	ja	Lj15763
-	jmp	Lj15764
-Lj15763:
-	movb	$0,-9(%ebp)
-	jmp	Lj15767
-Lj15764:
-	movl	-8(%ebp),%eax
-	shll	$1,%eax
-	movl	%eax,-16(%ebp)
-	movzbl	-20(%ebp),%eax
-	movl	-16(%ebp),%edx
-	addl	%eax,%edx
-	cmpl	$0,%edx
-	jl	Lj15770
-	jmp	Lj15771
-Lj15770:
-	movzbl	-20(%ebp),%eax
-	negl	%eax
-	movl	%eax,-16(%ebp)
-	jmp	Lj15774
-Lj15771:
-	movzbl	-20(%ebp),%eax
-	movl	-16(%ebp),%edx
-	addl	%eax,%edx
-	cmpl	$31,%edx
-	jg	Lj15775
-	jmp	Lj15776
-Lj15775:
-	movzbl	-20(%ebp),%edx
-	movl	$31,%eax
-	subl	%edx,%eax
-	movl	%eax,%edx
-	movl	%edx,-16(%ebp)
-Lj15776:
-Lj15774:
-	pushl	-4(%ebp)
-	pushl	-16(%ebp)
-	pushl	$0
-	pushl	$2
-	call	_$dll$doscalls$_index_236
-	addl	$16,%esp
-	testl	%eax,%eax
-	seteb	-9(%ebp)
-Lj15767:
-	movb	-9(%ebp),%al
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_SYSTHREADGETPRIORITY$LONGWORD$$LONGINT:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$12,%esp
-	movl	%eax,-4(%ebp)
-	movl	-4(%ebp),%eax
-	call	SYSTEM_GETOS2THREADPRIORITY$LONGWORD$$LONGWORD
-	movl	%eax,-12(%ebp)
-	movzbl	-11(%ebp),%eax
-	cmpl	$1,%eax
-	je	Lj15795
-	jmp	Lj15796
-Lj15795:
-	movzbl	-12(%ebp),%eax
-	movl	%eax,%edx
-	sarl	$31,%edx
-	andl	$1,%edx
-	addl	%edx,%eax
-	sarl	$1,%eax
-	subl	$15,%eax
-	movl	%eax,-8(%ebp)
-	jmp	Lj15799
-Lj15796:
-	movzbl	-12(%ebp),%eax
-	movl	%eax,%edx
-	sarl	$31,%edx
-	andl	$1,%edx
-	addl	%edx,%eax
-	sarl	$1,%eax
-	movl	%eax,-8(%ebp)
-Lj15799:
-	movl	-8(%ebp),%eax
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_SYSGETCURRENTTHREADID$$LONGWORD:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$8,%esp
-	pushl	$0
-	leal	-8(%ebp),%eax
-	pushl	%eax
-	call	_$dll$doscalls$_index_312
-	addl	$8,%esp
-	movl	-8(%ebp),%eax
-	movl	12(%eax),%eax
-	movl	(%eax),%eax
-	movl	%eax,-4(%ebp)
-	movl	-4(%ebp),%eax
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_SYSINITCRITICALSECTION$formal:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$4,%esp
-	movl	%eax,-4(%ebp)
-	pushl	$0
-	pushl	$0
-	movl	-4(%ebp),%eax
-	pushl	%eax
-	pushl	$0
-	call	_$dll$doscalls$_index_331
-	addl	$16,%esp
-	testl	%eax,%eax
-	jne	Lj15812
-	jmp	Lj15813
-Lj15812:
-	call	SYSTEM_FPC_THREADERROR
-Lj15813:
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_SYSDONECRITICALSECTION$formal:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$8,%esp
-	movl	%ebx,-8(%ebp)
-	movl	%eax,-4(%ebp)
-	.balign 4,0x90
-Lj15824:
-	movl	-4(%ebp),%eax
-	pushl	(%eax)
-	call	_$dll$doscalls$_index_335
-	popl	%ebx
-	testl	%eax,%eax
-	jne	Lj15826
-	jmp	Lj15824
-Lj15826:
-	movl	-4(%ebp),%eax
-	pushl	(%eax)
-	call	_$dll$doscalls$_index_333
-	popl	%ebx
-	testl	%eax,%eax
-	jne	Lj15829
-	jmp	Lj15830
-Lj15829:
-	call	SYSTEM_FPC_THREADERROR
-Lj15830:
-	movl	-8(%ebp),%ebx
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_SYSENTERCRITICALSECTION$formal:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$4,%esp
-	movl	%eax,-4(%ebp)
-	pushl	$-1
-	movl	-4(%ebp),%eax
-	pushl	(%eax)
-	call	_$dll$doscalls$_index_334
-	addl	$8,%esp
-	testl	%eax,%eax
-	jne	Lj15835
-	jmp	Lj15836
-Lj15835:
-	call	SYSTEM_FPC_THREADERROR
-Lj15836:
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_SYSTRYENTERCRITICALSECTION$formal$$LONGINT:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$8,%esp
-	movl	%eax,-4(%ebp)
-	pushl	$0
-	movl	-4(%ebp),%eax
-	pushl	(%eax)
-	call	_$dll$doscalls$_index_334
-	addl	$8,%esp
-	testl	%eax,%eax
-	je	Lj15843
-	jmp	Lj15844
-Lj15843:
-	movl	$1,-8(%ebp)
-	jmp	Lj15851
-Lj15844:
-	movl	$0,-8(%ebp)
-Lj15851:
-	movl	-8(%ebp),%eax
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_SYSLEAVECRITICALSECTION$formal:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$8,%esp
-	movl	%ebx,-8(%ebp)
-	movl	%eax,-4(%ebp)
-	movl	-4(%ebp),%eax
-	pushl	(%eax)
-	call	_$dll$doscalls$_index_335
-	popl	%ebx
-	testl	%eax,%eax
-	jne	Lj15856
-	jmp	Lj15857
-Lj15856:
-	call	SYSTEM_FPC_THREADERROR
-Lj15857:
-	movl	-8(%ebp),%ebx
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_SYSBASICEVENTCREATE$POINTER$BOOLEAN$BOOLEAN$ANSISTRING$$POINTER:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$76,%esp
-	movl	%eax,-4(%ebp)
-	movb	%dl,-8(%ebp)
-	movb	%cl,-12(%ebp)
-	movl	$0,-24(%ebp)
-	movl	$0,-76(%ebp)
-	movl	$0,-72(%ebp)
-	leal	-40(%ebp),%ecx
-	leal	-64(%ebp),%edx
-	movl	$1,%eax
-	call	FPC_PUSHEXCEPTADDR
-	call	FPC_SETJMP
-	pushl	%eax
-	testl	%eax,%eax
-	jne	Lj15862
-	movl	$8,%eax
-	call	fpc_getmem
-	movl	%eax,-16(%ebp)
-	movl	8(%ebp),%eax
-	testl	%eax,%eax
-	jne	Lj15873
-	jmp	Lj15872
-Lj15873:
-	leal	-72(%ebp),%eax
-	call	FPC_ANSISTR_DECR_REF
-	movl	$0,-72(%ebp)
-	leal	-76(%ebp),%eax
-	call	FPC_ANSISTR_DECR_REF
-	movl	$0,-76(%ebp)
-	leal	-76(%ebp),%eax
-	pushl	%eax
-	movl	8(%ebp),%eax
-	movl	$7,%ecx
-	movl	$1,%edx
-	call	fpc_ansistr_copy
-	movl	-76(%ebp),%eax
-	leal	-72(%ebp),%edx
-	call	SYSTEM_UPCASE$ANSISTRING$$ANSISTRING
-	movl	-72(%ebp),%eax
-	movl	$_$SYSTEM$_Ld36,%edx
-	call	fpc_ansistr_compare_equal
-	testl	%eax,%eax
-	jne	Lj15871
-	jmp	Lj15872
-Lj15871:
-	movl	8(%ebp),%ecx
-	leal	-24(%ebp),%eax
-	movl	$_$SYSTEM$_Ld36,%edx
-	call	fpc_ansistr_concat
-	jmp	Lj15896
-Lj15872:
-	movl	8(%ebp),%eax
-	call	FPC_ANSISTR_INCR_REF
-	leal	-24(%ebp),%eax
-	call	FPC_ANSISTR_DECR_REF
-	movl	8(%ebp),%eax
-	movl	%eax,-24(%ebp)
-Lj15896:
-	cmpb	$0,-8(%ebp)
-	jne	Lj15899
-	jmp	Lj15900
-Lj15899:
-	movl	$0,-28(%ebp)
-	jmp	Lj15903
-Lj15900:
-	movl	$4096,-28(%ebp)
-Lj15903:
-	movl	-24(%ebp),%eax
-	testl	%eax,%eax
-	je	Lj15906
-	jmp	Lj15907
-Lj15906:
-	movzbl	-12(%ebp),%eax
-	pushl	%eax
-	pushl	-28(%ebp)
-	movl	-16(%ebp),%eax
-	pushl	%eax
-	pushl	$0
-	call	_$dll$doscalls$_index_324
-	addl	$16,%esp
-	movl	%eax,-20(%ebp)
-	jmp	Lj15920
-Lj15907:
-	movzbl	-12(%ebp),%eax
-	pushl	%eax
-	pushl	-28(%ebp)
-	movl	-16(%ebp),%eax
-	pushl	%eax
-	movl	-24(%ebp),%eax
-	testl	%eax,%eax
-	jne	Lj15933
-	movl	$FPC_EMPTYCHAR,%eax
-Lj15933:
-	pushl	%eax
-	call	_$dll$doscalls$_index_324
-	addl	$16,%esp
-	movl	%eax,-20(%ebp)
-Lj15920:
-	movl	-20(%ebp),%eax
-	testl	%eax,%eax
-	jne	Lj15934
-	jmp	Lj15935
-Lj15934:
-	movl	-16(%ebp),%eax
-	call	fpc_freemem
-	call	SYSTEM_FPC_THREADERROR
-Lj15935:
-Lj15862:
-	call	FPC_POPADDRSTACK
-	leal	-76(%ebp),%eax
-	call	FPC_ANSISTR_DECR_REF
-	movl	$0,-76(%ebp)
-	leal	-72(%ebp),%eax
-	call	FPC_ANSISTR_DECR_REF
-	movl	$0,-72(%ebp)
-	leal	-24(%ebp),%eax
-	call	fpc_ansistr_decr_ref
-	movl	$0,-24(%ebp)
-	popl	%eax
-	testl	%eax,%eax
-	je	Lj15863
-	call	FPC_RERAISE
-Lj15863:
-	movl	-16(%ebp),%eax
-	leave
-	ret	$4
-
-.text
-	.balign 4,0x90
-SYSTEM_SYSBASICEVENTDESTROY$POINTER:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$8,%esp
-	movl	%ebx,-8(%ebp)
-	movl	%eax,-4(%ebp)
-	movl	-4(%ebp),%eax
-	testl	%eax,%eax
-	je	Lj15946
-	jmp	Lj15947
-Lj15946:
-	call	SYSTEM_FPC_THREADERROR
-	jmp	Lj15948
-Lj15947:
-	movl	-4(%ebp),%eax
-	pushl	(%eax)
-	call	_$dll$doscalls$_index_326
-	popl	%ebx
-	movl	-4(%ebp),%eax
-	call	fpc_freemem
-Lj15948:
-	movl	-8(%ebp),%ebx
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_SYSBASICEVENTRESETEVENT$POINTER:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$8,%esp
-	movl	%eax,-4(%ebp)
-	movl	-4(%ebp),%eax
-	testl	%eax,%eax
-	je	Lj15955
-	jmp	Lj15956
-Lj15955:
-	call	SYSTEM_FPC_THREADERROR
-	jmp	Lj15957
-Lj15956:
-	leal	-8(%ebp),%eax
-	pushl	%eax
-	movl	-4(%ebp),%eax
-	pushl	(%eax)
-	call	_$dll$doscalls$_index_327
-	addl	$8,%esp
-Lj15957:
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_SYSBASICEVENTSETEVENT$POINTER:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$8,%esp
-	movl	%ebx,-8(%ebp)
-	movl	%eax,-4(%ebp)
-	movl	-4(%ebp),%eax
-	testl	%eax,%eax
-	je	Lj15964
-	jmp	Lj15965
-Lj15964:
-	call	SYSTEM_FPC_THREADERROR
-	jmp	Lj15966
-Lj15965:
-	movl	-4(%ebp),%eax
-	pushl	(%eax)
-	call	_$dll$doscalls$_index_328
-	popl	%ebx
-Lj15966:
-	movl	-8(%ebp),%ebx
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_SYSBASICEVENTWAITFOR$LONGWORD$POINTER$$LONGINT:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$16,%esp
-	movl	%eax,-4(%ebp)
-	movl	%edx,-8(%ebp)
-	movl	-8(%ebp),%eax
-	testl	%eax,%eax
-	je	Lj15971
-	jmp	Lj15972
-Lj15971:
-	call	SYSTEM_FPC_THREADERROR
-	jmp	Lj15973
-Lj15972:
-	pushl	-4(%ebp)
-	movl	-8(%ebp),%eax
-	pushl	(%eax)
-	call	_$dll$doscalls$_index_329
-	addl	$8,%esp
-	movl	%eax,-16(%ebp)
-	movl	-16(%ebp),%eax
-	testl	%eax,%eax
-	je	Lj15982
-	subl	$640,%eax
-	je	Lj15983
-	jmp	Lj15981
-Lj15982:
-	movl	$0,-12(%ebp)
-	jmp	Lj15980
-Lj15983:
-	movl	$1,-12(%ebp)
-	jmp	Lj15980
-Lj15981:
-	movl	$3,-12(%ebp)
-	movl	-8(%ebp),%eax
-	movl	-16(%ebp),%edx
-	movl	%edx,4(%eax)
-Lj15980:
-Lj15973:
-	movl	-12(%ebp),%eax
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_SYSRTLEVENTCREATE$$PRTLEVENT:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$4,%esp
-	movl	$-1,-4(%ebp)
-	pushl	$0
-	pushl	$4096
-	leal	-4(%ebp),%eax
-	pushl	%eax
-	pushl	$0
-	call	_$dll$doscalls$_index_324
-	addl	$16,%esp
-	movl	-4(%ebp),%eax
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_SYSRTLEVENTDESTROY$PRTLEVENT:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$8,%esp
-	movl	%ebx,-8(%ebp)
-	movl	%eax,-4(%ebp)
-	pushl	-4(%ebp)
-	call	_$dll$doscalls$_index_326
-	popl	%ebx
-	movl	-8(%ebp),%ebx
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_SYSRTLEVENTSETEVENT$PRTLEVENT:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$8,%esp
-	movl	%ebx,-8(%ebp)
-	movl	%eax,-4(%ebp)
-	pushl	-4(%ebp)
-	call	_$dll$doscalls$_index_328
-	popl	%ebx
-	movl	-8(%ebp),%ebx
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_SYSRTLEVENTWAITFOR$PRTLEVENT:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$4,%esp
-	movl	%eax,-4(%ebp)
-	pushl	$-1
-	pushl	-4(%ebp)
-	call	_$dll$doscalls$_index_329
-	addl	$8,%esp
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_SYSRTLEVENTWAITFORTIMEOUT$PRTLEVENT$LONGINT:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$8,%esp
-	movl	%eax,-4(%ebp)
-	movl	%edx,-8(%ebp)
-	pushl	-8(%ebp)
-	pushl	-4(%ebp)
-	call	_$dll$doscalls$_index_329
-	addl	$8,%esp
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_SYSRTLEVENTRESETEVENT$PRTLEVENT:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$8,%esp
-	movl	%eax,-4(%ebp)
-	leal	-8(%ebp),%eax
-	pushl	%eax
-	pushl	-4(%ebp)
-	call	_$dll$doscalls$_index_327
-	addl	$8,%esp
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_GETCPUCOUNT$$LONGWORD:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$8,%esp
-	movl	$1,-4(%ebp)
-	pushl	$4
-	leal	-8(%ebp),%eax
-	pushl	%eax
-	pushl	$26
-	pushl	$26
-	call	_$dll$doscalls$_index_348
-	addl	$16,%esp
-	testl	%eax,%eax
-	je	Lj16034
-	jmp	Lj16035
-Lj16034:
-	movl	-8(%ebp),%eax
-	movl	%eax,-4(%ebp)
-Lj16035:
-	movl	-4(%ebp),%eax
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_INITSYSTEMTHREADS:
-	pushl	%ebp
-	movl	%esp,%ebp
-	movl	$0,U_SYSTEM_OS2THREADMANAGER
-	movl	$0,U_SYSTEM_OS2THREADMANAGER+4
-	movl	$SYSTEM_SYSBEGINTHREAD$crc81B914C6,%eax
-	movl	%eax,U_SYSTEM_OS2THREADMANAGER+8
-	movl	$SYSTEM_SYSENDTHREAD$LONGWORD,%eax
-	movl	%eax,U_SYSTEM_OS2THREADMANAGER+12
-	movl	$SYSTEM_SYSSUSPENDTHREAD$LONGWORD$$LONGWORD,%eax
-	movl	%eax,U_SYSTEM_OS2THREADMANAGER+16
-	movl	$SYSTEM_SYSRESUMETHREAD$LONGWORD$$LONGWORD,%eax
-	movl	%eax,U_SYSTEM_OS2THREADMANAGER+20
-	movl	$SYSTEM_SYSKILLTHREAD$LONGWORD$$LONGWORD,%eax
-	movl	%eax,U_SYSTEM_OS2THREADMANAGER+24
-	movl	$SYSTEM_SYSCLOSETHREAD$LONGWORD$$LONGWORD,%eax
-	movl	%eax,U_SYSTEM_OS2THREADMANAGER+28
-	movl	$SYSTEM_SYSTHREADSWITCH,%eax
-	movl	%eax,U_SYSTEM_OS2THREADMANAGER+32
-	movl	$SYSTEM_SYSWAITFORTHREADTERMINATE$LONGWORD$LONGINT$$LONGWORD,%eax
-	movl	%eax,U_SYSTEM_OS2THREADMANAGER+36
-	movl	$SYSTEM_SYSTHREADSETPRIORITY$LONGWORD$LONGINT$$BOOLEAN,%eax
-	movl	%eax,U_SYSTEM_OS2THREADMANAGER+40
-	movl	$SYSTEM_SYSTHREADGETPRIORITY$LONGWORD$$LONGINT,%eax
-	movl	%eax,U_SYSTEM_OS2THREADMANAGER+44
-	movl	$SYSTEM_SYSGETCURRENTTHREADID$$LONGWORD,%eax
-	movl	%eax,U_SYSTEM_OS2THREADMANAGER+48
-	movl	$SYSTEM_SYSINITCRITICALSECTION$formal,%eax
-	movl	%eax,U_SYSTEM_OS2THREADMANAGER+52
-	movl	$SYSTEM_SYSDONECRITICALSECTION$formal,%eax
-	movl	%eax,U_SYSTEM_OS2THREADMANAGER+56
-	movl	$SYSTEM_SYSENTERCRITICALSECTION$formal,%eax
-	movl	%eax,U_SYSTEM_OS2THREADMANAGER+60
-	movl	$SYSTEM_SYSTRYENTERCRITICALSECTION$formal$$LONGINT,%eax
-	movl	%eax,U_SYSTEM_OS2THREADMANAGER+64
-	movl	$SYSTEM_SYSLEAVECRITICALSECTION$formal,%eax
-	movl	%eax,U_SYSTEM_OS2THREADMANAGER+68
-	movl	$SYSTEM_SYSINITTHREADVAR$LONGWORD$LONGWORD,%eax
-	movl	%eax,U_SYSTEM_OS2THREADMANAGER+72
-	movl	$SYSTEM_SYSRELOCATETHREADVAR$LONGWORD$$POINTER,%eax
-	movl	%eax,U_SYSTEM_OS2THREADMANAGER+76
-	movl	$SYSTEM_SYSALLOCATETHREADVARS,%eax
-	movl	%eax,U_SYSTEM_OS2THREADMANAGER+80
-	movl	$SYSTEM_SYSRELEASETHREADVARS,%eax
-	movl	%eax,U_SYSTEM_OS2THREADMANAGER+84
-	movl	$SYSTEM_SYSBASICEVENTCREATE$POINTER$BOOLEAN$BOOLEAN$ANSISTRING$$POINTER,%eax
-	movl	%eax,U_SYSTEM_OS2THREADMANAGER+88
-	movl	$SYSTEM_SYSBASICEVENTDESTROY$POINTER,%eax
-	movl	%eax,U_SYSTEM_OS2THREADMANAGER+92
-	movl	$SYSTEM_SYSBASICEVENTSETEVENT$POINTER,%eax
-	movl	%eax,U_SYSTEM_OS2THREADMANAGER+100
-	movl	$SYSTEM_SYSBASICEVENTRESETEVENT$POINTER,%eax
-	movl	%eax,U_SYSTEM_OS2THREADMANAGER+96
-	movl	$SYSTEM_SYSBASICEVENTWAITFOR$LONGWORD$POINTER$$LONGINT,%eax
-	movl	%eax,U_SYSTEM_OS2THREADMANAGER+104
-	movl	$SYSTEM_SYSRTLEVENTCREATE$$PRTLEVENT,%eax
-	movl	%eax,U_SYSTEM_OS2THREADMANAGER+108
-	movl	$SYSTEM_SYSRTLEVENTDESTROY$PRTLEVENT,%eax
-	movl	%eax,U_SYSTEM_OS2THREADMANAGER+112
-	movl	$SYSTEM_SYSRTLEVENTSETEVENT$PRTLEVENT,%eax
-	movl	%eax,U_SYSTEM_OS2THREADMANAGER+116
-	movl	$SYSTEM_SYSRTLEVENTRESETEVENT$PRTLEVENT,%eax
-	movl	%eax,U_SYSTEM_OS2THREADMANAGER+120
-	movl	$SYSTEM_SYSRTLEVENTWAITFOR$PRTLEVENT,%eax
-	movl	%eax,U_SYSTEM_OS2THREADMANAGER+124
-	movl	$SYSTEM_SYSRTLEVENTWAITFORTIMEOUT$PRTLEVENT$LONGINT,%eax
-	movl	%eax,U_SYSTEM_OS2THREADMANAGER+132
-	movl	$U_SYSTEM_OS2THREADMANAGER,%eax
-	call	SYSTEM_SETTHREADMANAGER$TTHREADMANAGER$$BOOLEAN
-	leave
-	ret
-
-.text
-	.balign 4,0x90
 SYSTEM_DODIRSEPARATORS$PCHAR:
 	pushl	%ebp
 	movl	%esp,%ebp
@@ -39777,25 +39150,25 @@ SYSTEM_DODIRSEPARATORS$PCHAR:
 	call	FPC_PCHAR_LENGTH
 	movl	$0,-8(%ebp)
 	cmpl	-8(%ebp),%eax
-	jl	Lj16119
+	jl	Lj15743
 	decl	-8(%ebp)
 	.balign 4,0x90
-Lj16120:
+Lj15744:
 	incl	-8(%ebp)
 	movl	-4(%ebp),%ecx
 	movl	-8(%ebp),%edx
 	movzbl	(%ecx,%edx,1),%edx
 	btl	%edx,TC_SYSTEM_ALLOWDIRECTORYSEPARATORS
-	jc	Lj16123
-	jmp	Lj16124
-Lj16123:
+	jc	Lj15747
+	jmp	Lj15748
+Lj15747:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%ecx
 	movb	$92,(%edx,%ecx,1)
-Lj16124:
+Lj15748:
 	cmpl	-8(%ebp),%eax
-	jg	Lj16120
-Lj16119:
+	jg	Lj15744
+Lj15743:
 	leave
 	ret
 
@@ -39811,25 +39184,25 @@ SYSTEM_DODIRSEPARATORS$OPENSTRING:
 	movzbl	(%eax),%eax
 	movl	$1,-12(%ebp)
 	cmpl	-12(%ebp),%eax
-	jl	Lj16130
+	jl	Lj15754
 	decl	-12(%ebp)
 	.balign 4,0x90
-Lj16131:
+Lj15755:
 	incl	-12(%ebp)
 	movl	-4(%ebp),%ecx
 	movzbl	-12(%ebp),%edx
 	movzbl	(%ecx,%edx,1),%edx
 	btl	%edx,TC_SYSTEM_ALLOWDIRECTORYSEPARATORS
-	jc	Lj16132
-	jmp	Lj16133
-Lj16132:
+	jc	Lj15756
+	jmp	Lj15757
+Lj15756:
 	movl	-4(%ebp),%edx
 	movzbl	-12(%ebp),%ecx
 	movb	$92,(%edx,%ecx,1)
-Lj16133:
+Lj15757:
 	cmpl	-12(%ebp),%eax
-	jg	Lj16131
-Lj16130:
+	jg	Lj15755
+Lj15754:
 	leave
 	ret
 
@@ -39838,30 +39211,32 @@ Lj16130:
 SYSTEM_DO_CLOSE$LONGINT:
 	pushl	%ebp
 	movl	%esp,%ebp
-	subl	$8,%esp
-	movl	%ebx,-8(%ebp)
+	subl	$4,%esp
 	movl	%eax,-4(%ebp)
 	movl	-4(%ebp),%eax
+	cmpl	$4,%eax
+	jg	Lj15763
+	jmp	Lj15765
+Lj15765:
+	movl	U_SYSTEM_OS_MODE,%eax
+	cmpl	$1,%eax
+	je	Lj15766
+	jmp	Lj15764
+Lj15766:
+	movl	-4(%ebp),%eax
 	cmpl	$2,%eax
-	jg	Lj16138
-	jmp	Lj16139
-Lj16138:
-	pushl	-4(%ebp)
-	call	_$dll$doscalls$_index_257
+	jg	Lj15763
+	jmp	Lj15764
+Lj15763:
+	pushl	%ebx
+	movb	$62,%ah
+	movl	-4(%ebp),%ebx
+	call	___SYSCALL
+	jnc	Lj15762
+	movw	%ax,U_SYSTEM_INOUTRES
+Lj15762:
 	popl	%ebx
-	movl	%eax,%ebx
-	movl	FPC_THREADVAR_RELOCATE,%edx
-	testl	%edx,%edx
-	je	Lj16144
-	movl	U_SYSTEM_INOUTRES,%eax
-	call	*%edx
-	jmp	Lj16145
-Lj16144:
-	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16145:
-	movw	%bx,(%eax)
-Lj16139:
-	movl	-8(%ebp),%ebx
+Lj15764:
 	leave
 	ret
 
@@ -39870,26 +39245,16 @@ Lj16139:
 SYSTEM_DO_ERASE$PCHAR:
 	pushl	%ebp
 	movl	%esp,%ebp
-	subl	$8,%esp
-	movl	%ebx,-8(%ebp)
+	subl	$4,%esp
 	movl	%eax,-4(%ebp)
 	movl	-4(%ebp),%eax
 	call	SYSTEM_DODIRSEPARATORS$PCHAR
-	pushl	-4(%ebp)
-	call	_$dll$doscalls$_index_259
-	popl	%ebx
-	movl	%eax,%ebx
-	movl	FPC_THREADVAR_RELOCATE,%edx
-	testl	%edx,%edx
-	je	Lj16154
-	movl	U_SYSTEM_INOUTRES,%eax
-	call	*%edx
-	jmp	Lj16155
-Lj16154:
-	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16155:
-	movw	%bx,(%eax)
-	movl	-8(%ebp),%ebx
+	movl	-4(%ebp),%edx
+	movb	$65,%ah
+	call	___SYSCALL
+	jnc	Lj15769
+	movw	%ax,U_SYSTEM_INOUTRES
+Lj15769:
 	leave
 	ret
 
@@ -39899,29 +39264,21 @@ SYSTEM_DO_RENAME$PCHAR$PCHAR:
 	pushl	%ebp
 	movl	%esp,%ebp
 	subl	$12,%esp
-	movl	%ebx,-12(%ebp)
+	movl	%edi,-12(%ebp)
 	movl	%eax,-4(%ebp)
 	movl	%edx,-8(%ebp)
 	movl	-4(%ebp),%eax
 	call	SYSTEM_DODIRSEPARATORS$PCHAR
 	movl	-8(%ebp),%eax
 	call	SYSTEM_DODIRSEPARATORS$PCHAR
-	pushl	-8(%ebp)
-	pushl	-4(%ebp)
-	call	_$dll$doscalls$_index_271
-	addl	$8,%esp
-	movl	%eax,%ebx
-	movl	FPC_THREADVAR_RELOCATE,%edx
-	testl	%edx,%edx
-	je	Lj16168
-	movl	U_SYSTEM_INOUTRES,%eax
-	call	*%edx
-	jmp	Lj16169
-Lj16168:
-	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16169:
-	movw	%bx,(%eax)
-	movl	-12(%ebp),%ebx
+	movl	-4(%ebp),%edx
+	movl	-8(%ebp),%edi
+	movb	$86,%ah
+	call	___SYSCALL
+	jnc	Lj15774
+	movw	%ax,U_SYSTEM_INOUTRES
+Lj15774:
+	movl	-12(%ebp),%edi
 	leave
 	ret
 
@@ -39930,33 +39287,16 @@ Lj16169:
 SYSTEM_DO_READ$LONGINT$POINTER$LONGINT$$LONGINT:
 	pushl	%ebp
 	movl	%esp,%ebp
-	subl	$24,%esp
-	movl	%ebx,-24(%ebp)
-	movl	%eax,-4(%ebp)
-	movl	%edx,-8(%ebp)
-	movl	%ecx,-12(%ebp)
-	leal	-20(%ebp),%eax
-	pushl	%eax
-	pushl	-12(%ebp)
-	pushl	-8(%ebp)
-	pushl	-4(%ebp)
-	call	_$dll$doscalls$_index_281
-	addl	$16,%esp
+	subl	$4,%esp
+	pushl	%ebx
 	movl	%eax,%ebx
-	movl	FPC_THREADVAR_RELOCATE,%edx
-	testl	%edx,%edx
-	je	Lj16182
-	movl	U_SYSTEM_INOUTRES,%eax
-	call	*%edx
-	jmp	Lj16183
-Lj16182:
-	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16183:
-	movw	%bx,(%eax)
-	movl	-20(%ebp),%eax
-	movl	%eax,-16(%ebp)
-	movl	-16(%ebp),%eax
-	movl	-24(%ebp),%ebx
+	movb	$63,%ah
+	call	___SYSCALL
+	jnc	Lj15781
+	movw	%ax,U_SYSTEM_INOUTRES
+	xorl	%eax,%eax
+Lj15781:
+	popl	%ebx
 	leave
 	ret
 
@@ -39965,198 +39305,119 @@ Lj16183:
 SYSTEM_DO_WRITE$LONGINT$POINTER$LONGINT$$LONGINT:
 	pushl	%ebp
 	movl	%esp,%ebp
-	subl	$24,%esp
-	movl	%ebx,-24(%ebp)
-	movl	%eax,-4(%ebp)
-	movl	%edx,-8(%ebp)
-	movl	%ecx,-12(%ebp)
-	leal	-20(%ebp),%eax
-	pushl	%eax
-	pushl	-12(%ebp)
-	pushl	-8(%ebp)
-	pushl	-4(%ebp)
-	call	_$dll$doscalls$_index_282
-	addl	$16,%esp
+	subl	$4,%esp
+	pushl	%ebx
 	movl	%eax,%ebx
-	movl	FPC_THREADVAR_RELOCATE,%edx
-	testl	%edx,%edx
-	je	Lj16198
-	movl	U_SYSTEM_INOUTRES,%eax
-	call	*%edx
-	jmp	Lj16199
-Lj16198:
-	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16199:
-	movw	%bx,(%eax)
-	movl	-20(%ebp),%eax
-	movl	%eax,-16(%ebp)
-	movl	-16(%ebp),%eax
-	movl	-24(%ebp),%ebx
+	xorl	%eax,%eax
+	cmpl	$0,%ecx
+	jz	Lj15784
+	movb	$64,%ah
+	call	___SYSCALL
+	jnc	Lj15784
+	movw	%ax,U_SYSTEM_INOUTRES
+Lj15784:
+	popl	%ebx
 	leave
 	ret
 
 .text
 	.balign 4,0x90
-SYSTEM_DO_FILEPOS$LONGINT$$INT64:
+SYSTEM_DO_FILEPOS$LONGINT$$LONGINT:
 	pushl	%ebp
 	movl	%esp,%ebp
-	subl	$24,%esp
-	movl	%ebx,-24(%ebp)
-	movl	%eax,-4(%ebp)
-	leal	-20(%ebp),%eax
-	pushl	%eax
-	pushl	$1
-	pushl	$0
-	pushl	$0
-	pushl	-4(%ebp)
-	movl	TC_SYSTEM_SYS_DOSSETFILEPTRL,%eax
-	call	*%eax
-	addl	$20,%esp
+	subl	$4,%esp
+	pushl	%ebx
 	movl	%eax,%ebx
-	movl	FPC_THREADVAR_RELOCATE,%edx
-	testl	%edx,%edx
-	je	Lj16214
-	movl	U_SYSTEM_INOUTRES,%eax
-	call	*%edx
-	jmp	Lj16215
-Lj16214:
-	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16215:
-	movw	%bx,(%eax)
-	movl	-20(%ebp),%eax
+	movw	$16897,%ax
+	xorl	%edx,%edx
+	call	___SYSCALL
+	jnc	Lj15787
+	movw	%ax,U_SYSTEM_INOUTRES
+	xorl	%eax,%eax
+Lj15787:
+	popl	%ebx
+	leave
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_DO_SEEK$LONGINT$LONGINT:
+	pushl	%ebp
+	movl	%esp,%ebp
+	pushl	%ebx
+	movl	%eax,%ebx
+	movw	$16896,%ax
+	call	___SYSCALL
+	jnc	Lj15790
+	movw	%ax,U_SYSTEM_INOUTRES
+Lj15790:
+	popl	%ebx
+	leave
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_DO_SEEKEND$LONGINT$$LONGINT:
+	pushl	%ebp
+	movl	%esp,%ebp
+	subl	$4,%esp
+	pushl	%ebx
+	movl	%eax,%ebx
+	movw	$16898,%ax
+	xorl	%edx,%edx
+	call	___SYSCALL
+	jnc	Lj15793
+	movw	%ax,U_SYSTEM_INOUTRES
+	xorl	%eax,%eax
+Lj15793:
+	popl	%ebx
+	leave
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_DO_FILESIZE$LONGINT$$LONGINT:
+	pushl	%ebp
+	movl	%esp,%ebp
+	subl	$12,%esp
+	movl	%eax,-4(%ebp)
+	movl	-4(%ebp),%eax
+	call	SYSTEM_DO_FILEPOS$LONGINT$$LONGINT
 	movl	%eax,-12(%ebp)
-	movl	-16(%ebp),%eax
+	movl	-4(%ebp),%eax
+	call	SYSTEM_DO_SEEKEND$LONGINT$$LONGINT
 	movl	%eax,-8(%ebp)
-	movl	-8(%ebp),%edx
-	movl	-12(%ebp),%eax
-	movl	-24(%ebp),%ebx
+	movl	-12(%ebp),%edx
+	movl	-4(%ebp),%eax
+	call	SYSTEM_DO_SEEK$LONGINT$LONGINT
+	movl	-8(%ebp),%eax
 	leave
 	ret
 
 .text
 	.balign 4,0x90
-SYSTEM_DO_SEEK$LONGINT$INT64:
+SYSTEM_DO_TRUNCATE$LONGINT$LONGINT:
 	pushl	%ebp
 	movl	%esp,%ebp
-	subl	$16,%esp
-	movl	%ebx,-16(%ebp)
-	movl	%eax,-4(%ebp)
-	leal	-12(%ebp),%eax
+	pushl	%ebx
+	movl	%eax,%ebx
 	pushl	%eax
-	pushl	$0
-	pushl	12(%ebp)
-	pushl	8(%ebp)
-	pushl	-4(%ebp)
-	movl	TC_SYSTEM_SYS_DOSSETFILEPTRL,%eax
-	call	*%eax
-	addl	$20,%esp
-	movl	%eax,%ebx
-	movl	FPC_THREADVAR_RELOCATE,%edx
-	testl	%edx,%edx
-	je	Lj16230
-	movl	U_SYSTEM_INOUTRES,%eax
-	call	*%edx
-	jmp	Lj16231
-Lj16230:
-	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16231:
-	movw	%bx,(%eax)
-	movl	-16(%ebp),%ebx
-	leave
-	ret	$8
-
-.text
-	.balign 4,0x90
-SYSTEM_DO_SEEKEND$LONGINT$$INT64:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$24,%esp
-	movl	%ebx,-24(%ebp)
-	movl	%eax,-4(%ebp)
-	leal	-20(%ebp),%eax
-	pushl	%eax
-	pushl	$2
-	pushl	$0
-	pushl	$0
-	pushl	-4(%ebp)
-	movl	TC_SYSTEM_SYS_DOSSETFILEPTRL,%eax
-	call	*%eax
-	addl	$20,%esp
-	movl	%eax,%ebx
-	movl	FPC_THREADVAR_RELOCATE,%edx
-	testl	%edx,%edx
-	je	Lj16244
-	movl	U_SYSTEM_INOUTRES,%eax
-	call	*%edx
-	jmp	Lj16245
-Lj16244:
-	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16245:
-	movw	%bx,(%eax)
-	movl	-20(%ebp),%eax
-	movl	%eax,-12(%ebp)
-	movl	-16(%ebp),%eax
-	movl	%eax,-8(%ebp)
-	movl	-8(%ebp),%edx
-	movl	-12(%ebp),%eax
-	movl	-24(%ebp),%ebx
+	movl	$32549,%eax
+	call	___SYSCALL
+	incl	%eax
+	movl	%ecx,%eax
+	popl	%ebx
+	jnz	Lj15810
+	movl	$16898,%eax
+	movl	$0,%edx
+	call	___SYSCALL
+	jnc	Lj15811
+Lj15810:
+	movw	%ax,U_SYSTEM_INOUTRES
+Lj15811:
+	popl	%ebx
 	leave
 	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_DO_FILESIZE$LONGINT$$INT64:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$20,%esp
-	movl	%eax,-4(%ebp)
-	movl	-4(%ebp),%eax
-	call	SYSTEM_DO_FILEPOS$LONGINT$$INT64
-	movl	%eax,-20(%ebp)
-	movl	%edx,-16(%ebp)
-	movl	-4(%ebp),%eax
-	call	SYSTEM_DO_SEEKEND$LONGINT$$INT64
-	movl	%eax,-12(%ebp)
-	movl	%edx,-8(%ebp)
-	pushl	-16(%ebp)
-	pushl	-20(%ebp)
-	movl	-4(%ebp),%eax
-	call	SYSTEM_DO_SEEK$LONGINT$INT64
-	movl	-8(%ebp),%edx
-	movl	-12(%ebp),%eax
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_DO_TRUNCATE$LONGINT$INT64:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$8,%esp
-	movl	%ebx,-8(%ebp)
-	movl	%eax,-4(%ebp)
-	pushl	12(%ebp)
-	pushl	8(%ebp)
-	pushl	-4(%ebp)
-	movl	TC_SYSTEM_SYS_DOSSETFILESIZEL,%eax
-	call	*%eax
-	addl	$12,%esp
-	movl	%eax,%ebx
-	movl	FPC_THREADVAR_RELOCATE,%edx
-	testl	%edx,%edx
-	je	Lj16270
-	movl	U_SYSTEM_INOUTRES,%eax
-	call	*%edx
-	jmp	Lj16271
-Lj16270:
-	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16271:
-	movw	%bx,(%eax)
-	movl	-4(%ebp),%eax
-	call	SYSTEM_DO_SEEKEND$LONGINT$$INT64
-	movl	-8(%ebp),%ebx
-	leave
-	ret	$8
 
 .text
 	.balign 4,0x90
@@ -40164,6 +39425,11 @@ SYSTEM_INCREASE_FILE_HANDLE_COUNT$$BOOLEAN:
 	pushl	%ebp
 	movl	%esp,%ebp
 	subl	$12,%esp
+	movl	U_SYSTEM_OS_MODE,%eax
+	cmpl	$1,%eax
+	je	Lj15815
+	jmp	Lj15816
+Lj15815:
 	movl	$10,-8(%ebp)
 	leal	-12(%ebp),%eax
 	pushl	%eax
@@ -40172,25 +39438,49 @@ SYSTEM_INCREASE_FILE_HANDLE_COUNT$$BOOLEAN:
 	call	_$dll$doscalls$_index_382
 	addl	$8,%esp
 	testl	%eax,%eax
-	jne	Lj16278
-	jmp	Lj16279
-Lj16278:
+	jne	Lj15819
+	jmp	Lj15820
+Lj15819:
 	movb	$0,-1(%ebp)
-	jmp	Lj16286
-Lj16279:
+	jmp	Lj15827
+Lj15820:
 	movl	-12(%ebp),%eax
 	cmpl	TC_SYSTEM_FILEHANDLECOUNT,%eax
-	ja	Lj16287
-	jmp	Lj16288
-Lj16287:
+	ja	Lj15828
+	jmp	Lj15829
+Lj15828:
 	movl	-12(%ebp),%eax
 	movl	%eax,TC_SYSTEM_FILEHANDLECOUNT
 	movb	$1,-1(%ebp)
-	jmp	Lj16293
-Lj16288:
+	jmp	Lj15834
+Lj15829:
 	movb	$0,-1(%ebp)
-Lj16293:
-Lj16286:
+Lj15834:
+Lj15827:
+	jmp	Lj15837
+Lj15816:
+	addl	$10,TC_SYSTEM_FILEHANDLECOUNT
+	movw	$0,-4(%ebp)
+	pushl	%ebx
+	movl	$26368,%eax
+	movl	TC_SYSTEM_FILEHANDLECOUNT,%ebx
+	call	___SYSCALL
+	jnc	Lj15814
+	movw	%ax,-4(%ebp)
+Lj15814:
+	popl	%ebx
+	movzwl	-4(%ebp),%eax
+	testl	%eax,%eax
+	jne	Lj15840
+	jmp	Lj15841
+Lj15840:
+	movb	$0,-1(%ebp)
+	subl	$10,TC_SYSTEM_FILEHANDLECOUNT
+	jmp	Lj15844
+Lj15841:
+	movb	$1,-1(%ebp)
+Lj15844:
+Lj15837:
 	movb	-1(%ebp),%al
 	leave
 	ret
@@ -40200,8 +39490,8 @@ Lj16286:
 SYSTEM_DO_OPEN$formal$PCHAR$LONGINT:
 	pushl	%ebp
 	movl	%esp,%ebp
-	subl	$32,%esp
-	movl	%ebx,-32(%ebp)
+	subl	$20,%esp
+	movl	%ebx,-20(%ebp)
 	movl	%eax,-4(%ebp)
 	movl	%edx,-8(%ebp)
 	movl	%ecx,-12(%ebp)
@@ -40210,245 +39500,213 @@ SYSTEM_DO_OPEN$formal$PCHAR$LONGINT:
 	movl	-12(%ebp),%eax
 	andl	$65536,%eax
 	testl	%eax,%eax
-	je	Lj16300
-	jmp	Lj16301
-Lj16300:
+	je	Lj15853
+	jmp	Lj15854
+Lj15853:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55216,%eax
-	jl	Lj16303
+	jl	Lj15856
 	subl	$55216,%eax
-	je	Lj16305
+	je	Lj15858
 	decl	%eax
-	jl	Lj16303
+	jl	Lj15856
 	subl	$2,%eax
-	jle	Lj16304
-	jmp	Lj16303
-Lj16304:
+	jle	Lj15857
+	jmp	Lj15856
+Lj15857:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	call	SYSTEM_DO_CLOSE$LONGINT
-	jmp	Lj16302
-Lj16305:
-	jmp	Lj16302
-Lj16303:
+	jmp	Lj15855
+Lj15858:
+	jmp	Lj15855
+Lj15856:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16310
+	je	Lj15863
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj16311
-Lj16310:
+	jmp	Lj15864
+Lj15863:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16311:
+Lj15864:
 	movw	$102,(%eax)
-	jmp	Lj16296
-Lj16302:
-Lj16301:
+	jmp	Lj15847
+Lj15855:
+Lj15854:
 	movl	-4(%ebp),%eax
 	movl	$-1,(%eax)
-	movl	$0,-20(%ebp)
-	movl	$0,-24(%ebp)
+	movl	$0,-16(%ebp)
 	movl	-12(%ebp),%eax
-	andl	$255,%eax
-	andl	$-9,%eax
-	movl	%eax,-28(%ebp)
-	movl	-28(%ebp),%eax
-	andl	$112,%eax
-	testl	%eax,%eax
-	je	Lj16320
-	jmp	Lj16321
-Lj16320:
-	movl	-28(%ebp),%eax
-	orl	$64,%eax
-	movl	%eax,-28(%ebp)
-Lj16321:
-	movl	-28(%ebp),%eax
 	andl	$3,%eax
 	testl	%eax,%eax
-	je	Lj16326
+	jl	Lj15870
+	testl	%eax,%eax
+	je	Lj15871
 	decl	%eax
-	je	Lj16327
+	je	Lj15872
 	decl	%eax
-	je	Lj16328
-	jmp	Lj16325
-Lj16326:
+	je	Lj15873
+	jmp	Lj15870
+Lj15871:
 	movl	-4(%ebp),%eax
 	movl	$55217,4(%eax)
-	jmp	Lj16324
-Lj16327:
+	jmp	Lj15869
+Lj15872:
 	movl	-4(%ebp),%eax
 	movl	$55218,4(%eax)
-	jmp	Lj16324
-Lj16328:
+	jmp	Lj15869
+Lj15873:
 	movl	-4(%ebp),%eax
 	movl	$55219,4(%eax)
-	jmp	Lj16324
-Lj16325:
-Lj16324:
+	jmp	Lj15869
+Lj15870:
+Lj15869:
 	movl	-12(%ebp),%eax
 	andl	$4096,%eax
 	testl	%eax,%eax
-	jne	Lj16335
-	jmp	Lj16336
-Lj16335:
-	movl	-24(%ebp),%eax
-	orl	$2,%eax
-	orl	$16,%eax
-	movl	%eax,-24(%ebp)
-	jmp	Lj16339
-Lj16336:
-	movl	-24(%ebp),%eax
-	orl	$1,%eax
-	movl	%eax,-24(%ebp)
-Lj16339:
+	jne	Lj15880
+	jmp	Lj15881
+Lj15880:
+	movl	$327680,-16(%ebp)
+Lj15881:
 	movl	-8(%ebp),%eax
 	movb	(%eax),%al
 	testb	%al,%al
-	je	Lj16342
-	jmp	Lj16343
-Lj16342:
+	je	Lj15884
+	jmp	Lj15885
+Lj15884:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55217,%eax
-	jl	Lj16345
+	jl	Lj15887
 	subl	$55217,%eax
-	je	Lj16346
+	je	Lj15888
 	decl	%eax
-	jl	Lj16345
+	jl	Lj15887
 	subl	$1,%eax
-	jle	Lj16347
+	jle	Lj15889
 	decl	%eax
-	je	Lj16348
-	jmp	Lj16345
-Lj16346:
+	je	Lj15890
+	jmp	Lj15887
+Lj15888:
 	movl	-4(%ebp),%eax
 	movl	$0,(%eax)
-	jmp	Lj16344
-Lj16347:
+	jmp	Lj15886
+Lj15889:
 	movl	-4(%ebp),%eax
 	movl	$1,(%eax)
-	jmp	Lj16344
-Lj16348:
+	jmp	Lj15886
+Lj15890:
 	movl	-4(%ebp),%eax
 	movl	$1,(%eax)
 	movl	-4(%ebp),%eax
 	movl	$55218,4(%eax)
-	jmp	Lj16344
-Lj16345:
-Lj16344:
-	jmp	Lj16296
-Lj16343:
-	movl	$32,-20(%ebp)
-	pushl	$0
-	pushl	-28(%ebp)
-	pushl	-24(%ebp)
-	pushl	-20(%ebp)
-	pushl	$0
-	pushl	$0
-	leal	-16(%ebp),%eax
-	pushl	%eax
-	movl	-4(%ebp),%eax
-	pushl	%eax
-	pushl	-8(%ebp)
-	movl	TC_SYSTEM_SYS_DOSOPENL,%eax
-	call	*%eax
-	addl	$36,%esp
-	movl	%eax,%ebx
+	jmp	Lj15886
+Lj15887:
+Lj15886:
+	jmp	Lj15847
+Lj15885:
+	movl	-12(%ebp),%edx
+	andl	$255,%edx
+	movl	-16(%ebp),%eax
+	orl	%eax,%edx
+	movl	%edx,-16(%ebp)
+	movl	-12(%ebp),%eax
+	andl	$112,%eax
+	testl	%eax,%eax
+	je	Lj15901
+	jmp	Lj15902
+Lj15901:
+	movl	-16(%ebp),%eax
+	orl	$64,%eax
+	movl	%eax,-16(%ebp)
+Lj15902:
+	pushl	%ebx
+	movl	$32555,%eax
+	movl	-16(%ebp),%ecx
+	movl	-8(%ebp),%edx
+	call	___SYSCALL
+	cmpl	$-1,%eax
+	jnz	Lj15849
+	movw	%cx,U_SYSTEM_INOUTRES
+	movl	$-1,%eax
+Lj15849:
+	movl	-4(%ebp),%edx
+	movl	%eax,(%edx)
+	popl	%ebx
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16377
+	je	Lj15908
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj16378
-Lj16377:
+	jmp	Lj15909
+Lj15908:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16378:
-	movw	%bx,(%eax)
-	movl	FPC_THREADVAR_RELOCATE,%edx
-	testl	%edx,%edx
-	je	Lj16381
-	movl	U_SYSTEM_INOUTRES,%eax
-	call	*%edx
-	jmp	Lj16382
-Lj16381:
-	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16382:
+Lj15909:
 	movzwl	(%eax),%eax
 	cmpl	$4,%eax
-	je	Lj16379
-	jmp	Lj16380
-Lj16379:
+	je	Lj15907
+	jmp	Lj15906
+Lj15907:
 	call	SYSTEM_INCREASE_FILE_HANDLE_COUNT$$BOOLEAN
 	testb	%al,%al
-	jne	Lj16383
-	jmp	Lj16384
-Lj16383:
-	pushl	$0
-	pushl	-28(%ebp)
-	pushl	-24(%ebp)
-	pushl	-20(%ebp)
-	pushl	$0
-	pushl	$0
-	leal	-16(%ebp),%eax
-	pushl	%eax
-	movl	-4(%ebp),%eax
-	pushl	%eax
-	pushl	-8(%ebp)
-	movl	TC_SYSTEM_SYS_DOSOPENL,%eax
-	call	*%eax
-	addl	$36,%esp
-	movl	%eax,%ebx
-	movl	FPC_THREADVAR_RELOCATE,%edx
-	testl	%edx,%edx
-	je	Lj16403
-	movl	U_SYSTEM_INOUTRES,%eax
-	call	*%edx
-	jmp	Lj16404
-Lj16403:
-	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16404:
-	movw	%bx,(%eax)
-Lj16384:
-Lj16380:
-	movl	FPC_THREADVAR_RELOCATE,%edx
-	testl	%edx,%edx
-	je	Lj16407
-	movl	U_SYSTEM_INOUTRES,%eax
-	call	*%edx
-	jmp	Lj16408
-Lj16407:
-	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16408:
-	movzwl	(%eax),%eax
-	testl	%eax,%eax
-	jne	Lj16405
-	jmp	Lj16406
-Lj16405:
-	movl	-4(%ebp),%eax
-	movl	$-1,(%eax)
-Lj16406:
+	jne	Lj15905
+	jmp	Lj15906
+Lj15905:
+	pushl	%ebx
+	movl	$32555,%eax
+	movl	-16(%ebp),%ecx
+	movl	-8(%ebp),%edx
+	call	___SYSCALL
+	cmpl	$-1,%eax
+	jnz	Lj15850
+	movw	%cx,U_SYSTEM_INOUTRES
+	movl	$-1,%eax
+Lj15850:
+	movl	-4(%ebp),%edx
+	movl	%eax,(%edx)
+	popl	%ebx
+Lj15906:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	cmpl	$-1,%eax
-	jne	Lj16411
-	jmp	Lj16412
-Lj16411:
+	jne	Lj15910
+	jmp	Lj15911
+Lj15910:
+	movl	-4(%ebp),%eax
+	movl	(%eax),%edx
+	movl	%edx,%eax
+	sarl	$31,%eax
+	movl	TC_SYSTEM_FILEHANDLECOUNT,%ecx
+	movl	$0,%ebx
+	cmpl	%ebx,%eax
+	jg	Lj15912
+	jl	Lj15913
+	cmpl	%ecx,%edx
+	ja	Lj15912
+	jmp	Lj15913
+Lj15912:
+	movl	-4(%ebp),%eax
+	movl	(%eax),%eax
+	movl	%eax,TC_SYSTEM_FILEHANDLECOUNT
+Lj15913:
 	movl	-12(%ebp),%eax
 	andl	$256,%eax
 	testl	%eax,%eax
-	jne	Lj16413
-	jmp	Lj16414
-Lj16413:
+	jne	Lj15916
+	jmp	Lj15917
+Lj15916:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
-	call	SYSTEM_DO_SEEKEND$LONGINT$$INT64
+	call	SYSTEM_DO_SEEKEND$LONGINT$$LONGINT
 	movl	-4(%ebp),%eax
 	movl	$55218,4(%eax)
-Lj16414:
-Lj16412:
-Lj16296:
-	movl	-32(%ebp),%ebx
+Lj15917:
+Lj15911:
+Lj15847:
+	movl	-20(%ebp),%ebx
 	leave
 	ret
 
@@ -40457,31 +39715,18 @@ Lj16296:
 SYSTEM_DO_ISDEVICE$LONGINT$$BOOLEAN:
 	pushl	%ebp
 	movl	%esp,%ebp
-	subl	$16,%esp
-	movl	%eax,-4(%ebp)
-	movb	$0,-5(%ebp)
-	leal	-16(%ebp),%eax
-	pushl	%eax
-	leal	-12(%ebp),%eax
-	pushl	%eax
-	pushl	-4(%ebp)
-	call	_$dll$doscalls$_index_224
-	addl	$12,%esp
-	testl	%eax,%eax
-	jne	Lj16423
-	jmp	Lj16424
-Lj16423:
-	jmp	Lj16419
-Lj16424:
-	movl	-12(%ebp),%eax
-	cmpl	$1,%eax
-	je	Lj16431
-	jmp	Lj16432
-Lj16431:
-	movb	$1,-5(%ebp)
-Lj16432:
-Lj16419:
-	movb	-5(%ebp),%al
+	subl	$1,%esp
+	pushl	%ebx
+	movl	%eax,%ebx
+	movl	$17408,%eax
+	call	___SYSCALL
+	movl	$1,%eax
+	jc	Lj15924
+	testl	$128,%edx
+	jnz	Lj15924
+	decl	%eax
+Lj15924:
+	popl	%ebx
 	leave
 	ret
 
@@ -40531,11 +39776,11 @@ SYSTEM_FILEWRITEFUNC$TEXTREC:
 	movl	-4(%ebp),%eax
 	movl	16(%eax),%eax
 	testl	%eax,%eax
-	je	Lj16455
-	jmp	Lj16456
-Lj16455:
-	jmp	Lj16453
-Lj16456:
+	je	Lj15945
+	jmp	Lj15946
+Lj15945:
+	jmp	Lj15943
+Lj15946:
 	movl	-4(%ebp),%eax
 	movl	16(%eax),%ecx
 	movl	-4(%ebp),%eax
@@ -40547,23 +39792,23 @@ Lj16456:
 	movl	-4(%ebp),%eax
 	movl	-8(%ebp),%edx
 	cmpl	16(%eax),%edx
-	jne	Lj16465
-	jmp	Lj16466
-Lj16465:
+	jne	Lj15955
+	jmp	Lj15956
+Lj15955:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16469
+	je	Lj15959
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj16470
-Lj16469:
+	jmp	Lj15960
+Lj15959:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16470:
+Lj15960:
 	movw	$101,(%eax)
-Lj16466:
+Lj15956:
 	movl	-4(%ebp),%eax
 	movl	$0,16(%eax)
-Lj16453:
+Lj15943:
 	leave
 	ret
 
@@ -40577,36 +39822,36 @@ SYSTEM_FILEOPENFUNC$TEXTREC:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55217,%eax
-	jl	Lj16476
+	jl	Lj15966
 	subl	$55217,%eax
-	je	Lj16477
+	je	Lj15967
 	decl	%eax
-	je	Lj16478
+	je	Lj15968
 	subl	$2,%eax
-	je	Lj16479
-	jmp	Lj16476
-Lj16477:
+	je	Lj15969
+	jmp	Lj15966
+Lj15967:
 	movl	$65536,-8(%ebp)
-	jmp	Lj16475
-Lj16478:
+	jmp	Lj15965
+Lj15968:
 	movl	$69633,-8(%ebp)
-	jmp	Lj16475
-Lj16479:
+	jmp	Lj15965
+Lj15969:
 	movl	$65793,-8(%ebp)
-	jmp	Lj16475
-Lj16476:
+	jmp	Lj15965
+Lj15966:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16488
+	je	Lj15978
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj16489
-Lj16488:
+	jmp	Lj15979
+Lj15978:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16489:
+Lj15979:
 	movw	$102,(%eax)
-	jmp	Lj16473
-Lj16475:
+	jmp	Lj15963
+Lj15965:
 	movl	-4(%ebp),%eax
 	leal	76(%eax),%edx
 	movl	-8(%ebp),%ecx
@@ -40620,44 +39865,44 @@ Lj16475:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55217,%eax
-	je	Lj16500
-	jmp	Lj16501
-Lj16500:
+	je	Lj15990
+	jmp	Lj15991
+Lj15990:
 	movl	$SYSTEM_FILEREADFUNC$TEXTREC,%eax
 	movl	-4(%ebp),%edx
 	movl	%eax,32(%edx)
-	jmp	Lj16504
-Lj16501:
+	jmp	Lj15994
+Lj15991:
 	movl	$SYSTEM_FILEWRITEFUNC$TEXTREC,%edx
 	movl	-4(%ebp),%eax
 	movl	%edx,32(%eax)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16510
+	je	Lj16000
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj16511
-Lj16510:
+	jmp	Lj16001
+Lj16000:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16511:
+Lj16001:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj16509
-	jmp	Lj16508
-Lj16509:
+	je	Lj15999
+	jmp	Lj15998
+Lj15999:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	call	SYSTEM_DO_ISDEVICE$LONGINT$$BOOLEAN
 	testb	%al,%al
-	jne	Lj16507
-	jmp	Lj16508
-Lj16507:
+	jne	Lj15997
+	jmp	Lj15998
+Lj15997:
 	movl	$SYSTEM_FILEWRITEFUNC$TEXTREC,%eax
 	movl	-4(%ebp),%edx
 	movl	%eax,36(%edx)
-Lj16508:
-Lj16504:
-Lj16473:
+Lj15998:
+Lj15994:
+Lj15963:
 	leave
 	ret
 
@@ -40689,29 +39934,29 @@ SYSTEM_ASSIGN$TEXT$SHORTSTRING:
 	movl	%eax,28(%edx)
 	movl	TC_SYSTEM_DEFAULTTEXTLINEBREAKSTYLE,%eax
 	testl	%eax,%eax
-	je	Lj16536
+	je	Lj16026
 	decl	%eax
-	je	Lj16537
+	je	Lj16027
 	decl	%eax
-	je	Lj16538
-	jmp	Lj16535
-Lj16536:
+	je	Lj16028
+	jmp	Lj16025
+Lj16026:
 	movl	-4(%ebp),%eax
 	movw	$2561,332(%eax)
-	jmp	Lj16534
-Lj16537:
+	jmp	Lj16024
+Lj16027:
 	movl	-4(%ebp),%eax
 	leal	332(%eax),%eax
-	movl	$_$SYSTEM$_Ld37,%ecx
+	movl	$_$SYSTEM$_Ld38,%ecx
 	movl	$3,%edx
 	call	fpc_shortstr_to_shortstr
-	jmp	Lj16534
-Lj16538:
+	jmp	Lj16024
+Lj16028:
 	movl	-4(%ebp),%eax
 	movw	$3329,332(%eax)
-	jmp	Lj16534
-Lj16535:
-Lj16534:
+	jmp	Lj16024
+Lj16025:
+Lj16024:
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%ecx
 	movl	-4(%ebp),%eax
@@ -40770,85 +40015,85 @@ SYSTEM_CLOSE$TEXT:
 	movl	%eax,-4(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16577
+	je	Lj16067
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj16578
-Lj16577:
+	jmp	Lj16068
+Lj16067:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16578:
+Lj16068:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj16575
-	jmp	Lj16576
-Lj16575:
-	jmp	Lj16573
-Lj16576:
+	jne	Lj16065
+	jmp	Lj16066
+Lj16065:
+	jmp	Lj16063
+Lj16066:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55217,%eax
-	jl	Lj16580
+	jl	Lj16070
 	subl	$55217,%eax
 	subl	$1,%eax
-	jle	Lj16581
+	jle	Lj16071
 	subl	$2,%eax
-	je	Lj16581
-	jmp	Lj16580
-Lj16581:
+	je	Lj16071
+	jmp	Lj16070
+Lj16071:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55218,%eax
-	je	Lj16582
-	jmp	Lj16583
-Lj16582:
+	je	Lj16072
+	jmp	Lj16073
+Lj16072:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	32(%edx),%edx
 	call	*%edx
-Lj16583:
+Lj16073:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj16589
-	jmp	Lj16587
-Lj16589:
+	jne	Lj16079
+	jmp	Lj16077
+Lj16079:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	cmpl	$1,%eax
-	jne	Lj16588
-	jmp	Lj16587
-Lj16588:
+	jne	Lj16078
+	jmp	Lj16077
+Lj16078:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	cmpl	$2,%eax
-	jne	Lj16586
-	jmp	Lj16587
-Lj16586:
+	jne	Lj16076
+	jmp	Lj16077
+Lj16076:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	40(%edx),%edx
 	call	*%edx
-Lj16587:
+Lj16077:
 	movl	-4(%ebp),%eax
 	movl	$55216,4(%eax)
 	movl	-4(%ebp),%eax
 	movl	$0,16(%eax)
 	movl	-4(%ebp),%eax
 	movl	$0,20(%eax)
-	jmp	Lj16579
-Lj16580:
+	jmp	Lj16069
+Lj16070:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16600
+	je	Lj16090
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj16601
-Lj16600:
+	jmp	Lj16091
+Lj16090:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16601:
+Lj16091:
 	movw	$103,(%eax)
-Lj16579:
-Lj16573:
+Lj16069:
+Lj16063:
 	leave
 	ret
 
@@ -40864,33 +40109,33 @@ SYSTEM_OPENTEXT$TEXT$LONGINT$LONGINT:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55216,%eax
-	jl	Lj16605
+	jl	Lj16095
 	subl	$55216,%eax
-	je	Lj16607
+	je	Lj16097
 	decl	%eax
-	jl	Lj16605
+	jl	Lj16095
 	subl	$2,%eax
-	jle	Lj16606
-	jmp	Lj16605
-Lj16606:
+	jle	Lj16096
+	jmp	Lj16095
+Lj16096:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_CLOSE$TEXT
-	jmp	Lj16604
-Lj16607:
-	jmp	Lj16604
-Lj16605:
+	jmp	Lj16094
+Lj16097:
+	jmp	Lj16094
+Lj16095:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16612
+	je	Lj16102
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj16613
-Lj16612:
+	jmp	Lj16103
+Lj16102:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16613:
+Lj16103:
 	movw	$102,(%eax)
-	jmp	Lj16602
-Lj16604:
+	jmp	Lj16092
+Lj16094:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movl	%eax,4(%edx)
@@ -40904,22 +40149,22 @@ Lj16604:
 	call	*%edx
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16624
+	je	Lj16114
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj16625
-Lj16624:
+	jmp	Lj16115
+Lj16114:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16625:
+Lj16115:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj16622
-	jmp	Lj16623
-Lj16622:
+	jne	Lj16112
+	jmp	Lj16113
+Lj16112:
 	movl	-4(%ebp),%eax
 	movl	$55216,4(%eax)
-Lj16623:
-Lj16602:
+Lj16113:
+Lj16092:
 	leave
 	ret
 
@@ -40933,25 +40178,25 @@ SYSTEM_REWRITE$TEXT:
 	movl	%eax,-4(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16632
+	je	Lj16122
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj16633
-Lj16632:
+	jmp	Lj16123
+Lj16122:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16633:
+Lj16123:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj16630
-	jmp	Lj16631
-Lj16630:
-	jmp	Lj16628
-Lj16631:
+	jne	Lj16120
+	jmp	Lj16121
+Lj16120:
+	jmp	Lj16118
+Lj16121:
 	movl	-4(%ebp),%eax
 	movl	$1,%ecx
 	movl	$55218,%edx
 	call	SYSTEM_OPENTEXT$TEXT$LONGINT$LONGINT
-Lj16628:
+Lj16118:
 	leave
 	ret
 
@@ -40965,25 +40210,25 @@ SYSTEM_RESET$TEXT:
 	movl	%eax,-4(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16644
+	je	Lj16134
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj16645
-Lj16644:
+	jmp	Lj16135
+Lj16134:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16645:
+Lj16135:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj16642
-	jmp	Lj16643
-Lj16642:
-	jmp	Lj16640
-Lj16643:
+	jne	Lj16132
+	jmp	Lj16133
+Lj16132:
+	jmp	Lj16130
+Lj16133:
 	movl	-4(%ebp),%eax
 	movl	$0,%ecx
 	movl	$55217,%edx
 	call	SYSTEM_OPENTEXT$TEXT$LONGINT$LONGINT
-Lj16640:
+Lj16130:
 	leave
 	ret
 
@@ -40997,25 +40242,25 @@ SYSTEM_APPEND$TEXT:
 	movl	%eax,-4(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16656
+	je	Lj16146
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj16657
-Lj16656:
+	jmp	Lj16147
+Lj16146:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16657:
+Lj16147:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj16654
-	jmp	Lj16655
-Lj16654:
-	jmp	Lj16652
-Lj16655:
+	jne	Lj16144
+	jmp	Lj16145
+Lj16144:
+	jmp	Lj16142
+Lj16145:
 	movl	-4(%ebp),%eax
 	movl	$1,%ecx
 	movl	$55220,%edx
 	call	SYSTEM_OPENTEXT$TEXT$LONGINT$LONGINT
-Lj16652:
+Lj16142:
 	leave
 	ret
 
@@ -41029,62 +40274,62 @@ SYSTEM_FLUSH$TEXT:
 	movl	%eax,-4(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16668
+	je	Lj16158
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj16669
-Lj16668:
+	jmp	Lj16159
+Lj16158:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16669:
+Lj16159:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj16666
-	jmp	Lj16667
-Lj16666:
-	jmp	Lj16664
-Lj16667:
+	jne	Lj16156
+	jmp	Lj16157
+Lj16156:
+	jmp	Lj16154
+Lj16157:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55218,%eax
-	jne	Lj16670
-	jmp	Lj16671
-Lj16670:
+	jne	Lj16160
+	jmp	Lj16161
+Lj16160:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55217,%eax
-	je	Lj16672
-	jmp	Lj16673
-Lj16672:
+	je	Lj16162
+	jmp	Lj16163
+Lj16162:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16676
+	je	Lj16166
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj16677
-Lj16676:
+	jmp	Lj16167
+Lj16166:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16677:
+Lj16167:
 	movw	$105,(%eax)
-	jmp	Lj16678
-Lj16673:
+	jmp	Lj16168
+Lj16163:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16681
+	je	Lj16171
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj16682
-Lj16681:
+	jmp	Lj16172
+Lj16171:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16682:
+Lj16172:
 	movw	$103,(%eax)
-Lj16678:
-	jmp	Lj16664
-Lj16671:
+Lj16168:
+	jmp	Lj16154
+Lj16161:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	32(%edx),%edx
 	call	*%edx
-Lj16664:
+Lj16154:
 	leave
 	ret
 
@@ -41098,31 +40343,31 @@ SYSTEM_ERASE$TEXT:
 	movl	%eax,-4(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16689
+	je	Lj16179
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj16690
-Lj16689:
+	jmp	Lj16180
+Lj16179:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16690:
+Lj16180:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj16687
-	jmp	Lj16688
-Lj16687:
-	jmp	Lj16685
-Lj16688:
+	jne	Lj16177
+	jmp	Lj16178
+Lj16177:
+	jmp	Lj16175
+Lj16178:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55216,%eax
-	je	Lj16691
-	jmp	Lj16692
-Lj16691:
+	je	Lj16181
+	jmp	Lj16182
+Lj16181:
 	movl	-4(%ebp),%eax
 	leal	76(%eax),%eax
 	call	SYSTEM_DO_ERASE$PCHAR
-Lj16692:
-Lj16685:
+Lj16182:
+Lj16175:
 	leave
 	ret
 
@@ -41137,44 +40382,44 @@ SYSTEM_RENAME$TEXT$PCHAR:
 	movl	%edx,-8(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16699
+	je	Lj16189
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj16700
-Lj16699:
+	jmp	Lj16190
+Lj16189:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16700:
+Lj16190:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj16697
-	jmp	Lj16698
-Lj16697:
-	jmp	Lj16695
-Lj16698:
+	jne	Lj16187
+	jmp	Lj16188
+Lj16187:
+	jmp	Lj16185
+Lj16188:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55216,%eax
-	je	Lj16701
-	jmp	Lj16702
-Lj16701:
+	je	Lj16191
+	jmp	Lj16192
+Lj16191:
 	movl	-4(%ebp),%eax
 	leal	76(%eax),%eax
 	movl	-8(%ebp),%edx
 	call	SYSTEM_DO_RENAME$PCHAR$PCHAR
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16709
+	je	Lj16199
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj16710
-Lj16709:
+	jmp	Lj16200
+Lj16199:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16710:
+Lj16200:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj16707
-	jmp	Lj16708
-Lj16707:
+	je	Lj16197
+	jmp	Lj16198
+Lj16197:
 	movl	-8(%ebp),%eax
 	call	FPC_PCHAR_LENGTH
 	movl	%eax,%ecx
@@ -41183,9 +40428,9 @@ Lj16707:
 	movl	-4(%ebp),%edx
 	leal	76(%edx),%edx
 	call	SYSTEM_MOVE$formal$formal$LONGINT
-Lj16708:
-Lj16702:
-Lj16695:
+Lj16198:
+Lj16192:
+Lj16185:
 	leave
 	ret
 
@@ -41200,20 +40445,20 @@ SYSTEM_RENAME$TEXT$SHORTSTRING:
 	movl	%edx,-8(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16723
+	je	Lj16213
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj16724
-Lj16723:
+	jmp	Lj16214
+Lj16213:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16724:
+Lj16214:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj16721
-	jmp	Lj16722
-Lj16721:
-	jmp	Lj16719
-Lj16722:
+	jne	Lj16211
+	jmp	Lj16212
+Lj16211:
+	jmp	Lj16209
+Lj16212:
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%ecx
 	leal	-264(%ebp),%edx
@@ -41226,7 +40471,7 @@ Lj16722:
 	leal	-264(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_RENAME$TEXT$PCHAR
-Lj16719:
+Lj16209:
 	leave
 	ret
 
@@ -41241,27 +40486,27 @@ SYSTEM_RENAME$TEXT$CHAR:
 	movb	%dl,-8(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16741
+	je	Lj16231
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj16742
-Lj16741:
+	jmp	Lj16232
+Lj16231:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16742:
+Lj16232:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj16739
-	jmp	Lj16740
-Lj16739:
-	jmp	Lj16737
-Lj16740:
+	jne	Lj16229
+	jmp	Lj16230
+Lj16229:
+	jmp	Lj16227
+Lj16230:
 	movb	-8(%ebp),%al
 	movb	%al,-10(%ebp)
 	movb	$0,-9(%ebp)
 	leal	-10(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_RENAME$TEXT$PCHAR
-Lj16737:
+Lj16227:
 	leave
 	ret
 
@@ -41275,66 +40520,66 @@ SYSTEM_EOF$TEXT$$BOOLEAN:
 	movl	%eax,-4(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16755
+	je	Lj16245
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj16756
-Lj16755:
+	jmp	Lj16246
+Lj16245:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16756:
+Lj16246:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj16753
-	jmp	Lj16754
-Lj16753:
+	jne	Lj16243
+	jmp	Lj16244
+Lj16243:
 	movb	$1,-5(%ebp)
-	jmp	Lj16751
-Lj16754:
+	jmp	Lj16241
+Lj16244:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55217,%eax
-	jne	Lj16759
-	jmp	Lj16760
-Lj16759:
+	jne	Lj16249
+	jmp	Lj16250
+Lj16249:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55218,%eax
-	je	Lj16761
-	jmp	Lj16762
-Lj16761:
+	je	Lj16251
+	jmp	Lj16252
+Lj16251:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16765
+	je	Lj16255
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj16766
-Lj16765:
+	jmp	Lj16256
+Lj16255:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16766:
+Lj16256:
 	movw	$104,(%eax)
-	jmp	Lj16767
-Lj16762:
+	jmp	Lj16257
+Lj16252:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16770
+	je	Lj16260
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj16771
-Lj16770:
+	jmp	Lj16261
+Lj16260:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16771:
+Lj16261:
 	movw	$103,(%eax)
-Lj16767:
+Lj16257:
 	movb	$1,-5(%ebp)
-	jmp	Lj16751
-Lj16760:
+	jmp	Lj16241
+Lj16250:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	16(%eax),%eax
 	cmpl	20(%edx),%eax
-	jge	Lj16774
-	jmp	Lj16775
-Lj16774:
+	jge	Lj16264
+	jmp	Lj16265
+Lj16264:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	32(%edx),%edx
@@ -41343,32 +40588,32 @@ Lj16774:
 	movl	-4(%ebp),%edx
 	movl	16(%eax),%eax
 	cmpl	20(%edx),%eax
-	jge	Lj16778
-	jmp	Lj16779
-Lj16778:
+	jge	Lj16268
+	jmp	Lj16269
+Lj16268:
 	movb	$1,-5(%ebp)
-	jmp	Lj16751
-Lj16779:
-Lj16775:
+	jmp	Lj16241
+Lj16269:
+Lj16265:
 	cmpb	$0,TC_SYSTEM_CTRLZMARKSEOF
-	jne	Lj16784
-	jmp	Lj16783
-Lj16784:
+	jne	Lj16274
+	jmp	Lj16273
+Lj16274:
 	movl	-4(%ebp),%eax
 	movl	24(%eax),%edx
 	movl	-4(%ebp),%eax
 	movl	16(%eax),%eax
 	movb	(%edx,%eax,1),%al
 	cmpb	$26,%al
-	je	Lj16782
-	jmp	Lj16783
-Lj16782:
+	je	Lj16272
+	jmp	Lj16273
+Lj16272:
 	movb	$1,-5(%ebp)
-	jmp	Lj16785
-Lj16783:
+	jmp	Lj16275
+Lj16273:
 	movb	$0,-5(%ebp)
-Lj16785:
-Lj16751:
+Lj16275:
+Lj16241:
 	movb	-5(%ebp),%al
 	leave
 	ret
@@ -41382,13 +40627,13 @@ SYSTEM_EOF$$BOOLEAN:
 	subl	$1,%esp
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16792
+	je	Lj16282
 	movl	U_SYSTEM_INPUT,%eax
 	call	*%edx
-	jmp	Lj16793
-Lj16792:
+	jmp	Lj16283
+Lj16282:
 	movl	$U_SYSTEM_INPUT+4,%eax
-Lj16793:
+Lj16283:
 	call	SYSTEM_EOF$TEXT$$BOOLEAN
 	movb	%al,-1(%ebp)
 	movb	-1(%ebp),%al
@@ -41401,64 +40646,63 @@ Lj16793:
 SYSTEM_SEEKEOF$TEXT$$BOOLEAN:
 	pushl	%ebp
 	movl	%esp,%ebp
-	subl	$36,%esp
-	movl	%ebx,-36(%ebp)
+	subl	$29,%esp
 	movl	%eax,-4(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16798
+	je	Lj16288
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj16799
-Lj16798:
+	jmp	Lj16289
+Lj16288:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16799:
+Lj16289:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj16796
-	jmp	Lj16797
-Lj16796:
+	jne	Lj16286
+	jmp	Lj16287
+Lj16286:
 	movb	$1,-5(%ebp)
-	jmp	Lj16794
-Lj16797:
+	jmp	Lj16284
+Lj16287:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55217,%eax
-	jne	Lj16802
-	jmp	Lj16803
-Lj16802:
+	jne	Lj16292
+	jmp	Lj16293
+Lj16292:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55218,%eax
-	je	Lj16804
-	jmp	Lj16805
-Lj16804:
+	je	Lj16294
+	jmp	Lj16295
+Lj16294:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16808
+	je	Lj16298
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj16809
-Lj16808:
+	jmp	Lj16299
+Lj16298:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16809:
+Lj16299:
 	movw	$104,(%eax)
-	jmp	Lj16810
-Lj16805:
+	jmp	Lj16300
+Lj16295:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16813
+	je	Lj16303
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj16814
-Lj16813:
+	jmp	Lj16304
+Lj16303:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16814:
+Lj16304:
 	movw	$103,(%eax)
-Lj16810:
+Lj16300:
 	movb	$1,-5(%ebp)
-	jmp	Lj16794
-Lj16803:
+	jmp	Lj16284
+Lj16293:
 	movl	-4(%ebp),%eax
 	movl	16(%eax),%eax
 	movl	%eax,-20(%ebp)
@@ -41473,47 +40717,46 @@ Lj16803:
 	call	SYSTEM_DO_ISDEVICE$LONGINT$$BOOLEAN
 	movb	%al,-29(%ebp)
 	.balign 4,0x90
-Lj16829:
+Lj16319:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	16(%eax),%eax
 	cmpl	20(%edx),%eax
-	jge	Lj16832
-	jmp	Lj16833
-Lj16832:
+	jge	Lj16322
+	jmp	Lj16323
+Lj16322:
 	incl	-28(%ebp)
 	movb	-29(%ebp),%al
 	testb	%al,%al
-	je	Lj16836
-	jmp	Lj16835
-Lj16836:
+	je	Lj16326
+	jmp	Lj16325
+Lj16326:
 	movl	-28(%ebp),%eax
 	cmpl	$1,%eax
-	je	Lj16834
-	jmp	Lj16835
-Lj16834:
+	je	Lj16324
+	jmp	Lj16325
+Lj16324:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
-	call	SYSTEM_DO_FILEPOS$LONGINT$$INT64
-	movl	-4(%ebp),%ecx
-	movl	20(%ecx),%ebx
-	movl	%ebx,%ecx
-	sarl	$31,%ecx
-	subl	%ebx,%eax
-	sbbl	%ecx,%edx
+	call	SYSTEM_DO_FILEPOS$LONGINT$$LONGINT
+	movl	-4(%ebp),%edx
+	movl	20(%edx),%edx
+	subl	%edx,%eax
+	movl	%eax,%edx
+	sarl	$31,%edx
 	movl	%eax,-16(%ebp)
 	movl	%edx,-12(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16843
+	je	Lj16333
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj16844
-Lj16843:
+	jmp	Lj16334
+Lj16333:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16844:
+Lj16334:
 	movw	$0,(%eax)
-Lj16835:
+Lj16325:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	32(%edx),%edx
@@ -41522,82 +40765,81 @@ Lj16835:
 	movl	-4(%ebp),%edx
 	movl	16(%eax),%eax
 	cmpl	20(%edx),%eax
-	jge	Lj16847
-	jmp	Lj16848
-Lj16847:
+	jge	Lj16337
+	jmp	Lj16338
+Lj16337:
 	decl	-28(%ebp)
 	movb	$1,-5(%ebp)
-	jmp	Lj16831
-Lj16848:
-Lj16833:
+	jmp	Lj16321
+Lj16338:
+Lj16323:
 	movl	-4(%ebp),%eax
 	movl	24(%eax),%edx
 	movl	-4(%ebp),%eax
 	movl	16(%eax),%eax
 	movb	(%edx,%eax,1),%al
 	cmpb	$9,%al
-	jb	Lj16852
+	jb	Lj16342
 	subb	$9,%al
 	subb	$1,%al
-	jbe	Lj16854
+	jbe	Lj16344
 	subb	$3,%al
-	je	Lj16854
+	je	Lj16344
 	subb	$13,%al
-	je	Lj16853
+	je	Lj16343
 	subb	$6,%al
-	je	Lj16854
-	jmp	Lj16852
-Lj16853:
+	je	Lj16344
+	jmp	Lj16342
+Lj16343:
 	cmpb	$0,TC_SYSTEM_CTRLZMARKSEOF
-	jne	Lj16855
-	jmp	Lj16856
-Lj16855:
+	jne	Lj16345
+	jmp	Lj16346
+Lj16345:
 	movb	$1,-5(%ebp)
-	jmp	Lj16831
-Lj16856:
-	jmp	Lj16851
-Lj16854:
-	jmp	Lj16851
-Lj16852:
+	jmp	Lj16321
+Lj16346:
+	jmp	Lj16341
+Lj16344:
+	jmp	Lj16341
+Lj16342:
 	movb	$0,-5(%ebp)
-	jmp	Lj16831
-Lj16851:
+	jmp	Lj16321
+Lj16341:
 	movl	-4(%ebp),%eax
 	incl	16(%eax)
-	jmp	Lj16829
-Lj16831:
+	jmp	Lj16319
+Lj16321:
 	movb	-29(%ebp),%al
 	testb	%al,%al
-	je	Lj16861
-	jmp	Lj16862
-Lj16861:
+	je	Lj16351
+	jmp	Lj16352
+Lj16351:
 	movl	-28(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj16863
-	jmp	Lj16864
-Lj16863:
-	movl	-4(%ebp),%edx
-	movl	-20(%ebp),%eax
-	movl	%eax,16(%edx)
+	je	Lj16353
+	jmp	Lj16354
+Lj16353:
 	movl	-4(%ebp),%eax
-	movl	-24(%ebp),%edx
-	movl	%edx,20(%eax)
-	jmp	Lj16869
-Lj16864:
-	pushl	-12(%ebp)
-	pushl	-16(%ebp)
+	movl	-20(%ebp),%edx
+	movl	%edx,16(%eax)
+	movl	-4(%ebp),%edx
+	movl	-24(%ebp),%eax
+	movl	%eax,20(%edx)
+	jmp	Lj16359
+Lj16354:
+	movl	-16(%ebp),%edx
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
-	call	SYSTEM_DO_SEEK$LONGINT$INT64
+	call	SYSTEM_DO_SEEK$LONGINT$LONGINT
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16876
+	je	Lj16366
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj16877
-Lj16876:
+	jmp	Lj16367
+Lj16366:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16877:
+Lj16367:
 	movw	$0,(%eax)
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
@@ -41606,11 +40848,10 @@ Lj16877:
 	movl	-4(%ebp),%edx
 	movl	-20(%ebp),%eax
 	movl	%eax,16(%edx)
-Lj16869:
-Lj16862:
-Lj16794:
+Lj16359:
+Lj16352:
+Lj16284:
 	movb	-5(%ebp),%al
-	movl	-36(%ebp),%ebx
 	leave
 	ret
 
@@ -41623,13 +40864,13 @@ SYSTEM_SEEKEOF$$BOOLEAN:
 	subl	$1,%esp
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16888
+	je	Lj16378
 	movl	U_SYSTEM_INPUT,%eax
 	call	*%edx
-	jmp	Lj16889
-Lj16888:
+	jmp	Lj16379
+Lj16378:
 	movl	$U_SYSTEM_INPUT+4,%eax
-Lj16889:
+Lj16379:
 	call	SYSTEM_SEEKEOF$TEXT$$BOOLEAN
 	movb	%al,-1(%ebp)
 	movb	-1(%ebp),%al
@@ -41646,66 +40887,66 @@ SYSTEM_EOLN$TEXT$$BOOLEAN:
 	movl	%eax,-4(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16894
+	je	Lj16384
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj16895
-Lj16894:
+	jmp	Lj16385
+Lj16384:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16895:
+Lj16385:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj16892
-	jmp	Lj16893
-Lj16892:
+	jne	Lj16382
+	jmp	Lj16383
+Lj16382:
 	movb	$1,-5(%ebp)
-	jmp	Lj16890
-Lj16893:
+	jmp	Lj16380
+Lj16383:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55217,%eax
-	jne	Lj16898
-	jmp	Lj16899
-Lj16898:
+	jne	Lj16388
+	jmp	Lj16389
+Lj16388:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55218,%eax
-	je	Lj16900
-	jmp	Lj16901
-Lj16900:
+	je	Lj16390
+	jmp	Lj16391
+Lj16390:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16904
+	je	Lj16394
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj16905
-Lj16904:
+	jmp	Lj16395
+Lj16394:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16905:
+Lj16395:
 	movw	$104,(%eax)
-	jmp	Lj16906
-Lj16901:
+	jmp	Lj16396
+Lj16391:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16909
+	je	Lj16399
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj16910
-Lj16909:
+	jmp	Lj16400
+Lj16399:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16910:
+Lj16400:
 	movw	$103,(%eax)
-Lj16906:
+Lj16396:
 	movb	$1,-5(%ebp)
-	jmp	Lj16890
-Lj16899:
+	jmp	Lj16380
+Lj16389:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	16(%eax),%eax
 	cmpl	20(%edx),%eax
-	jge	Lj16913
-	jmp	Lj16914
-Lj16913:
+	jge	Lj16403
+	jmp	Lj16404
+Lj16403:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	32(%edx),%edx
@@ -41714,41 +40955,41 @@ Lj16913:
 	movl	-4(%ebp),%edx
 	movl	16(%eax),%eax
 	cmpl	20(%edx),%eax
-	jge	Lj16917
-	jmp	Lj16918
-Lj16917:
+	jge	Lj16407
+	jmp	Lj16408
+Lj16407:
 	movb	$1,-5(%ebp)
-	jmp	Lj16890
-Lj16918:
-Lj16914:
+	jmp	Lj16380
+Lj16408:
+Lj16404:
 	cmpb	$0,TC_SYSTEM_CTRLZMARKSEOF
-	jne	Lj16923
-	jmp	Lj16922
-Lj16923:
+	jne	Lj16413
+	jmp	Lj16412
+Lj16413:
 	movl	-4(%ebp),%eax
 	movl	24(%eax),%edx
 	movl	-4(%ebp),%eax
 	movl	16(%eax),%eax
 	movb	(%edx,%eax,1),%al
 	cmpb	$26,%al
-	je	Lj16921
-	jmp	Lj16922
-Lj16921:
+	je	Lj16411
+	jmp	Lj16412
+Lj16411:
 	movb	$1,-5(%ebp)
-	jmp	Lj16890
-Lj16922:
+	jmp	Lj16380
+Lj16412:
 	movl	-4(%ebp),%eax
 	movl	24(%eax),%edx
 	movl	-4(%ebp),%eax
 	movl	16(%eax),%eax
 	movzbl	(%edx,%eax,1),%eax
 	cmpl	$10,%eax
-	je	Lj16928
+	je	Lj16418
 	cmpl	$13,%eax
-	je	Lj16928
-Lj16928:
+	je	Lj16418
+Lj16418:
 	seteb	-5(%ebp)
-Lj16890:
+Lj16380:
 	movb	-5(%ebp),%al
 	leave
 	ret
@@ -41762,13 +41003,13 @@ SYSTEM_EOLN$$BOOLEAN:
 	subl	$1,%esp
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16935
+	je	Lj16425
 	movl	U_SYSTEM_INPUT,%eax
 	call	*%edx
-	jmp	Lj16936
-Lj16935:
+	jmp	Lj16426
+Lj16425:
 	movl	$U_SYSTEM_INPUT+4,%eax
-Lj16936:
+Lj16426:
 	call	SYSTEM_EOLN$TEXT$$BOOLEAN
 	movb	%al,-1(%ebp)
 	movb	-1(%ebp),%al
@@ -41785,68 +41026,68 @@ SYSTEM_SEEKEOLN$TEXT$$BOOLEAN:
 	movl	%eax,-4(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16941
+	je	Lj16431
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj16942
-Lj16941:
+	jmp	Lj16432
+Lj16431:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16942:
+Lj16432:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj16939
-	jmp	Lj16940
-Lj16939:
+	jne	Lj16429
+	jmp	Lj16430
+Lj16429:
 	movb	$1,-5(%ebp)
-	jmp	Lj16937
-Lj16940:
+	jmp	Lj16427
+Lj16430:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55217,%eax
-	jne	Lj16945
-	jmp	Lj16946
-Lj16945:
+	jne	Lj16435
+	jmp	Lj16436
+Lj16435:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55218,%eax
-	je	Lj16947
-	jmp	Lj16948
-Lj16947:
+	je	Lj16437
+	jmp	Lj16438
+Lj16437:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16951
+	je	Lj16441
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj16952
-Lj16951:
+	jmp	Lj16442
+Lj16441:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16952:
+Lj16442:
 	movw	$104,(%eax)
-	jmp	Lj16953
-Lj16948:
+	jmp	Lj16443
+Lj16438:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16956
+	je	Lj16446
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj16957
-Lj16956:
+	jmp	Lj16447
+Lj16446:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj16957:
+Lj16447:
 	movw	$103,(%eax)
-Lj16953:
+Lj16443:
 	movb	$1,-5(%ebp)
-	jmp	Lj16937
-Lj16946:
+	jmp	Lj16427
+Lj16436:
 	.balign 4,0x90
-Lj16960:
+Lj16450:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	16(%eax),%eax
 	cmpl	20(%edx),%eax
-	jge	Lj16963
-	jmp	Lj16964
-Lj16963:
+	jge	Lj16453
+	jmp	Lj16454
+Lj16453:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	32(%edx),%edx
@@ -41855,54 +41096,54 @@ Lj16963:
 	movl	-4(%ebp),%edx
 	movl	16(%eax),%eax
 	cmpl	20(%edx),%eax
-	jge	Lj16967
-	jmp	Lj16968
-Lj16967:
+	jge	Lj16457
+	jmp	Lj16458
+Lj16457:
 	movb	$1,-5(%ebp)
-	jmp	Lj16937
-Lj16968:
-Lj16964:
+	jmp	Lj16427
+Lj16458:
+Lj16454:
 	movl	-4(%ebp),%eax
 	movl	24(%eax),%edx
 	movl	-4(%ebp),%eax
 	movl	16(%eax),%eax
 	movb	(%edx,%eax,1),%al
 	cmpb	$9,%al
-	jb	Lj16972
+	jb	Lj16462
 	subb	$9,%al
-	je	Lj16975
+	je	Lj16465
 	decb	%al
-	je	Lj16974
+	je	Lj16464
 	subb	$3,%al
-	je	Lj16974
+	je	Lj16464
 	subb	$13,%al
-	je	Lj16973
+	je	Lj16463
 	subb	$6,%al
-	je	Lj16975
-	jmp	Lj16972
-Lj16973:
+	je	Lj16465
+	jmp	Lj16462
+Lj16463:
 	cmpb	$0,TC_SYSTEM_CTRLZMARKSEOF
-	jne	Lj16976
-	jmp	Lj16977
-Lj16976:
+	jne	Lj16466
+	jmp	Lj16467
+Lj16466:
 	movb	$1,-5(%ebp)
-	jmp	Lj16937
-Lj16977:
-	jmp	Lj16971
-Lj16974:
+	jmp	Lj16427
+Lj16467:
+	jmp	Lj16461
+Lj16464:
 	movb	$1,-5(%ebp)
-	jmp	Lj16937
-	jmp	Lj16971
-Lj16975:
-	jmp	Lj16971
-Lj16972:
+	jmp	Lj16427
+	jmp	Lj16461
+Lj16465:
+	jmp	Lj16461
+Lj16462:
 	movb	$0,-5(%ebp)
-	jmp	Lj16937
-Lj16971:
+	jmp	Lj16427
+Lj16461:
 	movl	-4(%ebp),%eax
 	incl	16(%eax)
-	jmp	Lj16960
-Lj16937:
+	jmp	Lj16450
+Lj16427:
 	movb	-5(%ebp),%al
 	leave
 	ret
@@ -41916,13 +41157,13 @@ SYSTEM_SEEKEOLN$$BOOLEAN:
 	subl	$1,%esp
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj16990
+	je	Lj16480
 	movl	U_SYSTEM_INPUT,%eax
 	call	*%edx
-	jmp	Lj16991
-Lj16990:
+	jmp	Lj16481
+Lj16480:
 	movl	$U_SYSTEM_INPUT+4,%eax
-Lj16991:
+Lj16481:
 	call	SYSTEM_SEEKEOLN$TEXT$$BOOLEAN
 	movb	%al,-1(%ebp)
 	movb	-1(%ebp),%al
@@ -41982,13 +41223,13 @@ fpc_get_input:
 	subl	$4,%esp
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17014
+	je	Lj16504
 	movl	U_SYSTEM_INPUT,%eax
 	call	*%edx
-	jmp	Lj17015
-Lj17014:
+	jmp	Lj16505
+Lj16504:
 	movl	$U_SYSTEM_INPUT+4,%eax
-Lj17015:
+Lj16505:
 	movl	%eax,-4(%ebp)
 	movl	-4(%ebp),%eax
 	leave
@@ -42003,13 +41244,13 @@ fpc_get_output:
 	subl	$4,%esp
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17020
+	je	Lj16510
 	movl	U_SYSTEM_OUTPUT,%eax
 	call	*%edx
-	jmp	Lj17021
-Lj17020:
+	jmp	Lj16511
+Lj16510:
 	movl	$U_SYSTEM_OUTPUT+4,%eax
-Lj17021:
+Lj16511:
 	movl	%eax,-4(%ebp)
 	movl	-4(%ebp),%eax
 	leave
@@ -42033,9 +41274,9 @@ SYSTEM_FPC_WRITEBUFFER$TEXT$formal$LONGINT:
 	movl	16(%edx),%eax
 	subl	%eax,%ecx
 	movl	%ecx,-20(%ebp)
-	jmp	Lj17031
+	jmp	Lj16521
 	.balign 4,0x90
-Lj17030:
+Lj16520:
 	movl	-4(%ebp),%eax
 	movl	24(%eax),%edx
 	movl	-4(%ebp),%eax
@@ -42063,12 +41304,12 @@ Lj17030:
 	movl	16(%edx),%eax
 	subl	%eax,%ecx
 	movl	%ecx,-20(%ebp)
-Lj17031:
+Lj16521:
 	movl	-12(%ebp),%eax
 	cmpl	-20(%ebp),%eax
-	jg	Lj17030
-	jmp	Lj17032
-Lj17032:
+	jg	Lj16520
+	jmp	Lj16522
+Lj16522:
 	movl	-4(%ebp),%eax
 	movl	24(%eax),%edx
 	movl	-4(%ebp),%eax
@@ -42099,9 +41340,9 @@ SYSTEM_FPC_WRITEBLANKS$TEXT$LONGINT:
 	movl	16(%edx),%eax
 	subl	%eax,%ecx
 	movl	%ecx,-12(%ebp)
-	jmp	Lj17054
+	jmp	Lj16544
 	.balign 4,0x90
-Lj17053:
+Lj16543:
 	movl	-4(%ebp),%eax
 	movl	24(%eax),%edx
 	movl	-4(%ebp),%eax
@@ -42125,12 +41366,12 @@ Lj17053:
 	movl	16(%edx),%eax
 	subl	%eax,%ecx
 	movl	%ecx,-12(%ebp)
-Lj17054:
+Lj16544:
 	movl	-8(%ebp),%eax
 	cmpl	-12(%ebp),%eax
-	jg	Lj17053
-	jmp	Lj17055
-Lj17055:
+	jg	Lj16543
+	jmp	Lj16545
+Lj16545:
 	movl	-4(%ebp),%eax
 	movl	24(%eax),%edx
 	movl	-4(%ebp),%eax
@@ -42156,14 +41397,14 @@ fpc_write_end:
 	movl	-4(%ebp),%eax
 	movl	36(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj17074
-	jmp	Lj17075
-Lj17074:
+	jne	Lj16564
+	jmp	Lj16565
+Lj16564:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	36(%edx),%edx
 	call	*%edx
-Lj17075:
+Lj16565:
 	leave
 	ret
 
@@ -42177,30 +41418,30 @@ fpc_writeln_end:
 	movl	%eax,-4(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17082
+	je	Lj16572
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17083
-Lj17082:
+	jmp	Lj16573
+Lj16572:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17083:
+Lj16573:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj17080
-	jmp	Lj17081
-Lj17080:
-	jmp	Lj17078
-Lj17081:
+	jne	Lj16570
+	jmp	Lj16571
+Lj16570:
+	jmp	Lj16568
+Lj16571:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55217,%eax
-	jl	Lj17085
+	jl	Lj16575
 	subl	$55217,%eax
-	je	Lj17087
+	je	Lj16577
 	decl	%eax
-	je	Lj17086
-	jmp	Lj17085
-Lj17086:
+	je	Lj16576
+	jmp	Lj16575
+Lj16576:
 	movl	-4(%ebp),%eax
 	movzbl	332(%eax),%ecx
 	movl	-4(%ebp),%eax
@@ -42210,40 +41451,40 @@ Lj17086:
 	movl	-4(%ebp),%eax
 	movl	36(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj17094
-	jmp	Lj17095
-Lj17094:
+	jne	Lj16584
+	jmp	Lj16585
+Lj16584:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	36(%edx),%edx
 	call	*%edx
-Lj17095:
-	jmp	Lj17084
-Lj17087:
+Lj16585:
+	jmp	Lj16574
+Lj16577:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17100
+	je	Lj16590
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17101
-Lj17100:
+	jmp	Lj16591
+Lj16590:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17101:
+Lj16591:
 	movw	$105,(%eax)
-	jmp	Lj17084
-Lj17085:
+	jmp	Lj16574
+Lj16575:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17104
+	je	Lj16594
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17105
-Lj17104:
+	jmp	Lj16595
+Lj16594:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17105:
+Lj16595:
 	movw	$103,(%eax)
-Lj17084:
-Lj17078:
+Lj16574:
+Lj16568:
 	leave
 	ret
 
@@ -42261,36 +41502,36 @@ FPC_WRITE_TEXT_SHORTSTR:
 	movl	%ecx,-12(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17110
+	je	Lj16600
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17111
-Lj17110:
+	jmp	Lj16601
+Lj16600:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17111:
+Lj16601:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj17108
-	jmp	Lj17109
-Lj17108:
-	jmp	Lj17106
-Lj17109:
+	jne	Lj16598
+	jmp	Lj16599
+Lj16598:
+	jmp	Lj16596
+Lj16599:
 	movl	-8(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55217,%eax
-	jl	Lj17113
+	jl	Lj16603
 	subl	$55217,%eax
-	je	Lj17115
+	je	Lj16605
 	decl	%eax
-	je	Lj17114
-	jmp	Lj17113
-Lj17114:
+	je	Lj16604
+	jmp	Lj16603
+Lj16604:
 	movl	-12(%ebp),%eax
 	movzbl	(%eax),%eax
 	cmpl	-4(%ebp),%eax
-	jl	Lj17116
-	jmp	Lj17117
-Lj17116:
+	jl	Lj16606
+	jmp	Lj16607
+Lj16606:
 	movl	-12(%ebp),%eax
 	movzbl	(%eax),%edx
 	movl	-4(%ebp),%eax
@@ -42298,39 +41539,39 @@ Lj17116:
 	movl	%eax,%edx
 	movl	-8(%ebp),%eax
 	call	SYSTEM_FPC_WRITEBLANKS$TEXT$LONGINT
-Lj17117:
+Lj16607:
 	movl	-12(%ebp),%eax
 	movzbl	(%eax),%ecx
 	movl	-12(%ebp),%eax
 	leal	1(%eax),%edx
 	movl	-8(%ebp),%eax
 	call	SYSTEM_FPC_WRITEBUFFER$TEXT$formal$LONGINT
-	jmp	Lj17112
-Lj17115:
+	jmp	Lj16602
+Lj16605:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17130
+	je	Lj16620
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17131
-Lj17130:
+	jmp	Lj16621
+Lj16620:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17131:
+Lj16621:
 	movw	$105,(%eax)
-	jmp	Lj17112
-Lj17113:
+	jmp	Lj16602
+Lj16603:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17134
+	je	Lj16624
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17135
-Lj17134:
+	jmp	Lj16625
+Lj16624:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17135:
+Lj16625:
 	movw	$103,(%eax)
-Lj17112:
-Lj17106:
+Lj16602:
+Lj16596:
 	leave
 	ret
 
@@ -42348,45 +41589,45 @@ FPC_WRITE_TEXT_SHORTSTR_ISO:
 	movl	%ecx,-12(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17140
+	je	Lj16630
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17141
-Lj17140:
+	jmp	Lj16631
+Lj16630:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17141:
+Lj16631:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj17138
-	jmp	Lj17139
-Lj17138:
-	jmp	Lj17136
-Lj17139:
+	jne	Lj16628
+	jmp	Lj16629
+Lj16628:
+	jmp	Lj16626
+Lj16629:
 	movl	-8(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55217,%eax
-	jl	Lj17143
+	jl	Lj16633
 	subl	$55217,%eax
-	je	Lj17145
+	je	Lj16635
 	decl	%eax
-	je	Lj17144
-	jmp	Lj17143
-Lj17144:
+	je	Lj16634
+	jmp	Lj16633
+Lj16634:
 	movl	-4(%ebp),%eax
 	cmpl	$-1,%eax
-	je	Lj17146
-	jmp	Lj17147
-Lj17146:
+	je	Lj16636
+	jmp	Lj16637
+Lj16636:
 	movl	-12(%ebp),%eax
 	movzbl	(%eax),%eax
 	movl	%eax,-4(%ebp)
-Lj17147:
+Lj16637:
 	movl	-12(%ebp),%eax
 	movzbl	(%eax),%eax
 	cmpl	-4(%ebp),%eax
-	jl	Lj17150
-	jmp	Lj17151
-Lj17150:
+	jl	Lj16640
+	jmp	Lj16641
+Lj16640:
 	movl	-12(%ebp),%eax
 	movzbl	(%eax),%edx
 	movl	-4(%ebp),%eax
@@ -42400,40 +41641,40 @@ Lj17150:
 	leal	1(%eax),%edx
 	movl	-8(%ebp),%eax
 	call	SYSTEM_FPC_WRITEBUFFER$TEXT$formal$LONGINT
-	jmp	Lj17162
-Lj17151:
+	jmp	Lj16652
+Lj16641:
 	movl	-4(%ebp),%ecx
 	movl	-12(%ebp),%eax
 	leal	1(%eax),%edx
 	movl	-8(%ebp),%eax
 	call	SYSTEM_FPC_WRITEBUFFER$TEXT$formal$LONGINT
-Lj17162:
-	jmp	Lj17142
-Lj17145:
+Lj16652:
+	jmp	Lj16632
+Lj16635:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17171
+	je	Lj16661
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17172
-Lj17171:
+	jmp	Lj16662
+Lj16661:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17172:
+Lj16662:
 	movw	$105,(%eax)
-	jmp	Lj17142
-Lj17143:
+	jmp	Lj16632
+Lj16633:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17175
+	je	Lj16665
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17176
-Lj17175:
+	jmp	Lj16666
+Lj16665:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17176:
+Lj16666:
 	movw	$103,(%eax)
-Lj17142:
-Lj17136:
+Lj16632:
+Lj16626:
 	leave
 	ret
 
@@ -42449,36 +41690,36 @@ fpc_write_text_pchar_as_array:
 	movl	%ecx,-12(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17181
+	je	Lj16671
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17182
-Lj17181:
+	jmp	Lj16672
+Lj16671:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17182:
+Lj16672:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj17179
-	jmp	Lj17180
-Lj17179:
-	jmp	Lj17177
-Lj17180:
+	jne	Lj16669
+	jmp	Lj16670
+Lj16669:
+	jmp	Lj16667
+Lj16670:
 	movl	-8(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55217,%eax
-	jl	Lj17184
+	jl	Lj16674
 	subl	$55217,%eax
-	je	Lj17186
+	je	Lj16676
 	decl	%eax
-	je	Lj17185
-	jmp	Lj17184
-Lj17185:
+	je	Lj16675
+	jmp	Lj16674
+Lj16675:
 	movl	-12(%ebp),%eax
 	movl	%eax,-20(%ebp)
 	cmpb	$0,8(%ebp)
-	jne	Lj17189
-	jmp	Lj17190
-Lj17189:
+	jne	Lj16679
+	jmp	Lj16680
+Lj16679:
 	movl	12(%ebp),%edx
 	incl	%edx
 	movl	-20(%ebp),%eax
@@ -42487,60 +41728,60 @@ Lj17189:
 	movl	%eax,-16(%ebp)
 	movl	-16(%ebp),%eax
 	cmpl	$-1,%eax
-	je	Lj17199
-	jmp	Lj17200
-Lj17199:
+	je	Lj16689
+	jmp	Lj16690
+Lj16689:
 	movl	12(%ebp),%eax
 	incl	%eax
 	movl	%eax,-16(%ebp)
-Lj17200:
-	jmp	Lj17203
-Lj17190:
+Lj16690:
+	jmp	Lj16693
+Lj16680:
 	movl	12(%ebp),%eax
 	incl	%eax
 	movl	%eax,-16(%ebp)
-Lj17203:
+Lj16693:
 	movl	-4(%ebp),%eax
 	cmpl	-16(%ebp),%eax
-	jg	Lj17206
-	jmp	Lj17207
-Lj17206:
+	jg	Lj16696
+	jmp	Lj16697
+Lj16696:
 	movl	-4(%ebp),%edx
 	movl	-16(%ebp),%eax
 	subl	%eax,%edx
 	movl	-8(%ebp),%eax
 	call	SYSTEM_FPC_WRITEBLANKS$TEXT$LONGINT
-Lj17207:
+Lj16697:
 	movl	-20(%ebp),%edx
 	movl	-16(%ebp),%ecx
 	movl	-8(%ebp),%eax
 	call	SYSTEM_FPC_WRITEBUFFER$TEXT$formal$LONGINT
-	jmp	Lj17183
-Lj17186:
+	jmp	Lj16673
+Lj16676:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17220
+	je	Lj16710
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17221
-Lj17220:
+	jmp	Lj16711
+Lj16710:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17221:
+Lj16711:
 	movw	$105,(%eax)
-	jmp	Lj17183
-Lj17184:
+	jmp	Lj16673
+Lj16674:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17224
+	je	Lj16714
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17225
-Lj17224:
+	jmp	Lj16715
+Lj16714:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17225:
+Lj16715:
 	movw	$103,(%eax)
-Lj17183:
-Lj17177:
+Lj16673:
+Lj16667:
 	leave
 	ret	$8
 
@@ -42556,36 +41797,36 @@ fpc_write_text_pchar_as_array_iso:
 	movl	%ecx,-12(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17230
+	je	Lj16720
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17231
-Lj17230:
+	jmp	Lj16721
+Lj16720:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17231:
+Lj16721:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj17228
-	jmp	Lj17229
-Lj17228:
-	jmp	Lj17226
-Lj17229:
+	jne	Lj16718
+	jmp	Lj16719
+Lj16718:
+	jmp	Lj16716
+Lj16719:
 	movl	-8(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55217,%eax
-	jl	Lj17233
+	jl	Lj16723
 	subl	$55217,%eax
-	je	Lj17235
+	je	Lj16725
 	decl	%eax
-	je	Lj17234
-	jmp	Lj17233
-Lj17234:
+	je	Lj16724
+	jmp	Lj16723
+Lj16724:
 	movl	-12(%ebp),%eax
 	movl	%eax,-20(%ebp)
 	cmpb	$0,8(%ebp)
-	jne	Lj17238
-	jmp	Lj17239
-Lj17238:
+	jne	Lj16728
+	jmp	Lj16729
+Lj16728:
 	movl	12(%ebp),%edx
 	incl	%edx
 	movl	-20(%ebp),%eax
@@ -42594,32 +41835,32 @@ Lj17238:
 	movl	%eax,-16(%ebp)
 	movl	-16(%ebp),%eax
 	cmpl	$-1,%eax
-	je	Lj17248
-	jmp	Lj17249
-Lj17248:
+	je	Lj16738
+	jmp	Lj16739
+Lj16738:
 	movl	12(%ebp),%eax
 	incl	%eax
 	movl	%eax,-16(%ebp)
-Lj17249:
-	jmp	Lj17252
-Lj17239:
+Lj16739:
+	jmp	Lj16742
+Lj16729:
 	movl	12(%ebp),%eax
 	incl	%eax
 	movl	%eax,-16(%ebp)
-Lj17252:
+Lj16742:
 	movl	-4(%ebp),%eax
 	cmpl	$-1,%eax
-	je	Lj17255
-	jmp	Lj17256
-Lj17255:
+	je	Lj16745
+	jmp	Lj16746
+Lj16745:
 	movl	-16(%ebp),%eax
 	movl	%eax,-4(%ebp)
-Lj17256:
+Lj16746:
 	movl	-4(%ebp),%eax
 	cmpl	-16(%ebp),%eax
-	jg	Lj17259
-	jmp	Lj17260
-Lj17259:
+	jg	Lj16749
+	jmp	Lj16750
+Lj16749:
 	movl	-4(%ebp),%edx
 	movl	-16(%ebp),%eax
 	subl	%eax,%edx
@@ -42629,39 +41870,39 @@ Lj17259:
 	movl	-16(%ebp),%ecx
 	movl	-8(%ebp),%eax
 	call	SYSTEM_FPC_WRITEBUFFER$TEXT$formal$LONGINT
-	jmp	Lj17271
-Lj17260:
+	jmp	Lj16761
+Lj16750:
 	movl	-20(%ebp),%edx
 	movl	-4(%ebp),%ecx
 	movl	-8(%ebp),%eax
 	call	SYSTEM_FPC_WRITEBUFFER$TEXT$formal$LONGINT
-Lj17271:
-	jmp	Lj17232
-Lj17235:
+Lj16761:
+	jmp	Lj16722
+Lj16725:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17280
+	je	Lj16770
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17281
-Lj17280:
+	jmp	Lj16771
+Lj16770:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17281:
+Lj16771:
 	movw	$105,(%eax)
-	jmp	Lj17232
-Lj17233:
+	jmp	Lj16722
+Lj16723:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17284
+	je	Lj16774
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17285
-Lj17284:
+	jmp	Lj16775
+Lj16774:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17285:
+Lj16775:
 	movw	$103,(%eax)
-Lj17232:
-Lj17226:
+Lj16722:
+Lj16716:
 	leave
 	ret	$8
 
@@ -42677,79 +41918,79 @@ fpc_write_text_pchar_as_pointer:
 	movl	%ecx,-12(%ebp)
 	movl	-12(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj17288
-	jmp	Lj17290
-Lj17290:
+	je	Lj16778
+	jmp	Lj16780
+Lj16780:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17291
+	je	Lj16781
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17292
-Lj17291:
+	jmp	Lj16782
+Lj16781:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17292:
+Lj16782:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj17288
-	jmp	Lj17289
-Lj17288:
-	jmp	Lj17286
-Lj17289:
+	jne	Lj16778
+	jmp	Lj16779
+Lj16778:
+	jmp	Lj16776
+Lj16779:
 	movl	-8(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55217,%eax
-	jl	Lj17294
+	jl	Lj16784
 	subl	$55217,%eax
-	je	Lj17296
+	je	Lj16786
 	decl	%eax
-	je	Lj17295
-	jmp	Lj17294
-Lj17295:
+	je	Lj16785
+	jmp	Lj16784
+Lj16785:
 	movl	-12(%ebp),%eax
 	call	FPC_PCHAR_LENGTH
 	movl	%eax,-16(%ebp)
 	movl	-4(%ebp),%eax
 	cmpl	-16(%ebp),%eax
-	jg	Lj17301
-	jmp	Lj17302
-Lj17301:
+	jg	Lj16791
+	jmp	Lj16792
+Lj16791:
 	movl	-4(%ebp),%edx
 	movl	-16(%ebp),%eax
 	subl	%eax,%edx
 	movl	-8(%ebp),%eax
 	call	SYSTEM_FPC_WRITEBLANKS$TEXT$LONGINT
-Lj17302:
+Lj16792:
 	movl	-12(%ebp),%edx
 	movl	-16(%ebp),%ecx
 	movl	-8(%ebp),%eax
 	call	SYSTEM_FPC_WRITEBUFFER$TEXT$formal$LONGINT
-	jmp	Lj17293
-Lj17296:
+	jmp	Lj16783
+Lj16786:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17315
+	je	Lj16805
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17316
-Lj17315:
+	jmp	Lj16806
+Lj16805:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17316:
+Lj16806:
 	movw	$105,(%eax)
-	jmp	Lj17293
-Lj17294:
+	jmp	Lj16783
+Lj16784:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17319
+	je	Lj16809
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17320
-Lj17319:
+	jmp	Lj16810
+Lj16809:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17320:
+Lj16810:
 	movw	$103,(%eax)
-Lj17293:
-Lj17286:
+Lj16783:
+Lj16776:
 	leave
 	ret
 
@@ -42767,87 +42008,87 @@ FPC_WRITE_TEXT_ANSISTR:
 	movl	%ecx,-12(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17325
+	je	Lj16815
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17326
-Lj17325:
+	jmp	Lj16816
+Lj16815:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17326:
+Lj16816:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj17323
-	jmp	Lj17324
-Lj17323:
-	jmp	Lj17321
-Lj17324:
+	jne	Lj16813
+	jmp	Lj16814
+Lj16813:
+	jmp	Lj16811
+Lj16814:
 	movl	-8(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55217,%eax
-	jl	Lj17328
+	jl	Lj16818
 	subl	$55217,%eax
-	je	Lj17330
+	je	Lj16820
 	decl	%eax
-	je	Lj17329
-	jmp	Lj17328
-Lj17329:
+	je	Lj16819
+	jmp	Lj16818
+Lj16819:
 	movl	-12(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj17333
+	je	Lj16823
 	movl	-4(%eax),%eax
-Lj17333:
+Lj16823:
 	movl	%eax,-16(%ebp)
 	movl	-4(%ebp),%eax
 	cmpl	-16(%ebp),%eax
-	jg	Lj17334
-	jmp	Lj17335
-Lj17334:
+	jg	Lj16824
+	jmp	Lj16825
+Lj16824:
 	movl	-4(%ebp),%edx
 	movl	-16(%ebp),%eax
 	subl	%eax,%edx
 	movl	-8(%ebp),%eax
 	call	SYSTEM_FPC_WRITEBLANKS$TEXT$LONGINT
-Lj17335:
+Lj16825:
 	movl	-16(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj17340
-	jmp	Lj17341
-Lj17340:
+	jg	Lj16830
+	jmp	Lj16831
+Lj16830:
 	movl	-12(%ebp),%edx
 	testl	%edx,%edx
-	jne	Lj17344
+	jne	Lj16834
 	movl	$FPC_EMPTYCHAR,%edx
-Lj17344:
+Lj16834:
 	movl	-16(%ebp),%ecx
 	movl	-8(%ebp),%eax
 	call	SYSTEM_FPC_WRITEBUFFER$TEXT$formal$LONGINT
-Lj17341:
-	jmp	Lj17327
-Lj17330:
+Lj16831:
+	jmp	Lj16817
+Lj16820:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17351
+	je	Lj16841
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17352
-Lj17351:
+	jmp	Lj16842
+Lj16841:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17352:
+Lj16842:
 	movw	$105,(%eax)
-	jmp	Lj17327
-Lj17328:
+	jmp	Lj16817
+Lj16818:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17355
+	je	Lj16845
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17356
-Lj17355:
+	jmp	Lj16846
+Lj16845:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17356:
+Lj16846:
 	movw	$103,(%eax)
-Lj17327:
-Lj17321:
+Lj16817:
+Lj16811:
 	leave
 	ret
 
@@ -42869,106 +42110,106 @@ fpc_write_text_unicodestr:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj17359
+	jne	Lj16849
 	movl	-12(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj17362
-	jmp	Lj17364
-Lj17364:
+	je	Lj16852
+	jmp	Lj16854
+Lj16854:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17365
+	je	Lj16855
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17366
-Lj17365:
+	jmp	Lj16856
+Lj16855:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17366:
+Lj16856:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj17362
-	jmp	Lj17363
-Lj17362:
-	jmp	Lj17359
-Lj17363:
+	jne	Lj16852
+	jmp	Lj16853
+Lj16852:
+	jmp	Lj16849
+Lj16853:
 	movl	-8(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55217,%eax
-	jl	Lj17368
+	jl	Lj16858
 	subl	$55217,%eax
-	je	Lj17370
+	je	Lj16860
 	decl	%eax
-	je	Lj17369
-	jmp	Lj17368
-Lj17369:
+	je	Lj16859
+	jmp	Lj16858
+Lj16859:
 	movl	-12(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj17373
+	je	Lj16863
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj17373:
+Lj16863:
 	movl	%eax,-16(%ebp)
 	movl	-4(%ebp),%eax
 	cmpl	-16(%ebp),%eax
-	jg	Lj17374
-	jmp	Lj17375
-Lj17374:
+	jg	Lj16864
+	jmp	Lj16865
+Lj16864:
 	movl	-4(%ebp),%edx
 	movl	-16(%ebp),%eax
 	subl	%eax,%edx
 	movl	-8(%ebp),%eax
 	call	SYSTEM_FPC_WRITEBLANKS$TEXT$LONGINT
-Lj17375:
+Lj16865:
 	leal	-20(%ebp),%edx
 	movl	-12(%ebp),%eax
 	call	fpc_unicodestr_to_ansistr
 	movl	-20(%ebp),%edx
 	testl	%edx,%edx
-	jne	Lj17386
+	jne	Lj16876
 	movl	$FPC_EMPTYCHAR,%edx
-Lj17386:
+Lj16876:
 	movl	-20(%ebp),%ecx
 	testl	%ecx,%ecx
-	je	Lj17389
+	je	Lj16879
 	movl	-4(%ecx),%ecx
-Lj17389:
+Lj16879:
 	movl	-8(%ebp),%eax
 	call	SYSTEM_FPC_WRITEBUFFER$TEXT$formal$LONGINT
-	jmp	Lj17367
-Lj17370:
+	jmp	Lj16857
+Lj16860:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17394
+	je	Lj16884
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17395
-Lj17394:
+	jmp	Lj16885
+Lj16884:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17395:
+Lj16885:
 	movw	$105,(%eax)
-	jmp	Lj17367
-Lj17368:
+	jmp	Lj16857
+Lj16858:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17398
+	je	Lj16888
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17399
-Lj17398:
+	jmp	Lj16889
+Lj16888:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17399:
+Lj16889:
 	movw	$103,(%eax)
-Lj17367:
-Lj17359:
+Lj16857:
+Lj16849:
 	call	FPC_POPADDRSTACK
 	leal	-20(%ebp),%eax
 	call	fpc_ansistr_decr_ref
 	movl	$0,-20(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj17360
+	je	Lj16850
 	call	FPC_RERAISE
-Lj17360:
+Lj16850:
 	leave
 	ret
 
@@ -42984,20 +42225,20 @@ fpc_write_text_sint:
 	movl	%ecx,-12(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17410
+	je	Lj16900
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17411
-Lj17410:
+	jmp	Lj16901
+Lj16900:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17411:
+Lj16901:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj17408
-	jmp	Lj17409
-Lj17408:
-	jmp	Lj17406
-Lj17409:
+	jne	Lj16898
+	jmp	Lj16899
+Lj16898:
+	jmp	Lj16896
+Lj16899:
 	pushl	$255
 	leal	-268(%ebp),%ecx
 	movl	-12(%ebp),%eax
@@ -43007,7 +42248,7 @@ Lj17409:
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	FPC_WRITE_TEXT_SHORTSTR
-Lj17406:
+Lj16896:
 	leave
 	ret
 
@@ -43023,20 +42264,20 @@ fpc_write_text_uint:
 	movl	%ecx,-12(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17430
+	je	Lj16920
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17431
-Lj17430:
+	jmp	Lj16921
+Lj16920:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17431:
+Lj16921:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj17428
-	jmp	Lj17429
-Lj17428:
-	jmp	Lj17426
-Lj17429:
+	jne	Lj16918
+	jmp	Lj16919
+Lj16918:
+	jmp	Lj16916
+Lj16919:
 	pushl	$255
 	leal	-268(%ebp),%ecx
 	movl	-12(%ebp),%eax
@@ -43046,7 +42287,7 @@ Lj17429:
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	FPC_WRITE_TEXT_SHORTSTR
-Lj17426:
+Lj16916:
 	leave
 	ret
 
@@ -43062,20 +42303,20 @@ fpc_write_text_sint_iso:
 	movl	%ecx,-12(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17450
+	je	Lj16940
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17451
-Lj17450:
+	jmp	Lj16941
+Lj16940:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17451:
+Lj16941:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj17448
-	jmp	Lj17449
-Lj17448:
-	jmp	Lj17446
-Lj17449:
+	jne	Lj16938
+	jmp	Lj16939
+Lj16938:
+	jmp	Lj16936
+Lj16939:
 	pushl	$255
 	leal	-268(%ebp),%ecx
 	movl	-12(%ebp),%eax
@@ -43083,26 +42324,26 @@ Lj17449:
 	call	fpc_shortstr_sint
 	movl	-4(%ebp),%eax
 	cmpl	$-1,%eax
-	je	Lj17460
-	jmp	Lj17461
-Lj17460:
+	je	Lj16950
+	jmp	Lj16951
+Lj16950:
 	movl	$11,-4(%ebp)
-	jmp	Lj17464
-Lj17461:
+	jmp	Lj16954
+Lj16951:
 	movzbl	-268(%ebp),%eax
 	cmpl	-4(%ebp),%eax
-	jg	Lj17465
-	jmp	Lj17466
-Lj17465:
+	jg	Lj16955
+	jmp	Lj16956
+Lj16955:
 	movzbl	-268(%ebp),%eax
 	movl	%eax,-4(%ebp)
-Lj17466:
-Lj17464:
+Lj16956:
+Lj16954:
 	leal	-268(%ebp),%ecx
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	FPC_WRITE_TEXT_SHORTSTR_ISO
-Lj17446:
+Lj16936:
 	leave
 	ret
 
@@ -43118,20 +42359,20 @@ fpc_write_text_uint_iso:
 	movl	%ecx,-12(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17479
+	je	Lj16969
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17480
-Lj17479:
+	jmp	Lj16970
+Lj16969:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17480:
+Lj16970:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj17477
-	jmp	Lj17478
-Lj17477:
-	jmp	Lj17475
-Lj17478:
+	jne	Lj16967
+	jmp	Lj16968
+Lj16967:
+	jmp	Lj16965
+Lj16968:
 	pushl	$255
 	leal	-268(%ebp),%ecx
 	movl	-12(%ebp),%eax
@@ -43139,26 +42380,26 @@ Lj17478:
 	call	fpc_shortstr_uint
 	movl	-4(%ebp),%eax
 	cmpl	$-1,%eax
-	je	Lj17489
-	jmp	Lj17490
-Lj17489:
+	je	Lj16979
+	jmp	Lj16980
+Lj16979:
 	movl	$11,-4(%ebp)
-	jmp	Lj17493
-Lj17490:
+	jmp	Lj16983
+Lj16980:
 	movzbl	-268(%ebp),%eax
 	cmpl	-4(%ebp),%eax
-	jg	Lj17494
-	jmp	Lj17495
-Lj17494:
+	jg	Lj16984
+	jmp	Lj16985
+Lj16984:
 	movzbl	-268(%ebp),%eax
 	movl	%eax,-4(%ebp)
-Lj17495:
-Lj17493:
+Lj16985:
+Lj16983:
 	leal	-268(%ebp),%ecx
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	FPC_WRITE_TEXT_SHORTSTR_ISO
-Lj17475:
+Lj16965:
 	leave
 	ret
 
@@ -43173,20 +42414,20 @@ fpc_write_text_qword:
 	movl	%edx,-8(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17508
+	je	Lj16998
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17509
-Lj17508:
+	jmp	Lj16999
+Lj16998:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17509:
+Lj16999:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj17506
-	jmp	Lj17507
-Lj17506:
-	jmp	Lj17504
-Lj17507:
+	jne	Lj16996
+	jmp	Lj16997
+Lj16996:
+	jmp	Lj16994
+Lj16997:
 	pushl	12(%ebp)
 	pushl	8(%ebp)
 	leal	-264(%ebp),%edx
@@ -43197,7 +42438,7 @@ Lj17507:
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	FPC_WRITE_TEXT_SHORTSTR
-Lj17504:
+Lj16994:
 	leave
 	ret	$8
 
@@ -43212,20 +42453,20 @@ fpc_write_text_int64:
 	movl	%edx,-8(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17528
+	je	Lj17018
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17529
-Lj17528:
+	jmp	Lj17019
+Lj17018:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17529:
+Lj17019:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj17526
-	jmp	Lj17527
-Lj17526:
-	jmp	Lj17524
-Lj17527:
+	jne	Lj17016
+	jmp	Lj17017
+Lj17016:
+	jmp	Lj17014
+Lj17017:
 	pushl	12(%ebp)
 	pushl	8(%ebp)
 	leal	-264(%ebp),%edx
@@ -43236,7 +42477,7 @@ Lj17527:
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	FPC_WRITE_TEXT_SHORTSTR
-Lj17524:
+Lj17014:
 	leave
 	ret	$8
 
@@ -43251,20 +42492,20 @@ fpc_write_text_qword_iso:
 	movl	%edx,-8(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17548
+	je	Lj17038
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17549
-Lj17548:
+	jmp	Lj17039
+Lj17038:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17549:
+Lj17039:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj17546
-	jmp	Lj17547
-Lj17546:
-	jmp	Lj17544
-Lj17547:
+	jne	Lj17036
+	jmp	Lj17037
+Lj17036:
+	jmp	Lj17034
+Lj17037:
 	pushl	12(%ebp)
 	pushl	8(%ebp)
 	leal	-264(%ebp),%edx
@@ -43273,26 +42514,26 @@ Lj17547:
 	call	fpc_shortstr_qword
 	movl	-4(%ebp),%eax
 	cmpl	$-1,%eax
-	je	Lj17558
-	jmp	Lj17559
-Lj17558:
+	je	Lj17048
+	jmp	Lj17049
+Lj17048:
 	movl	$20,-4(%ebp)
-	jmp	Lj17562
-Lj17559:
+	jmp	Lj17052
+Lj17049:
 	movzbl	-264(%ebp),%eax
 	cmpl	-4(%ebp),%eax
-	jg	Lj17563
-	jmp	Lj17564
-Lj17563:
+	jg	Lj17053
+	jmp	Lj17054
+Lj17053:
 	movzbl	-264(%ebp),%eax
 	movl	%eax,-4(%ebp)
-Lj17564:
-Lj17562:
+Lj17054:
+Lj17052:
 	leal	-264(%ebp),%ecx
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	FPC_WRITE_TEXT_SHORTSTR_ISO
-Lj17544:
+Lj17034:
 	leave
 	ret	$8
 
@@ -43307,20 +42548,20 @@ fpc_write_text_int64_iso:
 	movl	%edx,-8(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17577
+	je	Lj17067
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17578
-Lj17577:
+	jmp	Lj17068
+Lj17067:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17578:
+Lj17068:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj17575
-	jmp	Lj17576
-Lj17575:
-	jmp	Lj17573
-Lj17576:
+	jne	Lj17065
+	jmp	Lj17066
+Lj17065:
+	jmp	Lj17063
+Lj17066:
 	pushl	12(%ebp)
 	pushl	8(%ebp)
 	leal	-264(%ebp),%edx
@@ -43329,26 +42570,26 @@ Lj17576:
 	call	fpc_shortstr_int64
 	movl	-4(%ebp),%eax
 	cmpl	$-1,%eax
-	je	Lj17587
-	jmp	Lj17588
-Lj17587:
+	je	Lj17077
+	jmp	Lj17078
+Lj17077:
 	movl	$20,-4(%ebp)
-	jmp	Lj17591
-Lj17588:
+	jmp	Lj17081
+Lj17078:
 	movzbl	-264(%ebp),%eax
 	cmpl	-4(%ebp),%eax
-	jg	Lj17592
-	jmp	Lj17593
-Lj17592:
+	jg	Lj17082
+	jmp	Lj17083
+Lj17082:
 	movzbl	-264(%ebp),%eax
 	movl	%eax,-4(%ebp)
-Lj17593:
-Lj17591:
+Lj17083:
+Lj17081:
 	leal	-264(%ebp),%ecx
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	FPC_WRITE_TEXT_SHORTSTR_ISO
-Lj17573:
+Lj17063:
 	leave
 	ret	$8
 
@@ -43364,20 +42605,20 @@ fpc_write_text_float:
 	movl	%ecx,-12(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17606
+	je	Lj17096
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17607
-Lj17606:
+	jmp	Lj17097
+Lj17096:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17607:
+Lj17097:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj17604
-	jmp	Lj17605
-Lj17604:
-	jmp	Lj17602
-Lj17605:
+	jne	Lj17094
+	jmp	Lj17095
+Lj17094:
+	jmp	Lj17092
+Lj17095:
 	movzwl	16(%ebp),%eax
 	pushl	%eax
 	pushl	12(%ebp)
@@ -43393,7 +42634,7 @@ Lj17605:
 	movl	20(%ebp),%edx
 	movl	-12(%ebp),%eax
 	call	FPC_WRITE_TEXT_SHORTSTR
-Lj17602:
+Lj17092:
 	leave
 	ret	$16
 
@@ -43409,20 +42650,20 @@ fpc_write_text_float_iso:
 	movl	%ecx,-12(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17630
+	je	Lj17120
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17631
-Lj17630:
+	jmp	Lj17121
+Lj17120:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17631:
+Lj17121:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj17628
-	jmp	Lj17629
-Lj17628:
-	jmp	Lj17626
-Lj17629:
+	jne	Lj17118
+	jmp	Lj17119
+Lj17118:
+	jmp	Lj17116
+Lj17119:
 	movzwl	16(%ebp),%eax
 	pushl	%eax
 	pushl	12(%ebp)
@@ -43438,7 +42679,7 @@ Lj17629:
 	movl	20(%ebp),%edx
 	movl	-12(%ebp),%eax
 	call	FPC_WRITE_TEXT_SHORTSTR
-Lj17626:
+Lj17116:
 	leave
 	ret	$16
 
@@ -43456,40 +42697,40 @@ fpc_write_text_enum:
 	movl	12(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55218,%eax
-	jne	Lj17652
-	jmp	Lj17653
-Lj17652:
+	jne	Lj17142
+	jmp	Lj17143
+Lj17142:
 	movl	12(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55217,%eax
-	je	Lj17654
-	jmp	Lj17655
-Lj17654:
+	je	Lj17144
+	jmp	Lj17145
+Lj17144:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17658
+	je	Lj17148
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17659
-Lj17658:
+	jmp	Lj17149
+Lj17148:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17659:
+Lj17149:
 	movw	$105,(%eax)
-	jmp	Lj17660
-Lj17655:
+	jmp	Lj17150
+Lj17145:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17663
+	je	Lj17153
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17664
-Lj17663:
+	jmp	Lj17154
+Lj17153:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17664:
+Lj17154:
 	movw	$103,(%eax)
-Lj17660:
-	jmp	Lj17650
-Lj17653:
+Lj17150:
+	jmp	Lj17140
+Lj17143:
 	pushl	-8(%ebp)
 	leal	-268(%ebp),%eax
 	pushl	%eax
@@ -43501,35 +42742,35 @@ Lj17653:
 	movl	%eax,%ebx
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17679
+	je	Lj17169
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17680
-Lj17679:
+	jmp	Lj17170
+Lj17169:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17680:
+Lj17170:
 	movw	%bx,(%eax)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17683
+	je	Lj17173
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17684
-Lj17683:
+	jmp	Lj17174
+Lj17173:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17684:
+Lj17174:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj17681
-	jmp	Lj17682
-Lj17681:
-	jmp	Lj17650
-Lj17682:
+	jne	Lj17171
+	jmp	Lj17172
+Lj17171:
+	jmp	Lj17140
+Lj17172:
 	movzbl	-268(%ebp),%ecx
 	leal	-267(%ebp),%edx
 	movl	12(%ebp),%eax
 	call	SYSTEM_FPC_WRITEBUFFER$TEXT$formal$LONGINT
-Lj17650:
+Lj17140:
 	movl	-272(%ebp),%ebx
 	leave
 	ret	$8
@@ -43546,20 +42787,20 @@ fpc_write_text_currency:
 	movl	%ecx,-12(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17695
+	je	Lj17185
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17696
-Lj17695:
+	jmp	Lj17186
+Lj17185:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17696:
+Lj17186:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj17693
-	jmp	Lj17694
-Lj17693:
-	jmp	Lj17691
-Lj17694:
+	jne	Lj17183
+	jmp	Lj17184
+Lj17183:
+	jmp	Lj17181
+Lj17184:
 	pushl	12(%ebp)
 	pushl	8(%ebp)
 	pushl	$255
@@ -43571,7 +42812,7 @@ Lj17694:
 	movl	-12(%ebp),%edx
 	movl	-8(%ebp),%eax
 	call	FPC_WRITE_TEXT_SHORTSTR
-Lj17691:
+Lj17181:
 	leave
 	ret	$8
 
@@ -43587,36 +42828,36 @@ fpc_write_text_boolean:
 	movb	%cl,-12(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17717
+	je	Lj17207
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17718
-Lj17717:
+	jmp	Lj17208
+Lj17207:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17718:
+Lj17208:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj17715
-	jmp	Lj17716
-Lj17715:
-	jmp	Lj17713
-Lj17716:
+	jne	Lj17205
+	jmp	Lj17206
+Lj17205:
+	jmp	Lj17203
+Lj17206:
 	cmpb	$0,-12(%ebp)
-	jne	Lj17719
-	jmp	Lj17720
-Lj17719:
+	jne	Lj17209
+	jmp	Lj17210
+Lj17209:
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	movl	$_$SYSTEM$_Ld19,%ecx
 	call	FPC_WRITE_TEXT_SHORTSTR
-	jmp	Lj17727
-Lj17720:
+	jmp	Lj17217
+Lj17210:
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	movl	$_$SYSTEM$_Ld20,%ecx
 	call	FPC_WRITE_TEXT_SHORTSTR
-Lj17727:
-Lj17713:
+Lj17217:
+Lj17203:
 	leave
 	ret
 
@@ -43632,43 +42873,43 @@ fpc_write_text_boolean_iso:
 	movb	%cl,-12(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17738
+	je	Lj17228
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17739
-Lj17738:
+	jmp	Lj17229
+Lj17228:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17739:
+Lj17229:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj17736
-	jmp	Lj17737
-Lj17736:
-	jmp	Lj17734
-Lj17737:
+	jne	Lj17226
+	jmp	Lj17227
+Lj17226:
+	jmp	Lj17224
+Lj17227:
 	movl	-4(%ebp),%eax
 	cmpl	$-1,%eax
-	je	Lj17740
-	jmp	Lj17741
-Lj17740:
+	je	Lj17230
+	jmp	Lj17231
+Lj17230:
 	movl	$5,-4(%ebp)
-Lj17741:
+Lj17231:
 	cmpb	$0,-12(%ebp)
-	jne	Lj17744
-	jmp	Lj17745
-Lj17744:
-	movl	-8(%ebp),%edx
-	movl	-4(%ebp),%eax
-	movl	$_$SYSTEM$_Ld38,%ecx
-	call	FPC_WRITE_TEXT_SHORTSTR_ISO
-	jmp	Lj17752
-Lj17745:
+	jne	Lj17234
+	jmp	Lj17235
+Lj17234:
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	movl	$_$SYSTEM$_Ld39,%ecx
 	call	FPC_WRITE_TEXT_SHORTSTR_ISO
-Lj17752:
-Lj17734:
+	jmp	Lj17242
+Lj17235:
+	movl	-8(%ebp),%edx
+	movl	-4(%ebp),%eax
+	movl	$_$SYSTEM$_Ld40,%ecx
+	call	FPC_WRITE_TEXT_SHORTSTR_ISO
+Lj17242:
+Lj17224:
 	leave
 	ret
 
@@ -43684,79 +42925,79 @@ fpc_write_text_char:
 	movb	%cl,-12(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17763
+	je	Lj17253
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17764
-Lj17763:
+	jmp	Lj17254
+Lj17253:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17764:
+Lj17254:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj17761
-	jmp	Lj17762
-Lj17761:
-	jmp	Lj17759
-Lj17762:
+	jne	Lj17251
+	jmp	Lj17252
+Lj17251:
+	jmp	Lj17249
+Lj17252:
 	movl	-8(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55218,%eax
-	jne	Lj17765
-	jmp	Lj17766
-Lj17765:
+	jne	Lj17255
+	jmp	Lj17256
+Lj17255:
 	movl	-8(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55216,%eax
-	je	Lj17767
-	jmp	Lj17768
-Lj17767:
+	je	Lj17257
+	jmp	Lj17258
+Lj17257:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17771
+	je	Lj17261
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17772
-Lj17771:
+	jmp	Lj17262
+Lj17261:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17772:
+Lj17262:
 	movw	$103,(%eax)
-	jmp	Lj17773
-Lj17768:
+	jmp	Lj17263
+Lj17258:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17776
+	je	Lj17266
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17777
-Lj17776:
+	jmp	Lj17267
+Lj17266:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17777:
+Lj17267:
 	movw	$105,(%eax)
-Lj17773:
-	jmp	Lj17759
-Lj17766:
+Lj17263:
+	jmp	Lj17249
+Lj17256:
 	movl	-4(%ebp),%eax
 	cmpl	$1,%eax
-	jg	Lj17778
-	jmp	Lj17779
-Lj17778:
+	jg	Lj17268
+	jmp	Lj17269
+Lj17268:
 	movl	-4(%ebp),%edx
 	decl	%edx
 	movl	-8(%ebp),%eax
 	call	SYSTEM_FPC_WRITEBLANKS$TEXT$LONGINT
-Lj17779:
+Lj17269:
 	movl	-8(%ebp),%eax
 	movl	-8(%ebp),%edx
 	movl	16(%eax),%eax
 	cmpl	8(%edx),%eax
-	jge	Lj17784
-	jmp	Lj17785
-Lj17784:
+	jge	Lj17274
+	jmp	Lj17275
+Lj17274:
 	movl	-8(%ebp),%eax
 	movl	-8(%ebp),%edx
 	movl	32(%edx),%edx
 	call	*%edx
-Lj17785:
+Lj17275:
 	movl	-8(%ebp),%eax
 	movl	24(%eax),%edx
 	movl	-8(%ebp),%eax
@@ -43765,7 +43006,7 @@ Lj17785:
 	movb	%cl,(%edx,%eax,1)
 	movl	-8(%ebp),%eax
 	incl	16(%eax)
-Lj17759:
+Lj17249:
 	leave
 	ret
 
@@ -43781,95 +43022,95 @@ fpc_write_text_char_iso:
 	movb	%cl,-12(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17794
+	je	Lj17284
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17795
-Lj17794:
+	jmp	Lj17285
+Lj17284:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17795:
+Lj17285:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj17792
-	jmp	Lj17793
-Lj17792:
-	jmp	Lj17790
-Lj17793:
+	jne	Lj17282
+	jmp	Lj17283
+Lj17282:
+	jmp	Lj17280
+Lj17283:
 	movl	-8(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55218,%eax
-	jne	Lj17796
-	jmp	Lj17797
-Lj17796:
+	jne	Lj17286
+	jmp	Lj17287
+Lj17286:
 	movl	-8(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55216,%eax
-	je	Lj17798
-	jmp	Lj17799
-Lj17798:
+	je	Lj17288
+	jmp	Lj17289
+Lj17288:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17802
+	je	Lj17292
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17803
-Lj17802:
+	jmp	Lj17293
+Lj17292:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17803:
+Lj17293:
 	movw	$103,(%eax)
-	jmp	Lj17804
-Lj17799:
+	jmp	Lj17294
+Lj17289:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17807
+	je	Lj17297
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17808
-Lj17807:
+	jmp	Lj17298
+Lj17297:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17808:
+Lj17298:
 	movw	$105,(%eax)
-Lj17804:
-	jmp	Lj17790
-Lj17797:
+Lj17294:
+	jmp	Lj17280
+Lj17287:
 	movl	-4(%ebp),%eax
 	cmpl	$-1,%eax
-	je	Lj17809
-	jmp	Lj17810
-Lj17809:
+	je	Lj17299
+	jmp	Lj17300
+Lj17299:
 	movl	$1,-4(%ebp)
-Lj17810:
+Lj17300:
 	movl	-4(%ebp),%eax
 	cmpl	$1,%eax
-	jg	Lj17813
-	jmp	Lj17814
-Lj17813:
+	jg	Lj17303
+	jmp	Lj17304
+Lj17303:
 	movl	-4(%ebp),%edx
 	decl	%edx
 	movl	-8(%ebp),%eax
 	call	SYSTEM_FPC_WRITEBLANKS$TEXT$LONGINT
-	jmp	Lj17819
-Lj17814:
+	jmp	Lj17309
+Lj17304:
 	movl	-4(%ebp),%eax
 	cmpl	$1,%eax
-	jl	Lj17820
-	jmp	Lj17821
-Lj17820:
-	jmp	Lj17790
-Lj17821:
-Lj17819:
+	jl	Lj17310
+	jmp	Lj17311
+Lj17310:
+	jmp	Lj17280
+Lj17311:
+Lj17309:
 	movl	-8(%ebp),%eax
 	movl	-8(%ebp),%edx
 	movl	16(%eax),%eax
 	cmpl	8(%edx),%eax
-	jge	Lj17822
-	jmp	Lj17823
-Lj17822:
+	jge	Lj17312
+	jmp	Lj17313
+Lj17312:
 	movl	-8(%ebp),%eax
 	movl	-8(%ebp),%edx
 	movl	32(%edx),%edx
 	call	*%edx
-Lj17823:
+Lj17313:
 	movl	-8(%ebp),%eax
 	movl	24(%eax),%edx
 	movl	-8(%ebp),%eax
@@ -43878,7 +43119,7 @@ Lj17823:
 	movb	%cl,(%edx,%eax,1)
 	movl	-8(%ebp),%eax
 	incl	16(%eax)
-Lj17790:
+Lj17280:
 	leave
 	ret
 
@@ -43900,107 +43141,107 @@ fpc_write_text_widechar:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj17830
+	jne	Lj17320
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17835
+	je	Lj17325
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17836
-Lj17835:
+	jmp	Lj17326
+Lj17325:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17836:
+Lj17326:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj17833
-	jmp	Lj17834
-Lj17833:
-	jmp	Lj17830
-Lj17834:
+	jne	Lj17323
+	jmp	Lj17324
+Lj17323:
+	jmp	Lj17320
+Lj17324:
 	movl	-8(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55218,%eax
-	jne	Lj17837
-	jmp	Lj17838
-Lj17837:
+	jne	Lj17327
+	jmp	Lj17328
+Lj17327:
 	movl	-8(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55216,%eax
-	je	Lj17839
-	jmp	Lj17840
-Lj17839:
+	je	Lj17329
+	jmp	Lj17330
+Lj17329:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17843
+	je	Lj17333
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17844
-Lj17843:
+	jmp	Lj17334
+Lj17333:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17844:
+Lj17334:
 	movw	$103,(%eax)
-	jmp	Lj17845
-Lj17840:
+	jmp	Lj17335
+Lj17330:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17848
+	je	Lj17338
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17849
-Lj17848:
+	jmp	Lj17339
+Lj17338:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17849:
+Lj17339:
 	movw	$105,(%eax)
-Lj17845:
-	jmp	Lj17830
-Lj17838:
+Lj17335:
+	jmp	Lj17320
+Lj17328:
 	movl	-4(%ebp),%eax
 	cmpl	$1,%eax
-	jg	Lj17850
-	jmp	Lj17851
-Lj17850:
+	jg	Lj17340
+	jmp	Lj17341
+Lj17340:
 	movl	-4(%ebp),%edx
 	decl	%edx
 	movl	-8(%ebp),%eax
 	call	SYSTEM_FPC_WRITEBLANKS$TEXT$LONGINT
-Lj17851:
+Lj17341:
 	movl	-8(%ebp),%eax
 	movl	-8(%ebp),%edx
 	movl	16(%eax),%eax
 	cmpl	8(%edx),%eax
-	jge	Lj17856
-	jmp	Lj17857
-Lj17856:
+	jge	Lj17346
+	jmp	Lj17347
+Lj17346:
 	movl	-8(%ebp),%eax
 	movl	-8(%ebp),%edx
 	movl	32(%edx),%edx
 	call	*%edx
-Lj17857:
+Lj17347:
 	leal	-16(%ebp),%edx
 	movw	-12(%ebp),%ax
 	call	fpc_uchar_to_ansistr
 	movl	-16(%ebp),%edx
 	testl	%edx,%edx
-	jne	Lj17866
+	jne	Lj17356
 	movl	$FPC_EMPTYCHAR,%edx
-Lj17866:
+Lj17356:
 	movl	-16(%ebp),%ecx
 	testl	%ecx,%ecx
-	je	Lj17869
+	je	Lj17359
 	movl	-4(%ecx),%ecx
-Lj17869:
+Lj17359:
 	movl	-8(%ebp),%eax
 	call	SYSTEM_FPC_WRITEBUFFER$TEXT$formal$LONGINT
-Lj17830:
+Lj17320:
 	call	FPC_POPADDRSTACK
 	leal	-16(%ebp),%eax
 	call	fpc_ansistr_decr_ref
 	movl	$0,-16(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj17831
+	je	Lj17321
 	call	FPC_RERAISE
-Lj17831:
+Lj17321:
 	leave
 	ret
 
@@ -44019,29 +43260,29 @@ SYSTEM_NEXTCHAR$TEXT$OPENSTRING$$BOOLEAN:
 	movl	-4(%ebp),%edx
 	movl	16(%eax),%eax
 	cmpl	20(%edx),%eax
-	jl	Lj17882
-	jmp	Lj17883
-Lj17882:
+	jl	Lj17372
+	jmp	Lj17373
+Lj17372:
 	movb	TC_SYSTEM_CTRLZMARKSEOF,%al
 	testb	%al,%al
-	je	Lj17884
-	jmp	Lj17886
-Lj17886:
+	je	Lj17374
+	jmp	Lj17376
+Lj17376:
 	movl	-4(%ebp),%eax
 	movl	24(%eax),%edx
 	movl	-4(%ebp),%eax
 	movl	16(%eax),%eax
 	movb	(%edx,%eax,1),%al
 	cmpb	$26,%al
-	jne	Lj17884
-	jmp	Lj17885
-Lj17884:
+	jne	Lj17374
+	jmp	Lj17375
+Lj17374:
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	cmpl	-12(%ebp),%eax
-	jl	Lj17887
-	jmp	Lj17888
-Lj17887:
+	jl	Lj17377
+	jmp	Lj17378
+Lj17377:
 	movl	-8(%ebp),%eax
 	incb	(%eax)
 	movl	-8(%ebp),%edx
@@ -44053,24 +43294,24 @@ Lj17887:
 	movl	16(%eax),%eax
 	movb	(%ebx,%eax,1),%al
 	movb	%al,(%edx,%ecx,1)
-Lj17888:
+Lj17378:
 	movl	-4(%ebp),%eax
 	incl	16(%eax)
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	16(%eax),%eax
 	cmpl	20(%edx),%eax
-	jge	Lj17891
-	jmp	Lj17892
-Lj17891:
+	jge	Lj17381
+	jmp	Lj17382
+Lj17381:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	32(%edx),%edx
 	call	*%edx
-Lj17892:
+Lj17382:
 	movb	$1,-13(%ebp)
-Lj17885:
-Lj17883:
+Lj17375:
+Lj17373:
 	movb	-13(%ebp),%al
 	movl	-20(%ebp),%ebx
 	leave
@@ -44089,75 +43330,75 @@ SYSTEM_IGNORESPACES$TEXT$$BOOLEAN:
 	movl	-4(%ebp),%edx
 	movl	16(%eax),%eax
 	cmpl	20(%edx),%eax
-	jge	Lj17903
-	jmp	Lj17904
-Lj17903:
-	jmp	Lj17897
-Lj17904:
+	jge	Lj17393
+	jmp	Lj17394
+Lj17393:
+	jmp	Lj17387
+Lj17394:
 	cmpb	$0,TC_SYSTEM_CTRLZMARKSEOF
-	jne	Lj17907
-	jmp	Lj17906
-Lj17907:
+	jne	Lj17397
+	jmp	Lj17396
+Lj17397:
 	movl	-4(%ebp),%eax
 	movl	24(%eax),%edx
 	movl	-4(%ebp),%eax
 	movl	16(%eax),%eax
 	movb	(%edx,%eax,1),%al
 	cmpb	$26,%al
-	je	Lj17905
-	jmp	Lj17906
-Lj17905:
-	jmp	Lj17897
-Lj17906:
-	jmp	Lj17909
+	je	Lj17395
+	jmp	Lj17396
+Lj17395:
+	jmp	Lj17387
+Lj17396:
+	jmp	Lj17399
 	.balign 4,0x90
-Lj17908:
+Lj17398:
 	leal	-261(%ebp),%edx
 	movl	-4(%ebp),%eax
 	movl	$255,%ecx
 	call	SYSTEM_NEXTCHAR$TEXT$OPENSTRING$$BOOLEAN
 	testb	%al,%al
-	je	Lj17911
-	jmp	Lj17912
-Lj17911:
-	jmp	Lj17897
-Lj17912:
+	je	Lj17401
+	jmp	Lj17402
+Lj17401:
+	jmp	Lj17387
+Lj17402:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	16(%eax),%eax
 	cmpl	20(%edx),%eax
-	jge	Lj17919
-	jmp	Lj17920
-Lj17919:
-	jmp	Lj17910
-Lj17920:
+	jge	Lj17409
+	jmp	Lj17410
+Lj17409:
+	jmp	Lj17400
+Lj17410:
 	cmpb	$0,TC_SYSTEM_CTRLZMARKSEOF
-	jne	Lj17923
-	jmp	Lj17922
-Lj17923:
+	jne	Lj17413
+	jmp	Lj17412
+Lj17413:
 	movl	-4(%ebp),%eax
 	movl	24(%eax),%edx
 	movl	-4(%ebp),%eax
 	movl	16(%eax),%eax
 	movb	(%edx,%eax,1),%al
 	cmpb	$26,%al
-	je	Lj17921
-	jmp	Lj17922
-Lj17921:
-	jmp	Lj17910
-Lj17922:
-Lj17909:
+	je	Lj17411
+	jmp	Lj17412
+Lj17411:
+	jmp	Lj17400
+Lj17412:
+Lj17399:
 	movl	-4(%ebp),%eax
 	movl	24(%eax),%edx
 	movl	-4(%ebp),%eax
 	movl	16(%eax),%eax
 	movb	(%edx,%eax,1),%al
 	cmpb	$32,%al
-	jbe	Lj17908
-	jmp	Lj17910
-Lj17910:
+	jbe	Lj17398
+	jmp	Lj17400
+Lj17400:
 	movb	$1,-5(%ebp)
-Lj17897:
+Lj17387:
 	movb	-5(%ebp),%al
 	leave
 	ret
@@ -44172,33 +43413,33 @@ SYSTEM_READNUMERIC$TEXT$OPENSTRING:
 	movl	%edx,-8(%ebp)
 	movl	%ecx,-12(%ebp)
 	.balign 4,0x90
-Lj17928:
+Lj17418:
 	movl	-12(%ebp),%ecx
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_NEXTCHAR$TEXT$OPENSTRING$$BOOLEAN
 	testb	%al,%al
-	je	Lj17931
-	jmp	Lj17932
-Lj17931:
-	jmp	Lj17926
-Lj17932:
+	je	Lj17421
+	jmp	Lj17422
+Lj17421:
+	jmp	Lj17416
+Lj17422:
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%eax
 	cmpl	-12(%ebp),%eax
-	je	Lj17930
-	jmp	Lj17939
-Lj17939:
+	je	Lj17420
+	jmp	Lj17429
+Lj17429:
 	movl	-4(%ebp),%eax
 	movl	24(%eax),%edx
 	movl	-4(%ebp),%eax
 	movl	16(%eax),%eax
 	movb	(%edx,%eax,1),%al
 	cmpb	$32,%al
-	jbe	Lj17930
-	jmp	Lj17928
-Lj17930:
-Lj17926:
+	jbe	Lj17420
+	jmp	Lj17418
+Lj17420:
+Lj17416:
 	leave
 	ret
 
@@ -44212,75 +43453,75 @@ SYSTEM_CHECKREAD$TEXT$$BOOLEAN:
 	movb	$0,-5(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17946
+	je	Lj17436
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17947
-Lj17946:
+	jmp	Lj17437
+Lj17436:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17947:
+Lj17437:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj17944
-	jmp	Lj17945
-Lj17944:
-	jmp	Lj17940
-Lj17945:
+	jne	Lj17434
+	jmp	Lj17435
+Lj17434:
+	jmp	Lj17430
+Lj17435:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55217,%eax
-	jne	Lj17948
-	jmp	Lj17949
-Lj17948:
+	jne	Lj17438
+	jmp	Lj17439
+Lj17438:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55218,%eax
-	jl	Lj17951
+	jl	Lj17441
 	subl	$55218,%eax
-	je	Lj17952
+	je	Lj17442
 	subl	$2,%eax
-	je	Lj17952
-	jmp	Lj17951
-Lj17952:
+	je	Lj17442
+	jmp	Lj17441
+Lj17442:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17955
+	je	Lj17445
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17956
-Lj17955:
+	jmp	Lj17446
+Lj17445:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17956:
+Lj17446:
 	movw	$104,(%eax)
-	jmp	Lj17950
-Lj17951:
+	jmp	Lj17440
+Lj17441:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj17959
+	je	Lj17449
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj17960
-Lj17959:
+	jmp	Lj17450
+Lj17449:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj17960:
+Lj17450:
 	movw	$103,(%eax)
-Lj17950:
-	jmp	Lj17940
-Lj17949:
+Lj17440:
+	jmp	Lj17430
+Lj17439:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	16(%eax),%eax
 	cmpl	20(%edx),%eax
-	jge	Lj17961
-	jmp	Lj17962
-Lj17961:
+	jge	Lj17451
+	jmp	Lj17452
+Lj17451:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	32(%edx),%edx
 	call	*%edx
-Lj17962:
+Lj17452:
 	movb	$1,-5(%ebp)
-Lj17940:
+Lj17430:
 	movb	-5(%ebp),%al
 	leave
 	ret
@@ -44298,14 +43539,14 @@ FPC_READ_END:
 	movl	-4(%ebp),%eax
 	movl	36(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj17969
-	jmp	Lj17970
-Lj17969:
+	jne	Lj17459
+	jmp	Lj17460
+Lj17459:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	36(%edx),%edx
 	call	*%edx
-Lj17970:
+Lj17460:
 	leave
 	ret
 
@@ -44322,48 +43563,48 @@ FPC_READLN_END:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_CHECKREAD$TEXT$$BOOLEAN
 	testb	%al,%al
-	je	Lj17975
-	jmp	Lj17976
-Lj17975:
-	jmp	Lj17973
-Lj17976:
+	je	Lj17465
+	jmp	Lj17466
+Lj17465:
+	jmp	Lj17463
+Lj17466:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	16(%eax),%eax
 	cmpl	20(%edx),%eax
-	jge	Lj17979
-	jmp	Lj17980
-Lj17979:
+	jge	Lj17469
+	jmp	Lj17470
+Lj17469:
 	movl	-4(%ebp),%eax
 	movl	36(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj17981
-	jmp	Lj17982
-Lj17981:
+	jne	Lj17471
+	jmp	Lj17472
+Lj17471:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	36(%edx),%edx
 	call	*%edx
-Lj17982:
-	jmp	Lj17973
-Lj17980:
+Lj17472:
+	jmp	Lj17463
+Lj17470:
 	cmpb	$0,TC_SYSTEM_CTRLZMARKSEOF
-	jne	Lj17987
-	jmp	Lj17986
-Lj17987:
+	jne	Lj17477
+	jmp	Lj17476
+Lj17477:
 	movl	-4(%ebp),%eax
 	movl	24(%eax),%edx
 	movl	-4(%ebp),%eax
 	movl	16(%eax),%eax
 	movb	(%edx,%eax,1),%al
 	cmpb	$26,%al
-	je	Lj17985
-	jmp	Lj17986
-Lj17985:
-	jmp	Lj17973
-Lj17986:
+	je	Lj17475
+	jmp	Lj17476
+Lj17475:
+	jmp	Lj17463
+Lj17476:
 	.balign 4,0x90
-Lj17988:
+Lj17478:
 	movl	-4(%ebp),%eax
 	movl	24(%eax),%edx
 	movl	-4(%ebp),%eax
@@ -44374,18 +43615,18 @@ Lj17988:
 	incl	16(%eax)
 	movb	-5(%ebp),%al
 	cmpb	$10,%al
-	je	Lj17993
-	jmp	Lj17994
-Lj17993:
-	jmp	Lj17973
-Lj17994:
+	je	Lj17483
+	jmp	Lj17484
+Lj17483:
+	jmp	Lj17463
+Lj17484:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	16(%eax),%eax
 	cmpl	20(%edx),%eax
-	jge	Lj17995
-	jmp	Lj17996
-Lj17995:
+	jge	Lj17485
+	jmp	Lj17486
+Lj17485:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	32(%edx),%edx
@@ -44394,59 +43635,59 @@ Lj17995:
 	movl	-4(%ebp),%edx
 	movl	16(%eax),%eax
 	cmpl	20(%edx),%eax
-	jge	Lj17999
-	jmp	Lj18000
-Lj17999:
+	jge	Lj17489
+	jmp	Lj17490
+Lj17489:
 	movl	-4(%ebp),%eax
 	movl	36(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj18001
-	jmp	Lj18002
-Lj18001:
+	jne	Lj17491
+	jmp	Lj17492
+Lj17491:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	36(%edx),%edx
 	call	*%edx
-Lj18002:
-	jmp	Lj17973
-Lj18000:
-Lj17996:
+Lj17492:
+	jmp	Lj17463
+Lj17490:
+Lj17486:
 	cmpb	$0,TC_SYSTEM_CTRLZMARKSEOF
-	jne	Lj18007
-	jmp	Lj18006
-Lj18007:
+	jne	Lj17497
+	jmp	Lj17496
+Lj17497:
 	movl	-4(%ebp),%eax
 	movl	24(%eax),%edx
 	movl	-4(%ebp),%eax
 	movl	16(%eax),%eax
 	movb	(%edx,%eax,1),%al
 	cmpb	$26,%al
-	je	Lj18005
-	jmp	Lj18006
-Lj18005:
-	jmp	Lj17973
-Lj18006:
+	je	Lj17495
+	jmp	Lj17496
+Lj17495:
+	jmp	Lj17463
+Lj17496:
 	movb	-5(%ebp),%al
 	cmpb	$13,%al
-	je	Lj18008
-	jmp	Lj18009
-Lj18008:
+	je	Lj17498
+	jmp	Lj17499
+Lj17498:
 	movl	-4(%ebp),%eax
 	movl	24(%eax),%edx
 	movl	-4(%ebp),%eax
 	movl	16(%eax),%eax
 	movb	(%edx,%eax,1),%al
 	cmpb	$10,%al
-	je	Lj18010
-	jmp	Lj18011
-Lj18010:
+	je	Lj17500
+	jmp	Lj17501
+Lj17500:
 	movl	-4(%ebp),%eax
 	incl	16(%eax)
-Lj18011:
-	jmp	Lj17973
-Lj18009:
-	jmp	Lj17988
-Lj17973:
+Lj17501:
+	jmp	Lj17463
+Lj17499:
+	jmp	Lj17478
+Lj17463:
 	leave
 	ret
 
@@ -44463,46 +43704,46 @@ FPC_READLN_END_ISO:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_CHECKREAD$TEXT$$BOOLEAN
 	testb	%al,%al
-	je	Lj18014
-	jmp	Lj18015
-Lj18014:
-	jmp	Lj18012
-Lj18015:
+	je	Lj17504
+	jmp	Lj17505
+Lj17504:
+	jmp	Lj17502
+Lj17505:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	16(%eax),%eax
 	cmpl	20(%edx),%eax
-	jge	Lj18018
-	jmp	Lj18019
-Lj18018:
+	jge	Lj17508
+	jmp	Lj17509
+Lj17508:
 	movl	-4(%ebp),%eax
 	movl	36(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj18020
-	jmp	Lj18021
-Lj18020:
+	jne	Lj17510
+	jmp	Lj17511
+Lj17510:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	36(%edx),%edx
 	call	*%edx
-Lj18021:
-	jmp	Lj18012
-Lj18019:
+Lj17511:
+	jmp	Lj17502
+Lj17509:
 	movl	-4(%ebp),%eax
 	movl	24(%eax),%edx
 	movl	-4(%ebp),%eax
 	movl	16(%eax),%eax
 	movb	(%edx,%eax,1),%al
 	cmpb	$26,%al
-	je	Lj18024
-	jmp	Lj18025
-Lj18024:
+	je	Lj17514
+	jmp	Lj17515
+Lj17514:
 	movl	-4(%ebp),%eax
 	incl	16(%eax)
-	jmp	Lj18012
-Lj18025:
+	jmp	Lj17502
+Lj17515:
 	.balign 4,0x90
-Lj18026:
+Lj17516:
 	movl	-4(%ebp),%eax
 	movl	24(%eax),%edx
 	movl	-4(%ebp),%eax
@@ -44513,18 +43754,18 @@ Lj18026:
 	incl	16(%eax)
 	movb	-5(%ebp),%al
 	cmpb	$10,%al
-	je	Lj18031
-	jmp	Lj18032
-Lj18031:
-	jmp	Lj18012
-Lj18032:
+	je	Lj17521
+	jmp	Lj17522
+Lj17521:
+	jmp	Lj17502
+Lj17522:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	16(%eax),%eax
 	cmpl	20(%edx),%eax
-	jge	Lj18033
-	jmp	Lj18034
-Lj18033:
+	jge	Lj17523
+	jmp	Lj17524
+Lj17523:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	32(%edx),%edx
@@ -44533,57 +43774,57 @@ Lj18033:
 	movl	-4(%ebp),%edx
 	movl	16(%eax),%eax
 	cmpl	20(%edx),%eax
-	jge	Lj18037
-	jmp	Lj18038
-Lj18037:
+	jge	Lj17527
+	jmp	Lj17528
+Lj17527:
 	movl	-4(%ebp),%eax
 	movl	36(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj18039
-	jmp	Lj18040
-Lj18039:
+	jne	Lj17529
+	jmp	Lj17530
+Lj17529:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	36(%edx),%edx
 	call	*%edx
-Lj18040:
-	jmp	Lj18012
-Lj18038:
-Lj18034:
+Lj17530:
+	jmp	Lj17502
+Lj17528:
+Lj17524:
 	movl	-4(%ebp),%eax
 	movl	24(%eax),%edx
 	movl	-4(%ebp),%eax
 	movl	16(%eax),%eax
 	movb	(%edx,%eax,1),%al
 	cmpb	$26,%al
-	je	Lj18043
-	jmp	Lj18044
-Lj18043:
+	je	Lj17533
+	jmp	Lj17534
+Lj17533:
 	movl	-4(%ebp),%eax
 	incl	16(%eax)
-	jmp	Lj18012
-Lj18044:
+	jmp	Lj17502
+Lj17534:
 	movb	-5(%ebp),%al
 	cmpb	$13,%al
-	je	Lj18045
-	jmp	Lj18046
-Lj18045:
+	je	Lj17535
+	jmp	Lj17536
+Lj17535:
 	movl	-4(%ebp),%eax
 	movl	24(%eax),%edx
 	movl	-4(%ebp),%eax
 	movl	16(%eax),%eax
 	movb	(%edx,%eax,1),%al
 	cmpb	$10,%al
-	je	Lj18047
-	jmp	Lj18048
-Lj18047:
+	je	Lj17537
+	jmp	Lj17538
+Lj17537:
 	movl	-4(%ebp),%eax
 	incl	16(%eax)
-Lj18048:
-	jmp	Lj18012
-Lj18046:
-	jmp	Lj18026
-Lj18012:
+Lj17538:
+	jmp	Lj17502
+Lj17536:
+	jmp	Lj17516
+Lj17502:
 	leave
 	ret
 
@@ -44600,22 +43841,22 @@ SYSTEM_READPCHARLEN$TEXT$PCHAR$LONGINT$$LONGINT:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_CHECKREAD$TEXT$$BOOLEAN
 	testb	%al,%al
-	je	Lj18053
-	jmp	Lj18054
-Lj18053:
-	jmp	Lj18049
-Lj18054:
+	je	Lj17543
+	jmp	Lj17544
+Lj17543:
+	jmp	Lj17539
+Lj17544:
 	movl	$0,-20(%ebp)
 	movb	$0,-37(%ebp)
 	.balign 4,0x90
-Lj18061:
+Lj17551:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	16(%eax),%eax
 	cmpl	20(%edx),%eax
-	jge	Lj18064
-	jmp	Lj18065
-Lj18064:
+	jge	Lj17554
+	jmp	Lj17555
+Lj17554:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	32(%edx),%edx
@@ -44624,12 +43865,12 @@ Lj18064:
 	movl	-4(%ebp),%edx
 	movl	16(%eax),%eax
 	cmpl	20(%edx),%eax
-	jge	Lj18068
-	jmp	Lj18069
-Lj18068:
-	jmp	Lj18063
-Lj18069:
-Lj18065:
+	jge	Lj17558
+	jmp	Lj17559
+Lj17558:
+	jmp	Lj17553
+Lj17559:
+Lj17555:
 	movl	-4(%ebp),%eax
 	movl	24(%eax),%edx
 	movl	-4(%ebp),%eax
@@ -44644,9 +43885,9 @@ Lj18065:
 	movl	16(%eax),%eax
 	subl	%eax,%edx
 	cmpl	-12(%ebp),%edx
-	jg	Lj18072
-	jmp	Lj18073
-Lj18072:
+	jg	Lj17562
+	jmp	Lj17563
+Lj17562:
 	movl	-4(%ebp),%eax
 	movl	24(%eax),%ecx
 	movl	-4(%ebp),%eax
@@ -44657,57 +43898,57 @@ Lj18072:
 	subl	%edx,%eax
 	leal	(%ecx,%eax,1),%eax
 	movl	%eax,-36(%ebp)
-	jmp	Lj18076
-Lj18073:
+	jmp	Lj17566
+Lj17563:
 	movl	-4(%ebp),%eax
 	movl	24(%eax),%edx
 	movl	-4(%ebp),%eax
 	movl	20(%eax),%eax
 	leal	(%edx,%eax,1),%eax
 	movl	%eax,-36(%ebp)
-Lj18076:
+Lj17566:
 	movl	-28(%ebp),%eax
 	movl	%eax,-32(%ebp)
-	jmp	Lj18082
+	jmp	Lj17572
 	.balign 4,0x90
-Lj18081:
+Lj17571:
 	movl	-28(%ebp),%eax
 	movb	(%eax),%al
 	cmpb	$32,%al
-	jb	Lj18084
-	jmp	Lj18085
-Lj18084:
+	jb	Lj17574
+	jmp	Lj17575
+Lj17574:
 	movl	-28(%ebp),%eax
 	movzbl	(%eax),%eax
 	cmpl	$10,%eax
-	je	Lj18089
+	je	Lj17579
 	cmpl	$13,%eax
-	je	Lj18089
-Lj18089:
-	je	Lj18086
-	jmp	Lj18088
-Lj18088:
+	je	Lj17579
+Lj17579:
+	je	Lj17576
+	jmp	Lj17578
+Lj17578:
 	cmpb	$0,TC_SYSTEM_CTRLZMARKSEOF
-	jne	Lj18090
-	jmp	Lj18087
-Lj18090:
+	jne	Lj17580
+	jmp	Lj17577
+Lj17580:
 	movl	-28(%ebp),%eax
 	movb	(%eax),%al
 	cmpb	$26,%al
-	je	Lj18086
-	jmp	Lj18087
-Lj18086:
+	je	Lj17576
+	jmp	Lj17577
+Lj17576:
 	movb	$1,-37(%ebp)
-	jmp	Lj18083
-Lj18087:
-Lj18085:
+	jmp	Lj17573
+Lj17577:
+Lj17575:
 	incl	-28(%ebp)
-Lj18082:
+Lj17572:
 	movl	-28(%ebp),%eax
 	cmpl	-36(%ebp),%eax
-	jb	Lj18081
-	jmp	Lj18083
-Lj18083:
+	jb	Lj17571
+	jmp	Lj17573
+Lj17573:
 	movl	-28(%ebp),%edx
 	movl	-32(%ebp),%eax
 	subl	%eax,%edx
@@ -44725,16 +43966,16 @@ Lj18083:
 	addl	%eax,-20(%ebp)
 	movl	-20(%ebp),%eax
 	cmpl	-12(%ebp),%eax
-	je	Lj18063
-	jmp	Lj18101
-Lj18101:
+	je	Lj17553
+	jmp	Lj17591
+Lj17591:
 	cmpb	$0,-37(%ebp)
-	jne	Lj18063
-	jmp	Lj18061
-Lj18063:
+	jne	Lj17553
+	jmp	Lj17551
+Lj17553:
 	movl	-20(%ebp),%eax
 	movl	%eax,-16(%ebp)
-Lj18049:
+Lj17539:
 	movl	-16(%ebp),%eax
 	leave
 	ret
@@ -44795,26 +44036,26 @@ fpc_read_text_pchar_as_array:
 	call	SYSTEM_READPCHARLEN$TEXT$PCHAR$LONGINT$$LONGINT
 	movl	%eax,-16(%ebp)
 	cmpb	$0,8(%ebp)
-	jne	Lj18136
-	jmp	Lj18135
-Lj18136:
+	jne	Lj17626
+	jmp	Lj17625
+Lj17626:
 	movl	-16(%ebp),%eax
 	cmpl	-12(%ebp),%eax
-	jg	Lj18134
-	jmp	Lj18135
-Lj18134:
+	jg	Lj17624
+	jmp	Lj17625
+Lj17624:
 	movl	-12(%ebp),%eax
 	movl	%eax,-16(%ebp)
-Lj18135:
+Lj17625:
 	movl	-16(%ebp),%eax
 	cmpl	-12(%ebp),%eax
-	jle	Lj18139
-	jmp	Lj18140
-Lj18139:
+	jle	Lj17629
+	jmp	Lj17630
+Lj17629:
 	movl	-8(%ebp),%eax
 	movl	-16(%ebp),%edx
 	movb	$0,(%eax,%edx,1)
-Lj18140:
+Lj17630:
 	leave
 	ret	$4
 
@@ -44833,7 +44074,7 @@ FPC_READ_TEXT_ANSISTR:
 	movl	$0,(%eax)
 	movl	$0,-12(%ebp)
 	.balign 4,0x90
-Lj18147:
+Lj17637:
 	movl	-12(%ebp),%edx
 	addl	$255,%edx
 	movl	-8(%ebp),%eax
@@ -44850,9 +44091,9 @@ Lj18147:
 	addl	%eax,-12(%ebp)
 	movl	-16(%ebp),%eax
 	cmpl	$255,%eax
-	jl	Lj18149
-	jmp	Lj18147
-Lj18149:
+	jl	Lj17639
+	jmp	Lj17637
+Lj17639:
 	movl	-12(%ebp),%edx
 	movl	-8(%ebp),%eax
 	call	fpc_ansistr_setlength
@@ -44880,7 +44121,7 @@ fpc_read_text_unicodestr:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj18168
+	jne	Lj17658
 	leal	-12(%ebp),%eax
 	call	FPC_ANSISTR_DECR_REF
 	leal	-12(%ebp),%edx
@@ -44899,7 +44140,7 @@ fpc_read_text_unicodestr:
 	call	FPC_UNICODESTR_DECR_REF
 	movl	-56(%ebp),%eax
 	movl	%eax,(%ebx)
-Lj18168:
+Lj17658:
 	call	FPC_POPADDRSTACK
 	leal	-56(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
@@ -44909,9 +44150,9 @@ Lj18168:
 	movl	$0,-12(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj18169
+	je	Lj17659
 	call	FPC_RERAISE
-Lj18169:
+Lj17659:
 	movl	-60(%ebp),%ebx
 	leave
 	ret
@@ -44932,22 +44173,22 @@ FPC_READ_TEXT_CHAR:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_CHECKREAD$TEXT$$BOOLEAN
 	testb	%al,%al
-	je	Lj18191
-	jmp	Lj18192
-Lj18191:
-	jmp	Lj18187
-Lj18192:
+	je	Lj17681
+	jmp	Lj17682
+Lj17681:
+	jmp	Lj17677
+Lj17682:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	16(%eax),%eax
 	cmpl	20(%edx),%eax
-	jge	Lj18195
-	jmp	Lj18196
-Lj18195:
+	jge	Lj17685
+	jmp	Lj17686
+Lj17685:
 	movl	-8(%ebp),%eax
 	movb	$26,(%eax)
-	jmp	Lj18187
-Lj18196:
+	jmp	Lj17677
+Lj17686:
 	movl	-4(%ebp),%eax
 	movl	24(%eax),%edx
 	movl	-4(%ebp),%eax
@@ -44957,7 +44198,7 @@ Lj18196:
 	movb	%al,(%ecx)
 	movl	-4(%ebp),%eax
 	incl	16(%eax)
-Lj18187:
+Lj17677:
 	leave
 	ret
 
@@ -44979,7 +44220,7 @@ fpc_read_text_widechar:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj18203
+	jne	Lj17693
 	leal	-22(%ebp),%eax
 	movb	$0,%cl
 	movl	$6,%edx
@@ -44987,7 +44228,7 @@ fpc_read_text_widechar:
 	movl	$0,-16(%ebp)
 	decl	-16(%ebp)
 	.balign 4,0x90
-Lj18214:
+Lj17704:
 	incl	-16(%ebp)
 	movl	-16(%ebp),%eax
 	leal	-22(%ebp,%eax,1),%edx
@@ -44999,18 +44240,18 @@ Lj18214:
 	movl	U_SYSTEM_WIDESTRINGMANAGER+28,%ecx
 	call	*%ecx
 	cmpl	$-1,%eax
-	je	Lj18221
+	je	Lj17711
 	testl	%eax,%eax
-	je	Lj18222
-	jmp	Lj18220
-Lj18221:
-	jmp	Lj18219
-Lj18222:
+	je	Lj17712
+	jmp	Lj17710
+Lj17711:
+	jmp	Lj17709
+Lj17712:
 	movl	-8(%ebp),%eax
 	movw	$0,(%eax)
-	jmp	Lj18203
-	jmp	Lj18219
-Lj18220:
+	jmp	Lj17693
+	jmp	Lj17709
+Lj17710:
 	movl	-16(%ebp),%eax
 	incl	%eax
 	pushl	%eax
@@ -45021,47 +44262,47 @@ Lj18220:
 	call	*%ebx
 	movl	-12(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj18239
+	je	Lj17729
 	movl	-4(%eax),%eax
 	shrl	$1,%eax
-Lj18239:
+Lj17729:
 	cmpl	$1,%eax
-	je	Lj18237
-	jmp	Lj18238
-Lj18237:
+	je	Lj17727
+	jmp	Lj17728
+Lj17727:
 	movl	-8(%ebp),%edx
 	movl	-12(%ebp),%eax
 	movw	(%eax),%ax
 	movw	%ax,(%edx)
-	jmp	Lj18203
-	jmp	Lj18242
-Lj18238:
-	jmp	Lj18213
-Lj18242:
-Lj18219:
+	jmp	Lj17693
+	jmp	Lj17732
+Lj17728:
+	jmp	Lj17703
+Lj17732:
+Lj17709:
 	cmpl	$5,-16(%ebp)
-	jl	Lj18214
-Lj18213:
+	jl	Lj17704
+Lj17703:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18245
+	je	Lj17735
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj18246
-Lj18245:
+	jmp	Lj17736
+Lj17735:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj18246:
+Lj17736:
 	movw	$106,(%eax)
-Lj18203:
+Lj17693:
 	call	FPC_POPADDRSTACK
 	leal	-12(%ebp),%eax
 	call	fpc_unicodestr_decr_ref
 	movl	$0,-12(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj18204
+	je	Lj17694
 	call	FPC_RERAISE
-Lj18204:
+Lj17694:
 	movl	-68(%ebp),%ebx
 	leave
 	ret
@@ -45080,22 +44321,22 @@ fpc_read_text_char_iso:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_CHECKREAD$TEXT$$BOOLEAN
 	testb	%al,%al
-	je	Lj18257
-	jmp	Lj18258
-Lj18257:
-	jmp	Lj18253
-Lj18258:
+	je	Lj17747
+	jmp	Lj17748
+Lj17747:
+	jmp	Lj17743
+Lj17748:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	16(%eax),%eax
 	cmpl	20(%edx),%eax
-	jge	Lj18261
-	jmp	Lj18262
-Lj18261:
+	jge	Lj17751
+	jmp	Lj17752
+Lj17751:
 	movl	-8(%ebp),%eax
 	movb	$32,(%eax)
-	jmp	Lj18253
-Lj18262:
+	jmp	Lj17743
+Lj17752:
 	movl	-4(%ebp),%eax
 	movl	24(%eax),%ecx
 	movl	-4(%ebp),%eax
@@ -45108,116 +44349,116 @@ Lj18262:
 	movl	-8(%ebp),%eax
 	movb	(%eax),%al
 	cmpb	$13,%al
-	je	Lj18267
-	jmp	Lj18268
-Lj18267:
+	je	Lj17757
+	jmp	Lj17758
+Lj17757:
 	movl	-8(%ebp),%eax
 	movb	$32,(%eax)
 	movl	-4(%ebp),%eax
 	call	SYSTEM_CHECKREAD$TEXT$$BOOLEAN
 	testb	%al,%al
-	je	Lj18271
-	jmp	Lj18273
-Lj18273:
+	je	Lj17761
+	jmp	Lj17763
+Lj17763:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	16(%eax),%eax
 	cmpl	20(%edx),%eax
-	jge	Lj18271
-	jmp	Lj18272
-Lj18271:
-	jmp	Lj18253
-Lj18272:
+	jge	Lj17761
+	jmp	Lj17762
+Lj17761:
+	jmp	Lj17743
+Lj17762:
 	movl	-4(%ebp),%eax
 	movl	24(%eax),%edx
 	movl	-4(%ebp),%eax
 	movl	16(%eax),%eax
 	movb	(%edx,%eax,1),%al
 	cmpb	$10,%al
-	je	Lj18276
-	jmp	Lj18277
-Lj18276:
+	je	Lj17766
+	jmp	Lj17767
+Lj17766:
 	movl	-4(%ebp),%eax
 	incl	16(%eax)
-Lj18277:
+Lj17767:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_CHECKREAD$TEXT$$BOOLEAN
 	testb	%al,%al
-	je	Lj18278
-	jmp	Lj18280
-Lj18280:
+	je	Lj17768
+	jmp	Lj17770
+Lj17770:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	16(%eax),%eax
 	cmpl	20(%edx),%eax
-	jge	Lj18278
-	jmp	Lj18279
-Lj18278:
-	jmp	Lj18253
-Lj18279:
+	jge	Lj17768
+	jmp	Lj17769
+Lj17768:
+	jmp	Lj17743
+Lj17769:
 	movl	-4(%ebp),%eax
 	movl	24(%eax),%edx
 	movl	-4(%ebp),%eax
 	movl	16(%eax),%eax
 	movb	(%edx,%eax,1),%al
 	cmpb	$26,%al
-	je	Lj18283
-	jmp	Lj18284
-Lj18283:
+	je	Lj17773
+	jmp	Lj17774
+Lj17773:
 	movl	-4(%ebp),%eax
 	incl	16(%eax)
-Lj18284:
-	jmp	Lj18285
-Lj18268:
+Lj17774:
+	jmp	Lj17775
+Lj17758:
 	movl	-8(%ebp),%eax
 	movb	(%eax),%al
 	cmpb	$10,%al
-	je	Lj18286
-	jmp	Lj18287
-Lj18286:
+	je	Lj17776
+	jmp	Lj17777
+Lj17776:
 	movl	-8(%ebp),%eax
 	movb	$32,(%eax)
 	movl	-4(%ebp),%eax
 	call	SYSTEM_CHECKREAD$TEXT$$BOOLEAN
 	testb	%al,%al
-	je	Lj18290
-	jmp	Lj18292
-Lj18292:
+	je	Lj17780
+	jmp	Lj17782
+Lj17782:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	16(%eax),%eax
 	cmpl	20(%edx),%eax
-	jge	Lj18290
-	jmp	Lj18291
-Lj18290:
-	jmp	Lj18253
-Lj18291:
+	jge	Lj17780
+	jmp	Lj17781
+Lj17780:
+	jmp	Lj17743
+Lj17781:
 	movl	-4(%ebp),%eax
 	movl	24(%eax),%edx
 	movl	-4(%ebp),%eax
 	movl	16(%eax),%eax
 	movb	(%edx,%eax,1),%al
 	cmpb	$26,%al
-	je	Lj18295
-	jmp	Lj18296
-Lj18295:
+	je	Lj17785
+	jmp	Lj17786
+Lj17785:
 	movl	-4(%ebp),%eax
 	incl	16(%eax)
-Lj18296:
-	jmp	Lj18297
-Lj18287:
+Lj17786:
+	jmp	Lj17787
+Lj17777:
 	movl	-8(%ebp),%eax
 	movb	(%eax),%al
 	cmpb	$26,%al
-	je	Lj18298
-	jmp	Lj18299
-Lj18298:
+	je	Lj17788
+	jmp	Lj17789
+Lj17788:
 	movl	-8(%ebp),%eax
 	movb	$32,(%eax)
-Lj18299:
-Lj18297:
-Lj18285:
-Lj18253:
+Lj17789:
+Lj17787:
+Lj17775:
+Lj17743:
 	leave
 	ret
 
@@ -45235,56 +44476,56 @@ fpc_read_text_sint:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_CHECKREAD$TEXT$$BOOLEAN
 	testb	%al,%al
-	je	Lj18306
-	jmp	Lj18307
-Lj18306:
-	jmp	Lj18302
-Lj18307:
+	je	Lj17796
+	jmp	Lj17797
+Lj17796:
+	jmp	Lj17792
+Lj17797:
 	movb	$0,-264(%ebp)
 	movl	-4(%ebp),%eax
 	call	SYSTEM_IGNORESPACES$TEXT$$BOOLEAN
 	testb	%al,%al
-	jne	Lj18312
-	jmp	Lj18313
-Lj18312:
+	jne	Lj17802
+	jmp	Lj17803
+Lj17802:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	16(%eax),%eax
 	cmpl	20(%edx),%eax
-	jge	Lj18316
-	jmp	Lj18317
-Lj18316:
-	jmp	Lj18302
-Lj18317:
+	jge	Lj17806
+	jmp	Lj17807
+Lj17806:
+	jmp	Lj17792
+Lj17807:
 	cmpb	$0,TC_SYSTEM_CTRLZMARKSEOF
-	jne	Lj18320
-	jmp	Lj18319
-Lj18320:
+	jne	Lj17810
+	jmp	Lj17809
+Lj17810:
 	movl	-4(%ebp),%eax
 	movl	24(%eax),%edx
 	movl	-4(%ebp),%eax
 	movl	16(%eax),%eax
 	movb	(%edx,%eax,1),%al
 	cmpb	$26,%al
-	je	Lj18318
-	jmp	Lj18319
-Lj18318:
-	jmp	Lj18302
-Lj18319:
+	je	Lj17808
+	jmp	Lj17809
+Lj17808:
+	jmp	Lj17792
+Lj17809:
 	leal	-264(%ebp),%edx
 	movl	-4(%ebp),%eax
 	movl	$255,%ecx
 	call	SYSTEM_READNUMERIC$TEXT$OPENSTRING
-Lj18313:
+Lj17803:
 	movzbl	-264(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj18327
-	jmp	Lj18328
-Lj18327:
+	je	Lj17817
+	jmp	Lj17818
+Lj17817:
 	movl	-8(%ebp),%eax
 	movl	$0,(%eax)
-	jmp	Lj18331
-Lj18328:
+	jmp	Lj17821
+Lj17818:
 	leal	-268(%ebp),%ecx
 	leal	-264(%ebp),%edx
 	movl	$4,%eax
@@ -45293,22 +44534,22 @@ Lj18328:
 	movl	%eax,(%edx)
 	movl	-268(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj18340
-	jmp	Lj18341
-Lj18340:
+	jne	Lj17830
+	jmp	Lj17831
+Lj17830:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18344
+	je	Lj17834
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj18345
-Lj18344:
+	jmp	Lj17835
+Lj17834:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj18345:
+Lj17835:
 	movw	$106,(%eax)
-Lj18341:
-Lj18331:
-Lj18302:
+Lj17831:
+Lj17821:
+Lj17792:
 	leave
 	ret
 
@@ -45326,41 +44567,41 @@ fpc_read_text_uint:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_CHECKREAD$TEXT$$BOOLEAN
 	testb	%al,%al
-	je	Lj18350
-	jmp	Lj18351
-Lj18350:
-	jmp	Lj18346
-Lj18351:
+	je	Lj17840
+	jmp	Lj17841
+Lj17840:
+	jmp	Lj17836
+Lj17841:
 	movb	$0,-264(%ebp)
 	movl	-4(%ebp),%eax
 	call	SYSTEM_IGNORESPACES$TEXT$$BOOLEAN
 	testb	%al,%al
-	jne	Lj18356
-	jmp	Lj18357
-Lj18356:
+	jne	Lj17846
+	jmp	Lj17847
+Lj17846:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	16(%eax),%eax
 	cmpl	20(%edx),%eax
-	jge	Lj18360
-	jmp	Lj18361
-Lj18360:
-	jmp	Lj18346
-Lj18361:
+	jge	Lj17850
+	jmp	Lj17851
+Lj17850:
+	jmp	Lj17836
+Lj17851:
 	leal	-264(%ebp),%edx
 	movl	-4(%ebp),%eax
 	movl	$255,%ecx
 	call	SYSTEM_READNUMERIC$TEXT$OPENSTRING
-Lj18357:
+Lj17847:
 	movzbl	-264(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj18368
-	jmp	Lj18369
-Lj18368:
+	je	Lj17858
+	jmp	Lj17859
+Lj17858:
 	movl	-8(%ebp),%eax
 	movl	$0,(%eax)
-	jmp	Lj18372
-Lj18369:
+	jmp	Lj17862
+Lj17859:
 	leal	-268(%ebp),%edx
 	leal	-264(%ebp),%eax
 	call	fpc_val_uint_shortstr
@@ -45368,22 +44609,22 @@ Lj18369:
 	movl	%eax,(%edx)
 	movl	-268(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj18379
-	jmp	Lj18380
-Lj18379:
+	jne	Lj17869
+	jmp	Lj17870
+Lj17869:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18383
+	je	Lj17873
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj18384
-Lj18383:
+	jmp	Lj17874
+Lj17873:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj18384:
+Lj17874:
 	movw	$106,(%eax)
-Lj18380:
-Lj18372:
-Lj18346:
+Lj17870:
+Lj17862:
+Lj17836:
 	leave
 	ret
 
@@ -45402,32 +44643,32 @@ fpc_read_text_float:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_CHECKREAD$TEXT$$BOOLEAN
 	testb	%al,%al
-	je	Lj18389
-	jmp	Lj18390
-Lj18389:
-	jmp	Lj18385
-Lj18390:
+	je	Lj17879
+	jmp	Lj17880
+Lj17879:
+	jmp	Lj17875
+Lj17880:
 	movb	$0,-264(%ebp)
 	movl	-4(%ebp),%eax
 	call	SYSTEM_IGNORESPACES$TEXT$$BOOLEAN
 	testb	%al,%al
-	jne	Lj18395
-	jmp	Lj18396
-Lj18395:
+	jne	Lj17885
+	jmp	Lj17886
+Lj17885:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	16(%eax),%eax
 	cmpl	20(%edx),%eax
-	jge	Lj18399
-	jmp	Lj18400
-Lj18399:
-	jmp	Lj18385
-Lj18400:
+	jge	Lj17889
+	jmp	Lj17890
+Lj17889:
+	jmp	Lj17875
+Lj17890:
 	leal	-264(%ebp),%edx
 	movl	-4(%ebp),%eax
 	movl	$255,%ecx
 	call	SYSTEM_READNUMERIC$TEXT$OPENSTRING
-Lj18396:
+Lj17886:
 	leal	-272(%ebp),%edx
 	leal	-264(%ebp),%eax
 	call	fpc_val_real_shortstr
@@ -45437,21 +44678,21 @@ Lj18396:
 	movw	%ax,-266(%ebp)
 	movzwl	-266(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj18415
-	jmp	Lj18416
-Lj18415:
+	jne	Lj17905
+	jmp	Lj17906
+Lj17905:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18419
+	je	Lj17909
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj18420
-Lj18419:
+	jmp	Lj17910
+Lj17909:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj18420:
+Lj17910:
 	movw	$106,(%eax)
-Lj18416:
-Lj18385:
+Lj17906:
+Lj17875:
 	leave
 	ret
 
@@ -45468,32 +44709,32 @@ fpc_read_text_enum:
 	movl	-8(%ebp),%eax
 	call	SYSTEM_CHECKREAD$TEXT$$BOOLEAN
 	testb	%al,%al
-	je	Lj18423
-	jmp	Lj18424
-Lj18423:
-	jmp	Lj18421
-Lj18424:
+	je	Lj17913
+	jmp	Lj17914
+Lj17913:
+	jmp	Lj17911
+Lj17914:
 	movb	$0,-268(%ebp)
 	movl	-8(%ebp),%eax
 	call	SYSTEM_IGNORESPACES$TEXT$$BOOLEAN
 	testb	%al,%al
-	jne	Lj18429
-	jmp	Lj18430
-Lj18429:
+	jne	Lj17919
+	jmp	Lj17920
+Lj17919:
 	movl	-8(%ebp),%eax
 	movl	-8(%ebp),%edx
 	movl	16(%eax),%eax
 	cmpl	20(%edx),%eax
-	jge	Lj18433
-	jmp	Lj18434
-Lj18433:
-	jmp	Lj18421
-Lj18434:
+	jge	Lj17923
+	jmp	Lj17924
+Lj17923:
+	jmp	Lj17911
+Lj17924:
 	leal	-268(%ebp),%edx
 	movl	-8(%ebp),%eax
 	movl	$255,%ecx
 	call	SYSTEM_READNUMERIC$TEXT$OPENSTRING
-Lj18430:
+Lj17920:
 	leal	-272(%ebp),%ecx
 	leal	-268(%ebp),%edx
 	movl	-4(%ebp),%eax
@@ -45502,21 +44743,21 @@ Lj18430:
 	movl	%eax,(%edx)
 	movl	-272(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj18449
-	jmp	Lj18450
-Lj18449:
+	jne	Lj17939
+	jmp	Lj17940
+Lj17939:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18453
+	je	Lj17943
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj18454
-Lj18453:
+	jmp	Lj17944
+Lj17943:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj18454:
+Lj17944:
 	movw	$106,(%eax)
-Lj18450:
-Lj18421:
+Lj17940:
+Lj17911:
 	leave
 	ret
 
@@ -45535,32 +44776,32 @@ fpc_read_text_currency:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_CHECKREAD$TEXT$$BOOLEAN
 	testb	%al,%al
-	je	Lj18459
-	jmp	Lj18460
-Lj18459:
-	jmp	Lj18455
-Lj18460:
+	je	Lj17949
+	jmp	Lj17950
+Lj17949:
+	jmp	Lj17945
+Lj17950:
 	movb	$0,-264(%ebp)
 	movl	-4(%ebp),%eax
 	call	SYSTEM_IGNORESPACES$TEXT$$BOOLEAN
 	testb	%al,%al
-	jne	Lj18465
-	jmp	Lj18466
-Lj18465:
+	jne	Lj17955
+	jmp	Lj17956
+Lj17955:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	16(%eax),%eax
 	cmpl	20(%edx),%eax
-	jge	Lj18469
-	jmp	Lj18470
-Lj18469:
-	jmp	Lj18455
-Lj18470:
+	jge	Lj17959
+	jmp	Lj17960
+Lj17959:
+	jmp	Lj17945
+Lj17960:
 	leal	-264(%ebp),%edx
 	movl	-4(%ebp),%eax
 	movl	$255,%ecx
 	call	SYSTEM_READNUMERIC$TEXT$OPENSTRING
-Lj18466:
+Lj17956:
 	leal	-272(%ebp),%edx
 	leal	-264(%ebp),%eax
 	call	fpc_val_real_shortstr
@@ -45572,21 +44813,21 @@ Lj18466:
 	movw	%ax,-266(%ebp)
 	movzwl	-266(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj18485
-	jmp	Lj18486
-Lj18485:
+	jne	Lj17975
+	jmp	Lj17976
+Lj17975:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18489
+	je	Lj17979
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj18490
-Lj18489:
+	jmp	Lj17980
+Lj17979:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj18490:
+Lj17980:
 	movw	$106,(%eax)
-Lj18486:
-Lj18455:
+Lj17976:
+Lj17945:
 	leave
 	ret
 
@@ -45605,32 +44846,32 @@ fpc_read_text_qword:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_CHECKREAD$TEXT$$BOOLEAN
 	testb	%al,%al
-	je	Lj18495
-	jmp	Lj18496
-Lj18495:
-	jmp	Lj18491
-Lj18496:
+	je	Lj17985
+	jmp	Lj17986
+Lj17985:
+	jmp	Lj17981
+Lj17986:
 	movb	$0,-264(%ebp)
 	movl	-4(%ebp),%eax
 	call	SYSTEM_IGNORESPACES$TEXT$$BOOLEAN
 	testb	%al,%al
-	jne	Lj18501
-	jmp	Lj18502
-Lj18501:
+	jne	Lj17991
+	jmp	Lj17992
+Lj17991:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	16(%eax),%eax
 	cmpl	20(%edx),%eax
-	jge	Lj18505
-	jmp	Lj18506
-Lj18505:
-	jmp	Lj18491
-Lj18506:
+	jge	Lj17995
+	jmp	Lj17996
+Lj17995:
+	jmp	Lj17981
+Lj17996:
 	leal	-264(%ebp),%edx
 	movl	-4(%ebp),%eax
 	movl	$255,%ecx
 	call	SYSTEM_READNUMERIC$TEXT$OPENSTRING
-Lj18502:
+Lj17992:
 	leal	-268(%ebp),%edx
 	leal	-264(%ebp),%eax
 	call	fpc_val_qword_shortstr
@@ -45639,21 +44880,21 @@ Lj18502:
 	movl	%edx,4(%ecx)
 	movl	-268(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj18519
-	jmp	Lj18520
-Lj18519:
+	jne	Lj18009
+	jmp	Lj18010
+Lj18009:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18523
+	je	Lj18013
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj18524
-Lj18523:
+	jmp	Lj18014
+Lj18013:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj18524:
+Lj18014:
 	movw	$106,(%eax)
-Lj18520:
-Lj18491:
+Lj18010:
+Lj17981:
 	leave
 	ret
 
@@ -45672,32 +44913,32 @@ fpc_read_text_int64:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_CHECKREAD$TEXT$$BOOLEAN
 	testb	%al,%al
-	je	Lj18529
-	jmp	Lj18530
-Lj18529:
-	jmp	Lj18525
-Lj18530:
+	je	Lj18019
+	jmp	Lj18020
+Lj18019:
+	jmp	Lj18015
+Lj18020:
 	movb	$0,-264(%ebp)
 	movl	-4(%ebp),%eax
 	call	SYSTEM_IGNORESPACES$TEXT$$BOOLEAN
 	testb	%al,%al
-	jne	Lj18535
-	jmp	Lj18536
-Lj18535:
+	jne	Lj18025
+	jmp	Lj18026
+Lj18025:
 	movl	-4(%ebp),%eax
 	movl	-4(%ebp),%edx
 	movl	16(%eax),%eax
 	cmpl	20(%edx),%eax
-	jge	Lj18539
-	jmp	Lj18540
-Lj18539:
-	jmp	Lj18525
-Lj18540:
+	jge	Lj18029
+	jmp	Lj18030
+Lj18029:
+	jmp	Lj18015
+Lj18030:
 	leal	-264(%ebp),%edx
 	movl	-4(%ebp),%eax
 	movl	$255,%ecx
 	call	SYSTEM_READNUMERIC$TEXT$OPENSTRING
-Lj18536:
+Lj18026:
 	leal	-268(%ebp),%edx
 	leal	-264(%ebp),%eax
 	call	fpc_val_int64_shortstr
@@ -45706,21 +44947,21 @@ Lj18536:
 	movl	%edx,4(%ecx)
 	movl	-268(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj18553
-	jmp	Lj18554
-Lj18553:
+	jne	Lj18043
+	jmp	Lj18044
+Lj18043:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18557
+	je	Lj18047
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj18558
-Lj18557:
+	jmp	Lj18048
+Lj18047:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj18558:
+Lj18048:
 	movw	$106,(%eax)
-Lj18554:
-Lj18525:
+Lj18044:
+Lj18015:
 	leave
 	ret
 
@@ -45734,11 +44975,11 @@ SYSTEM_WRITESTRSHORT$TEXTREC:
 	movl	-4(%ebp),%eax
 	movl	16(%eax),%eax
 	testl	%eax,%eax
-	je	Lj18561
-	jmp	Lj18562
-Lj18561:
-	jmp	Lj18559
-Lj18562:
+	je	Lj18051
+	jmp	Lj18052
+Lj18051:
+	jmp	Lj18049
+Lj18052:
 	movl	-4(%ebp),%eax
 	leal	44(%eax),%eax
 	movl	(%eax),%eax
@@ -45756,15 +44997,15 @@ Lj18562:
 	movl	-4(%ebp),%eax
 	movzbl	60(%eax),%eax
 	cmpl	%eax,%edx
-	jg	Lj18569
-	jmp	Lj18570
-Lj18569:
+	jg	Lj18059
+	jmp	Lj18060
+Lj18059:
 	movl	-4(%ebp),%eax
 	movzbl	60(%eax),%eax
 	movl	-16(%ebp),%edx
 	subl	%edx,%eax
 	movl	%eax,-12(%ebp)
-Lj18570:
+Lj18060:
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%ecx
 	movl	-12(%ebp),%eax
@@ -45783,7 +45024,7 @@ Lj18570:
 	call	SYSTEM_MOVE$formal$formal$LONGINT
 	movl	-4(%ebp),%eax
 	movl	$0,16(%eax)
-Lj18559:
+Lj18049:
 	leave
 	ret
 
@@ -45797,11 +45038,11 @@ SYSTEM_WRITESTRANSI$TEXTREC:
 	movl	-4(%ebp),%eax
 	movl	16(%eax),%eax
 	testl	%eax,%eax
-	je	Lj18589
-	jmp	Lj18590
-Lj18589:
-	jmp	Lj18587
-Lj18590:
+	je	Lj18079
+	jmp	Lj18080
+Lj18079:
+	jmp	Lj18077
+Lj18080:
 	movl	-4(%ebp),%eax
 	leal	44(%eax),%eax
 	movl	(%eax),%eax
@@ -45809,9 +45050,9 @@ Lj18590:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj18595
+	je	Lj18085
 	movl	-4(%eax),%eax
-Lj18595:
+Lj18085:
 	movl	%eax,-12(%ebp)
 	movl	-4(%ebp),%eax
 	movl	-12(%ebp),%edx
@@ -45831,7 +45072,7 @@ Lj18595:
 	call	SYSTEM_MOVE$formal$formal$LONGINT
 	movl	-4(%ebp),%eax
 	movl	$0,16(%eax)
-Lj18587:
+Lj18077:
 	leave
 	ret
 
@@ -45851,15 +45092,15 @@ SYSTEM_WRITESTRUNICODE$TEXTREC:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj18612
+	jne	Lj18102
 	movl	-4(%ebp),%eax
 	movl	16(%eax),%eax
 	testl	%eax,%eax
-	je	Lj18615
-	jmp	Lj18616
-Lj18615:
-	jmp	Lj18612
-Lj18616:
+	je	Lj18105
+	jmp	Lj18106
+Lj18105:
+	jmp	Lj18102
+Lj18106:
 	movl	-4(%ebp),%eax
 	leal	44(%eax),%eax
 	movl	(%eax),%eax
@@ -45889,7 +45130,7 @@ Lj18616:
 	call	fpc_unicodestr_concat
 	movl	-4(%ebp),%eax
 	movl	$0,16(%eax)
-Lj18612:
+Lj18102:
 	call	FPC_POPADDRSTACK
 	leal	-56(%ebp),%eax
 	call	FPC_UNICODESTR_DECR_REF
@@ -45899,9 +45140,9 @@ Lj18612:
 	movl	$0,-8(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj18613
+	je	Lj18103
 	call	FPC_RERAISE
-Lj18613:
+Lj18103:
 	leave
 	ret
 
@@ -45935,35 +45176,35 @@ fpc_setupwritestr_shortstr:
 	movl	%edx,-8(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18665
+	je	Lj18155
 	movl	U_SYSTEM_READWRITESTRTEXT,%eax
 	call	*%edx
-	jmp	Lj18666
-Lj18665:
+	jmp	Lj18156
+Lj18155:
 	movl	$U_SYSTEM_READWRITESTRTEXT+4,%eax
-Lj18666:
+Lj18156:
 	call	SYSTEM_SETUPWRITESTRCOMMON$TEXTREC
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18669
+	je	Lj18159
 	movl	U_SYSTEM_READWRITESTRTEXT,%eax
 	call	*%edx
-	jmp	Lj18670
-Lj18669:
+	jmp	Lj18160
+Lj18159:
 	movl	$U_SYSTEM_READWRITESTRTEXT+4,%eax
-Lj18670:
+Lj18160:
 	leal	44(%eax),%edx
 	movl	-4(%ebp),%eax
 	movl	%eax,(%edx)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18673
+	je	Lj18163
 	movl	U_SYSTEM_READWRITESTRTEXT,%eax
 	call	*%edx
-	jmp	Lj18674
-Lj18673:
+	jmp	Lj18164
+Lj18163:
 	movl	$U_SYSTEM_READWRITESTRTEXT+4,%eax
-Lj18674:
+Lj18164:
 	movb	-8(%ebp),%dl
 	movb	%dl,60(%eax)
 	movl	-8(%ebp),%edx
@@ -45972,35 +45213,35 @@ Lj18674:
 	call	fpc_shortstr_setlength
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18683
+	je	Lj18173
 	movl	U_SYSTEM_READWRITESTRTEXT,%eax
 	call	*%edx
-	jmp	Lj18684
-Lj18683:
+	jmp	Lj18174
+Lj18173:
 	movl	$U_SYSTEM_READWRITESTRTEXT+4,%eax
-Lj18684:
+Lj18174:
 	movl	$SYSTEM_WRITESTRSHORT$TEXTREC,%edx
 	movl	%edx,32(%eax)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18687
+	je	Lj18177
 	movl	U_SYSTEM_READWRITESTRTEXT,%eax
 	call	*%edx
-	jmp	Lj18688
-Lj18687:
+	jmp	Lj18178
+Lj18177:
 	movl	$U_SYSTEM_READWRITESTRTEXT+4,%eax
-Lj18688:
+Lj18178:
 	movl	$SYSTEM_WRITESTRSHORT$TEXTREC,%edx
 	movl	%edx,36(%eax)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18691
+	je	Lj18181
 	movl	U_SYSTEM_READWRITESTRTEXT,%eax
 	call	*%edx
-	jmp	Lj18692
-Lj18691:
+	jmp	Lj18182
+Lj18181:
 	movl	$U_SYSTEM_READWRITESTRTEXT+4,%eax
-Lj18692:
+Lj18182:
 	movl	%eax,-12(%ebp)
 	movl	-12(%ebp),%eax
 	leave
@@ -46018,57 +45259,57 @@ fpc_setupwritestr_ansistr:
 	movl	$0,(%eax)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18697
+	je	Lj18187
 	movl	U_SYSTEM_READWRITESTRTEXT,%eax
 	call	*%edx
-	jmp	Lj18698
-Lj18697:
+	jmp	Lj18188
+Lj18187:
 	movl	$U_SYSTEM_READWRITESTRTEXT+4,%eax
-Lj18698:
+Lj18188:
 	call	SYSTEM_SETUPWRITESTRCOMMON$TEXTREC
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18701
+	je	Lj18191
 	movl	U_SYSTEM_READWRITESTRTEXT,%eax
 	call	*%edx
-	jmp	Lj18702
-Lj18701:
+	jmp	Lj18192
+Lj18191:
 	movl	$U_SYSTEM_READWRITESTRTEXT+4,%eax
-Lj18702:
+Lj18192:
 	leal	44(%eax),%edx
 	movl	-4(%ebp),%eax
 	movl	%eax,(%edx)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18705
+	je	Lj18195
 	movl	U_SYSTEM_READWRITESTRTEXT,%eax
 	call	*%edx
-	jmp	Lj18706
-Lj18705:
+	jmp	Lj18196
+Lj18195:
 	movl	$U_SYSTEM_READWRITESTRTEXT+4,%eax
-Lj18706:
+Lj18196:
 	movl	$SYSTEM_WRITESTRANSI$TEXTREC,%edx
 	movl	%edx,32(%eax)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18709
+	je	Lj18199
 	movl	U_SYSTEM_READWRITESTRTEXT,%eax
 	call	*%edx
-	jmp	Lj18710
-Lj18709:
+	jmp	Lj18200
+Lj18199:
 	movl	$U_SYSTEM_READWRITESTRTEXT+4,%eax
-Lj18710:
+Lj18200:
 	movl	$SYSTEM_WRITESTRANSI$TEXTREC,%edx
 	movl	%edx,36(%eax)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18713
+	je	Lj18203
 	movl	U_SYSTEM_READWRITESTRTEXT,%eax
 	call	*%edx
-	jmp	Lj18714
-Lj18713:
+	jmp	Lj18204
+Lj18203:
 	movl	$U_SYSTEM_READWRITESTRTEXT+4,%eax
-Lj18714:
+Lj18204:
 	movl	%eax,-8(%ebp)
 	movl	-8(%ebp),%eax
 	leave
@@ -46086,57 +45327,57 @@ fpc_setupwritestr_unicodestr:
 	movl	$0,(%eax)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18719
+	je	Lj18209
 	movl	U_SYSTEM_READWRITESTRTEXT,%eax
 	call	*%edx
-	jmp	Lj18720
-Lj18719:
+	jmp	Lj18210
+Lj18209:
 	movl	$U_SYSTEM_READWRITESTRTEXT+4,%eax
-Lj18720:
+Lj18210:
 	call	SYSTEM_SETUPWRITESTRCOMMON$TEXTREC
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18723
+	je	Lj18213
 	movl	U_SYSTEM_READWRITESTRTEXT,%eax
 	call	*%edx
-	jmp	Lj18724
-Lj18723:
+	jmp	Lj18214
+Lj18213:
 	movl	$U_SYSTEM_READWRITESTRTEXT+4,%eax
-Lj18724:
+Lj18214:
 	leal	44(%eax),%edx
 	movl	-4(%ebp),%eax
 	movl	%eax,(%edx)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18727
+	je	Lj18217
 	movl	U_SYSTEM_READWRITESTRTEXT,%eax
 	call	*%edx
-	jmp	Lj18728
-Lj18727:
+	jmp	Lj18218
+Lj18217:
 	movl	$U_SYSTEM_READWRITESTRTEXT+4,%eax
-Lj18728:
+Lj18218:
 	movl	$SYSTEM_WRITESTRUNICODE$TEXTREC,%edx
 	movl	%edx,32(%eax)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18731
+	je	Lj18221
 	movl	U_SYSTEM_READWRITESTRTEXT,%eax
 	call	*%edx
-	jmp	Lj18732
-Lj18731:
+	jmp	Lj18222
+Lj18221:
 	movl	$U_SYSTEM_READWRITESTRTEXT+4,%eax
-Lj18732:
+Lj18222:
 	movl	$SYSTEM_WRITESTRUNICODE$TEXTREC,%edx
 	movl	%edx,36(%eax)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18735
+	je	Lj18225
 	movl	U_SYSTEM_READWRITESTRTEXT,%eax
 	call	*%edx
-	jmp	Lj18736
-Lj18735:
+	jmp	Lj18226
+Lj18225:
 	movl	$U_SYSTEM_READWRITESTRTEXT+4,%eax
-Lj18736:
+Lj18226:
 	movl	%eax,-8(%ebp)
 	movl	-8(%ebp),%eax
 	leave
@@ -46178,18 +45419,18 @@ SYSTEM_READSTRCOMMON$TEXTREC$PCHAR$LONGINT:
 	movl	-4(%ebp),%eax
 	movl	8(%eax),%eax
 	cmpl	-16(%ebp),%eax
-	jle	Lj18745
-	jmp	Lj18746
-Lj18745:
+	jle	Lj18235
+	jmp	Lj18236
+Lj18235:
 	movl	-4(%ebp),%eax
 	movl	8(%eax),%eax
 	movl	%eax,-16(%ebp)
-Lj18746:
+Lj18236:
 	movl	-16(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj18749
-	jmp	Lj18750
-Lj18749:
+	jg	Lj18239
+	jmp	Lj18240
+Lj18239:
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	leal	60(%eax),%eax
@@ -46203,7 +45444,7 @@ Lj18749:
 	leal	60(%eax),%eax
 	movl	-16(%ebp),%edx
 	addl	%edx,(%eax)
-Lj18750:
+Lj18240:
 	movl	-4(%ebp),%eax
 	movl	-16(%ebp),%edx
 	movl	%edx,20(%eax)
@@ -46227,9 +45468,9 @@ SYSTEM_READSTRANSI$TEXTREC:
 	movl	-8(%ebp),%eax
 	movl	(%eax),%ecx
 	testl	%ecx,%ecx
-	je	Lj18769
+	je	Lj18259
 	movl	-4(%ecx),%ecx
-Lj18769:
+Lj18259:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_READSTRCOMMON$TEXTREC$PCHAR$LONGINT
 	leave
@@ -46270,25 +45511,25 @@ FPC_SETUPREADSTR_ANSISTR:
 	movl	%eax,-4(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18790
+	je	Lj18280
 	movl	U_SYSTEM_READWRITESTRTEXT,%eax
 	call	*%edx
-	jmp	Lj18791
-Lj18790:
+	jmp	Lj18281
+Lj18280:
 	movl	$U_SYSTEM_READWRITESTRTEXT+4,%eax
-Lj18791:
+Lj18281:
 	call	SYSTEM_SETUPREADSTRCOMMON$TEXTREC
 	movl	-4(%ebp),%eax
 	call	FPC_ANSISTR_INCR_REF
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18794
+	je	Lj18284
 	movl	U_SYSTEM_READWRITESTRTEXT,%eax
 	call	*%edx
-	jmp	Lj18795
-Lj18794:
+	jmp	Lj18285
+Lj18284:
 	movl	$U_SYSTEM_READWRITESTRTEXT+4,%eax
-Lj18795:
+Lj18285:
 	leal	44(%eax),%ebx
 	movl	%ebx,%eax
 	call	FPC_ANSISTR_DECR_REF
@@ -46296,35 +45537,35 @@ Lj18795:
 	movl	%eax,(%ebx)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18798
+	je	Lj18288
 	movl	U_SYSTEM_READWRITESTRTEXT,%eax
 	call	*%edx
-	jmp	Lj18799
-Lj18798:
+	jmp	Lj18289
+Lj18288:
 	movl	$U_SYSTEM_READWRITESTRTEXT+4,%eax
-Lj18799:
+Lj18289:
 	movl	$SYSTEM_READSTRANSI$TEXTREC,%edx
 	movl	%edx,32(%eax)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18802
+	je	Lj18292
 	movl	U_SYSTEM_READWRITESTRTEXT,%eax
 	call	*%edx
-	jmp	Lj18803
-Lj18802:
+	jmp	Lj18293
+Lj18292:
 	movl	$U_SYSTEM_READWRITESTRTEXT+4,%eax
-Lj18803:
+Lj18293:
 	movl	$SYSTEM_READANSISTRFINAL$TEXTREC,%edx
 	movl	%edx,36(%eax)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18806
+	je	Lj18296
 	movl	U_SYSTEM_READWRITESTRTEXT,%eax
 	call	*%edx
-	jmp	Lj18807
-Lj18806:
+	jmp	Lj18297
+Lj18296:
 	movl	$U_SYSTEM_READWRITESTRTEXT+4,%eax
-Lj18807:
+Lj18297:
 	movl	%eax,-8(%ebp)
 	movl	-8(%ebp),%eax
 	movl	-12(%ebp),%ebx
@@ -46347,7 +45588,7 @@ fpc_setupreadstr_shortstr:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj18810
+	jne	Lj18300
 	leal	-52(%ebp),%eax
 	call	FPC_ANSISTR_DECR_REF
 	movl	$0,-52(%ebp)
@@ -46357,16 +45598,16 @@ fpc_setupreadstr_shortstr:
 	movl	-52(%ebp),%eax
 	call	FPC_SETUPREADSTR_ANSISTR
 	movl	%eax,-8(%ebp)
-Lj18810:
+Lj18300:
 	call	FPC_POPADDRSTACK
 	leal	-52(%ebp),%eax
 	call	FPC_ANSISTR_DECR_REF
 	movl	$0,-52(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj18811
+	je	Lj18301
 	call	FPC_RERAISE
-Lj18811:
+Lj18301:
 	movl	-8(%ebp),%eax
 	leave
 	ret
@@ -46387,7 +45628,7 @@ fpc_setupreadstr_unicodestr:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj18823
+	jne	Lj18313
 	leal	-52(%ebp),%eax
 	call	FPC_ANSISTR_DECR_REF
 	movl	$0,-52(%ebp)
@@ -46397,16 +45638,16 @@ fpc_setupreadstr_unicodestr:
 	movl	-52(%ebp),%eax
 	call	FPC_SETUPREADSTR_ANSISTR
 	movl	%eax,-8(%ebp)
-Lj18823:
+Lj18313:
 	call	FPC_POPADDRSTACK
 	leal	-52(%ebp),%eax
 	call	FPC_ANSISTR_DECR_REF
 	movl	$0,-52(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj18824
+	je	Lj18314
 	call	FPC_RERAISE
-Lj18824:
+Lj18314:
 	movl	-8(%ebp),%eax
 	leave
 	ret
@@ -46434,36 +45675,36 @@ SYSTEM_OPENSTDIO$TEXT$LONGINT$LONGINT:
 	movl	%eax,40(%edx)
 	movl	-8(%ebp),%eax
 	cmpl	$55217,%eax
-	jl	Lj18847
+	jl	Lj18337
 	subl	$55217,%eax
-	je	Lj18848
+	je	Lj18338
 	decl	%eax
-	je	Lj18849
-	jmp	Lj18847
-Lj18848:
+	je	Lj18339
+	jmp	Lj18337
+Lj18338:
 	movl	$SYSTEM_FILEREADFUNC$TEXTREC,%eax
 	movl	-4(%ebp),%edx
 	movl	%eax,32(%edx)
-	jmp	Lj18846
-Lj18849:
+	jmp	Lj18336
+Lj18339:
 	movl	$SYSTEM_FILEWRITEFUNC$TEXTREC,%eax
 	movl	-4(%ebp),%edx
 	movl	%eax,32(%edx)
 	movl	-12(%ebp),%eax
 	call	SYSTEM_DO_ISDEVICE$LONGINT$$BOOLEAN
 	testb	%al,%al
-	jne	Lj18854
-	jmp	Lj18855
-Lj18854:
+	jne	Lj18344
+	jmp	Lj18345
+Lj18344:
 	movl	$SYSTEM_FILEWRITEFUNC$TEXTREC,%eax
 	movl	-4(%ebp),%edx
 	movl	%eax,36(%edx)
-Lj18855:
-	jmp	Lj18846
-Lj18847:
+Lj18345:
+	jmp	Lj18336
+Lj18337:
 	movl	$102,%eax
 	call	SYSTEM_HANDLEERROR$LONGINT
-Lj18846:
+Lj18336:
 	leave
 	ret
 
@@ -46543,69 +45784,69 @@ SYSTEM_REWRITE$file$LONGINT:
 	movl	%edx,-8(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18902
+	je	Lj18392
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj18903
-Lj18902:
+	jmp	Lj18393
+Lj18392:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj18903:
+Lj18393:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj18900
-	jmp	Lj18901
-Lj18900:
-	jmp	Lj18898
-Lj18901:
+	jne	Lj18390
+	jmp	Lj18391
+Lj18390:
+	jmp	Lj18388
+Lj18391:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55216,%eax
-	jl	Lj18905
+	jl	Lj18395
 	subl	$55216,%eax
-	je	Lj18907
+	je	Lj18397
 	decl	%eax
-	je	Lj18906
+	je	Lj18396
 	decl	%eax
-	jl	Lj18905
+	jl	Lj18395
 	subl	$1,%eax
-	jle	Lj18906
-	jmp	Lj18905
-Lj18906:
+	jle	Lj18396
+	jmp	Lj18395
+Lj18396:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_CLOSE$file
-	jmp	Lj18904
-Lj18907:
-	jmp	Lj18904
-Lj18905:
+	jmp	Lj18394
+Lj18397:
+	jmp	Lj18394
+Lj18395:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18912
+	je	Lj18402
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj18913
-Lj18912:
+	jmp	Lj18403
+Lj18402:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj18913:
+Lj18403:
 	movw	$102,(%eax)
-	jmp	Lj18898
-Lj18904:
+	jmp	Lj18388
+Lj18394:
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj18914
-	jmp	Lj18915
-Lj18914:
+	je	Lj18404
+	jmp	Lj18405
+Lj18404:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18918
+	je	Lj18408
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj18919
-Lj18918:
+	jmp	Lj18409
+Lj18408:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj18919:
+Lj18409:
 	movw	$2,(%eax)
-	jmp	Lj18920
-Lj18915:
+	jmp	Lj18410
+Lj18405:
 	movl	-4(%ebp),%eax
 	leal	76(%eax),%edx
 	movl	-4(%ebp),%eax
@@ -46614,8 +45855,8 @@ Lj18915:
 	movl	-4(%ebp),%eax
 	movl	-8(%ebp),%edx
 	movl	%edx,8(%eax)
-Lj18920:
-Lj18898:
+Lj18410:
+Lj18388:
 	leave
 	ret
 
@@ -46630,69 +45871,69 @@ SYSTEM_RESET$file$LONGINT:
 	movl	%edx,-8(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18933
+	je	Lj18423
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj18934
-Lj18933:
+	jmp	Lj18424
+Lj18423:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj18934:
+Lj18424:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj18931
-	jmp	Lj18932
-Lj18931:
-	jmp	Lj18929
-Lj18932:
+	jne	Lj18421
+	jmp	Lj18422
+Lj18421:
+	jmp	Lj18419
+Lj18422:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55216,%eax
-	jl	Lj18936
+	jl	Lj18426
 	subl	$55216,%eax
-	je	Lj18938
+	je	Lj18428
 	decl	%eax
-	je	Lj18937
+	je	Lj18427
 	decl	%eax
-	jl	Lj18936
+	jl	Lj18426
 	subl	$1,%eax
-	jle	Lj18937
-	jmp	Lj18936
-Lj18937:
+	jle	Lj18427
+	jmp	Lj18426
+Lj18427:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_CLOSE$file
-	jmp	Lj18935
-Lj18938:
-	jmp	Lj18935
-Lj18936:
+	jmp	Lj18425
+Lj18428:
+	jmp	Lj18425
+Lj18426:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18943
+	je	Lj18433
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj18944
-Lj18943:
+	jmp	Lj18434
+Lj18433:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj18944:
+Lj18434:
 	movw	$102,(%eax)
-	jmp	Lj18929
-Lj18935:
+	jmp	Lj18419
+Lj18425:
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj18945
-	jmp	Lj18946
-Lj18945:
+	je	Lj18435
+	jmp	Lj18436
+Lj18435:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18949
+	je	Lj18439
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj18950
-Lj18949:
+	jmp	Lj18440
+Lj18439:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj18950:
+Lj18440:
 	movw	$2,(%eax)
-	jmp	Lj18951
-Lj18946:
+	jmp	Lj18441
+Lj18436:
 	movl	-4(%ebp),%eax
 	leal	76(%eax),%edx
 	movzbl	TC_SYSTEM_FILEMODE,%ecx
@@ -46701,8 +45942,8 @@ Lj18946:
 	movl	-4(%ebp),%eax
 	movl	-8(%ebp),%edx
 	movl	%edx,8(%eax)
-Lj18951:
-Lj18929:
+Lj18441:
+Lj18419:
 	leave
 	ret
 
@@ -46716,24 +45957,24 @@ SYSTEM_REWRITE$file:
 	movl	%eax,-4(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18964
+	je	Lj18454
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj18965
-Lj18964:
+	jmp	Lj18455
+Lj18454:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj18965:
+Lj18455:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj18962
-	jmp	Lj18963
-Lj18962:
-	jmp	Lj18960
-Lj18963:
+	jne	Lj18452
+	jmp	Lj18453
+Lj18452:
+	jmp	Lj18450
+Lj18453:
 	movl	-4(%ebp),%eax
 	movl	$128,%edx
 	call	SYSTEM_REWRITE$file$LONGINT
-Lj18960:
+Lj18450:
 	leave
 	ret
 
@@ -46747,24 +45988,24 @@ SYSTEM_RESET$file:
 	movl	%eax,-4(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18974
+	je	Lj18464
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj18975
-Lj18974:
+	jmp	Lj18465
+Lj18464:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj18975:
+Lj18465:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj18972
-	jmp	Lj18973
-Lj18972:
-	jmp	Lj18970
-Lj18973:
+	jne	Lj18462
+	jmp	Lj18463
+Lj18462:
+	jmp	Lj18460
+Lj18463:
 	movl	-4(%ebp),%eax
 	movl	$128,%edx
 	call	SYSTEM_RESET$file$LONGINT
-Lj18970:
+Lj18460:
 	leave
 	ret
 
@@ -46783,32 +46024,32 @@ SYSTEM_BLOCKWRITE$file$formal$INT64$INT64:
 	movl	$0,4(%eax)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj18986
+	je	Lj18476
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj18987
-Lj18986:
+	jmp	Lj18477
+Lj18476:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj18987:
+Lj18477:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj18984
-	jmp	Lj18985
-Lj18984:
-	jmp	Lj18980
-Lj18985:
+	jne	Lj18474
+	jmp	Lj18475
+Lj18474:
+	jmp	Lj18470
+Lj18475:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55217,%eax
-	jl	Lj18989
+	jl	Lj18479
 	subl	$55217,%eax
-	je	Lj18991
+	je	Lj18481
 	decl	%eax
-	jl	Lj18989
+	jl	Lj18479
 	subl	$1,%eax
-	jle	Lj18990
-	jmp	Lj18989
-Lj18990:
+	jle	Lj18480
+	jmp	Lj18479
+Lj18480:
 	pushl	12(%ebp)
 	pushl	8(%ebp)
 	movl	-4(%ebp),%eax
@@ -46832,32 +46073,32 @@ Lj18990:
 	movl	-12(%ebp),%ecx
 	movl	%eax,(%ecx)
 	movl	%edx,4(%ecx)
-	jmp	Lj18988
-Lj18991:
+	jmp	Lj18478
+Lj18481:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19008
+	je	Lj18498
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19009
-Lj19008:
+	jmp	Lj18499
+Lj18498:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19009:
+Lj18499:
 	movw	$105,(%eax)
-	jmp	Lj18988
-Lj18989:
+	jmp	Lj18478
+Lj18479:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19012
+	je	Lj18502
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19013
-Lj19012:
+	jmp	Lj18503
+Lj18502:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19013:
+Lj18503:
 	movw	$103,(%eax)
-Lj18988:
-Lj18980:
+Lj18478:
+Lj18470:
 	leave
 	ret	$8
 
@@ -46979,45 +46220,45 @@ SYSTEM_BLOCKWRITE$file$formal$LONGINT:
 	call	SYSTEM_BLOCKWRITE$file$formal$INT64$INT64
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19076
+	je	Lj18566
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19077
-Lj19076:
+	jmp	Lj18567
+Lj18566:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19077:
+Lj18567:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj19075
-	jmp	Lj19073
-Lj19075:
+	je	Lj18565
+	jmp	Lj18563
+Lj18565:
 	movl	-12(%ebp),%edx
 	movl	%edx,%eax
 	sarl	$31,%eax
 	cmpl	-16(%ebp),%eax
-	jg	Lj19074
-	jl	Lj19073
+	jg	Lj18564
+	jl	Lj18563
 	cmpl	-20(%ebp),%edx
-	ja	Lj19074
-	jmp	Lj19073
-	jmp	Lj19073
-Lj19074:
+	ja	Lj18564
+	jmp	Lj18563
+	jmp	Lj18563
+Lj18564:
 	movl	-12(%ebp),%eax
 	cmpl	$0,%eax
-	jg	Lj19072
-	jmp	Lj19073
-Lj19072:
+	jg	Lj18562
+	jmp	Lj18563
+Lj18562:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19080
+	je	Lj18570
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19081
-Lj19080:
+	jmp	Lj18571
+Lj18570:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19081:
+Lj18571:
 	movw	$101,(%eax)
-Lj19073:
+Lj18563:
 	leave
 	ret
 
@@ -47036,32 +46277,32 @@ SYSTEM_BLOCKREAD$file$formal$INT64$INT64:
 	movl	$0,4(%eax)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19088
+	je	Lj18578
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19089
-Lj19088:
+	jmp	Lj18579
+Lj18578:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19089:
+Lj18579:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj19086
-	jmp	Lj19087
-Lj19086:
-	jmp	Lj19082
-Lj19087:
+	jne	Lj18576
+	jmp	Lj18577
+Lj18576:
+	jmp	Lj18572
+Lj18577:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55217,%eax
-	jl	Lj19091
+	jl	Lj18581
 	subl	$55217,%eax
-	je	Lj19092
+	je	Lj18582
 	decl	%eax
-	je	Lj19093
+	je	Lj18583
 	decl	%eax
-	je	Lj19092
-	jmp	Lj19091
-Lj19092:
+	je	Lj18582
+	jmp	Lj18581
+Lj18582:
 	pushl	12(%ebp)
 	pushl	8(%ebp)
 	movl	-4(%ebp),%eax
@@ -47085,32 +46326,32 @@ Lj19092:
 	movl	-12(%ebp),%ecx
 	movl	%eax,(%ecx)
 	movl	%edx,4(%ecx)
-	jmp	Lj19090
-Lj19093:
+	jmp	Lj18580
+Lj18583:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19110
+	je	Lj18600
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19111
-Lj19110:
+	jmp	Lj18601
+Lj18600:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19111:
+Lj18601:
 	movw	$104,(%eax)
-	jmp	Lj19090
-Lj19091:
+	jmp	Lj18580
+Lj18581:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19114
+	je	Lj18604
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19115
-Lj19114:
+	jmp	Lj18605
+Lj18604:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19115:
+Lj18605:
 	movw	$103,(%eax)
-Lj19090:
-Lj19082:
+Lj18580:
+Lj18572:
 	leave
 	ret	$8
 
@@ -47228,48 +46469,48 @@ SYSTEM_BLOCKREAD$file$formal$INT64:
 	call	SYSTEM_BLOCKREAD$file$formal$INT64$INT64
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19178
+	je	Lj18668
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19179
-Lj19178:
+	jmp	Lj18669
+Lj18668:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19179:
+Lj18669:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj19177
-	jmp	Lj19175
-Lj19177:
+	je	Lj18667
+	jmp	Lj18665
+Lj18667:
 	movl	-16(%ebp),%eax
 	movl	-12(%ebp),%edx
 	cmpl	12(%ebp),%edx
-	jl	Lj19176
-	jg	Lj19175
+	jl	Lj18666
+	jg	Lj18665
 	cmpl	8(%ebp),%eax
-	jb	Lj19176
-	jmp	Lj19175
-	jmp	Lj19175
-Lj19176:
+	jb	Lj18666
+	jmp	Lj18665
+	jmp	Lj18665
+Lj18666:
 	movl	8(%ebp),%eax
 	movl	12(%ebp),%edx
 	cmpl	$0,%edx
-	jg	Lj19174
-	jl	Lj19175
+	jg	Lj18664
+	jl	Lj18665
 	cmpl	$0,%eax
-	ja	Lj19174
-	jmp	Lj19175
-Lj19174:
+	ja	Lj18664
+	jmp	Lj18665
+Lj18664:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19182
+	je	Lj18672
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19183
-Lj19182:
+	jmp	Lj18673
+Lj18672:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19183:
+Lj18673:
 	movw	$100,(%eax)
-Lj19175:
+Lj18665:
 	leave
 	ret	$8
 
@@ -47285,60 +46526,56 @@ SYSTEM_FILEPOS$file$$INT64:
 	movl	$0,-8(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19190
+	je	Lj18680
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19191
-Lj19190:
+	jmp	Lj18681
+Lj18680:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19191:
+Lj18681:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj19188
-	jmp	Lj19189
-Lj19188:
-	jmp	Lj19184
-Lj19189:
+	jne	Lj18678
+	jmp	Lj18679
+Lj18678:
+	jmp	Lj18674
+Lj18679:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55217,%eax
-	jl	Lj19193
+	jl	Lj18683
 	subl	$55217,%eax
-	je	Lj19194
+	je	Lj18684
 	decl	%eax
-	jl	Lj19193
+	jl	Lj18683
 	subl	$1,%eax
-	jle	Lj19194
-	jmp	Lj19193
-Lj19194:
-	movl	-4(%ebp),%eax
-	movl	8(%eax),%edx
-	movl	%edx,%eax
-	sarl	$31,%eax
-	pushl	%eax
-	pushl	%edx
+	jle	Lj18684
+	jmp	Lj18683
+Lj18684:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
-	call	SYSTEM_DO_FILEPOS$LONGINT$$INT64
-	pushl	%edx
-	pushl	%eax
-	call	fpc_div_int64
+	call	SYSTEM_DO_FILEPOS$LONGINT$$LONGINT
+	movl	-4(%ebp),%ecx
+	cltd
+	idivl	8(%ecx)
+	movl	%eax,%edx
+	sarl	$31,%edx
 	movl	%eax,-12(%ebp)
 	movl	%edx,-8(%ebp)
-	jmp	Lj19192
-Lj19193:
+	jmp	Lj18682
+Lj18683:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19205
+	je	Lj18691
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19206
-Lj19205:
+	jmp	Lj18692
+Lj18691:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19206:
+Lj18692:
 	movw	$103,(%eax)
-Lj19192:
-Lj19184:
+Lj18682:
+Lj18674:
 	movl	-8(%ebp),%edx
 	movl	-12(%ebp),%eax
 	leave
@@ -47356,67 +46593,63 @@ SYSTEM_FILESIZE$file$$INT64:
 	movl	$0,-8(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19213
+	je	Lj18699
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19214
-Lj19213:
+	jmp	Lj18700
+Lj18699:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19214:
+Lj18700:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj19211
-	jmp	Lj19212
-Lj19211:
-	jmp	Lj19207
-Lj19212:
+	jne	Lj18697
+	jmp	Lj18698
+Lj18697:
+	jmp	Lj18693
+Lj18698:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55217,%eax
-	jl	Lj19216
+	jl	Lj18702
 	subl	$55217,%eax
-	je	Lj19217
+	je	Lj18703
 	decl	%eax
-	jl	Lj19216
+	jl	Lj18702
 	subl	$1,%eax
-	jle	Lj19217
-	jmp	Lj19216
-Lj19217:
+	jle	Lj18703
+	jmp	Lj18702
+Lj18703:
 	movl	-4(%ebp),%eax
 	movl	8(%eax),%eax
 	cmpl	$0,%eax
-	jg	Lj19218
-	jmp	Lj19219
-Lj19218:
-	movl	-4(%ebp),%eax
-	movl	8(%eax),%edx
-	movl	%edx,%eax
-	sarl	$31,%eax
-	pushl	%eax
-	pushl	%edx
+	jg	Lj18704
+	jmp	Lj18705
+Lj18704:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
-	call	SYSTEM_DO_FILESIZE$LONGINT$$INT64
-	pushl	%edx
-	pushl	%eax
-	call	fpc_div_int64
+	call	SYSTEM_DO_FILESIZE$LONGINT$$LONGINT
+	movl	-4(%ebp),%ecx
+	cltd
+	idivl	8(%ecx)
+	movl	%eax,%edx
+	sarl	$31,%edx
 	movl	%eax,-12(%ebp)
 	movl	%edx,-8(%ebp)
-Lj19219:
-	jmp	Lj19215
-Lj19216:
+Lj18705:
+	jmp	Lj18701
+Lj18702:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19230
+	je	Lj18712
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19231
-Lj19230:
+	jmp	Lj18713
+Lj18712:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19231:
+Lj18713:
 	movw	$103,(%eax)
-Lj19215:
-Lj19207:
+Lj18701:
+Lj18693:
 	movl	-8(%ebp),%edx
 	movl	-12(%ebp),%eax
 	leave
@@ -47435,32 +46668,32 @@ SYSTEM_EOF$file$$BOOLEAN:
 	movb	$0,-5(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19238
+	je	Lj18720
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19239
-Lj19238:
+	jmp	Lj18721
+Lj18720:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19239:
+Lj18721:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj19236
-	jmp	Lj19237
-Lj19236:
-	jmp	Lj19232
-Lj19237:
+	jne	Lj18718
+	jmp	Lj18719
+Lj18718:
+	jmp	Lj18714
+Lj18719:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55217,%eax
-	jl	Lj19241
+	jl	Lj18723
 	subl	$55217,%eax
-	je	Lj19242
+	je	Lj18724
 	decl	%eax
-	jl	Lj19241
+	jl	Lj18723
 	subl	$1,%eax
-	jle	Lj19242
-	jmp	Lj19241
-Lj19242:
+	jle	Lj18724
+	jmp	Lj18723
+Lj18724:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_FILESIZE$file$$INT64
 	movl	%eax,%ebx
@@ -47468,31 +46701,31 @@ Lj19242:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_FILEPOS$file$$INT64
 	cmpl	%edx,%esi
-	jl	Lj19243
-	jg	Lj19244
+	jl	Lj18725
+	jg	Lj18726
 	cmpl	%eax,%ebx
-	jbe	Lj19243
-	jmp	Lj19244
-Lj19243:
+	jbe	Lj18725
+	jmp	Lj18726
+Lj18725:
 	movb	$1,-5(%ebp)
-	jmp	Lj19249
-Lj19244:
+	jmp	Lj18731
+Lj18726:
 	movb	$0,-5(%ebp)
-Lj19249:
-	jmp	Lj19240
-Lj19241:
+Lj18731:
+	jmp	Lj18722
+Lj18723:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19252
+	je	Lj18734
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19253
-Lj19252:
+	jmp	Lj18735
+Lj18734:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19253:
+Lj18735:
 	movw	$103,(%eax)
-Lj19240:
-Lj19232:
+Lj18722:
+Lj18714:
 	movb	-5(%ebp),%al
 	movl	-16(%ebp),%ebx
 	movl	-12(%ebp),%esi
@@ -47509,32 +46742,32 @@ SYSTEM_SEEK$file$INT64:
 	movl	%eax,-4(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19258
+	je	Lj18740
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19259
-Lj19258:
+	jmp	Lj18741
+Lj18740:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19259:
+Lj18741:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj19256
-	jmp	Lj19257
-Lj19256:
-	jmp	Lj19254
-Lj19257:
+	jne	Lj18738
+	jmp	Lj18739
+Lj18738:
+	jmp	Lj18736
+Lj18739:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55217,%eax
-	jl	Lj19261
+	jl	Lj18743
 	subl	$55217,%eax
-	je	Lj19262
+	je	Lj18744
 	decl	%eax
-	jl	Lj19261
+	jl	Lj18743
 	subl	$1,%eax
-	jle	Lj19262
-	jmp	Lj19261
-Lj19262:
+	jle	Lj18744
+	jmp	Lj18743
+Lj18744:
 	pushl	12(%ebp)
 	pushl	8(%ebp)
 	movl	-4(%ebp),%eax
@@ -47545,25 +46778,24 @@ Lj19262:
 	pushl	%edx
 	movl	$0,%eax
 	call	fpc_mul_int64
-	pushl	%edx
-	pushl	%eax
+	movl	%eax,%edx
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
-	call	SYSTEM_DO_SEEK$LONGINT$INT64
-	jmp	Lj19260
-Lj19261:
+	call	SYSTEM_DO_SEEK$LONGINT$LONGINT
+	jmp	Lj18742
+Lj18743:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19275
+	je	Lj18757
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19276
-Lj19275:
+	jmp	Lj18758
+Lj18757:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19276:
+Lj18758:
 	movw	$103,(%eax)
-Lj19260:
-Lj19254:
+Lj18742:
+Lj18736:
 	leave
 	ret	$8
 
@@ -47577,29 +46809,29 @@ SYSTEM_TRUNCATE$file:
 	movl	%eax,-4(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19281
+	je	Lj18763
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19282
-Lj19281:
+	jmp	Lj18764
+Lj18763:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19282:
+Lj18764:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj19279
-	jmp	Lj19280
-Lj19279:
-	jmp	Lj19277
-Lj19280:
+	jne	Lj18761
+	jmp	Lj18762
+Lj18761:
+	jmp	Lj18759
+Lj18762:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55218,%eax
-	jl	Lj19284
+	jl	Lj18766
 	subl	$55218,%eax
 	subl	$1,%eax
-	jle	Lj19285
-	jmp	Lj19284
-Lj19285:
+	jle	Lj18767
+	jmp	Lj18766
+Lj18767:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_FILEPOS$file$$INT64
 	pushl	%edx
@@ -47612,25 +46844,24 @@ Lj19285:
 	pushl	%edx
 	movl	$0,%eax
 	call	fpc_mul_int64
-	pushl	%edx
-	pushl	%eax
+	movl	%eax,%edx
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
-	call	SYSTEM_DO_TRUNCATE$LONGINT$INT64
-	jmp	Lj19283
-Lj19284:
+	call	SYSTEM_DO_TRUNCATE$LONGINT$LONGINT
+	jmp	Lj18765
+Lj18766:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19300
+	je	Lj18782
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19301
-Lj19300:
+	jmp	Lj18783
+Lj18782:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19301:
+Lj18783:
 	movw	$103,(%eax)
-Lj19283:
-Lj19277:
+Lj18765:
+Lj18759:
 	leave
 	ret
 
@@ -47644,51 +46875,51 @@ SYSTEM_CLOSE$file:
 	movl	%eax,-4(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19306
+	je	Lj18788
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19307
-Lj19306:
+	jmp	Lj18789
+Lj18788:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19307:
+Lj18789:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj19304
-	jmp	Lj19305
-Lj19304:
-	jmp	Lj19302
-Lj19305:
+	jne	Lj18786
+	jmp	Lj18787
+Lj18786:
+	jmp	Lj18784
+Lj18787:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55217,%eax
-	jl	Lj19309
+	jl	Lj18791
 	subl	$55217,%eax
-	je	Lj19310
+	je	Lj18792
 	decl	%eax
-	jl	Lj19309
+	jl	Lj18791
 	subl	$1,%eax
-	jle	Lj19310
-	jmp	Lj19309
-Lj19310:
+	jle	Lj18792
+	jmp	Lj18791
+Lj18792:
 	movl	-4(%ebp),%eax
 	movl	(%eax),%eax
 	call	SYSTEM_DO_CLOSE$LONGINT
 	movl	-4(%ebp),%eax
 	movl	$55216,4(%eax)
-	jmp	Lj19308
-Lj19309:
+	jmp	Lj18790
+Lj18791:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19317
+	je	Lj18799
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19318
-Lj19317:
+	jmp	Lj18800
+Lj18799:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19318:
+Lj18800:
 	movw	$103,(%eax)
-Lj19308:
-Lj19302:
+Lj18790:
+Lj18784:
 	leave
 	ret
 
@@ -47702,31 +46933,31 @@ SYSTEM_ERASE$file:
 	movl	%eax,-4(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19323
+	je	Lj18805
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19324
-Lj19323:
+	jmp	Lj18806
+Lj18805:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19324:
+Lj18806:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj19321
-	jmp	Lj19322
-Lj19321:
-	jmp	Lj19319
-Lj19322:
+	jne	Lj18803
+	jmp	Lj18804
+Lj18803:
+	jmp	Lj18801
+Lj18804:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55216,%eax
-	je	Lj19325
-	jmp	Lj19326
-Lj19325:
+	je	Lj18807
+	jmp	Lj18808
+Lj18807:
 	movl	-4(%ebp),%eax
 	leal	76(%eax),%eax
 	call	SYSTEM_DO_ERASE$PCHAR
-Lj19326:
-Lj19319:
+Lj18808:
+Lj18801:
 	leave
 	ret
 
@@ -47741,44 +46972,44 @@ SYSTEM_RENAME$file$PCHAR:
 	movl	%edx,-8(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19333
+	je	Lj18815
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19334
-Lj19333:
+	jmp	Lj18816
+Lj18815:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19334:
+Lj18816:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj19331
-	jmp	Lj19332
-Lj19331:
-	jmp	Lj19329
-Lj19332:
+	jne	Lj18813
+	jmp	Lj18814
+Lj18813:
+	jmp	Lj18811
+Lj18814:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55216,%eax
-	je	Lj19335
-	jmp	Lj19336
-Lj19335:
+	je	Lj18817
+	jmp	Lj18818
+Lj18817:
 	movl	-4(%ebp),%eax
 	leal	76(%eax),%eax
 	movl	-8(%ebp),%edx
 	call	SYSTEM_DO_RENAME$PCHAR$PCHAR
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19343
+	je	Lj18825
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19344
-Lj19343:
+	jmp	Lj18826
+Lj18825:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19344:
+Lj18826:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj19341
-	jmp	Lj19342
-Lj19341:
+	je	Lj18823
+	jmp	Lj18824
+Lj18823:
 	movl	-8(%ebp),%eax
 	call	FPC_PCHAR_LENGTH
 	movl	%eax,%ecx
@@ -47787,9 +47018,9 @@ Lj19341:
 	movl	-4(%ebp),%edx
 	leal	76(%edx),%edx
 	call	SYSTEM_MOVE$formal$formal$LONGINT
-Lj19342:
-Lj19336:
-Lj19329:
+Lj18824:
+Lj18818:
+Lj18811:
 	leave
 	ret
 
@@ -47804,20 +47035,20 @@ SYSTEM_RENAME$file$SHORTSTRING:
 	movl	%edx,-8(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19357
+	je	Lj18839
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19358
-Lj19357:
+	jmp	Lj18840
+Lj18839:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19358:
+Lj18840:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj19355
-	jmp	Lj19356
-Lj19355:
-	jmp	Lj19353
-Lj19356:
+	jne	Lj18837
+	jmp	Lj18838
+Lj18837:
+	jmp	Lj18835
+Lj18838:
 	movl	-8(%ebp),%eax
 	movzbl	(%eax),%ecx
 	leal	-264(%ebp),%edx
@@ -47830,7 +47061,7 @@ Lj19356:
 	leal	-264(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_RENAME$file$PCHAR
-Lj19353:
+Lj18835:
 	leave
 	ret
 
@@ -47845,27 +47076,27 @@ SYSTEM_RENAME$file$CHAR:
 	movb	%dl,-8(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19375
+	je	Lj18857
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19376
-Lj19375:
+	jmp	Lj18858
+Lj18857:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19376:
+Lj18858:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj19373
-	jmp	Lj19374
-Lj19373:
-	jmp	Lj19371
-Lj19374:
+	jne	Lj18855
+	jmp	Lj18856
+Lj18855:
+	jmp	Lj18853
+Lj18856:
 	movb	-8(%ebp),%al
 	movb	%al,-10(%ebp)
 	movb	$0,-9(%ebp)
 	leal	-10(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_RENAME$file$PCHAR
-Lj19371:
+Lj18853:
 	leave
 	ret
 
@@ -47947,24 +47178,24 @@ FPC_RESET_TYPED:
 	movl	%edx,-8(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19425
+	je	Lj18907
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19426
-Lj19425:
+	jmp	Lj18908
+Lj18907:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19426:
+Lj18908:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj19423
-	jmp	Lj19424
-Lj19423:
-	jmp	Lj19421
-Lj19424:
+	jne	Lj18905
+	jmp	Lj18906
+Lj18905:
+	jmp	Lj18903
+Lj18906:
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_RESET$file$LONGINT
-Lj19421:
+Lj18903:
 	leave
 	ret
 
@@ -47981,24 +47212,24 @@ FPC_REWRITE_TYPED:
 	movl	%edx,-8(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19435
+	je	Lj18917
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19436
-Lj19435:
+	jmp	Lj18918
+Lj18917:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19436:
+Lj18918:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj19433
-	jmp	Lj19434
-Lj19433:
-	jmp	Lj19431
-Lj19434:
+	jne	Lj18915
+	jmp	Lj18916
+Lj18915:
+	jmp	Lj18913
+Lj18916:
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_REWRITE$file$LONGINT
-Lj19431:
+Lj18913:
 	leave
 	ret
 
@@ -48010,7 +47241,7 @@ SYSTEM_DOASSIGN$TYPEDFILE:
 	subl	$528,%esp
 	movl	%eax,-4(%ebp)
 	pushl	$2
-	movl	$_$SYSTEM$_Ld40,%eax
+	movl	$_$SYSTEM$_Ld41,%eax
 	movl	%eax,-272(%ebp)
 	movl	$1000000000,%eax
 	call	SYSTEM_RANDOM$LONGINT$$LONGINT
@@ -48019,7 +47250,7 @@ SYSTEM_DOASSIGN$TYPEDFILE:
 	call	SYSTEM_HEXSTR$LONGINT$BYTE$$SHORTSTRING
 	leal	-528(%ebp),%eax
 	movl	%eax,-268(%ebp)
-	movl	$_$SYSTEM$_Ld41,%eax
+	movl	$_$SYSTEM$_Ld42,%eax
 	movl	%eax,-264(%ebp)
 	leal	-272(%ebp),%ecx
 	leal	-260(%ebp),%eax
@@ -48044,33 +47275,33 @@ FPC_RESET_TYPED_ISO:
 	movl	%edx,-8(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19467
+	je	Lj18949
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19468
-Lj19467:
+	jmp	Lj18950
+Lj18949:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19468:
+Lj18950:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj19465
-	jmp	Lj19466
-Lj19465:
-	jmp	Lj19463
-Lj19466:
+	jne	Lj18947
+	jmp	Lj18948
+Lj18947:
+	jmp	Lj18945
+Lj18948:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	testl	%eax,%eax
-	je	Lj19469
-	jmp	Lj19470
-Lj19469:
+	je	Lj18951
+	jmp	Lj18952
+Lj18951:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_DOASSIGN$TYPEDFILE
-Lj19470:
+Lj18952:
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_RESET$file$LONGINT
-Lj19463:
+Lj18945:
 	leave
 	ret
 
@@ -48087,33 +47318,33 @@ FPC_REWRITE_TYPED_ISO:
 	movl	%edx,-8(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19481
+	je	Lj18963
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19482
-Lj19481:
+	jmp	Lj18964
+Lj18963:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19482:
+Lj18964:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj19479
-	jmp	Lj19480
-Lj19479:
-	jmp	Lj19477
-Lj19480:
+	jne	Lj18961
+	jmp	Lj18962
+Lj18961:
+	jmp	Lj18959
+Lj18962:
 	movl	-4(%ebp),%eax
 	movl	4(%eax),%eax
 	testl	%eax,%eax
-	je	Lj19483
-	jmp	Lj19484
-Lj19483:
+	je	Lj18965
+	jmp	Lj18966
+Lj18965:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_DOASSIGN$TYPEDFILE
-Lj19484:
+Lj18966:
 	movl	-8(%ebp),%edx
 	movl	-4(%ebp),%eax
 	call	SYSTEM_REWRITE$file$LONGINT
-Lj19477:
+Lj18959:
 	leave
 	ret
 
@@ -48131,63 +47362,63 @@ FPC_TYPED_WRITE:
 	movl	%ecx,-12(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19495
+	je	Lj18977
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19496
-Lj19495:
+	jmp	Lj18978
+Lj18977:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19496:
+Lj18978:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj19493
-	jmp	Lj19494
-Lj19493:
-	jmp	Lj19491
-Lj19494:
+	jne	Lj18975
+	jmp	Lj18976
+Lj18975:
+	jmp	Lj18973
+Lj18976:
 	movl	-8(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55217,%eax
-	jl	Lj19498
+	jl	Lj18980
 	subl	$55217,%eax
-	je	Lj19500
+	je	Lj18982
 	decl	%eax
-	jl	Lj19498
+	jl	Lj18980
 	subl	$1,%eax
-	jle	Lj19499
-	jmp	Lj19498
-Lj19499:
+	jle	Lj18981
+	jmp	Lj18980
+Lj18981:
 	movl	-12(%ebp),%edx
 	movl	-4(%ebp),%ecx
 	movl	-8(%ebp),%eax
 	movl	(%eax),%eax
 	call	SYSTEM_DO_WRITE$LONGINT$POINTER$LONGINT$$LONGINT
-	jmp	Lj19497
-Lj19500:
+	jmp	Lj18979
+Lj18982:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19509
+	je	Lj18991
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19510
-Lj19509:
+	jmp	Lj18992
+Lj18991:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19510:
+Lj18992:
 	movw	$105,(%eax)
-	jmp	Lj19497
-Lj19498:
+	jmp	Lj18979
+Lj18980:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19513
+	je	Lj18995
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19514
-Lj19513:
+	jmp	Lj18996
+Lj18995:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19514:
+Lj18996:
 	movw	$103,(%eax)
-Lj19497:
-Lj19491:
+Lj18979:
+Lj18973:
 	leave
 	ret
 
@@ -48205,32 +47436,32 @@ FPC_TYPED_READ:
 	movl	%ecx,-12(%ebp)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19519
+	je	Lj19001
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19520
-Lj19519:
+	jmp	Lj19002
+Lj19001:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19520:
+Lj19002:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj19517
-	jmp	Lj19518
-Lj19517:
-	jmp	Lj19515
-Lj19518:
+	jne	Lj18999
+	jmp	Lj19000
+Lj18999:
+	jmp	Lj18997
+Lj19000:
 	movl	-8(%ebp),%eax
 	movl	4(%eax),%eax
 	cmpl	$55217,%eax
-	jl	Lj19522
+	jl	Lj19004
 	subl	$55217,%eax
-	je	Lj19523
+	je	Lj19005
 	decl	%eax
-	je	Lj19524
+	je	Lj19006
 	decl	%eax
-	je	Lj19523
-	jmp	Lj19522
-Lj19523:
+	je	Lj19005
+	jmp	Lj19004
+Lj19005:
 	movl	-12(%ebp),%edx
 	movl	-4(%ebp),%ecx
 	movl	-8(%ebp),%eax
@@ -48239,46 +47470,65 @@ Lj19523:
 	movl	%eax,-16(%ebp)
 	movl	-16(%ebp),%eax
 	cmpl	-4(%ebp),%eax
-	jl	Lj19533
-	jmp	Lj19534
-Lj19533:
+	jl	Lj19015
+	jmp	Lj19016
+Lj19015:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19537
+	je	Lj19019
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19538
-Lj19537:
+	jmp	Lj19020
+Lj19019:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19538:
+Lj19020:
 	movw	$100,(%eax)
-Lj19534:
-	jmp	Lj19521
-Lj19524:
+Lj19016:
+	jmp	Lj19003
+Lj19006:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19541
+	je	Lj19023
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19542
-Lj19541:
+	jmp	Lj19024
+Lj19023:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19542:
+Lj19024:
 	movw	$104,(%eax)
-	jmp	Lj19521
-Lj19522:
+	jmp	Lj19003
+Lj19004:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19545
+	je	Lj19027
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19546
-Lj19545:
+	jmp	Lj19028
+Lj19027:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19546:
+Lj19028:
 	movw	$103,(%eax)
-Lj19521:
-Lj19515:
+Lj19003:
+Lj18997:
+	leave
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_DOSDIR$BYTE$PCHAR:
+	pushl	%ebp
+	movl	%esp,%ebp
+	subl	$8,%esp
+	movb	%al,-4(%ebp)
+	movl	%edx,-8(%ebp)
+	movl	-8(%ebp),%eax
+	call	SYSTEM_DODIRSEPARATORS$PCHAR
+	movl	-8(%ebp),%edx
+	movb	-4(%ebp),%ah
+	call	___SYSCALL
+	jnc	Lj19031
+	movw	%ax,U_SYSTEM_INOUTRES
+Lj19031:
 	leave
 	ret
 
@@ -48290,60 +47540,71 @@ SYSTEM_MKDIR$PCHAR$LONGWORD:
 FPC_SYS_MKDIR:
 	pushl	%ebp
 	movl	%esp,%ebp
-	subl	$10,%esp
+	subl	$12,%esp
 	movl	%eax,-4(%ebp)
 	movl	%edx,-8(%ebp)
 	cmpl	$0,-4(%ebp)
-	jne	Lj19552
-	jmp	Lj19549
-Lj19552:
+	jne	Lj19039
+	jmp	Lj19036
+Lj19039:
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj19549
-	jmp	Lj19551
-Lj19551:
+	je	Lj19036
+	jmp	Lj19038
+Lj19038:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19553
+	je	Lj19040
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19554
-Lj19553:
+	jmp	Lj19041
+Lj19040:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19554:
+Lj19041:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj19549
-	jmp	Lj19550
-Lj19549:
-	jmp	Lj19547
-Lj19550:
+	jne	Lj19036
+	jmp	Lj19037
+Lj19036:
+	jmp	Lj19034
+Lj19037:
+	movl	U_SYSTEM_OS_MODE,%eax
+	cmpl	$1,%eax
+	je	Lj19042
+	jmp	Lj19043
+Lj19042:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_DODIRSEPARATORS$PCHAR
 	pushl	$0
 	pushl	-4(%ebp)
 	call	_$dll$doscalls$_index_270
 	addl	$8,%esp
-	movw	%ax,-10(%ebp)
-	movzwl	-10(%ebp),%eax
+	movl	%eax,-12(%ebp)
+	movl	-12(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj19563
-	jmp	Lj19564
-Lj19563:
+	jne	Lj19052
+	jmp	Lj19053
+Lj19052:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19567
+	je	Lj19056
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19568
-Lj19567:
+	jmp	Lj19057
+Lj19056:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19568:
-	movw	-10(%ebp),%dx
+Lj19057:
+	movw	-12(%ebp),%dx
 	movw	%dx,(%eax)
 	call	SYSTEM_ERRNO2INOUTRES
-Lj19564:
-Lj19547:
+Lj19053:
+	jmp	Lj19058
+Lj19043:
+	movl	-4(%ebp),%edx
+	movb	$57,%al
+	call	SYSTEM_DOSDIR$BYTE$PCHAR
+Lj19058:
+Lj19034:
 	leave
 	ret
 
@@ -48359,78 +47620,89 @@ FPC_SYS_RMDIR:
 	movl	%ebx,-16(%ebp)
 	movl	%eax,-4(%ebp)
 	movl	%edx,-8(%ebp)
+	cmpl	$0,-4(%ebp)
+	jne	Lj19068
+	jmp	Lj19066
+Lj19068:
+	movl	-8(%ebp),%eax
+	testl	%eax,%eax
+	jne	Lj19067
+	jmp	Lj19066
+Lj19067:
+	movl	FPC_THREADVAR_RELOCATE,%edx
+	testl	%edx,%edx
+	je	Lj19069
+	movl	U_SYSTEM_INOUTRES,%eax
+	call	*%edx
+	jmp	Lj19070
+Lj19069:
+	movl	$U_SYSTEM_INOUTRES+4,%eax
+Lj19070:
+	movzwl	(%eax),%eax
+	testl	%eax,%eax
+	je	Lj19065
+	jmp	Lj19066
+Lj19065:
 	movl	-8(%ebp),%eax
 	cmpl	$1,%eax
-	je	Lj19573
-	jmp	Lj19572
-Lj19573:
+	je	Lj19073
+	jmp	Lj19072
+Lj19073:
 	movl	-4(%ebp),%eax
 	movb	(%eax),%al
 	cmpb	$46,%al
-	je	Lj19571
-	jmp	Lj19572
-Lj19571:
+	je	Lj19071
+	jmp	Lj19072
+Lj19071:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19576
+	je	Lj19076
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19577
-Lj19576:
+	jmp	Lj19077
+Lj19076:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19577:
+Lj19077:
 	movw	$16,(%eax)
-Lj19572:
-	cmpl	$0,-4(%ebp)
-	jne	Lj19581
-	jmp	Lj19578
-Lj19581:
-	movl	-8(%ebp),%eax
-	testl	%eax,%eax
-	je	Lj19578
-	jmp	Lj19580
-Lj19580:
-	movl	FPC_THREADVAR_RELOCATE,%edx
-	testl	%edx,%edx
-	je	Lj19582
-	movl	U_SYSTEM_INOUTRES,%eax
-	call	*%edx
-	jmp	Lj19583
-Lj19582:
-	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19583:
-	movzwl	(%eax),%eax
-	testl	%eax,%eax
-	jne	Lj19578
-	jmp	Lj19579
-Lj19578:
-	jmp	Lj19569
-Lj19579:
+	jmp	Lj19078
+Lj19072:
+	movl	U_SYSTEM_OS_MODE,%eax
+	cmpl	$1,%eax
+	je	Lj19079
+	jmp	Lj19080
+Lj19079:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_DODIRSEPARATORS$PCHAR
 	pushl	-4(%ebp)
 	call	_$dll$doscalls$_index_226
 	popl	%ebx
-	movw	%ax,-10(%ebp)
-	movzwl	-10(%ebp),%eax
+	movl	%eax,-12(%ebp)
+	movl	-12(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj19590
-	jmp	Lj19591
-Lj19590:
+	jne	Lj19087
+	jmp	Lj19088
+Lj19087:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19594
+	je	Lj19091
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19595
-Lj19594:
+	jmp	Lj19092
+Lj19091:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19595:
-	movw	-10(%ebp),%dx
+Lj19092:
+	movw	-12(%ebp),%dx
 	movw	%dx,(%eax)
 	call	SYSTEM_ERRNO2INOUTRES
-Lj19591:
-Lj19569:
+Lj19088:
+	jmp	Lj19093
+Lj19080:
+	movl	-4(%ebp),%edx
+	movb	$58,%al
+	call	SYSTEM_DOSDIR$BYTE$PCHAR
+Lj19093:
+Lj19078:
+Lj19066:
 	movl	-16(%ebp),%ebx
 	leave
 	ret
@@ -48443,46 +47715,52 @@ SYSTEM_CHDIR$PCHAR$LONGWORD:
 FPC_SYS_CHDIR:
 	pushl	%ebp
 	movl	%esp,%ebp
-	subl	$16,%esp
-	movl	%ebx,-16(%ebp)
+	subl	$20,%esp
+	movl	%ebx,-20(%ebp)
+	movl	%esi,-16(%ebp)
 	movl	%eax,-4(%ebp)
 	movl	%edx,-8(%ebp)
 	cmpl	$0,-4(%ebp)
-	jne	Lj19601
-	jmp	Lj19598
-Lj19601:
+	jne	Lj19104
+	jmp	Lj19101
+Lj19104:
 	movl	-8(%ebp),%eax
 	testl	%eax,%eax
-	je	Lj19598
-	jmp	Lj19600
-Lj19600:
+	je	Lj19101
+	jmp	Lj19103
+Lj19103:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19602
+	je	Lj19105
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19603
-Lj19602:
+	jmp	Lj19106
+Lj19105:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19603:
+Lj19106:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj19598
-	jmp	Lj19599
-Lj19598:
-	jmp	Lj19596
-Lj19599:
+	jne	Lj19101
+	jmp	Lj19102
+Lj19101:
+	jmp	Lj19098
+Lj19102:
+	movl	U_SYSTEM_OS_MODE,%eax
+	cmpl	$1,%eax
+	je	Lj19107
+	jmp	Lj19108
+Lj19107:
 	movl	-8(%ebp),%eax
 	cmpl	$2,%eax
-	jae	Lj19606
-	jmp	Lj19605
-Lj19606:
+	jae	Lj19111
+	jmp	Lj19110
+Lj19111:
 	movl	-4(%ebp),%eax
 	movb	1(%eax),%al
 	cmpb	$58,%al
-	je	Lj19604
-	jmp	Lj19605
-Lj19604:
+	je	Lj19109
+	jmp	Lj19110
+Lj19109:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%eax
 	andl	$-33,%eax
@@ -48493,27 +47771,28 @@ Lj19604:
 	movl	%eax,-12(%ebp)
 	movl	-12(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj19611
-	jmp	Lj19612
-Lj19611:
+	jne	Lj19116
+	jmp	Lj19117
+Lj19116:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19615
+	je	Lj19120
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19616
-Lj19615:
+	jmp	Lj19121
+Lj19120:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19616:
+Lj19121:
 	movw	-12(%ebp),%dx
 	movw	%dx,(%eax)
-	jmp	Lj19617
-Lj19612:
+	call	SYSTEM_ERRNO2INOUTRES
+	jmp	Lj19122
+Lj19117:
 	movl	-8(%ebp),%eax
 	cmpl	$2,%eax
-	ja	Lj19618
-	jmp	Lj19619
-Lj19618:
+	ja	Lj19123
+	jmp	Lj19124
+Lj19123:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_DODIRSEPARATORS$PCHAR
 	movl	-4(%ebp),%edx
@@ -48521,90 +47800,183 @@ Lj19618:
 	decl	%eax
 	movb	(%edx,%eax,1),%al
 	cmpb	$92,%al
-	je	Lj19624
-	jmp	Lj19623
-Lj19624:
+	je	Lj19129
+	jmp	Lj19128
+Lj19129:
 	movl	-8(%ebp),%eax
 	cmpl	$3,%eax
-	jne	Lj19622
-	jmp	Lj19623
-Lj19622:
+	jne	Lj19127
+	jmp	Lj19128
+Lj19127:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	decl	%eax
 	movb	$0,(%edx,%eax,1)
-Lj19623:
+Lj19128:
 	pushl	-4(%ebp)
 	call	_$dll$doscalls$_index_255
 	popl	%ebx
 	movl	%eax,-12(%ebp)
 	movl	-12(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj19631
-	jmp	Lj19632
-Lj19631:
+	jne	Lj19136
+	jmp	Lj19137
+Lj19136:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19635
+	je	Lj19140
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19636
-Lj19635:
+	jmp	Lj19141
+Lj19140:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19636:
+Lj19141:
 	movw	-12(%ebp),%dx
 	movw	%dx,(%eax)
 	call	SYSTEM_ERRNO2INOUTRES
-Lj19632:
-Lj19619:
-Lj19617:
-	jmp	Lj19637
-Lj19605:
+Lj19137:
+Lj19124:
+Lj19122:
+	jmp	Lj19142
+Lj19110:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_DODIRSEPARATORS$PCHAR
 	movl	-8(%ebp),%eax
 	cmpl	$1,%eax
-	ja	Lj19642
-	jmp	Lj19641
-Lj19642:
+	ja	Lj19147
+	jmp	Lj19146
+Lj19147:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	decl	%eax
 	movb	(%edx,%eax,1),%al
 	cmpb	$92,%al
-	je	Lj19640
-	jmp	Lj19641
-Lj19640:
+	je	Lj19145
+	jmp	Lj19146
+Lj19145:
 	movl	-4(%ebp),%edx
 	movl	-8(%ebp),%eax
 	decl	%eax
 	movb	$0,(%edx,%eax,1)
-Lj19641:
+Lj19146:
 	pushl	-4(%ebp)
 	call	_$dll$doscalls$_index_255
 	popl	%ebx
 	movl	%eax,-12(%ebp)
 	movl	-12(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj19649
-	jmp	Lj19650
-Lj19649:
+	jne	Lj19154
+	jmp	Lj19155
+Lj19154:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19653
+	je	Lj19158
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19654
-Lj19653:
+	jmp	Lj19159
+Lj19158:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19654:
+Lj19159:
 	movw	-12(%ebp),%dx
 	movw	%dx,(%eax)
 	call	SYSTEM_ERRNO2INOUTRES
-Lj19650:
-Lj19637:
-Lj19596:
-	movl	-16(%ebp),%ebx
+Lj19155:
+Lj19142:
+	jmp	Lj19160
+Lj19108:
+	movl	-8(%ebp),%eax
+	cmpl	$2,%eax
+	jae	Lj19163
+	jmp	Lj19162
+Lj19163:
+	movl	-4(%ebp),%eax
+	movb	1(%eax),%al
+	cmpb	$58,%al
+	je	Lj19161
+	jmp	Lj19162
+Lj19161:
+	movl	-4(%ebp),%esi
+	movb	1(%esi),%al
+	andb	$-33,%al
+	subb	$65,%al
+	movl	%eax,%edx
+	movb	$14,%ah
+	call	___SYSCALL
+	movb	$25,%ah
+	call	___SYSCALL
+	cmpb	%dl,%al
+	jz	Lj19100
+	movw	$15,U_SYSTEM_INOUTRES
+Lj19100:
+	movl	-8(%ebp),%eax
+	cmpl	$2,%eax
+	ja	Lj19166
+	jmp	Lj19165
+Lj19166:
+	movl	FPC_THREADVAR_RELOCATE,%edx
+	testl	%edx,%edx
+	je	Lj19167
+	movl	U_SYSTEM_INOUTRES,%eax
+	call	*%edx
+	jmp	Lj19168
+Lj19167:
+	movl	$U_SYSTEM_INOUTRES+4,%eax
+Lj19168:
+	movzwl	(%eax),%eax
+	testl	%eax,%eax
+	jne	Lj19164
+	jmp	Lj19165
+Lj19164:
+	movl	-4(%ebp),%edx
+	movl	-8(%ebp),%eax
+	decl	%eax
+	movzbl	(%edx,%eax,1),%eax
+	btl	%eax,TC_SYSTEM_ALLOWDIRECTORYSEPARATORS
+	jc	Lj19171
+	jmp	Lj19170
+Lj19171:
+	movl	-8(%ebp),%eax
+	cmpl	$3,%eax
+	jne	Lj19169
+	jmp	Lj19170
+Lj19169:
+	movl	-4(%ebp),%edx
+	movl	-8(%ebp),%eax
+	decl	%eax
+	movb	$0,(%edx,%eax,1)
+Lj19170:
+	movl	-4(%ebp),%edx
+	movb	$59,%al
+	call	SYSTEM_DOSDIR$BYTE$PCHAR
+Lj19165:
+	jmp	Lj19178
+Lj19162:
+	movl	-8(%ebp),%eax
+	cmpl	$1,%eax
+	ja	Lj19181
+	jmp	Lj19180
+Lj19181:
+	movl	-4(%ebp),%edx
+	movl	-8(%ebp),%eax
+	decl	%eax
+	movzbl	(%edx,%eax,1),%eax
+	btl	%eax,TC_SYSTEM_ALLOWDIRECTORYSEPARATORS
+	jc	Lj19179
+	jmp	Lj19180
+Lj19179:
+	movl	-4(%ebp),%edx
+	movl	-8(%ebp),%eax
+	decl	%eax
+	movb	$0,(%edx,%eax,1)
+Lj19180:
+	movl	-4(%ebp),%edx
+	movb	$59,%al
+	call	SYSTEM_DOSDIR$BYTE$PCHAR
+Lj19178:
+Lj19160:
+Lj19098:
+	movl	-20(%ebp),%ebx
+	movl	-16(%ebp),%esi
 	leave
 	ret
 
@@ -48614,8 +47986,8 @@ Lj19596:
 SYSTEM_GETDIR$BYTE$OPENSTRING:
 	pushl	%ebp
 	movl	%esp,%ebp
-	subl	$288,%esp
-	movl	%ebx,-288(%ebp)
+	subl	$280,%esp
+	movl	%esi,-280(%ebp)
 	movb	%al,-4(%ebp)
 	movl	%edx,-8(%ebp)
 	movl	%ecx,-12(%ebp)
@@ -48624,26 +47996,13 @@ SYSTEM_GETDIR$BYTE$OPENSTRING:
 	movl	-8(%ebp),%eax
 	leal	4(%eax),%eax
 	movl	%eax,-16(%ebp)
-	movl	$252,-24(%ebp)
-	leal	-24(%ebp),%eax
-	pushl	%eax
-	movl	-16(%ebp),%eax
-	pushl	%eax
-	movzbl	-4(%ebp),%eax
-	pushl	%eax
-	call	_$dll$doscalls$_index_274
-	addl	$12,%esp
-	movl	%eax,%ebx
-	movl	FPC_THREADVAR_RELOCATE,%edx
-	testl	%edx,%edx
-	je	Lj19671
-	movl	U_SYSTEM_INOUTRES,%eax
-	call	*%edx
-	jmp	Lj19672
-Lj19671:
-	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19672:
-	movw	%bx,(%eax)
+	movb	-4(%ebp),%dl
+	movl	-16(%ebp),%esi
+	movb	$71,%ah
+	call	___SYSCALL
+	jnc	Lj19190
+	movw	%ax,U_SYSTEM_INOUTRES
+Lj19190:
 	movl	-8(%ebp),%eax
 	movb	$3,(%eax)
 	movl	-8(%ebp),%eax
@@ -48651,68 +48010,65 @@ Lj19672:
 	movl	-8(%ebp),%eax
 	movb	$92,3(%eax)
 	movb	$4,-17(%ebp)
-	jmp	Lj19682
+	jmp	Lj19204
 	.balign 4,0x90
-Lj19681:
-	movl	-8(%ebp),%eax
-	movzbl	-17(%ebp),%edx
-	movzbl	(%eax,%edx,1),%eax
+Lj19203:
+	movl	-8(%ebp),%edx
+	movzbl	-17(%ebp),%eax
+	movzbl	(%edx,%eax,1),%eax
 	btl	%eax,TC_SYSTEM_ALLOWDIRECTORYSEPARATORS
-	jc	Lj19684
-	jmp	Lj19685
-Lj19684:
+	jc	Lj19206
+	jmp	Lj19207
+Lj19206:
 	movl	-8(%ebp),%eax
 	movzbl	-17(%ebp),%edx
 	movb	$92,(%eax,%edx,1)
-Lj19685:
+Lj19207:
 	movl	-8(%ebp),%eax
 	movb	-17(%ebp),%dl
 	movb	%dl,(%eax)
 	incb	-17(%ebp)
-Lj19682:
+Lj19204:
 	movl	-8(%ebp),%eax
 	movzbl	-17(%ebp),%edx
 	movb	(%eax,%edx,1),%al
 	testb	%al,%al
-	jne	Lj19681
-	jmp	Lj19683
-Lj19683:
+	jne	Lj19203
+	jmp	Lj19205
+Lj19205:
 	movzbl	-4(%ebp),%eax
 	testl	%eax,%eax
-	jne	Lj19690
-	jmp	Lj19691
-Lj19690:
+	jne	Lj19212
+	jmp	Lj19213
+Lj19212:
 	movzbl	-4(%ebp),%eax
 	addl	$64,%eax
 	movl	-8(%ebp),%edx
 	movb	%al,1(%edx)
-	jmp	Lj19694
-Lj19691:
-	leal	-28(%ebp),%eax
-	pushl	%eax
-	leal	-24(%ebp),%eax
-	pushl	%eax
-	call	_$dll$doscalls$_index_275
-	addl	$8,%esp
-	movl	-24(%ebp),%eax
-	addl	$64,%eax
-	movl	-8(%ebp),%edx
-	movb	%al,1(%edx)
-Lj19694:
+	jmp	Lj19216
+Lj19213:
+	movb	$25,%ah
+	call	___SYSCALL
+	addb	$65,%al
+	movb	%al,-17(%ebp)
+	movl	-8(%ebp),%eax
+	movb	-17(%ebp),%dl
+	movb	%dl,1(%eax)
+Lj19216:
 	movb	TC_SYSTEM_FILENAMECASESENSITIVE,%al
 	testb	%al,%al
-	je	Lj19701
-	jmp	Lj19702
-Lj19701:
-	leal	-284(%ebp),%edx
+	je	Lj19219
+	jmp	Lj19220
+Lj19219:
+	leal	-273(%ebp),%edx
 	movl	-8(%ebp),%eax
 	call	SYSTEM_UPCASE$SHORTSTRING$$SHORTSTRING
-	leal	-284(%ebp),%ecx
+	leal	-273(%ebp),%ecx
 	movl	-12(%ebp),%edx
 	movl	-8(%ebp),%eax
 	call	fpc_shortstr_to_shortstr
-Lj19702:
-	movl	-288(%ebp),%ebx
+Lj19220:
+	movl	-280(%ebp),%esi
 	leave
 	ret
 
@@ -48734,7 +48090,7 @@ SYSTEM_GETDIR$BYTE$ANSISTRING:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj19715
+	jne	Lj19233
 	leal	-264(%ebp),%edx
 	movb	-4(%ebp),%al
 	movl	$255,%ecx
@@ -48752,16 +48108,16 @@ SYSTEM_GETDIR$BYTE$ANSISTRING:
 	call	FPC_ANSISTR_DECR_REF
 	movl	-308(%ebp),%eax
 	movl	%eax,(%ebx)
-Lj19715:
+Lj19233:
 	call	FPC_POPADDRSTACK
 	leal	-308(%ebp),%eax
 	call	FPC_ANSISTR_DECR_REF
 	movl	$0,-308(%ebp)
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj19716
+	je	Lj19234
 	call	FPC_RERAISE
-Lj19716:
+Lj19234:
 	movl	-312(%ebp),%ebx
 	leave
 	ret
@@ -48777,25 +48133,25 @@ SYSTEM_MKDIR$SHORTSTRING:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj19732
-	jmp	Lj19734
-Lj19734:
+	je	Lj19250
+	jmp	Lj19252
+Lj19252:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19735
+	je	Lj19253
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19736
-Lj19735:
+	jmp	Lj19254
+Lj19253:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19736:
+Lj19254:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj19732
-	jmp	Lj19733
-Lj19732:
-	jmp	Lj19730
-Lj19733:
+	jne	Lj19250
+	jmp	Lj19251
+Lj19250:
+	jmp	Lj19248
+Lj19251:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%ecx
 	leal	-260(%ebp),%edx
@@ -48809,7 +48165,7 @@ Lj19733:
 	movl	-4(%ebp),%edx
 	movzbl	(%edx),%edx
 	call	SYSTEM_MKDIR$PCHAR$LONGWORD
-Lj19730:
+Lj19248:
 	leave
 	ret
 
@@ -48824,25 +48180,25 @@ SYSTEM_RMDIR$SHORTSTRING:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj19751
-	jmp	Lj19753
-Lj19753:
+	je	Lj19269
+	jmp	Lj19271
+Lj19271:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19754
+	je	Lj19272
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19755
-Lj19754:
+	jmp	Lj19273
+Lj19272:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19755:
+Lj19273:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj19751
-	jmp	Lj19752
-Lj19751:
-	jmp	Lj19749
-Lj19752:
+	jne	Lj19269
+	jmp	Lj19270
+Lj19269:
+	jmp	Lj19267
+Lj19270:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%ecx
 	leal	-260(%ebp),%edx
@@ -48856,7 +48212,7 @@ Lj19752:
 	movl	-4(%ebp),%edx
 	movzbl	(%edx),%edx
 	call	SYSTEM_RMDIR$PCHAR$LONGWORD
-Lj19749:
+Lj19267:
 	leave
 	ret
 
@@ -48871,25 +48227,25 @@ SYSTEM_CHDIR$SHORTSTRING:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%eax
 	testl	%eax,%eax
-	je	Lj19770
-	jmp	Lj19772
-Lj19772:
+	je	Lj19288
+	jmp	Lj19290
+Lj19290:
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj19773
+	je	Lj19291
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj19774
-Lj19773:
+	jmp	Lj19292
+Lj19291:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj19774:
+Lj19292:
 	movzwl	(%eax),%eax
 	testl	%eax,%eax
-	jne	Lj19770
-	jmp	Lj19771
-Lj19770:
-	jmp	Lj19768
-Lj19771:
+	jne	Lj19288
+	jmp	Lj19289
+Lj19288:
+	jmp	Lj19286
+Lj19289:
 	movl	-4(%ebp),%eax
 	movzbl	(%eax),%ecx
 	leal	-260(%ebp),%edx
@@ -48903,7 +48259,7 @@ Lj19771:
 	movl	-4(%ebp),%edx
 	movzbl	(%edx),%edx
 	call	SYSTEM_CHDIR$PCHAR$LONGWORD
-Lj19768:
+Lj19286:
 	leave
 	ret
 
@@ -48964,21 +48320,21 @@ SYSTEM_FINDRESOURCE$LONGWORD$ANSISTRING$ANSISTRING$$LONGWORD:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj19797
+	jne	Lj19315
 	movl	-12(%ebp),%ecx
 	testl	%ecx,%ecx
-	jne	Lj19804
+	jne	Lj19322
 	movl	$FPC_EMPTYCHAR,%ecx
-Lj19804:
+Lj19322:
 	movl	-8(%ebp),%edx
 	testl	%edx,%edx
-	jne	Lj19807
+	jne	Lj19325
 	movl	$FPC_EMPTYCHAR,%edx
-Lj19807:
+Lj19325:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_FINDRESOURCE$LONGWORD$PCHAR$PCHAR$$LONGWORD
 	movl	%eax,-16(%ebp)
-Lj19797:
+Lj19315:
 	call	FPC_POPADDRSTACK
 	leal	-8(%ebp),%eax
 	call	FPC_ANSISTR_DECR_REF
@@ -48986,9 +48342,9 @@ Lj19797:
 	call	FPC_ANSISTR_DECR_REF
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj19798
+	je	Lj19316
 	call	FPC_RERAISE
-Lj19798:
+Lj19316:
 	movl	-16(%ebp),%eax
 	leave
 	ret
@@ -49014,23 +48370,23 @@ SYSTEM_FINDRESOURCEEX$LONGWORD$ANSISTRING$ANSISTRING$WORD$$LONGWORD:
 	call	FPC_SETJMP
 	pushl	%eax
 	testl	%eax,%eax
-	jne	Lj19812
+	jne	Lj19330
 	movzwl	8(%ebp),%eax
 	pushl	%eax
 	movl	-12(%ebp),%ecx
 	testl	%ecx,%ecx
-	jne	Lj19821
+	jne	Lj19339
 	movl	$FPC_EMPTYCHAR,%ecx
-Lj19821:
+Lj19339:
 	movl	-8(%ebp),%edx
 	testl	%edx,%edx
-	jne	Lj19824
+	jne	Lj19342
 	movl	$FPC_EMPTYCHAR,%edx
-Lj19824:
+Lj19342:
 	movl	-4(%ebp),%eax
 	call	SYSTEM_FINDRESOURCEEX$LONGWORD$PCHAR$PCHAR$WORD$$LONGWORD
 	movl	%eax,-16(%ebp)
-Lj19812:
+Lj19330:
 	call	FPC_POPADDRSTACK
 	leal	-8(%ebp),%eax
 	call	FPC_ANSISTR_DECR_REF
@@ -49038,9 +48394,9 @@ Lj19812:
 	call	FPC_ANSISTR_DECR_REF
 	popl	%eax
 	testl	%eax,%eax
-	je	Lj19813
+	je	Lj19331
 	call	FPC_RERAISE
-Lj19813:
+Lj19331:
 	movl	-16(%ebp),%eax
 	leave
 	ret	$4
@@ -49461,492 +48817,10 @@ SYSTEM_SYSSETCTRLBREAKHANDLER$TCTRLBREAKHANDLER$$TCTRLBREAKHANDLER:
 
 .text
 	.balign 4,0x90
-SYSTEM_IS_PREFETCH$POINTER$$BOOLEAN:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$40,%esp
-	movl	%eax,-4(%ebp)
-	movb	$0,-5(%ebp)
-	movl	$16,-36(%ebp)
-	leal	-40(%ebp),%eax
-	pushl	%eax
-	leal	-36(%ebp),%eax
-	pushl	%eax
-	pushl	-4(%ebp)
-	call	_$dll$doscalls$_index_306
-	addl	$12,%esp
-	testl	%eax,%eax
-	je	Lj19990
-	jmp	Lj19988
-Lj19990:
-	movl	-40(%ebp),%eax
-	andl	$16400,%eax
-	testl	%eax,%eax
-	jne	Lj19989
-	jmp	Lj19988
-Lj19989:
-	movl	-36(%ebp),%eax
-	cmpl	$16,%eax
-	jae	Lj19987
-	jmp	Lj19988
-Lj19987:
-	movl	-4(%ebp),%eax
-	leal	-21(%ebp),%edx
-	movl	$16,%ecx
-	call	SYSTEM_MOVE$formal$formal$LONGINT
-	jmp	Lj20003
-Lj19988:
-	jmp	Lj19981
-Lj20003:
-	movl	$0,-32(%ebp)
-	movb	$1,-22(%ebp)
-	jmp	Lj20009
-	.balign 4,0x90
-Lj20008:
-	movl	-32(%ebp),%eax
-	movb	-21(%ebp,%eax,1),%al
-	movb	%al,-25(%ebp)
-	movb	-25(%ebp),%al
-	andb	$15,%al
-	movb	%al,-23(%ebp)
-	movb	-25(%ebp),%al
-	andb	$240,%al
-	movb	%al,-24(%ebp)
-	movb	-24(%ebp),%al
-	testb	%al,%al
-	je	Lj20022
-	subb	$32,%al
-	je	Lj20019
-	subb	$16,%al
-	je	Lj20019
-	subb	$48,%al
-	je	Lj20020
-	subb	$144,%al
-	je	Lj20021
-	jmp	Lj20018
-Lj20019:
-	movb	-23(%ebp),%al
-	andb	$7,%al
-	movzbl	%al,%eax
-	cmpl	$6,%eax
-	seteb	-22(%ebp)
-	jmp	Lj20017
-Lj20020:
-	movb	-23(%ebp),%al
-	andb	$12,%al
-	movzbl	%al,%eax
-	cmpl	$4,%eax
-	seteb	-22(%ebp)
-	jmp	Lj20017
-Lj20021:
-	movzbl	-23(%ebp),%eax
-	cmpl	$0,%eax
-	stc
-	je	Lj20029
-	subl	$2,%eax
-	cmpl	$2,%eax
-	jb	Lj20029
-Lj20029:
-	setcb	-22(%ebp)
-	jmp	Lj20017
-Lj20022:
-	movzbl	-23(%ebp),%eax
-	cmpl	$15,%eax
-	je	Lj20032
-	jmp	Lj20031
-Lj20032:
-	movl	-32(%ebp),%eax
-	incl	%eax
-	movzbl	-21(%ebp,%eax,1),%eax
-	cmpl	$13,%eax
-	je	Lj20033
-	cmpl	$24,%eax
-	je	Lj20033
-Lj20033:
-	je	Lj20030
-	jmp	Lj20031
-Lj20030:
-	movb	$1,-5(%ebp)
-	jmp	Lj20034
-Lj20031:
-	movb	$0,-5(%ebp)
-Lj20034:
-	jmp	Lj19981
-	jmp	Lj20017
-Lj20018:
-	movb	$0,-22(%ebp)
-Lj20017:
-	incl	-32(%ebp)
-Lj20009:
-	cmpb	$0,-22(%ebp)
-	jne	Lj20037
-	jmp	Lj20010
-Lj20037:
-	movl	-32(%ebp),%eax
-	cmpl	$15,%eax
-	jl	Lj20008
-	jmp	Lj20010
-Lj20010:
-Lj19981:
-	movb	-5(%ebp),%al
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_JUMPTOHANDLEERRORFRAME:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$12,%esp
-	movl	(%ebp),%eax
-	movl	%eax,-8(%ebp)
-	movzbl	TC_SYSTEM_EXCEPTLEVEL,%eax
-	cmpl	$0,%eax
-	jg	Lj20040
-	jmp	Lj20041
-Lj20040:
-	decb	TC_SYSTEM_EXCEPTLEVEL
-Lj20041:
-	movzbl	TC_SYSTEM_EXCEPTLEVEL,%eax
-	movl	U_SYSTEM_EXCEPTEIP(,%eax,4),%eax
-	movl	%eax,-4(%ebp)
-	movzbl	TC_SYSTEM_EXCEPTLEVEL,%eax
-	movzbl	U_SYSTEM_EXCEPTERROR(,%eax,1),%eax
-	movl	%eax,-12(%ebp)
-	movzbl	TC_SYSTEM_EXCEPTLEVEL,%eax
-	cmpb	$0,U_SYSTEM_RESETFPU(,%eax,1)
-	jne	Lj20046
-	jmp	Lj20047
-Lj20046:
-	call	SYSTEM_SYSRESETFPU
-Lj20047:
-	movl	-8(%ebp),%ecx
-	movl	-4(%ebp),%edx
-	movl	-12(%ebp),%eax
-	pushl	-4(%ebp)
-	movl	-8(%ebp),%ebp
-	jmp	SYSTEM_HANDLEERRORADDRFRAME$LONGINT$POINTER$POINTER
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_SYSTEM_EXCEPTION_HANDLER$crc1651982D:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$16,%esp
-	movl	%ebx,-16(%ebp)
-	movl	$0,-8(%ebp)
-	movl	16(%ebp),%eax
-	movl	172(%eax),%eax
-	cmpl	U_SYSTEM__SS,%eax
-	je	Lj20052
-	jmp	Lj20053
-Lj20052:
-	movb	$0,-9(%ebp)
-	movb	$1,-10(%ebp)
-	movl	8(%ebp),%eax
-	movl	(%eax),%eax
-	cmpl	$-2147418111,%eax
-	jb	Lj20059
-	subl	$-2147418111,%eax
-	je	Lj20062
-	subl	$1073676292,%eax
-	je	Lj20068
-	subl	$23,%eax
-	je	Lj20067
-	subl	$119,%eax
-	je	Lj20061
-	decl	%eax
-	je	Lj20064
-	decl	%eax
-	je	Lj20060
-	decl	%eax
-	jb	Lj20059
-	subl	$1,%eax
-	jbe	Lj20065
-	decl	%eax
-	je	Lj20063
-	decl	%eax
-	je	Lj20065
-	decl	%eax
-	je	Lj20064
-	decl	%eax
-	je	Lj20060
-	decl	%eax
-	je	Lj20066
-	decl	%eax
-	je	Lj20070
-	subl	$65382,%eax
-	je	Lj20069
-	jmp	Lj20059
-Lj20060:
-	movb	$200,-9(%ebp)
-	jmp	Lj20058
-Lj20061:
-	movb	$201,-9(%ebp)
-	movb	$0,-10(%ebp)
-	jmp	Lj20058
-Lj20062:
-	movb	$202,-9(%ebp)
-	movb	$0,-10(%ebp)
-	jmp	Lj20058
-Lj20063:
-	movb	$205,-9(%ebp)
-	jmp	Lj20058
-Lj20064:
-	movb	$206,-9(%ebp)
-	jmp	Lj20058
-Lj20065:
-	movb	$207,-9(%ebp)
-	jmp	Lj20058
-Lj20066:
-	movb	$215,-9(%ebp)
-	movb	$0,-10(%ebp)
-	jmp	Lj20058
-Lj20067:
-	cmpb	$0,U_SYSTEM_SSE_CHECK
-	jne	Lj20091
-	jmp	Lj20092
-Lj20091:
-	movb	$0,U_SYSTEM_OS_SUPPORTS_SSE
-	movl	16(%ebp),%eax
-	addl	$3,156(%eax)
-	movl	8(%ebp),%eax
-	movl	$0,(%eax)
-	movl	$-1,-8(%ebp)
-	jmp	Lj20099
-Lj20092:
-	movb	$216,-9(%ebp)
-Lj20099:
-	jmp	Lj20058
-Lj20068:
-	movl	16(%ebp),%eax
-	movl	156(%eax),%eax
-	call	SYSTEM_IS_PREFETCH$POINTER$$BOOLEAN
-	testb	%al,%al
-	jne	Lj20102
-	jmp	Lj20103
-Lj20102:
-	movl	8(%ebp),%eax
-	movl	$0,(%eax)
-	movl	$-1,-8(%ebp)
-	jmp	Lj20110
-Lj20103:
-	movb	$216,-9(%ebp)
-Lj20110:
-	jmp	Lj20058
-Lj20069:
-	movl	8(%ebp),%eax
-	movl	20(%eax),%eax
-	cmpl	$1,%eax
-	jb	Lj20114
-	decl	%eax
-	je	Lj20116
-	subl	$2,%eax
-	je	Lj20115
-	decl	%eax
-	je	Lj20116
-	jmp	Lj20114
-Lj20115:
-	movb	$217,-9(%ebp)
-	jmp	Lj20113
-Lj20116:
-	cmpl	$0,TC_SYSTEM_CTRLBREAKHANDLER
-	jne	Lj20119
-	jmp	Lj20120
-Lj20119:
-	movl	8(%ebp),%eax
-	movl	20(%eax),%eax
-	cmpl	$4,%eax
-	seteb	%al
-	movl	TC_SYSTEM_CTRLBREAKHANDLER,%edx
-	call	*%edx
-	testb	%al,%al
-	jne	Lj20121
-	jmp	Lj20122
-Lj20121:
-	movl	8(%ebp),%eax
-	movl	$0,(%eax)
-	movl	$-1,-8(%ebp)
-	movl	8(%ebp),%eax
-	pushl	20(%eax)
-	call	_$dll$doscalls$_index_418
-	popl	%ebx
-	jmp	Lj20131
-Lj20122:
-	movb	$217,-9(%ebp)
-Lj20131:
-Lj20120:
-	jmp	Lj20113
-Lj20114:
-Lj20113:
-	jmp	Lj20058
-Lj20070:
-	movb	$218,-9(%ebp)
-	movb	$0,-10(%ebp)
-	jmp	Lj20058
-Lj20059:
-	movl	8(%ebp),%eax
-	movl	(%eax),%eax
-	andl	$-1073741824,%eax
-	cmpl	$-1073741824,%eax
-	je	Lj20138
-	jmp	Lj20139
-Lj20138:
-	movb	$217,-9(%ebp)
-	jmp	Lj20142
-Lj20139:
-	movb	$255,-9(%ebp)
-Lj20142:
-Lj20058:
-	movzbl	-9(%ebp),%eax
-	testl	%eax,%eax
-	jne	Lj20148
-	jmp	Lj20146
-Lj20148:
-	movzbl	TC_SYSTEM_EXCEPTLEVEL,%eax
-	cmpl	$16,%eax
-	jl	Lj20147
-	jmp	Lj20146
-Lj20147:
-	movl	8(%ebp),%eax
-	movl	(%eax),%eax
-	cmpl	$-1073676287,%eax
-	jb	Lj20145
-	jmp	Lj20146
-Lj20145:
-	movzbl	TC_SYSTEM_EXCEPTLEVEL,%edx
-	movl	16(%ebp),%eax
-	movl	156(%eax),%eax
-	movl	%eax,U_SYSTEM_EXCEPTEIP(,%edx,4)
-	movzbl	TC_SYSTEM_EXCEPTLEVEL,%eax
-	movb	-9(%ebp),%dl
-	movb	%dl,U_SYSTEM_EXCEPTERROR(,%eax,1)
-	movzbl	TC_SYSTEM_EXCEPTLEVEL,%eax
-	movb	-10(%ebp),%dl
-	movb	%dl,U_SYSTEM_RESETFPU(,%eax,1)
-	incb	TC_SYSTEM_EXCEPTLEVEL
-	movl	16(%ebp),%edx
-	movl	$SYSTEM_JUMPTOHANDLEERRORFRAME,%eax
-	movl	%eax,156(%edx)
-	movl	8(%ebp),%eax
-	movl	$0,(%eax)
-	movl	$-1,-8(%ebp)
-Lj20146:
-	jmp	Lj20161
-Lj20053:
-	movl	8(%ebp),%eax
-	movl	(%eax),%eax
-	cmpl	$-1073676285,%eax
-	je	Lj20165
-	jmp	Lj20163
-Lj20165:
-	movl	8(%ebp),%eax
-	movl	20(%eax),%eax
-	andl	$5,%eax
-	testl	%eax,%eax
-	jne	Lj20164
-	jmp	Lj20163
-Lj20164:
-	cmpl	$0,TC_SYSTEM_CTRLBREAKHANDLER
-	jne	Lj20162
-	jmp	Lj20163
-Lj20162:
-	movl	8(%ebp),%eax
-	movl	20(%eax),%eax
-	cmpl	$4,%eax
-	seteb	%al
-	movl	TC_SYSTEM_CTRLBREAKHANDLER,%edx
-	call	*%edx
-	testb	%al,%al
-	jne	Lj20166
-	jmp	Lj20167
-Lj20166:
-	movl	8(%ebp),%eax
-	movl	$0,(%eax)
-	movl	$-1,-8(%ebp)
-	movl	8(%ebp),%eax
-	pushl	20(%eax)
-	call	_$dll$doscalls$_index_418
-	popl	%ebx
-	jmp	Lj20176
-Lj20167:
-	movb	$217,-9(%ebp)
-Lj20176:
-Lj20163:
-Lj20161:
-	movl	-8(%ebp),%eax
-	movl	%eax,-4(%ebp)
-	movl	-4(%ebp),%eax
-	movl	-16(%ebp),%ebx
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_INSTALL_EXCEPTION_HANDLER:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$8,%esp
-	movl	%ebx,-8(%ebp)
-	movl	_excptregptr,%eax
-	movl	$0,(%eax)
-	movl	$SYSTEM_SYSTEM_EXCEPTION_HANDLER$crc1651982D,%edx
-	movl	%edx,4(%eax)
-	pushl	$2
-	call	_$dll$doscalls$_index_212
-	popl	%ebx
-	movl	_excptregptr,%eax
-	pushl	%eax
-	call	_$dll$doscalls$_index_354
-	popl	%ebx
-	cmpb	$0,operatingsystem_isconsole
-	jne	Lj20193
-	jmp	Lj20194
-Lj20193:
-	leal	-4(%ebp),%eax
-	pushl	%eax
-	pushl	$1
-	call	_$dll$doscalls$_index_378
-	addl	$8,%esp
-	pushl	$1
-	call	_$dll$doscalls$_index_418
-	popl	%ebx
-	pushl	$4
-	call	_$dll$doscalls$_index_418
-	popl	%ebx
-Lj20194:
-	movl	-8(%ebp),%ebx
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_REMOVE_EXCEPTION_HANDLERS:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$4,%esp
-	movl	%ebx,-4(%ebp)
-	movl	_excptregptr,%eax
-	pushl	%eax
-	call	_$dll$doscalls$_index_355
-	popl	%ebx
-	movl	-4(%ebp),%ebx
-	leave
-	ret
-
-.text
-	.balign 4,0x90
 SYSTEM_SYSTEM_EXIT:
-	pushl	%ebp
-	movl	%esp,%ebp
-	call	SYSTEM_REMOVE_EXCEPTION_HANDLERS
-	pushl	operatingsystem_result
-	pushl	$1
-	call	_$dll$doscalls$_index_234
-	addl	$8,%esp
-	leave
+	movb	$76,%ah
+	movb	operatingsystem_result,%al
+	call	___SYSCALL
 	ret
 
 .text
@@ -49954,8 +48828,16 @@ SYSTEM_SYSTEM_EXIT:
 .globl	SYSTEM_PARAMCOUNT$$LONGINT
 SYSTEM_PARAMCOUNT$$LONGINT:
 	subl	$4,%esp
-	movl	U_SYSTEM_ARGC,%eax
+	movl	_argc,%eax
 	decl	%eax
+	addl	$4,%esp
+	ret
+
+.text
+	.balign 4,0x90
+SYSTEM_ARGS$$POINTER:
+	subl	$4,%esp
+	movl	_argv,%eax
 	addl	$4,%esp
 	ret
 
@@ -49968,17 +48850,47 @@ SYSTEM_PARAMSTR$LONGINT$$SHORTSTRING:
 	subl	$16,%esp
 	movl	%eax,-4(%ebp)
 	movl	%edx,-8(%ebp)
+	movl	U_SYSTEM_OS_MODE,%eax
+	cmpl	$1,%eax
+	je	Lj19507
+	jmp	Lj19508
+Lj19507:
+	movl	-4(%ebp),%eax
+	testl	%eax,%eax
+	je	Lj19509
+	jmp	Lj19510
+Lj19509:
+	leal	-12(%ebp),%eax
+	movl	$260,%edx
+	call	SYSTEM_GETMEM$POINTER$LONGWORD
+	movl	-12(%ebp),%edx
+	movl	$_$SYSTEM$_Ld43+1,%eax
+	movl	%eax,(%edx)
+	movl	-12(%ebp),%edx
+	movl	$260,%ecx
+	movl	$32563,%eax
+	call	___SYSCALL
+	movl	-12(%ebp),%ecx
+	movl	-8(%ebp),%eax
+	movl	$255,%edx
+	call	FPC_PCHAR_TO_SHORTSTR
+	movl	-8(%ebp),%eax
+	movl	-12(%ebp),%eax
+	movl	$260,%edx
+	call	SYSTEM_FREEMEM$POINTER$LONGWORD
+	jmp	Lj19527
+Lj19510:
 	movl	-4(%ebp),%eax
 	cmpl	$0,%eax
-	jge	Lj20219
-	jmp	Lj20218
-Lj20219:
+	jg	Lj19530
+	jmp	Lj19529
+Lj19530:
 	call	SYSTEM_PARAMCOUNT$$LONGINT
 	cmpl	-4(%ebp),%eax
-	jge	Lj20217
-	jmp	Lj20218
-Lj20217:
-	movl	U_SYSTEM_ARGV,%eax
+	jge	Lj19528
+	jmp	Lj19529
+Lj19528:
+	call	SYSTEM_ARGS$$POINTER
 	movl	%eax,-12(%ebp)
 	movl	-12(%ebp),%eax
 	movl	-4(%ebp),%edx
@@ -49990,11 +48902,27 @@ Lj20217:
 	movl	$255,%edx
 	call	FPC_PCHAR_TO_SHORTSTR
 	movl	-8(%ebp),%eax
-	jmp	Lj20230
-Lj20218:
+	jmp	Lj19541
+Lj19529:
 	movl	-8(%ebp),%eax
 	movb	$0,(%eax)
-Lj20230:
+Lj19541:
+Lj19527:
+	jmp	Lj19544
+Lj19508:
+	call	SYSTEM_ARGS$$POINTER
+	movl	%eax,-12(%ebp)
+	movl	-12(%ebp),%edx
+	movl	-4(%ebp),%eax
+	leal	(%edx,%eax,4),%eax
+	movl	%eax,-16(%ebp)
+	movl	-16(%ebp),%eax
+	movl	(%eax),%ecx
+	movl	-8(%ebp),%eax
+	movl	$255,%edx
+	call	FPC_PCHAR_TO_SHORTSTR
+	movl	-8(%ebp),%eax
+Lj19544:
 	leave
 	ret
 
@@ -50002,26 +48930,10 @@ Lj20230:
 	.balign 4,0x90
 .globl	SYSTEM_RANDOMIZE
 SYSTEM_RANDOMIZE:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$16,%esp
-	movl	%ebx,-16(%ebp)
-	leal	-12(%ebp),%eax
-	pushl	%eax
-	call	_$dll$doscalls$_index_230
-	popl	%ebx
-	movzbl	-11(%ebp),%eax
-	shll	$8,%eax
-	movzbl	-12(%ebp),%edx
-	addl	%edx,%eax
-	movzbl	-10(%ebp),%edx
-	shll	$16,%edx
-	addl	%edx,%eax
-	movzbl	-9(%ebp),%edx
-	addl	%edx,%eax
-	movl	%eax,U_SYSTEM_RANDSEED
-	movl	-16(%ebp),%ebx
-	leave
+	movb	$44,%ah
+	call	___SYSCALL
+	movw	%cx,U_SYSTEM_RANDSEED
+	movw	%dx,U_SYSTEM_RANDSEED+2
 	ret
 
 .text
@@ -50034,28 +48946,28 @@ SYSTEM_ERRORWRITE$TEXTREC$$SMALLINT:
 	movl	-4(%ebp),%eax
 	movl	16(%eax),%eax
 	cmpl	$0,%eax
-	jg	Lj20241
-	jmp	Lj20242
-Lj20241:
+	jg	Lj19559
+	jmp	Lj19560
+Lj19559:
 	movl	-4(%ebp),%eax
 	movl	16(%eax),%eax
 	movl	U_SYSTEM_ERRORLEN,%edx
 	addl	%edx,%eax
 	cmpl	$1024,%eax
-	jg	Lj20243
-	jmp	Lj20244
-Lj20243:
+	jg	Lj19561
+	jmp	Lj19562
+Lj19561:
 	movl	U_SYSTEM_ERRORLEN,%edx
 	movl	$1024,%eax
 	subl	%edx,%eax
 	movl	%eax,%edx
 	movl	%edx,-16(%ebp)
-	jmp	Lj20247
-Lj20244:
+	jmp	Lj19565
+Lj19562:
 	movl	-4(%ebp),%eax
 	movl	16(%eax),%eax
 	movl	%eax,-16(%ebp)
-Lj20247:
+Lj19565:
 	movl	U_SYSTEM_ERRORLEN,%eax
 	leal	U_SYSTEM_ERRORBUF(,%eax,1),%edx
 	movl	-4(%ebp),%eax
@@ -50066,52 +48978,52 @@ Lj20247:
 	addl	%eax,U_SYSTEM_ERRORLEN
 	movl	U_SYSTEM_ERRORLEN,%eax
 	movb	$0,U_SYSTEM_ERRORBUF(,%eax,1)
-Lj20242:
+Lj19560:
 	movl	U_SYSTEM_ERRORLEN,%eax
 	cmpl	$3,%eax
-	jg	Lj20258
-	jmp	Lj20259
-Lj20258:
+	jg	Lj19576
+	jmp	Lj19577
+Lj19576:
 	movl	U_SYSTEM_ERRORLEN,%eax
 	leal	U_SYSTEM_ERRORBUF(,%eax,1),%eax
 	movl	%eax,-12(%ebp)
 	movl	$1,-16(%ebp)
 	decl	-16(%ebp)
 	.balign 4,0x90
-Lj20264:
+Lj19582:
 	incl	-16(%ebp)
 	decl	-12(%ebp)
 	movl	-12(%ebp),%eax
 	movzbl	(%eax),%eax
 	cmpl	$10,%eax
-	je	Lj20267
+	je	Lj19585
 	cmpl	$13,%eax
-	je	Lj20267
-Lj20267:
-	jne	Lj20265
-	jmp	Lj20266
-Lj20265:
-	jmp	Lj20263
-Lj20266:
+	je	Lj19585
+Lj19585:
+	jne	Lj19583
+	jmp	Lj19584
+Lj19583:
+	jmp	Lj19581
+Lj19584:
 	cmpl	$4,-16(%ebp)
-	jl	Lj20264
-Lj20263:
-Lj20259:
+	jl	Lj19582
+Lj19581:
+Lj19577:
 	movl	U_SYSTEM_ERRORLEN,%eax
 	cmpl	$1024,%eax
-	je	Lj20268
-	jmp	Lj20269
-Lj20268:
+	je	Lj19586
+	jmp	Lj19587
+Lj19586:
 	movl	$4,-16(%ebp)
-Lj20269:
+Lj19587:
 	movl	-16(%ebp),%eax
 	cmpl	$4,%eax
-	je	Lj20272
-	jmp	Lj20273
-Lj20272:
+	je	Lj19590
+	jmp	Lj19591
+Lj19590:
 	pushl	$16448
 	pushl	$0
-	movl	$_$SYSTEM$_Ld42,%eax
+	movl	$_$SYSTEM$_Ld44,%eax
 	pushl	%eax
 	movl	$U_SYSTEM_ERRORBUF,%eax
 	pushl	%eax
@@ -50121,7 +49033,7 @@ Lj20272:
 	call	*%eax
 	addl	$24,%esp
 	movl	$0,U_SYSTEM_ERRORLEN
-Lj20273:
+Lj19591:
 	movl	-4(%ebp),%eax
 	movl	$0,16(%eax)
 	movw	$0,-6(%ebp)
@@ -50138,12 +49050,12 @@ SYSTEM_ERRORCLOSE$TEXTREC$$SMALLINT:
 	movl	%eax,-4(%ebp)
 	movl	U_SYSTEM_ERRORLEN,%eax
 	cmpl	$0,%eax
-	jg	Lj20294
-	jmp	Lj20295
-Lj20294:
+	jg	Lj19612
+	jmp	Lj19613
+Lj19612:
 	pushl	$16448
 	pushl	$0
-	movl	$_$SYSTEM$_Ld42,%eax
+	movl	$_$SYSTEM$_Ld44,%eax
 	pushl	%eax
 	movl	$U_SYSTEM_ERRORBUF,%eax
 	pushl	%eax
@@ -50153,7 +49065,7 @@ Lj20294:
 	call	*%eax
 	addl	$24,%esp
 	movl	$0,U_SYSTEM_ERRORLEN
-Lj20295:
+Lj19613:
 	movl	$0,U_SYSTEM_ERRORLEN
 	movw	$0,-6(%ebp)
 	movw	-6(%ebp),%ax
@@ -50201,136 +49113,133 @@ SYSTEM_ASSIGNERROR$TEXT:
 
 .text
 	.balign 4,0x90
+SYSTEM_DOSENVINIT:
+	pushl	%ebp
+	movl	%esp,%ebp
+	subl	$16,%esp
+	movl	%esi,-16(%ebp)
+	movl	%edi,-12(%ebp)
+	cld
+	movl	_envc,%ecx
+	movl	_environ,%esi
+	xorl	%eax,%eax
+	xorl	%edx,%edx
+Lj19654:
+	xchgl	%edx,%eax
+	pushl	%ecx
+	movl	$-1,%ecx
+	movl	(%esi),%edi
+	repne
+	scasb
+	negl	%ecx
+	decl	%ecx
+	xchgl	%edx,%eax
+	addl	%ecx,%eax
+	popl	%ecx
+	decl	%ecx
+	jecxz	Lj19655
+	incl	%esi
+	incl	%esi
+	incl	%esi
+	incl	%esi
+	jmp	Lj19654
+Lj19655:
+	incl	%eax
+	movl	%eax,TC_SYSTEM_ENVSIZE
+	movl	TC_SYSTEM_ENVSIZE,%eax
+	call	SYSTEM_GETMEM$LONGWORD$$POINTER
+	movl	%eax,U_SYSTEM_ENVIRONMENT
+	cld
+	movl	_envc,%ecx
+	movl	_environ,%edx
+	movl	U_SYSTEM_ENVIRONMENT,%edi
+Lj19656:
+	movl	(%edx),%esi
+Lj19657:
+	lodsb
+	stosb
+	orb	%al,%al
+	jnz	Lj19657
+	decl	%ecx
+	jecxz	Lj19658
+	incl	%edx
+	incl	%edx
+	incl	%edx
+	incl	%edx
+	jmp	Lj19656
+Lj19658:
+	stosb
+	movl	-16(%ebp),%esi
+	movl	-12(%ebp),%edi
+	leave
+	ret
+
+.text
+	.balign 4,0x90
 .globl	SYSTEM_SYSINITSTDIO
 SYSTEM_SYSINITSTDIO:
 	pushl	%ebp
 	movl	%esp,%ebp
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj20338
+	je	Lj19667
 	movl	U_SYSTEM_INPUT,%eax
 	call	*%edx
-	jmp	Lj20339
-Lj20338:
+	jmp	Lj19668
+Lj19667:
 	movl	$U_SYSTEM_INPUT+4,%eax
-Lj20339:
+Lj19668:
 	movl	$0,%ecx
 	movl	$55217,%edx
 	call	SYSTEM_OPENSTDIO$TEXT$LONGINT$LONGINT
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj20346
+	je	Lj19675
 	movl	U_SYSTEM_OUTPUT,%eax
 	call	*%edx
-	jmp	Lj20347
-Lj20346:
+	jmp	Lj19676
+Lj19675:
 	movl	$U_SYSTEM_OUTPUT+4,%eax
-Lj20347:
+Lj19676:
 	movl	$1,%ecx
 	movl	$55218,%edx
 	call	SYSTEM_OPENSTDIO$TEXT$LONGINT$LONGINT
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj20354
+	je	Lj19683
 	movl	U_SYSTEM_ERROUTPUT,%eax
 	call	*%edx
-	jmp	Lj20355
-Lj20354:
+	jmp	Lj19684
+Lj19683:
 	movl	$U_SYSTEM_ERROUTPUT+4,%eax
-Lj20355:
+Lj19684:
 	movl	$2,%ecx
 	movl	$55218,%edx
 	call	SYSTEM_OPENSTDIO$TEXT$LONGINT$LONGINT
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj20362
+	je	Lj19691
 	movl	U_SYSTEM_STDOUT,%eax
 	call	*%edx
-	jmp	Lj20363
-Lj20362:
+	jmp	Lj19692
+Lj19691:
 	movl	$U_SYSTEM_STDOUT+4,%eax
-Lj20363:
+Lj19692:
 	movl	$1,%ecx
 	movl	$55218,%edx
 	call	SYSTEM_OPENSTDIO$TEXT$LONGINT$LONGINT
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj20370
+	je	Lj19699
 	movl	U_SYSTEM_STDERR,%eax
 	call	*%edx
-	jmp	Lj20371
-Lj20370:
+	jmp	Lj19700
+Lj19699:
 	movl	$U_SYSTEM_STDERR+4,%eax
-Lj20371:
+Lj19700:
 	movl	$2,%ecx
 	movl	$55218,%edx
 	call	SYSTEM_OPENSTDIO$TEXT$LONGINT$LONGINT
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_STRCOPY$PCHAR$PCHAR$$PCHAR:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$16,%esp
-	movl	%edi,-16(%ebp)
-	movl	%esi,-12(%ebp)
-	movl	%eax,-8(%ebp)
-	movl	%edx,%edi
-	testl	%edi,%edi
-	jz	Lj20378
-	leal	3(%edi),%ecx
-	andl	$-4,%ecx
-	movl	%edi,%esi
-	subl	%edi,%ecx
-	movl	%eax,%edi
-	jz	Lj20379
-Lj20380:
-	movb	(%esi),%al
-	incl	%edi
-	incl	%esi
-	testb	%al,%al
-	movb	%al,-1(%edi)
-	jz	Lj20378
-	decl	%ecx
-	jnz	Lj20380
-	.balign 16,0x90
-Lj20379:
-	movl	(%esi),%eax
-	movl	%eax,%edx
-	leal	-16843009(%eax),%ecx
-	notl	%edx
-	addl	$4,%esi
-	andl	%edx,%ecx
-	andl	$-2139062144,%ecx
-	jnz	Lj20381
-	movl	%eax,(%edi)
-	addl	$4,%edi
-	jmp	Lj20379
-Lj20381:
-	testl	$255,%eax
-	jz	Lj20382
-	testl	$65280,%eax
-	jz	Lj20383
-	testl	$16711680,%eax
-	jz	Lj20384
-	movl	%eax,(%edi)
-	jmp	Lj20378
-Lj20384:
-	xorb	%dl,%dl
-	movw	%ax,(%edi)
-	movb	%dl,2(%edi)
-	jmp	Lj20378
-Lj20383:
-	movw	%ax,(%edi)
-	jmp	Lj20378
-Lj20382:
-	movb	%al,(%edi)
-Lj20378:
-	movl	-8(%ebp),%eax
-	movl	-16(%ebp),%edi
-	movl	-12(%ebp),%esi
 	leave
 	ret
 
@@ -50348,13 +49257,13 @@ SYSTEM_SETDEFAULTOS2FILETYPE$SHORTSTRING:
 	call	FPC_SHORTSTR_ASSIGN
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj20389
+	je	Lj19709
 	movl	U_SYSTEM_DEFAULTFILETYPE,%eax
 	call	*%edx
-	jmp	Lj20390
-Lj20389:
+	jmp	Lj19710
+Lj19709:
 	movl	$U_SYSTEM_DEFAULTFILETYPE+4,%eax
-Lj20390:
+Lj19710:
 	leal	-260(%ebp),%ecx
 	movl	$255,%edx
 	call	fpc_shortstr_to_shortstr
@@ -50375,508 +49284,16 @@ SYSTEM_SETDEFAULTOS2CREATOR$SHORTSTRING:
 	call	FPC_SHORTSTR_ASSIGN
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj20399
+	je	Lj19719
 	movl	U_SYSTEM_DEFAULTCREATOR,%eax
 	call	*%edx
-	jmp	Lj20400
-Lj20399:
+	jmp	Lj19720
+Lj19719:
 	movl	$U_SYSTEM_DEFAULTCREATOR+4,%eax
-Lj20400:
+Lj19720:
 	leal	-260(%ebp),%ecx
 	movl	$255,%edx
 	call	fpc_shortstr_to_shortstr
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_INITENVIRONMENT:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$12,%esp
-	movl	$0,-4(%ebp)
-	movl	U_SYSTEM_ENVIRONMENT,%eax
-	movl	%eax,-12(%ebp)
-	jmp	Lj20412
-	.balign 4,0x90
-Lj20411:
-	incl	-4(%ebp)
-	jmp	Lj20415
-	.balign 4,0x90
-Lj20414:
-	incl	-12(%ebp)
-Lj20415:
-	movl	-12(%ebp),%eax
-	movb	(%eax),%al
-	testb	%al,%al
-	jne	Lj20414
-	jmp	Lj20416
-Lj20416:
-	incl	-12(%ebp)
-Lj20412:
-	movl	-12(%ebp),%eax
-	movb	(%eax),%al
-	testb	%al,%al
-	jne	Lj20411
-	jmp	Lj20413
-Lj20413:
-	movl	-4(%ebp),%eax
-	incl	%eax
-	shll	$2,%eax
-	call	SYSTEM_SYSGETMEM$LONGWORD$$POINTER
-	movl	%eax,U_SYSTEM_ENVP
-	movl	-4(%ebp),%eax
-	movl	%eax,U_SYSTEM_ENVC
-	movl	U_SYSTEM_ENVP,%eax
-	testl	%eax,%eax
-	je	Lj20423
-	jmp	Lj20424
-Lj20423:
-	jmp	Lj20405
-Lj20424:
-	movl	U_SYSTEM_ENVIRONMENT,%eax
-	movl	%eax,-12(%ebp)
-	movl	$0,-4(%ebp)
-	jmp	Lj20430
-	.balign 4,0x90
-Lj20429:
-	movl	-12(%ebp),%eax
-	call	FPC_PCHAR_LENGTH
-	incl	%eax
-	call	SYSTEM_SYSGETMEM$LONGWORD$$POINTER
-	movl	U_SYSTEM_ENVP,%edx
-	movl	-4(%ebp),%ecx
-	movl	%eax,(%edx,%ecx,4)
-	movl	U_SYSTEM_ENVP,%eax
-	movl	-4(%ebp),%edx
-	movl	(%eax,%edx,4),%eax
-	movl	-12(%ebp),%edx
-	call	SYSTEM_STRCOPY$PCHAR$PCHAR$$PCHAR
-	incl	-4(%ebp)
-	jmp	Lj20443
-	.balign 4,0x90
-Lj20442:
-	incl	-12(%ebp)
-Lj20443:
-	movl	-12(%ebp),%eax
-	movb	(%eax),%al
-	testb	%al,%al
-	jne	Lj20442
-	jmp	Lj20444
-Lj20444:
-	incl	-12(%ebp)
-Lj20430:
-	movl	-12(%ebp),%eax
-	movb	(%eax),%al
-	testb	%al,%al
-	jne	Lj20429
-	jmp	Lj20431
-Lj20431:
-	movl	U_SYSTEM_ENVP,%edx
-	movl	-4(%ebp),%eax
-	movl	$0,(%edx,%eax,4)
-Lj20405:
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_INITARGUMENTS:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$28,%esp
-	movl	$260,%eax
-	call	SYSTEM_SYSALLOCMEM$LONGWORD$$POINTER
-	movl	%eax,TC_SYSTEM_CMDLINE
-	movl	$32,%eax
-	call	SYSTEM_SYSALLOCMEM$LONGWORD$$POINTER
-	movl	%eax,U_SYSTEM_ARGV
-	movl	U_SYSTEM_PIB,%eax
-	movl	12(%eax),%eax
-	call	FPC_PCHAR_LENGTH
-	movl	%eax,-4(%ebp)
-	incl	-4(%ebp)
-	pushl	TC_SYSTEM_CMDLINE
-	pushl	$260
-	movl	U_SYSTEM_PIB,%eax
-	pushl	8(%eax)
-	call	_$dll$doscalls$_index_320
-	addl	$12,%esp
-	testl	%eax,%eax
-	je	Lj20463
-	jmp	Lj20464
-Lj20463:
-	movl	TC_SYSTEM_CMDLINE,%eax
-	call	FPC_PCHAR_LENGTH
-	incl	%eax
-	movl	%eax,-28(%ebp)
-	jmp	Lj20475
-Lj20464:
-	movl	U_SYSTEM_PIB,%eax
-	movl	12(%eax),%eax
-	movl	-4(%ebp),%ecx
-	movl	$TC_SYSTEM_CMDLINE,%edx
-	call	SYSTEM_MOVE$formal$formal$LONGINT
-	movl	-4(%ebp),%eax
-	movl	%eax,-28(%ebp)
-Lj20475:
-	movl	-28(%ebp),%eax
-	call	SYSTEM_SYSALLOCMEM$LONGWORD$$POINTER
-	movl	U_SYSTEM_ARGV,%edx
-	movl	%eax,(%edx)
-	movl	U_SYSTEM_ARGV,%eax
-	movl	(%eax),%edx
-	movl	TC_SYSTEM_CMDLINE,%eax
-	movl	-28(%ebp),%ecx
-	call	SYSTEM_MOVE$formal$formal$LONGINT
-	movl	$1,-8(%ebp)
-	movl	U_SYSTEM_PIB,%eax
-	movl	12(%eax),%eax
-	movl	-4(%ebp),%edx
-	addl	%edx,%eax
-	movl	%eax,-16(%ebp)
-	movl	-16(%ebp),%eax
-	call	FPC_PCHAR_LENGTH
-	incl	%eax
-	movl	%eax,-4(%ebp)
-	movl	-28(%ebp),%edx
-	movl	-4(%ebp),%eax
-	addl	%eax,%edx
-	movl	$TC_SYSTEM_CMDLINE,%eax
-	call	SYSTEM_SYSREALLOCMEM$POINTER$LONGWORD$$POINTER
-	movl	TC_SYSTEM_CMDLINE,%eax
-	movl	-28(%ebp),%edx
-	leal	(%eax,%edx,1),%edx
-	movl	-4(%ebp),%ecx
-	incl	%ecx
-	movl	-16(%ebp),%eax
-	call	SYSTEM_MOVE$formal$formal$LONGINT
-	movl	$8,-28(%ebp)
-	jmp	Lj20515
-	.balign 4,0x90
-Lj20514:
-	jmp	Lj20518
-	.balign 4,0x90
-Lj20517:
-	incl	-16(%ebp)
-Lj20518:
-	movl	-16(%ebp),%eax
-	movzbl	(%eax),%eax
-	decl	%eax
-	cmpl	$32,%eax
-	jb	Lj20520
-Lj20520:
-	jc	Lj20517
-	jmp	Lj20519
-Lj20519:
-	movl	-16(%ebp),%eax
-	movb	(%eax),%al
-	testb	%al,%al
-	je	Lj20521
-	jmp	Lj20522
-Lj20521:
-	jmp	Lj20516
-Lj20522:
-	movb	$32,-21(%ebp)
-	movl	-16(%ebp),%eax
-	movl	%eax,-12(%ebp)
-	movl	$0,-4(%ebp)
-	jmp	Lj20530
-	.balign 4,0x90
-Lj20529:
-	movl	-16(%ebp),%eax
-	movb	(%eax),%al
-	cmpb	$1,%al
-	jb	Lj20533
-	decb	%al
-	subb	$31,%al
-	jbe	Lj20534
-	subb	$2,%al
-	je	Lj20535
-	subb	$5,%al
-	je	Lj20536
-	jmp	Lj20533
-Lj20534:
-	movb	-21(%ebp),%al
-	cmpb	$32,%al
-	jne	Lj20537
-	jmp	Lj20538
-Lj20537:
-	incl	-4(%ebp)
-	jmp	Lj20539
-Lj20538:
-	jmp	Lj20531
-Lj20539:
-	jmp	Lj20532
-Lj20535:
-	movb	-21(%ebp),%al
-	cmpb	$39,%al
-	jne	Lj20540
-	jmp	Lj20541
-Lj20540:
-	movl	-16(%ebp),%eax
-	incl	%eax
-	movb	(%eax),%al
-	cmpb	$34,%al
-	jne	Lj20542
-	jmp	Lj20543
-Lj20542:
-	movb	-21(%ebp),%al
-	cmpb	$34,%al
-	je	Lj20544
-	jmp	Lj20545
-Lj20544:
-	movb	$32,-21(%ebp)
-	jmp	Lj20548
-Lj20545:
-	movb	$34,-21(%ebp)
-Lj20548:
-	jmp	Lj20551
-Lj20543:
-	incl	-16(%ebp)
-Lj20551:
-	jmp	Lj20552
-Lj20541:
-	incl	-4(%ebp)
-Lj20552:
-	jmp	Lj20532
-Lj20536:
-	movb	-21(%ebp),%al
-	cmpb	$34,%al
-	jne	Lj20553
-	jmp	Lj20554
-Lj20553:
-	movl	-16(%ebp),%eax
-	incl	%eax
-	movb	(%eax),%al
-	cmpb	$39,%al
-	jne	Lj20555
-	jmp	Lj20556
-Lj20555:
-	movb	-21(%ebp),%al
-	cmpb	$39,%al
-	je	Lj20557
-	jmp	Lj20558
-Lj20557:
-	movb	$32,-21(%ebp)
-	jmp	Lj20561
-Lj20558:
-	movb	$39,-21(%ebp)
-Lj20561:
-	jmp	Lj20564
-Lj20556:
-	incl	-16(%ebp)
-Lj20564:
-	jmp	Lj20565
-Lj20554:
-	incl	-4(%ebp)
-Lj20565:
-	jmp	Lj20532
-Lj20533:
-	incl	-4(%ebp)
-Lj20532:
-	incl	-16(%ebp)
-Lj20530:
-	movl	-16(%ebp),%eax
-	movb	(%eax),%al
-	testb	%al,%al
-	jne	Lj20529
-	jmp	Lj20531
-Lj20531:
-	movl	-8(%ebp),%eax
-	testl	%eax,%eax
-	jne	Lj20566
-	jmp	Lj20567
-Lj20566:
-	movl	-4(%ebp),%ecx
-	movl	-8(%ebp),%edx
-	movl	%ebp,%eax
-	call	SYSTEM_INITARGUMENTS_ALLOCARG$LONGINT$LONGINT
-	movb	$32,-21(%ebp)
-	movl	-12(%ebp),%eax
-	movl	%eax,-16(%ebp)
-	movl	U_SYSTEM_ARGV,%edx
-	movl	-8(%ebp),%eax
-	movl	(%edx,%eax,4),%eax
-	movl	%eax,-20(%ebp)
-	jmp	Lj20581
-	.balign 4,0x90
-Lj20580:
-	movl	-16(%ebp),%eax
-	movb	(%eax),%al
-	cmpb	$1,%al
-	jb	Lj20584
-	decb	%al
-	subb	$31,%al
-	jbe	Lj20585
-	subb	$2,%al
-	je	Lj20586
-	subb	$5,%al
-	je	Lj20587
-	jmp	Lj20584
-Lj20585:
-	movb	-21(%ebp),%al
-	cmpb	$32,%al
-	jne	Lj20588
-	jmp	Lj20589
-Lj20588:
-	movl	-20(%ebp),%edx
-	movl	-16(%ebp),%eax
-	movb	(%eax),%al
-	movb	%al,(%edx)
-	incl	-20(%ebp)
-	jmp	Lj20592
-Lj20589:
-	jmp	Lj20582
-Lj20592:
-	jmp	Lj20583
-Lj20586:
-	movb	-21(%ebp),%al
-	cmpb	$39,%al
-	jne	Lj20593
-	jmp	Lj20594
-Lj20593:
-	movl	-16(%ebp),%eax
-	incl	%eax
-	movb	(%eax),%al
-	cmpb	$34,%al
-	jne	Lj20595
-	jmp	Lj20596
-Lj20595:
-	movb	-21(%ebp),%al
-	cmpb	$34,%al
-	je	Lj20597
-	jmp	Lj20598
-Lj20597:
-	movb	$32,-21(%ebp)
-	jmp	Lj20601
-Lj20598:
-	movb	$34,-21(%ebp)
-Lj20601:
-	jmp	Lj20604
-Lj20596:
-	incl	-16(%ebp)
-Lj20604:
-	jmp	Lj20605
-Lj20594:
-	movl	-20(%ebp),%edx
-	movl	-16(%ebp),%eax
-	movb	(%eax),%al
-	movb	%al,(%edx)
-	incl	-20(%ebp)
-Lj20605:
-	jmp	Lj20583
-Lj20587:
-	movb	-21(%ebp),%al
-	cmpb	$34,%al
-	jne	Lj20608
-	jmp	Lj20609
-Lj20608:
-	movl	-16(%ebp),%eax
-	incl	%eax
-	movb	(%eax),%al
-	cmpb	$39,%al
-	jne	Lj20610
-	jmp	Lj20611
-Lj20610:
-	movb	-21(%ebp),%al
-	cmpb	$39,%al
-	je	Lj20612
-	jmp	Lj20613
-Lj20612:
-	movb	$32,-21(%ebp)
-	jmp	Lj20616
-Lj20613:
-	movb	$39,-21(%ebp)
-Lj20616:
-	jmp	Lj20619
-Lj20611:
-	incl	-16(%ebp)
-Lj20619:
-	jmp	Lj20620
-Lj20609:
-	movl	-20(%ebp),%edx
-	movl	-16(%ebp),%eax
-	movb	(%eax),%al
-	movb	%al,(%edx)
-	incl	-20(%ebp)
-Lj20620:
-	jmp	Lj20583
-Lj20584:
-	movl	-20(%ebp),%edx
-	movl	-16(%ebp),%eax
-	movb	(%eax),%al
-	movb	%al,(%edx)
-	incl	-20(%ebp)
-Lj20583:
-	incl	-16(%ebp)
-Lj20581:
-	movl	-16(%ebp),%eax
-	movb	(%eax),%al
-	testb	%al,%al
-	jne	Lj20580
-	jmp	Lj20582
-Lj20582:
-	movl	-20(%ebp),%eax
-	movb	$0,(%eax)
-Lj20567:
-	incl	-8(%ebp)
-Lj20515:
-	movl	-16(%ebp),%eax
-	movb	(%eax),%al
-	testb	%al,%al
-	jne	Lj20514
-	jmp	Lj20516
-Lj20516:
-	movl	-8(%ebp),%eax
-	movl	%eax,U_SYSTEM_ARGC
-	movl	U_SYSTEM_ARGC,%edx
-	movl	%ebp,%eax
-	movl	$0,%ecx
-	call	SYSTEM_INITARGUMENTS_ALLOCARG$LONGINT$LONGINT
-	movl	U_SYSTEM_ARGC,%edx
-	incl	%edx
-	shll	$2,%edx
-	movl	$U_SYSTEM_ARGV,%eax
-	call	SYSTEM_SYSREALLOCMEM$POINTER$LONGWORD$$POINTER
-	leave
-	ret
-
-.text
-	.balign 4,0x90
-SYSTEM_INITARGUMENTS_ALLOCARG$LONGINT$LONGINT:
-	pushl	%ebp
-	movl	%esp,%ebp
-	subl	$16,%esp
-	movl	%eax,-12(%ebp)
-	movl	%edx,-4(%ebp)
-	movl	%ecx,-8(%ebp)
-	movl	-12(%ebp),%eax
-	movl	-28(%eax),%eax
-	cmpl	-4(%ebp),%eax
-	jle	Lj20639
-	jmp	Lj20640
-Lj20639:
-	movl	-12(%ebp),%eax
-	movl	-28(%eax),%eax
-	movl	%eax,-16(%ebp)
-	movl	-4(%ebp),%eax
-	addl	$8,%eax
-	andl	$-8,%eax
-	movl	-12(%ebp),%edx
-	movl	%eax,-28(%edx)
-	movl	-12(%ebp),%eax
-	movl	-28(%eax),%edx
-	shll	$2,%edx
-	movl	$U_SYSTEM_ARGV,%eax
-	call	SYSTEM_SYSREALLOCMEM$POINTER$LONGWORD$$POINTER
-Lj20640:
-	movl	-8(%ebp),%eax
-	incl	%eax
-	call	SYSTEM_SYSALLOCMEM$LONGWORD$$POINTER
-	movl	U_SYSTEM_ARGV,%edx
-	movl	-4(%ebp),%ecx
-	movl	%eax,(%edx,%ecx,4)
 	leave
 	ret
 
@@ -50894,15 +49311,15 @@ SYSTEM_GETFILEHANDLECOUNT$$LONGINT:
 	call	_$dll$doscalls$_index_382
 	addl	$8,%esp
 	testl	%eax,%eax
-	jne	Lj20657
-	jmp	Lj20658
-Lj20657:
+	jne	Lj19729
+	jmp	Lj19730
+Lj19729:
 	movl	$50,-4(%ebp)
-	jmp	Lj20665
-Lj20658:
+	jmp	Lj19737
+Lj19730:
 	movl	-12(%ebp),%eax
 	movl	%eax,-4(%ebp)
-Lj20665:
+Lj19737:
 	movl	-4(%ebp),%eax
 	leave
 	ret
@@ -50930,10 +49347,118 @@ _SYSTEM_init:
 	movl	%esp,%ebp
 	subl	$4,%esp
 	movl	%ebx,-4(%ebp)
-	xorl	%eax,%eax
-	movw	%ss,%ax
-	movl	%eax,U_SYSTEM__SS
-	call	SYSTEM_SYSRESETFPU
+	pushl	%ebx
+	movl	$0,U_SYSTEM_OS_MODE
+	movl	$32522,%eax
+	call	___SYSCALL
+	testw	$512,%bx
+	setneb	U_SYSTEM_OS_MODE
+	testw	$4096,%bx
+	jz	Lj19744
+	movl	$2,U_SYSTEM_OS_MODE
+Lj19744:
+	movl	$32513,%eax
+	movl	__heap_brk,%edx
+	addl	__heap_base,%edx
+	call	___SYSCALL
+	cmpl	$-1,%eax
+	jnz	Lj19745
+	leal	TC_SYSTEM_FATALHEAP,%edx
+	movl	$2304,%eax
+	call	___SYSCALL
+	popl	%ebx
+	pushl	$204
+	call	SYSTEM_HANDLEERROR$LONGINT
+Lj19745:
+	movl	$32527,%eax
+	movl	$12,%ecx
+	movl	$8,%edx
+	call	___SYSCALL
+	popl	%ebx
+	movl	$0,U_SYSTEM_FIRST_MEG
+	movl	U_SYSTEM_OS_MODE,%eax
+	cmpl	$0,%eax
+	je	Lj19751
+	cmpl	$2,%eax
+	je	Lj19751
+Lj19751:
+	je	Lj19749
+	jmp	Lj19750
+Lj19749:
+	pushl	%ebx
+	movl	$32531,%eax
+	xorl	%ebx,%ebx
+	movl	$4095,%ecx
+	xorl	%edx,%edx
+	call	___SYSCALL
+	jc	Lj19746
+	movl	%eax,U_SYSTEM_FIRST_MEG
+Lj19746:
+	popl	%ebx
+	jmp	Lj19752
+Lj19750:
+	call	SYSTEM_GETFILEHANDLECOUNT$$LONGINT
+	movl	%eax,TC_SYSTEM_FILEHANDLECOUNT
+Lj19752:
+	movl	U_SYSTEM_OS_MODE,%eax
+	testl	%eax,%eax
+	je	Lj19757
+	decl	%eax
+	je	Lj19758
+	decl	%eax
+	je	Lj19759
+	jmp	Lj19756
+Lj19757:
+	movl	FPC_THREADVAR_RELOCATE,%edx
+	testl	%edx,%edx
+	je	Lj19762
+	movl	U_SYSTEM_STACKBOTTOM,%eax
+	call	*%edx
+	jmp	Lj19763
+Lj19762:
+	movl	$U_SYSTEM_STACKBOTTOM+4,%eax
+Lj19763:
+	movl	__heap_brk,%edx
+	movl	%edx,(%eax)
+	movl	FPC_THREADVAR_RELOCATE,%edx
+	testl	%edx,%edx
+	je	Lj19766
+	movl	U_SYSTEM_STACKBOTTOM,%eax
+	call	*%edx
+	jmp	Lj19767
+Lj19766:
+	movl	$U_SYSTEM_STACKBOTTOM+4,%eax
+Lj19767:
+	movl	(%eax),%ebx
+	movl	__stklen,%eax
+	addl	%eax,%ebx
+	movl	FPC_THREADVAR_RELOCATE,%edx
+	testl	%edx,%edx
+	je	Lj19768
+	movl	U_SYSTEM_STACKTOP,%eax
+	call	*%edx
+	jmp	Lj19769
+Lj19768:
+	movl	$U_SYSTEM_STACKTOP+4,%eax
+Lj19769:
+	movl	%ebx,(%eax)
+	movl	$1,U_SYSTEM_APPLICATIONTYPE
+	movb	$1,operatingsystem_isconsole
+	movw	$32517,%ax
+	call	___SYSCALL
+	movl	%eax,U_SYSTEM_PROCESSID
+	movl	FPC_THREADVAR_RELOCATE,%edx
+	testl	%edx,%edx
+	je	Lj19776
+	movl	U_SYSTEM_THREADID,%eax
+	call	*%edx
+	jmp	Lj19777
+Lj19776:
+	movl	$U_SYSTEM_THREADID+4,%eax
+Lj19777:
+	movl	$1,(%eax)
+	jmp	Lj19755
+Lj19758:
 	movl	$U_SYSTEM_PIB,%eax
 	pushl	%eax
 	movl	$U_SYSTEM_TIB,%eax
@@ -50942,41 +49467,31 @@ _SYSTEM_init:
 	addl	$8,%esp
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj20678
+	je	Lj19784
 	movl	U_SYSTEM_STACKBOTTOM,%eax
 	call	*%edx
-	jmp	Lj20679
-Lj20678:
+	jmp	Lj19785
+Lj19784:
 	movl	$U_SYSTEM_STACKBOTTOM+4,%eax
-Lj20679:
+Lj19785:
 	movl	U_SYSTEM_TIB,%edx
 	movl	4(%edx),%edx
 	movl	%edx,(%eax)
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj20682
+	je	Lj19788
 	movl	U_SYSTEM_STACKTOP,%eax
 	call	*%edx
-	jmp	Lj20683
-Lj20682:
+	jmp	Lj19789
+Lj19788:
 	movl	$U_SYSTEM_STACKTOP+4,%eax
-Lj20683:
+Lj19789:
 	movl	U_SYSTEM_TIB,%edx
 	movl	8(%edx),%edx
 	movl	%edx,(%eax)
-	movl	__stklen,%eax
-	call	SYSTEM_CHECKINITIALSTKLEN$LONGWORD$$LONGWORD
-	movl	%eax,%ebx
-	movl	FPC_THREADVAR_RELOCATE,%edx
-	testl	%edx,%edx
-	je	Lj20688
-	movl	U_SYSTEM_STACKLENGTH,%eax
-	call	*%edx
-	jmp	Lj20689
-Lj20688:
-	movl	$U_SYSTEM_STACKLENGTH+4,%eax
-Lj20689:
-	movl	%ebx,(%eax)
+	movl	U_SYSTEM_PIB,%eax
+	movl	16(%eax),%eax
+	movl	%eax,U_SYSTEM_ENVIRONMENT
 	movl	U_SYSTEM_PIB,%eax
 	movl	24(%eax),%eax
 	movl	%eax,U_SYSTEM_APPLICATIONTYPE
@@ -50985,13 +49500,13 @@ Lj20689:
 	movl	%eax,U_SYSTEM_PROCESSID
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj20696
+	je	Lj19798
 	movl	U_SYSTEM_THREADID,%eax
 	call	*%edx
-	jmp	Lj20697
-Lj20696:
+	jmp	Lj19799
+Lj19798:
 	movl	$U_SYSTEM_THREADID+4,%eax
-Lj20697:
+Lj19799:
 	movl	U_SYSTEM_TIB,%edx
 	movl	12(%edx),%edx
 	movl	(%edx),%edx
@@ -50999,101 +49514,95 @@ Lj20697:
 	movl	U_SYSTEM_APPLICATIONTYPE,%eax
 	cmpl	$3,%eax
 	setneb	operatingsystem_isconsole
+	jmp	Lj19755
+Lj19759:
+	movl	FPC_THREADVAR_RELOCATE,%edx
+	testl	%edx,%edx
+	je	Lj19804
+	movl	U_SYSTEM_STACKBOTTOM,%eax
+	call	*%edx
+	jmp	Lj19805
+Lj19804:
+	movl	$U_SYSTEM_STACKBOTTOM+4,%eax
+Lj19805:
+	movl	$0,(%eax)
+	movl	FPC_THREADVAR_RELOCATE,%edx
+	testl	%edx,%edx
+	je	Lj19808
+	movl	U_SYSTEM_STACKBOTTOM,%eax
+	call	*%edx
+	jmp	Lj19809
+Lj19808:
+	movl	$U_SYSTEM_STACKBOTTOM+4,%eax
+Lj19809:
+	movl	(%eax),%ebx
+	movl	__stklen,%eax
+	addl	%eax,%ebx
+	movl	FPC_THREADVAR_RELOCATE,%edx
+	testl	%edx,%edx
+	je	Lj19810
+	movl	U_SYSTEM_STACKTOP,%eax
+	call	*%edx
+	jmp	Lj19811
+Lj19810:
+	movl	$U_SYSTEM_STACKTOP+4,%eax
+Lj19811:
+	movl	%ebx,(%eax)
+	movl	$1,U_SYSTEM_APPLICATIONTYPE
+	movb	$1,operatingsystem_isconsole
+	movl	FPC_THREADVAR_RELOCATE,%edx
+	testl	%edx,%edx
+	je	Lj19818
+	movl	U_SYSTEM_THREADID,%eax
+	call	*%edx
+	jmp	Lj19819
+Lj19818:
+	movl	$U_SYSTEM_THREADID+4,%eax
+Lj19819:
+	movl	$1,(%eax)
+	jmp	Lj19755
+Lj19756:
+Lj19755:
 	movl	$0,TC_SYSTEM_EXITPROC
-	call	SYSTEM_INSTALL_EXCEPTION_HANDLER
-	call	SYSTEM_GETFILEHANDLECOUNT$$LONGINT
-	movl	%eax,TC_SYSTEM_FILEHANDLECOUNT
+	movl	__stklen,%eax
+	call	SYSTEM_CHECKINITIALSTKLEN$LONGWORD$$LONGWORD
+	movl	%eax,%ebx
+	movl	FPC_THREADVAR_RELOCATE,%edx
+	testl	%edx,%edx
+	je	Lj19826
+	movl	U_SYSTEM_STACKLENGTH,%eax
+	call	*%edx
+	jmp	Lj19827
+Lj19826:
+	movl	$U_SYSTEM_STACKLENGTH+4,%eax
+Lj19827:
+	movl	%ebx,(%eax)
 	call	SYSTEM_INITHEAP
-	pushl	$U_SYSTEM_DOSCALLSHANDLE
-	movl	$TC_SYSTEM_DOSCALLSNAME,%eax
-	pushl	%eax
-	call	_$dll$doscalls$_index_319
-	addl	$8,%esp
-	testl	%eax,%eax
-	je	Lj20704
-	jmp	Lj20705
-Lj20704:
-	pushl	$U_SYSTEM_P
-	pushl	$0
-	pushl	$981
-	pushl	U_SYSTEM_DOSCALLSHANDLE
-	call	_$dll$doscalls$_index_321
-	addl	$16,%esp
-	testl	%eax,%eax
-	je	Lj20710
-	jmp	Lj20711
-Lj20710:
-	movl	U_SYSTEM_P,%eax
-	movl	%eax,TC_SYSTEM_SYS_DOSOPENL
-	pushl	$U_SYSTEM_P
-	pushl	$0
-	pushl	$988
-	pushl	U_SYSTEM_DOSCALLSHANDLE
-	call	_$dll$doscalls$_index_321
-	addl	$16,%esp
-	testl	%eax,%eax
-	je	Lj20722
-	jmp	Lj20723
-Lj20722:
-	movl	U_SYSTEM_P,%eax
-	movl	%eax,TC_SYSTEM_SYS_DOSSETFILEPTRL
-	pushl	$U_SYSTEM_P
-	pushl	$0
-	pushl	$989
-	pushl	U_SYSTEM_DOSCALLSHANDLE
-	call	_$dll$doscalls$_index_321
-	addl	$16,%esp
-	testl	%eax,%eax
-	je	Lj20734
-	jmp	Lj20735
-Lj20734:
-	movl	U_SYSTEM_P,%eax
-	movl	%eax,TC_SYSTEM_SYS_DOSSETFILESIZEL
-	movb	$1,TC_SYSTEM_FSAPI64
-Lj20735:
-Lj20723:
-Lj20711:
-Lj20705:
 	call	SYSTEM_SYSINITEXCEPTIONS
-	call	SYSTEM_FPC_CPUCODEINIT
 	call	SYSTEM_SYSINITSTDIO
 	movl	FPC_THREADVAR_RELOCATE,%edx
 	testl	%edx,%edx
-	je	Lj20750
+	je	Lj19830
 	movl	U_SYSTEM_INOUTRES,%eax
 	call	*%edx
-	jmp	Lj20751
-Lj20750:
+	jmp	Lj19831
+Lj19830:
 	movl	$U_SYSTEM_INOUTRES+4,%eax
-Lj20751:
+Lj19831:
 	movw	$0,(%eax)
-	movl	U_SYSTEM_PIB,%eax
-	movl	16(%eax),%eax
-	movl	%eax,U_SYSTEM_ENVIRONMENT
-	call	SYSTEM_INITENVIRONMENT
-	call	SYSTEM_INITARGUMENTS
-	movl	FPC_THREADVAR_RELOCATE,%edx
-	testl	%edx,%edx
-	je	Lj20756
-	movl	U_SYSTEM_DEFAULTCREATOR,%eax
-	call	*%edx
-	jmp	Lj20757
-Lj20756:
-	movl	$U_SYSTEM_DEFAULTCREATOR+4,%eax
-Lj20757:
-	movb	$0,(%eax)
-	movl	FPC_THREADVAR_RELOCATE,%edx
-	testl	%edx,%edx
-	je	Lj20760
-	movl	U_SYSTEM_DEFAULTFILETYPE,%eax
-	call	*%edx
-	jmp	Lj20761
-Lj20760:
-	movl	$U_SYSTEM_DEFAULTFILETYPE+4,%eax
-Lj20761:
-	movb	$0,(%eax)
 	call	SYSTEM_INITSYSTEMTHREADS
 	call	SYSTEM_INITVARIANTMANAGER
+	movl	U_SYSTEM_OS_MODE,%eax
+	cmpl	$0,%eax
+	je	Lj19834
+	cmpl	$2,%eax
+	je	Lj19834
+Lj19834:
+	je	Lj19832
+	jmp	Lj19833
+Lj19832:
+	call	SYSTEM_DOSENVINIT
+Lj19833:
 	movl	-4(%ebp),%ebx
 	leave
 	ret
@@ -51283,26 +49792,14 @@ U_SYSTEM_RETURNNILIFGROWHEAPFAILS:
 
 .bss
 	.balign 4
-	.globl U_SYSTEM_ARGC
-U_SYSTEM_ARGC:
+	.globl U_SYSTEM_OS_MODE
+U_SYSTEM_OS_MODE:
 	.zero 4
 
 .bss
 	.balign 4
-	.globl U_SYSTEM_ARGV
-U_SYSTEM_ARGV:
-	.zero 4
-
-.bss
-	.balign 4
-	.globl U_SYSTEM_ENVP
-U_SYSTEM_ENVP:
-	.zero 4
-
-.bss
-	.balign 4
-	.globl U_SYSTEM_ENVC
-U_SYSTEM_ENVC:
+	.globl U_SYSTEM_FIRST_MEG
+U_SYSTEM_FIRST_MEG:
 	.zero 4
 
 .bss
@@ -51389,37 +49886,13 @@ U_SYSTEM_CURRENTTM:
 
 .bss
 	.balign 4
-U_SYSTEM_OS2THREADMANAGER:
+U_SYSTEM_NOTHREADMANAGER:
 	.zero 152
 
 .bss
 	.balign 4
 U_SYSTEM_READWRITESTRTEXT:
 	.zero 596
-
-.bss
-	.balign 4
-U_SYSTEM__SS:
-	.zero 4
-
-.bss
-	.balign 4
-U_SYSTEM_EXCEPTEIP:
-	.zero 64
-
-.bss
-U_SYSTEM_EXCEPTERROR:
-	.zero 16
-
-.bss
-U_SYSTEM_RESETFPU:
-	.zero 16
-
-.bss
-	.balign 4
-	.globl _excptregptr
-_excptregptr:
-	.zero 4
 
 .bss
 U_SYSTEM_ERRORBUF:
@@ -51447,37 +49920,18 @@ U_SYSTEM_DEFAULTFILETYPE:
 
 .bss
 	.balign 4
-U_SYSTEM_PIB:
-	.zero 4
-
-.bss
-	.balign 4
 U_SYSTEM_TIB:
 	.zero 4
 
 .bss
 	.balign 4
-U_SYSTEM_RC:
-	.zero 4
-
-.bss
-U_SYSTEM_ERRSTR:
-	.zero 256
-
-.bss
-	.balign 4
-U_SYSTEM_P:
-	.zero 4
-
-.bss
-	.balign 4
-U_SYSTEM_DOSCALLSHANDLE:
+U_SYSTEM_PIB:
 	.zero 4
 
 .data
 	.balign 4
-.globl	_$SYSTEM$_Ld43
-_$SYSTEM$_Ld43:
+.globl	_$SYSTEM$_Ld45
+_$SYSTEM$_Ld45:
 	.byte	7
 	.ascii	"TObject"
 
@@ -51486,9 +49940,9 @@ _$SYSTEM$_Ld43:
 .globl	VMT_SYSTEM_TOBJECT
 VMT_SYSTEM_TOBJECT:
 	.long	4,-4,0
-	.long	_$SYSTEM$_Ld43
+	.long	_$SYSTEM$_Ld45
 	.long	0,0
-	.long	_$SYSTEM$_Ld44
+	.long	_$SYSTEM$_Ld46
 	.long	RTTI_SYSTEM_TOBJECT
 	.long	0,0
 	.long	FPC_EMPTYINTF
@@ -51578,13 +50032,13 @@ IIDSTR_SYSTEM_IDISPATCH:
 .data
 	.balign 4
 	.balign 4
-.globl	_$SYSTEM$_Ld47
-_$SYSTEM$_Ld47:
+.globl	_$SYSTEM$_Ld49
+_$SYSTEM$_Ld49:
 	.long	1
-	.long	_$SYSTEM$_Ld48
+	.long	_$SYSTEM$_Ld50
 	.long	VTBL_SYSTEM_TINTERFACEDOBJECT_$_IUNKNOWN
 	.long	8
-	.long	_$SYSTEM$_Ld49
+	.long	_$SYSTEM$_Ld51
 	.long	0
 
 .data
@@ -51595,18 +50049,18 @@ VTBL_SYSTEM_TINTERFACEDOBJECT_$_IUNKNOWN:
 	.long	WRPR_SYSTEM_TINTERFACEDOBJECT_$_IUNKNOWN_$_1_$_SYSTEM_TINTERFACEDOBJECT_$___ADDREF$$LONGINT
 	.long	WRPR_SYSTEM_TINTERFACEDOBJECT_$_IUNKNOWN_$_2_$_SYSTEM_TINTERFACEDOBJECT_$___RELEASE$$LONGINT
 	.balign 4
-.globl	_$SYSTEM$_Ld48
-_$SYSTEM$_Ld48:
+.globl	_$SYSTEM$_Ld50
+_$SYSTEM$_Ld50:
 	.long	0
 	.short	0,0
 	.byte	192,0,0,0,0,0,0,70
 	.balign 4
-.globl	_$SYSTEM$_Ld49
-_$SYSTEM$_Ld49:
+.globl	_$SYSTEM$_Ld51
+_$SYSTEM$_Ld51:
 	.byte	38
 	.ascii	"{00000000-0000-0000-C000-000000000046}"
-.globl	_$SYSTEM$_Ld46
-_$SYSTEM$_Ld46:
+.globl	_$SYSTEM$_Ld48
+_$SYSTEM$_Ld48:
 	.byte	17
 	.ascii	"TInterfacedObject"
 
@@ -51616,12 +50070,12 @@ _$SYSTEM$_Ld46:
 VMT_SYSTEM_TINTERFACEDOBJECT:
 	.long	12,-12
 	.long	VMT_SYSTEM_TOBJECT
-	.long	_$SYSTEM$_Ld46
+	.long	_$SYSTEM$_Ld48
 	.long	0,0
-	.long	_$SYSTEM$_Ld50
+	.long	_$SYSTEM$_Ld52
 	.long	RTTI_SYSTEM_TINTERFACEDOBJECT
 	.long	0,0
-	.long	_$SYSTEM$_Ld47
+	.long	_$SYSTEM$_Ld49
 	.long	0
 	.long	SYSTEM_TOBJECT_$__DESTROY
 	.long	SYSTEM_TINTERFACEDOBJECT_$__NEWINSTANCE$$TOBJECT
@@ -51640,8 +50094,8 @@ VMT_SYSTEM_TINTERFACEDOBJECT:
 
 .data
 	.balign 4
-.globl	_$SYSTEM$_Ld52
-_$SYSTEM$_Ld52:
+.globl	_$SYSTEM$_Ld54
+_$SYSTEM$_Ld54:
 	.byte	17
 	.ascii	"TAggregatedObject"
 
@@ -51651,9 +50105,9 @@ _$SYSTEM$_Ld52:
 VMT_SYSTEM_TAGGREGATEDOBJECT:
 	.long	8,-8
 	.long	VMT_SYSTEM_TOBJECT
-	.long	_$SYSTEM$_Ld52
+	.long	_$SYSTEM$_Ld54
 	.long	0,0
-	.long	_$SYSTEM$_Ld53
+	.long	_$SYSTEM$_Ld55
 	.long	RTTI_SYSTEM_TAGGREGATEDOBJECT
 	.long	0,0
 	.long	FPC_EMPTYINTF
@@ -51676,13 +50130,13 @@ VMT_SYSTEM_TAGGREGATEDOBJECT:
 .data
 	.balign 4
 	.balign 4
-.globl	_$SYSTEM$_Ld56
-_$SYSTEM$_Ld56:
+.globl	_$SYSTEM$_Ld58
+_$SYSTEM$_Ld58:
 	.long	1
-	.long	_$SYSTEM$_Ld57
+	.long	_$SYSTEM$_Ld59
 	.long	VTBL_SYSTEM_TCONTAINEDOBJECT_$_IUNKNOWN
 	.long	8
-	.long	_$SYSTEM$_Ld58
+	.long	_$SYSTEM$_Ld60
 	.long	0
 
 .data
@@ -51693,18 +50147,18 @@ VTBL_SYSTEM_TCONTAINEDOBJECT_$_IUNKNOWN:
 	.long	WRPR_SYSTEM_TCONTAINEDOBJECT_$_IUNKNOWN_$_1_$_SYSTEM_TAGGREGATEDOBJECT_$___ADDREF$$LONGINT
 	.long	WRPR_SYSTEM_TCONTAINEDOBJECT_$_IUNKNOWN_$_2_$_SYSTEM_TAGGREGATEDOBJECT_$___RELEASE$$LONGINT
 	.balign 4
-.globl	_$SYSTEM$_Ld57
-_$SYSTEM$_Ld57:
+.globl	_$SYSTEM$_Ld59
+_$SYSTEM$_Ld59:
 	.long	0
 	.short	0,0
 	.byte	192,0,0,0,0,0,0,70
 	.balign 4
-.globl	_$SYSTEM$_Ld58
-_$SYSTEM$_Ld58:
+.globl	_$SYSTEM$_Ld60
+_$SYSTEM$_Ld60:
 	.byte	38
 	.ascii	"{00000000-0000-0000-C000-000000000046}"
-.globl	_$SYSTEM$_Ld55
-_$SYSTEM$_Ld55:
+.globl	_$SYSTEM$_Ld57
+_$SYSTEM$_Ld57:
 	.byte	16
 	.ascii	"TContainedObject"
 
@@ -51714,12 +50168,12 @@ _$SYSTEM$_Ld55:
 VMT_SYSTEM_TCONTAINEDOBJECT:
 	.long	12,-12
 	.long	VMT_SYSTEM_TAGGREGATEDOBJECT
-	.long	_$SYSTEM$_Ld55
+	.long	_$SYSTEM$_Ld57
 	.long	0,0
-	.long	_$SYSTEM$_Ld59
+	.long	_$SYSTEM$_Ld61
 	.long	RTTI_SYSTEM_TCONTAINEDOBJECT
 	.long	0,0
-	.long	_$SYSTEM$_Ld56
+	.long	_$SYSTEM$_Ld58
 	.long	0
 	.long	SYSTEM_TOBJECT_$__DESTROY
 	.long	SYSTEM_TOBJECT_$__NEWINSTANCE$$TOBJECT
@@ -52021,18 +50475,6 @@ TC_SYSTEM_ALLOWDRIVESEPARATORS:
 	.byte	0,0,0,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 
 .data
-	.balign 4
-.globl	TC_SYSTEM_OS_MODE
-TC_SYSTEM_OS_MODE:
-	.long	1
-
-.data
-	.balign 4
-.globl	TC_SYSTEM_FIRST_MEG
-TC_SYSTEM_FIRST_MEG:
-	.long	0
-
-.data
 .globl	TC_SYSTEM_LFNSUPPORT
 TC_SYSTEM_LFNSUPPORT:
 	.byte	1
@@ -52053,39 +50495,15 @@ TC_SYSTEM_CTRLZMARKSEOF:
 	.byte	1
 
 .data
-	.balign 4
-.globl	TC_SYSTEM_DEFAULTTEXTLINEBREAKSTYLE
-TC_SYSTEM_DEFAULTTEXTLINEBREAKSTYLE:
-	.long	1
-
-.data
-	.balign 4
-.globl	TC_SYSTEM_HEAPALLOCFLAGS
-TC_SYSTEM_HEAPALLOCFLAGS:
-	.long	83
-
-.data
 .globl	TC_SYSTEM_FSAPI64
 TC_SYSTEM_FSAPI64:
 	.byte	0
 
 .data
 	.balign 4
-.globl	TC_SYSTEM_SYS_DOSOPENL
-TC_SYSTEM_SYS_DOSOPENL:
-	.long	SYSTEM_DUMMYDOSOPENL$crc5CEF2B0C
-
-.data
-	.balign 4
-.globl	TC_SYSTEM_SYS_DOSSETFILEPTRL
-TC_SYSTEM_SYS_DOSSETFILEPTRL:
-	.long	SYSTEM_DUMMYDOSSETFILEPTRL$LONGINT$INT64$LONGWORD$INT64$$LONGWORD
-
-.data
-	.balign 4
-.globl	TC_SYSTEM_SYS_DOSSETFILESIZEL
-TC_SYSTEM_SYS_DOSSETFILESIZEL:
-	.long	SYSTEM_DUMMYDOSSETFILESIZEL$LONGINT$INT64$$LONGWORD
+.globl	TC_SYSTEM_DEFAULTTEXTLINEBREAKSTYLE
+TC_SYSTEM_DEFAULTTEXTLINEBREAKSTYLE:
+	.long	1
 
 .data
 	.balign 4
@@ -52519,21 +50937,17 @@ TC_SYSTEM_MEMORYMANAGER:
 
 .data
 	.balign 4
-TC_SYSTEM_THREADVARBLOCKSIZE:
-	.long	0
-
-.data
-	.balign 4
-TC_SYSTEM_DATAINDEX:
-	.long	0
-
-.data
-	.balign 4
-	.short	0,1
-	.long	-1,7
 .globl	_$SYSTEM$_Ld36
 _$SYSTEM$_Ld36:
-	.ascii	"\\SEM32\\\000"
+	.ascii	".This binary has no thread support compiled in.\000"
+
+.data
+	.balign 4
+.globl	_$SYSTEM$_Ld37
+_$SYSTEM$_Ld37:
+	.ascii	"jRecompile the application with a thread-driver in "
+	.ascii	"the program uses clause before other units using th"
+	.ascii	"read.\000"
 
 .data
 	.balign 4
@@ -52542,32 +50956,32 @@ TC_SYSTEM_FILEHANDLECOUNT:
 
 .data
 	.balign 4
-.globl	_$SYSTEM$_Ld37
-_$SYSTEM$_Ld37:
-	.ascii	"\002\015\012\000"
-
-.data
-	.balign 4
 .globl	_$SYSTEM$_Ld38
 _$SYSTEM$_Ld38:
-	.ascii	"\004true\000"
+	.ascii	"\002\015\012\000"
 
 .data
 	.balign 4
 .globl	_$SYSTEM$_Ld39
 _$SYSTEM$_Ld39:
-	.ascii	"\005false\000"
+	.ascii	"\004true\000"
 
 .data
 	.balign 4
 .globl	_$SYSTEM$_Ld40
 _$SYSTEM$_Ld40:
-	.ascii	"\004fpc_\000"
+	.ascii	"\005false\000"
 
 .data
 	.balign 4
 .globl	_$SYSTEM$_Ld41
 _$SYSTEM$_Ld41:
+	.ascii	"\004fpc_\000"
+
+.data
+	.balign 4
+.globl	_$SYSTEM$_Ld42
+_$SYSTEM$_Ld42:
 	.ascii	"\004.tmp\000"
 
 .data
@@ -52591,8 +51005,10 @@ TC_SYSTEM_CTRLBREAKHANDLER:
 	.long	0
 
 .data
-TC_SYSTEM_EXCEPTLEVEL:
-	.byte	0
+	.balign 4
+.globl	_$SYSTEM$_Ld43
+_$SYSTEM$_Ld43:
+	.ascii	"\001\000\000"
 
 .data
 	.balign 4
@@ -52616,13 +51032,14 @@ TC_SYSTEM_ENVSIZE:
 
 .data
 	.balign 4
-.globl	_$SYSTEM$_Ld42
-_$SYSTEM$_Ld42:
+.globl	_$SYSTEM$_Ld44
+_$SYSTEM$_Ld44:
 	.ascii	"Error\000"
 
 .data
-TC_SYSTEM_DOSCALLSNAME:
-	.byte	68,79,83,67,65,76,76,83,0
+TC_SYSTEM_FATALHEAP:
+	.byte	70,65,84,65,76,58,32,67,97,110,110,111,116,32,105,110,105,116,105,97,108,105,122,101,32,104,101,97
+	.byte	112,33,33,13,10,36
 # End asmlist al_typedconsts
 # Begin asmlist al_rotypedconsts
 # End asmlist al_rotypedconsts
@@ -53581,7 +51998,7 @@ INIT_SYSTEM_UCS4STRING:
 	.long	INIT_SYSTEM_UCS4CHAR
 	.long	3,0
 	.byte	6
-	.ascii	"system"
+	.ascii	"System"
 
 .data
 	.balign 4
@@ -53593,7 +52010,7 @@ RTTI_SYSTEM_UCS4STRING:
 	.long	RTTI_SYSTEM_UCS4CHAR
 	.long	3,0
 	.byte	6
-	.ascii	"system"
+	.ascii	"System"
 
 .data
 	.balign 4
@@ -54296,7 +52713,7 @@ INIT_SYSTEM_TTEXTLINEBREAKSTYLE:
 	.byte	6
 	.ascii	"tlbsCR"
 	.byte	6
-	.ascii	"system"
+	.ascii	"System"
 	.byte	0
 
 .data
@@ -54314,7 +52731,7 @@ RTTI_SYSTEM_TTEXTLINEBREAKSTYLE:
 	.byte	6
 	.ascii	"tlbsCR"
 	.byte	6
-	.ascii	"system"
+	.ascii	"System"
 	.byte	0
 
 .data
@@ -54511,7 +52928,7 @@ INIT_SYSTEM_TBOUNDARRAY:
 	.long	INIT_SYSTEM_LONGINT
 	.long	3,0
 	.byte	6
-	.ascii	"system"
+	.ascii	"System"
 
 .data
 	.balign 4
@@ -54523,7 +52940,7 @@ RTTI_SYSTEM_TBOUNDARRAY:
 	.long	RTTI_SYSTEM_LONGINT
 	.long	3,0
 	.byte	6
-	.ascii	"system"
+	.ascii	"System"
 
 .data
 	.balign 4
@@ -54906,7 +53323,7 @@ INIT_SYSTEM_TRUNTIMEERROR:
 	.byte	19
 	.ascii	"reCodesetConversion"
 	.byte	6
-	.ascii	"system"
+	.ascii	"System"
 	.byte	0
 
 .data
@@ -54972,7 +53389,7 @@ RTTI_SYSTEM_TRUNTIMEERROR:
 	.byte	19
 	.ascii	"reCodesetConversion"
 	.byte	6
-	.ascii	"system"
+	.ascii	"System"
 	.byte	0
 
 .data
@@ -55191,13 +53608,13 @@ RTTI_SYSTEM_PJMP_BUF:
 
 .data
 	.balign 4
-.globl	_$SYSTEM$_Ld44
-_$SYSTEM$_Ld44:
+.globl	_$SYSTEM$_Ld46
+_$SYSTEM$_Ld46:
 	.short	0
-	.long	_$SYSTEM$_Ld45
+	.long	_$SYSTEM$_Ld47
 	.balign 4
-.globl	_$SYSTEM$_Ld45
-_$SYSTEM$_Ld45:
+.globl	_$SYSTEM$_Ld47
+_$SYSTEM$_Ld47:
 	.short	0
 
 .data
@@ -55218,7 +53635,7 @@ RTTI_SYSTEM_TOBJECT:
 	.long	0
 	.short	0
 	.byte	6
-	.ascii	"system"
+	.ascii	"System"
 	.short	0
 
 .data
@@ -55240,7 +53657,7 @@ RTTI_SYSTEM_IUNKNOWN:
 	.long	0
 	.short	0,0
 	.byte	192,0,0,0,0,0,0,70,6
-	.ascii	"system"
+	.ascii	"System"
 	.byte	38
 	.ascii	"{00000000-0000-0000-C000-000000000046}"
 
@@ -55555,7 +53972,7 @@ INIT_SYSTEM_TINTERFACEENTRYTYPE:
 	.byte	17
 	.ascii	"etFieldValueClass"
 	.byte	6
-	.ascii	"system"
+	.ascii	"System"
 	.byte	0
 
 .data
@@ -55581,7 +53998,7 @@ RTTI_SYSTEM_TINTERFACEENTRYTYPE:
 	.byte	17
 	.ascii	"etFieldValueClass"
 	.byte	6
-	.ascii	"system"
+	.ascii	"System"
 	.byte	0
 
 .data
@@ -55727,7 +54144,7 @@ RTTI_SYSTEM_IINVOKABLE:
 	.long	0
 	.short	0,0
 	.byte	0,0,0,0,0,0,0,0,6
-	.ascii	"system"
+	.ascii	"System"
 	.byte	0
 
 .data
@@ -55749,7 +54166,7 @@ RTTI_SYSTEM_IENUMERATOR:
 	.long	0
 	.short	0,0
 	.byte	0,0,0,0,0,0,0,0,6
-	.ascii	"system"
+	.ascii	"System"
 	.byte	0
 
 .data
@@ -55771,7 +54188,7 @@ RTTI_SYSTEM_IENUMERABLE:
 	.long	0
 	.short	0,0
 	.byte	0,0,0,0,0,0,0,0,6
-	.ascii	"system"
+	.ascii	"System"
 	.byte	0
 
 .data
@@ -55793,19 +54210,19 @@ RTTI_SYSTEM_IDISPATCH:
 	.long	132096
 	.short	0,0
 	.byte	192,0,0,0,0,0,0,70,6
-	.ascii	"system"
+	.ascii	"System"
 	.byte	38
 	.ascii	"{00020400-0000-0000-C000-000000000046}"
 
 .data
 	.balign 4
-.globl	_$SYSTEM$_Ld50
-_$SYSTEM$_Ld50:
+.globl	_$SYSTEM$_Ld52
+_$SYSTEM$_Ld52:
 	.short	0
-	.long	_$SYSTEM$_Ld51
+	.long	_$SYSTEM$_Ld53
 	.balign 4
-.globl	_$SYSTEM$_Ld51
-_$SYSTEM$_Ld51:
+.globl	_$SYSTEM$_Ld53
+_$SYSTEM$_Ld53:
 	.short	0
 
 .data
@@ -55826,7 +54243,7 @@ RTTI_SYSTEM_TINTERFACEDOBJECT:
 	.long	RTTI_SYSTEM_TOBJECT
 	.short	0
 	.byte	6
-	.ascii	"system"
+	.ascii	"System"
 	.short	0
 
 .data
@@ -55845,13 +54262,13 @@ RTTI_SYSTEM_TINTERFACEDCLASS:
 
 .data
 	.balign 4
-.globl	_$SYSTEM$_Ld53
-_$SYSTEM$_Ld53:
+.globl	_$SYSTEM$_Ld55
+_$SYSTEM$_Ld55:
 	.short	0
-	.long	_$SYSTEM$_Ld54
+	.long	_$SYSTEM$_Ld56
 	.balign 4
-.globl	_$SYSTEM$_Ld54
-_$SYSTEM$_Ld54:
+.globl	_$SYSTEM$_Ld56
+_$SYSTEM$_Ld56:
 	.short	0
 
 .data
@@ -55872,18 +54289,18 @@ RTTI_SYSTEM_TAGGREGATEDOBJECT:
 	.long	RTTI_SYSTEM_TOBJECT
 	.short	0
 	.byte	6
-	.ascii	"system"
+	.ascii	"System"
 	.short	0
 
 .data
 	.balign 4
-.globl	_$SYSTEM$_Ld59
-_$SYSTEM$_Ld59:
+.globl	_$SYSTEM$_Ld61
+_$SYSTEM$_Ld61:
 	.short	0
-	.long	_$SYSTEM$_Ld60
+	.long	_$SYSTEM$_Ld62
 	.balign 4
-.globl	_$SYSTEM$_Ld60
-_$SYSTEM$_Ld60:
+.globl	_$SYSTEM$_Ld62
+_$SYSTEM$_Ld62:
 	.short	0
 
 .data
@@ -55904,7 +54321,7 @@ RTTI_SYSTEM_TCONTAINEDOBJECT:
 	.long	RTTI_SYSTEM_TAGGREGATEDOBJECT
 	.short	0
 	.byte	6
-	.ascii	"system"
+	.ascii	"System"
 	.short	0
 
 .data
@@ -56284,7 +54701,7 @@ INIT_SYSTEM_TVAROP:
 	.byte	7
 	.ascii	"oppower"
 	.byte	6
-	.ascii	"system"
+	.ascii	"System"
 	.byte	0
 
 .data
@@ -56338,7 +54755,7 @@ RTTI_SYSTEM_TVAROP:
 	.byte	7
 	.ascii	"oppower"
 	.byte	6
-	.ascii	"system"
+	.ascii	"System"
 	.byte	0
 
 .data
@@ -58108,7 +56525,7 @@ INIT_SYSTEM_TOS:
 	.byte	6
 	.ascii	"osDPMI"
 	.byte	6
-	.ascii	"system"
+	.ascii	"System"
 	.byte	0
 
 .data
@@ -58126,7 +56543,7 @@ RTTI_SYSTEM_TOS:
 	.byte	6
 	.ascii	"osDPMI"
 	.byte	6
-	.ascii	"system"
+	.ascii	"System"
 	.byte	0
 
 .data
@@ -58151,45 +56568,191 @@ RTTI_SYSTEM_TOS_o2s:
 
 .data
 	.balign 4
-.globl	INIT_SYSTEM_TDOSOPENL
-INIT_SYSTEM_TDOSOPENL:
-	.byte	23,9
-	.ascii	"TDosOpenL"
+.globl	INIT_SYSTEM_TBYTEARRAY
+INIT_SYSTEM_TBYTEARRAY:
+	.byte	12
+	.ascii	"\012TByteArray"
+	.long	1,65536
+	.long	INIT_SYSTEM_BYTE
+	.long	17
 
 .data
 	.balign 4
-.globl	RTTI_SYSTEM_TDOSOPENL
-RTTI_SYSTEM_TDOSOPENL:
-	.byte	23,9
-	.ascii	"TDosOpenL"
+.globl	RTTI_SYSTEM_TBYTEARRAY
+RTTI_SYSTEM_TBYTEARRAY:
+	.byte	12
+	.ascii	"\012TByteArray"
+	.long	1,65536
+	.long	RTTI_SYSTEM_BYTE
+	.long	17
 
 .data
 	.balign 4
-.globl	INIT_SYSTEM_TDOSSETFILEPTRL
-INIT_SYSTEM_TDOSSETFILEPTRL:
-	.byte	23,15
-	.ascii	"TDosSetFilePtrL"
+.globl	INIT_SYSTEM_PBYTEARRAY
+INIT_SYSTEM_PBYTEARRAY:
+	.byte	0
+	.ascii	"\012PByteArray"
 
 .data
 	.balign 4
-.globl	RTTI_SYSTEM_TDOSSETFILEPTRL
-RTTI_SYSTEM_TDOSSETFILEPTRL:
-	.byte	23,15
-	.ascii	"TDosSetFilePtrL"
+.globl	RTTI_SYSTEM_PBYTEARRAY
+RTTI_SYSTEM_PBYTEARRAY:
+	.byte	0
+	.ascii	"\012PByteArray"
 
 .data
 	.balign 4
-.globl	INIT_SYSTEM_TDOSSETFILESIZEL
-INIT_SYSTEM_TDOSSETFILESIZEL:
-	.byte	23,16
-	.ascii	"TDosSetFileSizeL"
+.globl	INIT_SYSTEM_TSYSTHREADIB
+INIT_SYSTEM_TSYSTHREADIB:
+	.byte	13,12
+	.ascii	"TSysThreadIB"
+	.long	16,0
 
 .data
 	.balign 4
-.globl	RTTI_SYSTEM_TDOSSETFILESIZEL
-RTTI_SYSTEM_TDOSSETFILESIZEL:
-	.byte	23,16
-	.ascii	"TDosSetFileSizeL"
+.globl	RTTI_SYSTEM_TSYSTHREADIB
+RTTI_SYSTEM_TSYSTHREADIB:
+	.byte	13,12
+	.ascii	"TSysThreadIB"
+	.long	16,5
+	.long	RTTI_SYSTEM_LONGWORD
+	.long	0
+	.long	RTTI_SYSTEM_LONGWORD
+	.long	4
+	.long	RTTI_SYSTEM_LONGWORD
+	.long	8
+	.long	RTTI_SYSTEM_WORD
+	.long	12
+	.long	RTTI_SYSTEM_WORD
+	.long	14
+
+.data
+	.balign 4
+.globl	INIT_SYSTEM_PSYSTHREADIB
+INIT_SYSTEM_PSYSTHREADIB:
+	.byte	0
+	.ascii	"\014PSysThreadIB"
+
+.data
+	.balign 4
+.globl	RTTI_SYSTEM_PSYSTHREADIB
+RTTI_SYSTEM_PSYSTHREADIB:
+	.byte	0
+	.ascii	"\014PSysThreadIB"
+
+.data
+	.balign 4
+.globl	INIT_SYSTEM_TTHREADINFOBLOCK
+INIT_SYSTEM_TTHREADINFOBLOCK:
+	.byte	13,16
+	.ascii	"TThreadInfoBlock"
+	.long	24,0
+
+.data
+	.balign 4
+.globl	RTTI_SYSTEM_TTHREADINFOBLOCK
+RTTI_SYSTEM_TTHREADINFOBLOCK:
+	.byte	13,16
+	.ascii	"TThreadInfoBlock"
+	.long	24,6
+	.long	RTTI_SYSTEM_POINTER
+	.long	0
+	.long	RTTI_SYSTEM_POINTER
+	.long	4
+	.long	RTTI_SYSTEM_POINTER
+	.long	8
+	.long	RTTI_SYSTEM_PSYSTHREADIB
+	.long	12
+	.long	RTTI_SYSTEM_LONGWORD
+	.long	16
+	.long	RTTI_SYSTEM_LONGWORD
+	.long	20
+
+.data
+	.balign 4
+.globl	INIT_SYSTEM_PTHREADINFOBLOCK
+INIT_SYSTEM_PTHREADINFOBLOCK:
+	.byte	0
+	.ascii	"\020PThreadInfoBlock"
+
+.data
+	.balign 4
+.globl	RTTI_SYSTEM_PTHREADINFOBLOCK
+RTTI_SYSTEM_PTHREADINFOBLOCK:
+	.byte	0
+	.ascii	"\020PThreadInfoBlock"
+
+.data
+	.balign 4
+.globl	INIT_SYSTEM_PPTHREADINFOBLOCK
+INIT_SYSTEM_PPTHREADINFOBLOCK:
+	.byte	0
+	.ascii	"\021PPThreadInfoBlock"
+
+.data
+	.balign 4
+.globl	RTTI_SYSTEM_PPTHREADINFOBLOCK
+RTTI_SYSTEM_PPTHREADINFOBLOCK:
+	.byte	0
+	.ascii	"\021PPThreadInfoBlock"
+
+.data
+	.balign 4
+.globl	INIT_SYSTEM_TPROCESSINFOBLOCK
+INIT_SYSTEM_TPROCESSINFOBLOCK:
+	.byte	13,17
+	.ascii	"TProcessInfoBlock"
+	.long	28,0
+
+.data
+	.balign 4
+.globl	RTTI_SYSTEM_TPROCESSINFOBLOCK
+RTTI_SYSTEM_TPROCESSINFOBLOCK:
+	.byte	13,17
+	.ascii	"TProcessInfoBlock"
+	.long	28,7
+	.long	RTTI_SYSTEM_LONGWORD
+	.long	0
+	.long	RTTI_SYSTEM_LONGWORD
+	.long	4
+	.long	RTTI_SYSTEM_LONGWORD
+	.long	8
+	.long	RTTI_SYSTEM_PBYTEARRAY
+	.long	12
+	.long	RTTI_SYSTEM_PBYTEARRAY
+	.long	16
+	.long	RTTI_SYSTEM_LONGWORD
+	.long	20
+	.long	RTTI_SYSTEM_LONGWORD
+	.long	24
+
+.data
+	.balign 4
+.globl	INIT_SYSTEM_PPROCESSINFOBLOCK
+INIT_SYSTEM_PPROCESSINFOBLOCK:
+	.byte	0
+	.ascii	"\021PProcessInfoBlock"
+
+.data
+	.balign 4
+.globl	RTTI_SYSTEM_PPROCESSINFOBLOCK
+RTTI_SYSTEM_PPROCESSINFOBLOCK:
+	.byte	0
+	.ascii	"\021PProcessInfoBlock"
+
+.data
+	.balign 4
+.globl	INIT_SYSTEM_PPPROCESSINFOBLOCK
+INIT_SYSTEM_PPPROCESSINFOBLOCK:
+	.byte	0
+	.ascii	"\022PPProcessInfoBlock"
+
+.data
+	.balign 4
+.globl	RTTI_SYSTEM_PPPROCESSINFOBLOCK
+RTTI_SYSTEM_PPPROCESSINFOBLOCK:
+	.byte	0
+	.ascii	"\022PPProcessInfoBlock"
 # End asmlist al_rtti
 # Begin asmlist al_dwarf_frame
 # End asmlist al_dwarf_frame
