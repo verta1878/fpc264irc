@@ -20,6 +20,11 @@ type
 
   TSerialFlags = set of (RtsCtsFlowControl);
 
+const
+  InvalidSerialHandle = TSerialHandle(-1);
+
+type
+
   TSerialState = record
     LineState: LongWord;
     tios: termios;
@@ -61,6 +66,19 @@ procedure SerSetRTS(Handle: TSerialHandle; State: Boolean);
 function SerGetCTS(Handle: TSerialHandle): Boolean;
 function SerGetDSR(Handle: TSerialHandle): Boolean;
 function SerGetRI(Handle: TSerialHandle): Boolean;
+function SerGetCD(Handle: TSerialHandle): Boolean;
+procedure SerBreak(Handle: TSerialHandle);
+procedure SerDrain(Handle: TSerialHandle);
+procedure SerSync(Handle: TSerialHandle);
+procedure SerFlushInput(Handle: TSerialHandle);
+procedure SerFlushOutput(Handle: TSerialHandle);
+function SerReadTimeout(Handle: TSerialHandle; var Buffer; Count: LongInt; Timeout: LongInt): LongInt;
+function SerDataAvailable(Handle: TSerialHandle): Boolean;
+function SerDetectUART(Handle: TSerialHandle): String;
+procedure SerSetFIFO(Handle: TSerialHandle; Enable: Boolean; TriggerLevel: Byte);
+function SerGetBase(Handle: TSerialHandle): Word;
+procedure SerEnableIRQ(Handle: TSerialHandle);
+procedure SerDisableIRQ(Handle: TSerialHandle);
 
 
 { ************************************************************************** }
@@ -208,6 +226,128 @@ var
 begin
   fpioctl(Handle, TIOCMGET, @Flags);
   Result := (Flags and TIOCM_RI) <> 0;
+end;
+
+
+
+function SerGetCD(Handle: TSerialHandle): Boolean;
+var
+  Flags: Cardinal;
+begin
+  Flags := 0;
+  fpioctl(Handle, TIOCMGET, @Flags);
+  Result := (Flags and TIOCM_CD) <> 0;
+end;
+
+procedure SerBreak(Handle: TSerialHandle);
+begin
+  tcsendbreak(Handle, 0);
+end;
+
+procedure SerDrain(Handle: TSerialHandle);
+begin
+  tcdrain(Handle);
+end;
+
+procedure SerSync(Handle: TSerialHandle);
+begin
+  tcdrain(Handle);
+end;
+
+procedure SerFlushInput(Handle: TSerialHandle);
+begin
+  tcflush(Handle, TCIFLUSH);
+end;
+
+procedure SerFlushOutput(Handle: TSerialHandle);
+begin
+  tcflush(Handle, TCOFLUSH);
+end;
+
+function SerReadTimeout(Handle: TSerialHandle; var Buffer; Count: LongInt; Timeout: LongInt): LongInt;
+var
+  FDS: TFDSet;
+  TV: TTimeVal;
+  Res: LongInt;
+begin
+  fpFD_ZERO(FDS);
+  fpFD_SET(Handle, FDS);
+  TV.tv_sec := Timeout div 1000;
+  TV.tv_usec := (Timeout mod 1000) * 1000;
+  Res := fpSelect(Handle + 1, @FDS, nil, nil, @TV);
+  if Res > 0 then
+    Result := fpRead(Handle, Buffer, Count)
+  else
+    Result := 0;
+end;
+
+
+
+function SerDataAvailable(Handle: TSerialHandle): Boolean;
+var
+  FDS: TFDSet;
+  TV: TTimeVal;
+begin
+  fpFD_ZERO(FDS);
+  fpFD_SET(Handle, FDS);
+  TV.tv_sec := 0;
+  TV.tv_usec := 0;
+  Result := fpSelect(Handle + 1, @FDS, nil, nil, @TV) > 0;
+end;
+
+function SerDetectUART(Handle: TSerialHandle): String;
+begin
+  { Unix: the OS abstracts the UART. Return device type from fd. }
+  if Handle >= 0 then
+    Result := 'tty'
+  else
+    Result := 'none';
+end;
+
+procedure SerSetFIFO(Handle: TSerialHandle; Enable: Boolean; TriggerLevel: Byte);
+var
+  Tio: termios;
+begin
+  { Unix: FIFO is managed by the kernel tty layer.
+    Map to VMIN/VTIME: TriggerLevel sets minimum bytes before read returns. }
+  TCGetAttr(Handle, Tio);
+  if Enable then begin
+    Tio.c_cc[VMIN] := TriggerLevel;
+    Tio.c_cc[VTIME] := 1;
+  end else begin
+    Tio.c_cc[VMIN] := 1;
+    Tio.c_cc[VTIME] := 0;
+  end;
+  TCSetAttr(Handle, TCSANOW, Tio);
+end;
+
+function SerGetBase(Handle: TSerialHandle): Word;
+begin
+  { Unix: no I/O port base. Return the file descriptor as identifier. }
+  Result := Word(Handle and $FFFF);
+end;
+
+procedure SerEnableIRQ(Handle: TSerialHandle);
+var
+  Tio: termios;
+begin
+  { Unix: enable immediate character availability.
+    Set VMIN=1, VTIME=0 for blocking single-char reads. }
+  TCGetAttr(Handle, Tio);
+  Tio.c_cc[VMIN] := 1;
+  Tio.c_cc[VTIME] := 0;
+  TCSetAttr(Handle, TCSANOW, Tio);
+end;
+
+procedure SerDisableIRQ(Handle: TSerialHandle);
+var
+  Tio: termios;
+begin
+  { Unix: disable immediate reads. Set VMIN=0 for non-blocking. }
+  TCGetAttr(Handle, Tio);
+  Tio.c_cc[VMIN] := 0;
+  Tio.c_cc[VTIME] := 1;
+  TCSetAttr(Handle, TCSANOW, Tio);
 end;
 
 

@@ -13,7 +13,12 @@ type
   TSerialFlags = set of (sfRtsControl);
 
 const
+  InvalidSerialHandle = TSerialHandle(-1);
+
+const
   RtsCtsFlowControl = sfRtsControl;  { alias for m_serial.pas compatibility }
+
+type
   TSerialState = record
     BitsPerSec: LongInt;
     ByteSize: Integer;
@@ -46,6 +51,8 @@ procedure SerSetRTS(Handle: TSerialHandle; State: Boolean);
 function  SerGetCTS(Handle: TSerialHandle): Boolean;
 function  SerGetDSR(Handle: TSerialHandle): Boolean;
 function  SerGetDCD(Handle: TSerialHandle): Boolean;
+function  SerGetCD(Handle: TSerialHandle): Boolean;
+function  SerReadTimeout(Handle: TSerialHandle; var Buffer; Count: LongInt; Timeout: LongInt): LongInt;
 function  SerGetRI(Handle: TSerialHandle): Boolean;
 procedure SerFlushInput(Handle: TSerialHandle);
 procedure SerFlushOutput(Handle: TSerialHandle);
@@ -66,25 +73,22 @@ function  SerRingOverruns(Handle: TSerialHandle): LongInt;
 
 implementation
 
-var SerCleanupIdx: Integer;
-
 uses SysUtils{$IFDEF GO32V2}, Ports{$ENDIF};
 
-function GetBase(Handle: TSerialHandle): Word; {$IFDEF FPC}inline;{$ENDIF}
+var SerCleanupIdx: Integer;
+
+function GetBase(Handle: TSerialHandle): Word; inline;
 begin
-  if (Handle >= 0) and (Handle <= 3) then Result := COM_BASE[Handle]
-  else Result := 0;
+  if (Handle >= 0) and (Handle <= 3) then Result := COM_BASE[Handle] else Result := 0;
 end;
 
 function SerOpen(const DeviceName: String): TSerialHandle;
-var PortIdx: Integer; Base: Word;
+var S: String; PortIdx: Integer; Base: Word;
 begin
-  Result := -1;
-  if Length(DeviceName) < 4 then Exit;
-  case UpCase(DeviceName[4]) of
-    '1': PortIdx := 0; '2': PortIdx := 1;
-    '3': PortIdx := 2; '4': PortIdx := 3;
-  else Exit; end;
+  Result := -1; S := UpperCase(DeviceName);
+  if Copy(S,1,3) <> 'COM' then Exit;
+  PortIdx := StrToIntDef(Copy(S,4,Length(S)-3), 0) - 1;
+  if (PortIdx < 0) or (PortIdx > 3) then Exit;
   Base := COM_BASE[PortIdx];
   Port[Base + 7] := $55;
   if Port[Base + 7] <> $55 then Exit;
@@ -95,100 +99,126 @@ end;
 
 procedure SerClose(Handle: TSerialHandle);
 var B: Word;
-begin
-  B := GetBase(Handle); if B = 0 then Exit;
-  SerSetDTR(Handle, False); SerSetRTS(Handle, False);
-  Port[B + UART_IER] := 0; Port[B + UART_FCR] := 0;
-end;
+begin B:=GetBase(Handle); if B=0 then Exit;
+  Port[B+UART_MCR]:=0; Port[B+UART_IER]:=0; end;
 
 function SerRead(Handle: TSerialHandle; var Buffer; Count: LongInt): LongInt;
 var B: Word; P: PByte; I: LongInt;
 begin
-  Result := 0; B := GetBase(Handle); if B = 0 then Exit;
-  P := @Buffer;
-  for I := 0 to Count-1 do begin
-    if (Port[B + UART_LSR] and LSR_DR) = 0 then Break;
-    P^ := Port[B + UART_RBR]; Inc(P); Inc(Result);
+  B:=GetBase(Handle); Result:=0; if B=0 then Exit; P:=@Buffer;
+  for I:=0 to Count-1 do begin
+    if (Port[B+UART_LSR] and LSR_DR)=0 then Break;
+    P[I]:=Port[B+UART_RBR]; Inc(Result);
   end;
 end;
 
 function SerWrite(Handle: TSerialHandle; const Buffer; Count: LongInt): LongInt;
-var B: Word; P: PByte; I, T: LongInt;
+var B: Word; P: PByte; I: LongInt;
 begin
-  Result := 0; B := GetBase(Handle); if B = 0 then Exit;
-  P := @Buffer;
-  for I := 0 to Count-1 do begin
-    T := 100000;
-    while ((Port[B + UART_LSR] and LSR_THRE) = 0) and (T > 0) do Dec(T);
-    if T = 0 then Break;
-    Port[B + UART_THR] := P^; Inc(P); Inc(Result);
+  B:=GetBase(Handle); Result:=0; if B=0 then Exit; P:=@Buffer;
+  for I:=0 to Count-1 do begin
+    while (Port[B+UART_LSR] and LSR_THRE)=0 do;
+    Port[B+UART_THR]:=P[I]; Inc(Result);
   end;
 end;
 
 procedure SerSetParams(Handle: TSerialHandle; BitsPerSec: LongInt;
   ByteSize: Integer; Parity: TParityType; StopBits: Integer; Flags: TSerialFlags);
-var B: Word; Div_: Word; LCR: Byte;
+var B: Word; LCR, DL: Word;
 begin
-  B := GetBase(Handle); if B = 0 then Exit;
-  if BitsPerSec > 0 then Div_ := UART_CLOCK div BitsPerSec else Div_ := 12;
-  case ByteSize of 5: LCR:=$00; 6: LCR:=$01; 7: LCR:=$02; else LCR:=$03; end;
+  B:=GetBase(Handle); if B=0 then Exit;
+  LCR := (ByteSize - 5) and 3;
   if StopBits = 2 then LCR := LCR or $04;
-  case Parity of
-    OddParity: LCR := LCR or $08; EvenParity: LCR := LCR or $18;
-    MarkParity: LCR := LCR or $28; SpaceParity: LCR := LCR or $38;
-  else end;
-  Port[B + UART_LCR] := LCR or $80;
-  Port[B + UART_DLL] := Lo(Div_); Port[B + UART_DLH] := Hi(Div_);
-  Port[B + UART_LCR] := LCR;
+  case Parity of OddParity: LCR:=LCR or $08; EvenParity: LCR:=LCR or $18; end;
+  if BitsPerSec > 0 then DL := 115200 div BitsPerSec else DL := 12;
+  Port[B+UART_LCR] := $80; Port[B+UART_DLL] := Lo(DL); Port[B+UART_DLH] := Hi(DL);
+  Port[B+UART_LCR] := LCR;
 end;
 
 function SerSaveState(Handle: TSerialHandle): TSerialState;
-begin Result.BitsPerSec:=9600; Result.ByteSize:=8; Result.Parity:=NoneParity; Result.StopBits:=1; Result.Flags:=[]; end;
+var B: Word; LCR: Byte; DL: Word;
+begin
+  B:=GetBase(Handle); FillChar(Result, SizeOf(Result), 0); if B=0 then Exit;
+  LCR := Port[B+UART_LCR];
+  Port[B+UART_LCR] := LCR or $80; DL := Port[B+UART_DLL] or (Port[B+UART_DLH] shl 8);
+  Port[B+UART_LCR] := LCR;
+  if DL > 0 then Result.BitsPerSec := 115200 div DL else Result.BitsPerSec := 9600;
+  Result.ByteSize := (LCR and 3) + 5;
+  if (LCR and $08)=0 then Result.Parity := NoneParity
+  else if (LCR and $10)=0 then Result.Parity := OddParity
+  else Result.Parity := EvenParity;
+  if (LCR and $04)<>0 then Result.StopBits := 2 else Result.StopBits := 1;
+  Result.Flags := [];
+end;
 
 procedure SerRestoreState(Handle: TSerialHandle; State: TSerialState);
 begin SerSetParams(Handle, State.BitsPerSec, State.ByteSize, State.Parity, State.StopBits, State.Flags); end;
 
 procedure SerSetDTR(Handle: TSerialHandle; State: Boolean);
-var B: Word; M: Byte;
-begin B:=GetBase(Handle); if B=0 then Exit; M:=Port[B+UART_MCR];
-  if State then M:=M or MCR_DTR else M:=M and not MCR_DTR; Port[B+UART_MCR]:=M; end;
+var B: Word;
+begin B:=GetBase(Handle); if B=0 then Exit;
+  if State then Port[B+UART_MCR]:=Port[B+UART_MCR] or $01
+  else Port[B+UART_MCR]:=Port[B+UART_MCR] and $FE; end;
 
 procedure SerSetRTS(Handle: TSerialHandle; State: Boolean);
-var B: Word; M: Byte;
-begin B:=GetBase(Handle); if B=0 then Exit; M:=Port[B+UART_MCR];
-  if State then M:=M or MCR_RTS else M:=M and not MCR_RTS; Port[B+UART_MCR]:=M; end;
+var B: Word;
+begin B:=GetBase(Handle); if B=0 then Exit;
+  if State then Port[B+UART_MCR]:=Port[B+UART_MCR] or $02
+  else Port[B+UART_MCR]:=Port[B+UART_MCR] and $FD; end;
 
 function SerGetCTS(Handle: TSerialHandle): Boolean;
 begin Result:=(Port[GetBase(Handle)+UART_MSR] and MSR_CTS)<>0; end;
+
 function SerGetDSR(Handle: TSerialHandle): Boolean;
 begin Result:=(Port[GetBase(Handle)+UART_MSR] and MSR_DSR)<>0; end;
-function SerGetDCD(Handle: TSerialHandle): Boolean;
-begin Result:=(Port[GetBase(Handle)+UART_MSR] and MSR_DCD)<>0; end;
+
 function SerGetRI(Handle: TSerialHandle): Boolean;
 begin Result:=(Port[GetBase(Handle)+UART_MSR] and MSR_RI)<>0; end;
 
-procedure SerFlushInput(Handle: TSerialHandle);
-var B: Word; X: Byte;
-begin B:=GetBase(Handle); if B=0 then Exit;
-  while (Port[B+UART_LSR] and LSR_DR)<>0 do X:=Port[B+UART_RBR]; end;
+function SerGetDCD(Handle: TSerialHandle): Boolean;
+begin Result:=(Port[GetBase(Handle)+UART_MSR] and MSR_DCD)<>0; end;
 
-procedure SerFlushOutput(Handle: TSerialHandle); begin SerDrain(Handle); end;
-procedure SerFlush(Handle: TSerialHandle); begin SerFlushInput(Handle); SerDrain(Handle); end;
-procedure SerSync(Handle: TSerialHandle); begin SerDrain(Handle); end;
+function SerGetCD(Handle: TSerialHandle): Boolean;
+begin Result := SerGetDCD(Handle); end;
+
+function SerDataAvailable(Handle: TSerialHandle): Boolean;
+begin Result:=(Port[GetBase(Handle)+UART_LSR] and LSR_DR)<>0; end;
+
+procedure SerBreak(Handle: TSerialHandle);
+var B: Word; L: Byte;
+begin B:=GetBase(Handle); if B=0 then Exit;
+  L:=Port[B+UART_LCR]; Port[B+UART_LCR]:=L or $40; Port[B+UART_LCR]:=L; end;
 
 procedure SerDrain(Handle: TSerialHandle);
 var B: Word;
 begin B:=GetBase(Handle); if B=0 then Exit;
   while (Port[B+UART_LSR] and LSR_TEMT)=0 do; end;
 
-function SerDataAvailable(Handle: TSerialHandle): Boolean;
-begin Result:=(Port[GetBase(Handle)+UART_LSR] and LSR_DR)<>0; end;
+procedure SerSync(Handle: TSerialHandle);
+begin SerDrain(Handle); end;
 
-procedure SerBreak(Handle: TSerialHandle);
-procedure SerFlush(Handle: TSerialHandle);  { flush both input and output }
-var B: Word; L: Byte;
+procedure SerFlushInput(Handle: TSerialHandle);
+var B: Word;
 begin B:=GetBase(Handle); if B=0 then Exit;
-  L:=Port[B+UART_LCR]; Port[B+UART_LCR]:=L or $40; Port[B+UART_LCR]:=L; end;
+  while (Port[B+UART_LSR] and LSR_DR)<>0 do Port[B+UART_RBR]; end;
+
+procedure SerFlushOutput(Handle: TSerialHandle);
+begin SerDrain(Handle); end;
+
+procedure SerFlush(Handle: TSerialHandle);
+begin SerFlushInput(Handle); SerDrain(Handle); end;
+
+function SerReadTimeout(Handle: TSerialHandle; var Buffer; Count: LongInt; Timeout: LongInt): LongInt;
+var Start: LongInt;
+begin
+  Start := 0; Result := 0;
+  while (Start < Timeout) and (Result = 0) do begin
+    if SerDataAvailable(Handle) then begin
+      Result := SerRead(Handle, Buffer, Count); Exit;
+    end;
+    Inc(Start);
+  end;
+end;
 
 function SerDetectUART(Handle: TSerialHandle): String;
 var B: Word;
@@ -206,12 +236,6 @@ function SerGetBase(Handle: TSerialHandle): Word;
 begin Result:=GetBase(Handle); end;
 
 procedure SerSetFIFO(Handle: TSerialHandle; Enable: Boolean; TriggerLevel: Byte);
-
-{ IRQ-driven receive (FOSSIL-grade) }
-procedure SerEnableIRQ(Handle: TSerialHandle);
-procedure SerDisableIRQ(Handle: TSerialHandle);
-function  SerRingCount(Handle: TSerialHandle): Word;
-function  SerRingOverruns(Handle: TSerialHandle): LongInt;
 var B: Word; F: Byte;
 begin B:=GetBase(Handle); if B=0 then Exit;
   if not Enable then begin Port[B+UART_FCR]:=0; Exit; end;
@@ -219,17 +243,18 @@ begin B:=GetBase(Handle); if B=0 then Exit;
   Port[B+UART_FCR]:=F or $06;
 end;
 
+{$IFDEF GO32V2_NATIVE}
 {$I serial_irq.inc}
-
-{ Override SerRead to use ring buffer when IRQ active }
-{ Original SerRead renamed to SerReadPolled }
-
 initialization
   InitIRQState;
-
 finalization
-  { Disable all active IRQs on exit }
   for SerCleanupIdx := 0 to 3 do
     if IRQState[SerCleanupIdx].Active then SerDisableIRQ(SerCleanupIdx);
+{$ELSE}
+procedure SerEnableIRQ(Handle: TSerialHandle); begin end;
+procedure SerDisableIRQ(Handle: TSerialHandle); begin end;
+function SerRingCount(Handle: TSerialHandle): Word; begin Result := 0; end;
+function SerRingOverruns(Handle: TSerialHandle): LongInt; begin Result := 0; end;
+{$ENDIF}
 
 end.

@@ -77,7 +77,35 @@ IBM PC hardware — 8086, 286, 386, no DPMI extender, no protected mode.
 Real mode, 640K, the way it was.
 
 ```
-ppcross8086 -Tmsdos myapp.pas
+ppcross8086 -Tmsdos -WmSmall -XX -Fubin/units/i8086-msdos-small myapp.pas
+```
+
+**Important:** Always use `-XX` (smart linking) and `-Fu` pointing to the
+model-specific unit directory. Without `-XX`, the linker looks for `.o` files
+that don't exist — the units are stored in `.a` archives that only smart
+linking can read.
+
+| Flag | What it does |
+|------|-------------|
+| `-WmSmall` | Select memory model (Tiny/Small/Medium/Compact/Large/Huge) |
+| `-XX` | Smart linking — **required**, reads .a archives |
+| `-Fubin/units/i8086-msdos-small` | Unit search path (match the model) |
+| `-CX` | Create smart-linked units (only needed when recompiling RTL) |
+| `-Wh` | Huge code — needed for Medium/Large/Huge models |
+
+Quick reference:
+```
+# Tiny (single segment, .COM-like):
+ppcross8086 -Tmsdos -WmTiny -XX -Fubin/units/i8086-msdos-tiny myapp.pas
+
+# Small (default, near code+data):
+ppcross8086 -Tmsdos -WmSmall -XX -Fubin/units/i8086-msdos-small myapp.pas
+
+# Large (far code+data, bigger programs):
+ppcross8086 -Tmsdos -WmLarge -Wh -XX -Fubin/units/i8086-msdos-large myapp.pas
+
+# Huge (no segment limits, required for classes.pp):
+ppcross8086 -Tmsdos -WmHuge -Wh -XX -Fubin/units/i8086-msdos-huge myapp.pas
 ```
 
 113 pre-compiled units included: system, dos, crt, objects, strings,

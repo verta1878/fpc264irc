@@ -51,12 +51,14 @@ Function  FpGetcwd :AnsiString;
 
 Var
   Buf : Array[0..PATH_MAX+1]  of char;
+  TmpS : AnsiString;
 Begin
   Buf[PATH_MAX+1]:=#0;
   If FpGetcwd(@Buf[0],PATH_MAX)=Nil then
-    FpGetcwd:=''
+    TmpS:=''
   else
-    FpGetcwd:=Buf;
+    TmpS:=StrPas(@Buf[0]);
+  FpGetcwd:=TmpS;
 End;
 
 Function  FpExecve (path : AnsiString; argv : ppchar; envp: ppchar): cInt; {$ifdef VER2_0}inline;{$endif}
