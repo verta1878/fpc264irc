@@ -1,9 +1,7 @@
 {
-  dynlibs_linux.pas — Minimal dynamic library loading for Linux
-
-  Replaces stock dynlibs.pas which can't recompile due to
+  dynlibs.pas — Dynamic library loading for Unix
+  Replaces stock dynlibs which can't recompile due to
   FPC 2.6.4 overloaded function limitation.
-
   GPLv3 — the crew 4free — sysop/0
 }
 unit dynlibs;
@@ -24,7 +22,9 @@ const
 
 function LoadLibrary(const Name: AnsiString): TLibHandle;
 function UnloadLibrary(Lib: TLibHandle): Boolean;
+function FreeLibrary(Lib: TLibHandle): Boolean;
 function GetProcedureAddress(Lib: TLibHandle; const ProcName: AnsiString): Pointer;
+function GetProcAddress(Lib: TLibHandle; const ProcName: AnsiString): Pointer;
 
 implementation
 
@@ -38,9 +38,19 @@ begin
   Result := dlclose(Pointer(Lib)) = 0;
 end;
 
+function FreeLibrary(Lib: TLibHandle): Boolean;
+begin
+  Result := UnloadLibrary(Lib);
+end;
+
 function GetProcedureAddress(Lib: TLibHandle; const ProcName: AnsiString): Pointer;
 begin
   Result := dlsym(Pointer(Lib), PChar(ProcName));
+end;
+
+function GetProcAddress(Lib: TLibHandle; const ProcName: AnsiString): Pointer;
+begin
+  Result := GetProcedureAddress(Lib, ProcName);
 end;
 
 end.

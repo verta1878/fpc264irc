@@ -31,8 +31,11 @@ const
   {$define ELF} // ELF symbol versioning.
 {$endif}
 
-{$if defined(linux) and defined(cpuarm)}
-{ arm-linux seems to require this }
+{$ifdef LINUX}
+{$linklib dl}
+{$linklib c}
+{$endif}
+{$ifdef BSD}
 {$linklib c}
 {$endif}
 
