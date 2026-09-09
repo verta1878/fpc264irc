@@ -1,23 +1,89 @@
-fpc264irc r311 patch #5 checksums
-Date: Mon Sep  7 16:40:38 UTC 2026
+FPC 2.6.4irc — Repository Checksums
+Generated: 2026-09-09
+Includes: Patches 1-6, MZ linker source recovery
 
-e6332a921b494067966111705a4342c27f22204d5df7813daa62ba7031590fce  ./bin/units/i386-go32v2/gzio.o
-275eb08f8be21d78691068073e068fb7bde69469df96e1552d38da76f0d9167c  ./bin/units/i386-go32v2/gzio.ppu
-103dc7b18277d402037d6d255f37183de315c5c86d50b62a35359d8e939d3ef4  ./bin/units/i386-go32v2/zbase.o
-ffef20fc8a2d8dbfe31d22c4931c4250e7a5f7c576c45e2e769fec6f78311609  ./bin/units/i386-go32v2/zbase.ppu
-1e657a28e2744ff24c6632224ac9afd0811b5701df42142f963695442c7d3f9e  ./bin/units/i386-go32v2/zdeflate.o
-727b115f32a240a444b2e44545b1caecb06600224dfea241a60cf277d6a7323d  ./bin/units/i386-go32v2/zdeflate.ppu
-1e6e75480451d1db1265dfc106c30f0f9de6f9baae1c58725edba63d1269b224  ./bin/units/i386-go32v2/zinflate.o
-1f8f106dd8d4765ec0c0868ca88a9c26a01bf6cad19da82842460fdc97939235  ./bin/units/i386-go32v2/zinflate.ppu
-c7742d908a8c23a1c4aa1bcea61ab99ac6f9ed940cd773b4a5f9712484aa22e5  ./bin/units/i386-go32v2/zipper.o
-0bfa301d1ee82445fc19ba2d2948d5d4cc21823c00d41d82886d5bb8ec605366  ./bin/units/i386-go32v2/zipper.ppu
-465af6173b68d72b68efe0af72ad1d615994c41e381100a29d6af0893414f51e  ./bin/units/i386-go32v2/zstream.o
-9b84652a8909afc1b8e6f429b9b625c3b23557ccfed23bef3edf3eaa291367cc  ./bin/units/i386-go32v2/zstream.ppu
-9b6f6e6cd285ef349c0da15af9857f139bb5a1919b56ef1de6c96728cb9a1dd2  ./bin/units/x86_64-linux/cthreads.o
-1ef73deaa7ea1413bb51346e977d17d949ee0aa241ac46e6a2ef9cd6b85fe524  ./bin/units/x86_64-linux/cthreads.ppu
-bfced45fc0e97ae5ec154dc559e133bca2cce2ca5476629f20d97bece556e568  ./bin/units/x86_64-linux/dl.o
-829779433bb50bc917317d488a25a4cac4eb24cf0a6d2a2e1105979f3ee37ace  ./bin/units/x86_64-linux/dl.ppu
-5a76f909c02a0f485092404f10322a12d01367ee5047a1a95d6b7232c30c34ba  ./bin/units/x86_64-linux/dynlibs.o
-ec530b39912a426fd3d63d48d1a1701d8f63c3b4707ae2b544f000a3a3e4a0b4  ./bin/units/x86_64-linux/dynlibs.ppu
-25caa26e1c9c388333923081d5f2fdc799987f4ca9bb5fb05dcdeac0965bc099  ./src/rtl/unix/dl.pp
-5ff8082d6fc5e9060f0dae8505efe390d147f53dadd5bd6c95e61054a0d64831  ./src/rtl/unix/dynlibs.pas
+=== Key Files ===
+
+bin/ppcx64:
+  MD5:    9b226e88c217aa509dfe06608a851bb4
+  SHA256: 4ed8c4ea347609b2e16a462ade9a1071e978120f8ef464bcc38fbc5639e7bb37
+  Size:   3021728 bytes
+
+bin/ppc386:
+  MD5:    c261e130551212c8f07c60b7b397c160
+  SHA256: 968e7d5a81e683a9630efb4fd99c15167ba7e6e003e6b8734f4820ec56ce255e
+  Size:   2637808 bytes
+
+bin/ppcross8086:
+  MD5:    a3dab6c6f47344e810ff1e5d470c0135
+  SHA256: 36d24aeb4dd120eaf896e13d9219e6f3623a40487b6f0d720e017505c3a65eec
+  Size:   4377888 bytes
+
+src/compiler/systems/t_msdos.pas:
+  MD5:    34d0b213501ee6b24a27fd62221fa926
+  SHA256: 597df6293c5466940945f6944921560f98737bce681e75b5a893580b4d8f4cf7
+  Size:   17410 bytes
+
+src/compiler/systems/i_msdos.pas:
+  MD5:    3387ca3b5447932b8fda51741ae03768
+  SHA256: 8ee3fbe513e89f8f4344dda05b4cdffb12217ee632adf87124758c63fb482778
+  Size:   4041 bytes
+
+src/compiler/ogomf.pas:
+  MD5:    1689887a1641778811efe8eda567892e
+  SHA256: 9b66bda9dc3bec0dc6c285094187bc306a12735dd9a4ee96912c3e858658ce7c
+  Size:   123749 bytes
+
+src/compiler/omfbase.pas:
+  MD5:    77fc012ae5e9b4a4407f4e84e3f21024
+  SHA256: 323f9c403eebc1807690214ec36cb0b47d68ad545b834d0089422a5fd45a103a
+  Size:   124452 bytes
+
+src/compiler/owomflib.pas:
+  MD5:    19ac50d36e24097aac5af139d953e307
+  SHA256: bf1baaaa710fe96a388b06a16c854078bb12240984ad078b57a6cd0e0507d5a2
+  Size:   19314 bytes
+
+src/compiler/defutil.pas:
+  MD5:    5fcc8eb06266e16a43f8da81b007b300
+  SHA256: 911351bea808015181f6526136cddad6d8811dbff2dd16b3e33c654286e60070
+  Size:   38024 bytes
+
+src/compiler/nopt.pas:
+  MD5:    1d307d530bcc29021f53e9ff33f5f4e4
+  SHA256: e900a544b91fe55353219282878f273b97d664b158d0d9a793e1a4a28f53a05e
+  Size:   11511 bytes
+
+src/compiler/symdef.pas:
+  MD5:    2785e3d535104a1a05e28c282a964e87
+  SHA256: 195665efb526a4fedaaf38d347122cda88f58ac2543279573bce4981fdab8db9
+  Size:   189054 bytes
+
+src/compiler/fppu.pas:
+  MD5:    a91d22108535c1581bdd64785ec333c8
+  SHA256: 03190790ecc4f5aea849e3ef0f04a6358423bd6142ef9dbf7242e19ff32573f5
+  Size:   59589 bytes
+
+src/rtl/unix/dl.pp:
+  MD5:    caed8331ef4071d944159c18861676ca
+  SHA256: 25caa26e1c9c388333923081d5f2fdc799987f4ca9bb5fb05dcdeac0965bc099
+  Size:   2978 bytes
+
+src/rtl/unix/dynlibs.pas:
+  MD5:    bcb24347600519a0c2ccfba0499211dd
+  SHA256: 5ff8082d6fc5e9060f0dae8505efe390d147f53dadd5bd6c95e61054a0d64831
+  Size:   1284 bytes
+
+HISTORY.md:
+  MD5:    86ee5cb2bd99160ebc43ed3f410fc243
+  SHA256: 66826c8cf282b62b270a124d7c4bf3e19558b33c21357fe5f1e11931990289da
+  Size:   3041 bytes
+
+README.md:
+  MD5:    08b8e11890c66c659b94fdca572c7b27
+  SHA256: 6e426543738164d7594bc33799dd598641d40d0d6339dc685d0e01b51036b753
+  Size:   8410 bytes
+
+=== Totals ===
+Files: 37005
+Size:  1.7G
