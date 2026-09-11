@@ -1,6 +1,6 @@
 FPC 2.6.4irc — Repository Checksums
 Generated: 2026-09-09
-Includes: Patches 1-6, MZ linker source recovery
+Includes: Patches 1-6, MZ linker source recovery + Patch 6b (.a fallback)
 
 === Key Files ===
 
@@ -20,9 +20,9 @@ bin/ppcross8086:
   Size:   4377888 bytes
 
 src/compiler/systems/t_msdos.pas:
-  MD5:    34d0b213501ee6b24a27fd62221fa926
-  SHA256: 597df6293c5466940945f6944921560f98737bce681e75b5a893580b4d8f4cf7
-  Size:   17410 bytes
+  MD5:    aa9e8191453d9238d9691d95b777d390
+  SHA256: bb1ff8287cd8faf27545708f228a0fd69a34956bd7d23fe05c763deee2cc01e6
+  Size:   17787 bytes
 
 src/compiler/systems/i_msdos.pas:
   MD5:    3387ca3b5447932b8fda51741ae03768
@@ -44,45 +44,10 @@ src/compiler/owomflib.pas:
   SHA256: bf1baaaa710fe96a388b06a16c854078bb12240984ad078b57a6cd0e0507d5a2
   Size:   19314 bytes
 
-src/compiler/defutil.pas:
-  MD5:    5fcc8eb06266e16a43f8da81b007b300
-  SHA256: 911351bea808015181f6526136cddad6d8811dbff2dd16b3e33c654286e60070
-  Size:   38024 bytes
-
-src/compiler/nopt.pas:
-  MD5:    1d307d530bcc29021f53e9ff33f5f4e4
-  SHA256: e900a544b91fe55353219282878f273b97d664b158d0d9a793e1a4a28f53a05e
-  Size:   11511 bytes
-
-src/compiler/symdef.pas:
-  MD5:    2785e3d535104a1a05e28c282a964e87
-  SHA256: 195665efb526a4fedaaf38d347122cda88f58ac2543279573bce4981fdab8db9
-  Size:   189054 bytes
-
-src/compiler/fppu.pas:
-  MD5:    a91d22108535c1581bdd64785ec333c8
-  SHA256: 03190790ecc4f5aea849e3ef0f04a6358423bd6142ef9dbf7242e19ff32573f5
-  Size:   59589 bytes
-
-src/rtl/unix/dl.pp:
-  MD5:    caed8331ef4071d944159c18861676ca
-  SHA256: 25caa26e1c9c388333923081d5f2fdc799987f4ca9bb5fb05dcdeac0965bc099
-  Size:   2978 bytes
-
-src/rtl/unix/dynlibs.pas:
-  MD5:    bcb24347600519a0c2ccfba0499211dd
-  SHA256: 5ff8082d6fc5e9060f0dae8505efe390d147f53dadd5bd6c95e61054a0d64831
-  Size:   1284 bytes
-
 HISTORY.md:
   MD5:    86ee5cb2bd99160ebc43ed3f410fc243
   SHA256: 66826c8cf282b62b270a124d7c4bf3e19558b33c21357fe5f1e11931990289da
   Size:   3041 bytes
-
-README.md:
-  MD5:    08b8e11890c66c659b94fdca572c7b27
-  SHA256: 6e426543738164d7594bc33799dd598641d40d0d6339dc685d0e01b51036b753
-  Size:   8410 bytes
 
 === Totals ===
 Files: 37005

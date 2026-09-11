@@ -440,7 +440,7 @@ end;
 
 procedure TInternalLinkerMsDos.DefaultLinkScript;
 var
-  s: TCmdStr;
+  s, s2: TCmdStr;
 begin
   { add objectfiles, start with prt0 always }
   case current_settings.x86memorymodel of
@@ -455,7 +455,19 @@ begin
   begin
     s:=ObjectFiles.GetFirst;
     if s<>'' then
-      LinkScript.Concat('READOBJECT ' + maybequoted(s));
+    begin
+      if FileExists(s, false) then
+        LinkScript.Concat('READOBJECT ' + maybequoted(s))
+      else
+      begin
+        { smartlinked units produce .a instead of .o — try that }
+        s2:=ChangeFileExt(s, '.a');
+        if FileExists(s2, false) then
+          LinkScript.Concat('READSTATICLIBRARY ' + maybequoted(s2))
+        else
+          LinkScript.Concat('READOBJECT ' + maybequoted(s));
+      end;
+    end;
   end;
   LinkScript.Concat('GROUP');
   while not StaticLibFiles.Empty do
