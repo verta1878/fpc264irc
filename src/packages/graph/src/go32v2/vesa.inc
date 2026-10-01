@@ -72,7 +72,7 @@ var
   { linear mode specific stuff }
   InLinear  : boolean;    { true if in linear mode }
   LinearPageOfs : longint; { offset used to set active page }
-  FrameBufferLinearAddress : dword;
+  FrameBufferLinearAddress : longint;
 
   ScanLines: word;        { maximum number of scan lines for mode }
 
@@ -85,14 +85,24 @@ var
     VESAPtr : ^TVESAInfo;
     st : string[4];
     regs : TDPMIRegisters;
+{$ifndef fpc}
+    ModeSel: word;
+    offs: longint;
+{$endif fpc}
     { added... }
     modelist: PmodeList;
     i: longint;
     RealSeg : word;
    begin
     { Allocate real mode buffer }
+{$ifndef fpc}
+    Ptrlong:=GlobalDosAlloc(sizeof(TVESAInfo));
+    { Get selector value }
+    VESAPtr := pointer(Ptrlong shl 16);
+{$else fpc}
     Ptrlong:=Global_Dos_Alloc(sizeof(TVESAInfo));
     New(VESAPtr);
+{$endif fpc}
     { Get segment value }
     RealSeg := word(Ptrlong shr 16);
     if not assigned(VESAPtr) then
@@ -104,9 +114,11 @@ var
     regs.es := RealSeg;
     regs.edi := $00;
     RealIntr($10, regs);
+{$ifdef fpc}
    { no far pointer support in FPC yet, so move the vesa info into a memory }
    { block in the DS slector space (JM)                                     }
     dosmemget(RealSeg,0,VesaPtr^,SizeOf(TVESAInfo));
+{$endif fpc}
     St:=Vesaptr^.signature;
     if st<>'VESA' then
      begin
@@ -114,15 +126,44 @@ var
          LogLn('No VESA detected.');
 {$endif logging}
          getVesaInfo := FALSE;
+{$ifndef fpc}
+         GlobalDosFree(word(PtrLong and $ffff));
+{$else fpc}
          If not Global_Dos_Free(word(PtrLong and $ffff)) then
            RunError(216);
          { also free the extra allocated buffer }
          Dispose(VESAPtr);
+{$endif fpc}
          exit;
      end
     else
       getVesaInfo := TRUE;
 
+{$ifndef fpc}
+    { The mode pointer buffer points to a real mode memory }
+    { Therefore steps to get the modes:                    }
+    {  1. Allocate Selector and SetLimit to max number of  }
+    {     of possible modes.                               }
+    ModeSel := AllocSelector(0);
+    SetSelectorLimit(ModeSel, 256*sizeof(word));
+
+    {  2. Set Selector linear address to the real mode pointer }
+    {     returned.                                            }
+    offs := longint(longint(VESAPtr^.ModeList) shr 16) shl 4;
+   {shouldn't the OR in the next line be a + ?? (JM)}
+    offs :=  offs OR (Longint(VESAPtr^.ModeList) and $ffff);
+    SetSelectorBase(ModeSel, offs);
+
+     { copy VESA mode information to a protected mode buffer and }
+     { then free the real mode buffer...                         }
+     Move(VESAPtr^, VESAInfo, sizeof(VESAInfo));
+     GlobalDosFree(word(PtrLong and $ffff));
+
+    { ModeList points to the mode list     }
+    { We must copy it somewhere...         }
+    ModeList := Ptr(ModeSel, 0);
+
+{$else fpc}
     { No far pointer support, so the Ptr(ModeSel, 0) doesn't work.     }
     { Immediately copy everything to a buffer in the DS selector space }
      New(ModeList);
@@ -139,6 +180,7 @@ var
      If not Global_Dos_Free(word(PtrLong and $ffff)) then
        RunError(216);
      Dispose(VESAPtr);
+{$endif fpc}
 
     i:=0;
     new(VESAInfo.ModeList);
@@ -155,22 +197,41 @@ var
 {$ifdef logging}
     LogLn(strf(i) + ' modes found.');
 {$endif logging}
+{$ifndef fpc}
+    FreeSelector(ModeSel);
+{$else fpc}
     Dispose(ModeList);
+{$endif fpc}
    end;
 
   function getVESAModeInfo(var ModeInfo: TVESAModeInfo;mode:word):boolean;
    var
     Ptr: longint;
+{$ifndef fpc}
+    VESAPtr : ^TVESAModeInfo;
+{$endif fpc}
     regs : TDPMIRegisters;
     RealSeg: word;
    begin
     { Alllocate real mode buffer }
+{$ifndef fpc}
+    Ptr:=GlobalDosAlloc(sizeof(TVESAModeInfo));
+    { get the selector value }
+    VESAPtr := pointer(longint(Ptr shl 16));
+    if not assigned(VESAPtr) then
+      RunError(203);
+{$else fpc}
     Ptr:=Global_Dos_Alloc(sizeof(TVESAModeInfo));
+{$endif fpc}
     { get the segment value }
     RealSeg := word(Ptr shr 16);
     { we have to init everything to zero, since VBE < 1.1  }
     { may not setup fields correctly.                      }
+{$ifndef fpc}
+    FillChar(VESAPtr^, sizeof(ModeInfo), #0);
+{$else fpc}
     DosMemFillChar(RealSeg, 0, sizeof(ModeInfo), #0);
+{$endif fpc}
     { setup interrupt registers }
     FillChar(regs, sizeof(regs), #0);
     { call VESA mode information...}
@@ -184,10 +245,18 @@ var
     else
       getVESAModeInfo := TRUE;
     { copy to protected mode buffer ... }
+{$ifndef fpc}
+    Move(VESAPtr^, ModeInfo, sizeof(ModeInfo));
+{$else fpc}
     DosMemGet(RealSeg,0,ModeInfo,sizeof(ModeInfo));
+{$endif fpc}
     { free real mode memory  }
+{$ifndef fpc}
+    GlobalDosFree(Word(Ptr and $ffff));
+{$else fpc}
     If not Global_Dos_Free(Word(Ptr and $ffff)) then
       RunError(216);
+{$endif fpc}
    end;
 
 {$ELSE}
@@ -322,7 +391,7 @@ end;
  {*                     8-bit pixels VESA mode routines                  *}
  {************************************************************************}
 
-  procedure PutPixVESA256(x, y : smallint; color : word);
+  procedure PutPixVESA256(x, y : smallint; color : word); {$ifndef fpc}far;{$endif fpc}
   var
      offs : longint;
   begin
@@ -344,7 +413,7 @@ end;
        end;
   end;
 
-  procedure DirectPutPixVESA256(x, y : smallint);
+  procedure DirectPutPixVESA256(x, y : smallint); {$ifndef fpc}far;{$endif fpc}
   var
      offs : longint;
      col : byte;
@@ -377,7 +446,7 @@ end;
      mem[WinWriteSeg : word(offs)] := Col;
   end;
 
-  function GetPixVESA256(x, y : smallint): word;
+  function GetPixVESA256(x, y : smallint): word; {$ifndef fpc}far;{$endif fpc}
   var
      offs : longint;
   begin
@@ -388,7 +457,7 @@ end;
      GetPixVESA256:=mem[WinReadSeg : word(offs)];
   end;
 
-  Procedure GetScanLineVESA256(x1, x2, y: smallint; var data);
+  Procedure GetScanLineVESA256(x1, x2, y: smallint; var data); {$ifndef fpc}far;{$endif}
   var offs: Longint;
       l, amount, bankrest, index, pixels: longint;
       curbank: smallint;
@@ -410,14 +479,14 @@ end;
       If ((amount >= 4) and
           ((offs and 3) = 0)) or
          (amount >= 4+4-(offs and 3)) Then
-      { align target }
+      { allign target }
         Begin
           If (offs and 3) <> 0 then
           { this cannot go past a window boundary bacause the }
           { size of a window is always a multiple of 4        }
             Begin
               {$ifdef logging}
-              LogLn('Aligning by reading '+strf(4-(offs and 3))+' pixels');
+              LogLn('Alligning by reading '+strf(4-(offs and 3))+' pixels');
               {$endif logging}
               for l := 1 to 4-(offs and 3) do
                 WordArray(Data)[index+l-1] :=
@@ -429,7 +498,7 @@ end;
           {$ifdef logging}
           LogLn('Offset is now '+hexstr(offs,8)+', amount left: '+strf(amount));
           {$endif logging}
-          { offs is now 4-bytes aligned }
+          { offs is now 4-bytes alligned }
           If amount <= ($10000-(Offs and $ffff)) Then
              bankrest := amount
           else {the rest won't fit anymore in the current window }
@@ -477,7 +546,7 @@ end;
     Until amount = 0;
   end;
 
-  procedure HLineVESA256(x,x2,y: smallint);
+  procedure HLineVESA256(x,x2,y: smallint); {$ifndef fpc}far;{$endif fpc}
 
    var Offs: Longint;
        mask, l, bankrest: longint;
@@ -530,23 +599,24 @@ end;
                     (HLength >= 4+4-(offs and 3)) Then
                  { align target }
                    Begin
+                     l := 0;
                      If (offs and 3) <> 0 then
                      { this cannot go past a window boundary bacause the }
                      { size of a window is always a multiple of 4        }
                        Begin
                          {$ifdef logging2}
-                         LogLn('Aligning by drawing '+strf(4-(offs and 3))+' pixels');
+                         LogLn('Alligning by drawing '+strf(4-(offs and 3))+' pixels');
                          {$endif logging2}
                          for l := 1 to 4-(offs and 3) do
                            Mem[WinWriteSeg:word(offs)+l-1] :=
                              Mem[WinReadSeg:word(offs)+l-1] And Byte(CurrentColor);
-                         Dec(HLength, l);
-                         inc(offs, l);
                        End;
+                     Dec(HLength, l);
+                     inc(offs, l);
                      {$ifdef logging2}
                      LogLn('Offset is now '+hexstr(offs,8)+', length left: '+strf(hlength));
                      {$endif logging}
-                     { offs is now 4-bytes aligned }
+                     { offs is now 4-bytes alligned }
                      If HLength <= ($10000-(Offs and $ffff)) Then
                         bankrest := HLength
                      else {the rest won't fit anymore in the current window }
@@ -599,25 +669,26 @@ end;
                  If ((HLength >= 4) and
                      ((offs and 3) = 0)) or
                     (HLength >= 4+4-(offs and 3)) Then
-                 { align target }
+                 { allign target }
                    Begin
+                     l := 0;
                      If (offs and 3) <> 0 then
                      { this cannot go past a window boundary bacause the }
                      { size of a window is always a multiple of 4        }
                        Begin
                          {$ifdef logging2}
-                         LogLn('Aligning by drawing '+strf(4-(offs and 3))+' pixels');
+                         LogLn('Alligning by drawing '+strf(4-(offs and 3))+' pixels');
                          {$endif logging}
                          for l := 1 to 4-(offs and 3) do
                            Mem[WinWriteSeg:word(offs)+l-1] :=
                              Mem[WinReadSeg:word(offs)+l-1] Xor Byte(CurrentColor);
-                         Dec(HLength, l);
-                         inc(offs, l);
                        End;
+                     Dec(HLength, l);
+                     inc(offs, l);
                      {$ifdef logging2}
                      LogLn('Offset is now '+hexstr(offs,8)+', length left: '+strf(hlength));
                      {$endif logging}
-                     { offs is now 4-bytes aligned }
+                     { offs is now 4-bytes alligned }
                      If HLength <= ($10000-(Offs and $ffff)) Then
                         bankrest := HLength
                      else {the rest won't fit anymore in the current window }
@@ -670,21 +741,22 @@ end;
                  If ((HLength >= 4) and
                      ((offs and 3) = 0)) or
                     (HLength >= 4+4-(offs and 3)) Then
-                 { align target }
+                 { allign target }
                    Begin
+                     l := 0;
                      If (offs and 3) <> 0 then
                      { this cannot go past a window boundary bacause the }
                      { size of a window is always a multiple of 4        }
                        Begin
                          {$ifdef logging2}
-                         LogLn('Aligning by drawing '+strf(4-(offs and 3))+' pixels');
+                         LogLn('Alligning by drawing '+strf(4-(offs and 3))+' pixels');
                          {$endif logging}
                          for l := 1 to 4-(offs and 3) do
                            Mem[WinWriteSeg:word(offs)+l-1] :=
                              Mem[WinReadSeg:word(offs)+l-1] Or Byte(CurrentColor);
-                         Dec(HLength, l);
-                         inc(offs, l);
                        End;
+                     Dec(HLength, l);
+                     inc(offs, l);
                      { it is possible that by aligningm we ended up in a new }
                      { bank, so set the correct bank again to make sure      }
                      setwritebank(offs shr 16);
@@ -692,7 +764,7 @@ end;
                      {$ifdef logging2}
                      LogLn('Offset is now '+hexstr(offs,8)+', length left: '+strf(hlength));
                      {$endif logging}
-                     { offs is now 4-bytes aligned }
+                     { offs is now 4-bytes alligned }
                      If HLength <= ($10000-(Offs and $ffff)) Then
                         bankrest := HLength
                      else {the rest won't fit anymore in the current window }
@@ -742,24 +814,25 @@ end;
                  If ((HLength >= 4) and
                      ((offs and 3) = 0)) or
                     (HLength >= 4+4-(offs and 3)) Then
-                 { align target }
+                 { allign target }
                    Begin
+                     l := 0;
                      If (offs and 3) <> 0 then
                      { this cannot go past a window boundary bacause the }
                      { size of a window is always a multiple of 4        }
                        Begin
                          {$ifdef logging2}
-                         LogLn('Aligning by drawing '+strf(4-(offs and 3))+' pixels');
+                         LogLn('Alligning by drawing '+strf(4-(offs and 3))+' pixels');
                          {$endif logging}
                          for l := 1 to 4-(offs and 3) do
                            Mem[WinWriteSeg:word(offs)+l-1] := Byte(Mask);
-                         Dec(HLength, l);
-                         inc(offs, l);
                        End;
+                     Dec(HLength, l);
+                     inc(offs, l);
                      {$ifdef logging2}
                      LogLn('Offset is now '+hexstr(offs,8)+', length left: '+strf(hlength));
                      {$endif logging}
-                     { offs is now 4-bytes aligned }
+                     { offs is now 4-bytes alligned }
                      If HLength <= ($10000-(Offs and $ffff)) Then
                         bankrest := HLength
                      else {the rest won't fit anymore in the current window }
@@ -800,7 +873,7 @@ end;
        end;
    end;
 
-  procedure VLineVESA256(x,y,y2: smallint);
+  procedure VLineVESA256(x,y,y2: smallint); {$ifndef fpc}far;{$endif fpc}
 
    var Offs: Longint;
        l, bankrest: longint;
@@ -955,7 +1028,7 @@ end;
        end;
    end;
 
-  procedure PatternLineVESA256(x1,x2,y: smallint);
+  procedure PatternLineVESA256(x1,x2,y: smallint); {$ifndef fpc}far;{$endif fpc}
   {********************************************************}
   { Draws a horizontal patterned line according to the     }
   { current Fill Settings.                                 }
@@ -1007,10 +1080,15 @@ end;
        begin
          if TmpFillPattern and j <> 0 then
            fill.pat[7-i] := currentColor;
-{$push}
+{$ifopt q+}
 {$q-}
+{$define overflowOn}
+{$endif}
          j := j shl 1;
-{$pop}
+{$ifdef overflowOn}
+{$q+}
+{$undef overflowOn}
+{$endif}
        end;
      Repeat
        SetWriteBank(smallint(offs shr 16));
@@ -1019,6 +1097,7 @@ end;
            (amount > 7+8-(offs and 7))) Then
          Begin
            { align target }
+           l := 0;
            If (offs and 7) <> 0 then
            { this cannot go past a window boundary bacause the }
            { size of a window is always a multiple of 8        }
@@ -1033,13 +1112,13 @@ end;
                    Mem[WinWriteSeg:word(offs)+l-1] := fill.pat[patternPos and 7];
                    inc(patternPos)
                  end;
-               Dec(amount, l);
-               inc(offs, l);
              End;
+           Dec(amount, l);
+           inc(offs, l);
            {$ifdef logging2}
            LogLn('Offset is now '+hexstr(offs,8)+', length left: '+strf(amount));
            {$endif logging2}
-           { offs is now 8-bytes aligned }
+           { offs is now 8-bytes alligned }
            If amount <= ($10000-(Offs and $ffff)) Then
               bankrest := amount
            else {the rest won't fit anymore in the current window }
@@ -1087,11 +1166,12 @@ end;
  {************************************************************************}
  {*                    256 colors VESA mode routines  Linear mode        *}
  {************************************************************************}
+{$ifdef FPC}
 type
   pbyte = ^byte;
   pword = ^word;
 
-  procedure DirectPutPixVESA256Linear(x, y : smallint);
+  procedure DirectPutPixVESA256Linear(x, y : smallint); {$ifndef fpc}far;{$endif fpc}
   var
      offs : longint;
      col : byte;
@@ -1135,7 +1215,7 @@ type
        seg_move(get_ds,longint(@col),WinWriteSeg,offs+LinearPageOfs,1);
   end;
 
-  procedure PutPixVESA256Linear(x, y : smallint; color : word);
+  procedure PutPixVESA256Linear(x, y : smallint; color : word); {$ifndef fpc}far;{$endif fpc}
   var
      offs : longint;
   begin
@@ -1160,7 +1240,7 @@ type
        seg_move(get_ds,longint(@color),WinWriteSeg,offs+LinearPageOfs,1);
   end;
 
-  function GetPixVESA256Linear(x, y : smallint): word;
+  function GetPixVESA256Linear(x, y : smallint): word; {$ifndef fpc}far;{$endif fpc}
   var
      offs : longint;
      col : byte;
@@ -1207,13 +1287,14 @@ begin
     SetVESADisplayStart:=true;
 end;
 *)
+{$endif FPC}
 
 
  {************************************************************************}
  {*                    15/16bit pixels VESA mode routines                *}
  {************************************************************************}
 
-  procedure PutPixVESA32kOr64k(x, y : smallint; color : word);
+  procedure PutPixVESA32kOr64k(x, y : smallint; color : word); {$ifndef fpc}far;{$endif fpc}
   var
      offs : longint;
      place: word;
@@ -1245,7 +1326,7 @@ end;
      memW[WinWriteSeg : place] := color;
   end;
 
-  function GetPixVESA32kOr64k(x, y : smallint): word;
+  function GetPixVESA32kOr64k(x, y : smallint): word; {$ifndef fpc}far;{$endif fpc}
   var
      offs : longint;
   begin
@@ -1256,7 +1337,7 @@ end;
      GetPixVESA32kOr64k:=memW[WinReadSeg : word(offs)];
   end;
 
-  procedure DirectPutPixVESA32kOr64k(x, y : smallint);
+  procedure DirectPutPixVESA32kOr64k(x, y : smallint); {$ifndef fpc}far;{$endif fpc}
   var
      offs : longint;
      bank : smallint;
@@ -1301,328 +1382,12 @@ end;
      End;
   end;
 
-  procedure HLineVESA32kOr64k(x,x2,y: smallint);
-
-   var Offs: Longint;
-       mask, l, bankrest: longint;
-       curbank, hlength: smallint;
-   Begin
-    { must we swap the values? }
-    if x > x2 then
-      Begin
-        x := x xor x2;
-        x2 := x xor x2;
-        x:= x xor x2;
-      end;
-    { First convert to global coordinates }
-    X   := X + StartXViewPort;
-    X2  := X2 + StartXViewPort;
-    Y   := Y + StartYViewPort;
-    if ClipPixels then
-      Begin
-         if LineClipped(x,y,x2,y,StartXViewPort,StartYViewPort,
-                StartXViewPort+ViewWidth, StartYViewPort+ViewHeight) then
-            exit;
-      end;
-    {$ifdef logging2}
-    LogLn('hline '+strf(x)+' - '+strf(x2)+' on '+strf(y)+' in mode '+strf(currentwritemode));
-    {$endif logging2}
-    HLength := x2 - x + 1;
-    {$ifdef logging2}
-    LogLn('length: '+strf(hlength));
-    {$endif logging2}
-    if HLength>0 then
-      begin
-         Offs:=(Longint(y)+YOffset)*bytesperline+2*x;
-         {$ifdef logging2}
-         LogLn('Offs: '+strf(offs)+' -- '+hexstr(offs,8));
-         {$endif logging2}
-         Mask := longint(word(CurrentColor)+word(CurrentColor) shl 16);
-         Case CurrentWriteMode of
-           AndPut:
-             Begin
-               Repeat
-                 curbank := smallint(offs shr 16);
-                 SetWriteBank(curbank);
-                 SetReadBank(curbank);
-                 {$ifdef logging2}
-                 LogLn('set bank '+strf(curbank)+' for offset '+hexstr(offs,8));
-                 {$endif logging2}
-                 If ((HLength >= 2) and
-                     ((offs and 3) = 0)) or
-                    (HLength >= 3) Then
-                 { align target }
-                   Begin
-                     If (offs and 3) <> 0 then
-                     { this cannot go past a window boundary because the }
-                     { size of a window is always a multiple of 4        }
-                       Begin
-                         {$ifdef logging2}
-                         LogLn('Aligning by drawing 1 pixel');
-                         {$endif logging2}
-                         MemW[WinWriteSeg:word(offs)] :=
-                           MemW[WinReadSeg:word(offs)] And Word(CurrentColor);
-                         Dec(HLength);
-                         inc(offs, 2);
-                       End;
-                     {$ifdef logging2}
-                     LogLn('Offset is now '+hexstr(offs,8)+', length left: '+strf(hlength));
-                     {$endif logging}
-                     { offs is now 4-bytes aligned }
-                     If HLength <= (($10000-(Offs and $ffff)) shr 1) Then
-                        bankrest := HLength
-                     else {the rest won't fit anymore in the current window }
-                       bankrest := ($10000 - (Offs and $ffff)) shr 1;
-                     { it is possible that by aligningm we ended up in a new }
-                     { bank, so set the correct bank again to make sure      }
-                     setwritebank(offs shr 16);
-                     setreadbank(offs shr 16);
-                     {$ifdef logging2}
-                     LogLn('Rest to be drawn in this window: '+strf(bankrest));
-                     {$endif logging}
-                     For l := 0 to (Bankrest div 2)-1 Do
-                       MemL[WinWriteSeg:word(offs)+l*4] :=
-                         MemL[WinReadSeg:word(offs)+l*4] And Mask;
-                     inc(offs,l*4+4);
-                     dec(hlength,l*2+2);
-                     {$ifdef logging2}
-                     LogLn('Offset is now '+hexstr(offs,8)+', length left: '+strf(hlength));
-                     {$endif logging}
-                   End
-                 Else
-                   Begin
-                     {$ifdef logging2}
-                     LogLn('Drawing leftover: '+strf(HLength)+' at offset '+hexstr(offs,8));
-                     {$endif logging}
-                     if HLength > 0 then
-                       begin
-                         { this may cross a bank at any time, so adjust          }
-                         { because this loop always runs for very little pixels, }
-                         { there's little gained by splitting it up              }
-                         setreadbank(offs shr 16);
-                         setwritebank(offs shr 16);
-                         MemW[WinWriteSeg:word(offs)] :=
-                           MemW[WinReadSeg:word(offs)] And Word(currentColor);
-                         HLength := 0
-                       end;
-                   End
-               Until HLength = 0;
-             End;
-           XorPut:
-             Begin
-               Repeat
-                 curbank := smallint(offs shr 16);
-                 SetWriteBank(curbank);
-                 SetReadBank(curbank);
-                 {$ifdef logging2}
-                 LogLn('set bank '+strf(curbank)+' for offset '+hexstr(offs,8));
-                 {$endif logging2}
-                 If ((HLength >= 2) and
-                     ((offs and 3) = 0)) or
-                    (HLength >= 3) Then
-                 { align target }
-                   Begin
-                     If (offs and 3) <> 0 then
-                     { this cannot go past a window boundary because the }
-                     { size of a window is always a multiple of 4        }
-                       Begin
-                         {$ifdef logging2}
-                         LogLn('Aligning by drawing 1 pixel');
-                         {$endif logging2}
-                         MemW[WinWriteSeg:word(offs)] :=
-                           MemW[WinReadSeg:word(offs)] Xor Word(CurrentColor);
-                         Dec(HLength);
-                         inc(offs, 2);
-                       End;
-                     {$ifdef logging2}
-                     LogLn('Offset is now '+hexstr(offs,8)+', length left: '+strf(hlength));
-                     {$endif logging}
-                     { offs is now 4-bytes aligned }
-                     If HLength <= (($10000-(Offs and $ffff)) shr 1) Then
-                        bankrest := HLength
-                     else {the rest won't fit anymore in the current window }
-                       bankrest := ($10000 - (Offs and $ffff)) shr 1;
-                     { it is possible that by aligningm we ended up in a new }
-                     { bank, so set the correct bank again to make sure      }
-                     setwritebank(offs shr 16);
-                     setreadbank(offs shr 16);
-                     {$ifdef logging2}
-                     LogLn('Rest to be drawn in this window: '+strf(bankrest));
-                     {$endif logging}
-                     For l := 0 to (Bankrest div 2)-1 Do
-                       MemL[WinWriteSeg:word(offs)+l*4] :=
-                         MemL[WinReadSeg:word(offs)+l*4] Xor Mask;
-                     inc(offs,l*4+4);
-                     dec(hlength,l*2+2);
-                     {$ifdef logging2}
-                     LogLn('Offset is now '+hexstr(offs,8)+', length left: '+strf(hlength));
-                     {$endif logging}
-                   End
-                 Else
-                   Begin
-                     {$ifdef logging2}
-                     LogLn('Drawing leftover: '+strf(HLength)+' at offset '+hexstr(offs,8));
-                     {$endif logging}
-                     if HLength > 0 then
-                       begin
-                         { this may cross a bank at any time, so adjust          }
-                         { because this loop always runs for very little pixels, }
-                         { there's little gained by splitting it up              }
-                         setreadbank(offs shr 16);
-                         setwritebank(offs shr 16);
-                         MemW[WinWriteSeg:word(offs)] :=
-                           MemW[WinReadSeg:word(offs)] Xor Word(currentColor);
-                         HLength := 0
-                       end;
-                   End
-               Until HLength = 0;
-             End;
-           OrPut:
-             Begin
-               Repeat
-                 curbank := smallint(offs shr 16);
-                 SetWriteBank(curbank);
-                 SetReadBank(curbank);
-                 {$ifdef logging2}
-                 LogLn('set bank '+strf(curbank)+' for offset '+hexstr(offs,8));
-                 {$endif logging2}
-                 If ((HLength >= 2) and
-                     ((offs and 3) = 0)) or
-                    (HLength >= 3) Then
-                 { align target }
-                   Begin
-                     If (offs and 3) <> 0 then
-                     { this cannot go past a window boundary because the }
-                     { size of a window is always a multiple of 4        }
-                       Begin
-                         {$ifdef logging2}
-                         LogLn('Aligning by drawing 1 pixel');
-                         {$endif logging2}
-                         MemW[WinWriteSeg:word(offs)] :=
-                           MemW[WinReadSeg:word(offs)] Or Word(CurrentColor);
-                         Dec(HLength);
-                         inc(offs, 2);
-                       End;
-                     {$ifdef logging2}
-                     LogLn('Offset is now '+hexstr(offs,8)+', length left: '+strf(hlength));
-                     {$endif logging}
-                     { offs is now 4-bytes aligned }
-                     If HLength <= (($10000-(Offs and $ffff)) shr 1) Then
-                        bankrest := HLength
-                     else {the rest won't fit anymore in the current window }
-                       bankrest := ($10000 - (Offs and $ffff)) shr 1;
-                     { it is possible that by aligningm we ended up in a new }
-                     { bank, so set the correct bank again to make sure      }
-                     setwritebank(offs shr 16);
-                     setreadbank(offs shr 16);
-                     {$ifdef logging2}
-                     LogLn('Rest to be drawn in this window: '+strf(bankrest));
-                     {$endif logging}
-                     For l := 0 to (Bankrest div 2)-1 Do
-                       MemL[WinWriteSeg:word(offs)+l*4] :=
-                         MemL[WinReadSeg:word(offs)+l*4] Or Mask;
-                     inc(offs,l*4+4);
-                     dec(hlength,l*2+2);
-                     {$ifdef logging2}
-                     LogLn('Offset is now '+hexstr(offs,8)+', length left: '+strf(hlength));
-                     {$endif logging}
-                   End
-                 Else
-                   Begin
-                     {$ifdef logging2}
-                     LogLn('Drawing leftover: '+strf(HLength)+' at offset '+hexstr(offs,8));
-                     {$endif logging}
-                     if HLength > 0 then
-                       begin
-                         { this may cross a bank at any time, so adjust          }
-                         { because this loop always runs for very little pixels, }
-                         { there's little gained by splitting it up              }
-                         setreadbank(offs shr 16);
-                         setwritebank(offs shr 16);
-                         MemW[WinWriteSeg:word(offs)] :=
-                           MemW[WinReadSeg:word(offs)] Or Word(currentColor);
-                         HLength := 0
-                       end;
-                   End
-               Until HLength = 0;
-             End
-           Else
-             Begin
-               If CurrentWriteMode = NotPut Then
-                 Mask := Not(Mask);
-               Repeat
-                 curbank := smallint(offs shr 16);
-                 SetWriteBank(curbank);
-                 SetReadBank(curbank);
-                 {$ifdef logging2}
-                 LogLn('set bank '+strf(curbank)+' for offset '+hexstr(offs,8));
-                 {$endif logging2}
-                 If ((HLength >= 2) and
-                     ((offs and 3) = 0)) or
-                    (HLength >= 3) Then
-                 { align target }
-                   Begin
-                     If (offs and 3) <> 0 then
-                     { this cannot go past a window boundary because the }
-                     { size of a window is always a multiple of 4        }
-                       Begin
-                         {$ifdef logging2}
-                         LogLn('Aligning by drawing 1 pixel');
-                         {$endif logging2}
-                         MemW[WinWriteSeg:word(offs)] := Word(Mask);
-                         Dec(HLength);
-                         inc(offs, 2);
-                       End;
-                     {$ifdef logging2}
-                     LogLn('Offset is now '+hexstr(offs,8)+', length left: '+strf(hlength));
-                     {$endif logging}
-                     { offs is now 4-bytes aligned }
-                     If HLength <= (($10000-(Offs and $ffff)) shr 1) Then
-                        bankrest := HLength
-                     else {the rest won't fit anymore in the current window }
-                       bankrest := ($10000 - (Offs and $ffff)) shr 1;
-                     { it is possible that by aligningm we ended up in a new }
-                     { bank, so set the correct bank again to make sure      }
-                     setwritebank(offs shr 16);
-                     setreadbank(offs shr 16);
-                     {$ifdef logging2}
-                     LogLn('Rest to be drawn in this window: '+strf(bankrest));
-                     {$endif logging}
-                     For l := 0 to (Bankrest div 2)-1 Do
-                       MemL[WinWriteSeg:word(offs)+l*4] := Mask;
-                     inc(offs,l*4+4);
-                     dec(hlength,l*2+2);
-                     {$ifdef logging2}
-                     LogLn('Offset is now '+hexstr(offs,8)+', length left: '+strf(hlength));
-                     {$endif logging}
-                   End
-                 Else
-                   Begin
-                     {$ifdef logging2}
-                     LogLn('Drawing leftover: '+strf(HLength)+' at offset '+hexstr(offs,8));
-                     {$endif logging}
-                     if HLength > 0 then
-                       begin
-                         { this may cross a bank at any time, so adjust          }
-                         { because this loop always runs for very little pixels, }
-                         { there's little gained by splitting it up              }
-                         setreadbank(offs shr 16);
-                         setwritebank(offs shr 16);
-                         MemW[WinWriteSeg:word(offs)] := Word(Mask);
-                         HLength := 0
-                       end;
-                   End
-               Until HLength = 0;
-             End;
-         End;
-       end;
-   end;
-
+{$ifdef FPC}
  {************************************************************************}
  {*                    15/16bit pixels VESA mode routines  Linear mode   *}
  {************************************************************************}
 
-  procedure PutPixVESA32kor64kLinear(x, y : smallint; color : word);
+  procedure PutPixVESA32kor64kLinear(x, y : smallint; color : word); {$ifndef fpc}far;{$endif fpc}
   var
      offs : longint;
   begin
@@ -1643,7 +1408,7 @@ end;
        seg_move(get_ds,longint(@color),WinWriteSeg,offs+LinearPageOfs,2);
   end;
 
-  function GetPixVESA32kor64kLinear(x, y : smallint): word;
+  function GetPixVESA32kor64kLinear(x, y : smallint): word; {$ifndef fpc}far;{$endif fpc}
   var
      offs : longint;
      color : word;
@@ -1658,7 +1423,7 @@ end;
      GetPixVESA32kor64kLinear:=color;
   end;
 
-  procedure DirectPutPixVESA32kor64kLinear(x, y : smallint);
+  procedure DirectPutPixVESA32kor64kLinear(x, y : smallint); {$ifndef fpc}far;{$endif fpc}
   var
      offs : longint;
      col : word;
@@ -1702,82 +1467,13 @@ end;
        seg_move(get_ds,longint(@col),WinWriteSeg,offs+LinearPageOfs,2);
   end;
 
-  procedure HLineVESA32kOr64kLinear(x,x2,y: smallint);
-  var
-    Offs: Longint;
-    hlength: smallint;
-  begin
-    { must we swap the values? }
-    if x > x2 then
-      begin
-        x := x xor x2;
-        x2 := x xor x2;
-        x:= x xor x2;
-      end;
-    { First convert to global coordinates }
-    X   := X + StartXViewPort;
-    X2  := X2 + StartXViewPort;
-    Y   := Y + StartYViewPort;
-    if ClipPixels and
-       LineClipped(x,y,x2,y,
-                   StartXViewPort,StartYViewPort,
-                   StartXViewPort+ViewWidth, StartYViewPort+ViewHeight) then
-      exit;
-    {$ifdef logging2}
-    LogLn('hline '+strf(x)+' - '+strf(x2)+' on '+strf(y)+' in mode '+strf(currentwritemode));
-    {$endif logging2}
-    HLength := x2 - x + 1;
-    {$ifdef logging2}
-    LogLn('length: '+strf(hlength));
-    {$endif logging2}
-    Offs:=Longint(y)*BytesPerLine+2*x;
-    {$ifdef logging2}
-    LogLn('Offs: '+strf(offs)+' -- '+hexstr(offs,8));
-    {$endif logging2}
-    case CurrentWriteMode of
-      XorPut:
-        begin
-          if UseNoSelector then
-            seg_xorword(get_ds,PtrUInt(LFBPointer)+PtrUInt(offs)+PtrUInt(LinearPageOfs),HLength,Word(CurrentColor))
-          else
-            seg_xorword(WinWriteSeg,offs+LinearPageOfs,HLength,Word(CurrentColor));
-        end;
-      OrPut:
-        begin
-          if UseNoSelector then
-            seg_orword(get_ds,PtrUInt(LFBPointer)+PtrUInt(offs)+PtrUInt(LinearPageOfs),HLength,Word(CurrentColor))
-          else
-            seg_orword(WinWriteSeg,offs+LinearPageOfs,HLength,Word(CurrentColor));
-        end;
-      AndPut:
-        begin
-          if UseNoSelector then
-            seg_andword(get_ds,PtrUInt(LFBPointer)+PtrUInt(offs)+PtrUInt(LinearPageOfs),HLength,Word(CurrentColor))
-          else
-            seg_andword(WinWriteSeg,offs+LinearPageOfs,HLength,Word(CurrentColor));
-        end;
-      NormalPut:
-        begin
-          if UseNoSelector then
-            FillWord(Pointer(LFBPointer+offs+LinearPageOfs)^,HLength,Word(CurrentColor))
-          else
-            seg_fillword(WinWriteSeg,offs+LinearPageOfs,HLength,Word(CurrentColor));
-        end;
-      NotPut:
-        begin
-          if UseNoSelector then
-            FillWord(Pointer(LFBPointer+offs+LinearPageOfs)^,HLength,Word(not Word(CurrentColor)))
-          else
-            seg_fillword(WinWriteSeg,offs+LinearPageOfs,HLength,Word(not Word(CurrentColor)));
-        end;
-    end;
-  end;
+{$endif FPC}
 
  {************************************************************************}
  {*                     4-bit pixels VESA mode routines                  *}
  {************************************************************************}
 
-  procedure PutPixVESA16(x, y : smallint; color : word);
+  procedure PutPixVESA16(x, y : smallint; color : word); {$ifndef fpc}far;{$endif fpc}
     var
      offs : longint;
      dummy : byte;
@@ -1812,7 +1508,7 @@ end;
   end;
 
 
- Function GetPixVESA16(X,Y: smallint):word;
+ Function GetPixVESA16(X,Y: smallint):word; {$ifndef fpc}far;{$endif fpc}
  Var dummy: Word;
      offset: longint;
      shift: byte;
@@ -1834,7 +1530,7 @@ end;
   end;
 
 
-  procedure DirectPutPixVESA16(x, y : smallint);
+  procedure DirectPutPixVESA16(x, y : smallint); {$ifndef fpc}far;{$endif fpc}
     var
      offs : longint;
      dummy : byte;
@@ -1879,7 +1575,7 @@ end;
   end;
 
 
-  procedure HLineVESA16(x,x2,y: smallint);
+  procedure HLineVESA16(x,x2,y: smallint); {$ifndef fpc}far;{$endif fpc}
   var
       xtmp: smallint;
       ScrOfs, BankRest: longint;
@@ -1910,11 +1606,23 @@ end;
     SetWriteBank(smallint(ScrOfs shr 16));
     HLength:=x2 div 8-x div 8;
     LMask:=$ff shr (x and 7);
-{$push}
+{$ifopt r+}
+{$define rangeOn}
 {$r-}
+{$endif}
+{$ifopt q+}
+{$define overflowOn}
 {$q-}
+{$endif}
     RMask:=$ff shl (7-(x2 and 7));
-{$pop}
+{$ifdef rangeOn}
+{$undef rangeOn}
+{$r+}
+{$endif}
+{$ifdef overflowOn}
+{$undef overflowOn}
+{$q+}
+{$endif}
     if HLength=0 then
       LMask:=LMask and RMask;
     If CurrentWriteMode <> NotPut Then
@@ -1935,11 +1643,23 @@ end;
     end;
 
     PortW[$3ce]:=(LMask shl 8) or 8;
-{$push}
+{$ifopt r+}
+{$define rangeOn}
 {$r-}
+{$endif}
+{$ifopt q+}
+{$define overflowOn}
 {$q-}
+{$endif}
     Mem[WinWriteSeg:word(ScrOfs)]:=Mem[WinReadSeg:word(ScrOfs)]+1;
-{$pop}
+{$ifdef rangeOn}
+{$undef rangeOn}
+{$r+}
+{$endif}
+{$ifdef overflowOn}
+{$undef overflowOn}
+{$q+}
+{$endif}
     {Port[$3ce]:=8;}{not needed, the register is already selected}
     if HLength>0 then
       begin
@@ -1965,11 +1685,23 @@ end;
          SetReadBank(smallint(ScrOfs shr 16));
          SetWriteBank(smallint(ScrOfs shr 16));
          Port[$3cf]:=RMask;
-{$push}
+{$ifopt r+}
+{$define rangeOn}
 {$r-}
+{$endif}
+{$ifopt q+}
+{$define overflowOn}
 {$q-}
+{$endif}
          Mem[WinWriteSeg:word(ScrOfs)]:=Mem[WinReadSeg:word(ScrOfs)]+1;
-{$pop}
+{$ifdef rangeOn}
+{$undef rangeOn}
+{$r+}
+{$endif}
+{$ifdef overflowOn}
+{$undef overflowOn}
+{$q+}
+{$endif}
       end;
     { clean up }
     {Port[$3cf]:=0;}{not needed, the register is reset by the next operation:}
@@ -1987,6 +1719,7 @@ end;
 
 
 {$IFDEF DPMI}
+{$ifdef fpc}
    Procedure SetVESARGBAllPalette(const Palette:PaletteType);
     var
      pal: array[0..255] of palrec;
@@ -2052,6 +1785,7 @@ end;
         end;
       setallpalettedefault(palette);
     end;
+{$endif fpc}
 
    Procedure SetVESARGBPalette(ColorNum, RedValue, GreenValue,
       BlueValue : smallint);
@@ -2059,6 +1793,9 @@ end;
      pal: palrec;
      regs: TDPMIRegisters;
      Ptr: longint;
+{$ifndef fpc}
+     PalPtr : ^PalRec;
+{$endif fpc}
      RealSeg: word;
      FunctionNr : byte;   { use blankbit or normal RAMDAC programming? }
     begin
@@ -2085,13 +1822,25 @@ end;
               FunctionNr := $00;
 
             { Alllocate real mode buffer }
+{$ifndef fpc}
+            Ptr:=GlobalDosAlloc(sizeof(palrec));
+            { get the selector values }
+            PalPtr := pointer(Ptr shl 16);
+            if not assigned(PalPtr) then
+               RunError(203);
+{$else fpc}
             Ptr:=Global_Dos_Alloc(sizeof(palrec));
+{$endif fpc}
             {get the segment value}
             RealSeg := word(Ptr shr 16);
             { setup interrupt registers }
             FillChar(regs, sizeof(regs), #0);
             { copy palette values to real mode buffer }
+{$ifndef fpc}
+            move(pal, palptr^, sizeof(pal));
+{$else fpc}
             DosMemPut(RealSeg,0,pal,sizeof(pal));
+{$endif fpc}
             regs.eax := $4F09;
             regs.ebx := FunctionNr;
             regs.ecx := $01;
@@ -2101,8 +1850,12 @@ end;
             RealIntr($10, regs);
 
             { free real mode memory  }
+{$ifndef fpc}
+            GlobalDosFree(word(Ptr and $ffff));
+{$else fpc}
             If not Global_Dos_Free(word(Ptr and $ffff)) then
               RunError(216);
+{$endif fpc}
 
             if word(regs.eax) <> $004F then
               begin
@@ -2125,6 +1878,9 @@ end;
       RedValue, GreenValue, BlueValue : smallint);
    var
     pal: PalRec;
+{$ifndef fpc}
+    palptr : ^PalRec;
+{$endif fpc}
     regs : TDPMIRegisters;
     RealSeg: word;
     ptr: longint;
@@ -2141,7 +1897,15 @@ end;
         if VESAInfo.Version >= $0200 then
           Begin
             { Alllocate real mode buffer }
+{$ifndef fpc}
+            Ptr:=GlobalDosAlloc(sizeof(palrec));
+            { get the selector value }
+            PalPtr := pointer(longint(Ptr and $0000ffff) shl 16);
+            if not assigned(PalPtr) then
+               RunError(203);
+{$else fpc}
             Ptr:=Global_Dos_Alloc(sizeof(palrec));
+{$endif fpc}
             { get the segment value }
             RealSeg := word(Ptr shr 16);
             { setup interrupt registers }
@@ -2156,10 +1920,18 @@ end;
             RealIntr($10, regs);
 
            { copy to protected mode buffer ... }
+{$ifndef fpc}
+           Move(PalPtr^, Pal, sizeof(pal));
+{$else fpc}
            DosMemGet(RealSeg,0,Pal,sizeof(pal));
+{$endif fpc}
            { free real mode memory  }
+{$ifndef fpc}
+           GlobalDosFree(word(Ptr and $ffff));
+{$else fpc}
            If not Global_Dos_Free(word(Ptr and $ffff)) then
              RunError(216);
+{$endif fpc}
 
             if word(regs.eax) <> $004F then
               begin
@@ -2340,6 +2112,7 @@ Const
      else
        BytesPerLine := VESAModeInfo.BytesPerScanLine;
 
+{$ifdef FPC}
      case mode of
        m320x200x32k,
        m320x200x64k,
@@ -2355,8 +2128,8 @@ Const
            DirectPutPixel:=@DirectPutPixVESA32kor64kLinear;
            PutPixel:=@PutPixVESA32kor64kLinear;
            GetPixel:=@GetPixVESA32kor64kLinear;
-           HLine:=@HLineVESA32kOr64kLinear;
            { linear mode for lines not yet implemented PM }
+           HLine:=@HLineDefault;
            VLine:=@VLineDefault;
            GetScanLine := @GetScanLineDefault;
            PatternLine := @PatternLineDefault;
@@ -2430,6 +2203,7 @@ Const
          inc(WinShift);
          Temp:=Temp shr 1;
        end; }
+{$endif FPC}
    end;
 
   procedure SetupWindows(var ModeInfo: TVESAModeInfo);
@@ -2624,15 +2398,19 @@ Const
    asm
     mov ax,4F02h
     mov bx,mode
+{$ifdef fpc}
     push ebp
     push esi
     push edi
     push ebx
+{$endif fpc}
     int 10h
+{$ifdef fpc}
     pop ebx
     pop edi
     pop esi
     pop ebp
+{$endif fpc}
     sub ax,004Fh
     cmp ax,1
     sbb al,al
@@ -2713,21 +2491,21 @@ Const
 
 {$ENDIF}
 
- procedure Init1280x1024x64k;
+ procedure Init1280x1024x64k; {$ifndef fpc}far;{$endif fpc}
   begin
     SetVesaMode(m1280x1024x64k);
     { Get maximum number of scanlines for page flipping }
     ScanLines := GetMaxScanLines;
   end;
 
- procedure Init1280x1024x32k;
+ procedure Init1280x1024x32k; {$ifndef fpc}far;{$endif fpc}
   begin
     SetVESAMode(m1280x1024x32k);
     { Get maximum number of scanlines for page flipping }
     ScanLines := GetMaxScanLines;
   end;
 
- procedure Init1280x1024x256;
+ procedure Init1280x1024x256; {$ifndef fpc}far;{$endif fpc}
   begin
     SetVESAMode(m1280x1024x256);
     { Get maximum number of scanlines for page flipping }
@@ -2735,105 +2513,105 @@ Const
   end;
 
 
- procedure Init1280x1024x16;
+ procedure Init1280x1024x16; {$ifndef fpc}far;{$endif fpc}
   begin
     SetVESAMode(m1280x1024x16);
     { Get maximum number of scanlines for page flipping }
     ScanLines := GetMaxScanLines;
   end;
 
- procedure Init1024x768x64k;
+ procedure Init1024x768x64k; {$ifndef fpc}far;{$endif fpc}
   begin
     SetVESAMode(m1024x768x64k);
     { Get maximum number of scanlines for page flipping }
     ScanLines := GetMaxScanLines;
   end;
 
- procedure Init1024x768x32k;
+ procedure Init1024x768x32k; {$ifndef fpc}far;{$endif fpc}
   begin
     SetVESAMode(m1024x768x32k);
     { Get maximum number of scanlines for page flipping }
     ScanLines := GetMaxScanLines;
   end;
 
- procedure Init1024x768x256;
+ procedure Init1024x768x256; {$ifndef fpc}far;{$endif fpc}
   begin
     SetVESAMode(m1024x768x256);
     { Get maximum number of scanlines for page flipping }
     ScanLines := GetMaxScanLines;
   end;
 
- procedure Init1024x768x16;
+ procedure Init1024x768x16; {$ifndef fpc}far;{$endif fpc}
   begin
     SetVESAMode(m1024x768x16);
     { Get maximum number of scanlines for page flipping }
     ScanLines := GetMaxScanLines;
   end;
 
- procedure Init800x600x64k;
+ procedure Init800x600x64k; {$ifndef fpc}far;{$endif fpc}
   begin
     SetVESAMode(m800x600x64k);
     { Get maximum number of scanlines for page flipping }
     ScanLines := GetMaxScanLines;
   end;
 
- procedure Init800x600x32k;
+ procedure Init800x600x32k; {$ifndef fpc}far;{$endif fpc}
   begin
     SetVESAMode(m800x600x32k);
     { Get maximum number of scanlines for page flipping }
     ScanLines := GetMaxScanLines;
   end;
 
- procedure Init800x600x256;
+ procedure Init800x600x256; {$ifndef fpc}far;{$endif fpc}
   begin
     SetVESAMode(m800x600x256);
     { Get maximum number of scanlines for page flipping }
     ScanLines := GetMaxScanLines;
   end;
 
- procedure Init800x600x16;
+ procedure Init800x600x16; {$ifndef fpc}far;{$endif fpc}
   begin
     SetVesaMode(m800x600x16);
     { Get maximum number of scanlines for page flipping }
     ScanLines := GetMaxScanLines;
   end;
 
- procedure Init640x480x64k;
+ procedure Init640x480x64k; {$ifndef fpc}far;{$endif fpc}
   begin
     SetVESAMode(m640x480x64k);
     { Get maximum number of scanlines for page flipping }
     ScanLines := GetMaxScanLines;
   end;
 
- procedure Init640x480x32k;
+ procedure Init640x480x32k; {$ifndef fpc}far;{$endif fpc}
   begin
     SetVESAMode(m640x480x32k);
     { Get maximum number of scanlines for page flipping }
     ScanLines := GetMaxScanLines;
   end;
 
- procedure Init640x480x256;
+ procedure Init640x480x256; {$ifndef fpc}far;{$endif fpc}
   begin
     SetVESAMode(m640x480x256);
     { Get maximum number of scanlines for page flipping }
     ScanLines := GetMaxScanLines;
   end;
 
- procedure Init640x400x256;
+ procedure Init640x400x256; {$ifndef fpc}far;{$endif fpc}
   begin
     SetVESAMode(m640x400x256);
     { Get maximum number of scanlines for page flipping }
     ScanLines := GetMaxScanLines;
   end;
 
- procedure Init320x200x64k;
+ procedure Init320x200x64k; {$ifndef fpc}far;{$endif fpc}
   begin
     SetVESAMode(m320x200x64k);
     { Get maximum number of scanlines for page flipping }
     ScanLines := GetMaxScanLines;
   end;
 
- procedure Init320x200x32k;
+ procedure Init320x200x32k; {$ifndef fpc}far;{$endif fpc}
   begin
     SetVESAMode(m320x200x32k);
     { Get maximum number of scanlines for page flipping }
@@ -2843,7 +2621,7 @@ Const
 
 {$IFDEF DPMI}
 
- Procedure SaveStateVESA;
+ Procedure SaveStateVESA; {$ifndef fpc}far;{$endif fpc}
  var
   PtrLong: longint;
   regs: TDPMIRegisters;
@@ -2856,15 +2634,19 @@ Const
     { Get the video mode }
     asm
       mov  ah,0fh
+{$ifdef fpc}
       push ebp
       push esi
       push edi
       push ebx
+{$endif fpc}
       int  10h
+{$ifdef fpc}
       pop ebx
       pop edi
       pop esi
       pop ebp
+{$endif fpc}
       mov  [VideoMode], al
     end ['EAX'];
     { saving/restoring video state screws up Windows (JM) }
@@ -2886,10 +2668,22 @@ Const
 {$ifdef logging}
         LogLn('allocating VESA save buffer of '+strf(64*StateSize));
 {$endif logging}
+{$ifndef fpc}
+        PtrLong:=GlobalDosAlloc(64*StateSize);  { values returned in 64-byte blocks }
+{$else fpc}
         PtrLong:=Global_Dos_Alloc(64*StateSize);  { values returned in 64-byte blocks }
+{$endif fpc}
         if PtrLong = 0 then
            RunError(203);
         SavePtr := pointer(longint(PtrLong and $0000ffff) shl 16);
+{$ifndef fpc}
+        { In FPC mode, we can't do anything with this (no far pointers)  }
+        { However, we still need to keep it to be able to free the       }
+        { memory afterwards. Since this data is not accessed in PM code, }
+        { there's no need to save it in a seperate buffer (JM)           }
+        if not assigned(SavePtr) then
+           RunError(203);
+{$endif fpc}
         RealStateSeg := word(PtrLong shr 16);
 
         FillChar(regs, sizeof(regs), #0);
@@ -2912,7 +2706,7 @@ Const
       end;
   end;
 
- procedure RestoreStateVESA;
+ procedure RestoreStateVESA; {$ifndef fpc}far;{$endif fpc}
   var
    regs:TDPMIRegisters;
   begin
@@ -2920,20 +2714,28 @@ Const
      asm
       mov  ah,00
       mov  al,[VideoMode]
+{$ifdef fpc}
       push ebp
       push esi
       push edi
       push ebx
+{$endif fpc}
       int  10h
+{$ifdef fpc}
       pop ebx
       pop edi
       pop esi
       pop ebp
+{$endif fpc}
      end ['EAX'];
      { then restore all state information }
+{$ifndef fpc}
+     if assigned(SavePtr) and (SaveSupported=TRUE) then
+{$else fpc}
      { No far pointer support, so it's possible that that assigned(SavePtr) }
      { would return false under FPC. Just check if it's different from nil. }
      if (SavePtr <> nil) and (SaveSupported=TRUE) then
+{$endif fpc}
        begin
         FillChar(regs, sizeof(regs), #0);
         { restore state, according to Ralph Brown Interrupt list }
@@ -2944,7 +2746,11 @@ Const
          regs.es := RealStateSeg;
          regs.ebx := 0;
          RealIntr($10,regs);
+{$ifndef fpc}
+         if GlobalDosFree(longint(SavePtr) shr 16)<>0 then
+{$else fpc}
          if Not(Global_Dos_Free(longint(SavePtr) shr 16)) then
+{$endif fpc}
           RunError(216);
          SavePtr := nil;
        end;
@@ -3046,7 +2852,7 @@ Const
   { between VBE versions , we will use the old method where }
   { the new pixel offset is used to display different pages }
   {******************************************************** }
- procedure SetVisualVESA(page: word);
+ procedure SetVisualVESA(page: word); {$ifndef fpc}far;{$endif fpc}
   var
    newStartVisible : word;
   begin
@@ -3066,19 +2872,23 @@ Const
       mov bx, 0000h   { set display start }
       mov cx, 0000h   { pixel zero !      }
       mov dx, [NewStartVisible]  { new scanline }
+{$ifdef fpc}
       push    ebp
       push    esi
       push    edi
       push    ebx
+{$endif}
       int     10h
+{$ifdef fpc}
       pop     ebx
       pop     edi
       pop     esi
       pop     ebp
+{$endif}
     end ['EDX','ECX','EBX','EAX'];
   end;
 
- procedure SetActiveVESA(page: word);
+ procedure SetActiveVESA(page: word); {$ifndef fpc}far;{$endif fpc}
   begin
     { video offset is in pixels under VESA VBE! }
     { This value is reset after a mode set to page ZERO = YOffset = 0 ) }

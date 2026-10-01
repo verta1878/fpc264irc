@@ -13,15 +13,7 @@
 
  **********************************************************************}
 unit Graph;
-
 interface
-
-{ used to create a file containing all calls to WM_PAINT
-  WARNING this probably creates HUGE files PM }
-{ $define DEBUG_WM_PAINT}
-
-{ debug child window handling }
-{ $define DEBUGCHILDS}
 
 {
   To be able to use standard file handles in the graph thread,
@@ -29,16 +21,7 @@ interface
   to ensure that thread varaibles are correctly initialized.
   This new default setting can be overridden by defining
   USE_WINDOWS_API_THREAD_FUNCTIONS macro.
-
-  Use API thread functions by default, to avoid interferences due to
-  initialization of threadvars, this solves e.g. #27508 (which does not
-  mean though that interworking with CRT is guranteed in any way)
-
-  undefine this when debugging the graph unit due to writelns in the
-  debug code }
-{$if not(defined(DEBUG_WM_PAINT)) and not(defined(DEBUGCHILDS))}
-{$define USE_WINDOWS_API_THREAD_FUNCTIONS}
-{$endif not(defined(DEBUG_WM_PAINT)) and not(defined(DEBUGCHILDS))}
+}
 
 {$ifndef USE_WINDOWS_API_THREAD_FUNCTIONS}
   {$define USE_SYSTEM_BEGIN_THREAD}
@@ -151,6 +134,10 @@ const
 
 {$i graph.inc}
 
+
+{ used to create a file containing all calls to WM_PAINT
+  WARNING this probably creates HUGE files PM }
+{ $define DEBUG_WM_PAINT}
 var
    savedscreen : hbitmap;
    graphrunning : boolean;
@@ -332,7 +319,6 @@ procedure OutTextXYWin32GUI(x,y : smallint;const TextString : string);
      curX2, curY2, xpos2, ypos2, x2, y2: graph_float;
      oldvalues     : linesettingstype;
      fontbitmap    : TBitmapChar;
-     fontbitmapbyte: byte;
      chr           : char;
      curx2i,cury2i,
      xpos2i,ypos2i : longint;
@@ -411,17 +397,11 @@ procedure OutTextXYWin32GUI(x,y : smallint;const TextString : string);
                       Fontbitmap:=TBitmapChar(DefaultFontData[textstring[i+1]]);
 
                       for j:=0 to 7 do
-                        begin
-                          fontbitmapbyte:=Fontbitmap[j];
-                          for k:=0 to 7 do
-                            begin
-                              if (fontbitmapbyte and $80)<>0 then
-                                SetPixelV(chardc,k,j,$ffffff)
-                              else
-                                SetPixelV(chardc,k,j,0);
-                              fontbitmapbyte:=fontbitmapbyte shl 1;
-                            end;
-                        end;
+                         for k:=0 to 7 do
+                           if Fontbitmap[j,k]<>0 then
+                             SetPixelV(chardc,k,j,$ffffff)
+                           else
+                             SetPixelV(chardc,k,j,0);
                       bitmapfonthorizoncache[byte(textstring[i+1])]:=charbitmap;
                       SelectObject(chardc,oldcharbitmap);
                    end;
@@ -568,17 +548,11 @@ procedure OutTextXYWin32GUI(x,y : smallint;const TextString : string);
                       Fontbitmap:=TBitmapChar(DefaultFontData[textstring[i+1]]);
 
                       for j:=0 to 7 do
-                        begin
-                          fontbitmapbyte:=Fontbitmap[j];
-                          for k:=0 to 7 do
-                            begin
-                              if (fontbitmapbyte and $80)<>0 then
-                                SetPixelV(chardc,j,7-k,$ffffff)
-                              else
-                                SetPixelV(chardc,j,7-k,0);
-                              fontbitmapbyte:=fontbitmapbyte shl 1;
-                            end;
-                        end;
+                         for k:=0 to 7 do
+                           if Fontbitmap[j,k]<>0 then
+                             SetPixelV(chardc,j,7-k,$ffffff)
+                           else
+                             SetPixelV(chardc,j,7-k,0);
                       bitmapfontverticalcache[byte(textstring[i+1])]:=charbitmap;
                       SelectObject(chardc,oldcharbitmap);
                    end;
@@ -2190,7 +2164,7 @@ function queryadapterinfo : pmodeinfo;
           mode.PaletteSize := mode.MaxColor;
           mode.DirectColor := FALSE;
           mode.MaxX := 1023;
-          mode.MaxY := 767;
+          mode.MaxY := 768;
           SetupWin32GUIDefault;
           mode.XAspect := 10000;
           mode.YAspect := 10000;

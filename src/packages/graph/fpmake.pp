@@ -24,37 +24,27 @@ begin
     P.Description := 'A portable, yet usable substitute for the Turbo Pascal Graph unit.';
     P.NeedLibC:= false;  // true for headers that indirectly link to libc? OS specific?
 
-    P.CPUs:=[i386,x86_64,powerpc
-      {$IF DECLARED(i8086)},i8086{$ENDIF}
-    ];
-    P.OSes:=[go32v2,win32,win64,linux,freebsd,darwin
-      {$IF DECLARED(msdos)},msdos{$ENDIF}
-    ];
+    P.CPUs:=[i386,x86_64,powerpc];
+    P.OSes:=[win32,linux,freebsd,darwin];
 
     P.Dependencies.Add('sdl',[i386,powerpc],[win32,linux,freebsd,darwin]);
     P.Dependencies.Add('ptc',[win32,win64,linux]);
 
     // Dependencies for ptc, due to fpcmake bug:
     P.Dependencies.Add('fcl-base',[win32,win64,linux]);
-    P.Dependencies.Add('x11',[freebsd,linux]); // ptc only depends on freebsd and linux on x11
+    P.Dependencies.Add('x11',[win32,win64,linux]);
     P.Dependencies.Add('hermes',[win32,win64,linux]);
-    P.Dependencies.Add('opengl',[win32,win64,linux]);
 
     P.SourcePath.Add('src');
     P.SourcePath.Add('src/ptcgraph');
     P.SourcePath.Add('src/macosx',[darwin]);
+    P.SourcePath.Add('src/amiga',[amiga]);
     P.SourcePath.Add('src/go32v2',[go32v2]);
-    {$IF DECLARED(msdos)}
-    P.SourcePath.Add('src/msdos',[msdos]);
-    {$ENDIF}
     P.SourcePath.Add('src/win32',[win32,win64]);
     P.SourcePath.Add('src/unix',[freebsd,linux]);  // Darwin has own.
 
     P.IncludePath.Add('src/inc');
     P.IncludePath.Add('src/go32v2',[go32v2]);
-    {$IF DECLARED(msdos)}
-    P.IncludePath.Add('src/msdos',[msdos]);
-    {$ENDIF}
     P.IncludePath.Add('src/unix',[freebsd,linux]);  // Darwin has own.
     P.IncludePath.Add('src/go32v2',[go32v2]);
 
@@ -84,10 +74,8 @@ begin
           AddInclude('gtext.inc');
           AddInclude('graph16.inc',[freebsd,linux]);
         end;
-    // Graph unit other targets (no amiga)
-    T:=P.Targets.AddUnit('graph.pp',[go32v2,win32,win64,freebsd
-      {$IF DECLARED(msdos)},msdos{$ENDIF}
-    ]);
+    // Graph unit other targets
+    T:=P.Targets.AddUnit('graph.pp',[go32v2,amiga,win32,win64,freebsd]);
       with T.Dependencies do
         begin
           AddInclude('graphh.inc');
@@ -99,12 +87,6 @@ begin
           AddInclude('fills.inc');
           AddInclude('gtext.inc');
           AddInclude('graph16.inc',[freebsd,linux]);
-          AddInclude('vesa.inc',[go32v2
-            {$IF DECLARED(msdos)},msdos{$ENDIF}
-          ]);
-          AddInclude('vesah.inc',[go32v2
-            {$IF DECLARED(msdos)},msdos{$ENDIF}
-          ]);
         end;
 
     T:=P.Targets.AddUnit('src/sdlgraph/sdlgraph.pp',[i386,powerpc],[win32,linux,freebsd,darwin]);
@@ -130,17 +112,6 @@ begin
           AddUnit('graph');
         end;
     T:=P.Targets.AddUnit('ptcgraph.pp',[win32,win64,linux]);
-      with T.Dependencies do
-        begin
-          AddInclude('graphh.inc');
-          AddInclude('graph.inc');
-          AddInclude('fontdata.inc');
-          AddInclude('clip.inc');
-          AddInclude('palette.inc');
-          AddInclude('modes.inc');
-          AddInclude('fills.inc');
-          AddInclude('gtext.inc');
-        end;
     T:=P.Targets.AddUnit('ptccrt.pp',[win32,win64,linux]);
       with T.Dependencies do
         begin

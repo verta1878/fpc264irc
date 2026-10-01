@@ -31,11 +31,9 @@
      4096: driver := D12bit;
      32768: driver := D15bit;
      65536: driver := D16bit;
-{$ifdef FPC_GRAPH_SUPPORTS_TRUECOLOR}
-     65536*256: driver := D24bit;
 {    not yet supported
+     65536*256: driver := D24bit;
      65536*65536: driver := D32bit;}
-{$endif FPC_GRAPH_SUPPORTS_TRUECOLOR}
      else
        begin
          driver := maxsmallint;
@@ -78,30 +76,10 @@ end;
   {********************************************************}
   var
     i,driverNr, modeNr: smallint;
-    prev: PNewModeList;
+    prev: PModeInfo;
     list: PModeInfo;
-    newMode: PModeInfo;
-    newList: PNewModeList;
-    newLst: PNewModeList;
+    newlst : PModeInfo;
   begin
-    { TP-like mode stuff }
-    if not assigned(ModeList) then
-      begin
-        new(ModeList);
-        System.move(mode, ModeList^, sizeof(Mode));
-        newMode := ModeList;
-      end
-    else
-      begin
-        list := ModeList;
-        { go to the end of the list }
-        while assigned(list^.next) do
-          list:=list^.next;
-        new(newMode);
-        list^.next := newMode;
-        System.move(mode, newMode^, sizeof(Mode));
-      end;
-
     res2Mode(mode.maxx+1,mode.maxy+1,mode.maxColor,driverNr,ModeNr);
     { bitdepth supported? }
     if (driverNr <> maxsmallint) then
@@ -114,47 +92,47 @@ end;
                 ' ('+strf(mode.maxx)+'x'+strf(mode.maxy)+')');
 {$endif logging}
           new(newModeList.modeinfo[driverNr]);
-          newModeList.modeinfo[driverNr]^.Mode := newMode;
+          newModeList.modeinfo[driverNr]^ := mode;
           newModeList.modeinfo[driverNr]^.next:=nil;
         end
       else
         begin
           prev := nil;
-          newList := newModeList.modeinfo[driverNr];
+          list := newModeList.modeinfo[driverNr];
           { sort first by x resolution, then by yresolution }
-          while assigned(newList) and
-                ((newList^.Mode^.maxx < mode.maxx) or
-                 ((newList^.Mode^.maxx = mode.maxx) and
-                  (newList^.Mode^.maxy < mode.maxy))) do
+          while assigned(list) and
+                ((list^.maxx < mode.maxx) or
+                 ((list^.maxx = mode.maxx) and
+                  (list^.maxy < mode.maxy))) do
             begin
-              prev := newList;
-              newList := newList^.next;
+              prev := list;
+              list := list^.next;
             end;
           { mode already exists? -> replace (assume later added modes are }
           { better)                                                       }
-          if assigned(newList) and
-             (newList^.Mode^.maxx = mode.maxx) and
-             (newList^.Mode^.maxy = mode.maxy) then
+          if assigned(list) and
+             (list^.maxx = mode.maxx) and
+             (list^.maxy = mode.maxy) then
             begin
 {$ifdef logging}
               logln('replacing resolution '+strf(modenr)+' for drivernr '+strf(drivernr)+
                 ' ('+strf(mode.maxx)+'x'+strf(mode.maxy)+')');
 {$endif logging}
               { save/restore next, drivernr and drivermode in list }
-              prev := newList^.next;
-              newList^.Mode := newMode;
-              newList^.next := prev;
+              prev := list^.next;
+              list^ := mode;
+              list^.next := prev;
             end
           else
             begin
               new(newLst);
               { Increase the number of modes for this driver }
-              newLst^.Mode := newMode;
+              newLst^ := mode;
 {$ifdef logging}
               logln('Adding resolution '+strf(modenr)+' for drivernr '+strf(drivernr)+
                 ' ('+strf(mode.maxx)+'x'+strf(mode.maxy)+')');
 {$endif logging}
-              newLst^.next := newList;
+              newLst^.next := list;
               if assigned(prev) then
                 prev^.next := newLst
               else
@@ -162,17 +140,33 @@ end;
             end;
         end;
        { renumber internmodenumber }
-       newList := newModeList.modeinfo[driverNr];
+       list := newModeList.modeinfo[driverNr];
        i:=0;
-       while assigned(newList) do
+       while assigned(list) do
         begin
           inc(i);
-          newList^.internmodenumber:=i;
-          newList:=newList^.next;
+          list^.internmodenumber:=i;
+          list:=list^.next;
         end;
        newModeList.loHiModeNr[driverNr].lo:=1;
        newModeList.loHiModeNr[driverNr].hi:=i;
      end;
+    { TP-like mode stuff }
+    if not assigned(ModeList) then
+      begin
+        new(ModeList);
+        System.move(mode, ModeList^, sizeof(Mode));
+      end
+    else
+      begin
+        list := ModeList;
+        { go to the end of the list }
+        while assigned(list^.next) do
+          list:=list^.next;
+        new(NewLst);
+        list^.next := NewLst;
+        System.move(mode, NewLst^, sizeof(Mode));
+      end;
   end;
 
 
@@ -202,7 +196,6 @@ end;
   {********************************************************}
     var
      list, lastModeInfo: PModeInfo;
-     newList: PNewModeList;
      x,y: longint;
     begin
 {$ifdef logging}
@@ -215,10 +208,7 @@ end;
             -32768:
               begin
                 reqMode := newModeList.loHiModeNr[reqDriver].lo;
-                if newModeList.modeinfo[reqDriver] <> nil then
-                  searchMode := newModeList.modeinfo[reqDriver]^.Mode
-                else
-                  searchMode := nil;
+                searchMode := newModeList.modeinfo[reqDriver];
               end;
             -32767:
               begin
@@ -227,45 +217,39 @@ end;
                 { Are there any modes available for this driver? }
                 if reqMode <> -1 then
                   begin
-                    newList := newModeList.modeinfo[reqDriver];
-                    while assigned(newList^.next) do
-                      newList := newList^.next;
-                    searchMode := newList^.Mode;
+                    list := newModeList.modeinfo[reqDriver];
+                    while assigned(list^.next) do
+                      list := list^.next;
+                    searchMode := list;
                   end;
               end;
             else
               begin
-                newList := newModeList.modeinfo[reqDriver];
+                list := newModeList.modeinfo[reqDriver];
                 searchMode := nil;
-                if not assigned(newList) then
+                if not assigned(list) then
                   exit;
                 if mode2res(reqMode,x,y) then
                   begin
                     x := pred(x);
                     y := pred(y);
-                    while assigned(newList) and
-                          ((newList^.Mode^.maxx < x) or
-                           ((newList^.Mode^.maxx = x) and
-                            (newList^.Mode^.maxy < y))) do
-                      newList := newList^.next;
-                    if not assigned(newList) or
-                       (newList^.Mode^.maxx <> x) or
-                       (newList^.Mode^.maxy <> y) then
-                      newList := nil;
-                    if newList <> nil then
-                      searchmode := newList^.Mode
-                    else
-                      searchmode := nil;
+                    while assigned(list) and
+                          ((list^.maxx < x) or
+                           ((list^.maxx = x) and
+                            (list^.maxy < y))) do
+                      list := list^.next;
+                    if not assigned(list) or
+                       (list^.maxx <> x) or
+                       (list^.maxy <> y) then
+                      list := nil;
+                    searchmode := list;
                   end
                 else
                   begin
-                    while assigned(newList) and
-                          (newList^.internModeNumber <> reqMode) do
-                      newList := newList^.next;
-                    if newList <> nil then
-                      searchMode := newList^.Mode
-                    else
-                      searchMode := nil;
+                    while assigned(list) and
+                          (list^.internModeNumber <> reqMode) do
+                      list := list^.next;
+                    searchMode := list;
                   end;
 
               end;

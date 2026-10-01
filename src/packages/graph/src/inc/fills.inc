@@ -31,8 +31,10 @@ end;
 procedure fillpoly(numpoints : Word; var polypoints);
 
 { disable range check mode }
-{$push}
+{$ifopt R+}
+{$define OPT_R_WAS_ON}
 {$R-}
+{$endif}
 type
   pedge = ^tedge;
   tedge = packed record
@@ -283,11 +285,10 @@ type
     y  : smallint;
   end;
 
-  PDrawnList  = ^TDrawnList;
   TDrawnList  = Array[0..(MaxYRes - 1) div YResDiv] of PFloodLine;
 
 var
-   DrawnList : PDrawnList;
+   DrawnList : TDrawnList;
    Buffer : Record                         { Union for byte and word addressing of buffer }
      ByteIndex : Word;
      WordIndex : Word;
@@ -297,11 +298,6 @@ var
      End;
 
   s1, s2, s3 : PWordArray;                { Three buffers for scanlines                 }
-{$ifdef FPC_GRAPH_SUPPORTS_TRUECOLOR}
-  sl1 : PLongWordArray absolute s1;
-  sl2 : PLongWordArray absolute s2;
-  sl3 : PLongWordArray absolute s3;
-{$endif FPC_GRAPH_SUPPORTS_TRUECOLOR}
 
 
   Procedure PushPoint (x, y : smallint);
@@ -358,8 +354,8 @@ var
      temp^.x1 := x1;
      temp^.x2 := x2;
      temp^.y := y;
-     temp^.next := DrawnList^[y div YResDiv];
-     DrawnList^[y div YResDiv] := temp;
+     temp^.next := DrawnList[y div YResDiv];
+     DrawnList[y div YResDiv] := temp;
    end;
 
   {********************************************************}
@@ -379,7 +375,7 @@ var
     temp : PFloodLine;
    begin
     AlreadyDrawn := false;
-    temp := DrawnList^[y div YResDiv];
+    temp := DrawnList[y div YResDiv];
     while assigned(temp) do
       begin
         if (temp^.y = y) and
@@ -401,12 +397,12 @@ var
   {********************************************************}
   Procedure CleanUpDrawnList;
   var
-    l: smallint;
+    l: longint;
     temp1, temp2: PFloodLine;
   begin
-    for l := 0 to ViewHeight div YResDiv do
+    for l := 0 to high(DrawnList) do
       begin
-        temp1 := DrawnList^[l];
+        temp1 := DrawnList[l];
         while assigned(temp1) do
           begin
             temp2 := temp1;
@@ -417,7 +413,7 @@ var
   end;
 
 
-  Procedure FloodFill (x, y : smallint; Border: ColorType);
+  Procedure FloodFill (x, y : smallint; Border: word);
   {********************************************************}
   { Procedure FloodFill()                                  }
   {--------------------------------------------------------}
@@ -431,47 +427,26 @@ var
    Beginx : smallint;
    d, e : Byte;
    Cont : Boolean;
-   BackupColor : ColorType;
+   BackupColor : Word;
    x1, x2, prevy: smallint;
-   SBufferSize, DrawnListSize: SizeUInt;
   Begin
-    If (x<0) Or (y<0) Or
-       (x>ViewWidth) Or (y>ViewHeight) then Exit;
-    DrawnListSize:=sizeof(PFloodLine)*((ViewHeight div YResDiv) + 1);
-    { MaxX is based on zero index }
-{$ifdef FPC_GRAPH_SUPPORTS_TRUECOLOR}
-    if MaxColor > 65536 then
-      SBufferSize := (ViewWidth+1)*4   { A pixel color is represented by a longword }
-    else
-{$endif FPC_GRAPH_SUPPORTS_TRUECOLOR}
-      SBufferSize := (ViewWidth+1)*2;  { A pixel color is represented by a word }
-    DrawnList:=nil;
-    s1:=nil;
-    s2:=nil;
-    s3:=nil;
-    GetMem(DrawnList,DrawnListSize);
-    GetMem (s1,SBufferSize);
-    GetMem (s2,SBufferSize);
-    GetMem (s3,SBufferSize);
-    if (not assigned(DrawnList)) or (not assigned(s1)) or (not assigned(s2)) or (not assigned(s3)) then
-      begin
-        _GraphResult := grNoFloodMem;
-        if assigned(s1) then
-          System.FreeMem (s1,SBufferSize);
-        if assigned(s2) then
-          System.FreeMem (s2,SBufferSize);
-        if assigned(s3) then
-          System.FreeMem (s3,SBufferSize);
-        if assigned(DrawnList) then
-          System.FreeMem(DrawnList,DrawnListSize);
-        exit;
-      end;
-    FillChar(DrawnList^,DrawnListSize,0);
+    FillChar(DrawnList,sizeof(DrawnList),0);
     { init prevy }
     prevy := 32767;
     { Save current drawing color }
     BackupColor := CurrentColor;
     CurrentColor := FillSettings.Color;
+    { MaxX is based on zero index }
+    GetMem (s1,(ViewWidth+1)*2);  { A pixel color represents a word }
+    GetMem (s2,(ViewWidth+1)*2);  { A pixel color represents a word }
+    GetMem (s3,(ViewWidth+1)*2);  { A pixel color represents a word }
+    if (not assigned(s1)) or (not assigned(s2)) or (not assigned(s3)) then
+      begin
+        _GraphResult := grNoFloodMem;
+        exit;
+      end;
+    If (x<0) Or (y<0) Or
+       (x>ViewWidth) Or (y>ViewHeight) then Exit;
     { Index of points to check  }
     Buffer.WordIndex:=0;
     PushPoint (x,y);
@@ -510,82 +485,38 @@ var
          end;
        prevy := y;
        { check the current scan line }
-{$ifdef FPC_GRAPH_SUPPORTS_TRUECOLOR}
-       if MaxColor > 65536 then
-       begin
-         While (sl1^[x]<>Border) And (x<=ViewWidth) Do Inc (x);
-       end
-       else
-{$endif FPC_GRAPH_SUPPORTS_TRUECOLOR}
-       begin
-         While (s1^[x]<>Border) And (x<=ViewWidth) Do Inc (x);
-       end;
+       While (s1^[x]<>Border) And (x<=ViewWidth) Do Inc (x);
        d:=0;
        e:=0;
        dec(x);
        Beginx:=x;
-{$ifdef FPC_GRAPH_SUPPORTS_TRUECOLOR}
-       if MaxColor > 65536 then
-       begin
-         REPEAT
-           { check the above line }
-           If y<ViewHeight then
-             Begin
-                Cont:=(sl3^[x]<>Border) and (not AlreadyDrawn(x,y+1));
-                If (e=0) And Cont then
-                  Begin
-                    PushPoint (x,y+1);
-                    e:=1;
-                  End
-                Else
-                  If (e=1) And Not Cont then e:=0;
-             End;
-          { check the line below }
-          If (y>0) then
-            Begin
-              Cont:=(sl2^[x]<>Border) and (not AlreadyDrawn(x,y-1));
-              If (d=0) And Cont then
+       REPEAT
+         { check the above line }
+         If y<ViewHeight then
+           Begin
+              Cont:=(s3^[x]<>Border) and (not AlreadyDrawn(x,y+1));
+              If (e=0) And Cont then
                 Begin
-                  PushPoint (x,y-1);
-                  d:=1;
+                  PushPoint (x,y+1);
+                  e:=1;
                 End
               Else
-                If (d=1) And Not Cont then d:=0;
-            End;
-          Dec (x);
-         Until (x<0) Or (sl1^[x]=Border);
-       end
-       else
-{$endif FPC_GRAPH_SUPPORTS_TRUECOLOR}
-       begin
-         REPEAT
-           { check the above line }
-           If y<ViewHeight then
-             Begin
-                Cont:=(s3^[x]<>Border) and (not AlreadyDrawn(x,y+1));
-                If (e=0) And Cont then
-                  Begin
-                    PushPoint (x,y+1);
-                    e:=1;
-                  End
-                Else
-                  If (e=1) And Not Cont then e:=0;
-             End;
-          { check the line below }
-          If (y>0) then
-            Begin
-              Cont:=(s2^[x]<>Border) and (not AlreadyDrawn(x,y-1));
-              If (d=0) And Cont then
-                Begin
-                  PushPoint (x,y-1);
-                  d:=1;
-                End
-              Else
-                If (d=1) And Not Cont then d:=0;
-            End;
-          Dec (x);
-         Until (x<0) Or (s1^[x]=Border);
-       end;
+                If (e=1) And Not Cont then e:=0;
+           End;
+        { check the line below }
+        If (y>0) then
+          Begin
+            Cont:=(s2^[x]<>Border) and (not AlreadyDrawn(x,y-1));
+            If (d=0) And Cont then
+              Begin
+                PushPoint (x,y-1);
+                d:=1;
+              End
+            Else
+              If (d=1) And Not Cont then d:=0;
+          End;
+        Dec (x);
+       Until (x<0) Or (s1^[x]=Border);
        { swap the values }
        x1:=x+1;
        x2:=BeginX;
@@ -600,13 +531,14 @@ var
        PatternLine (x1,x2,y);
      End; { end while }
 
-    System.FreeMem (s1,SBufferSize);
-    System.FreeMem (s2,SBufferSize);
-    System.FreeMem (s3,SBufferSize);
+    System.FreeMem (s1,(ViewWidth+1)*2);
+    System.FreeMem (s2,(ViewWidth+1)*2);
+    System.FreeMem (s3,(ViewWidth+1)*2);
     CleanUpDrawnList;
-    System.FreeMem(DrawnList,DrawnListSize);
     CurrentColor := BackUpColor;
   End;
 
 { restore previous range check mode }
-{$pop}
+{$ifdef OPT_R_WAS_ON}
+{$R+}
+{$endif}

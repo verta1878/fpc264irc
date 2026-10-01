@@ -208,8 +208,10 @@ end;
        { bit 0..7 only which are considered }
        { signed values.                     }
 { disable range check mode }
-{$push}
+{$ifopt R+}
+{$define OPT_R_WAS_ON}
 {$R-}
+{$endif}
        b1:=b1 and $7f;
        b2:=b2 and $7f;
        { Now if the MSB of these values are set }
@@ -220,20 +222,16 @@ end;
        x:=smallint(b1);
        y:=smallint(b2);
 { restore previous range check mode }
-{$pop}
+{$ifdef OPT_R_WAS_ON}
+{$R+}
+{$endif}
      end;
 
 
     function unpack(buf: pchar; index: smallint; var Stroke: TStrokes): smallint;
 
      var
-{$ifdef CPU16}
-      { TStrokes is too big for small MSDOS Stacks,
-        use individual TStroke instead }
-      spo : TStroke; 
-{$else}
       po: TStrokes;
-{$endif}
       num_ops: smallint;
       opcode, i, opc: word;
       counter: smallint;
@@ -257,20 +255,12 @@ end;
 
        for i:=0 to num_ops-1 do    {    /* For each opcode in buffer    */ }
          Begin
-{$ifdef CPU16}
-           opc := decode(buf[counter], buf[counter+1], Stroke[lindex].x, Stroke[lindex].y);  {* Decode the data field   *}
-           inc(counter,2);
-	   Stroke[lindex].opcode := opc;
-{$else}
            opc := decode(buf[counter], buf[counter+1], po[lindex].x, po[lindex].y);  {* Decode the data field   *}
            inc(counter,2);
            po[lindex].opcode := opc;      {* Save the opcode            *}
-{$endif}
            Inc(lindex);
          end;
-{$ifndef CPU16}
        Stroke:=po;
-{$endif}
        unpack := num_ops;       {* return OPS count             *}
      end;
 
@@ -466,7 +456,6 @@ end;
          curX2, curY2, xpos2, ypos2, x2, y2: graph_float;
          oldvalues     : linesettingstype;
          fontbitmap    : TBitmapChar;
-         fontbitmapbyte: byte;
          chr           : char;
          curx2i,cury2i,
          xpos2i,ypos2i : longint;
@@ -498,17 +487,11 @@ end;
                      if CharSize = 1 then
                       Begin
                         for j:=0 to 7 do
-                          begin
-                            fontbitmapbyte:=Fontbitmap[j];
-                            for k:=0 to 7 do
-                              begin
-                                if (fontbitmapbyte and $80)<>0 then
-                                  PutPixel(xpos+k,j+y,CurrentColor)
-                                else if DrawTextBackground then
-                                  PutPixel(xpos+k,j+y,CurrentBkColor);
-                                fontbitmapbyte:=byte(fontbitmapbyte shl 1);
-                              end;
-                          end;
+                           for k:=0 to 7 do
+                             if Fontbitmap[j,k]<>0 then
+                               PutPixel(xpos+k,j+y,CurrentColor)
+                             else if DrawTextBackground then
+                               PutPixel(xpos+k,j+y,CurrentBkColor);
                       end
                      else
                       { perform scaling of bitmap font }
@@ -523,19 +506,17 @@ end;
                            begin
                              k:=0;
                              cnt2 := 0;
-                             fontbitmapbyte:=Fontbitmap[j];
                              while k <= 7  do
                                 begin
                                   for cnt1 := 0 to charsize-1 do
                                     begin
-                                       If (fontbitmapbyte and $80) <> 0 then
+                                       If FontBitmap[j,k] <> 0 then
                                            PutPixel(xpos+cnt1+cnt2,y+cnt3+cnt4,CurrentColor)
                                        else if DrawTextBackground then
                                            PutPixel(xpos+cnt1+cnt2,y+cnt3+cnt4,CurrentBkColor);
                                     end;
-                                  Inc(k);
-                                  Inc(cnt2,charsize);
-                                  fontbitmapbyte:=byte(fontbitmapbyte shl 1);
+                                    Inc(k);
+                                    Inc(cnt2,charsize);
                                 end;
                            end;
                           Inc(j);
@@ -558,17 +539,11 @@ end;
                 if CharSize = 1 then
                  Begin
                    for j:=0 to 7 do
-                     begin
-                       fontbitmapbyte:=Fontbitmap[j];
-                       for k:=0 to 7 do
-                         begin
-                           if (fontbitmapbyte and $80) <> 0 then
-                             PutPixel(xpos+j,ypos-k,CurrentColor)
-                           else if DrawTextBackground then
-                             PutPixel(xpos+j,ypos-k,CurrentBkColor);
-                           fontbitmapbyte:=byte(fontbitmapbyte shl 1);
-                         end;
-                     end;
+                      for k:=0 to 7 do
+                        if Fontbitmap[j,k] <> 0 then
+                          PutPixel(xpos+j,ypos-k,CurrentColor)
+                        else if DrawTextBackground then
+                          PutPixel(xpos+j,ypos-k,CurrentBkColor);
                  end
                 else
                  { perform scaling of bitmap font }
@@ -583,19 +558,17 @@ end;
                       begin
                         k:=0;
                         cnt2 := 0;
-                        fontbitmapbyte:=Fontbitmap[j];
                         while k<=7  do
                            begin
                              for cnt1 := 0 to charsize-1 do
                                begin
-                                  If (fontbitmapbyte and $80) <> 0 then
+                                  If FontBitmap[j,k] <> 0 then
                                     PutPixel(xpos+cnt3-cnt4,ypos+cnt1-cnt2,CurrentColor)
                                   else if DrawTextBackground then
                                     PutPixel(xpos+cnt3-cnt4,ypos+cnt1-cnt2,CurrentBkColor);
                                end;
-                             Inc(k);
-                             Inc(cnt2,charsize);
-                             fontbitmapbyte:=byte(fontbitmapbyte shl 1);
+                               Inc(k);
+                               Inc(cnt2,charsize);
                            end;
                       end;
                      Inc(j);
@@ -816,10 +789,14 @@ end;
          if (font>DefaultFont) and not assigned(fonts[font].instr) then
            begin
               assign(f,bgipath+fonts[font].name+'.CHR');
-{$push}
+{$ifopt I+}
+{$define IOCHECK_WAS_ON}
 {$i-}
+{$endif}
               reset(f,1);
-{$pop}
+{$ifdef IOCHECK_WAS_ON}
+{$i+}
+{$endif}
               if ioresult<>0 then
                 begin
                    _graphresult:=grFontNotFound;
