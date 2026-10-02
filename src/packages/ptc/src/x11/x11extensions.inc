@@ -5,3 +5,5 @@
 {$DEFINE ENABLE_X11_EXTENSION_XF86DGA2}
 {$DEFINE ENABLE_X11_EXTENSION_XSHM}
 {$DEFINE ENABLE_X11_EXTENSION_GLX}
+{ fpc264irc: XInput2 off -- needs newer x/xlib (GenericEvent, xcookie) than the 2.6.4 x11 units }
+{.$DEFINE ENABLE_X11_EXTENSION_XINPUT2}

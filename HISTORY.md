@@ -132,6 +132,18 @@ i386-os2          ppc386         219    complete (native -Tos2, all target 0x04)
 x86_64-freebsd    ppc386          19    partial (needs full RTL cross-build)
 ```
 
+## Graph 3.0.4 backport (2026-10-02)
+
+```
+graph package   FPC 2.6.4 -> 3.0.4 (old tree in attic/graph-2.6.4), OS/2 PM backend kept
+ptc             0.99.14 -> 0.99.15 (old tree in attic/ptc-0.99.14), 3 patches (keysyms, XInput2 off, go32 DPMI calls)
+new units       ptcgraph/ptccrt/ptcmouse on win32, win64, i386-linux; wincrt/winmouse on win32;
+                ggigraph on i386/x86_64 linux + freebsd; sdlgraph on i386 win32/linux/freebsd/darwin; ptc on go32v2
+tests           25/25 compile; runtime OK in DOSBox (go32v2 graph + ptc), Wine (win32/win64), Xvfb (i386/x86_64-linux)
+known           sdlgraph crashes at first PutPixel (2.6.4 sdlgraph too); .ppu only, no .o
+kit             tools/graph-304-build/ (build-all.sh, test-all.sh, README.md, test-results.txt)
+```
+
 ## Key Binaries
 
 ```
@@ -149,7 +161,7 @@ bin/ppcross8086    4.4 MB   i8086 cross-compiler (MZ linker built in)
 | bob         | OpenWatcom2 x64 |
 | evga        | Display, SIO |
 | kiddo       | Protocols, serial IRQ |
-| wrench      | Transport, FOSSIL, DVI/HDMI |
+| wrench      | Transport, FOSSIL, serial com routines + add-on boards |
 | hexadecimal | PCBoard, Cyclades |
 | DotMatrix   | Documentation sourcing |
 | byte        | Program discovery |

@@ -16,3 +16,11 @@
 The 29 core RTL PPUs are native OS/2 (target 0x04) — correct per sysop/0.
 The 179 package PPUs are EMX (target 0x1C) — build error.
 Fix: rebuild 179 package PPUs with -Tos2. graph.pp recompile with -Tos2 after.
+
+# Graph 3.0.4 backport — 2026-10-02, byte
+
+Sources now FPC 3.0.4 (graph) + ptc 0.99.15; OS/2 PM backend unchanged. Compile tests 25/25 PASS
+(graph x8, ptcgraph x4, ggigraph x4, sdlgraph x4, ptc x5). Runtime — see tools/graph-304-build/test-results.txt:
+go32v2 graph + ptc OK in DOSBox; ptcgraph OK on win32/win64 (Wine) and i386/x86_64-linux (Xvfb);
+win32/win64 graph VGA + 256-colour OK (no hi-colour, same as 2.6.4); i386-linux sdlgraph crashes at the
+first PutPixel — the 2.6.4 sdlgraph does the same.

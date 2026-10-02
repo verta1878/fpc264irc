@@ -2,8 +2,6 @@
 {$mode objfpc}{$H+}
 program fpmake;
 
-// Note this package is currently not compiled and a mess.
-
 uses fpmkunit;
 
 Var
@@ -16,38 +14,55 @@ begin
 
     P:=AddPackage('ptc');
 {$ifdef ALLPACKAGES}
-    P.Directory:='ptc';
+    P.Directory:=ADirectory;
 {$endif ALLPACKAGES}
-    P.Version:='2.6.4';
+    P.Version:='3.0.4';
 
     P.Author := 'Nikolay Nikolov, Glenn Fiedler, Christian Nentwich';
     P.License := 'LGPL with modification, ';
     P.HomepageURL := 'http://ptcpas.sourceforge.net/';
     P.Description := 'A free, portable framebuffer library.';
-    p.OSes:=[linux,win32,win64];
+    p.OSes:=[linux,win32,win64,go32v2];
 
     P.SourcePath.Add('src');
     P.SourcePath.Add('src/ptcwrapper');
-    P.IncludePath.Add('src');
-    P.IncludePath.Add('src/dos',[go32v2]);
-    P.IncludePath.Add('src/dos/base',[go32v2]);
+    P.SourcePath.Add('src/win32/directx', [win32, win64]);
+    P.SourcePath.Add('src/dos/base',[go32v2]);
     P.SourcePath.Add('src/dos/cga',[go32v2]);
-    P.SourcePath.Add('src/dos/fakemode',[go32v2]);
     P.SourcePath.Add('src/dos/textfx2',[go32v2]);
     P.SourcePath.Add('src/dos/timeunit',[go32v2]);
     P.SourcePath.Add('src/dos/vesa',[go32v2]);
+    P.SourcePath.Add('src/dos/vga',[go32v2]);
+    P.IncludePath.Add('src');
+    P.IncludePath.Add('src/core');
+    P.IncludePath.Add('src/dos',[go32v2]);
+    P.IncludePath.Add('src/dos/base',[go32v2]);
     P.IncludePath.Add('src/dos/cga',[go32v2]);
-    P.IncludePath.Add('src/dos/fakemode',[go32v2]);
     P.IncludePath.Add('src/dos/textfx2',[go32v2]);
     P.IncludePath.Add('src/dos/timeunit',[go32v2]);
     P.IncludePath.Add('src/dos/vesa',[go32v2]);
+    P.IncludePath.Add('src/dos/vga',[go32v2]);
     P.IncludePath.Add('src/win32',[win32,win64]);
+    P.IncludePath.Add('src/win32/base', [win32, win64]);
+    P.IncludePath.Add('src/win32/directx', [win32, win64]);
+    P.IncludePath.Add('src/win32/gdi', [win32, win64]);
     P.IncludePath.Add('src/wince',[wince]);
     P.IncludePath.Add('src/x11',AllUnixOSes);
 
   P.Dependencies.Add('hermes');
-  P.Dependencies.Add('x11');
+  P.Dependencies.Add('x11',AllUnixOSes);
+  P.Dependencies.Add('opengl',AllUnixOSes + [win32, win64]);
   P.Dependencies.Add('fcl-base');
+  p.Dependencies.Add('rtl-console');
+
+  T:=P.Targets.AddUnit('p_ddraw.pp', [win32, win64]);
+
+  T:=P.Targets.AddUnit('mouse33h.pp',[go32v2]);
+  T:=P.Targets.AddUnit('textfx2.pp',[go32v2]);
+  T:=P.Targets.AddUnit('cga.pp',[go32v2]);
+  T:=P.Targets.AddUnit('timeunit.pp',[go32v2]);
+  T:=P.Targets.AddUnit('vesa.pp',[go32v2]);
+  T:=P.Targets.AddUnit('vga.pp',[go32v2]);
 
   T:=P.Targets.AddUnit('ptc.pp');
   with T.Dependencies do
@@ -116,9 +131,6 @@ begin
       AddInclude('x11unikey.inc',allunixoses);
       AddInclude('x11windowdisplayd.inc',allunixoses);
       AddInclude('x11windowdisplayi.inc',allunixoses);
-      AddInclude('x11dga1displayi.inc',allunixoses);
-      AddInclude('x11dga2displayi.inc',allunixoses);
-      AddInclude('x11consolei.inc',allunixoses);
       AddInclude('win32cursor.inc', [win32, win64]);
       AddInclude('win32cursord.inc', [win32, win64]);
       AddInclude('win32cursormoded.inc', [win32, win64]);
@@ -158,13 +170,27 @@ begin
       AddInclude('win32modesetteri.inc', [win32, win64]);
       AddInclude('win32openglwindowd.inc', [win32, win64]);
       AddInclude('win32openglwindowi.inc', [win32, win64]);
-      AddUnit('directdr',[Win32,win64]);
+      AddUnit('p_ddraw', [win32, win64]);
+      AddInclude('includes.inc', [go32v2]);
+      AddInclude('kbd.inc', [go32v2]);
+      AddInclude('kbdd.inc', [go32v2]);
+      AddInclude('moused.inc', [go32v2]);
+      AddInclude('mousei.inc', [go32v2]);
+      AddInclude('cgaconsoled.inc', [go32v2]);
+      AddInclude('cgaconsolei.inc', [go32v2]);
+      AddInclude('textfx2consoled.inc', [go32v2]);
+      AddInclude('textfx2consolei.inc', [go32v2]);
+      AddInclude('vesaconsoled.inc', [go32v2]);
+      AddInclude('vesaconsolei.inc', [go32v2]);
+      AddInclude('vgaconsoled.inc', [go32v2]);
+      AddInclude('vgaconsolei.inc', [go32v2]);
       AddUnit('p_gx',[Wince]);
-      AddUnit('textfx2',[Go32v2]);
-      AddUnit('cga',[Go32v2]);
-      AddUnit('timeunit',[Go32v2]);
-      AddUnit('vesa',[Go32v2]);
-      AddUnit('vga',[Go32v2]);
+      AddUnit('mouse33h',[go32v2]);
+      AddUnit('textfx2',[go32v2]);
+      AddUnit('cga',[go32v2]);
+      AddUnit('timeunit',[go32v2]);
+      AddUnit('vesa',[go32v2]);
+      AddUnit('vga',[go32v2]);
      end;
     T:=P.Targets.AddUnit('ptceventqueue.pp');
     with T.Dependencies do
@@ -199,18 +225,15 @@ begin
     P.Targets.AddExampleProgram('fire.pp');
     P.Targets.AddExampleProgram('mojo.pp');
     P.Targets.AddExampleProgram('land.pp');
-    P.Targets.AddExampleProgram('keybrd2.pp');
+    P.Targets.AddExampleProgram('keyboard2.pp');
+    P.Targets.AddExampleProgram('keyboard3.pp');
     P.Targets.AddExampleProgram('clear.pp');
     P.Targets.AddExampleProgram('con_info.pp');
     P.Targets.AddExampleProgram('area.pp');
     P.Targets.AddExampleProgram('tunnel3d.pp');
-    // 'Makefile
-    // 'stretch.tga
-    // 'Makefile.fpc
-    // 'mojo.raw
-    // 'tunnel3d.raw
-    // 'image.tga
-
+    P.Targets.AddExampleProgram('ptcgl.pp', AllUnixOSes + [win32, win64]);
+    P.Targets.AddExampleProgram('ptcgl2.pp', AllUnixOSes + [win32, win64]);
+    P.Sources.AddExampleFiles('examples/*',P.Directory,false,'.');
 
 {$ifndef ALLPACKAGES}
     Run;
