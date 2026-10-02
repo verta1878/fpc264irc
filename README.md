@@ -109,7 +109,16 @@ ppcross8086 -Tmsdos -WmHuge -Wh -XX -Fubin/units/i8086-msdos-huge myapp.pas
 ```
 
 113 pre-compiled units included: system, dos, crt, objects, strings,
-sysutils, classes, mouse, keyboard, video, graph, and more.
+sysutils, classes, mouse, keyboard, video, and more.
+
+**Graph (BGI-style):** `graph` unit for Medium, Large and Huge models
+(plus the default `i8086-msdos` set). CGA, EGA, VGA, mode 13h and VESA
+(256-colour and hi-colour) — tested in DOSBox. Not available for Tiny,
+Small or Compact: graph + RTL does not fit in one 64KB code segment.
+```
+ppcross8086 -Tmsdos -WmLarge -XX -Fubin/units/i8086-msdos-large myapp.pas
+```
+Build kit and test results: `tools/i8086-graph-build/`.
 
 Works with: IBM PC/XT/AT, Tandy, PCjr, DOSBox, 86Box, real hardware.
 Output: 16-bit MZ .EXE (not NE, not PE, not DJGPP).

@@ -1,0 +1,8 @@
+accc6cb40a023532c1cd15f2edb5f42bd64b73527371538f26028879346eb574  bin/units/i8086-msdos-huge/graph.a
+d18c22c4622018dddbbb7e7e40936b0fd52ef28e7166d98c3c9f19736361d509  bin/units/i8086-msdos-huge/graph.ppu
+a1f35128563f1954edb78a1b079dad603ebf28e079d826d8495fb61cf683fe56  bin/units/i8086-msdos-large/graph.a
+54aa7f89c2c524b0b2c358b1a75f8548ef6940d46d96181cf8a6a98b687ab096  bin/units/i8086-msdos-large/graph.ppu
+1316623ccb164695c4d11e40337fb68ec83d77223d0b8d5e8ca42cac57228ef7  bin/units/i8086-msdos-medium/graph.a
+d90e3de1a29a971e3469e2e0285c33fd98e3ef59710fd97857e03771499cf242  bin/units/i8086-msdos-medium/graph.ppu
+accc6cb40a023532c1cd15f2edb5f42bd64b73527371538f26028879346eb574  bin/units/i8086-msdos/graph.a
+cc115b1e74f9e84368827d91b137f22ddc67689907f584eaaeb5aac68a0b7b42  bin/units/i8086-msdos/graph.ppu

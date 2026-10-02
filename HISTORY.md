@@ -126,6 +126,7 @@ i386-win32        ppc386       1,521    complete
 x86_64-win64      ppcx64       1,012    complete
 i386-go32v2       ppc386         308    complete
 i8086-msdos       ppcross8086    132    compile ok, link needs rebuilt ppcross8086
+  + graph         ppcross8086      4    medium/large/huge + default set (FPC 3.2.2 msdos backend, DOSBox-tested)
 i386-darwin       ppc386          —     complete
 i386-os2          ppc386         219    complete (native -Tos2, all target 0x04)
 x86_64-freebsd    ppc386          19    partial (needs full RTL cross-build)
