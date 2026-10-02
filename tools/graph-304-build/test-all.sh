@@ -6,8 +6,9 @@
 K=$(cd $(dirname $0) && pwd); R=${R:-$(cd $K/../.. && pwd)}; W=$K/testrun; rm -rf $W; mkdir -p $W
 V=$W/units; for t in $(ls $K/out); do mkdir -p $V/$t; cp -a $R/bin/units/$t/. $V/$t/; cp $K/out/$t/*.ppu $K/out/$t/*.o $K/out/$t/*.a $V/$t/ 2>/dev/null; done
 TS=$R/src/packages/graph/tests
+chmod +x $R/bin/ppc386 $R/bin/ppcx64 $R/bin/tools/*/* 2>/dev/null   # git from Windows drops the exec bit
 export WINEPREFIX=/root/.wine WINEDEBUG=-all SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy
-XV='xvfb-run -a -s "-screen 0 1024x768x24"'
+XV='xvfb-run -a -s "-screen 0 1280x1024x24"'
 pc(){ case $1 in i386-*) echo $R/bin/ppc386;; *) echo $R/bin/ppcx64;; esac; }
 echo "## compile tests"
 for x in i386-go32v2:graphtest i386-win32:graphtest x86_64-win64:graphtest i386-linux:graphtest i386-freebsd:graphtest x86_64-freebsd:graphtest i386-darwin:graphtest i386-os2:graphtest \
@@ -23,7 +24,7 @@ done
 echo "## runtime tests"
 run_win(){ t=$1; k=$2; D=$W/r-$t-$k; mkdir -p $D; d=""; [ $k = ptc ] && d=-dPTC
   $(pc $t) -T${t#*-} $d -n -FU$D -FE$D -Fu$V/$t $TS/rtest.pp > $D/L 2>&1 || { echo "$t $k: LINK FAIL"; return; }
-  (cd $D; : > RESULT.TXT; for m in 1 2 3; do eval timeout 60 $XV wine rtest.exe $m >/dev/null 2>&1; done; echo "$t $k (Wine):"; tr -d '\r' < RESULT.TXT | sed 's/^/   /'); }
+  (cd $D; : > RESULT.TXT; eval timeout 90 $XV wine rtest.exe >/dev/null 2>&1; echo "$t $k (Wine, all modes in one process):"; tr -d '\r' < RESULT.TXT | sed 's/^/   /'); }
 run_lin(){ t=$1; D=$W/r-$t-ptc; mkdir -p $D; fl="-Fl/usr/lib/x86_64-linux-gnu"; [ $t = i386-linux ] && fl="-Fl$K/lib32 -Fl/usr/lib/i386-linux-gnu -Fl/usr/lib32"
   $(pc $t) -Tlinux -dPTC -n -FU$D -FE$D -Fu$V/$t $fl $TS/rtest.pp > $D/L 2>&1 || { echo "$t ptc: LINK FAIL"; return; }
   (cd $D; eval timeout 60 $XV ./rtest >/dev/null 2>&1; echo "$t ptc (Xvfb):"; sed 's/^/   /' RESULT.TXT); }

@@ -239,7 +239,9 @@ end;
 
 procedure TDirectXDisplay.Open;
 begin
-  FreeAndNil(FMode);
+  { fpc264irc: FMode is an IPTCMode interface - FreeAndNil on it called Free through
+    the interface pointer and crashed the 2nd open (InitGraph after CloseGraph hung) }
+  FMode := nil;
   FMode := TPTCMode.Create;
   FOpen := True;
   LOG('opening windowed display');

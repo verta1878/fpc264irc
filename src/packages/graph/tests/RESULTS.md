@@ -24,3 +24,14 @@ Sources now FPC 3.0.4 (graph) + ptc 0.99.15; OS/2 PM backend unchanged. Compile 
 go32v2 graph + ptc OK in DOSBox; ptcgraph OK on win32/win64 (Wine) and i386/x86_64-linux (Xvfb);
 win32/win64 graph VGA + 256-colour OK (no hi-colour, same as 2.6.4); i386-linux sdlgraph crashes at the
 first PutPixel — the 2.6.4 sdlgraph does the same.
+
+## Fixes — 2026-10-02 (later), byte
+
+- sdlgraph: the crash was SDL_SetVideoMode returning nil — SDL 1.2 has no 4bpp surfaces and every 16-colour mode asked for 4.
+  Now 8bpp palettised; SDL failures set GraphResult; PutPixel uses the colour (was always 255); palette routines implemented;
+  FPU exceptions masked around SDL calls (modern Linux SDL 1.2 is sdl12-compat on SDL2 + Mesa, which raised SIGFPE).
+  i386-linux sdlgraph under Xvfb: VGA-Hi, 8bit-640, 16bit-640 all OK in one process, putpix/line/bar read back 5/14/3.
+- ptcgraph on win32/win64: second InitGraph after CloseGraph hung. Cause: ptc `TDirectXDisplay.Open` called FreeAndNil on
+  the `IPTCMode` interface field, the ptc thread died with an access violation, InitGraph waited forever. Fixed (`FMode := nil`);
+  Wine runs all 3 modes in one process now. Not Wine-specific — it would hang on real Windows too.
+- test-all.sh: sets the exec bit on bin/ppc* and bin/tools/*/* (git from Windows drops it), Xvfb screen 1280x1024.

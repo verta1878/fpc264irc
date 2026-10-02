@@ -136,11 +136,13 @@ x86_64-freebsd    ppc386          19    partial (needs full RTL cross-build)
 
 ```
 graph package   FPC 2.6.4 -> 3.0.4 (old tree in attic/graph-2.6.4), OS/2 PM backend kept
-ptc             0.99.14 -> 0.99.15 (old tree in attic/ptc-0.99.14), 3 patches (keysyms, XInput2 off, go32 DPMI calls)
+ptc             0.99.14 -> 0.99.15 (old tree in attic/ptc-0.99.14), 4 patches (keysyms, XInput2 off, go32 DPMI calls, DirectX re-open)
 new units       ptcgraph/ptccrt/ptcmouse on win32, win64, i386-linux; wincrt/winmouse on win32;
                 ggigraph on i386/x86_64 linux + freebsd; sdlgraph on i386 win32/linux/freebsd/darwin; ptc on go32v2
 tests           25/25 compile; runtime OK in DOSBox (go32v2 graph + ptc), Wine (win32/win64), Xvfb (i386/x86_64-linux)
-known           sdlgraph crashes at first PutPixel (2.6.4 sdlgraph too); .ppu only, no .o
+fixes 10-02     sdlgraph made usable (4bpp->8bpp, nil-surface checks, real colours + palette, FPU mask for sdl12-compat);
+                ptc DirectX FreeAndNil-on-interface fixed (InitGraph after CloseGraph hung on win32/win64)
+known           win32/win64 GDI graph has no hi-colour modes (same as 2.6.4); .ppu only, no .o
 kit             tools/graph-304-build/ (build-all.sh, test-all.sh, README.md, test-results.txt)
 ```
 

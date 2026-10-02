@@ -35,24 +35,27 @@ i386-go32v2 ptc (DOSBox svga_s3):
    surface readback red=00FF0000 green=0000FF00
    close OK
    DONE
-i386-linux sdlgraph (Xvfb, SDL 1.2): exit 217
-   EAccessViolation : Access violation
-i386-win32 graph (Wine):
-   VGA-Hi   OK 640x480 maxcolor=15 putpix=5 line=14 bar=3
-   8bit-640 OK 640x480 maxcolor=255 putpix=5 line=14 bar=3
-   16bit-640 INIT FAIL -10 Invalid graphics mode
-   DONE
-i386-win32 ptc (Wine):
+i386-linux sdlgraph (Xvfb, SDL 1.2): exit 0
    VGA-Hi   OK 640x480 maxcolor=15 putpix=5 line=14 bar=3
    8bit-640 OK 640x480 maxcolor=255 putpix=5 line=14 bar=3
    16bit-640 OK 640x480 maxcolor=65535 putpix=5 line=14 bar=3
    DONE
-x86_64-win64 graph (Wine):
+i386-win32 graph (Wine, all modes in one process):
    VGA-Hi   OK 640x480 maxcolor=15 putpix=5 line=14 bar=3
    8bit-640 OK 640x480 maxcolor=255 putpix=5 line=14 bar=3
    16bit-640 INIT FAIL -10 Invalid graphics mode
    DONE
-x86_64-win64 ptc (Wine):
+i386-win32 ptc (Wine, all modes in one process):
+   VGA-Hi   OK 640x480 maxcolor=15 putpix=5 line=14 bar=3
+   8bit-640 OK 640x480 maxcolor=255 putpix=5 line=14 bar=3
+   16bit-640 OK 640x480 maxcolor=65535 putpix=5 line=14 bar=3
+   DONE
+x86_64-win64 graph (Wine, all modes in one process):
+   VGA-Hi   OK 640x480 maxcolor=15 putpix=5 line=14 bar=3
+   8bit-640 OK 640x480 maxcolor=255 putpix=5 line=14 bar=3
+   16bit-640 INIT FAIL -10 Invalid graphics mode
+   DONE
+x86_64-win64 ptc (Wine, all modes in one process):
    VGA-Hi   OK 640x480 maxcolor=15 putpix=5 line=14 bar=3
    8bit-640 OK 640x480 maxcolor=255 putpix=5 line=14 bar=3
    16bit-640 OK 640x480 maxcolor=65535 putpix=5 line=14 bar=3

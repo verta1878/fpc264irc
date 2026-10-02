@@ -153,6 +153,38 @@ const
 var
 screen: PSDL_Surface; //Global becouse its value is needed by some functions
 
+{ fpc264irc: FPC programs run with FPU exceptions unmasked, but modern Linux
+  ships SDL 1.2 as sdl12-compat on SDL2 + OpenGL (Mesa), which expects them
+  masked and dies with SIGFPE / EInvalidOp. Mask them while SDL runs its own
+  code; SDL threads created meanwhile (timer/flip) inherit the masked state. }
+{$ifdef cpui386}
+var
+  SavedCW : word;
+  SavedSSE : dword;
+  FPUMasked : boolean = false;
+
+procedure FPUMask;
+begin
+  if FPUMasked then exit;
+  SavedCW := Get8087CW;
+  SavedSSE := GetSSECSR;
+  Set8087CW(SavedCW or $3F);
+  SetSSECSR(SavedSSE or $1F80);
+  FPUMasked := true;
+end;
+
+procedure FPURestore;
+begin
+  if not FPUMasked then exit;
+  Set8087CW(SavedCW);
+  SetSSECSR(SavedSSE);
+  FPUMasked := false;
+end;
+{$else}
+procedure FPUMask; begin end;
+procedure FPURestore; begin end;
+{$endif}
+
 
 
 procedure CloseGraph;
@@ -163,7 +195,10 @@ begin
  exit;
  end;
    isgraphmode := false;
+   screen := nil;
+   FPUMask;
    SDL_Quit();
+   FPURestore;
  //Halt(0);   TODO: check, if it close application wich calls sdlgraph
 end;
 
@@ -226,7 +261,9 @@ begin
    if (Y < StartYViewPort) or (Y > (StartYViewPort + ViewHeight)) then
           exit;
    end;
- SDL_PutPixel(screen,x,y,255);
+ { fpc264irc: draw the requested colour (was hardwired 255) }
+ if screen<>nil then
+   SDL_PutPixel(screen,x,y,color);
  exit;
 
 end;
@@ -239,7 +276,10 @@ temp:word;
 begin
  X:= X + StartXViewPort;
  Y:= Y + StartYViewPort;
- temp:=word(SDL_GetPixel(screen,x,y));
+ if screen=nil then
+   temp:=0
+ else
+   temp:=word(SDL_GetPixel(screen,x,y));
  sdlgraph_GetPixel:=temp;
  exit;
 end;
@@ -364,17 +404,21 @@ end;
 }
 
 
-procedure InitSDLgraph(Width,Height,BPP:Integer);
+procedure sdlgraph_SetRGBpalette(ColorNum, RedValue, GreenValue, BlueValue: smallint); forward;
+
+procedure InitSDLgraphInner(Width,Height,BPP:Integer);
 var
  videoflags : Uint32;
  videoInfo : PSDL_VideoInfo;
  
  flip_callback_param:Pointer;
  flip_timer_id:PSDL_TimerID;
+ i : integer;
 begin
   if ( SDL_Init( SDL_INIT_TIMER or SDL_INIT_VIDEO ) < 0 ) then
   begin
     Log.LogError( Format( 'Could not initialize SDL : %s', [SDL_GetError] ), 'InitSDLgraph' );
+    _GraphResult := grNotDetected;
     exit;
   end;
 
@@ -385,7 +429,8 @@ begin
   if ( videoInfo = nil ) then
   begin
     Log.LogError( Format( 'Video query failed : %s', [SDL_GetError] ), 'InitSDLgraph' );
-    CloseGraph;
+    SDL_Quit;
+    _GraphResult := grNotDetected;
     exit;
   end;
 
@@ -406,26 +451,45 @@ begin
   videoflags := videoFlags or SDL_RESIZABLE;    // Enable window resizing    TODO: Do we want to have it in graph module?
 
 
+  { fpc264irc: SDL 1.2 has no 4bpp surfaces ("Unsupported bits-per-pixel"),
+    so the 16-colour modes use an 8bpp palettised surface instead. }
+  if BPP < 8 then
+    BPP := 8;
+
   if (SDL_VideoModeOK(Width,Height,BPP,videoFlags) = 0) then
      begin
      //TODO: create 1 string from parametres!
      //Log.LogError('InitSDLgraph: ',Width,'x',Height,'x',BPP,' - no such mode (also you may check videoflags in the sdlgraph unit (procedure InitSDLgraph)');
+     SDL_Quit;
+     _GraphResult := grInvalidMode;
      exit;
      end;
 
   screen := SDL_SetVideoMode(Width, Height, BPP, SDL_SWSURFACE );   // TODO: use videoflags but not SDL_SWSURFACE!
     
-//It doesn't work yet!
-{if ( surface = nil ) then
+  { fpc264irc: fail cleanly instead of drawing into a nil surface }
+  if ( screen = nil ) then
   begin
-    Log.LogError( Format( 'Unable to SetVideMode : %s', [SDL_GetError]), 'InitSDLgraph' );
-    InitSDLgraph:=false;
+    Log.LogError( Format( 'Unable to SetVideoMode : %s', [SDL_GetError]), 'InitSDLgraph' );
+    SDL_Quit;
+    _GraphResult := grInvalidMode;
     exit;
-    CloseGraph;
-  end;}
+  end;
+
+  { load the standard BGI palette into palettised surfaces }
+  if screen^.format^.BitsPerPixel = 8 then
+    for i := 0 to 255 do
+      sdlgraph_SetRGBpalette(i, DefaultColors[i].Red, DefaultColors[i].Green, DefaultColors[i].Blue);
 
 
 flip_timer_id := SDL_AddTimer(100,TSDL_NewTimerCallback( @timer_flip ), nil ); //TODO: time interval must be the same as monitor vertical refresh
+end;
+
+procedure InitSDLgraph(Width,Height,BPP:Integer);
+begin
+  FPUMask;
+  InitSDLgraphInner(Width,Height,BPP);
+  FPURestore;
 end;
 
 procedure sdlgraph_Init1280x1024x64k;
@@ -560,12 +624,33 @@ procedure restorestate;
   end;
 
 procedure sdlgraph_SetRGBpalette(ColorNum, RedValue, GreenValue, BlueValue: smallint);
-   begin
-   end;
+var
+  c : TSDL_Color;
+begin
+  { fpc264irc: was an empty stub }
+  if (screen=nil) or (screen^.format^.palette=nil) then
+    exit;
+  if (ColorNum<0) or (ColorNum>255) then
+    exit;
+  c.r:=byte(RedValue);
+  c.g:=byte(GreenValue);
+  c.b:=byte(BlueValue);
+  c.unused:=0;
+  SDL_SetColors(screen,@c,ColorNum,1);
+end;
 
 procedure sdlgraph_GetRGBpalette(ColorNum: smallint; var RedValue, GreenValue, BlueValue: smallint);
-   begin
-   end;
+begin
+  { fpc264irc: was an empty stub }
+  RedValue:=0; GreenValue:=0; BlueValue:=0;
+  if (screen=nil) or (screen^.format^.palette=nil) then
+    exit;
+  if (ColorNum<0) or (ColorNum>=screen^.format^.palette^.ncolors) then
+    exit;
+  RedValue:=screen^.format^.palette^.colors^[ColorNum].r;
+  GreenValue:=screen^.format^.palette^.colors^[ColorNum].g;
+  BlueValue:=screen^.format^.palette^.colors^[ColorNum].b;
+end;
 
 
 //END TODO

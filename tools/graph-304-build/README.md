@@ -12,6 +12,13 @@ graph and ptc fpmake files build for our targets.
   2. `src/x11/x11extensions.inc`: XInput2 off — needs a newer `x`/`xlib` (GenericEvent, xcookie). Core X input still works.
   3. `src/dos/vesa/go32_backport.inc` (included from `vesa.pp`): go32 routines added in FPC 3.0 —
      get/set_page_attributes (DPMI 0506h/0507h), free_linear_addr_mapping (0801h), get_dpmi_version (0400h).
+  4. `src/win32/directx/win32directxdisplay.inc`: `TDirectXDisplay.Open` did `FreeAndNil(FMode)` on an `IPTCMode`
+     interface, so the 2nd open (InitGraph after CloseGraph) crashed the ptc thread and InitGraph hung. Now `FMode := nil`.
+- `src/packages/graph/src/sdlgraph/sdlgraph.pp`: fpc264irc fixes (upstream sdlgraph was unusable) —
+  16-colour modes asked SDL 1.2 for 4bpp (not supported, SetVideoMode returned nil, first PutPixel crashed) → 8bpp palette;
+  SDL failures now set GraphResult instead of drawing into a nil surface; PutPixel drew colour 255 always → uses the colour;
+  SetRGBPalette/GetRGBPalette were empty → SDL_SetColors, default BGI palette loaded; FPU exceptions masked while SDL runs
+  (sdl12-compat on SDL2 + Mesa raised SIGFPE).
 - `patched-i386-linux/`: 2.6.4 `gl`, `glext`, `glx` + shim — the i386-linux `dynlibs.ppu` here lacks `FreeLibrary`/`GetProcAddress`.
 - `patched-sdl/`: 2.6.4 `sdlutils`, `logger` including a renamed `jedi-sdl-copy.inc`, so the prebuilt win32 `sdl.ppu` stays valid.
 
@@ -46,8 +53,8 @@ test-all.sh needs Xvfb, Wine, DOSBox, i386 X11 + SDL 1.2 libs, libc6-dev-i386 an
 - Compile: 25/25 (graph x8, ptcgraph x4, ggigraph x4, sdlgraph x4, ptc x5), nothing recompiled.
 - go32v2 graph in DOSBox: VGA, 640x480 256-colour, 640x480 hi-colour — all OK. go32v2 ptc in DOSBox: VESA console open, write, read back OK.
 - win32/win64 graph in Wine: VGA + 256-colour OK; hi-colour "Invalid graphics mode" (same as the old 2.6.4 unit).
-- win32/win64/i386-linux/x86_64-linux ptcgraph: all 3 modes OK (Wine runs one mode per process — a second InitGraph after CloseGraph hangs under Wine).
-- i386-linux sdlgraph: InitGraph OK, first PutPixel crashes. The old 2.6.4 sdlgraph built the same way crashes the same way, so this is not from the backport — sdlgraph needs its own fix.
+- win32/win64/i386-linux/x86_64-linux ptcgraph: all 3 modes OK, all in one process (InitGraph/CloseGraph re-init works — ptc patch 4).
+- i386-linux sdlgraph (Xvfb, SDL 1.2 / sdl12-compat): all 3 modes OK in one process, colours read back correctly.
 - Compile-only: freebsd, darwin, os2, svgalib graph on i386-linux, ggigraph (no libggi to run against).
 
 ## Not in 3.0.4 (next step: 3.2.x)
