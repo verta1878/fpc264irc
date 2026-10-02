@@ -1,0 +1,216 @@
+Run: Thu 10/01/2026 21:04:57.43
+fpc264irc repo cleanup
+=====================
+
+Removing build temp files...
+  ppas.sh, link.res, script.res
+
+Removing .o build artifacts from src/...
+  6 files from src/packages/usb and src/rtl/usb
+
+Removing installer build artifact...
+  installer/install.o
+
+Checking for stale PPUs in src/rtl/units and src/packages/*/units...
+  clean
+
+Checking for .s assembly temps outside bin/...
+
+Removing stale .o/.s from bin\units\i386-os2 (keeping prt0.o, prt1.o)...
+  del adler.o
+  del app.o
+  del asciitab.o
+  del base64.o
+  del bmpcomn.o
+  del character.o
+  del charconsts.o
+  del charset.o
+  del charsetcompat.o
+  del classes.o
+  del clipping.o
+  del colortxt.o
+  del contnrs.o
+  del convutil.o
+  del cpu.o
+  del crc.o
+  del crt.o
+  del ctypes.o
+  del dateutil.o
+  del dateutils.o
+  del dialogs.o
+  del dom.o
+  del dos.o
+  del doscalls.o
+  del drivers.o
+  del dtdmodel.o
+  del dynlibs.o
+  del editors.o
+  del eventlog.o
+  del exeinfo.o
+  del fgl.o
+  del fmtbcd.o
+  del fpcanvas.o
+  del fphttpclient.o
+  del fpimage.o
+  del fpimgcmn.o
+  del fpintres.o
+  del fpjson.o
+  del fpreadbmp.o
+  del fpreadpng.o
+  del fpwidestring.o
+  del fpwritebmp.o
+  del fpwritepng.o
+  del fvcommon.o
+  del fvconsts.o
+  del gadgets.o
+  del getopts.o
+  del gzio.o
+  del heaptrc.o
+  del histlist.o
+  del httpdefs.o
+  del infblock.o
+  del infcodes.o
+  del inffast.o
+  del inftrees.o
+  del infutil.o
+  del inplong.o
+  del iso7185.o
+  del jsonparser.o
+  del jsonscanner.o
+  del kbdcalls.o
+  del keyboard.o
+  del lineinfo.o
+  del lnfodwrf.o
+  del macpas.o
+  del math.o
+  del matrix.o
+  del md5.o
+  del memory.o
+  del menus.o
+  del mmx.o
+  del moncalls.o
+  del moucalls.o
+  del mouse.o
+  del msgbox.o
+  del nmpipes.o
+  del objects.o
+  del objpas.o
+  del openssl.o
+  del os2def.o
+  del outline.o
+  del paszlib.o
+  del pipes.o
+  del pmbidi.o
+  del pmbitmap.o
+  del pmdev.o
+  del pmgpi.o
+  del pmhelp.o
+  del pmshl.o
+  del pmspl.o
+  del pmstddlg.o
+  del pmwin.o
+  del pmwp.o
+  del pmwsock.o
+  del pngcomn.o
+  del ports.o
+  del printer.o
+  del process.o
+  del quecalls.o
+  del regexpr.o
+  del resolve.o
+  del resource.o
+  del rexxsaa.o
+  del rtlconst.o
+  del rtlconsts.o
+  del sax.o
+  del sesmgr.o
+  del seteuid_unit.o
+  del sha1.o
+  del so32dll.o
+  del sockets.o
+  del ssockets.o
+  del statuses.o
+  del stddlg.o
+  del strings.o
+  del strutils.o
+  del sysconst.o
+  del sysmsg.o
+  del system.o
+  del sysutils.o
+  del tabs.o
+  del tcp32dll.o
+  del time.o
+  del timeddlg.o
+  del trees.o
+  del types.o
+  del typinfo.o
+  del ucomplex.o
+  del unicodedata.o
+  del unicodenumtable.o
+  del unixcp.o
+  del uriparser.o
+  del utextmouse.o
+  del utrayit.o
+  del validate.o
+  del variants.o
+  del varutils.o
+  del video.o
+  del views.o
+  del viocalls.o
+  del winsock.o
+  del xmlread.o
+  del xmlutils.o
+  del xmlwrite.o
+  del zbase.o
+  del zcompres.o
+  del zdeflate.o
+  del zinflate.o
+  del zipper.o
+  del zstream.o
+  del zuncompr.o
+  del adler.s
+  del classes.s
+  del crc.s
+  del dateutils.s
+  del dos.s
+  del doscalls.s
+  del fgl.s
+  del gzio.s
+  del infblock.s
+  del infcodes.s
+  del inffast.s
+  del inftrees.s
+  del infutil.s
+  del math.s
+  del objpas.s
+  del rtlconsts.s
+  del serial.s
+  del strings.s
+  del strutils.s
+  del sysconst.s
+  del system.s
+  del sysutils.s
+  del test_serial.s
+  del trees.s
+  del types.s
+  del typinfo.s
+  del zbase.s
+  del zdeflate.s
+  del zinflate.s
+  del zipper.s
+  del zstream.s
+  removed 151 .o and 31 .s files
+  remaining .o in bin\units\i386-os2:
+prt0.o
+prt1.o
+  remaining .s in bin\units\i386-os2:
+
+Kept (not build artifacts):
+  sdk/emx/lib/*.o    — OS/2 EMX SDK objects (needed for cross-compile)
+  bin/**/*.o          — compiled unit objects (shipped with compiler)
+  bin/units/i386-os2/prt0.o, prt1.o — OS/2 startup code (linker needs them)
+  bin/**/*.ppu        — compiled units (shipped with compiler)
+  docs/bugsfixed-original-2026-10-01.md — attic copy of pre-consolidation bugs
+
+Done. Review with: git status
+Remember: never commit .o or .s files from src/ — only .ppu, .rst, .a and source.

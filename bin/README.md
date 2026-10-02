@@ -11,7 +11,7 @@ bin/
     ├── i386-freebsd/         # 159 PPUs (system.o patched for BUG-029)
     ├── i386-go32v2/          # 254 PPUs (system.o patched for BUG-029)
     ├── i386-darwin/          # 757 PPUs (Pascal decr_ref, no patch needed)
-    ├── i386-os2/             # 116 PPUs (Pascal decr_ref, no patch needed)
+    ├── i386-os2/             # 219 PPUs (native -Tos2; Pascal decr_ref, no patch needed)
     └── i8086-msdos/          # 42 PPUs
 ```
 

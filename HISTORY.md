@@ -127,7 +127,7 @@ x86_64-win64      ppcx64       1,012    complete
 i386-go32v2       ppc386         308    complete
 i8086-msdos       ppcross8086    132    compile ok, link needs rebuilt ppcross8086
 i386-darwin       ppc386          —     complete
-i386-os2          ppc386          —     partial (system.ppu version mismatch)
+i386-os2          ppc386         219    complete (native -Tos2, all target 0x04)
 x86_64-freebsd    ppc386          19    partial (needs full RTL cross-build)
 ```
 
