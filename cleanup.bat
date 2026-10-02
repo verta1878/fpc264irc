@@ -15,7 +15,7 @@ if not exist README.md          echo    MISSING: README.md & set /a MISSING+=1
 if not exist LICENSE            echo    MISSING: LICENSE & set /a MISSING+=1
 if not exist .gitattributes     echo    MISSING: .gitattributes & set /a MISSING+=1
 if not exist .fpcirc        echo    MISSING: .fpcirc ^& set /a MISSING+=1
-if not exist CHANGELOG-IRC.md   echo    MISSING: CHANGELOG-IRC.md & set /a MISSING+=1
+if not exist docs\CHANGELOG-IRC.md   echo    MISSING: docs\CHANGELOG-IRC.md & set /a MISSING+=1
 if not exist build-linux.sh     echo    MISSING: build-linux.sh & set /a MISSING+=1
 if not exist build-windows.bat  echo    MISSING: build-windows.bat & set /a MISSING+=1
 if not exist patches\os2-cross\README.md echo    MISSING: patches\os2-cross\README.md & set /a MISSING+=1
@@ -111,7 +111,7 @@ if exist LICENSE            echo    LICENSE              OK
 if exist VERSION            echo    VERSION              OK
 if exist .gitattributes     echo    .gitattributes       OK
 if exist .fpcirc            echo    .fpcirc              OK
-if exist CHANGELOG-IRC.md   echo    CHANGELOG-IRC.md     OK
+if exist docs\CHANGELOG-IRC.md   echo    docs\CHANGELOG-IRC.md     OK
 if exist cleanup.bat        echo    cleanup.bat          OK
 if exist build-linux.sh     echo    build-linux.sh       OK
 if exist build-windows.bat  echo    build-windows.bat    OK

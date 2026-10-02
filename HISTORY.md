@@ -142,8 +142,31 @@ new units       ptcgraph/ptccrt/ptcmouse on win32, win64, i386-linux; wincrt/win
 tests           25/25 compile; runtime OK in DOSBox (go32v2 graph + ptc), Wine (win32/win64), Xvfb (i386/x86_64-linux)
 fixes 10-02     sdlgraph made usable (4bpp->8bpp, nil-surface checks, real colours + palette, FPU mask for sdl12-compat);
                 ptc DirectX FreeAndNil-on-interface fixed (InitGraph after CloseGraph hung on win32/win64)
-known           win32/win64 GDI graph has no hi-colour modes (same as 2.6.4); .ppu only, no .o
+known           win32/win64 GDI graph has no hi-colour modes (same as 2.6.4); units ship as .ppu + .a
 kit             tools/graph-304-build/ (build-all.sh, test-all.sh, README.md, test-results.txt)
+```
+
+## Units: .ppu + .a, no loose .o (2026-10-02)
+
+```
+what            every unit's .o wrapped into its smart-link .a; .ppu rewritten to link the .a (no recompile,
+                checksums unchanged); loose .o/.s removed (25,101 files: unit objects, go32v2 smartlink
+                pieces, test/example program objects, compiler-build leftovers)
+kept as .o      startup objects the compiler links by name: prt0/cprt0/gprt0/dllprt0, os2 prt1,
+                go32v2 exceptn/fpu, i8086 prt0*; sdk/emx crt0 & co; USB objects
+tested          link + run: i386/x86_64-linux, win32/win64 (Wine), go32v2 (DOSBox); i386-freebsd link;
+                lazutils, lcl, ppudump vs bin/compiler-ppus; ptcgraph linked from repo units only
+not yet         i386-darwin (.o malformed: 16-byte Mach-O nlist from the 64-bit host), i8086 medium/large/
+                huge (rebuild with -CX), i386-os2 (no unit object code in repo)
+kit             tools/smartpack/ (ppu_smart.py, pack-units.sh, macho_ar.py, README.md)
+```
+
+## Repo root tidy (2026-10-02)
+
+```
+moved to docs/  CHANGELOG-IRC.md, FPC264IRC-MZ-LINKER.md, PATCH6-MZ-LINKER-HANDOFF.md
+removed         APPLY.txt (Patch 6 note - applied, recorded under Patch 6 above)
+updated refs    cleanup.bat, build-linux.sh, patches/os2-cross/README.md
 ```
 
 ## Key Binaries

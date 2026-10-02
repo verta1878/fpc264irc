@@ -428,7 +428,7 @@ mkdir -p "$RELEASE_DIR"
 # Copy source
 echo "  Copying source..."
 for item in compiler rtl packages utils tests patches \
-            README.md CHANGELOG-IRC.md LICENSE Makefile Makefile.fpc \
+            README.md docs/CHANGELOG-IRC.md LICENSE Makefile Makefile.fpc \
             build-linux.sh build-windows.bat .gitattributes .gitignore; do
     if [ -e "$ROOT/$item" ]; then
         cp -a "$ROOT/$item" "$RELEASE_DIR/"

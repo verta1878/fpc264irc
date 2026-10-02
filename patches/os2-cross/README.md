@@ -25,4 +25,4 @@ patch -p1 < os2-import-fix.patch
 make
 ```
 
-See the main CHANGELOG-IRC.md for the compiler-side fix (BUG-040).
+See the main docs/CHANGELOG-IRC.md for the compiler-side fix (BUG-040).

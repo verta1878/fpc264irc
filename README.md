@@ -52,6 +52,14 @@ ppcx64 -Tlinux myapp.pas        # Linux 64-bit
 ppc386 -Tgo32v2 myapp.pas       # DOS
 ```
 
+### How the units ship
+
+`bin/units/<target>/` holds each unit as `.ppu` + `.a` (its compiled code in a smart-link archive) — no loose `.o`.
+The compiler picks up the `.a` by itself, with or without `-XX`. The only `.o` files left are startup objects the
+compiler links by name (`prt0`, `cprt0`, `gprt0`, `dllprt0`, OS/2 `prt1`, go32v2 `exceptn`/`fpu`, i8086 `prt0*`).
+Tested linking: i386/x86_64 Linux, Win32/Win64, go32v2, i386 FreeBSD, ptcgraph from the repo units alone.
+Not converted yet: i386-darwin, i386-os2, i8086 medium/large/huge. Kit and details: `tools/smartpack/README.md`.
+
 ## USB Stack
 
 9 units, 3,334 lines. See `docs/USB.md` for full API reference.
