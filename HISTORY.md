@@ -169,6 +169,30 @@ removed         APPLY.txt (Patch 6 note - applied, recorded under Patch 6 above)
 updated refs    cleanup.bat, build-linux.sh, patches/os2-cross/README.md
 ```
 
+## OS/2 native linking (2026-10-02)
+
+```
+units           bin/units/i386-os2: 219 units .ppu + .a (assembled from the 2026-10-01 native rebuild, same .ppu);
+                import libraries (system.a, doscalls.a, *.dll.a ...) got an archive index
+tools           bin/tools/i386-os2: as/ld were do-nothing stubs - now real tools, emxbind 32-bit static (+ os2stub.bin)
+                (the first version linked through a Python front end, emxld.py - replaced the same day, see below)
+source          patches/os2-cross/emxbind/ - emxbind 0.9d (kLIBC) + fpc264irc patch, build.sh
+result          ppc386 -Tos2 -FD bin/tools/i386-os2 -> OS/2 LX exe; import fixups verified; not yet run on OS/2
+```
+
+## OS/2 linker: patched binutils, no Python (2026-10-02)
+
+```
+ld              GNU binutils 2.30 i386-aout patched for EMX: a.out layout emxbind expects (text 0x10000 / file 0x400,
+                data on the next 64K), N_IMP1/N_IMP2 import symbols, relocations against imports kept in the
+                executable -> FPC calls ld and emxbind directly
+tools           bin/tools/i386-os2: as, i386-os2-as, ld, i386-os2-ld are the static binaries (were shell/Python wrappers);
+                bin/tools/i386-emx: emx-ld, i386-emx-ld, ar, emx-ar, i386-emx-ar replaced by the same build
+removed         bin/tools/i386-os2/emxld.py
+source          patches/os2-cross/binutils/ (binutils-2.30-emx.patch, build.sh, README), lib/build-tools/binutils-2.30.tar.xz
+result          same program images and the same LX import fixups as before (360 / 1055 in the two tests); not yet run on OS/2
+```
+
 ## Stale units, USB, checksums (2026-10-02)
 
 ```

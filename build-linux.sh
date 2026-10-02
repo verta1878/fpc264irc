@@ -285,8 +285,7 @@ cross_rtl() {
                 echo "  SKIP: no working OS/2 EMX binutils found"
                 echo "  Options:"
                 echo "    Build from: lib/build-tools/binutils-2.30.tar.xz"
-                echo "    Apply patch: patches/os2-cross/binutils-2.30-emx-nimp.patch"
-                echo "       ./configure --target=i386-aout --enable-obsolete && make"
+                echo "    Run: patches/os2-cross/binutils/build.sh (applies binutils-2.30-emx.patch)"
                 echo "    Also need emxbind: see patches/os2-cross/emxbind/"
                 return 0
             fi

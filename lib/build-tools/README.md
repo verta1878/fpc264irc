@@ -27,8 +27,8 @@ bin/tools/
 │   └── ar                 # MinGW archiver 2.41
 ├── i386-freebsd/          # FreeBSD cross (uses host ELF tools)
 │   ├── as, ld, ar
-└── i386-emx/              # OS/2 (requires patched binutils)
-    └── README.md           # See patches/os2-cross/
+├── i386-emx/              # OS/2 EMX binutils 2.30 (patched, see patches/os2-cross/binutils/)
+└── i386-os2/              # OS/2 -Tos2: as, ld (patched binutils 2.30), emxbind
 ```
 
 ## Verification
@@ -43,7 +43,9 @@ test/test-tools.sh         # tests all tools on all platforms
 |------|--------|---------|
 | GNU Binutils 2.42 | `binutils-2.42.tar.xz` (27MB) | GPL v3+ |
 | GNU Make 4.3 | `make-4.3.tar.gz` (2.3MB) | GPL v3+ |
+| GNU Binutils 2.30 (OS/2 EMX a.out, patched by `patches/os2-cross/binutils/`) | `binutils-2.30.tar.xz` (20MB) | GPL v3+ |
 
 Original downloads:
 - https://ftp.gnu.org/gnu/binutils/binutils-2.42.tar.xz
 - https://ftp.gnu.org/gnu/make/make-4.3.tar.gz
+- https://ftp.gnu.org/gnu/binutils/binutils-2.30.tar.xz

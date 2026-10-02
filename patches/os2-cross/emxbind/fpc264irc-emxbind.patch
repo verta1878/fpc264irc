@@ -1,0 +1,96 @@
+--- orig/emxbind.c	2026-10-02 16:27:01.768797308 -0400
++++ eb/emxbind.c	2026-10-02 14:59:06.893133363 -0400
+@@ -1,3 +1,4 @@
++#include <errno.h>
+ /* emxbind.c -- Create an .exe executable from an a.out executable
+    Copyright (c) 1991-1997 Eberhard Mattes
+ 
+@@ -337,7 +338,7 @@
+   /* Examine the initial (emxbind) options, one by one. */
+ 
+   while ((c = getopt (gargc, gargv,
+-                      "bc::d::efh:k:m:o:pqr:svw")) != -1)
++                      "+bc::d::efh:k:m:o:pqr:svw")) != -1)
+     {
+       switch (c)
+ 	{
+@@ -484,6 +485,12 @@
+       break;
+   }
+ 
++  /* fpc264irc: FPC's OS/2 linker passes emx runtime options (e.g. "-ai -s8")
++     after the input file, as emxbind 0.9d accepted.  This emxbind has no emx.exe
++     runtime options; skip them. */
++  while (optind < gargc && gargv[optind][0] == '-')
++    optind++;
++
+   /* Complain if there are any unprocessed arguments left. */
+ 
+   if (optind < gargc)
+--- orig/emxbind.h	2026-10-02 16:27:01.769678106 -0400
++++ eb/emxbind.h	2026-10-02 14:58:31.165740177 -0400
+@@ -432,6 +432,13 @@
+ /* Round up to the next multiple of 4. */
+ 
+ #define round_4(X) ((((X)-1) & ~3) + 4)
++/* fpc264irc: from emx 0.9d sys/param.h */
++#ifndef round_page
++#define round_page(X) ((((X)-1) & ~0xfff) + 0x1000)
++#endif
++#ifndef round_segment
++#define round_segment(X) ((((X)-1) & ~0xffff) + 0x10000)
++#endif
+ 
+ /* Divide by the page size, rounding down. */
+ 
+--- orig/fixup.c	2026-10-02 16:27:01.769286223 -0400
++++ eb/fixup.c	2026-10-02 14:59:48.939891628 -0400
+@@ -1,3 +1,4 @@
++#include <errno.h>
+ /* fixup.c -- Manage fixups
+    Copyright (c) 1991-1995 Eberhard Mattes
+ 
+@@ -574,10 +575,19 @@
+      It contains a list of fixups to be replaced by OS/2 DLL references. */
+   my_seek (&inp_file, data_base + data_off);
+   my_read (&set_len, sizeof (set_len), &inp_file);
+-  if (set_len != DATASEG_MAGIC)
+-    error ("invalid data segment (does not start with 0x%x)", DATASEG_MAGIC);
+-  /* Now read the offset to the __os2_dll set */
+-  my_read (&set_len, sizeof (set_len), &inp_file);
++  if (set_len == DATASEG_MAGIC)
++    {
++      /* kLIBC layout: magic, then the offset to the __os2_dll set */
++      my_read (&set_len, sizeof (set_len), &inp_file);
++    }
++  else
++    {
++      /* fpc264irc: emx 0.9d layout (FPC rtl/os2/prt0.as): the data segment
++         starts with a table whose 11th dword is the address of __os2dll
++         (file position = address + data_off, as for the kLIBC value). */
++      my_seek (&inp_file, data_base + data_off + 10 * 4);
++      my_read (&set_len, sizeof (set_len), &inp_file);
++    }
+ 
+   /* Start scanning the set */
+   my_seek (&inp_file, set_len + data_off);
+--- orig/moddef1.c	2026-10-02 16:27:01.770019454 -0400
++++ eb/moddef1.c	2026-10-02 14:57:48.798258636 -0400
+@@ -8,7 +8,7 @@
+ #include <errno.h>
+ #include <sys/moddef.h>
+ 
+-#define ERRNO (*_errno ())
++#define ERRNO errno
+ 
+ #define MDF_OPEN 0x0001
+ 
+@@ -281,7 +281,7 @@
+   FILE *f;
+   struct _md *p;
+ 
+-  f = _fsopen (fname, "rt", SH_DENYWR);
++  f = fopen (fname, "r");
+   if (f == NULL)
+     return NULL;
+   p = _md_use_file (f);

@@ -58,7 +58,7 @@ ppc386 -Tgo32v2 myapp.pas       # DOS
 The compiler picks up the `.a` by itself, with or without `-XX`. The only `.o` files left are startup objects the
 compiler links by name (`prt0`, `cprt0`, `gprt0`, `dllprt0`, OS/2 `prt1`, go32v2 `exceptn`/`fpu`, i8086 `prt0*`).
 Tested linking: i386/x86_64 Linux, Win32/Win64, go32v2, i386 FreeBSD, ptcgraph from the repo units alone.
-Not converted yet: i386-darwin, i386-os2, i8086 medium/large/huge. Kit and details: `tools/smartpack/README.md`.
+i386-os2 links natively with `-FD bin/tools/i386-os2` (see its README). Not converted yet: i386-darwin, i8086 medium/large/huge. Kit and details: `tools/smartpack/README.md`.
 
 ## USB Stack
 

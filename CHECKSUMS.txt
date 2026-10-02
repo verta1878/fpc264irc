@@ -1,6 +1,6 @@
 FPC 2.6.4irc - Repository Checksums
-Generated: 2026-10-02 (byte)
-Includes: Patches 1-6, graph 3.0.4 backport, smartpack (.ppu + .a), stale-unit rebuild, i386-linux USB units
+Generated: 2026-10-02 (byte, after the OS/2 ld patch)
+Includes: Patches 1-6, graph 3.0.4 backport, smartpack (.ppu + .a), stale-unit rebuild, i386-linux USB units, OS/2 native linking (patched binutils ld)
 Hashes are of the repository content (LF line endings, as on GitHub or a Linux clone). On Windows with
 core.autocrlf, text files are checked out with CRLF and hash differently; .ppu/.a/.exe/.o are binary and match.
 CHECKSUMS.md5 / CHECKSUMS.sha256 list every file except the three CHECKSUMS files themselves.
@@ -10,53 +10,43 @@ CHECKSUMS.md5 / CHECKSUMS.sha256 list every file except the three CHECKSUMS file
 bin/ppcx64:
   MD5:    9b226e88c217aa509dfe06608a851bb4
   SHA256: 4ed8c4ea347609b2e16a462ade9a1071e978120f8ef464bcc38fbc5639e7bb37
-  Size:   3021728 bytes
+  Size:   3021728
 
 bin/ppc386:
   MD5:    c261e130551212c8f07c60b7b397c160
   SHA256: 968e7d5a81e683a9630efb4fd99c15167ba7e6e003e6b8734f4820ec56ce255e
-  Size:   2637808 bytes
+  Size:   2637808
 
 bin/ppcross8086:
   MD5:    a3dab6c6f47344e810ff1e5d470c0135
   SHA256: 36d24aeb4dd120eaf896e13d9219e6f3623a40487b6f0d720e017505c3a65eec
-  Size:   4377888 bytes
+  Size:   4377888
 
-src/compiler/systems/t_msdos.pas:
-  MD5:    aa9e8191453d9238d9691d95b777d390
-  SHA256: bb1ff8287cd8faf27545708f228a0fd69a34956bd7d23fe05c763deee2cc01e6
-  Size:   17787 bytes
+bin/tools/i386-os2/emxbind:
+  MD5:    4e82e1442d1b3119295c02980b4dcec2
+  SHA256: 9819d028336fb1281bcf60656150705564dd4a5f2c22e192f31f5b895ad0bb60
+  Size:   833496
 
-src/compiler/systems/i_msdos.pas:
-  MD5:    3387ca3b5447932b8fda51741ae03768
-  SHA256: 8ee3fbe513e89f8f4344dda05b4cdffb12217ee632adf87124758c63fb482778
-  Size:   4041 bytes
+bin/tools/i386-os2/ld:
+  MD5:    e5496c61be10e77f1a22d2122e4d27f6
+  SHA256: b3f6cd2fcd4f8e5c0f7346fe49dae733d2cd1c2421d0bb893c7b2ce8a6ff7acc
+  Size:   1617768
 
-src/compiler/ogomf.pas:
-  MD5:    1689887a1641778811efe8eda567892e
-  SHA256: 9b66bda9dc3bec0dc6c285094187bc306a12735dd9a4ee96912c3e858658ce7c
-  Size:   123749 bytes
-
-src/compiler/omfbase.pas:
-  MD5:    77fc012ae5e9b4a4407f4e84e3f21024
-  SHA256: 323f9c403eebc1807690214ec36cb0b47d68ad545b834d0089422a5fd45a103a
-  Size:   124452 bytes
-
-src/compiler/owomflib.pas:
-  MD5:    19ac50d36e24097aac5af139d953e307
-  SHA256: bf1baaaa710fe96a388b06a16c854078bb12240984ad078b57a6cd0e0507d5a2
-  Size:   19314 bytes
+bin/tools/i386-os2/as:
+  MD5:    6f2bb5ca0667d79bd29c5dae4c71ef2f
+  SHA256: dc504c4deee1dee51f790b0f2e8f5eb16570c747c9e6989af7b7f67cf0be6ab3
+  Size:   2270408
 
 HISTORY.md:
-  MD5:    748bd8b52cc87439ab6fb795dc869882
-  SHA256: 809ac1322320b800777d9632f9f73d0f2385554a737683dab31e30a422bdcbeb
-  Size:   8850 bytes
+  MD5:    7cef14d99eb8ecd33f11d9f28a1cd368
+  SHA256: 70a6de92f05cc71d0fbf14ac4a150899ca78c2fe48f3e7fd0ab6efc30af168db
+  Size:   10428
 
 docs/ROADMAP-UNITS.md:
-  MD5:    965a88b4a8d93d1017a288cf3cf42a8e
-  SHA256: 046d11cb7bd9c22e51d3529ac27b8d37cf175f7173b01a792b7b4f5b3477ff38
-  Size:   5458 bytes
+  MD5:    2f66dcbd1e9c2a70dadb5e12b9c0e909
+  SHA256: 5153cd6c7ad2d9f3185f27ce02ce652c1f9f2efb77e82e025487467b9be0fdac
+  Size:   6066
 
 === Totals ===
-Files: 42787
-Size:  1.5G
+Files: 43037
+Size:  1.7G

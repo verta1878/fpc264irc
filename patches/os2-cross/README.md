@@ -1,28 +1,11 @@
 # OS/2 Cross-Compilation Patches
 
-These patches enable cross-compiling for OS/2 from a Linux host
-using patched GNU binutils.
+Everything needed to link native OS/2 (`-Tos2`) programs from a Linux host. The built tools are in
+`bin/tools/i386-os2/` (see its README).
 
-## What's Fixed
+| Folder | What |
+|---|---|
+| `binutils/` | `binutils-2.30-emx.patch` + `build.sh`: GNU binutils 2.30 i386-aout with the EMX a.out layout and EMX import symbols/relocations, so `ld` output goes straight into emxbind. Tarball: `lib/build-tools/binutils-2.30.tar.xz`. |
+| `emxbind/` | emxbind 0.9d (kLIBC source, GPL) + `fpc264irc-emxbind.patch` + `build.sh` (static 32-bit build). |
 
-- N_IMP1/N_IMP2 values corrected in BFD for OS/2 a.out import records
-- emxbind compatibility: OMAGIC → ZMAGIC (removed `-N` flag)
-
-## Prerequisites
-
-- binutils source (2.25+)
-- emxbind from the OS/2 development toolkit
-
-## Building
-
-```
-# Apply BFD patch:
-cd binutils-2.25/bfd
-patch -p1 < os2-import-fix.patch
-
-# Rebuild:
-../configure --target=i386-emx
-make
-```
-
-See the main docs/CHANGELOG-IRC.md for the compiler-side fix (BUG-040).
+Compiler side: see `docs/CHANGELOG-IRC.md` (BUG-040, OS/2 linking without `-N`: emxbind needs ZMAGIC).

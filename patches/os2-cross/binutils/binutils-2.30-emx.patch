@@ -1,0 +1,409 @@
+fpc264irc: GNU binutils 2.30 i386-aout -> EMX (OS/2) a.out for emxbind.  byte, 2026-10-02
+- EMX layout: ZMAGIC, text at 0x10000 / file offset 0x400, data at the next 64K boundary
+- N_IMP1|N_EXT import symbols are defined (value 0) and the relocations against them are kept
+  in the executable (emxbind turns them into LX import fixups); N_IMP2|N_EXT "sym=DLL.ord" kept
+- apply in the binutils-2.30 directory: patch -p1 < binutils-2.30-emx.patch
+
+--- a/bfd/aoutx.h
++++ b/bfd/aoutx.h
+@@ -128,6 +128,19 @@
+ #include "aout/stab_gnu.h"
+ #include "aout/ar.h"
+ 
++/* fpc264irc: EMX (OS/2) import symbols, see emx <a_out.h>.
++   N_IMP1|N_EXT  "sym"            the symbol is imported from a DLL;
++   N_IMP2|N_EXT  "sym=DLL.entry"  where it is imported from.
++   They carry the N_STAB bits, so stock BFD ignores them as debugging
++   symbols.  EMX's ld defined N_IMP1 symbols (value 0) and kept the
++   relocations against them in the executable; emxbind turns those
++   relocations into OS/2 LX import fixups.  */
++#define N_IMP1 0x68
++#define N_IMP2 0x6a
++#define IS_EMX_IMP1(t) ((t) == (N_IMP1 | N_EXT))
++#define IS_EMX_IMP2(t) ((t) == (N_IMP2 | N_EXT))
++#define IS_EMX_IMPORT(t) (IS_EMX_IMP1 (t) || IS_EMX_IMP2 (t))
++
+ /*
+ SUBSECTION
+ 	Relocations
+@@ -1409,6 +1422,14 @@
+ {
+   flagword visible;
+ 
++  if (IS_EMX_IMP1 (cache_ptr->type))
++    {
++      cache_ptr->symbol.section = bfd_abs_section_ptr;
++      cache_ptr->symbol.flags = BSF_GLOBAL;
++      cache_ptr->symbol.value = 0;
++      return TRUE;
++    }
++
+   if ((cache_ptr->type & N_STAB) != 0
+       || cache_ptr->type == N_FN)
+     {
+@@ -2961,6 +2982,7 @@
+     {
+       /* Set local fields.  */
+       ret->written = FALSE;
++      ret->emx_import = FALSE;
+       ret->indx = -1;
+     }
+ 
+@@ -3067,6 +3089,21 @@
+ 
+       type = H_GET_8 (abfd, p->e_type);
+ 
++      /* EMX import symbol: define it as absolute 0 and remember that
++	 relocations against it must be kept.  */
++      if (IS_EMX_IMP1 (type))
++	{
++	  if (GET_WORD (abfd, p->e_strx) >= obj_aout_external_string_size (abfd))
++	    return FALSE;
++	  name = strings + GET_WORD (abfd, p->e_strx);
++	  if (! ((*add_one_symbol)
++		 (info, abfd, name, BSF_GLOBAL, bfd_abs_section_ptr, 0, NULL,
++		  copy, FALSE, (struct bfd_link_hash_entry **) sym_hash)))
++	    return FALSE;
++	  (*sym_hash)->emx_import = TRUE;
++	  continue;
++	}
++
+       /* Ignore debugging symbols.  */
+       if ((type & N_STAB) != 0)
+ 	continue;
+@@ -3310,7 +3347,7 @@
+ 	 optimization only, as we check the type more thoroughly
+ 	 below.  */
+       if (((type & N_EXT) == 0
+-	   || (type & N_STAB) != 0
++	   || ((type & N_STAB) != 0 && ! IS_EMX_IMP1 (type))
+ 	   || type == N_FN)
+ 	  && type != N_WEAKA
+ 	  && type != N_WEAKT
+@@ -3341,6 +3378,7 @@
+ 	  || type == (N_DATA | N_EXT)
+ 	  || type == (N_BSS | N_EXT)
+ 	  || type == (N_ABS | N_EXT)
++	  || IS_EMX_IMP1 (type)
+ 	  || type == (N_INDR | N_EXT))
+ 	{
+ 	  /* This object file defines this symbol.  We must link it
+@@ -3595,6 +3633,9 @@
+   int *symbol_map;
+   /* A buffer large enough to hold output symbols of any input BFD.  */
+   struct external_nlist *output_syms;
++  /* EMX: number of import relocs kept from the section being linked
++     (final link only; they are moved to the start of the reloc buffer).  */
++  bfd_size_type emx_relocs;
+ };
+ 
+ /* The function to create a new entry in the header file hash table.  */
+@@ -3666,8 +3707,10 @@
+ 
+   h->written = TRUE;
+ 
+-  /* An indx of -2 means the symbol must be written.  */
++  /* An indx of -2 means the symbol must be written.  EMX import
++     symbols are always written: emxbind needs them.  */
+   if (h->indx != -2
++      && ! h->emx_import
+       && (flaginfo->info->strip == strip_all
+ 	  || (flaginfo->info->strip == strip_some
+ 	      && bfd_hash_lookup (flaginfo->info->keep_hash, h->root.root.string,
+@@ -3709,6 +3752,11 @@
+ 	val = (h->root.u.def.value
+ 	       + sec->vma
+ 	       + h->root.u.def.section->output_offset);
++	if (h->emx_import)
++	  {
++	    type = N_IMP1 | N_EXT;
++	    val = 0;
++	  }
+       }
+       break;
+     case bfd_link_hash_common:
+@@ -4106,6 +4154,7 @@
+ 		 is what the native linker does.  */
+ 	      h = sym_hashes[r_index];
+ 	      if (h != NULL
++		  && ! h->emx_import
+ 		  && (h->root.type == bfd_link_hash_defined
+ 		      || h->root.type == bfd_link_hash_defweak))
+ 		{
+@@ -4297,6 +4346,45 @@
+ 				      input_bfd, input_section,
+ 				      contents, r_addr, relocation,
+ 				      (bfd_vma) 0);
++
++	  /* EMX: the field now holds the reference as if the import
++	     symbol were at address 0; keep the reloc (against the
++	     N_IMP1 symbol in the output) so emxbind can make the OS/2
++	     import fixup.  */
++	  if (r_extern && h != NULL && h->emx_import
++	      && (h->root.type == bfd_link_hash_defined
++		  || h->root.type == bfd_link_hash_defweak))
++	    {
++	      struct reloc_std_external *out;
++	      int out_index;
++
++	      if (h->indx < 0)
++		{
++		  h->indx = -2;
++		  h->written = FALSE;
++		  if (!aout_link_write_other_symbol (&h->root.root, flaginfo))
++		    return FALSE;
++		}
++	      out_index = h->indx;
++	      out = relocs + flaginfo->emx_relocs;
++	      if (out != rel)
++		memcpy (out, rel, RELOC_STD_SIZE);
++	      PUT_WORD (output_bfd, r_addr + input_section->output_offset,
++			out->r_address);
++	      if (bfd_header_big_endian (output_bfd))
++		{
++		  out->r_index[0] = out_index >> 16;
++		  out->r_index[1] = out_index >> 8;
++		  out->r_index[2] = out_index;
++		}
++	      else
++		{
++		  out->r_index[2] = out_index >> 16;
++		  out->r_index[1] = out_index >> 8;
++		  out->r_index[0] = out_index;
++		}
++	      ++flaginfo->emx_relocs;
++	    }
+ 	}
+ 
+       if (r != bfd_reloc_ok)
+@@ -4785,6 +4873,7 @@
+     }
+ 
+   /* Relocate the section contents.  */
++  flaginfo->emx_relocs = 0;
+   if (obj_reloc_entry_size (input_bfd) == RELOC_STD_SIZE)
+     {
+       if (! aout_link_input_section_std (flaginfo, input_bfd, input_section,
+@@ -4826,6 +4915,20 @@
+ 		      || (*reloff_ptr
+ 			  <= obj_datasec (flaginfo->output_bfd)->rel_filepos)));
+     }
++  else if (flaginfo->emx_relocs > 0)
++    {
++      /* EMX: write the relocs kept against import symbols.  */
++      bfd_size_type amt = flaginfo->emx_relocs * RELOC_STD_SIZE;
++
++      if (bfd_seek (flaginfo->output_bfd, *reloff_ptr, SEEK_SET) != 0
++	  || bfd_bwrite (relocs, amt, flaginfo->output_bfd) != amt)
++	return FALSE;
++      *reloff_ptr += amt;
++      BFD_ASSERT (*reloff_ptr <= obj_sym_filepos (flaginfo->output_bfd)
++		  && (reloff_ptr != &flaginfo->treloff
++		      || (*reloff_ptr
++			  <= obj_datasec (flaginfo->output_bfd)->rel_filepos)));
++    }
+ 
+   return TRUE;
+ }
+@@ -4994,6 +5097,10 @@
+ 	      skip = TRUE;
+ 	      break;
+ 	    }
++	  /* emxbind needs the EMX import symbols.  */
++	  if (IS_EMX_IMPORT (type)
++	      || (hresolve != NULL && hresolve->emx_import))
++	    skip = FALSE;
+ 	  if (skip)
+ 	    {
+ 	      if (h != NULL)
+@@ -5002,7 +5109,12 @@
+ 	    }
+ 
+ 	  /* Get the value of the symbol.  */
+-	  if ((type & N_TYPE) == N_TEXT
++	  if (IS_EMX_IMPORT (type))
++	    {
++	      val = 0;
++	      symsec = NULL;
++	    }
++	  else if ((type & N_TYPE) == N_TEXT
+ 	      || type == N_WEAKT)
+ 	    symsec = obj_textsec (input_bfd);
+ 	  else if ((type & N_TYPE) == N_DATA
+@@ -5124,6 +5236,15 @@
+ 	      else
+ 		val = 0;
+ 	    }
++	  /* A reference to, or the definition of, an EMX import symbol
++	     is written as N_IMP1|N_EXT.  */
++	  if (hresolve != NULL && hresolve->emx_import && ! IS_EMX_IMP2 (type))
++	    {
++	      type = N_IMP1 | N_EXT;
++	      val = 0;
++	      symsec = NULL;
++	    }
++
+ 	  if (symsec != NULL)
+ 	    val = (symsec->output_section->vma
+ 		   + symsec->output_offset
+@@ -5137,7 +5258,8 @@
+ 	      h->written = TRUE;
+ 	      h->indx = obj_aout_external_sym_count (output_bfd);
+ 	    }
+-	  else if ((type & N_TYPE) != N_SETT
++	  else if (! IS_EMX_IMPORT (type)
++		   && (type & N_TYPE) != N_SETT
+ 		   && (type & N_TYPE) != N_SETD
+ 		   && (type & N_TYPE) != N_SETB
+ 		   && (type & N_TYPE) != N_SETA)
+@@ -5315,6 +5437,71 @@
+   return TRUE;
+ }
+ 
++/* EMX: count the relocs of SEC in INPUT_BFD that refer to import
++   symbols; a final link keeps them in the executable.  */
++
++static bfd_boolean
++aout_link_count_emx_relocs (bfd *input_bfd, asection *sec,
++			    bfd_size_type rel_size, bfd_size_type *count)
++{
++  struct aout_link_hash_entry **sym_hashes;
++  struct reloc_std_external *relocs, *rel, *rel_end;
++  bfd_size_type sym_count;
++
++  sym_hashes = obj_aout_sym_hashes (input_bfd);
++  sym_count = obj_aout_external_sym_count (input_bfd);
++  if (rel_size == 0 || sym_hashes == NULL
++      || obj_reloc_entry_size (input_bfd) != RELOC_STD_SIZE)
++    return TRUE;
++
++  relocs = (struct reloc_std_external *) bfd_malloc (rel_size);
++  if (relocs == NULL)
++    return FALSE;
++  if (bfd_seek (input_bfd, sec->rel_filepos, SEEK_SET) != 0
++      || bfd_bread (relocs, rel_size, input_bfd) != rel_size)
++    {
++      free (relocs);
++      return FALSE;
++    }
++
++  rel_end = relocs + rel_size / RELOC_STD_SIZE;
++  for (rel = relocs; rel < rel_end; rel++)
++    {
++      unsigned int r_index;
++      int r_extern;
++      struct aout_link_hash_entry *h;
++
++      if (bfd_header_big_endian (input_bfd))
++	{
++	  r_index = (((unsigned int) rel->r_index[0] << 16)
++		     | ((unsigned int) rel->r_index[1] << 8)
++		     | rel->r_index[2]);
++	  r_extern = (0 != (rel->r_type[0] & RELOC_STD_BITS_EXTERN_BIG));
++	}
++      else
++	{
++	  r_index = (((unsigned int) rel->r_index[2] << 16)
++		     | ((unsigned int) rel->r_index[1] << 8)
++		     | rel->r_index[0]);
++	  r_extern = (0 != (rel->r_type[0] & RELOC_STD_BITS_EXTERN_LITTLE));
++	}
++      if (! r_extern || r_index >= sym_count)
++	continue;
++      h = sym_hashes[r_index];
++      while (h != NULL
++	     && (h->root.type == bfd_link_hash_indirect
++		 || h->root.type == bfd_link_hash_warning))
++	h = (struct aout_link_hash_entry *) h->root.u.i.link;
++      if (h != NULL && h->emx_import
++	  && (h->root.type == bfd_link_hash_defined
++	      || h->root.type == bfd_link_hash_defweak))
++	*count += RELOC_STD_SIZE;
++    }
++
++  free (relocs);
++  return TRUE;
++}
++
+ /* Link an a.out input BFD into the output file.  */
+ 
+ static bfd_boolean
+@@ -5463,6 +5650,16 @@
+ 	  sz = obj_aout_external_sym_count (sub);
+ 	  if (sz > max_sym_count)
+ 	    max_sym_count = sz;
++
++	  /* EMX: room for the relocs kept against import symbols.  */
++	  if (! bfd_link_relocatable (info)
++	      && (! aout_link_count_emx_relocs (sub, obj_textsec (sub),
++						exec_hdr (sub)->a_trsize,
++						&trsize)
++		  || ! aout_link_count_emx_relocs (sub, obj_datasec (sub),
++						   exec_hdr (sub)->a_drsize,
++						   &drsize)))
++	    goto error_return;
+ 	}
+     }
+ 
+--- a/bfd/libaout.h
++++ b/bfd/libaout.h
+@@ -105,6 +105,9 @@
+   bfd_boolean written;
+   /* Symbol index in output file.  */
+   int indx;
++  /* EMX (OS/2): defined by an N_IMP1|N_EXT import symbol.  Relocations
++     against it are kept in the executable for emxbind.  */
++  bfd_boolean emx_import;
+ };
+ 
+ /* a.out backend linker hash table.  */
+--- a/bfd/i386aout.c
++++ b/bfd/i386aout.c
+@@ -25,12 +25,18 @@
+    files.  Send me (sac@cygnus.com) the runes to make it work on your
+    system, and I'll stick it in for the next release.  */
+ 
++/* fpc264irc: this target is used for EMX (OS/2) executables, which
++   emxbind turns into LX files.  EMX a.out layout: ZMAGIC, header padded
++   to 0x400 in the file, text at 0x10000, data at the next 64K boundary,
++   text and data sizes rounded to 4K.  Object files (OMAGIC) keep the
++   header-only layout.  */
+ #define N_HEADER_IN_TEXT(x)	0
+-#define N_TXTOFF(x)		0x20
+-#define N_TXTADDR(x)		(N_MAGIC (x) == ZMAGIC ? 0x1020 : 0)
++#define N_TXTOFF(x)		(N_MAGIC (x) == ZMAGIC ? 0x400 : 0x20)
++#define N_TXTADDR(x)		(N_MAGIC (x) == ZMAGIC ? 0x10000 : 0)
+ #define N_TXTSIZE(x)		((x)->a_text)
+ #define TARGET_PAGE_SIZE	4096
+-#define SEGMENT_SIZE		0x400000
++#define SEGMENT_SIZE		0x10000
++#define ZMAGIC_DISK_BLOCK_SIZE	0x400
+ #define DEFAULT_ARCH		bfd_arch_i386
+ 
+ /* Do not "beautify" the CONCAT* macro args.  Traditional C will not
+@@ -73,10 +79,10 @@
+ static const struct aout_backend_data MY (backend_data) =
+ {
+   0,				/* Zmagic contiguous.  */
+-  1,				/* Text incl header.  */
++  0,				/* Text incl header (EMX: no, text at 0x400).  */
+   0,				/* Entry is text address.  */
+   0,				/* Exec_hdr_flags.  */
+-  0,				/* Text vma?  */
++  0x10000,			/* Text vma (EMX TEXT_BASE).  */
+   MY (set_sizes),
+   1,				/* Exec header not counted.  */
+   0,				/* Add_dynamic_symbols.  */
+--- a/ld/emulparams/i386aout.sh
++++ b/ld/emulparams/i386aout.sh
+@@ -1,7 +1,9 @@
+ SCRIPT_NAME=aout
+ OUTPUT_FORMAT="a.out-i386"
+ TARGET_PAGE_SIZE=0x1000
+-TEXT_START_ADDR=0
++# fpc264irc: EMX (OS/2) layout for emxbind: text at 0x10000, data at the next 64K
++TEXT_START_ADDR=0x10000
++SEGMENT_SIZE=0x10000
+ case ${LD_FLAG} in
+     n|N)	TEXT_START_ADDR=0x1000 ;;
+ esac
