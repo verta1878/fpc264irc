@@ -1,6 +1,9 @@
-FPC 2.6.4irc — Repository Checksums
-Generated: 2026-09-09
-Includes: Patches 1-6, MZ linker source recovery + Patch 6b (.a fallback)
+FPC 2.6.4irc - Repository Checksums
+Generated: 2026-10-02 (byte)
+Includes: Patches 1-6, graph 3.0.4 backport, smartpack (.ppu + .a), stale-unit rebuild, i386-linux USB units
+Hashes are of the repository content (LF line endings, as on GitHub or a Linux clone). On Windows with
+core.autocrlf, text files are checked out with CRLF and hash differently; .ppu/.a/.exe/.o are binary and match.
+CHECKSUMS.md5 / CHECKSUMS.sha256 list every file except the three CHECKSUMS files themselves.
 
 === Key Files ===
 
@@ -45,10 +48,15 @@ src/compiler/owomflib.pas:
   Size:   19314 bytes
 
 HISTORY.md:
-  MD5:    86ee5cb2bd99160ebc43ed3f410fc243
-  SHA256: 66826c8cf282b62b270a124d7c4bf3e19558b33c21357fe5f1e11931990289da
-  Size:   3041 bytes
+  MD5:    748bd8b52cc87439ab6fb795dc869882
+  SHA256: 809ac1322320b800777d9632f9f73d0f2385554a737683dab31e30a422bdcbeb
+  Size:   8850 bytes
+
+docs/ROADMAP-UNITS.md:
+  MD5:    965a88b4a8d93d1017a288cf3cf42a8e
+  SHA256: 046d11cb7bd9c22e51d3529ac27b8d37cf175f7173b01a792b7b4f5b3477ff38
+  Size:   5458 bytes
 
 === Totals ===
-Files: 37005
-Size:  1.7G
+Files: 42787
+Size:  1.5G

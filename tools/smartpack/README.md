@@ -9,6 +9,10 @@ No recompile; `.ppu` checksums are untouched, so nothing that depends on a unit 
   The compiler's linker (link.pas) then uses the `.a`, with or without -XX.
 - `pack-units.sh <dir> <target> [delete-list]` — archives each unit `.o` (target ar), runs ppu_smart.py,
   lists every other `.o`/`.s` for deletion except startup objects the compiler links by name.
+- `ppu_consistency.py <ppudump> <unit dir> [...]` - lists stale dependency records: FATAL (implementation section,
+  the compiler stops with "Can't find unit") and interface-only warnings (compiler carries on).
+- `rebuild_stale.py <repo> <target> <unit dir>` - rebuilds the FATAL units from `src/` against the current units
+  (dependencies first, mutually dependent units together), packs them as `.ppu` + `.a`, loops until none are left.
 - `macho_ar.py` — Darwin archive writer with a `__.SYMDEF SORTED` index (not used yet, see below).
 
 Kept as `.o` on purpose (the compiler links them by file name, FPC releases ship them the same way):

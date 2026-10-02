@@ -169,6 +169,18 @@ removed         APPLY.txt (Patch 6 note - applied, recorded under Patch 6 above)
 updated refs    cleanup.bat, build-linux.sh, patches/os2-cross/README.md
 ```
 
+## Stale units, USB, checksums (2026-10-02)
+
+```
+stale units     rebuilt every unit whose implementation-section dependency checksum was stale (compiler would
+                fail "Can't find unit"), dependencies first: units rebuilt x86_64-freebsd 1, i386-linux 14 (FV),
+                x86_64-linux 6, go32v2 35, win32 27, win64 14 - packed as .ppu + .a; leftovers in docs/ROADMAP-UNITS.md
+usb             i386-linux usbhub/usbmsd/usbtrans/libusb/usbserial moved from src/ into bin/units (.ppu + .a);
+                12 build files removed from src/packages/usb/src and src/rtl/usb
+checksums       CHECKSUMS.md5 / .sha256 / .txt regenerated
+tools           tools/smartpack/ppu_consistency.py, rebuild_stale.py
+```
+
 ## Key Binaries
 
 ```
