@@ -193,6 +193,22 @@ source          patches/os2-cross/binutils/ (binutils-2.30-emx.patch, build.sh, 
 result          same program images and the same LX import fixups as before (360 / 1055 in the two tests); not yet run on OS/2
 ```
 
+## i386-darwin: linking on Linux (2026-10-07)
+
+```
+tools           bin/tools/i386-darwin: as, ld, ar, ranlib, nm, otool, strip, lipo, install_name_tool - Apple cctools
+                1030.6.3 + ld64-956.6 (cctools-port), static Linux x86_64 builds
+startup         bin/tools/i386-darwin/MacOSX10.6.sdk/usr/lib/crt1.o, crt1.10.5.o, crt1.10.6.o - built from Apple Csu-88
+stubs           same folder: libSystem.B.dylib (329 symbol names, copies as libc/libm/libdl/libpthread), libiconv.2.dylib,
+                libncurses.5.4.dylib - names only, real install names, nothing from Apple's SDK
+kit             patches/darwin-cross/build.sh + gen-stubs.sh + stubs/*.syms - pinned sources, static, reproducible
+use             ppc386 -Tdarwin -FDbin/tools/i386-darwin -XRbin/tools/i386-darwin/MacOSX10.6.sdk -Fubin/units/i386-darwin
+test/darwin     7 test programs (.pas + Mach-O i386 programs) + build.sh + README: hello, crttest, filetest, sysinfo,
+                unicode (cwstring/libiconv), threads (cthreads), fvdemo - link with no undefined symbols; to be run on a
+                Mac with macOS 10.6 - 10.14
+not yet         framework programs (Carbon/CoreFoundation/Cocoa, graph's Mac backend), SDL/FreeType/X11
+```
+
 ## i8086 medium/large/huge -CX, OS/2 kit + samples (2026-10-07)
 
 ```

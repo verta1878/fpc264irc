@@ -5,7 +5,7 @@ Win32/Win64 (Wine), go32v2 (DOSBox); i386 FreeBSD links; ptcgraph links from rep
 
 | # | Item | Status |
 |---|------|--------|
-| 1 | i386-darwin units | **Done 2026-10-07** - compiler fixed (`macho.pas`, `ogmacho.pas`, `bin/ppc386` rebuilt); all 794 units as `.ppu` + `.a`. See below. Not linked yet (needs an i386 Mach-O linker, cctools ld64). |
+| 1 | i386-darwin units | **Done 2026-10-07** - compiler fixed (`macho.pas`, `ogmacho.pas`, `bin/ppc386` rebuilt); all 794 units as `.ppu` + `.a`. See below. **Linking: done 2026-10-07** - `bin/tools/i386-darwin` (cctools/ld64, Csu startup code, stub libSystem; `patches/darwin-cross`), console programs link; test programs in `test/darwin`, not yet run on a real Mac. |
 | 2 | i8086 medium/large/huge | **Done 2026-10-07** - RTL rebuilt from FPC 3.2.2 with `-CX` (`tools/i8086-graph-build/build-rtl.sh`), 23 units + graph as `.ppu` + `.a`; programs that overflowed DGROUP (medium/large) or did not run (huge) now link and run in DOSBox. See the kit README. |
 | 3 | i386-os2 object code + linking | **Done 2026-10-02** - 219 units as `.ppu` + `.a`; `-FDbin/tools/i386-os2` links native OS/2 LX executables (see `bin/tools/i386-os2/README.md`). Not yet run on real OS/2. |
 | 4 | Stale units | **Done 2026-10-07** - no fatal records left in any target folder; the leftovers (win32 FV + `fpwidestring`, win64 `pkgfpmake`, go32v2 and win32 Lazarus sets, darwin FV) are fixed too - see "Leftovers" below. |

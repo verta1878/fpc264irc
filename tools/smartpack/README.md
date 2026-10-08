@@ -32,5 +32,4 @@ medium/large/huge converted 2026-10-07 by rebuilding with -CX (`tools/i8086-grap
 
 Tested (link + run): i386-linux, x86_64-linux, i386-win32 + x86_64-win64 (Wine), i386-go32v2 (DOSBox),
 lazutils (i386-win32), lcl subfolder (x86_64-linux), ppudump built against bin/compiler-ppus;
-i386-freebsd link only; i386-os2 link + emxbind (LX import fixups checked); i386-darwin: objects/archives
-validated with llvm-nm/llvm-objdump (no i386 Mach-O linker in the sandbox, not linked).
+i386-freebsd link only; i386-os2 link + emxbind (LX import fixups checked); i386-darwin: link with bin/tools/i386-darwin (ld64, 2026-10-07) - 7 test programs, not yet run on a Mac.

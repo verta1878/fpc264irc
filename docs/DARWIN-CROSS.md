@@ -2,75 +2,25 @@
 
 ## FPC 2.6.4irc — Building for macOS from Linux
 
-### Prerequisites
+### Everything is in the repo (2026-10-07)
 
-1. **Cross-linker**: `x86_64-apple-darwin-ld` or `i386-apple-darwin-ld`
-2. **macOS SDK**: extract from Xcode Command Line Tools
-3. **cctools-port**: open-source Apple linker/tools for Linux
-
-### Option A: cctools-port (recommended)
-
-```bash
-# Install cctools-port (provides Apple ld, ar, ranlib for Linux)
-git clone https://github.com/nickhutchinson/cctools-port
-cd cctools-port
-./configure --target=i386-apple-darwin
-make && sudo make install
-
-# Now i386-apple-darwin-ld is available
-```
-
-### Option B: Pre-built cross-tools
-
-Pre-built Darwin cross-tools are available from:
-- https://github.com/nickhutchinson/cctools-port/releases
-- Or extract from a working macOS Xcode install
-
-Place in `/usr/local/bin/` or add to `$PATH`:
-```
-i386-apple-darwin-ld
-i386-apple-darwin-ar
-i386-apple-darwin-ranlib
-i386-apple-darwin-strip
-```
-
-### SDK Files Needed
-
-From an Xcode Command Line Tools install, you need:
-```
-MacOSX10.x.sdk/usr/lib/
-  libSystem.B.dylib   (or tbd stub)
-  crt1.o
-  crt1.10.6.o
-
-MacOSX10.x.sdk/usr/include/
-  (headers — only needed if compiling C code)
-```
-
-Copy these to `sdk/darwin/` in the fpc264irc tree.
+The linker, assembler, startup code and stub system libraries are bundled in `bin/tools/i386-darwin/` (static Linux
+x86_64 builds of Apple's open-source cctools/ld64 and Csu; no Xcode, no Apple SDK). See its README for the file list,
+`patches/darwin-cross/` to rebuild them from source.
 
 ### Building
 
 ```bash
-# Set environment
-export FPCROOT=$(pwd)
-export PATH=$FPCROOT/bin:$PATH
-
-# Cross-compile RTL for Darwin
-bin/ppc386 -Tdarwin -XPi386-apple-darwin- \
-  -Fu$FPCROOT/bin/units/i386-darwin \
-  yourprogram.pas
-
-# Or use the build script:
-./build-darwin.sh
+bin/ppc386 -Tdarwin -FDbin/tools/i386-darwin -XRbin/tools/i386-darwin/MacOSX10.6.sdk \
+           -Fubin/units/i386-darwin/fv -Fubin/units/i386-darwin yourprogram.pas
 ```
-
-### build-darwin.sh
-
-The included `build-darwin.sh` handles:
-1. Detecting cctools-port or pre-built cross-tools
-2. Finding the SDK in `sdk/darwin/` or system paths
-3. Building all targets with `-Tdarwin -XPi386-apple-darwin-`
+- `-FD` finds `as`/`ld`, `-XR` the startup code and the stub libraries (`-syslibroot` for ld).
+- `-Fu .../fv` first only for Free Vision programs (the folder also holds Apple's Carbon `Dialogs` unit).
+- Default minimum macOS is 10.4; `-WM10.5` / `-WM10.6` pick the newer startup code and load commands.
+- `-Amacho` uses the compiler's internal Mach-O writer instead of `as`; both work.
+- Console programs (RTL, sysutils, classes, crt, Free Vision, unix units, sockets, cwstring, cthreads) link today.
+  Programs using Apple frameworks (Carbon, CoreFoundation, Cocoa, ApplicationServices) or SDL/FreeType/X11 still need
+  stubs for those.
 
 ### Verifying the Build
 
@@ -79,8 +29,8 @@ The included `build-darwin.sh` handles:
 file yourprogram
 # Should show: Mach-O executable i386
 
-# Copy to a Mac and run, or use darling (Linux macOS layer):
-darling shell ./yourprogram
+# Copy to an Intel Mac with macOS 10.6 - 10.14, chmod +x, run from Terminal.
+# Test programs: test/darwin/ (README lists what to check).
 ```
 
 ### Units and the internal assembler (2026-10-07)

@@ -1,6 +1,6 @@
 FPC 2.6.4irc - Repository Checksums
-Generated: 2026-10-07 (byte, after i8086 medium/large/huge -CX + OS/2 kit and samples)
-Includes: Patches 1-6, graph 3.0.4 backport, smartpack (.ppu + .a), stale-unit rebuild, i386-linux USB units, OS/2 native linking (patched binutils ld), i386-darwin Mach-O writer fix, unit-folder name clashes (lcl/, fv/), i8086 medium/large/huge -CX, OS/2 build kit + test/os2
+Generated: 2026-10-07 (byte, after i386-darwin linking: bin/tools/i386-darwin + test/darwin)
+Includes: Patches 1-6, graph 3.0.4 backport, smartpack (.ppu + .a), stale-unit rebuild, i386-linux USB units, OS/2 native linking (patched binutils ld), i386-darwin Mach-O writer fix, unit-folder name clashes (lcl/, fv/), i8086 medium/large/huge -CX, OS/2 build kit + test/os2, i386-darwin linking (cctools/ld64, Csu, stub libSystem) + test/darwin
 Hashes are of the repository content (LF line endings, as on GitHub or a Linux clone). On Windows with
 core.autocrlf, text files are checked out with CRLF and hash differently; .ppu/.a/.exe/.o are binary and match.
 CHECKSUMS.md5 / CHECKSUMS.sha256 list every file except the three CHECKSUMS files themselves.
@@ -37,16 +37,21 @@ bin/tools/i386-os2/as:
   SHA256: dc504c4deee1dee51f790b0f2e8f5eb16570c747c9e6989af7b7f67cf0be6ab3
   Size:   2270408
 
+bin/tools/i386-darwin/ld:
+  MD5:    c40d6f36ac6d70c4983f8a2e68ae689c
+  SHA256: 1f7385c0ca9cc10c9614013d4ea9f903bc68b89d079f5faa8dd6ad413a84b967
+  Size:   7846496
+
 HISTORY.md:
-  MD5:    a50503d0828c8b7b1291e4a2bb4b154a
-  SHA256: 7db6c728e6eb0965d86b442e67d1644c3cd331170d92940f63fc4e411157fcd9
-  Size:   14311
+  MD5:    1660dd1ce2bc9fb4300d8632c1867087
+  SHA256: 0eb98d7d7058f0e9ee1cebd696967f95f9943fa2f9d8ed306d0b147071a76c12
+  Size:   15528
 
 docs/ROADMAP-UNITS.md:
-  MD5:    a51d4dcdf8210fa2b925c4d8bb39210c
-  SHA256: 4664cc10610f346a63328b9e80f38e2e57ee7705985e55abfccfbec59fb674c1
-  Size:   11156
+  MD5:    abc6e1e3bb956add7a271e0913f0ca21
+  SHA256: 8e2cf85c728a158941a7543bdd1f11e3738a0cea28874a5ef849f13ecfde1962
+  Size:   11307
 
 === Totals ===
-Files: 43073
+Files: 43119
 Size:  1.7G

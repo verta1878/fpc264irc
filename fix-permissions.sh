@@ -11,6 +11,7 @@ chmod +x "$SCRIPT_DIR/bin/ppcross8086" 2>/dev/null
 chmod +x "$SCRIPT_DIR/bin/tools/make" "$SCRIPT_DIR/bin/tools/darwin-as" 2>/dev/null
 chmod +x "$SCRIPT_DIR/bin/tools/i386-os2/"* 2>/dev/null
 chmod +x "$SCRIPT_DIR/bin/tools/i386-emx/"* 2>/dev/null
+chmod +x "$SCRIPT_DIR/bin/tools/i386-darwin/"* 2>/dev/null
 chmod +x "$SCRIPT_DIR/bin/tools/i8086-msdos/"* 2>/dev/null
 chmod +x "$SCRIPT_DIR/bin/tools/i386-go32v2/"* 2>/dev/null
 chmod +x "$SCRIPT_DIR/bin/tools/i386-win32/"* 2>/dev/null
