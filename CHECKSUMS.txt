@@ -1,6 +1,6 @@
 FPC 2.6.4irc - Repository Checksums
-Generated: 2026-10-07 (byte, after i386-darwin linking: bin/tools/i386-darwin + test/darwin)
-Includes: Patches 1-6, graph 3.0.4 backport, smartpack (.ppu + .a), stale-unit rebuild, i386-linux USB units, OS/2 native linking (patched binutils ld), i386-darwin Mach-O writer fix, unit-folder name clashes (lcl/, fv/), i8086 medium/large/huge -CX, OS/2 build kit + test/os2, i386-darwin linking (cctools/ld64, Csu, stub libSystem) + test/darwin
+Generated: 2026-10-08 (byte, after the unit-format check: 7 i386-win32 units rebuilt)
+Includes: Patches 1-6, graph 3.0.4 backport, smartpack (.ppu + .a), stale-unit rebuild, i386-linux USB units, OS/2 native linking (patched binutils ld), i386-darwin Mach-O writer fix, unit-folder name clashes (lcl/, fv/), i8086 medium/large/huge -CX, OS/2 build kit + test/os2, i386-darwin linking (cctools/ld64, Csu, stub libSystem) + test/darwin, unit format check (numlib + singleinstance rebuilt for i386-win32)
 Hashes are of the repository content (LF line endings, as on GitHub or a Linux clone). On Windows with
 core.autocrlf, text files are checked out with CRLF and hash differently; .ppu/.a/.exe/.o are binary and match.
 CHECKSUMS.md5 / CHECKSUMS.sha256 list every file except the three CHECKSUMS files themselves.
@@ -43,15 +43,15 @@ bin/tools/i386-darwin/ld:
   Size:   7846496
 
 HISTORY.md:
-  MD5:    1660dd1ce2bc9fb4300d8632c1867087
-  SHA256: 0eb98d7d7058f0e9ee1cebd696967f95f9943fa2f9d8ed306d0b147071a76c12
-  Size:   15528
+  MD5:    2a7469fb0718d732d25bb20fc47f0daf
+  SHA256: 95b6509a5cae857d9d14ab57bd7e52d92c665926d66b6089f29618ccb145b022
+  Size:   16490
 
 docs/ROADMAP-UNITS.md:
-  MD5:    abc6e1e3bb956add7a271e0913f0ca21
-  SHA256: 8e2cf85c728a158941a7543bdd1f11e3738a0cea28874a5ef849f13ecfde1962
-  Size:   11307
+  MD5:    5104559ff929b83cf43cb665e3c16444
+  SHA256: aa628a889ee16e29591bce54a735c8e48786bfdb83e0eb327cb1906e93fd4636
+  Size:   11781
 
 === Totals ===
-Files: 43119
+Files: 43123
 Size:  1.7G

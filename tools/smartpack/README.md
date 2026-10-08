@@ -13,6 +13,8 @@ No recompile; `.ppu` checksums are untouched, so nothing that depends on a unit 
   the compiler stops with "Can't find unit") and interface-only warnings (compiler carries on).
 - `rebuild_stale.py <repo> <target> <unit dir>` - rebuilds the FATAL units from `src/` against the current units
   (dependencies first, mutually dependent units together), packs them as `.ppu` + `.a`, loops until none are left.
+- `ppu_version_check.py <repo>` - every `.ppu` must be in its compiler's format: PPU135 (ppc386/ppcx64, FPC 2.6.4)
+  everywhere, PPU207 (ppcross8086, FPC 3.2.2) in `bin/units/i8086-msdos*`. Lists the wrong ones, exit code 1 if any.
 - `macho_ar.py` — Darwin archive writer with a `__.SYMDEF SORTED` index (spare; `llvm-ar --format=darwin` is used).
 - `macho_fix.py in.o out.o` — repairs an i386 Mach-O object written by the 2.6.4 internal writer (`-Amacho`) before the
   ogmacho/macho fix: symbol entries 16 -> 12 bytes, LC_SEGMENT filesize/vmsize. Output is byte-identical to what the

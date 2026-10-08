@@ -13,6 +13,7 @@ Win32/Win64 (Wine), go32v2 (DOSBox); i386 FreeBSD links; ptcgraph links from rep
 | 6 | OS/2 kit README | **Done 2026-10-07** - `tools/os2-native-build` is repo-relative and builds all 219 units (incl. the 10 fcl-res units; `resource` = fcl-res) as `.ppu` + `libp*.a`, reproducing the shipped code. Test programs: `test/os2/`. |
 | 7 | USB | **Done 2026-10-02** - the `.o`/`.ppu` in `src/packages/usb/src` and `src/rtl/usb` were the i386-linux USB stack (r311); `usbhub`, `usbmsd`, `usbtrans`, `libusb`, `usbserial` now ship in `bin/units/i386-linux` as `.ppu` + `.a` (usbcore was already there), the 12 build files in `src` are removed. Test program with all six USB units links and runs. |
 | 8 | Win32/Win64 GDI graph hi-colour | Deferred to the newer-FPC step (upstream never added it; ptcgraph has it). |
+| 9 | Unit format = compiler format | **Done 2026-10-08** - `tools/smartpack/ppu_version_check.py`: 7 i386-win32 units were PPU207 (FPC 3.2.x), unreadable by ppc386: numlib `typ omv dsl mdt sle spl` rebuilt from `src/packages/numlib`, `singleinstance` from FPC 3.0.4 fcl-base (source added to `src/packages/fcl-base/src`); all `.ppu` + `.a`, tested under Wine (`test/test_numlib.pas`, `test/test_singleinstance.pas`). Now: 7,738 PPU135 + 249 PPU207 (i8086 only), 0 wrong. |
 
 ## OS/2 (item 3) - findings 2026-10-02
 

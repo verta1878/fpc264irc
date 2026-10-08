@@ -1,6 +1,6 @@
 72e08b7e06f7c731f4f17ca9c29c1411  ./.fpcirc
 108e2243262608e8d2c977350600ef04  ./.gitattributes
-1660dd1ce2bc9fb4300d8632c1867087  ./HISTORY.md
+2a7469fb0718d732d25bb20fc47f0daf  ./HISTORY.md
 9f463bb4d3019a9d922623ac0874dae4  ./LICENSE
 d169ba6938afc8449c4c717026af8cd8  ./Makefile
 2fed19c6aa0ff41dcee8b88be94fea7f  ./README.md
@@ -8997,7 +8997,7 @@ c52c40011c2b6898fc9465ce9f3d304f  ./bin/units/i386-win32/dialogs.ppu
 d80262c780b99ff530d7975f972a122b  ./bin/units/i386-win32/dom_html.ppu
 eec1eedc2b25d1d5187371ffcf0be34a  ./bin/units/i386-win32/dos.ppu
 2b8a77d1f073678b057724309c34be96  ./bin/units/i386-win32/drivers.ppu
-072d44c1a90a0e5148a3668ca3abb91a  ./bin/units/i386-win32/dsl.ppu
+627dc832de9d7225cbe584d0423c0ada  ./bin/units/i386-win32/dsl.ppu
 52cf5991c6a79f4c7153652c3054311a  ./bin/units/i386-win32/dtdmodel.ppu
 e1336dba01d8dd58d86377421542861c  ./bin/units/i386-win32/dwmapi.ppu
 9c1933dfa7bf5fff2eb927598788bcbb  ./bin/units/i386-win32/dynamicarray.ppu
@@ -11317,7 +11317,7 @@ ba20a0507185c45697ff82c6910293d3  ./bin/units/i386-win32/libpdictionarystringlis
 d67041c88f7e419fc60c5b8559fde03c  ./bin/units/i386-win32/libpdom_html.a
 c4bce4406d3a2a9c9a9daf8a56cfc7b7  ./bin/units/i386-win32/libpdos.a
 380672f671e900c07d6e7abfccc87ab8  ./bin/units/i386-win32/libpdrivers.a
-71be5f565ed6f30e714a762caa1cfff0  ./bin/units/i386-win32/libpdsl.a
+68e360599877e43302d93c64fdde7774  ./bin/units/i386-win32/libpdsl.a
 e5ef8dbbb7e7365548f8a2ccb9e8a608  ./bin/units/i386-win32/libpdtdmodel.a
 59d3a2a7ed5ee46e6df50583354daf32  ./bin/units/i386-win32/libpdwmapi.a
 1aabf1fabab9b23d9ef4c0f1a4130846  ./bin/units/i386-win32/libpdynamicarray.a
@@ -11885,7 +11885,7 @@ e6c182d7d8cc15a60b44663c36f354b7  ./bin/units/i386-win32/libpmaskutils.a
 c438e87940c67a8145ce0211b9e83187  ./bin/units/i386-win32/libpmath.a
 e2403de4cd58af1ee224a55659176628  ./bin/units/i386-win32/libpmatrix.a
 b3509d942e86fcbd5cdd83ad4837570f  ./bin/units/i386-win32/libpmd5.a
-52a0306ac4a3285a61b8b40969aa2ea1  ./bin/units/i386-win32/libpmdt.a
+2e34c99dae345e911fb3c18a5fb9ddec  ./bin/units/i386-win32/libpmdt.a
 a55c4be7823c2051897dedb64641ab9c  ./bin/units/i386-win32/libpmemds.a
 517f7f9c2c1151356be32a6ed149a599  ./bin/units/i386-win32/libpmemory.a
 0b0e1a252624fd6b00dd462a08981f8e  ./bin/units/i386-win32/libpmenu.a
@@ -11911,7 +11911,7 @@ e6d79a3149c1d5cce72dad9a8d49c525  ./bin/units/i386-win32/libpnullstream.a
 02d42379bef26e313194e383072fb02f  ./bin/units/i386-win32/libpoldregexpr.a
 b14fce8c9bb150b7602f681c580a87e5  ./bin/units/i386-win32/libpole2.a
 20400e9777b5cc14369fdeb7fbf602a6  ./bin/units/i386-win32/libpoleserver.a
-f1ab472928ea4e8562b310b33e780c65  ./bin/units/i386-win32/libpomv.a
+a7a0ae06692906d43b44e49737fc2844  ./bin/units/i386-win32/libpomv.a
 a1e3d1beb905757314ebd3e95cd0b8fe  ./bin/units/i386-win32/libpopenssl.a
 70b776d3605442f8576c5e0d7191752a  ./bin/units/i386-win32/libpoutline.a
 3c29b3819afce877435f285a4a80df8a  ./bin/units/i386-win32/libpp_ddraw.a
@@ -11992,12 +11992,12 @@ e9373d88f268ac79075d934e96648cbf  ./bin/units/i386-win32/libpsharemem.a
 0c91f7d3fe69d7ca0d135c228a80cee8  ./bin/units/i386-win32/libpshlobj.a
 db4f405808491703506407bdf233528e  ./bin/units/i386-win32/libpsignals.a
 a2e12422ff43d9c6f2c8f4fb50ee271b  ./bin/units/i386-win32/libpsimpleipc.a
-3eac0e467f9f4d4300129ac377067868  ./bin/units/i386-win32/libpsingleinstance.a
-cd4f855b99223db9ab8c42f78bce126f  ./bin/units/i386-win32/libpsle.a
+b829e101d2a48339bb3165d0e4ab3308  ./bin/units/i386-win32/libpsingleinstance.a
+f49dad405dc0101597bf459568a67a87  ./bin/units/i386-win32/libpsle.a
 9a1c96d4b8ec2cbc3fe0ef9244ea38a4  ./bin/units/i386-win32/libpsockets.a
 8805db1d5e941ad68cb99e64a6bf419e  ./bin/units/i386-win32/libpsoftfpu.a
 1a3876dfc8455c5194bf511e7e185ffb  ./bin/units/i386-win32/libpsourcehandler.a
-e85b314f31f8976e2522ef3c3cb8054b  ./bin/units/i386-win32/libpspl.a
+27746bc7f8a194fba4d8aca0399dab30  ./bin/units/i386-win32/libpspl.a
 2ae9cd16955ed033e7827a6c846677c2  ./bin/units/i386-win32/libpsqldb.a
 36950b4e170ab3076ed279b04f081177  ./bin/units/i386-win32/libpsqldblib.a
 0264cba0fa27ab3e86b07d62c9228164  ./bin/units/i386-win32/libpsqldbwebdata.a
@@ -12043,7 +12043,7 @@ da408c787bb29bcf53ae5f7fefb291ea  ./bin/units/i386-win32/libptimeddlg.a
 710ec3bfe988658f83adb30491342ff2  ./bin/units/i386-win32/libptlbreader.a
 6dbc7b18adbb894d9a81fccaf4b16c27  ./bin/units/i386-win32/libptmschema.a
 66ede5b81876d894aced72ce12fbdada  ./bin/units/i386-win32/libptrees.a
-22e295b5a039e448acc8ae18923036a4  ./bin/units/i386-win32/libptyp.a
+47739ab17cb30aaebf45470e9ea1c973  ./bin/units/i386-win32/libptyp.a
 51b359488fadfcea05d39067120ccd13  ./bin/units/i386-win32/libptypelib.a
 acc3a0318c5e448b9f87dfe6efe1a306  ./bin/units/i386-win32/libptypes.a
 c56fadb9c2717bbe1125d725f7ebecc5  ./bin/units/i386-win32/libptypinfo.a
@@ -12154,7 +12154,7 @@ f16119f452eb6bead8a5d4e9f67df96f  ./bin/units/i386-win32/math.ppu
 0a509ed19aa62e5042ceea64177d9b12  ./bin/units/i386-win32/math.rst
 ad6de7d310088dc8a92ffd4f56bdfb33  ./bin/units/i386-win32/matrix.ppu
 af150e93efc0192c3efa8a752d90a612  ./bin/units/i386-win32/md5.ppu
-b05eacf4f776cddfbcc9418e125a57a2  ./bin/units/i386-win32/mdt.ppu
+b26c2a632d995c154ff9181c259b5a74  ./bin/units/i386-win32/mdt.ppu
 d0f4d6cd5a98ed9a44194548bbcd2180  ./bin/units/i386-win32/memds.ppu
 17d5bf9f8689cac1ca3347929be519be  ./bin/units/i386-win32/memds.rst
 331ccdb260b0e713be63760e4d7391d8  ./bin/units/i386-win32/memory.ppu
@@ -12183,7 +12183,7 @@ b01374804c309d1b40b4c1aa2c0f4de7  ./bin/units/i386-win32/objpas.ppu
 21320583975f024eaec718e934579284  ./bin/units/i386-win32/oldregexpr.ppu
 8069be014c99ee4c8ad1b9027fbf6be2  ./bin/units/i386-win32/ole2.ppu
 97e674a43162efd842fc84b2d9ea1b0e  ./bin/units/i386-win32/oleserver.ppu
-ea5cfe0f5425d75ca55c0503b4099d24  ./bin/units/i386-win32/omv.ppu
+c16b42d59d3ece32c525fb189a1999a9  ./bin/units/i386-win32/omv.ppu
 70cd49ee38c744acb46d222e4929cda2  ./bin/units/i386-win32/openssl.ppu
 2deb1356cf2b194acf0b2b363f483cd0  ./bin/units/i386-win32/outline.ppu
 76bcb57dcc6c8a2c7af98f28f097bcc8  ./bin/units/i386-win32/p_ddraw.ppu
@@ -12283,12 +12283,12 @@ ebee76c6519ac0393c3f7728e5f86262  ./bin/units/i386-win32/shlobj.ppu
 77c561eedd168e88975fb69789a1954f  ./bin/units/i386-win32/signals.ppu
 da3d477965cd156029444b263be112d8  ./bin/units/i386-win32/simpleipc.ppu
 5af48a5fa00a912e87fe572e34f122c7  ./bin/units/i386-win32/simpleipc.rst
-bbc92f4c78a438862c2f889d01481261  ./bin/units/i386-win32/singleinstance.ppu
-86f991022bf2c9cc57c769f3e7af340f  ./bin/units/i386-win32/sle.ppu
+21da47444eb276b8f93a41e6b75f2648  ./bin/units/i386-win32/singleinstance.ppu
+3a336f6c5c2c2977b8a893ee39f66749  ./bin/units/i386-win32/sle.ppu
 e78a603a10ac91293f474589b16f0270  ./bin/units/i386-win32/sockets.ppu
 8d88d742464fb4c199b1fc89e8322fe7  ./bin/units/i386-win32/softfpu.ppu
 137b7a5f8dac6836ad12435100fb63c5  ./bin/units/i386-win32/sourcehandler.ppu
-a94ea1b28a0038c2ba56bedeeb3826f2  ./bin/units/i386-win32/spl.ppu
+fb6ab89c557712083cea79e9d3caf119  ./bin/units/i386-win32/spl.ppu
 06d68bec9195bf9cb4afdf13fe25d875  ./bin/units/i386-win32/sqldb.ppu
 718658fd9724daf70dae9b8b95472b2a  ./bin/units/i386-win32/sqldblib.ppu
 a782a460f73e861f820f1de33309c1f3  ./bin/units/i386-win32/sqldblib.rst
@@ -12346,7 +12346,7 @@ e0c80425d94bbca3a0526023f2930d19  ./bin/units/i386-win32/timeddlg.ppu
 423ece17d13b621b1b22eef5d35ca38a  ./bin/units/i386-win32/tlbreader.ppu
 c05d4a9ea1238c97a5cc83a8ceec970e  ./bin/units/i386-win32/tmschema.ppu
 5fd1e98561a10211cad6d7dfd921a23e  ./bin/units/i386-win32/trees.ppu
-c9e6487b2b7056637874178470cf6720  ./bin/units/i386-win32/typ.ppu
+fb72de9229818e5d757fb8a830aeaca0  ./bin/units/i386-win32/typ.ppu
 49f4287813b0f3b3805e614207a5c0e0  ./bin/units/i386-win32/typelib.ppu
 701c5e3e3cbac0769059dd0dd3e747eb  ./bin/units/i386-win32/typelib.rst
 b04eb0360a9bd5c6a63bb642276520c3  ./bin/units/i386-win32/types.ppu
@@ -16630,7 +16630,7 @@ b768e42b45ac2a8435f2b57efac89066  ./docs/PATCH6-MZ-LINKER-HANDOFF.md
 9400438efce50c4c71e6d8e03f27c0e5  ./docs/README.md
 07615114bb9d92f9f1774e6bc54e5021  ./docs/ROADMAP-112.md
 36951dcce5f0477b04cb0959efcb84b9  ./docs/ROADMAP-MTERM.md
-abc6e1e3bb956add7a271e0913f0ca21  ./docs/ROADMAP-UNITS.md
+5104559ff929b83cf43cb665e3c16444  ./docs/ROADMAP-UNITS.md
 516887eff1a02c34c80567729f02e9f2  ./docs/SERIAL.md
 664a1dd2de023156d61bbcd5c0fe2cd4  ./docs/SOCKETS-PHASE.md
 6e7e163743df0564e52dfb4d5be13f95  ./docs/STRINGS.md
@@ -31393,6 +31393,7 @@ d6ebc0589a8cfed4e19bb3c162159a64  ./src/packages/fcl-base/src/pooledmm.pp
 2113b4eb60205bff544f3907a5acc258  ./src/packages/fcl-base/src/rtfdata.inc
 3d931876489628071079fb7cfc15c6f5  ./src/packages/fcl-base/src/rtfpars.pp
 73aac7c598900d17b82ed6c423a4c36c  ./src/packages/fcl-base/src/rttiutils.pp
+89031d620f69896c5fb58764140fde80  ./src/packages/fcl-base/src/singleinstance.pp
 8ec024f8446e25622e9089acd65abcc9  ./src/packages/fcl-base/src/streamcoll.pp
 155e0eabf0acf71599090898daa0d28d  ./src/packages/fcl-base/src/streamex.pp
 ba467539c7e336d6361dced5e31c39a7  ./src/packages/fcl-base/src/streamio.pp
@@ -42976,7 +42977,7 @@ c6b7526442d840c0979adeeed194ea14  ./src/utils/tply/yaccsem.pas
 65c0ff214f8c1081f80e0850d418ef2a  ./src/utils/tply/yacctabl.pas
 2ff9f2137ef81f0548bdd1e2c72e618c  ./src/utils/tply/yylex.cod
 402cf296593a9a8f6845fe70b2528ae3  ./src/utils/tply/yyparse.cod
-1808c6bd1d93320d537f3d975cd6701c  ./test/README.md
+eac9c8facb7a1d332093a8885248b494  ./test/README.md
 df8bd64f9ff7af62fa992adb120e83b8  ./test/darwin/README.md
 dd1573e0de8bbd2dbbb5e04274483dc0  ./test/darwin/build.sh
 edc2de1a3a6f6f9ec653da90770b7378  ./test/darwin/crttest
@@ -43041,9 +43042,11 @@ fa06c17683615b2dfdba08d9d7ffcdc1  ./test/test_darwin_sockets.pas
 d03473916f0f52ef7967759f2eefb6d6  ./test/test_dos_sockets.pas
 db44c1e2d14f58e74fbd24743c12d37b  ./test/test_freebsd_sockets.pas
 0abfa860b16181279d9b843b0b3f5d64  ./test/test_linux_sockets.pas
+6537317db013d31d067b5101a3921e47  ./test/test_numlib.pas
 9f369db271d3ba6a6999073e943e30e4  ./test/test_os2_sockets.pas
 dbc70384e77f589da8aabd25d48abc2c  ./test/test_serial.exe
 304bd71a4a8047d1d5bce4ba191778b4  ./test/test_serial.pas
+f985e12bbe5f82258e82ff0668c59e74  ./test/test_singleinstance.pas
 ce52fd04adbe9fcaac5b0e5b24407de9  ./test/test_string_baseline.pas
 654f168285395c7f1b02b83a1ca2684c  ./test/test_string_codepage.pas
 1a7e42ecf544deb66e44a82b19f90c40  ./test/test_string_literal_index.pas
@@ -43108,7 +43111,7 @@ aaae2cfd5611f3b3515fa6bccba0abf6  ./tools/ripscript/provision.sh
 1ad7c394b059f179a708800164ddec71  ./tools/ripscript/src/imagemagick-src.tar.gz
 19c9f5392fd884da23d1ce0ac4058c76  ./tools/ripscript/src/libansilove-src.tar.gz
 107ae2c399b07a2326e47e27ae1d44fc  ./tools/ripscript/toolpaths.sh
-4af3d502b42d7adad83a34619eaad01f  ./tools/smartpack/README.md
+90acf6dd2f743287b8fecc098d78a96a  ./tools/smartpack/README.md
 151afefe663f5a28cf8091b275036276  ./tools/smartpack/darwin_rebuild.py
 87fb2dff8cbd7afb6cd2ef3f39131b6a  ./tools/smartpack/macho_ar.py
 145cb4db15c274e0120b6bc011e1cc33  ./tools/smartpack/macho_fix.py
@@ -43116,4 +43119,5 @@ aaae2cfd5611f3b3515fa6bccba0abf6  ./tools/ripscript/provision.sh
 28c623124f667784b3a35bdd1b5927c7  ./tools/smartpack/ppu_consistency.py
 4c3b54da306d8d797b4162bbed7a340c  ./tools/smartpack/ppu_initflag.py
 ae271c77729faa2634e0a3f661a3d515  ./tools/smartpack/ppu_smart.py
+73c18ccb6ee2c7a0ea897b29e98e0d18  ./tools/smartpack/ppu_version_check.py
 85590a654714172b7d0a1b8aa1032d14  ./tools/smartpack/rebuild_stale.py

@@ -51,3 +51,9 @@ ppc386 -Tlinux -Mdelphi -Fubin/units/i386-linux tests/rt_stress.pas -o rt_stress
 
 Both tests compile on all 4 targets. File I/O test (12) uses /tmp/
 which exists on Linux/Darwin/OS2 but not DOS — skip on DOS.
+
+## test_numlib.pas / test_singleinstance.pas — i386-win32 units rebuilt 2026-10-08
+
+Built with `bin/ppc386 -Twin32 -FDbin/tools/i386-win32 -Fubin/units/i386-win32`, run under Wine:
+- `test_numlib`: `slegen` solves a 3x3 system (x = 1 3 0), `spl1nati`/`spl1pprv` natural spline of x² gives 6.2321 at 2.5.
+- `test_singleinstance`: a minimal `TBaseSingleInstance` descendant starts as server.

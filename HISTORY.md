@@ -193,6 +193,20 @@ source          patches/os2-cross/binutils/ (binutils-2.30-emx.patch, build.sh, 
 result          same program images and the same LX import fixups as before (360 / 1055 in the two tests); not yet run on OS/2
 ```
 
+## Unit format = compiler format (2026-10-08)
+
+```
+check           tools/smartpack/ppu_version_check.py: ppc386/ppcx64 (FPC 2.6.4) read PPU135, ppcross8086 (3.2.2) PPU207
+found           7 units in bin/units/i386-win32 were PPU207 (built by FPC 3.2.x, unusable - "wrong PPU version"),
+                their libp*.a archives from the same 3.x build
+numlib          typ, omv, dsl, mdt, sle, spl rebuilt from src/packages/numlib (-Twin32 -O2 -Ur) -> .ppu + libp*.a
+singleinstance  source from FPC 3.0.4 fcl-base (same as 3.2.2), added as src/packages/fcl-base/src/singleinstance.pp,
+                compiles unchanged with 2.6.4 -> .ppu + libpsingleinstance.a
+replaced        the 7 PPU207 .ppu files and their 7 libp*.a (overwritten by the rebuilt ones)
+tests           test/test_numlib.pas, test/test_singleinstance.pas - link and run under Wine
+result          7,738 PPU135 + 249 PPU207 (all i8086), 0 in the wrong format; i386-win32 ppu_consistency 0 fatal
+```
+
 ## i386-darwin: linking on Linux (2026-10-07)
 
 ```
