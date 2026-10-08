@@ -193,6 +193,26 @@ source          patches/os2-cross/binutils/ (binutils-2.30-emx.patch, build.sh, 
 result          same program images and the same LX import fixups as before (360 / 1055 in the two tests); not yet run on OS/2
 ```
 
+## i8086 medium/large/huge -CX, OS/2 kit + samples (2026-10-07)
+
+```
+i8086-msdos     medium/large/huge RTL rebuilt from FPC 3.2.2 with -Wm<model> -CX: 23 units each as .ppu + .a
+                (were one .o per unit, built without -CX); graph rebuilt against them; prt0m/prt0l/prt0h.o unchanged
+                result: sysutils/objects/crt/... programs now link in medium + large (DGROUP overflowed before) and run in
+                huge (old huge set linked but printed nothing); graph test all 6 modes OK in DOSBox, all 3 models
+removed         63 .o: bin/units/i8086-msdos-{medium,large,huge}/<unit>.o, 21 each (now inside <unit>.a)
+tools           tools/i8086-graph-build/build-rtl.sh: any model from FPC 3.2.2 source (GitLab tag, SHA-256 pinned);
+                tiny/small/compact rebuilt with it equal the shipped sets
+os2 kit         tools/os2-native-build: repo-relative build.sh + drive.py, 219 units (adds the 10 fcl-res units; resource =
+                fcl-res), assembles + packs into libp*.a; reproduces bin/units/i386-os2 code exactly with the pre-Darwin
+                ppc386 - today's ppc386 differs in 38 units only by not calling fpc_shortstr_concat_multi (nopt.pas
+                fpc264irc change, already in the source; the earlier binary predates it)
+examples/os2    7 sample programs + build.sh + README: hello, crttest, filetest, graphdemo (PM), sysinfo (doscalls),
+                threads, fvdemo (Free Vision) - all link to LX; to be run on real OS/2 / ArcaOS
+docs            ROADMAP-UNITS items 2, 4, 6; smartpack README; sdk/README -Tos2 line; fix-permissions.sh covers
+                ppcross8086, bin/tools/make, darwin-as and the i386-os2/i386-emx/i8086-msdos tool folders
+```
+
 ## Unit folders: name clashes, stale leftovers (2026-10-07)
 
 ```

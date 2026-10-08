@@ -27,9 +27,8 @@ Kept as `.o` on purpose (the compiler links them by file name, FPC releases ship
 prt0/cprt0/gprt0/dllprt0 (linux, freebsd), prt0/exceptn/fpu (go32v2), prt0/prt1 (os2), prt0[tsmclh] (i8086),
 sdk/emx/lib crt0 & co.
 
-Not converted yet:
-- i8086-msdos medium/large/huge: PPU207 (3.2.2) units built without -CX; their archives are OMF
-  libraries. Rebuild with -CX in the i8086 kit.
+i8086-msdos (all six models): built with -CX by the compiler itself (OMF libraries), not by this tool;
+medium/large/huge converted 2026-10-07 by rebuilding with -CX (`tools/i8086-graph-build/build-rtl.sh`).
 
 Tested (link + run): i386-linux, x86_64-linux, i386-win32 + x86_64-win64 (Wine), i386-go32v2 (DOSBox),
 lazutils (i386-win32), lcl subfolder (x86_64-linux), ppudump built against bin/compiler-ppus;

@@ -52,7 +52,7 @@ Pure Pascal print drivers for RIPscript engines.
 ppc386 -Temx -FDbin/tools/i386-emx -Fusdk/emx/lib program.pas
 
 # Native OS/2 (PM applications):
-ppc386 -Tos2 -FDbin/tools/i386-os2 -Fusdk/os2tk45/lib program.pas
+ppc386 -Tos2 -FDbin/tools/i386-os2 -Fubin/units/i386-os2 program.pas   (samples: examples/os2/)
 
 # Print drivers:
 ppc386 -Fusdk/prt program.pas

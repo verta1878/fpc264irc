@@ -48,10 +48,14 @@ fvconsts
 gadgets
 getopts
 graph
+groupcursorresource
+groupiconresource
+groupresource
 gzio
 heaptrc
 histlist
 httpdefs
+icocurtypes
 infblock
 infcodes
 inffast
@@ -128,6 +132,7 @@ moncalls
 moucalls
 mouse
 msgbox
+newexe
 nmpipes
 objects
 objpas
@@ -154,8 +159,12 @@ printer
 process
 quecalls
 regexpr
+resdatastream
+resfactory
+resmerger
 resolve
 resource
+resourcetree
 rexxsaa
 rtlconst
 rtlconsts
@@ -171,6 +180,7 @@ statuses
 stdconvs
 stddlg
 strings
+stringtableresource
 strutils
 sysconst
 sysmsg

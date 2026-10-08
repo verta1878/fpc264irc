@@ -6,11 +6,11 @@ Win32/Win64 (Wine), go32v2 (DOSBox); i386 FreeBSD links; ptcgraph links from rep
 | # | Item | Status |
 |---|------|--------|
 | 1 | i386-darwin units | **Done 2026-10-07** - compiler fixed (`macho.pas`, `ogmacho.pas`, `bin/ppc386` rebuilt); all 794 units as `.ppu` + `.a`. See below. Not linked yet (needs an i386 Mach-O linker, cctools ld64). |
-| 2 | i8086 medium/large/huge | Open. PPU207 (3.2.2) units built without `-CX`; their archives are OMF libraries. Rebuild with `-CX` in `tools/i8086-graph-build`. |
-| 3 | i386-os2 object code + linking | **Done 2026-10-02** - 219 units as `.ppu` + `.a`; `-FD bin/tools/i386-os2` links native OS/2 LX executables (see `bin/tools/i386-os2/README.md`). Not yet run on real OS/2. |
-| 4 | Stale units | **Done 2026-10-07** - no fatal records left in any target folder (see "Leftovers" below). Left: i386-win32 FV `editors`/`tabs`/`timeddlg` (LCL `Dialogs` in the same folder hides FV `Dialogs`), win32 `fpwidestring` (needs `unixcp`, which win32 does not have), ~~`xmliconv_windows`~~ (rebuilt 2026-10-07); win64 `pkgfpmake` (source newer than the shipped fppkg units); go32v2 LCL copies `fileutil`/`graphics`; Lazarus sets' own stale records. |
+| 2 | i8086 medium/large/huge | **Done 2026-10-07** - RTL rebuilt from FPC 3.2.2 with `-CX` (`tools/i8086-graph-build/build-rtl.sh`), 23 units + graph as `.ppu` + `.a`; programs that overflowed DGROUP (medium/large) or did not run (huge) now link and run in DOSBox. See the kit README. |
+| 3 | i386-os2 object code + linking | **Done 2026-10-02** - 219 units as `.ppu` + `.a`; `-FDbin/tools/i386-os2` links native OS/2 LX executables (see `bin/tools/i386-os2/README.md`). Not yet run on real OS/2. |
+| 4 | Stale units | **Done 2026-10-07** - no fatal records left in any target folder; the leftovers (win32 FV + `fpwidestring`, win64 `pkgfpmake`, go32v2 and win32 Lazarus sets, darwin FV) are fixed too - see "Leftovers" below. |
 | 5 | `CHECKSUMS.md5` / `CHECKSUMS.sha256` / `CHECKSUMS.txt` | **Done 2026-10-02** - regenerated for the current tree (they no longer list themselves). |
-| 6 | OS/2 kit README | Open (resource now comes from fcl-res). |
+| 6 | OS/2 kit README | **Done 2026-10-07** - `tools/os2-native-build` is repo-relative and builds all 219 units (incl. the 10 fcl-res units; `resource` = fcl-res) as `.ppu` + `libp*.a`, reproducing the shipped code. Sample programs: `examples/os2/`. |
 | 7 | USB | **Done 2026-10-02** - the `.o`/`.ppu` in `src/packages/usb/src` and `src/rtl/usb` were the i386-linux USB stack (r311); `usbhub`, `usbmsd`, `usbtrans`, `libusb`, `usbserial` now ship in `bin/units/i386-linux` as `.ppu` + `.a` (usbcore was already there), the 12 build files in `src` are removed. Test program with all six USB units links and runs. |
 | 8 | Win32/Win64 GDI graph hi-colour | Deferred to the newer-FPC step (upstream never added it; ptcgraph has it). |
 
@@ -102,7 +102,7 @@ Root cause of most of them: two libraries with a unit of the same name copied in
 - **i386-win32**: the Lazarus LCL `Dialogs`/`Menus`/`Controls`/`Graphics` had replaced FV `dialogs`/`menus`, so all of FV was
   broken. The 616 Lazarus units (1469 files: `.ppu`, `.a`, `.rst`, `.lfm`, `.res`) moved to `bin/units/i386-win32/lcl/`
   (same layout as x86_64-linux). FV rebuilt from `src/packages/fv` (all 24 units, `.ppu` + `.a`). Use
-  `-Fu bin/units/i386-win32` for FV/console programs, `-Fu .../lcl -Fu bin/units/i386-win32` for LCL programs.
+  `-Fubin/units/i386-win32` for FV/console programs, `-Fubin/units/i386-win32/lcl -Fubin/units/i386-win32` for LCL programs.
   Tested under Wine: an FV program (dialogs, msgbox, app, menus, stddlg, editors, tabs, timeddlg) and an LCL program
   (Interfaces, Forms, Dialogs, StdCtrls) link and run. `bin/tools/i386-win32/i386-win32-fpcres` was a do-nothing stub
   (LCL programs failed "Can't open object file *.or") - now a real fpcres (x86_64 Linux build of `src/utils/fpcres`).
