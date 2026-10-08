@@ -193,6 +193,37 @@ source          patches/os2-cross/binutils/ (binutils-2.30-emx.patch, build.sh, 
 result          same program images and the same LX import fixups as before (360 / 1055 in the two tests); not yet run on OS/2
 ```
 
+## Unit folders: name clashes, stale leftovers (2026-10-07)
+
+```
+i386-win32      616 Lazarus units (1469 files) moved to bin/units/i386-win32/lcl/ - they had replaced FV dialogs/menus;
+                FV rebuilt (24 units); fpwidestring rebuilt (source: unixcp only on non-Windows, 2-param compare)
+                bin/tools/i386-win32/i386-win32-fpcres: real fpcres instead of a do-nothing stub
+                tested (Wine): FV program and LCL program link and run
+x86_64-win64    fppkg units rebuilt (pkgfpmake was stale)
+i386-go32v2     83-unit LCL set (ppu only, no object code) moved to bin/units/i386-go32v2/lcl/ (fileutil, graphics kept)
+i386-darwin     FV dialogs rebuilt into bin/units/i386-darwin/fv/ (univint Dialogs has the same name); libpmenus.a now
+                holds the FV menus code its .ppu describes; dbugintf, fpimgcanv, xmldatapacketreader rebuilt
+removed         bin/units/i386-darwin/dialogs.rst (FV, now in fv/)
+result          ppu_consistency: 0 fatal records in every target folder
+```
+
+## i386-darwin: Mach-O writer fix (2026-10-07)
+
+```
+compiler        macho.pas: nlist/lc_str/ranlib without host-pointer variants (nlist was 16 bytes on a 64-bit host);
+                ogmacho.pas: LC_SEGMENT filesize = file data size, vmsize = end of the highest section
+                bin/ppc386 rebuilt from the fixed source
+units           bin/units/i386-darwin: 794 units as .ppu + libp<unit>.a; 785 objects repaired with macho_fix.py
+                (byte-identical to the fixed compiler's output where the code matches), 9 missing objects built
+removed         bin/units/i386-darwin: 785 .o + serial.s (now inside the .a archives)
+ppu flags       656 i386-darwin .ppu: stale "init" flag cleared (no _INIT$_ routine in their code -> undefined
+                symbols in every program); every FPC symbol of two test programs now resolves from the archives
+win32           xmliconv_windows rebuilt against the current XMLRead (-S2h), .ppu + .a
+tools           tools/smartpack/macho_fix.py, darwin_rebuild.py, ppu_initflag.py
+checksums       regenerated; the 15 patches/os2-cross/emxbind files now hashed as stored by git (LF)
+```
+
 ## Stale units, USB, checksums (2026-10-02)
 
 ```

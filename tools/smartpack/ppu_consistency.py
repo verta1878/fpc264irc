@@ -9,7 +9,7 @@ for d in dirs:
     for p in glob.glob(os.path.join(d, '*.ppu')):
         name = os.path.basename(p)[:-4].lower()
         if name in info: continue
-        out = subprocess.run([pd, p], capture_output=True, text=True, errors='replace').stdout
+        out = subprocess.run([pd, p] if os.path.getsize(p) < 2000000 else [pd, '-Vhi', p], capture_output=True, text=True, errors='replace').stdout
         crc = re.search(r'^Checksum\s*:\s*(\w+)', out, re.M)
         intf = re.search(r'^Interface Checksum\s*:\s*(\w+)', out, re.M)
         cut = out.find('Implementation section')

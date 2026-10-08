@@ -548,7 +548,7 @@ type
   lc_str = record
   case longint of
     0 : ( offset : uint32_t );
-    1 : ( ptr : ^char );
+    { fpc264irc: "1 : ( ptr : ^char )" left out - it made lc_str 8 bytes on a 64-bit host }
   end;
 
   {
@@ -1480,9 +1480,8 @@ type
   nlist = record
     n_un : record
     case longint of
-      {$ifndef __LP64__}
-      0 : ( n_name : Pchar );   { for use when in-core }
-      {$endif}
+      { fpc264irc: the in-core "n_name : Pchar" variant is left out - on a 64-bit host it made
+        nlist 16 bytes instead of the 12 bytes of the i386 file format (__LP64__ is never defined in FPC) }
       1 : ( n_strx : int32_t ); { index into the string table  }
     end;
     n_type  : uint8_t;  { type flag, see below  }
@@ -1710,7 +1709,7 @@ type
     ran_un : record
       case longint of
         0 : ( ran_strx : uint32_t );
-        1 : ( ran_name : ^char );
+        { fpc264irc: "1 : ( ran_name : ^char )" left out - host pointer size must not change the file layout }
       end;
     ran_off : uint32_t;
   end;

@@ -83,6 +83,12 @@ file yourprogram
 darling shell ./yourprogram
 ```
 
+### Units and the internal assembler (2026-10-07)
+
+`bin/units/i386-darwin` ships every unit as `.ppu` + `libp<unit>.a` (Mach-O objects in BSD archives).
+The compiler's internal Mach-O writer (`-Amacho`) was fixed on 2026-10-07 (symbol table entry size and segment
+sizes); objects it writes are valid for ld64/llvm. Without `-Amacho` the compiler calls the external assembler.
+
 ### Known Limitations
 
 - FPC 2.6.4 targets i386-darwin (32-bit). 64-bit macOS support

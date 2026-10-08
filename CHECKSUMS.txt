@@ -1,6 +1,6 @@
 FPC 2.6.4irc - Repository Checksums
-Generated: 2026-10-02 (byte, after the OS/2 ld patch)
-Includes: Patches 1-6, graph 3.0.4 backport, smartpack (.ppu + .a), stale-unit rebuild, i386-linux USB units, OS/2 native linking (patched binutils ld)
+Generated: 2026-10-07 (byte, after the unit-folder clean-up)
+Includes: Patches 1-6, graph 3.0.4 backport, smartpack (.ppu + .a), stale-unit rebuild, i386-linux USB units, OS/2 native linking (patched binutils ld), i386-darwin Mach-O writer fix, unit-folder name clashes (lcl/, fv/)
 Hashes are of the repository content (LF line endings, as on GitHub or a Linux clone). On Windows with
 core.autocrlf, text files are checked out with CRLF and hash differently; .ppu/.a/.exe/.o are binary and match.
 CHECKSUMS.md5 / CHECKSUMS.sha256 list every file except the three CHECKSUMS files themselves.
@@ -13,9 +13,9 @@ bin/ppcx64:
   Size:   3021728
 
 bin/ppc386:
-  MD5:    c261e130551212c8f07c60b7b397c160
-  SHA256: 968e7d5a81e683a9630efb4fd99c15167ba7e6e003e6b8734f4820ec56ce255e
-  Size:   2637808
+  MD5:    6d268e0c6a87a569eb598f2f9aa6fc23
+  SHA256: aa61851e41ca4f23923c049f5caba3830d106b0d4bb2d34677f98c6ae39c9260
+  Size:   3026080
 
 bin/ppcross8086:
   MD5:    a3dab6c6f47344e810ff1e5d470c0135
@@ -38,15 +38,15 @@ bin/tools/i386-os2/as:
   Size:   2270408
 
 HISTORY.md:
-  MD5:    7cef14d99eb8ecd33f11d9f28a1cd368
-  SHA256: 70a6de92f05cc71d0fbf14ac4a150899ca78c2fe48f3e7fd0ab6efc30af168db
-  Size:   10428
+  MD5:    b60a1c7df65d6c8bfdac7d996a43117d
+  SHA256: f663156eaa51dfd081423458f1326c71cb87439c2da9ef2352c73c5c299a97a0
+  Size:   12581
 
 docs/ROADMAP-UNITS.md:
-  MD5:    2f66dcbd1e9c2a70dadb5e12b9c0e909
-  SHA256: 5153cd6c7ad2d9f3185f27ce02ce652c1f9f2efb77e82e025487467b9be0fdac
-  Size:   6066
+  MD5:    8fde4d2ce0de2adad776338d45616ed5
+  SHA256: 2934f3c5401c4bd9f595e04427b8cc5b617147dcb8b30a98b582f81d7fbdf206
+  Size:   11072
 
 === Totals ===
-Files: 43037
+Files: 43056
 Size:  1.7G

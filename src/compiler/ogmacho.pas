@@ -974,14 +974,20 @@ implementation
   function AddSectionToSegment(var segment: TMachoSegment; section : TMachoObjSection): boolean;
     begin
       { sections must be attached one-by-one to the segment }
-      if segment.fileoff=0 then
-        segment.fileoff:=section.DataPos;
-
-      if (segment.fileoff+segment.filesize)<(section.FileSize+section.DataPos) then
-        segment.filesize:=section.FileSize+section.DataPos;
+      { fpc264irc: filesize is the size of the segment's file data (it used to be set to the absolute end
+        offset), vmsize covers every section's address range incl. alignment gaps (it used to be the plain
+        sum of the sizes) - both made the object "malformed" for ld64/llvm }
+      if section.FileSize>0 then
+        begin
+          if segment.fileoff=0 then
+            segment.fileoff:=section.DataPos;
+          if section.DataPos+section.FileSize-segment.fileoff>segment.filesize then
+            segment.filesize:=section.DataPos+section.FileSize-segment.fileoff;
+        end;
 
       inc(segment.nsects);
-      inc(segment.vmsize, section.size);
+      if section.MemPos+section.Size>segment.vmaddr+segment.vmsize then
+        segment.vmsize:=section.MemPos+section.Size-segment.vmaddr;
       Result:=true;
    end;
 

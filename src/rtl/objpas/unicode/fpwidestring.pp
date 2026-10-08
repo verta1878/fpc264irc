@@ -19,8 +19,9 @@ implementation
 uses
 {$ifdef MSWINDOWS}
   Windows,
+{$else MSWINDOWS}
+  unixcp, { fpc264irc: not on Windows - there GetACP gives the code page }
 {$endif MSWINDOWS}
-unixcp,
   charset, charsetcompat, charconsts;
 
 procedure fpc_rangeerror; [external name 'FPC_RANGEERROR'];
@@ -440,7 +441,7 @@ function CompareUnicodeString(const s1, s2 : UnicodeString;Options : TCompareOpt
 
 begin
   if (current_Collation.DataPtr=nil) then
-    exit(OldManager.CompareUnicodeStringProc(s1,s2,Options));
+    exit(OldManager.CompareUnicodeStringProc(s1,s2)); { fpc264irc: 2.6.4 signature has 2 params }
   if (Options=[]) then begin
     exit(
       CompareUnicodeString(
@@ -476,7 +477,7 @@ function CompareWideString(const s1, s2 : WideString; Options : TCompareOptions)
 
 begin
   if (current_Collation.DataPtr=nil) then
-    exit(OldManager.CompareUnicodeStringProc(s1,s2,Options));
+    exit(OldManager.CompareUnicodeStringProc(s1,s2)); { fpc264irc: 2.6.4 signature has 2 params }
   if (Options=[]) then begin
     exit(
       CompareUnicodeString(

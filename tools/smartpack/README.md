@@ -13,19 +13,25 @@ No recompile; `.ppu` checksums are untouched, so nothing that depends on a unit 
   the compiler stops with "Can't find unit") and interface-only warnings (compiler carries on).
 - `rebuild_stale.py <repo> <target> <unit dir>` - rebuilds the FATAL units from `src/` against the current units
   (dependencies first, mutually dependent units together), packs them as `.ppu` + `.a`, loops until none are left.
-- `macho_ar.py` — Darwin archive writer with a `__.SYMDEF SORTED` index (not used yet, see below).
+- `macho_ar.py` — Darwin archive writer with a `__.SYMDEF SORTED` index (spare; `llvm-ar --format=darwin` is used).
+- `macho_fix.py in.o out.o` — repairs an i386 Mach-O object written by the 2.6.4 internal writer (`-Amacho`) before the
+  ogmacho/macho fix: symbol entries 16 -> 12 bytes, LC_SEGMENT filesize/vmsize. Output is byte-identical to what the
+  fixed compiler writes for the same code (checked on 400 units that rebuild with identical code generation).
+- `ppu_initflag.py <unit dir> [--apply]` — clears a stale "init"/"final" flag in a `.ppu` whose archive defines no
+  `_INIT$_<unit>`/`_FINALIZE$_<unit>` (used on i386-darwin: 656 units). Uses llvm-nm (not for a.out targets).
+- `darwin_rebuild.py <repo> <ppc386> <unit dir> <out dir> [unit ...]` — rebuilds i386-darwin units from `src/` with the
+  fixed compiler and keeps an object only if the new `.ppu` checksums equal the shipped ones (used for the 9 darwin
+  units that had no object code, and to verify macho_fix.py).
 
 Kept as `.o` on purpose (the compiler links them by file name, FPC releases ship them the same way):
 prt0/cprt0/gprt0/dllprt0 (linux, freebsd), prt0/exceptn/fpu (go32v2), prt0/prt1 (os2), prt0[tsmclh] (i8086),
 sdk/emx/lib crt0 & co.
 
 Not converted yet:
-- i386-darwin: the .o files are malformed — the cross compiler writes 16-byte Mach-O nlist entries
-  (pointer-sized n_strx from a 64-bit host) instead of 12. Needs a compiler fix + rebuild.
 - i8086-msdos medium/large/huge: PPU207 (3.2.2) units built without -CX; their archives are OMF
   libraries. Rebuild with -CX in the i8086 kit.
-- i386-os2: units have no object code in the repo at all (the .a files there are DLL import libs).
 
 Tested (link + run): i386-linux, x86_64-linux, i386-win32 + x86_64-win64 (Wine), i386-go32v2 (DOSBox),
 lazutils (i386-win32), lcl subfolder (x86_64-linux), ppudump built against bin/compiler-ppus;
-i386-freebsd link only.
+i386-freebsd link only; i386-os2 link + emxbind (LX import fixups checked); i386-darwin: objects/archives
+validated with llvm-nm/llvm-objdump (no i386 Mach-O linker in the sandbox, not linked).

@@ -5,10 +5,10 @@ Win32/Win64 (Wine), go32v2 (DOSBox); i386 FreeBSD links; ptcgraph links from rep
 
 | # | Item | Status |
 |---|------|--------|
-| 1 | i386-darwin units | Open. The `.o` files are malformed: the cross compiler writes 16-byte Mach-O `nlist` entries (pointer-sized `n_strx` from the 64-bit host) instead of 12. Needs a compiler fix (`ogmacho`) + rebuild, then smartpack. |
+| 1 | i386-darwin units | **Done 2026-10-07** - compiler fixed (`macho.pas`, `ogmacho.pas`, `bin/ppc386` rebuilt); all 794 units as `.ppu` + `.a`. See below. Not linked yet (needs an i386 Mach-O linker, cctools ld64). |
 | 2 | i8086 medium/large/huge | Open. PPU207 (3.2.2) units built without `-CX`; their archives are OMF libraries. Rebuild with `-CX` in `tools/i8086-graph-build`. |
 | 3 | i386-os2 object code + linking | **Done 2026-10-02** - 219 units as `.ppu` + `.a`; `-FD bin/tools/i386-os2` links native OS/2 LX executables (see `bin/tools/i386-os2/README.md`). Not yet run on real OS/2. |
-| 4 | Stale units | **Done 2026-10-02** for the fatal cases (see below). Left: i386-win32 FV `editors`/`tabs`/`timeddlg` (LCL `Dialogs` in the same folder hides FV `Dialogs`), win32 `fpwidestring`, `xmliconv_windows`; win64 `pkgfpmake`; go32v2 LCL copies `fileutil`/`graphics`; Lazarus sets' own stale records. |
+| 4 | Stale units | **Done 2026-10-07** - no fatal records left in any target folder (see "Leftovers" below). Left: i386-win32 FV `editors`/`tabs`/`timeddlg` (LCL `Dialogs` in the same folder hides FV `Dialogs`), win32 `fpwidestring` (needs `unixcp`, which win32 does not have), ~~`xmliconv_windows`~~ (rebuilt 2026-10-07); win64 `pkgfpmake` (source newer than the shipped fppkg units); go32v2 LCL copies `fileutil`/`graphics`; Lazarus sets' own stale records. |
 | 5 | `CHECKSUMS.md5` / `CHECKSUMS.sha256` / `CHECKSUMS.txt` | **Done 2026-10-02** - regenerated for the current tree (they no longer list themselves). |
 | 6 | OS/2 kit README | Open (resource now comes from fcl-res). |
 | 7 | USB | **Done 2026-10-02** - the `.o`/`.ppu` in `src/packages/usb/src` and `src/rtl/usb` were the i386-linux USB stack (r311); `usbhub`, `usbmsd`, `usbtrans`, `libusb`, `usbserial` now ship in `bin/units/i386-linux` as `.ppu` + `.a` (usbcore was already there), the 12 build files in `src` are removed. Test program with all six USB units links and runs. |
@@ -63,3 +63,59 @@ as `.ppu` + `.a` and repeats until no fatal record is left.
 
 Checked: programs using the rebuilt units compile, link and run (Linux, Win32/Win64 in Wine), go32v2 links, x86_64-freebsd
 compiles; the earlier smartpack test programs still pass; the Lazarus sets have fewer fatal records than before on every target.
+
+## i386-darwin (item 1) - 2026-10-07
+
+Two bugs in the compiler's internal Mach-O writer (`-Amacho`) made every darwin object "malformed" for ld64/llvm:
+1. `macho.pas`: `nlist`, `lc_str` and `ranlib` had an in-core pointer variant (`n_name : Pchar` under
+   `{$ifndef __LP64__}`, which FPC never defines). Built on a 64-bit host the record became 16 bytes, so the symbol
+   table was written with 16-byte entries instead of 12. The pointer variants are left out now.
+2. `ogmacho.pas` `AddSectionToSegment`: the segment `filesize` was set to the absolute end offset of the last section
+   and `vmsize` to the plain sum of the section sizes (alignment gaps ignored) - llvm: "section ... greater than the
+   segment's vmaddr plus vmsize". Now filesize = file data size, vmsize = end of the highest section.
+
+`bin/ppc386` is rebuilt from the fixed source (output on linux/win32/go32v2/os2/freebsd identical to the old binary
+except the compiler build date string in programs).
+
+Units: 470 objects had the 16-byte symbol table, all 785 had the segment fields wrong. `tools/smartpack/macho_fix.py`
+rewrites an object exactly as the fixed writer does (same code, data, relocations, symbols); proven byte-identical
+against the fixed compiler's own output on 400 units that rebuild with identical code. The 9 units that had no object
+code were built with the fixed compiler (logger, sdl, sdlgraph, sdlutils, x, xlib, graph with `-Sg`, pthreads with
+`-Mobjfpc`; `.ppu` checksums identical) or assembled from the shipped `serial.s` (llvm-mc). All 794 units packed as
+`.ppu` + `libp<unit>.a` (llvm-ar, BSD `__.SYMDEF` index); every object parses with llvm-nm and llvm-objdump; no `.ppu`
+checksum or uses record changed.
+
+Second fault found by resolving a test program's symbols against the archives: 656 darwin `.ppu` carried the
+"init" flag although their code has no initialization routine (a fresh compile of the same source does not set it), so
+every program's INITFINAL table referenced undefined `_INIT$_<unit>` symbols (baseunix, unixtype, sysctl, termio ...).
+`tools/smartpack/ppu_initflag.py` clears the flag where the archive defines no `_INIT$_` (checksums are not affected).
+Now a crt test and a sysutils/classes/dos test resolve every FPC symbol from the repo archives; only libSystem
+(libc) symbols remain for the linker.
+
+Found on the way (not fixed): darwin has no FV `dialogs` unit (FV `app`, `msgbox`, `stddlg`... record a `dialogs`
+that is not there - same name clash with the LCL `Dialogs` as on win32).
+
+## Leftovers of item 4 - 2026-10-07
+
+Root cause of most of them: two libraries with a unit of the same name copied into one folder - the last copy wins.
+
+- **i386-win32**: the Lazarus LCL `Dialogs`/`Menus`/`Controls`/`Graphics` had replaced FV `dialogs`/`menus`, so all of FV was
+  broken. The 616 Lazarus units (1469 files: `.ppu`, `.a`, `.rst`, `.lfm`, `.res`) moved to `bin/units/i386-win32/lcl/`
+  (same layout as x86_64-linux). FV rebuilt from `src/packages/fv` (all 24 units, `.ppu` + `.a`). Use
+  `-Fu bin/units/i386-win32` for FV/console programs, `-Fu .../lcl -Fu bin/units/i386-win32` for LCL programs.
+  Tested under Wine: an FV program (dialogs, msgbox, app, menus, stddlg, editors, tabs, timeddlg) and an LCL program
+  (Interfaces, Forms, Dialogs, StdCtrls) link and run. `bin/tools/i386-win32/i386-win32-fpcres` was a do-nothing stub
+  (LCL programs failed "Can't open object file *.or") - now a real fpcres (x86_64 Linux build of `src/utils/fpcres`).
+- **i386-win32 `fpwidestring`**: source fixed (`src/rtl/objpas/unicode/fpwidestring.pp`: `unixcp` only on non-Windows,
+  2.6.4 two-parameter `CompareUnicodeStringProc`); rebuilt, checksums unchanged.
+- **i386-win32 `xmliconv_windows`**: rebuilt with `-S2h` (fcl-xml options), checksums unchanged.
+- **x86_64-win64 `pkgfpmake`**: the 12 fppkg units rebuilt together from `src/packages/fppkg` (only `pkgoptions`' interface
+  changed, nothing outside fppkg uses them).
+- **i386-go32v2 `fileutil`/`graphics`**: not stray copies - they belong to an 83-unit customdrawn LCL set in that folder,
+  which has `.ppu` only (no object code, so it cannot link anyway). Not deleted: the whole set moved to
+  `bin/units/i386-go32v2/lcl/`. The base folder is now consistent (0 fatal); the two stale LCL units stay as they are.
+- **i386-darwin**: the univint (Carbon) `Dialogs` had replaced FV `dialogs`, and `libpmenus.a` held univint `Menus` code
+  under the FV `menus.ppu`. FV `dialogs` rebuilt into `bin/units/i386-darwin/fv/` (checksums identical to what the FV
+  units record; use `-Fu .../fv` first for FV programs), `libpmenus.a` rebuilt with the FV code (`.ppu` checksums
+  identical). Stale `dbugintf`, `fpimgcanv`, `xmldatapacketreader` rebuilt (no other unit uses them). An FV program
+  resolves every FPC symbol from the archives. Note: the univint units record FV `menus` (they were built against it).
