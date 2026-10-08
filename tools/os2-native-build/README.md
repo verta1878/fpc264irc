@@ -49,4 +49,4 @@ Not built here, shipped as they are in `bin/units/i386-os2`: the 21 DLL import l
 
 ## Linking and testing
 Linking OS/2 programs: `bin/tools/i386-os2/README.md`. Sample programs to run on a real OS/2 / ArcaOS machine:
-`examples/os2/` (`build.sh` builds all seven).
+`test/os2/` (seven programs with ready-built `.exe` files; `build.sh` rebuilds them).

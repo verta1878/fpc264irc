@@ -1,6 +1,6 @@
 FPC 2.6.4irc - Repository Checksums
 Generated: 2026-10-07 (byte, after i8086 medium/large/huge -CX + OS/2 kit and samples)
-Includes: Patches 1-6, graph 3.0.4 backport, smartpack (.ppu + .a), stale-unit rebuild, i386-linux USB units, OS/2 native linking (patched binutils ld), i386-darwin Mach-O writer fix, unit-folder name clashes (lcl/, fv/), i8086 medium/large/huge -CX, OS/2 build kit + examples/os2
+Includes: Patches 1-6, graph 3.0.4 backport, smartpack (.ppu + .a), stale-unit rebuild, i386-linux USB units, OS/2 native linking (patched binutils ld), i386-darwin Mach-O writer fix, unit-folder name clashes (lcl/, fv/), i8086 medium/large/huge -CX, OS/2 build kit + test/os2
 Hashes are of the repository content (LF line endings, as on GitHub or a Linux clone). On Windows with
 core.autocrlf, text files are checked out with CRLF and hash differently; .ppu/.a/.exe/.o are binary and match.
 CHECKSUMS.md5 / CHECKSUMS.sha256 list every file except the three CHECKSUMS files themselves.
@@ -38,15 +38,15 @@ bin/tools/i386-os2/as:
   Size:   2270408
 
 HISTORY.md:
-  MD5:    6b45ba321d84d6fc911c134ea356bfcf
-  SHA256: 50500560d8f3a7a550362746c946a14600aa7421f0a85575bfdef794020fe3e0
-  Size:   14294
+  MD5:    a50503d0828c8b7b1291e4a2bb4b154a
+  SHA256: 7db6c728e6eb0965d86b442e67d1644c3cd331170d92940f63fc4e411157fcd9
+  Size:   14311
 
 docs/ROADMAP-UNITS.md:
-  MD5:    3f8bd671c962f7633025e3ae2f49b593
-  SHA256: 1ff2a9d85663037a641d42fb146e1f06a6d7518c22badb8bbc63a278312875cb
-  Size:   11162
+  MD5:    a51d4dcdf8210fa2b925c4d8bb39210c
+  SHA256: 4664cc10610f346a63328b9e80f38e2e57ee7705985e55abfccfbec59fb674c1
+  Size:   11156
 
 === Totals ===
-Files: 43066
+Files: 43073
 Size:  1.7G

@@ -1,4 +1,4 @@
-# OS/2 sample programs (native `-Tos2`) — byte, 2026-10-07
+# OS/2 test programs (native `-Tos2`) — byte, 2026-10-07
 
 Seven small programs that exercise the OS/2 target end to end: LX loader, DLL imports, console, crt, files,
 threads, direct OS/2 API calls, Free Vision and the graph unit's Presentation Manager backend.
@@ -6,12 +6,13 @@ threads, direct OS/2 API calls, Free Vision and the graph unit's Presentation Ma
 Build on the Linux host (`ppc386` + the patched `ld`/`emxbind` in `bin/tools/i386-os2`, see that folder's README):
 
 ```
-examples/os2/build.sh            # -> examples/os2/out/*.exe
+test/os2/build.sh            # -> $TMPDIR/fpc264irc-os2-test/*.exe (or: test/os2/build.sh <out dir>)
 # one program by hand:
-bin/ppc386 -Tos2 -Xs -FDbin/tools/i386-os2 -Fubin/units/i386-os2 examples/os2/hello.pas
+bin/ppc386 -Tos2 -Xs -FDbin/tools/i386-os2 -Fubin/units/i386-os2 test/os2/hello.pas
 ```
 
-Then copy the `.exe` files to the OS/2 / ArcaOS machine and run them from an OS/2 command window.
+The seven `.exe` files in this folder are ready-built (2026-10-07, current `bin/ppc386`) — copy them to the OS/2 / ArcaOS
+machine and run them from an OS/2 command window. `build.sh` rebuilds them; the result is byte-identical.
 
 | # | Program | Type | What it tests | DLL imports |
 |---|---------|------|---------------|-------------|

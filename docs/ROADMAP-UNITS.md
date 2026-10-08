@@ -10,7 +10,7 @@ Win32/Win64 (Wine), go32v2 (DOSBox); i386 FreeBSD links; ptcgraph links from rep
 | 3 | i386-os2 object code + linking | **Done 2026-10-02** - 219 units as `.ppu` + `.a`; `-FDbin/tools/i386-os2` links native OS/2 LX executables (see `bin/tools/i386-os2/README.md`). Not yet run on real OS/2. |
 | 4 | Stale units | **Done 2026-10-07** - no fatal records left in any target folder; the leftovers (win32 FV + `fpwidestring`, win64 `pkgfpmake`, go32v2 and win32 Lazarus sets, darwin FV) are fixed too - see "Leftovers" below. |
 | 5 | `CHECKSUMS.md5` / `CHECKSUMS.sha256` / `CHECKSUMS.txt` | **Done 2026-10-02** - regenerated for the current tree (they no longer list themselves). |
-| 6 | OS/2 kit README | **Done 2026-10-07** - `tools/os2-native-build` is repo-relative and builds all 219 units (incl. the 10 fcl-res units; `resource` = fcl-res) as `.ppu` + `libp*.a`, reproducing the shipped code. Sample programs: `examples/os2/`. |
+| 6 | OS/2 kit README | **Done 2026-10-07** - `tools/os2-native-build` is repo-relative and builds all 219 units (incl. the 10 fcl-res units; `resource` = fcl-res) as `.ppu` + `libp*.a`, reproducing the shipped code. Test programs: `test/os2/`. |
 | 7 | USB | **Done 2026-10-02** - the `.o`/`.ppu` in `src/packages/usb/src` and `src/rtl/usb` were the i386-linux USB stack (r311); `usbhub`, `usbmsd`, `usbtrans`, `libusb`, `usbserial` now ship in `bin/units/i386-linux` as `.ppu` + `.a` (usbcore was already there), the 12 build files in `src` are removed. Test program with all six USB units links and runs. |
 | 8 | Win32/Win64 GDI graph hi-colour | Deferred to the newer-FPC step (upstream never added it; ptcgraph has it). |
 
