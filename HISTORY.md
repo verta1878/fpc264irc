@@ -193,6 +193,23 @@ source          patches/os2-cross/binutils/ (binutils-2.30-emx.patch, build.sh, 
 result          same program images and the same LX import fixups as before (360 / 1055 in the two tests); not yet run on OS/2
 ```
 
+## i386-darwin: framework stubs (2026-10-08)
+
+```
+frameworks      bin/tools/i386-darwin/MacOSX10.6.sdk/System/Library/Frameworks: 24 stub frameworks (Carbon, CoreServices,
+                ApplicationServices, CoreFoundation, Foundation, AppKit, CoreData, Cocoa, QuickTime, OpenGL, OpenAL, OpenCL,
+                QuartzCore, WebKit, vecLib, Security, ...) - names only, real install names, umbrellas re-export like macOS
+libraries       + libobjc.A.dylib (Objective-C runtime); libSystem.B.dylib 329 -> 458 names (fenv, fp, xattr, 10.4 crt1)
+generator       patches/darwin-cross/gen-framework-syms.py: symbol lists from FPC's own univint, cocoaint, objcrtl,
+                openal, opencl sources -> stubs/frameworks/*.syms, stubs/libobjc.A.syms, stubs/libSystem.extra.syms,
+                stubs/frameworks.txt; gen-stubs.sh builds them (build.sh step 4)
+binding         ld64 links re-exported frameworks directly: each call is recorded against its own framework
+                (e.g. _CFRelease -> CoreFoundation although MacOSAll only links Carbon), as dyld expects
+test/darwin     8 carbon (MacOSAll), 9 cocoa (CocoaAll), 10 graphdemo (graph Mac backend) - link with no undefined
+                symbols; tests 1 - 7 rebuild byte-identical; to be run on a Mac with macOS 10.6 - 10.14
+not yet         SDL/FreeType/X11
+```
+
 ## Unit format = compiler format (2026-10-08)
 
 ```

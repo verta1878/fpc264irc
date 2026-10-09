@@ -18,9 +18,11 @@ bin/ppc386 -Tdarwin -FDbin/tools/i386-darwin -XRbin/tools/i386-darwin/MacOSX10.6
 - `-Fu .../fv` first only for Free Vision programs (the folder also holds Apple's Carbon `Dialogs` unit).
 - Default minimum macOS is 10.4; `-WM10.5` / `-WM10.6` pick the newer startup code and load commands.
 - `-Amacho` uses the compiler's internal Mach-O writer instead of `as`; both work.
-- Console programs (RTL, sysutils, classes, crt, Free Vision, unix units, sockets, cwstring, cthreads) link today.
-  Programs using Apple frameworks (Carbon, CoreFoundation, Cocoa, ApplicationServices) or SDL/FreeType/X11 still need
-  stubs for those.
+- Console programs (RTL, sysutils, classes, crt, Free Vision, unix units, sockets, cwstring, cthreads) link.
+- Framework programs link too (2026-10-08): `MacOSAll` (Carbon, CoreFoundation, ApplicationServices, CoreServices,
+  QuickTime ...), `CocoaAll` (Foundation, AppKit, CoreData, QuartzCore, WebKit), OpenGL, OpenAL, OpenCL and the
+  `graph` unit's Mac backend - 24 stub frameworks in the SDK folder, see `bin/tools/i386-darwin/README.md`.
+  SDL/FreeType/X11 still need stubs.
 
 ### Verifying the Build
 
@@ -45,8 +47,9 @@ sizes); objects it writes are valid for ld64/llvm. Without `-Amacho` the compile
   (x86_64-darwin) requires FPC 3.x+ or our ppcx64 with Darwin RTL.
 - macOS 10.15 Catalina dropped 32-bit support. Target 10.14 or earlier,
   or use Rosetta on Apple Silicon.
-- Cocoa/ObjC frameworks not available through FPC 2.6.4 LCL.
-  Use Carbon widgetset or fpGUI for GUI apps.
+- Cocoa: FPC 2.6.4's `CocoaAll` (Objective-C 1 classes, i386) links (`test/darwin/cocoa.pas`). The Lazarus Cocoa
+  widgetset (`src/lazarus/lcl/interfaces/cocoa`) has not been tried with it; Carbon or fpGUI are the safer choice for
+  LCL-style GUI apps.
 
 ### USB on macOS
 

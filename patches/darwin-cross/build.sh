@@ -7,8 +7,8 @@
 #        -> as ld ar ranlib nm otool strip lipo install_name_tool
 #   3 crt1.o / crt1.10.5.o / crt1.10.6.o          apple-oss-distributions/Csu        Csu-88                APSL-2.0
 #        (start.s + crt.c built with clang -target i386-apple-macosx, linked -r with the new ld; same recipe as Csu's Makefile)
-#   4 stub system libraries (gen-stubs.sh)        our own: symbol names only, no Apple code
-# Output: <work>/out/bin/*  and  <work>/out/MacOSX10.6.sdk/usr/lib/*  -> copy into bin/tools/i386-darwin/ (see README.md).
+#   4 stub system libraries + frameworks (gen-stubs.sh, stubs/)  our own: symbol names only, no Apple code
+# Output: <work>/out/bin/*  and  <work>/out/MacOSX10.6.sdk/ (usr/lib, System/Library/Frameworks) -> copy into bin/tools/i386-darwin/
 # Needs: git, clang, cmake, make, autoconf/libtool, static libstdc++ and libuuid (libuuid-dev).
 set -e
 K=$(cd "$(dirname "$0")" && pwd)
@@ -60,6 +60,6 @@ csu crt1.10.5.o 10.5 -DCRT start.s crt.c dyld_glue.s
 csu crt1.o 10.4 "-DCRT -DOLD_LIBSYSTEM_SUPPORT -mdynamic-no-pic" start.s crt.c dyld_glue.s   # FPC's i386 default is 10.4
 
 echo "[4/4] stub libraries"
-bash "$K/gen-stubs.sh" "$OUT/bin" "$OUT/MacOSX10.6.sdk/usr/lib"
+bash "$K/gen-stubs.sh" "$OUT/bin" "$OUT/MacOSX10.6.sdk"
 
 echo "done: $OUT"

@@ -1,4 +1,4 @@
-# i386-darwin cross toolchain for Linux — byte, 2026-10-07
+# i386-darwin cross toolchain for Linux — byte, 2026-10-07 (frameworks 2026-10-08)
 
 `build.sh [work dir]` builds the contents of `bin/tools/i386-darwin/` from pinned open-source releases
 (Linux x86_64 host; needs git, clang, cmake, make, autoconf/libtool, static libstdc++ and libuuid):
@@ -8,7 +8,7 @@
 | libdispatch + BlocksRuntime (static, needed by ld64) | apple/swift-corelibs-libdispatch | swift-6.0.3-RELEASE `137b6cf3` | Apache-2.0 |
 | cctools + ld64 → `as ld ar ranlib nm otool strip lipo install_name_tool` | tpoechtrager/cctools-port | 1030.6.3-ld64-956.6 `904de2a7` | APSL-2.0 |
 | `crt1.o` (10.4), `crt1.10.5.o`, `crt1.10.6.o` | apple-oss-distributions/Csu | Csu-88 `95613f85` | APSL-2.0 |
-| stub `libSystem.B.dylib`, `libiconv.2.dylib`, `libncurses.5.4.dylib` | `gen-stubs.sh` + `stubs/*.syms` (ours) | — | — |
+| stub `libSystem.B.dylib`, `libiconv.2.dylib`, `libncurses.5.4.dylib`, `libobjc.A.dylib` + 24 frameworks | `gen-stubs.sh` + `stubs/` (ours) | — | — |
 
 Notes:
 - Static binaries: libtool's `-all-static` at make time. ld64's `ld.cpp` defines its own `__cxa_atexit` (it skips destructors
@@ -22,4 +22,20 @@ Notes:
   named `exit-asm.o`; the libSystem stub uses that name, the other stubs link against it.
 - `stubs/libSystem.B.syms`: every C-library symbol that any unit in `bin/units/i386-darwin` imports (found with llvm-nm
   across all 794 archives), the symbols crt1.o needs, `dyld_stub_binder`, plus common C/POSIX calls for your own
-  `external` declarations. Framework and third-party symbols (Carbon, CoreFoundation, Cocoa, SDL, FreeType, X11) are not in it.
+  `external` declarations. `stubs/libSystem.extra.syms` adds what the Mac interface units import from libSystem
+  (fenv, fp, xattr, and what 10.4's crt1.o needs).
+- Frameworks: `gen-framework-syms.py <repo> stubs` writes `stubs/frameworks/<F>.syms`, `stubs/libobjc.A.syms`,
+  `stubs/libSystem.extra.syms` and `stubs/frameworks.txt` from FPC's own sources: univint (`external name '_x'`; the
+  framework from each header's `File: <Subframework>/x.h` line or its name, subframeworks folded into the public
+  framework that exports them, PowerPC-only DrawSprocket left out), cocoaint (`objcclass external` classes,
+  `cdecl; external` functions, `cvar; external` variables), `rtl/inc/objc*.inc` + objcrtl (libobjc), openal, opencl.
+  Rerun it only when those sources change; its output is committed.
+- `frameworks.txt` = `name|install name|re-exported frameworks`, each line after the frameworks it re-exports, so
+  `gen-stubs.sh` builds them in one pass. Re-exporting stubs are built with `-macosx_version_min 10.5`: for 10.4 ld64
+  writes the old `LC_SUB_LIBRARY` form, which does not carry `/usr/lib/libobjc` through Foundation; 10.5 writes
+  `LC_REEXPORT_DYLIB`. Programs are not affected (they still default to 10.4).
+- Objective-C classes (`.objc_class_name_X`) are data words: the real frameworks export them as absolute symbols,
+  which ld64 drops when it builds a dylib.
+- ld64 looks for `-framework X` at `X.framework/X` and for a re-exported framework at its install path
+  `X.framework/Versions/A/X`, so each framework is there twice (symlinks on a Mac; git on Windows keeps none).
+- The SDK folder must be called `MacOSX10.6.sdk`: ld64 takes the SDK version it records from the `-syslibroot` name.
