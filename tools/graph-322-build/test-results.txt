@@ -1,0 +1,80 @@
+## compile tests
+i386-go32v2 graphtest: PASS 0 units recompiled
+i386-win32 graphtest: PASS 0 units recompiled
+x86_64-win64 graphtest: PASS 0 units recompiled
+i386-linux graphtest: PASS 0 units recompiled
+i386-freebsd graphtest: PASS 0 units recompiled
+x86_64-freebsd graphtest: PASS 0 units recompiled
+i386-darwin graphtest: PASS 0 units recompiled
+i386-os2 graphtest: PASS 0 units recompiled
+i386-win32 graphtest_ptc: PASS 0 units recompiled
+x86_64-win64 graphtest_ptc: PASS 0 units recompiled
+i386-linux graphtest_ptc: PASS 0 units recompiled
+x86_64-linux graphtest_ptc: PASS 0 units recompiled
+i386-linux ggi: PASS 0 units recompiled
+x86_64-linux ggi: PASS 0 units recompiled
+i386-freebsd ggi: PASS 0 units recompiled
+x86_64-freebsd ggi: PASS 0 units recompiled
+i386-win32 sdl: PASS 0 units recompiled
+i386-linux sdl: PASS 0 units recompiled
+i386-freebsd sdl: PASS 0 units recompiled
+i386-darwin sdl: PASS 0 units recompiled
+i386-go32v2 ptctest: PASS 0 units recompiled
+i386-win32 ptctest: PASS 0 units recompiled
+x86_64-win64 ptctest: PASS 0 units recompiled
+i386-linux ptctest: PASS 0 units recompiled
+x86_64-linux ptctest: PASS 0 units recompiled
+## runtime tests
+i386-go32v2 graph (DOSBox svga_s3):
+   VGA-Hi   OK 640x480 maxcolor=15 putpix=5 line=14 bar=3
+   8bit-640 OK 640x480 maxcolor=255 putpix=5 line=14 bar=3
+   16bit-640 OK 640x480 maxcolor=65535 putpix=5 line=14 bar=3
+   DONE
+i386-go32v2 ptc (DOSBox svga_s3):
+   open OK 320x200 bits=32 name=VESA
+   surface readback red=00FF0000 green=0000FF00
+   close OK
+   DONE
+i386-linux sdlgraph (Xvfb, SDL 1.2): exit 0
+   VGA-Hi   OK 640x480 maxcolor=15 putpix=5 line=14 bar=3
+   8bit-640 OK 640x480 maxcolor=255 putpix=5 line=14 bar=3
+   16bit-640 OK 640x480 maxcolor=65535 putpix=5 line=14 bar=3
+   DONE
+i386-win32 graph (Wine, all modes in one process):
+   VGA-Hi   OK 640x480 maxcolor=15 putpix=5 line=14 bar=3
+   8bit-640 OK 640x480 maxcolor=255 putpix=5 line=14 bar=3
+   16bit-640 INIT FAIL -10 Invalid graphics mode
+   DONE
+i386-win32 ptc (Wine, all modes in one process):
+   VGA-Hi   OK 640x480 maxcolor=15 putpix=5 line=14 bar=3
+   8bit-640 OK 640x480 maxcolor=255 putpix=5 line=14 bar=3
+   16bit-640 OK 640x480 maxcolor=65535 putpix=5 line=14 bar=3
+   24bit-640 OK 640x480 maxcolor=16777215 putpix=5 line=14 bar=3
+   24bit-640 truecolor putpix=$00FF8040 (expected $00FF8040)
+   DONE
+x86_64-win64 graph (Wine, all modes in one process):
+   VGA-Hi   OK 640x480 maxcolor=15 putpix=5 line=14 bar=3
+   8bit-640 OK 640x480 maxcolor=255 putpix=5 line=14 bar=3
+   16bit-640 INIT FAIL -10 Invalid graphics mode
+   DONE
+x86_64-win64 ptc (Wine, all modes in one process):
+   VGA-Hi   OK 640x480 maxcolor=15 putpix=5 line=14 bar=3
+   8bit-640 OK 640x480 maxcolor=255 putpix=5 line=14 bar=3
+   16bit-640 OK 640x480 maxcolor=65535 putpix=5 line=14 bar=3
+   24bit-640 OK 640x480 maxcolor=16777215 putpix=5 line=14 bar=3
+   24bit-640 truecolor putpix=$00FF8040 (expected $00FF8040)
+   DONE
+i386-linux ptc (Xvfb):
+   VGA-Hi   OK 640x480 maxcolor=15 putpix=5 line=14 bar=3
+   8bit-640 OK 640x480 maxcolor=255 putpix=5 line=14 bar=3
+   16bit-640 OK 640x480 maxcolor=65535 putpix=5 line=14 bar=3
+   24bit-640 OK 640x480 maxcolor=16777215 putpix=5 line=14 bar=3
+   24bit-640 truecolor putpix=$00FF8040 (expected $00FF8040)
+   DONE
+x86_64-linux ptc (Xvfb):
+   VGA-Hi   OK 640x480 maxcolor=15 putpix=5 line=14 bar=3
+   8bit-640 OK 640x480 maxcolor=255 putpix=5 line=14 bar=3
+   16bit-640 OK 640x480 maxcolor=65535 putpix=5 line=14 bar=3
+   24bit-640 OK 640x480 maxcolor=16777215 putpix=5 line=14 bar=3
+   24bit-640 truecolor putpix=$00FF8040 (expected $00FF8040)
+   DONE

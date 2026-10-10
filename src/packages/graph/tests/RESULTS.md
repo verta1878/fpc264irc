@@ -35,3 +35,11 @@ first PutPixel — the 2.6.4 sdlgraph does the same.
   the `IPTCMode` interface field, the ptc thread died with an access violation, InitGraph waited forever. Fixed (`FMode := nil`);
   Wine runs all 3 modes in one process now. Not Wine-specific — it would hang on real Windows too.
 - test-all.sh: sets the exec bit on bin/ppc* and bin/tools/*/* (git from Windows drops it), Xvfb screen 1280x1024.
+
+# Graph 3.2.2 — 2026-10-09, byte
+
+Sources now FPC 3.2.2 graph (+ ptc 3.2.2: `ptcwrapper` gains SetMousePos); OS/2 PM backend, sdlgraph fixes and the
+other fpc264irc ptc patches kept (3-way merge, no conflicts). One source change for the 2.6.4 compiler: the 3.2 directive
+`noreturn` in `inc/graph.inc` is only used when FPC_FULLVERSION >= 30200. Compile tests 25/25 PASS, runtime unchanged,
+plus `rtest.pp` mode 4: ptcgraph 24-bit true colour (D24bit, 640x480, 16,777,216 colours) — OK on win32/win64 (Wine) and
+i386/x86_64-linux (Xvfb), an RGB colour reads back unchanged. See tools/graph-322-build/test-results.txt.

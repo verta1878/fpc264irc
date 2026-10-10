@@ -193,6 +193,22 @@ source          patches/os2-cross/binutils/ (binutils-2.30-emx.patch, build.sh, 
 result          same program images and the same LX import fixups as before (360 / 1055 in the two tests); not yet run on OS/2
 ```
 
+## Graph 3.2.2 (2026-10-09)
+
+```
+graph + ptc     src/packages/graph, src/packages/ptc: FPC 3.0.4 -> 3.2.2, 3-way merge, no conflicts; our OS/2 PM backend,
+                sdlgraph fixes and ptc patches kept; replaced 3.0.4 files in attic/graph-3.0.4; one 2.6.4 fix: the 3.2
+                directive noreturn in inc/graph.inc only for FPC >= 3.2
+new             ptcgraph 24-bit true colour (D24bit, 16,777,216 colours, LongWord colours) on win32/win64/i386+x86_64 Linux;
+                go32v2 + i8086 VESA fixes, SetWriteModeEx; ptc SetMousePos
+kit             tools/graph-322-build (build-all.sh now also assembles darwin/os2 and packs .ppu + .a; test-all.sh tests
+                the packed units); tools/graph-304-build kept, marked superseded
+units           33 replaced in 9 folders (graph, ggigraph, ptcgraph, ptccrt, ptcmouse, ptcwrapper, sdlgraph, wincrt,
+                winmouse - list in the kit README); no other unit affected (ppu_consistency unchanged)
+tests           compile 25/25; DOSBox / Wine / Xvfb runtime as before + 24-bit true colour OK on all 4 ptcgraph targets;
+                test/os2/graphdemo.exe and test/darwin/graphdemo rebuilt
+```
+
 ## x86_64-darwin: 64-bit Mac (2026-10-09)
 
 ```

@@ -40,3 +40,5 @@ appears, `graphdemo.log` still says whether `InitGraph` worked.
 What to report back for each one: what it printed or showed, and any error text (e.g. `dyld: Symbol not found: _xyz` —
 that names a symbol a stub library or framework has but the real one lacks under that name, or `Bad CPU type in executable` —
 a 64-bit-only macOS).
+
+`graphdemo` was rebuilt on 2026-10-09 with the graph 3.2.2 units (`tools/graph-322-build`); the other programs are unchanged.

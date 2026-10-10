@@ -29,3 +29,5 @@ imports listed above. **Not yet run on a real OS/2 / ArcaOS machine** — that i
 
 What to report back for each one: did it start, what it printed or showed, and any SYS error with its full text
 (SYS1804 = DLL or entry point not found, SYS3175 = trap). EMXWRAP.DLL is a standard OS/2 system DLL (`\OS2\DLL`).
+
+`graphdemo` was rebuilt on 2026-10-09 with the graph 3.2.2 units (`tools/graph-322-build`); the other programs are unchanged.

@@ -1,5 +1,9 @@
 # Graph backport to FPC 3.0.4 — byte, 2026-10-02
 
+> **Superseded 2026-10-09** by `tools/graph-322-build/` (graph 3.2.2). `src/packages/graph` and `src/packages/ptc` are
+> now the 3.2.2 versions; the 3.0.4 files they replaced are in `attic/graph-3.0.4/`. This kit is kept as the record of
+> step 1.
+
 Step 1 of the graph upgrade (2.6.4 → 3.0.4 → later 3.x, a little at a time). Covers everything FPC 3.0.4's own
 graph and ptc fpmake files build for our targets.
 
