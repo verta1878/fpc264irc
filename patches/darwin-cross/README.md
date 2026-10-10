@@ -8,7 +8,7 @@
 | libdispatch + BlocksRuntime (static, needed by ld64) | apple/swift-corelibs-libdispatch | swift-6.0.3-RELEASE `137b6cf3` | Apache-2.0 |
 | cctools + ld64 → `as ld ar ranlib nm otool strip lipo install_name_tool` | tpoechtrager/cctools-port | 1030.6.3-ld64-956.6 `904de2a7` | APSL-2.0 |
 | `crt1.o` (10.4), `crt1.10.5.o`, `crt1.10.6.o` — universal i386 + x86_64 | apple-oss-distributions/Csu | Csu-88 `95613f85` | APSL-2.0 |
-| stub `libSystem.B.dylib`, `libiconv.2.dylib`, `libncurses.5.4.dylib`, `libobjc.A.dylib` + 24 frameworks — universal | `gen-stubs.sh` + `stubs/` (ours) | — | — |
+| stub `libSystem.B.dylib`, `libiconv.2.dylib`, `libncurses.5.4.dylib`, `libobjc.A.dylib` + 25 frameworks — universal | `gen-stubs.sh` + `stubs/` (ours) | — | — |
 
 Notes:
 - Static binaries: libtool's `-all-static` at make time. ld64's `ld.cpp` defines its own `__cxa_atexit` (it skips destructors
@@ -38,6 +38,13 @@ Notes:
   `gen-stubs.sh` builds them in one pass. Re-exporting stubs are built with `-macosx_version_min 10.5`: for 10.4 ld64
   writes the old `LC_SUB_LIBRARY` form, which does not carry `/usr/lib/libobjc` through Foundation; 10.5 writes
   `LC_REEXPORT_DYLIB`. Programs are not affected (they still default to 10.4).
+- Trimming (2026-10-10): `apple-trim.py <otool> <Apple MacOSX10.x.sdk>...` keeps, per architecture, only the candidate
+  names Apple's libraries export, in the library that owns them on the Mac (non-public re-exports such as
+  `/usr/lib/system/*` or CarbonCore count for their umbrella; Apple's `$ld$add$os…` / `$ld$hide$os…` entries are kept so
+  ld64 picks the same library per minimum macOS version), and writes `stubs/i386/*.syms`, `stubs/x86_64/*.syms` and a
+  `DROPPED.txt` for each. `gen-stubs.sh` uses those lists when they exist. Only names come from the SDK; it stays outside
+  the repository (Apple's licence). Run with the 10.6 and 10.7 SDKs (first SDK decides the owner); rerun it when the
+  candidate lists change.
 - Objective-C classes (`.objc_class_name_X`) are data words: the real frameworks export them as absolute symbols,
   which ld64 drops when it builds a dylib.
 - ld64 looks for `-framework X` at `X.framework/X` and for a re-exported framework at its install path

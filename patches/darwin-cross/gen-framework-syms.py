@@ -32,7 +32,7 @@ PREFIX = [
     (r'^CF', 'CoreFoundation'), (r'^(CG(Image|L))', None), (r'^CG', 'ApplicationServices'),
     (r'^CT|^CoreText$', 'ApplicationServices'), (r'^AX', 'ApplicationServices'), (r'^ColorSync', 'ApplicationServices'),
     (r'^AB', 'AddressBook'), (r'^(AU|AudioOutputUnit|AudioUnitCarbonViews|MusicDevice)', 'AudioUnit'),
-    (r'^(Auth|Sec|cssm)', 'Security'), (r'^CV', 'QuartzCore'), (r'^DA', 'DiskArbitration'),
+    (r'^(Auth|Sec|cssm)', 'Security'), (r'^CV', 'CoreVideo'), (r'^DA', 'DiskArbitration'),
     (r'^(SC|SystemConfiguration$|DHCPClientPreferences$)', 'SystemConfiguration'), (r'^IOSurface', 'IOSurface'),
     (r'^MD', 'CoreServices'), (r'^QL', 'QuickLook'), (r'^ICA', 'Carbon'), (r'^(HIToolboxDebugging|KeyEvents)$', 'Carbon'),
     (r'^(fenv|fp|xattr)$', 'libSystem'), (r'^ObjCRuntime$', 'libobjc'), (r'^cblas$', 'vecLib'),
@@ -44,7 +44,7 @@ F = 'System/Library/Frameworks'
 INSTALL = {n: f'/{F}/{n}.framework/Versions/A/{n}' for n in (
     'Carbon', 'CoreServices', 'ApplicationServices', 'CoreFoundation', 'QuickTime', 'CoreAudio', 'AudioUnit', 'CoreMIDI',
     'vecLib', 'Security', 'AddressBook', 'QuartzCore', 'DiskArbitration', 'SystemConfiguration', 'IOSurface', 'QuickLook',
-    'OpenGL', 'Foundation', 'AppKit', 'CoreData', 'WebKit', 'Cocoa', 'OpenAL', 'OpenCL')}
+    'OpenGL', 'Foundation', 'AppKit', 'CoreData', 'WebKit', 'Cocoa', 'OpenAL', 'OpenCL', 'CoreVideo')}
 INSTALL['Carbon'] = f'/{F}/Carbon.framework/Versions/A/Carbon'
 INSTALL['Cocoa'] = f'/{F}/Cocoa.framework/Versions/A/Cocoa'
 # Foundation and AppKit are version C on every macOS since 10.0 (checked against Apple's 10.6 / 10.7 SDK, 2026-10-10)
@@ -55,7 +55,8 @@ INSTALL['AppKit'] = f'/{F}/AppKit.framework/Versions/C/AppKit'
 # from CoreFoundation itself even when its source only says {$linkframework Carbon} (as MacOSAll does).
 REEXPORT = {'Carbon': ['CoreServices', 'ApplicationServices'], 'Cocoa': ['Foundation', 'AppKit', 'CoreData'],
             'CoreServices': ['CoreFoundation'], 'ApplicationServices': ['CoreServices'], 'Foundation': ['CoreFoundation', 'libobjc'],
-            'AppKit': ['Foundation', 'ApplicationServices']}
+            'AppKit': ['Foundation', 'ApplicationServices'],
+            'QuartzCore': ['CoreVideo']}   # CoreVideo: its own framework, re-exported by QuartzCore (as on the Mac)
 
 syms = collections.defaultdict(set); unmapped = []
 

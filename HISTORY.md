@@ -193,6 +193,20 @@ source          patches/os2-cross/binutils/ (binutils-2.30-emx.patch, build.sh, 
 result          same program images and the same LX import fixups as before (360 / 1055 in the two tests); not yet run on OS/2
 ```
 
+## Mac stubs trimmed to Apple's names (2026-10-10)
+
+```
+tool            patches/darwin-cross/apple-trim.py: per architecture, keep only the names Apple's libraries export
+                (MacOSX10.6 + 10.7 SDK, outside the repo), in the library that owns them on the Mac, + Apple's
+                $ld$add/$ld$hide version entries -> stubs/i386/*.syms, stubs/x86_64/*.syms, DROPPED.txt
+result          i386 17,905 names kept, 479 dropped (mostly OpenGL extensions); x86_64 12,497 kept, 6,445 dropped (mostly
+                QuickTime and Carbon UI, which 64-bit macOS does not have) - none of them used by any unit; a call that
+                does not exist on the Mac now fails at link time instead of on the Mac
+CoreVideo       new stub framework (CV* calls, 203 names, before in QuartzCore); QuartzCore re-exports it, as on the Mac
+check           all 19 test programs bind exactly as when linked against Apple's SDK (also -WM10.5 / -WM10.6);
+                test/darwin unchanged, test/darwin64/cocoa relinked (64-bit NSMutableArray class is CoreFoundation's)
+```
+
 ## Exact source rebuild: OS/2; Mac stubs checked against Apple's SDK (2026-10-10)
 
 ```

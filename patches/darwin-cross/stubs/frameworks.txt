@@ -10,12 +10,13 @@ CoreData|/System/Library/Frameworks/CoreData.framework/Versions/A/CoreData|
 Cocoa|/System/Library/Frameworks/Cocoa.framework/Versions/A/Cocoa|Foundation,AppKit,CoreData
 CoreAudio|/System/Library/Frameworks/CoreAudio.framework/Versions/A/CoreAudio|
 CoreMIDI|/System/Library/Frameworks/CoreMIDI.framework/Versions/A/CoreMIDI|
+CoreVideo|/System/Library/Frameworks/CoreVideo.framework/Versions/A/CoreVideo|
 DiskArbitration|/System/Library/Frameworks/DiskArbitration.framework/Versions/A/DiskArbitration|
 IOSurface|/System/Library/Frameworks/IOSurface.framework/Versions/A/IOSurface|
 OpenAL|/System/Library/Frameworks/OpenAL.framework/Versions/A/OpenAL|
 OpenCL|/System/Library/Frameworks/OpenCL.framework/Versions/A/OpenCL|
 OpenGL|/System/Library/Frameworks/OpenGL.framework/Versions/A/OpenGL|
-QuartzCore|/System/Library/Frameworks/QuartzCore.framework/Versions/A/QuartzCore|
+QuartzCore|/System/Library/Frameworks/QuartzCore.framework/Versions/A/QuartzCore|CoreVideo
 QuickLook|/System/Library/Frameworks/QuickLook.framework/Versions/A/QuickLook|
 QuickTime|/System/Library/Frameworks/QuickTime.framework/Versions/A/QuickTime|
 Security|/System/Library/Frameworks/Security.framework/Versions/A/Security|

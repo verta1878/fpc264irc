@@ -30,3 +30,4 @@ SDK 10.6), every call bound to the library or framework that holds it. **Not yet
 Report back what each printed, and any error text (`dyld: Symbol not found: _xyz`, `Bad CPU type in executable`).
 
 `cocoa` was relinked on 2026-10-10: the Foundation stub now has Apple's install name (`Foundation.framework/Versions/C/Foundation`).
+`cocoa` relinked again on 2026-10-10 after the stubs were trimmed to Apple's names: the 64-bit `NSMutableArray` class now binds to CoreFoundation, as with Apple's SDK.

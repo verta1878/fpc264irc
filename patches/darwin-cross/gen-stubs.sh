@@ -20,20 +20,26 @@ stub() { # $1=output file $2=install name $3=current version $4..=syms files, th
   # i386 re-exports: built for 10.5 so ld64 writes LC_REEXPORT_DYLIB (for 10.4 it writes the older LC_SUB_LIBRARY /
   # LC_SUB_UMBRELLA form, which does not carry /usr/lib/libobjc through Foundation); plain i386 stubs: 10.4.
   # x86_64: always 10.5 (FPC's x86_64-darwin default).
-  local out=$1 inst=$2 ver=$3; shift 3; local files=() n a min slices=()
+  # Names: stubs/<arch>/<library>.syms when present (apple-trim.py: only what Apple's library has for that
+  # architecture), else the candidate lists given here (every name FPC's headers declare).
+  local out=$1 inst=$2 ver=$3; shift 3; local files=() n a min slices=() list=() count=""
   while [ $# -gt 0 ] && [ "$1" != "--" ]; do files+=("$1"); shift; done; [ "$1" = "--" ] && shift
   n=$(basename "$out")
   for a in i386 x86_64; do
     mkdir -p "$T/$n/$a"; min=10.4
+    list=("${files[@]}"); [ -f "$X/$a/${n%.dylib}.syms" ] && list=("$X/$a/${n%.dylib}.syms")
+    count="$count $a $(cat "${list[@]}" | sort -u | grep -c . || true)"
     case "$a: $* " in *" -reexport_library "*|x86_64:*) min=10.5;; esac
     # ObjC classes: i386 (ObjC 1 runtime) .objc_class_name_X; x86_64 (ObjC 2) _OBJC_CLASS_$_X + _OBJC_METACLASS_$_X
+    # (data words; from a candidate list, x86_64 makes both names out of .objc_class_name_X)
     { echo '.text'
-      cat "${files[@]}" | sort -u | while read -r s; do
+      cat "${list[@]}" | sort -u | while read -r s; do
         [ -n "$s" ] || continue
         case $a:$s in
           i386:.objc_class_name_*) echo ".data"; echo ".globl $s"; echo "$s: .long 0"; echo ".text";;
           x86_64:.objc_class_name_*) c=${s#.objc_class_name_}; echo ".data"
                    for k in _OBJC_CLASS_\$_$c _OBJC_METACLASS_\$_$c; do echo ".globl $k"; echo "$k: .quad 0"; done; echo ".text";;
+          x86_64:_OBJC_CLASS_\$_*|x86_64:_OBJC_METACLASS_\$_*) echo ".data"; echo ".globl $s"; echo "$s: .quad 0"; echo ".text";;
           *) echo ".globl $s"; echo "$s: ret";;
         esac
       done; } > "$T/$n/$a/stub.s"
@@ -47,7 +53,7 @@ stub() { # $1=output file $2=install name $3=current version $4..=syms files, th
     slices+=("$T/$n/$a/$n")
   done
   "$B/lipo" -create -output "$out" "${slices[@]}"
-  echo "$n: $(cat "${files[@]}" | sort -u | grep -c .) symbols"
+  echo "$n:$count symbols"
 }
 X=$K/stubs
 stub "$L/libSystem.B.dylib"    /usr/lib/libSystem.B.dylib    111.0.0 "$X/libSystem.B.syms" "$X/libSystem.extra.syms"

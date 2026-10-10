@@ -20,45 +20,68 @@ see `tools/darwin64-build/README.md`; no `graph`). The folder keeps its name `i3
 |---|---|
 | `as`, `ld`, `ar`, `ranlib`, `nm`, `otool`, `strip`, `lipo`, `install_name_tool` | Apple cctools 1030.6.3 + ld64-956.6 (cctools-port), static Linux x86_64 builds |
 | `MacOSX10.6.sdk/usr/lib/crt1.o`, `crt1.10.5.o`, `crt1.10.6.o` | program startup code, built from Apple's open-source Csu-88 (10.4 / 10.5 / 10.6+); universal i386 + x86_64 |
-| `MacOSX10.6.sdk/usr/lib/libSystem.B.dylib` | **stub** libSystem: 458 symbol names (C library, pthreads, math, dl, sockets, syslog, fenv, xattr), no code. Copies as `libc`, `libm`, `libdl`, `libpthread` `.dylib` (symlinks to libSystem on a Mac) |
+| `MacOSX10.6.sdk/usr/lib/libSystem.B.dylib` | **stub** libSystem: 430 symbol names (C library, pthreads, math, dl, sockets, syslog, fenv, xattr), no code. Copies as `libc`, `libm`, `libdl`, `libpthread` `.dylib` (symlinks to libSystem on a Mac) |
 | `MacOSX10.6.sdk/usr/lib/libiconv.2.dylib` (+ `libiconv.dylib`) | stub libiconv (`cwstring`) |
 | `MacOSX10.6.sdk/usr/lib/libncurses.5.4.dylib` (+ `libncurses.dylib`) | stub ncurses (`terminfo`) |
-| `MacOSX10.6.sdk/usr/lib/libobjc.A.dylib` (+ `libobjc.dylib`) | stub Objective-C runtime (`objc_msgSend` & co., 61 names) |
-| `MacOSX10.6.sdk/System/Library/Frameworks/<F>.framework` | **stub** frameworks, 24 (list below); each at its install path `Versions/A/<F>` (Foundation, AppKit: `Versions/C/<F>`, as on every Mac) + a copy `<F>` (symlinks on a Mac; git on Windows does not keep symlinks) |
+| `MacOSX10.6.sdk/usr/lib/libobjc.A.dylib` (+ `libobjc.dylib`) | stub Objective-C runtime (`objc_msgSend` & co., 58 names i386 / 43 x86_64) |
+| `MacOSX10.6.sdk/System/Library/Frameworks/<F>.framework` | **stub** frameworks, 25 (list below); each at its install path `Versions/A/<F>` (Foundation, AppKit: `Versions/C/<F>`, as on every Mac) + a copy `<F>` (symlinks on a Mac; git on Windows does not keep symlinks) |
 
-Every stub library and framework is **universal** (an i386 and an x86_64 part, like Apple's own); the i386 parts are
-byte-identical to the 2026-10-08 i386-only stubs, so 32-bit programs link exactly as before. In the x86_64 part each
-Objective-C class is `_OBJC_CLASS_$_X` + `_OBJC_METACLASS_$_X` (Objective-C 2 runtime) instead of `.objc_class_name_X`.
+Every stub library and framework is **universal** (an i386 and an x86_64 part, like Apple's own); each part has its
+own name list (see "Frameworks" below). In the x86_64 part each Objective-C class is `_OBJC_CLASS_$_X` +
+`_OBJC_METACLASS_$_X` (Objective-C 2 runtime) instead of `.objc_class_name_X`.
 
 Checked against Apple's own MacOSX10.6 / 10.7 SDK (2026-10-10, kept outside the repo): every test program in
 `test/darwin` and `test/darwin64` also links against Apple's libraries, with each call bound to the same library as with
-the stubs; install names match Apple's (Foundation / AppKit were `Versions/A` before - fixed, a Mac would have refused to
-load the Cocoa programs).
+the stubs (also with `-WM10.5` / `-WM10.6`); install names match Apple's (Foundation / AppKit were `Versions/A` before -
+fixed, a Mac would have refused to load the Cocoa programs).
 
 The stubs only let the linker check names; each carries the real library's install name (`/usr/lib/libSystem.B.dylib`
 etc.), so the program loads the real library on the Mac. Nothing here is copied from Apple's SDK or Xcode.
 The folder is named `MacOSX10.6.sdk` because ld64 takes the SDK version it writes into the program from that name.
 
-## Frameworks (2026-10-08)
+## Frameworks (2026-10-08; trimmed to Apple's names 2026-10-10)
 
-Every symbol FPC's own Mac interface units can reference (`MacOSAll` and its 450 univint headers, `CocoaAll`
-(Foundation / AppKit / CoreData / QuartzCore / WebKit), objcrtl, openal, opencl), sorted by the framework that
-exports it on macOS 10.4 – 10.14:
+Candidate names: every symbol FPC's own Mac interface units can reference (`MacOSAll` and its 450 univint headers,
+`CocoaAll` (Foundation / AppKit / CoreData / QuartzCore / WebKit), objcrtl, openal, opencl). Since 2026-10-10 each stub
+holds, **per architecture**, only the candidates Apple's real library exports (checked against Apple's MacOSX10.6 and
+10.7 SDKs, `patches/darwin-cross/apple-trim.py`), in the library that owns them on the Mac - including Apple's
+`$ld$add$os…` / `$ld$hide$os…` version entries. So a call that does not exist on the Mac (e.g. QuickTime or Carbon
+window calls in a 64-bit program) fails at **link time** here instead of with "Symbol not found" on the Mac. Left out:
+`patches/darwin-cross/stubs/i386/DROPPED.txt` (479 names, mostly OpenGL extensions, which are loaded at run time) and
+`.../x86_64/DROPPED.txt` (6,445, mostly the 32-bit-only QuickTime and Carbon UI). None of them is used by any unit.
 
-| Framework | Names | Framework | Names | Framework | Names |
-|---|---|---|---|---|---|
-| ApplicationServices | 3027 | AppKit | 1237 | SystemConfiguration | 484 |
-| Carbon | 2811 | CoreFoundation | 959 | WebKit | 202 |
-| QuickTime | 2604 | Foundation | 638 | AddressBook | 178 |
-| CoreServices | 2568 | vecLib | 578 | CoreMIDI | 125 |
-| OpenGL | 1455 | QuartzCore | 494 | Security | 101 |
-| CoreData | 99 | OpenCL | 65 | IOSurface | 53 |
-| DiskArbitration | 49 | QuickLook | 48 | AudioUnit, CoreAudio | 42 each |
-| OpenAL | 38 | Cocoa | umbrella | | |
+| Framework | i386 | x86_64 |
+|---|---|---|
+| ApplicationServices | 3007 | 2259 |
+| Carbon | 2799 | 1121 |
+| CoreServices | 2607 | 1760 |
+| QuickTime | 2603 | 0 |
+| AppKit | 1246 | 1396 |
+| CoreFoundation | 1101 | 1128 |
+| OpenGL | 1088 | 1088 |
+| vecLib | 578 | 578 |
+| Foundation | 543 | 679 |
+| SystemConfiguration | 484 | 484 |
+| QuartzCore | 258 | 291 |
+| CoreVideo | 203 | 203 |
+| AddressBook | 178 | 178 |
+| WebKit | 165 | 284 |
+| CoreMIDI | 125 | 125 |
+| CoreData | 83 | 104 |
+| OpenCL | 65 | 65 |
+| IOSurface | 53 | 53 |
+| DiskArbitration | 49 | 49 |
+| Security | 48 | 48 |
+| QuickLook | 48 | 48 |
+| CoreAudio | 42 | 42 |
+| AudioUnit | 42 | 39 |
+| OpenAL | 34 | 34 |
+| Cocoa | 0 | 0 |
+| Cocoa | umbrella | umbrella |
 
 Umbrellas re-export like the real ones: Carbon → CoreServices + ApplicationServices, Cocoa → Foundation + AppKit +
 CoreData, AppKit → Foundation + ApplicationServices, Foundation → CoreFoundation + libobjc, ApplicationServices →
-CoreServices → CoreFoundation. ld64 links a re-exported public framework directly, so each call is bound to the
+CoreServices → CoreFoundation, QuartzCore → CoreVideo. ld64 links a re-exported public framework directly, so each call is bound to the
 framework that really holds it (e.g. `_CFRelease` from CoreFoundation, even though `MacOSAll` only says
 `{$linkframework Carbon}`) - which is what dyld on the Mac expects.
 
@@ -68,7 +91,7 @@ Example: `test/darwin/carbon.pas` (CoreFoundation + Carbon), `cocoa.pas` (Founda
 
 Still not covered: third-party libraries (SDL, FreeType, X11 ...); the linker names the missing symbols. A framework
 call that FPC's headers do not declare (your own `external` in a framework) also needs its name added to
-`patches/darwin-cross/stubs/frameworks/<F>.syms`, then `gen-stubs.sh` rerun.
+`patches/darwin-cross/stubs/frameworks/<F>.syms`, then `apple-trim.py` (needs an Apple SDK) and `gen-stubs.sh` rerun.
 
 Rebuild everything from source: `patches/darwin-cross/build.sh` (pinned sources, reproducible: a second build is byte-identical).
 Test programs: `test/darwin/`.
