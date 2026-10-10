@@ -193,6 +193,26 @@ source          patches/os2-cross/binutils/ (binutils-2.30-emx.patch, build.sh, 
 result          same program images and the same LX import fixups as before (360 / 1055 in the two tests); not yet run on OS/2
 ```
 
+## x86_64-darwin: 64-bit Mac (2026-10-09)
+
+```
+why             32-bit Mac programs run on macOS 10.4 - 10.14 only; 64-bit ones on every Intel Mac up to macOS 26 Tahoe
+                and on Apple Silicon through Rosetta 2
+units           bin/units/x86_64-darwin: 787 + 2 (fv/) units, .ppu + libp*.a, built with bin/ppcx64 (no compiler change
+                needed) - the i386-darwin set minus graph, sdlutils, sdlgraph, mmx, displays, drawsprocket, macos (reasons in
+                tools/darwin64-build/README.md); FV dialogs + menus in fv/, univint Dialogs + Menus in the main folder
+kit             tools/darwin64-build: build.sh (RTL Makefile + drive.py + pack), units.txt/units.py (same sources as the
+                i386 set), patched/dynlibs.pas; source dates fixed -> a rebuild is byte-identical (checked twice)
+link tools      bin/tools/i386-darwin serves both: crt1.o / crt1.10.5.o / crt1.10.6.o and every stub library + framework
+                are now universal (i386 + x86_64, joined with lipo); the i386 parts are byte-identical to before, all 10
+                test/darwin programs rebuild byte-identical. x86_64 ObjC classes: _OBJC_CLASS_$_X / _OBJC_METACLASS_$_X
+source fix      src/packages/univint/src/MacOSAll.pas: links Carbon on x86_64 too (it linked only CoreFoundation, so
+                Gestalt & co. did not link); test/darwin/carbon.pas: SysBeep only in the 32-bit build (no 64-bit SysBeep)
+test/darwin64   9 programs (tests 1 - 9 of test/darwin, built 64-bit) + build.sh + README - link with no undefined symbols,
+                each call bound to its own library/framework; to be run on a Mac (Intel 10.5+, or Apple Silicon)
+not 64-bit      graph (Carbon HIView/QuickDraw are 32-bit only), SDL utils
+```
+
 ## i386-darwin: framework stubs (2026-10-08)
 
 ```

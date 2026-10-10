@@ -1,4 +1,4 @@
-# i386-darwin cross toolchain for Linux — byte, 2026-10-07 (frameworks 2026-10-08)
+# i386-darwin cross toolchain for Linux — byte, 2026-10-07 (frameworks 2026-10-08, universal i386 + x86_64 2026-10-09)
 
 `build.sh [work dir]` builds the contents of `bin/tools/i386-darwin/` from pinned open-source releases
 (Linux x86_64 host; needs git, clang, cmake, make, autoconf/libtool, static libstdc++ and libuuid):
@@ -7,8 +7,8 @@
 |---|---|---|---|
 | libdispatch + BlocksRuntime (static, needed by ld64) | apple/swift-corelibs-libdispatch | swift-6.0.3-RELEASE `137b6cf3` | Apache-2.0 |
 | cctools + ld64 → `as ld ar ranlib nm otool strip lipo install_name_tool` | tpoechtrager/cctools-port | 1030.6.3-ld64-956.6 `904de2a7` | APSL-2.0 |
-| `crt1.o` (10.4), `crt1.10.5.o`, `crt1.10.6.o` | apple-oss-distributions/Csu | Csu-88 `95613f85` | APSL-2.0 |
-| stub `libSystem.B.dylib`, `libiconv.2.dylib`, `libncurses.5.4.dylib`, `libobjc.A.dylib` + 24 frameworks | `gen-stubs.sh` + `stubs/` (ours) | — | — |
+| `crt1.o` (10.4), `crt1.10.5.o`, `crt1.10.6.o` — universal i386 + x86_64 | apple-oss-distributions/Csu | Csu-88 `95613f85` | APSL-2.0 |
+| stub `libSystem.B.dylib`, `libiconv.2.dylib`, `libncurses.5.4.dylib`, `libobjc.A.dylib` + 24 frameworks — universal | `gen-stubs.sh` + `stubs/` (ours) | — | — |
 
 Notes:
 - Static binaries: libtool's `-all-static` at make time. ld64's `ld.cpp` defines its own `__cxa_atexit` (it skips destructors
@@ -17,6 +17,10 @@ Notes:
 - Csu: `start.s` + `crt.c` (+ `dyld_glue.s` for 10.4/10.5) compiled with `clang -target i386-apple-macosx<ver>` and linked
   `-r -keep_private_externs` with the new ld, as Csu's own Makefile does (crt1.v1 / v2 / v3). `start.s` includes
   `<Availability.h>` only for ARM; an empty one is supplied.
+- Universal (2026-10-09): `csu()` and `stub()` build an i386 and an x86_64 part and join them with the new `lipo`.
+  i386 parts are built exactly as before (byte-identical); x86_64 parts are built for 10.5 (FPC's x86_64 default),
+  crt1.o (10.4) for x86_64 without `-mdynamic-no-pic`. The same symbol lists serve both; an Objective-C class becomes
+  `_OBJC_CLASS_$_X` + `_OBJC_METACLASS_$_X` in the x86_64 part (Objective-C 2 ABI, what `ppcx64` emits).
 - Stubs: each symbol in `stubs/<lib>.syms` becomes an empty function in a dylib that carries the real install name.
   ld64 will not build a dylib that does not link libSystem - except libSystem itself, which Apple builds from an object
   named `exit-asm.o`; the libSystem stub uses that name, the other stubs link against it.

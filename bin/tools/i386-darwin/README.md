@@ -1,4 +1,4 @@
-# Mac (i386-darwin) link tools — byte, 2026-10-07 (frameworks 2026-10-08)
+# Mac (i386-darwin + x86_64-darwin) link tools — byte, 2026-10-07 (frameworks 2026-10-08, 64-bit 2026-10-09)
 
 Use (Linux x86_64 host):
 ```
@@ -8,15 +8,27 @@ bin/ppc386 -Tdarwin -FDbin/tools/i386-darwin -XRbin/tools/i386-darwin/MacOSX10.6
 `-Fu.../fv` first only matters for Free Vision programs: `bin/units/i386-darwin` also holds Apple's Carbon `Dialogs` unit.
 Add `-WM10.6` (or 10.5) to target a newer macOS; the default is 10.4 (FPC 2.6.4's i386 default).
 
+64-bit (runs on every Intel Mac up to macOS 26 Tahoe, and on Apple Silicon through Rosetta 2) — same tools, `ppcx64`:
+```
+bin/ppcx64 -Tdarwin -FDbin/tools/i386-darwin -XRbin/tools/i386-darwin/MacOSX10.6.sdk \
+           -Fubin/units/x86_64-darwin/fv -Fubin/units/x86_64-darwin prog.pas     -> prog  (Mach-O x86_64 executable)
+```
+Default minimum macOS for x86_64 is 10.5 (`-WM10.6` / `-WM10.4` work too). Units: `bin/units/x86_64-darwin` (789,
+see `tools/darwin64-build/README.md`; no `graph`). The folder keeps its name `i386-darwin`: one set of tools for both.
+
 | File | What |
 |---|---|
 | `as`, `ld`, `ar`, `ranlib`, `nm`, `otool`, `strip`, `lipo`, `install_name_tool` | Apple cctools 1030.6.3 + ld64-956.6 (cctools-port), static Linux x86_64 builds |
-| `MacOSX10.6.sdk/usr/lib/crt1.o`, `crt1.10.5.o`, `crt1.10.6.o` | program startup code, built from Apple's open-source Csu-88 (10.4 / 10.5 / 10.6+) |
+| `MacOSX10.6.sdk/usr/lib/crt1.o`, `crt1.10.5.o`, `crt1.10.6.o` | program startup code, built from Apple's open-source Csu-88 (10.4 / 10.5 / 10.6+); universal i386 + x86_64 |
 | `MacOSX10.6.sdk/usr/lib/libSystem.B.dylib` | **stub** libSystem: 458 symbol names (C library, pthreads, math, dl, sockets, syslog, fenv, xattr), no code. Copies as `libc`, `libm`, `libdl`, `libpthread` `.dylib` (symlinks to libSystem on a Mac) |
 | `MacOSX10.6.sdk/usr/lib/libiconv.2.dylib` (+ `libiconv.dylib`) | stub libiconv (`cwstring`) |
 | `MacOSX10.6.sdk/usr/lib/libncurses.5.4.dylib` (+ `libncurses.dylib`) | stub ncurses (`terminfo`) |
 | `MacOSX10.6.sdk/usr/lib/libobjc.A.dylib` (+ `libobjc.dylib`) | stub Objective-C runtime (`objc_msgSend` & co., 61 names) |
 | `MacOSX10.6.sdk/System/Library/Frameworks/<F>.framework` | **stub** frameworks, 24 (list below); each as `Versions/A/<F>` + a copy `<F>` (symlinks on a Mac; git on Windows does not keep symlinks) |
+
+Every stub library and framework is **universal** (an i386 and an x86_64 part, like Apple's own); the i386 parts are
+byte-identical to the 2026-10-08 i386-only stubs, so 32-bit programs link exactly as before. In the x86_64 part each
+Objective-C class is `_OBJC_CLASS_$_X` + `_OBJC_METACLASS_$_X` (Objective-C 2 runtime) instead of `.objc_class_name_X`.
 
 The stubs only let the linker check names; each carries the real library's install name (`/usr/lib/libSystem.B.dylib`
 etc.), so the program loads the real library on the Mac. Nothing here is copied from Apple's SDK or Xcode.

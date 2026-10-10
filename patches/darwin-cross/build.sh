@@ -6,8 +6,9 @@
 #   2 cctools + ld64-956.6 (static)              tpoechtrager/cctools-port          1030.6.3-ld64-956.6   APSL-2.0
 #        -> as ld ar ranlib nm otool strip lipo install_name_tool
 #   3 crt1.o / crt1.10.5.o / crt1.10.6.o          apple-oss-distributions/Csu        Csu-88                APSL-2.0
+#        (each universal: i386 + x86_64)
 #        (start.s + crt.c built with clang -target i386-apple-macosx, linked -r with the new ld; same recipe as Csu's Makefile)
-#   4 stub system libraries + frameworks (gen-stubs.sh, stubs/)  our own: symbol names only, no Apple code
+#   4 stub system libraries + frameworks, universal i386 + x86_64 (gen-stubs.sh, stubs/)  our own: names only, no Apple code
 # Output: <work>/out/bin/*  and  <work>/out/MacOSX10.6.sdk/ (usr/lib, System/Library/Frameworks) -> copy into bin/tools/i386-darwin/
 # Needs: git, clang, cmake, make, autoconf/libtool, static libstdc++ and libuuid (libuuid-dev).
 set -e
@@ -45,19 +46,26 @@ file "$OUT/bin/ld" | grep -q 'statically linked' || echo "WARNING: ld is not sta
 echo "[3/4] Csu startup objects"
 fetch Csu https://github.com/apple-oss-distributions/Csu.git 95613f854c47f55b5447f64d8898572874e4a035
 mkdir -p "$W/csuinc" "$W/csuobj"
-echo '/* empty: the i386 parts of start.s need nothing from Availability.h */' > "$W/csuinc/Availability.h"
-csu() { # $1=output $2=macosx min $3=defines, rest=sources
-  # Csu Makefile: crt1.v1 = 10.4 -mdynamic-no-pic -DCRT -DOLD_LIBSYSTEM_SUPPORT (+dyld_glue.s), crt1.v2 = 10.5 -DCRT
-  # (+dyld_glue.s), crt1.v3 = 10.6 -DADD_PROGRAM_VARS; installed as crt1.o, crt1.10.5.o, crt1.10.6.o
-  local o=$1 m=$2 d=$3 objs=""; shift 3
-  for s in "$@"; do
-    clang -target i386-apple-macosx$m -Os -I"$W/csuinc" $d -c "$W/Csu/$s" -o "$W/csuobj/$s.$o.o"; objs="$objs $W/csuobj/$s.$o.o"
+echo '/* empty: the i386 and x86_64 parts of start.s need nothing from Availability.h */' > "$W/csuinc/Availability.h"
+csu() { # $1=output $2=macosx min $3=defines (i386) $4=defines (x86_64), rest=sources
+  # Csu Makefile: crt1.v1 = 10.4 -DCRT -DOLD_LIBSYSTEM_SUPPORT (+dyld_glue.s; i386 also -mdynamic-no-pic), crt1.v2 = 10.5
+  # -DCRT (+dyld_glue.s), crt1.v3 = 10.6 -DADD_PROGRAM_VARS; installed as crt1.o, crt1.10.5.o, crt1.10.6.o.
+  # Each is universal: an i386 and an x86_64 object joined with lipo.
+  local o=$1 m=$2 d32=$3 d64=$4 a d objs slices=(); shift 4
+  for a in i386 x86_64; do
+    d=$d32; [ $a = x86_64 ] && d=$d64; objs=""
+    for s in "$@"; do
+      clang -target $a-apple-macosx$m -Os -I"$W/csuinc" $d -c "$W/Csu/$s" -o "$W/csuobj/$s.$o.$a.o"; objs="$objs $W/csuobj/$s.$o.$a.o"
+    done
+    "$OUT/bin/ld" -arch $a -r -keep_private_externs -macosx_version_min $m $objs -o "$W/csuobj/$o.$a" 2>/dev/null
+    slices+=("$W/csuobj/$o.$a")
   done
-  "$OUT/bin/ld" -arch i386 -r -keep_private_externs -macosx_version_min $m $objs -o "$OUT/MacOSX10.6.sdk/usr/lib/$o" 2>/dev/null
+  "$OUT/bin/lipo" -create -output "$OUT/MacOSX10.6.sdk/usr/lib/$o" "${slices[@]}"
 }
-csu crt1.10.6.o 10.6 -DADD_PROGRAM_VARS start.s crt.c
-csu crt1.10.5.o 10.5 -DCRT start.s crt.c dyld_glue.s
-csu crt1.o 10.4 "-DCRT -DOLD_LIBSYSTEM_SUPPORT -mdynamic-no-pic" start.s crt.c dyld_glue.s   # FPC's i386 default is 10.4
+csu crt1.10.6.o 10.6 -DADD_PROGRAM_VARS -DADD_PROGRAM_VARS start.s crt.c
+csu crt1.10.5.o 10.5 -DCRT -DCRT start.s crt.c dyld_glue.s
+csu crt1.o 10.4 "-DCRT -DOLD_LIBSYSTEM_SUPPORT -mdynamic-no-pic" "-DCRT -DOLD_LIBSYSTEM_SUPPORT" start.s crt.c dyld_glue.s
+   # FPC's defaults: i386 10.4 (crt1.o), x86_64 10.5 (crt1.10.5.o)
 
 echo "[4/4] stub libraries"
 bash "$K/gen-stubs.sh" "$OUT/bin" "$OUT/MacOSX10.6.sdk"

@@ -21,6 +21,8 @@ Lazarus IDE with LCL widgetset.
 | DOS (go32v2) | ppc386 | 308 | `ppc386 -Tgo32v2 myapp.pas` |
 | DOS 16-bit | ppcross8086 | 113 | `ppcross8086 -Tmsdos myapp.pas` |
 | FreeBSD i386 | ppc386 | 160 | `ppc386 -Tfreebsd myapp.pas` |
+| macOS i386 (10.4 – 10.14) | ppc386 | 795 | `ppc386 -Tdarwin -FDbin/tools/i386-darwin -XRbin/tools/i386-darwin/MacOSX10.6.sdk myapp.pas` |
+| macOS x86_64 (10.5 – 26, Rosetta 2) | ppcx64 | 789 | `ppcx64 -Tdarwin -FDbin/tools/i386-darwin -XRbin/tools/i386-darwin/MacOSX10.6.sdk myapp.pas` |
 
 ## What's Included
 
@@ -58,7 +60,8 @@ ppc386 -Tgo32v2 myapp.pas       # DOS
 The compiler picks up the `.a` by itself, with or without `-XX`. The only `.o` files left are startup objects the
 compiler links by name (`prt0`, `cprt0`, `gprt0`, `dllprt0`, OS/2 `prt1`, go32v2 `exceptn`/`fpu`, i8086 `prt0*`).
 Tested linking: i386/x86_64 Linux, Win32/Win64, go32v2, i386 FreeBSD, ptcgraph from the repo units alone.
-i386-os2 links natively with `-FD bin/tools/i386-os2` (see its README). Not converted yet: i386-darwin, i8086 medium/large/huge. Kit and details: `tools/smartpack/README.md`.
+i386-os2 links natively with `-FD bin/tools/i386-os2` (see its README); i386-darwin and x86_64-darwin with
+`-FD bin/tools/i386-darwin` (`docs/DARWIN-CROSS.md`). Kit and details: `tools/smartpack/README.md`.
 
 ## USB Stack
 
@@ -222,7 +225,7 @@ the crew 4free — x86 little endian
 | x86_64-linux, i386-linux | termios (ioctl) |
 | x86_64-win64, i386-win32 | Windows COM API |
 | x86_64-freebsd, i386-freebsd | termios (ioctl) |
-| i386-darwin | termios (ioctl) |
+| i386-darwin, x86_64-darwin | termios (ioctl) |
 | i386-go32v2 | direct UART 8250/16550 |
 | i386-os2 | DosDevIOCtl ASYNC |
 

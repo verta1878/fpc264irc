@@ -15,25 +15,37 @@ set -e
 B=$1; S=$2; L=$S/usr/lib; FW=$S/System/Library/Frameworks
 K=$(cd "$(dirname "$0")" && pwd); T=$(mktemp -d); mkdir -p "$L" "$FW"
 stub() { # $1=output file $2=install name $3=current version $4..=syms files, then "--" and extra ld options
-  # re-exports: built for 10.5 so ld64 writes LC_REEXPORT_DYLIB (for 10.4 it writes the older LC_SUB_LIBRARY /
-  # LC_SUB_UMBRELLA form, which does not carry /usr/lib/libobjc through Foundation); plain stubs: 10.4
-  local out=$1 inst=$2 ver=$3; shift 3; local files=() n min=10.4
-  case " $* " in *" -reexport_library "*) min=10.5;; esac
+  # Universal (i386 + x86_64), like Apple's own libraries; each slice is linked on its own, then lipo joins them.
+  # i386 re-exports: built for 10.5 so ld64 writes LC_REEXPORT_DYLIB (for 10.4 it writes the older LC_SUB_LIBRARY /
+  # LC_SUB_UMBRELLA form, which does not carry /usr/lib/libobjc through Foundation); plain i386 stubs: 10.4.
+  # x86_64: always 10.5 (FPC's x86_64-darwin default).
+  local out=$1 inst=$2 ver=$3; shift 3; local files=() n a min slices=()
   while [ $# -gt 0 ] && [ "$1" != "--" ]; do files+=("$1"); shift; done; [ "$1" = "--" ] && shift
-  n=$(basename "$out"); mkdir -p "$T/$n"
-  { echo '.text'
-    cat "${files[@]}" | sort -u | while read -r s; do
-      [ -n "$s" ] || continue
-      case $s in .objc_class_name_*) echo ".data"; echo ".globl $s"; echo "$s: .long 0"; echo ".text";;
-                 *) echo ".globl $s"; echo "$s: ret";; esac
-    done; } > "$T/$n/stub.s"
-  # ld64 refuses a dylib that does not link libSystem; it lets one through whose input is named exit-asm.o (the way
-  # Apple builds libSystem itself) - used for the libSystem stub only, the other stubs link against it.
-  local obj="$T/$n/stub.o"; [ "$n" = libSystem.B.dylib ] && obj="$T/$n/exit-asm.o"
-  "$B/as" -arch i386 -o "$obj" "$T/$n/stub.s"
-  "$B/ld" -arch i386 -dylib -syslibroot "$S" -macosx_version_min $min -install_name "$inst" -compatibility_version 1.0.0 -current_version "$ver" \
-          -o "$out" "$obj" "$@" 2>&1 | grep -v 'directory not found for option' || true
-  [ -f "$out" ] || { echo "stub $n failed"; exit 1; }
+  n=$(basename "$out")
+  for a in i386 x86_64; do
+    mkdir -p "$T/$n/$a"; min=10.4
+    case "$a: $* " in *" -reexport_library "*|x86_64:*) min=10.5;; esac
+    # ObjC classes: i386 (ObjC 1 runtime) .objc_class_name_X; x86_64 (ObjC 2) _OBJC_CLASS_$_X + _OBJC_METACLASS_$_X
+    { echo '.text'
+      cat "${files[@]}" | sort -u | while read -r s; do
+        [ -n "$s" ] || continue
+        case $a:$s in
+          i386:.objc_class_name_*) echo ".data"; echo ".globl $s"; echo "$s: .long 0"; echo ".text";;
+          x86_64:.objc_class_name_*) c=${s#.objc_class_name_}; echo ".data"
+                   for k in _OBJC_CLASS_\$_$c _OBJC_METACLASS_\$_$c; do echo ".globl $k"; echo "$k: .quad 0"; done; echo ".text";;
+          *) echo ".globl $s"; echo "$s: ret";;
+        esac
+      done; } > "$T/$n/$a/stub.s"
+    # ld64 refuses a dylib that does not link libSystem; it lets one through whose input is named exit-asm.o (the
+    # way Apple builds libSystem itself) - used for the libSystem stub only, the other stubs link against it.
+    local obj="$T/$n/$a/stub.o"; [ "$n" = libSystem.B.dylib ] && obj="$T/$n/$a/exit-asm.o"
+    "$B/as" -arch $a -o "$obj" "$T/$n/$a/stub.s"
+    "$B/ld" -arch $a -dylib -syslibroot "$S" -macosx_version_min $min -install_name "$inst" -compatibility_version 1.0.0 \
+            -current_version "$ver" -o "$T/$n/$a/$n" "$obj" "$@" 2>&1 | grep -v 'directory not found for option' || true
+    [ -f "$T/$n/$a/$n" ] || { echo "stub $n ($a) failed"; exit 1; }
+    slices+=("$T/$n/$a/$n")
+  done
+  "$B/lipo" -create -output "$out" "${slices[@]}"
   echo "$n: $(cat "${files[@]}" | sort -u | grep -c .) symbols"
 }
 X=$K/stubs

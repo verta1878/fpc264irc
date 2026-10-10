@@ -1,6 +1,6 @@
 FPC 2.6.4irc - Repository Checksums
-Generated: 2026-10-08 (byte, after the i386-darwin framework stubs)
-Includes: Patches 1-6, graph 3.0.4 backport, smartpack (.ppu + .a), stale-unit rebuild, i386-linux USB units, OS/2 native linking (patched binutils ld), i386-darwin Mach-O writer fix, unit-folder name clashes (lcl/, fv/), i8086 medium/large/huge -CX, OS/2 build kit + test/os2, i386-darwin linking (cctools/ld64, Csu, stub libSystem) + test/darwin, unit format check (numlib + singleinstance rebuilt for i386-win32), i386-darwin framework stubs (24 frameworks + libobjc) + test/darwin 8-10
+Generated: 2026-10-09 (byte, after x86_64-darwin: 64-bit Mac units + universal link tools)
+Includes: Patches 1-6, graph 3.0.4 backport, smartpack (.ppu + .a), stale-unit rebuild, i386-linux USB units, OS/2 native linking (patched binutils ld), i386-darwin Mach-O writer fix, unit-folder name clashes (lcl/, fv/), i8086 medium/large/huge -CX, OS/2 build kit + test/os2, i386-darwin linking (cctools/ld64, Csu, stub libSystem) + test/darwin, unit format check (numlib + singleinstance rebuilt for i386-win32), i386-darwin framework stubs (24 frameworks + libobjc) + test/darwin 8-10, x86_64-darwin units (tools/darwin64-build) + universal crt1/stubs + test/darwin64
 Hashes are of the repository content (LF line endings, as on GitHub or a Linux clone). On Windows with
 core.autocrlf, text files are checked out with CRLF and hash differently; .ppu/.a/.exe/.o are binary and match.
 CHECKSUMS.md5 / CHECKSUMS.sha256 list every file except the three CHECKSUMS files themselves.
@@ -43,15 +43,15 @@ bin/tools/i386-darwin/ld:
   Size:   7846496
 
 HISTORY.md:
-  MD5:    516cdaed3e02e36e5fb72e61f0e9b907
-  SHA256: f606ff6cab9db0405c32a283ce95b30f8908a665ef02e7d208532fa217d08bf8
-  Size:   17816
+  MD5:    358bb54e5b4db5d1465580e97cdb3755
+  SHA256: 183cf5addec0ddaac7deaf6a3d9aa9e9d4915af6620a56c20c69b3d2d6f2840b
+  Size:   19556
 
 docs/ROADMAP-UNITS.md:
-  MD5:    9aeefc89e7f2809d646a76acc60d9bad
-  SHA256: 2033895bdec6a5ed289ebe52c8913285ab141651d71e2e5b8c5fe02457ea42d0
-  Size:   11951
+  MD5:    197f148de013b6da5548f4ef6ea02fe9
+  SHA256: 9bce650bddc12bf82362f178e4a0103937c7f3595b77c35ceeace78cbf7b73cd
+  Size:   12283
 
 === Totals ===
-Files: 43207
+Files: 44862
 Size:  1.7G

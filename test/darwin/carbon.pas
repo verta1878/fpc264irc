@@ -15,6 +15,6 @@ begin
   writeln('CFArrayGetCount      : ', CFArrayGetCount(arr), '   (expected 2)');
   if Gestalt(gestaltSystemVersion, v) = noErr then writeln('Gestalt system version: ', HexStr(v, 4), '   (e.g. 1068 = 10.6.8)');
   CFRelease(arr); CFRelease(n); CFRelease(s);
-  SysBeep(1);
+  {$ifc defined cpu386} SysBeep(1); {$endc}   { SysBeep is 32-bit only; the 64-bit build (test/darwin64) skips it }
   writeln('test 8 done');
 end.

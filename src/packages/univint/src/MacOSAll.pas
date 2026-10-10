@@ -11,7 +11,9 @@
 unit MacOSAll;
 interface
 
-{$ifc (defined CPUPOWERPC32 or defined CPUI386) and not defined(iphonesim)}
+{ fpc264irc 2026-10-09: x86_64 links Carbon too - 64-bit macOS still has the non-UI Carbon / CoreServices calls
+  (Gestalt, File Manager, Apple Events, ...) that MacOSAll declares; with CoreFoundation alone they do not link }
+{$ifc (defined CPUPOWERPC32 or defined CPUI386 or defined CPUX86_64) and not defined(iphonesim)}
 {$linkframework Carbon}
 {$elsec}
 {$linkframework CoreFoundation}

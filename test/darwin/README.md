@@ -11,6 +11,8 @@ test/darwin/build.sh            # -> $TMPDIR/fpc264irc-darwin-test/<name>  (or: 
 The ten programs in this folder are ready-built (1 – 7: 2026-10-07, 8 – 10: 2026-10-08). `build.sh` rebuilds them;
 the result is byte-identical.
 
+64-bit versions of tests 1 – 9 (for newer Macs and Apple Silicon): `test/darwin64/`.
+
 Run them on an **Intel Mac with macOS 10.6 – 10.14** (32-bit programs; 10.15 and later cannot run them), from Terminal.
 Copy them over, then `chmod +x hello crttest filetest sysinfo unicode threads fvdemo carbon cocoa graphdemo` (git on Windows does not keep the
 execute bit) and run e.g. `./hello`. If macOS refuses to open them (Gatekeeper), `xattr -c <name>` or right-click > Open.
@@ -24,7 +26,7 @@ execute bit) and run e.g. `./hello`. If macOS refuses to open them (Gatekeeper),
 | 5 | `unicode` | `cwstring`: UTF-8 ↔ UTF-16 round trip, upper/lower case of ü ß é | libSystem, libiconv |
 | 6 | `threads` | `cthreads` + `BeginThread` ×4, critical section; counter must be exactly 400000 | libSystem |
 | 7 | `fvdemo` | Free Vision: menu bar, status line, F3 opens windows, F1 message box, Alt-X quits | libSystem |
-| 8 | `carbon` | `MacOSAll`: CFString / CFNumber / CFArray round trip, `Gestalt` (system version), `SysBeep` | CoreFoundation, CoreServices, Carbon |
+| 8 | `carbon` | `MacOSAll`: CFString / CFNumber / CFArray round trip, `Gestalt` (system version), `SysBeep` (32-bit build only) | CoreFoundation, CoreServices, Carbon |
 | 9 | `cocoa` | `CocoaAll`: NSAutoreleasePool, NSString, NSMutableArray, NSProcessInfo, `NSLog` (Objective-C runtime) | Foundation, CoreFoundation, libobjc |
 | 10 | `graphdemo` | `graph` (Mac backend): a window with lines, circles, text for 10 s; result also in `graphdemo.log` | CoreFoundation, ApplicationServices, Carbon |
 

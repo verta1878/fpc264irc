@@ -40,7 +40,7 @@ bin/tools/
 ├── i386-emx/              # OS/2 EMX (requires patched build)
 │   └── README.md
 ├── i386-os2/              # OS/2 native: patched binutils 2.30 a.out as/ld + emxbind (see README)
-└── i386-darwin/           # Mac i386: cctools/ld64-956.6 as/ld/ar/..., Csu crt1, stub libSystem (see README)
+└── i386-darwin/           # Mac i386 + x86_64: cctools/ld64-956.6 as/ld/ar/..., Csu crt1, stub libraries + frameworks (see README)
 ```
 
 ## Fallback behavior

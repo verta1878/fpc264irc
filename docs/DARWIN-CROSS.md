@@ -24,6 +24,20 @@ bin/ppc386 -Tdarwin -FDbin/tools/i386-darwin -XRbin/tools/i386-darwin/MacOSX10.6
   `graph` unit's Mac backend - 24 stub frameworks in the SDK folder, see `bin/tools/i386-darwin/README.md`.
   SDL/FreeType/X11 still need stubs.
 
+### 64-bit (2026-10-09)
+
+```bash
+bin/ppcx64 -Tdarwin -FDbin/tools/i386-darwin -XRbin/tools/i386-darwin/MacOSX10.6.sdk \
+           -Fubin/units/x86_64-darwin/fv -Fubin/units/x86_64-darwin yourprogram.pas
+```
+- Runs on every Intel Mac with macOS 10.5 – 26 Tahoe, and on Apple Silicon through Rosetta 2. 32-bit programs stop at
+  10.14 (Catalina dropped 32-bit).
+- Same link tools; startup code and stubs are universal. Units: `bin/units/x86_64-darwin` (789 — all of the i386 set
+  except `graph`, `sdlutils`/`sdlgraph`, `mmx`, `displays`/`drawsprocket`/`macos`), kit `tools/darwin64-build`.
+- `CocoaAll` uses the Objective-C 2 runtime on x86_64 and links. Carbon's GUI (HIToolbox windows, QuickDraw) does not
+  exist in 64-bit macOS — `MacOSAll` leaves those calls out there, which is why the Mac `graph` backend is 32-bit only.
+- Test programs: `test/darwin64/`.
+
 ### Verifying the Build
 
 ```bash
@@ -43,10 +57,8 @@ sizes); objects it writes are valid for ld64/llvm. Without `-Amacho` the compile
 
 ### Known Limitations
 
-- FPC 2.6.4 targets i386-darwin (32-bit). 64-bit macOS support
-  (x86_64-darwin) requires FPC 3.x+ or our ppcx64 with Darwin RTL.
-- macOS 10.15 Catalina dropped 32-bit support. Target 10.14 or earlier,
-  or use Rosetta on Apple Silicon.
+- i386-darwin programs (32-bit) run on macOS 10.4 – 10.14 only: 10.15 Catalina dropped 32-bit support, and Rosetta 2
+  on Apple Silicon runs 64-bit Intel programs only. Build with `ppcx64` (above) for newer Macs.
 - Cocoa: FPC 2.6.4's `CocoaAll` (Objective-C 1 classes, i386) links (`test/darwin/cocoa.pas`). The Lazarus Cocoa
   widgetset (`src/lazarus/lcl/interfaces/cocoa`) has not been tried with it; Carbon or fpGUI are the safer choice for
   LCL-style GUI apps.
