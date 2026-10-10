@@ -9,7 +9,8 @@
 #   usr/lib/libiconv.2.dylib    /usr/lib/libiconv.2.dylib    (copy: libiconv.dylib)
 #   usr/lib/libncurses.5.4.dylib /usr/lib/libncurses.5.4.dylib (copy: libncurses.dylib)
 #   usr/lib/libobjc.A.dylib     /usr/lib/libobjc.A.dylib     (copy: libobjc.dylib)
-#   System/Library/Frameworks/<F>.framework/Versions/A/<F> (+ copy <F>.framework/<F>) for every line of stubs/frameworks.txt
+#   System/Library/Frameworks/<F>.framework/Versions/<V>/<F> (+ copy <F>.framework/<F>) for every line of stubs/frameworks.txt
+#                               (<V> from the install name: C for Foundation and AppKit, A for the others)
 #                               (name|install name|re-exported frameworks)
 set -e
 B=$1; S=$2; L=$S/usr/lib; FW=$S/System/Library/Frameworks
@@ -61,12 +62,12 @@ while IFS='|' read -r name inst reex; do
     opts=("$L/libSystem.B.dylib")
     for r in ${reex//,/ }; do
       if [ "$r" = libobjc ]; then opts+=(-reexport_library "$L/libobjc.A.dylib")
-      else opts+=(-reexport_library "$FW/$r.framework/Versions/A/$r"); fi
+      else opts+=(-reexport_library "$S$(grep "^$r|" "$X/frameworks.txt" | cut -d'|' -f2)"); fi
     done
     # ld finds -framework X at X.framework/X, and a re-exported framework at its install path
-    # X.framework/Versions/A/X (symlinks on macOS; two copies here, git on Windows does not keep symlinks)
-    mkdir -p "$FW/$name.framework/Versions/A"
-    stub "$FW/$name.framework/Versions/A/$name" "$inst" 1.0.0 "$X/frameworks/$name.syms" -- "${opts[@]}"
-    cp "$FW/$name.framework/Versions/A/$name" "$FW/$name.framework/$name"
+    # X.framework/Versions/<V>/X = its install path (symlinks on macOS; two copies here, git on Windows does not keep symlinks)
+    mkdir -p "$(dirname "$S$inst")"
+    stub "$S$inst" "$inst" 1.0.0 "$X/frameworks/$name.syms" -- "${opts[@]}"
+    cp "$S$inst" "$FW/$name.framework/$name"
 done < "$X/frameworks.txt"
 rm -rf "$T"

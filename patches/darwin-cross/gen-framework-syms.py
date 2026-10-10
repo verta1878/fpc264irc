@@ -47,6 +47,9 @@ INSTALL = {n: f'/{F}/{n}.framework/Versions/A/{n}' for n in (
     'OpenGL', 'Foundation', 'AppKit', 'CoreData', 'WebKit', 'Cocoa', 'OpenAL', 'OpenCL')}
 INSTALL['Carbon'] = f'/{F}/Carbon.framework/Versions/A/Carbon'
 INSTALL['Cocoa'] = f'/{F}/Cocoa.framework/Versions/A/Cocoa'
+# Foundation and AppKit are version C on every macOS since 10.0 (checked against Apple's 10.6 / 10.7 SDK, 2026-10-10)
+INSTALL['Foundation'] = f'/{F}/Foundation.framework/Versions/C/Foundation'
+INSTALL['AppKit'] = f'/{F}/AppKit.framework/Versions/C/AppKit'
 # re-exports only steer the linker to a symbol's own framework: ld64 links a re-exported framework that has a public
 # install name directly ("implicit linking") and binds the symbol there, so a program records e.g. _CFRelease as coming
 # from CoreFoundation itself even when its source only says {$linkframework Carbon} (as MacOSAll does).

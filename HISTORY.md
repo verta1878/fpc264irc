@@ -193,6 +193,25 @@ source          patches/os2-cross/binutils/ (binutils-2.30-emx.patch, build.sh, 
 result          same program images and the same LX import fixups as before (360 / 1055 in the two tests); not yet run on OS/2
 ```
 
+## Exact source rebuild: OS/2; Mac stubs checked against Apple's SDK (2026-10-10)
+
+```
+plan            docs/UNIT-REBUILD.md: every shipped unit = a kit build from this repo's src/ with today's compiler, one
+                folder at a time, before porting newer upstream FPC source
+i386-os2        37 units replaced by the tools/os2-native-build build (asciitab classes dateutil dateutils dom dos editors
+                eventlog fmtbcd fphttpclient fpjson fpreadbmp fpreadpng fpwritebmp gadgets gzio httpdefs inplong iso7185
+                keyboard lineinfo lnfodwrf menus openssl process regexpr sockets stddlg strutils system sysutils tabs
+                typinfo ucomplex unicodedata uriparser views) - the only difference was the old compiler's concat_multi
+                calls; no interface changed; all 219 now = kit build; test/os2 programs rebuilt
+Apple SDK check MacOSX10.6 / 10.7 SDK (outside the repo): all 19 test/darwin + test/darwin64 programs also link against
+                Apple's libraries with the same bindings; install names match except Foundation + AppKit
+fix             Foundation / AppKit stubs: install name Versions/C (was Versions/A - a Mac would not load the Cocoa
+                programs); gen-framework-syms.py, gen-stubs.sh (framework path = install path), stubs/frameworks.txt;
+                test/darwin/cocoa + test/darwin64/cocoa relinked
+deleted         bin/tools/i386-darwin/MacOSX10.6.sdk/System/Library/Frameworks/Foundation.framework/Versions/A/Foundation,
+                .../AppKit.framework/Versions/A/AppKit (now Versions/C/...)
+```
+
 ## Graph 3.2.2 (2026-10-09)
 
 ```

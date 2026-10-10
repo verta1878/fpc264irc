@@ -24,11 +24,16 @@ see `tools/darwin64-build/README.md`; no `graph`). The folder keeps its name `i3
 | `MacOSX10.6.sdk/usr/lib/libiconv.2.dylib` (+ `libiconv.dylib`) | stub libiconv (`cwstring`) |
 | `MacOSX10.6.sdk/usr/lib/libncurses.5.4.dylib` (+ `libncurses.dylib`) | stub ncurses (`terminfo`) |
 | `MacOSX10.6.sdk/usr/lib/libobjc.A.dylib` (+ `libobjc.dylib`) | stub Objective-C runtime (`objc_msgSend` & co., 61 names) |
-| `MacOSX10.6.sdk/System/Library/Frameworks/<F>.framework` | **stub** frameworks, 24 (list below); each as `Versions/A/<F>` + a copy `<F>` (symlinks on a Mac; git on Windows does not keep symlinks) |
+| `MacOSX10.6.sdk/System/Library/Frameworks/<F>.framework` | **stub** frameworks, 24 (list below); each at its install path `Versions/A/<F>` (Foundation, AppKit: `Versions/C/<F>`, as on every Mac) + a copy `<F>` (symlinks on a Mac; git on Windows does not keep symlinks) |
 
 Every stub library and framework is **universal** (an i386 and an x86_64 part, like Apple's own); the i386 parts are
 byte-identical to the 2026-10-08 i386-only stubs, so 32-bit programs link exactly as before. In the x86_64 part each
 Objective-C class is `_OBJC_CLASS_$_X` + `_OBJC_METACLASS_$_X` (Objective-C 2 runtime) instead of `.objc_class_name_X`.
+
+Checked against Apple's own MacOSX10.6 / 10.7 SDK (2026-10-10, kept outside the repo): every test program in
+`test/darwin` and `test/darwin64` also links against Apple's libraries, with each call bound to the same library as with
+the stubs; install names match Apple's (Foundation / AppKit were `Versions/A` before - fixed, a Mac would have refused to
+load the Cocoa programs).
 
 The stubs only let the linker check names; each carries the real library's install name (`/usr/lib/libSystem.B.dylib`
 etc.), so the program loads the real library on the Mac. Nothing here is copied from Apple's SDK or Xcode.

@@ -15,6 +15,7 @@ Win32/Win64 (Wine), go32v2 (DOSBox); i386 FreeBSD links; ptcgraph links from rep
 | 8 | Win32/Win64 GDI graph hi-colour | **Graph 3.2.2 done 2026-10-09** (`tools/graph-322-build`): hi-colour and 24-bit true colour work through `ptcgraph` on win32/win64/Linux (tested). The GDI `graph` unit itself still has no hi-colour — upstream FPC never added it. |
 | 9 | Unit format = compiler format | **Done 2026-10-08** - `tools/smartpack/ppu_version_check.py`: 7 i386-win32 units were PPU207 (FPC 3.2.x), unreadable by ppc386: numlib `typ omv dsl mdt sle spl` rebuilt from `src/packages/numlib`, `singleinstance` from FPC 3.0.4 fcl-base (source added to `src/packages/fcl-base/src`); all `.ppu` + `.a`, tested under Wine (`test/test_numlib.pas`, `test/test_singleinstance.pas`). Now: 7,738 PPU135 + 249 PPU207 (i8086 only), 0 wrong. |
 | 10 | x86_64-darwin (64-bit Mac) | **Done 2026-10-09** - `bin/units/x86_64-darwin` (789 units, `.ppu` + `.a`, kit `tools/darwin64-build`, byte-identical rebuild); universal crt1 + stubs in `bin/tools/i386-darwin`; 9 test programs in `test/darwin64` link; not yet run on a real Mac. No 64-bit `graph` (Carbon GUI is 32-bit only). |
+| 11 | Exact source rebuild (every unit = kit build from `src/`) | **Started 2026-10-10** - plan, per-folder status and lists in `docs/UNIT-REBUILD.md`. Done: i386-os2 (37 units replaced, all 219 = kit build), x86_64-darwin, i8086. Next: FreeBSD. |
 
 ## OS/2 (item 3) - findings 2026-10-02
 

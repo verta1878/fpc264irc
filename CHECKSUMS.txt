@@ -1,6 +1,6 @@
 FPC 2.6.4irc - Repository Checksums
-Generated: 2026-10-09 (byte, after graph 3.2.2)
-Includes: Patches 1-6, graph 3.0.4 backport, smartpack (.ppu + .a), stale-unit rebuild, i386-linux USB units, OS/2 native linking (patched binutils ld), i386-darwin Mach-O writer fix, unit-folder name clashes (lcl/, fv/), i8086 medium/large/huge -CX, OS/2 build kit + test/os2, i386-darwin linking (cctools/ld64, Csu, stub libSystem) + test/darwin, unit format check (numlib + singleinstance rebuilt for i386-win32), i386-darwin framework stubs (24 frameworks + libobjc) + test/darwin 8-10, x86_64-darwin units (tools/darwin64-build) + universal crt1/stubs + test/darwin64, graph 3.2.2 (tools/graph-322-build, ptcgraph 24-bit true colour)
+Generated: 2026-10-10 (byte, after OS/2 exact-source rebuild + Foundation/AppKit stub fix)
+Includes: Patches 1-6, graph 3.0.4 backport, smartpack (.ppu + .a), stale-unit rebuild, i386-linux USB units, OS/2 native linking (patched binutils ld), i386-darwin Mach-O writer fix, unit-folder name clashes (lcl/, fv/), i8086 medium/large/huge -CX, OS/2 build kit + test/os2, i386-darwin linking (cctools/ld64, Csu, stub libSystem) + test/darwin, unit format check (numlib + singleinstance rebuilt for i386-win32), i386-darwin framework stubs (24 frameworks + libobjc) + test/darwin 8-10, x86_64-darwin units (tools/darwin64-build) + universal crt1/stubs + test/darwin64, graph 3.2.2 (tools/graph-322-build, ptcgraph 24-bit true colour), OS/2 units = kit build, Foundation/AppKit stubs Versions/C (docs/UNIT-REBUILD.md)
 Hashes are of the repository content (LF line endings, as on GitHub or a Linux clone). On Windows with
 core.autocrlf, text files are checked out with CRLF and hash differently; .ppu/.a/.exe/.o are binary and match.
 CHECKSUMS.md5 / CHECKSUMS.sha256 list every file except the three CHECKSUMS files themselves.
@@ -43,15 +43,15 @@ bin/tools/i386-darwin/ld:
   Size:   7846496
 
 HISTORY.md:
-  MD5:    55d7e13790cca4facc00731ea921a332
-  SHA256: 3e264edff5be35372aa453f3eb475622f1863960e4a3bcc14f2e3ff40580114d
-  Size:   20723
+  MD5:    550a4939aa7496ab3a25aef92de3ce67
+  SHA256: f18fee7a4ecb504c2be5ec6b45e879e758f41d135d5497d353268c5d05d36a6b
+  Size:   22311
 
 docs/ROADMAP-UNITS.md:
-  MD5:    ab791c3afefe84524b8cd3aad7dbd16d
-  SHA256: 02e97cb5f8d87cbb2179f6b15332561dc3b34ab45413f655b32f6fac954572ea
-  Size:   12439
+  MD5:    2979f35afe05ac304c4cdd1eab2e49fa
+  SHA256: 09fcfe65ea850fef2c348e7d5bef78f30ef38a11fc6f8eaef1401bb7e61cfae8
+  Size:   12688
 
 === Totals ===
-Files: 44900
+Files: 44901
 Size:  1.7G

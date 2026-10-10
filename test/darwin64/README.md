@@ -28,3 +28,5 @@ No `graphdemo`: the `graph` unit's Mac backend is 32-bit only (see `tools/darwin
 Checked on the host: all nine link with no undefined symbols; each is a Mach-O x86_64 executable (minimum macOS 10.5,
 SDK 10.6), every call bound to the library or framework that holds it. **Not yet run on a real Mac.**
 Report back what each printed, and any error text (`dyld: Symbol not found: _xyz`, `Bad CPU type in executable`).
+
+`cocoa` was relinked on 2026-10-10: the Foundation stub now has Apple's install name (`Foundation.framework/Versions/C/Foundation`).

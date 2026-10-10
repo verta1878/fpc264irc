@@ -41,5 +41,6 @@ Notes:
 - Objective-C classes (`.objc_class_name_X`) are data words: the real frameworks export them as absolute symbols,
   which ld64 drops when it builds a dylib.
 - ld64 looks for `-framework X` at `X.framework/X` and for a re-exported framework at its install path
-  `X.framework/Versions/A/X`, so each framework is there twice (symlinks on a Mac; git on Windows keeps none).
+  `X.framework/Versions/A/X` (Foundation, AppKit: `Versions/C`), so each framework is there twice (symlinks on a Mac;
+  git on Windows keeps none).
 - The SDK folder must be called `MacOSX10.6.sdk`: ld64 takes the SDK version it records from the `-syslibroot` name.

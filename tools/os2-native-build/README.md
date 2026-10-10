@@ -47,6 +47,15 @@ Not built here, shipped as they are in `bin/units/i386-os2`: the 21 DLL import l
   pointer type mismatch on x86_64). The older `ppc386` binary predates that change and calls `fpc_shortstr_concat_multi`;
   the rebuilt one emits single concatenations. Both are valid on i386 (the helper is in the shipped system unit).
 
+## Shipped = kit build (2026-10-10)
+The 37 units that still had the old compiler's code (`system`, `sysutils`, `classes`, `dos`, `strutils`, `typinfo`,
+FV `views`/`menus`/`stddlg`/... - list in HISTORY.md; `graph` was already rebuilt by `tools/graph-322-build`) were
+replaced by this kit's build with today's `bin/ppc386`. No interface checksum changed (every other unit stays valid);
+now the code of all 219 units is exactly what `build.sh` produces. The `test/os2` programs were rebuilt.
+Found before the replacement: the kit build differs from the shipped units in exactly the units whose code called
+`fpc_*_concat_multi`, so searching the archives for that name predicts a rebuild's changes (used for the other folders,
+`docs/UNIT-REBUILD.md`).
+
 ## Linking and testing
 Linking OS/2 programs: `bin/tools/i386-os2/README.md`. Sample programs to run on a real OS/2 / ArcaOS machine:
 `test/os2/` (seven programs with ready-built `.exe` files; `build.sh` rebuilds them).

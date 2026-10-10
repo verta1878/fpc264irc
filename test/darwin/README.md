@@ -42,3 +42,5 @@ that names a symbol a stub library or framework has but the real one lacks under
 a 64-bit-only macOS).
 
 `graphdemo` was rebuilt on 2026-10-09 with the graph 3.2.2 units (`tools/graph-322-build`); the other programs are unchanged.
+
+`cocoa` was relinked on 2026-10-10: the Foundation stub now has Apple's install name (`Foundation.framework/Versions/C/Foundation`).
