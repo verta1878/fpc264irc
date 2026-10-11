@@ -209,7 +209,7 @@ bin/ppc386 → ppcx64 (i386 binary) → ppcx64 (native ELF64)
 | bob | Compiler engineer, OpenWatcom2 x64, Glide, 3dfx drivers |
 | evga | Display, Mystic, SIO rebuild |
 | kiddo | Protocols, RIPscrip |
-| wrench | Transport, FOSSIL, DVI/HDMI |
+| wrench | Transport, FOSSIL, serial |
 | hexadecimal | PCBoard, Cyclades |
 | DotMatrix | Documentation sourcing |
 | byte | Program discovery |
