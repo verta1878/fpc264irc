@@ -193,6 +193,21 @@ source          patches/os2-cross/binutils/ (binutils-2.30-emx.patch, build.sh, 
 result          same program images and the same LX import fixups as before (360 / 1055 in the two tests); not yet run on OS/2
 ```
 
+## Exact source rebuild 3: i386-linux + Lazarus i386-linux (2026-10-13)
+
+```
+kit             tools/linux-build (build.sh i386): as tools/freebsd-build, plus opts-i386.txt - the options each package
+                unit was built with (pickopts.py matches the shipped checksums and code), FV cycle built as one group
+i386-linux      275 units replaced by the kit build: code identical for 209, 51 lose the old concat_multi calls; interface
+                changes: sysutils (filerec/textrec guards), dynlibs (now src/rtl/unix/dynlibs.pas with the Patch 5 names
+                GetProcAddress / FreeLibrary - gl and openssl in src/ need them), contnrs (source), fpcylix + openssl
+                (use dynlibs); the 17 .rst files without a unit are left
+lazarus         bin/lazarus/units/i386-linux (228) rebuilt against them
+checked         ppu_consistency (fewer notes than before), every unit compiles in a program; run on this host: an RTL
+                program (fpjson, dom, process, zipper, dynlibs on libc), a Free Vision dialog, an LCL customdrawn program
+                under Xvfb
+```
+
 ## Exact source rebuild 2: FreeBSD + Lazarus i386-freebsd (2026-10-12)
 
 ```

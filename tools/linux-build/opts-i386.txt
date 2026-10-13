@@ -1,0 +1,21 @@
+# unit|options - package units the shipped i386-linux set built with options (pickopts.py: same checksums, and same code where possible)
+app|-O2
+dbugintf|-S2h
+dbugmsg|-S2h
+dialogs|-O2
+drivers|-O2
+fvcommon|-O2
+fvconsts|-S2
+histlist|-O2
+msgbox|-O2
+paszlib|-Sd
+pipes|-S2h
+pipesipc|-S2h
+process|-S2h
+regexpr|-Sd
+simpleipc|-S2h
+sysmsg|-O2
+time|-O2
+timeddlg|-O2
+validate|-O2
+buildfv|-S2

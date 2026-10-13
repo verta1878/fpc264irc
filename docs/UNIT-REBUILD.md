@@ -17,13 +17,13 @@ named the same 37 units the kit rebuild changed).
 |---|---|---|---|---|---|
 | 1 | i386-os2 | `tools/os2-native-build` | 219 | 37 | **Done 2026-10-10** - replaced by the kit build |
 | 2 | i386-freebsd / x86_64-freebsd (+ Lazarus i386-freebsd) | `tools/freebsd-build` | 167 / 46 (+ 312) | 20 / 0 (+ 63) | **Done 2026-10-12** - all three folders replaced by the kit build (`dos`/`sysutils` interface changed, so the Lazarus set was rebuilt with them) |
-| 3 | i386-linux | to do | 275 | 50 | next |
-| 4 | i386-go32v2 | to do | 182 | 44 | |
+| 3 | i386-linux (+ Lazarus i386-linux) | `tools/linux-build` | 275 (+ 228) | 50 (+ 63) | **Done 2026-10-13** - both folders replaced by the kit build (sysutils, dynlibs, contnrs interface changes) |
+| 4 | i386-go32v2 | to do | 182 | 44 | next |
 | 5 | i386-darwin | (`tools/smartpack/darwin_rebuild.py` kept the old interfaces) | 795 | 84 | |
 | 6 | x86_64-linux | to do | 632 | 143 | |
 | 7 | i386-win32 (main + lcl/) | to do | 1,684 | 434 | |
 | 8 | x86_64-win64 | to do | 1,039 | 0 | proof only |
-| 9 | Lazarus unit sets (`bin/lazarus/units`) | to do (i386-freebsd done with #2) | 1,201 | 358 | last |
+| 9 | Lazarus unit sets (`bin/lazarus/units`) | to do (i386-freebsd done with #2, i386-linux with #3) | 1,201 | 358 | last |
 | - | x86_64-darwin | `tools/darwin64-build` | 789 | 0 | done 2026-10-09 (byte-identical rebuild) |
 | - | i8086-msdos* | `tools/i8086-graph-build` | | n/a (FPC 3.2.2) | done |
 
@@ -31,8 +31,7 @@ named the same 37 units the kit rebuild changed).
 
 **i386-freebsd**: none (2026-10-12)
 
-**i386-linux** (51):
-asciitab classes crt dateutils dom dos editors errors fmtbcd fphttpclient fpjson fpreadbmp fpreadpng fpwritebmp freebidi gadgets gettext gl gzio httpdefs inplong iso7185 keyboard lineinfo linuxvcs lnfodwrf logger menus netdb oldlinux openssl pipesipc printer ptc regexpr simpleipc sockets stddlg strutils system sysutils tabs termio typinfo ucomplex unicodedata uriparser usbcore utf8bidi video views 
+**i386-linux**: none (2026-10-13)
 
 **i386-go32v2** (44):
 asciitab classes custapp dateutil dateutils dom dos editors fmtbcd fphttpclient fpjson fpreadbmp fpreadpng fpwritebmp freebidi gadgets gettext gzio httpdefs inifiles inplong iso7185 keyboard lineinfo lnfodwrf menus openssl ptc regexpr rttiutils sockets stddlg strutils system sysutils tabs typinfo ucomplex unicodedata uriparser usbcore utf8bidi vesa views 
@@ -49,6 +48,6 @@ ServiceManager asserttest avglvltree avl_tree cgiapp chmfilewriter chmreader chm
 **bin/lazarus/units**:
 i386-freebsd none (2026-10-12);
 i386-go32v2 34 of 135;
-i386-linux 63 of 228;
+i386-linux none (2026-10-13);
 i386-win32 51 of 199;
 x86_64-linux 147 of 411;
