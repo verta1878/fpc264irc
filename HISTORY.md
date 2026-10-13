@@ -193,6 +193,23 @@ source          patches/os2-cross/binutils/ (binutils-2.30-emx.patch, build.sh, 
 result          same program images and the same LX import fixups as before (360 / 1055 in the two tests); not yet run on OS/2
 ```
 
+## Exact source rebuild 2: FreeBSD + Lazarus i386-freebsd (2026-10-12)
+
+```
+kit             tools/freebsd-build (build.sh i386|x86_64): RTL Makefile + drive.py + pack-units.sh, and for i386 the
+                Lazarus set (lazdrive.py, options per Lazarus package); byte-identical rebuilds (README.md there)
+i386-freebsd    167 units replaced by the kit build: code identical for 136, 21 lose the old concat_multi calls, 8 had
+                been built with -O2 or older source; interface changes only dos + sysutils (2 include-guard lines in
+                src/rtl/inc/filerec.inc + textrec.inc after they were built); the 24 .rst files without a unit are left
+x86_64-freebsd  46 units replaced (built before by a different compiler, 2020-2026 source dates); added prt0.o cprt0.o
+                gprt0.o dllprt0.o (no startup code before - no program could link); still no x86_64 FreeBSD linker
+lazarus         bin/lazarus/units/i386-freebsd rebuilt against them (234 units recorded the old sysutils); lazcontrols,
+                ideintf, synedit now ship their code (.a, were .ppu only); added the units no folder had: synedit
+                registry xmlreg, ideintf fcl-res resource + 9 (synedit and ideintf did not compile before)
+checked         ppu_consistency (no new notes), every unit compiles in a program (both CPUs + all 324 Lazarus units),
+                an LCL customdrawn program with SynEdit + IDEIntf compiles, i386 programs link; not run (no FreeBSD)
+```
+
 ## Mac stubs trimmed to Apple's names (2026-10-10)
 
 ```

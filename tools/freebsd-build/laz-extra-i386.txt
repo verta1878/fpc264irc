@@ -1,0 +1,14 @@
+# FCL units the shipped Lazarus set uses but no shipped folder has (synedithighlighter: registry;
+# projectresourcesintf: resource) - built into the folder of the Lazarus unit that uses them
+synedit/customdrawn|xmlreg|src/packages/fcl-registry/src/xmlreg.pp||rtl:sysutils,rtl:classes,lcl:dom,lcl:xmlread,lcl:xmlwrite
+synedit/customdrawn|registry|src/packages/fcl-registry/src/registry.pp||rtl:classes,rtl:sysutils,lcl:inifiles,synedit/customdrawn:xmlreg
+ideintf/customdrawn|icocurtypes|src/packages/fcl-res/src/icocurtypes.pp||
+ideintf/customdrawn|resource|src/packages/fcl-res/src/resource.pp||rtl:classes,rtl:sysutils,ideintf/customdrawn:resdatastream,ideintf/customdrawn:resourcetree,ideintf/customdrawn:resmerger
+ideintf/customdrawn|resdatastream|src/packages/fcl-res/src/resdatastream.pp||rtl:classes,rtl:sysutils,ideintf/customdrawn:resource
+ideintf/customdrawn|resfactory|src/packages/fcl-res/src/resfactory.pp||rtl:classes,rtl:sysutils,ideintf/customdrawn:resource
+ideintf/customdrawn|resourcetree|src/packages/fcl-res/src/resourcetree.pp||rtl:classes,rtl:sysutils,ideintf/customdrawn:resource,ideintf/customdrawn:resfactory
+ideintf/customdrawn|groupresource|src/packages/fcl-res/src/groupresource.pp||rtl:classes,rtl:sysutils,ideintf/customdrawn:resource,ideintf/customdrawn:resdatastream,ideintf/customdrawn:icocurtypes
+ideintf/customdrawn|groupiconresource|src/packages/fcl-res/src/groupiconresource.pp||rtl:classes,rtl:sysutils,ideintf/customdrawn:resource,ideintf/customdrawn:groupresource,ideintf/customdrawn:resfactory,ideintf/customdrawn:resdatastream,ideintf/customdrawn:icocurtypes
+ideintf/customdrawn|groupcursorresource|src/packages/fcl-res/src/groupcursorresource.pp||rtl:classes,rtl:sysutils,ideintf/customdrawn:resource,ideintf/customdrawn:groupresource,ideintf/customdrawn:resfactory,ideintf/customdrawn:resdatastream,ideintf/customdrawn:icocurtypes
+ideintf/customdrawn|stringtableresource|src/packages/fcl-res/src/stringtableresource.pp||rtl:classes,rtl:sysutils,ideintf/customdrawn:resource,ideintf/customdrawn:resfactory
+ideintf/customdrawn|resmerger|src/packages/fcl-res/src/resmerger.pp||rtl:classes,rtl:sysutils,ideintf/customdrawn:resource,ideintf/customdrawn:stringtableresource,ideintf/customdrawn:groupiconresource,ideintf/customdrawn:groupcursorresource

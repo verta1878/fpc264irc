@@ -1,6 +1,6 @@
 FPC 2.6.4irc - Repository Checksums
-Generated: 2026-10-10 (byte, after the Mac stubs were trimmed to Apple's names)
-Includes: Patches 1-6, graph 3.0.4 backport, smartpack (.ppu + .a), stale-unit rebuild, i386-linux USB units, OS/2 native linking (patched binutils ld), i386-darwin Mach-O writer fix, unit-folder name clashes (lcl/, fv/), i8086 medium/large/huge -CX, OS/2 build kit + test/os2, i386-darwin linking (cctools/ld64, Csu, stub libSystem) + test/darwin, unit format check (numlib + singleinstance rebuilt for i386-win32), i386-darwin framework stubs (24 frameworks + libobjc) + test/darwin 8-10, x86_64-darwin units (tools/darwin64-build) + universal crt1/stubs + test/darwin64, graph 3.2.2 (tools/graph-322-build, ptcgraph 24-bit true colour), OS/2 units = kit build, Foundation/AppKit stubs Versions/C (docs/UNIT-REBUILD.md), Mac stubs trimmed to Apple's names per architecture (apple-trim.py) + CoreVideo
+Generated: 2026-10-12 (byte, after the FreeBSD exact source rebuild)
+Includes: Patches 1-6, graph 3.0.4 backport, smartpack (.ppu + .a), stale-unit rebuild, i386-linux USB units, OS/2 native linking (patched binutils ld), i386-darwin Mach-O writer fix, unit-folder name clashes (lcl/, fv/), i8086 medium/large/huge -CX, OS/2 build kit + test/os2, i386-darwin linking (cctools/ld64, Csu, stub libSystem) + test/darwin, unit format check (numlib + singleinstance rebuilt for i386-win32), i386-darwin framework stubs (24 frameworks + libobjc) + test/darwin 8-10, x86_64-darwin units (tools/darwin64-build) + universal crt1/stubs + test/darwin64, graph 3.2.2 (tools/graph-322-build, ptcgraph 24-bit true colour), OS/2 units = kit build, Foundation/AppKit stubs Versions/C (docs/UNIT-REBUILD.md), Mac stubs trimmed to Apple's names per architecture (apple-trim.py) + CoreVideo, FreeBSD i386 + x86_64 + Lazarus i386-freebsd = kit build (tools/freebsd-build)
 Hashes are of the repository content (LF line endings, as on GitHub or a Linux clone). On Windows with
 core.autocrlf, text files are checked out with CRLF and hash differently; .ppu/.a/.exe/.o are binary and match.
 CHECKSUMS.md5 / CHECKSUMS.sha256 list every file except the three CHECKSUMS files themselves.
@@ -43,15 +43,15 @@ bin/tools/i386-darwin/ld:
   Size:   7846496
 
 HISTORY.md:
-  MD5:    220f8e38c64f375d303789f520d414ef
-  SHA256: 4297b7f3e71be90ce96052a076d16ab9838a9559017ec790148062bfb631935d
-  Size:   23381
+  MD5:    7c39edf2c35f74ebdcf5b1fb1c0213d4
+  SHA256: 7a8dc0fd7bbfc277932441077ba837aaf67a4d49827e01703b223d286a4293c7
+  Size:   24860
 
 docs/ROADMAP-UNITS.md:
-  MD5:    2979f35afe05ac304c4cdd1eab2e49fa
-  SHA256: 09fcfe65ea850fef2c348e7d5bef78f30ef38a11fc6f8eaef1401bb7e61cfae8
-  Size:   12688
+  MD5:    2babca49c444cbdfd0d0240eea5181af
+  SHA256: 885ed82775a9f8133c239f811910cc00434c38c338e020d4ae545c4ac1d54e04
+  Size:   12781
 
 === Totals ===
-Files: 44965
-Size:  1.7G
+Files: 45124
+Size:  1.8G
