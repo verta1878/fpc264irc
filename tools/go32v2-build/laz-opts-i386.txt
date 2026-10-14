@@ -1,0 +1,5 @@
+# folder|unit|options - FCL units the Lazarus folders also hold (lazutils uriparser, fpimage): built with the options of
+# the copy in bin/units/i386-go32v2 (none), so both have the same checksums - otherwise lazutils' uriparser hides the
+# RTL folder's and every unit built against the RTL one (xmlread, used by the customdrawn widgetset) does not load
+lazutils|uriparser|
+lazutils|fpimage|

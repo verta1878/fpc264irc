@@ -193,6 +193,23 @@ source          patches/os2-cross/binutils/ (binutils-2.30-emx.patch, build.sh, 
 result          same program images and the same LX import fixups as before (360 / 1055 in the two tests); not yet run on OS/2
 ```
 
+## Exact source rebuild 4: i386-go32v2 + Lazarus i386-go32v2 (2026-10-13)
+
+```
+kit             tools/go32v2-build (build.sh i386): as tools/linux-build; 78 units -CX (smart-linked, as shipped), the
+                compiler's archives rewritten without dates; patched/fileutil.pas (GO32V2 takes the Dos branch)
+i386-go32v2     233 units = kit build (code identical 132, 44 lose concat_multi; 56 units that had shipped .ppu-only now
+                have their code); interface changes: fpwidestring, resolve, syncobjs (shipped from other source);
+                fossil + serial_irq kept as shipped (built against libs/serial/serial.pas, they do not compile with this
+                folder's serial unit); prt0/exceptn/fpu.o identical
+lazarus         bin/lazarus/units/i386-go32v2 rebuilt (every unit recorded a sysutils the folder did not have; 9 could
+                not load): + messages, wslclclasses, wsreferences; lazutils uriparser/fpimage built like the RTL copies
+                (no more hiding xmlread's uriparser); bin/units/i386-go32v2/lcl (.ppu-only copy) refreshed, with code
+checked         every unit compiles in a program; DOSBox: RTL programs + Free Vision dialog run; LCL customdrawn
+                program links (not finished in DOSBox in 90 s); found (old units too): s := 'lit'; s := s + ...
+                MD5Print / EncodeStringBase64 - zeros every 8 bytes on go32v2 only - not changed
+```
+
 ## Exact source rebuild 3: i386-linux + Lazarus i386-linux (2026-10-13)
 
 ```

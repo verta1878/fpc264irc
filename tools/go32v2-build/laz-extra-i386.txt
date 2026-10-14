@@ -1,0 +1,5 @@
+# LCL units the shipped Lazarus go32v2 set uses but that folder does not have (they are only in the .ppu-only copy
+# bin/units/i386-go32v2/lcl) - built into lcl/ with the rest
+lcl|messages|src/lazarus/lcl/nonwin32/messages.pp||rtl:objpas,rtl:classes,lcl:lcltype,lcl:lmessages
+lcl|wsreferences|src/lazarus/lcl/widgetset/wsreferences.pp||rtl:objpas
+lcl|wslclclasses|src/lazarus/lcl/widgetset/wslclclasses.pp||rtl:objpas,rtl:classes,rtl:sysutils,lcl:lclproc,lcl:lclclasses

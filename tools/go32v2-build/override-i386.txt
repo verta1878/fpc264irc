@@ -1,0 +1,3 @@
+fossil|libs/fossil/fossil.pas
+serial_irq|libs/serial/serial_irq.pas
+unixcp|src/rtl/objpas/unicode/unixcp_go32v2.pp

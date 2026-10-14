@@ -1,6 +1,6 @@
 FPC 2.6.4irc - Repository Checksums
-Generated: 2026-10-13 (byte, after the i386-linux exact source rebuild)
-Includes: Patches 1-6, graph 3.0.4 backport, smartpack (.ppu + .a), stale-unit rebuild, i386-linux USB units, OS/2 native linking (patched binutils ld), i386-darwin Mach-O writer fix, unit-folder name clashes (lcl/, fv/), i8086 medium/large/huge -CX, OS/2 build kit + test/os2, i386-darwin linking (cctools/ld64, Csu, stub libSystem) + test/darwin, unit format check (numlib + singleinstance rebuilt for i386-win32), i386-darwin framework stubs (24 frameworks + libobjc) + test/darwin 8-10, x86_64-darwin units (tools/darwin64-build) + universal crt1/stubs + test/darwin64, graph 3.2.2 (tools/graph-322-build, ptcgraph 24-bit true colour), OS/2 units = kit build, Foundation/AppKit stubs Versions/C (docs/UNIT-REBUILD.md), Mac stubs trimmed to Apple's names per architecture (apple-trim.py) + CoreVideo, FreeBSD i386 + x86_64 + Lazarus i386-freebsd = kit build (tools/freebsd-build), i386-linux + Lazarus i386-linux = kit build (tools/linux-build)
+Generated: 2026-10-13 (byte, after the i386-go32v2 exact source rebuild)
+Includes: Patches 1-6, graph 3.0.4 backport, smartpack (.ppu + .a), stale-unit rebuild, i386-linux USB units, OS/2 native linking (patched binutils ld), i386-darwin Mach-O writer fix, unit-folder name clashes (lcl/, fv/), i8086 medium/large/huge -CX, OS/2 build kit + test/os2, i386-darwin linking (cctools/ld64, Csu, stub libSystem) + test/darwin, unit format check (numlib + singleinstance rebuilt for i386-win32), i386-darwin framework stubs (24 frameworks + libobjc) + test/darwin 8-10, x86_64-darwin units (tools/darwin64-build) + universal crt1/stubs + test/darwin64, graph 3.2.2 (tools/graph-322-build, ptcgraph 24-bit true colour), OS/2 units = kit build, Foundation/AppKit stubs Versions/C (docs/UNIT-REBUILD.md), Mac stubs trimmed to Apple's names per architecture (apple-trim.py) + CoreVideo, FreeBSD i386 + x86_64 + Lazarus i386-freebsd = kit build (tools/freebsd-build), i386-linux + Lazarus i386-linux = kit build (tools/linux-build), i386-go32v2 + Lazarus i386-go32v2 = kit build (tools/go32v2-build)
 Hashes are of the repository content (LF line endings, as on GitHub or a Linux clone). On Windows with
 core.autocrlf, text files are checked out with CRLF and hash differently; .ppu/.a/.exe/.o are binary and match.
 CHECKSUMS.md5 / CHECKSUMS.sha256 list every file except the three CHECKSUMS files themselves.
@@ -43,15 +43,15 @@ bin/tools/i386-darwin/ld:
   Size:   7846496
 
 HISTORY.md:
-  MD5:    b19df98b20ad1e19865239ce2f87f322
-  SHA256: 17c122f94f1d0924a320bce9ea177b3767ebf9739cceed5edb7d5f1c33567340
-  Size:   25955
+  MD5:    39d2c9601afd2c6147330d6305efeadd
+  SHA256: 82f2faf4ce18d064b547fc130bffedaaee4fc33fb889c631b95e223570616531
+  Size:   27373
 
 docs/ROADMAP-UNITS.md:
-  MD5:    98710a66b6276ac6557ef8ec24769b54
-  SHA256: c05f9910256ac27f68e4a12d30ff6e9da7c8fdd9634f2108ad0d25f96d9315bd
-  Size:   12849
+  MD5:    aa77c6b7152c2103ee40611dfb7a1b84
+  SHA256: e6e9ef42011085ae7d473b038676a166a94825b08c8271375336ac811ec066a2
+  Size:   12919
 
 === Totals ===
-Files: 45145
+Files: 45305
 Size:  1.8G
