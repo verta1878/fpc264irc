@@ -50,6 +50,33 @@ rest (hermes, gl, sdl, x11, pthreads, ...) are the same sources as before and st
 Checked: no unit in any of these folders records an old checksum of a replaced unit (`ppu_consistency`, same result as
 before the change). i8086-msdos graph is unchanged (already built from the 3.2.2 msdos backend by
 `tools/i8086-graph-build`). x86_64-darwin has no graph (32-bit Carbon only).
+
+## Graph on the x86_64 targets (2026-10-16)
+Which unit a graph program uses on each 64-bit target:
+
+| target | `graph` | `ptcgraph` | also | use |
+|---|---|---|---|---|
+| x86_64-win64 | yes (GDI) | yes | `wincrt`, `winmouse`, `ptccrt`, `ptcmouse` | `graph`, or `ptcgraph` for hi-colour / 24-bit (the GDI `graph` has no hi-colour) |
+| x86_64-linux | **no** | yes | `ptccrt`, `ptcmouse`, `ggigraph` (needs libggi) | `ptcgraph` |
+| x86_64-freebsd | yes (svgalib, `libvga`) | no | `ggigraph` | `graph` - compile only here (no x86_64 FreeBSD linker, see `tools/freebsd-build`) |
+| x86_64-darwin | no | no | - | none: the Mac `graph` is Carbon, 32-bit only (use i386-darwin) |
+
+- **x86_64-linux has no `graph` unit, on purpose.** The Linux `graph` (`src/unix/graph.pp`) is built on svgalib
+  (`libvga`), and FPC builds it for Linux/i386 only (`fpmake.pp`: `// Graph unit Linux/i386`,
+  `AddUnit('graph.pp',[i386],[linux])`). On x86_64-linux `ptcgraph` is the graph backend (X11 through ptc): write
+  `uses ptcgraph` (and `ptccrt` / `ptcmouse` for `crt` / mouse). It has the same routines as `graph`, plus 24-bit colour.
+  A program that says `uses graph` stops there with a message that says so (below) - change the line, nothing else.
+- **The message.** x86_64-linux and x86_64-darwin have a 6-line `graph.pp` in their unit folder
+  (`bin/units/x86_64-linux/graph.pp`, `bin/units/x86_64-darwin/graph.pp`): with no `graph.ppu` there, the compiler
+  compiles that file, and it only holds a `{$fatal}` that names the fix - x86_64-linux: "x86_64-linux has no graph unit
+  (FPC builds graph for Linux/i386 only, it needs svgalib). Use ptcgraph instead: uses ptcgraph; ...", x86_64-darwin:
+  "... the Mac graph uses Carbon, which is 32-bit only). Build the program for i386-darwin instead ...". Before, the
+  compiler only said "Can't find unit graph used by ...". Nothing else uses these files.
+- **Test:** `test/x64graph` - one `uses graph` program built for all four x86_64 targets: where it builds, where it
+  stops (and the message), and the fix built (`build.sh`, results in its README).
+- `ptcgraph` exists only where ptc does: win32, win64, Linux (`fpmake.pp`: `AddUnit('ptcgraph.pp',[win32,win64,linux])`).
+- Tested: x86_64-win64 `graph` + `ptcgraph` (Wine), x86_64-linux `ptcgraph` (Xvfb) - see Results below and
+  `test/x64graph`; x86_64-freebsd compile only.
 Test programs rebuilt: `test/os2/graphdemo.exe`, `test/darwin/graphdemo` (the other test programs are unchanged).
 
 ## Results (test-results.txt)

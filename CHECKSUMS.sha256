@@ -1,9 +1,9 @@
 a5d507dde3b7a4cd02283c74ae2f249831803de7757cfba5ff7a4a4ac60f9bf1  ./.fpcirc
 698624e01e9cd8b03352a90f561160d3c08bd22741d91a14b487552af46bc888  ./.gitattributes
-208e145c9826bb0ecdf83b80189d7981604def7f16cc86c32bc92cba7419d7db  ./HISTORY.md
+7622b88038b1d6a81e5a6a7cd606705f7e95d5bed216844f605a21ee6f17377f  ./HISTORY.md
 08a849fb3de2da3571803cfd766fcf0085e63c264e9bd401b8f4fa4ecb08b694  ./LICENSE
 a69aeedbac0b9281874224f5cb1c07877a816cead8a283d6bc4b37f1fb5e679d  ./Makefile
-64463f24826f3cc1caa695e696c7100fd8514e71768d482c7addb4672d2deb19  ./README.md
+ebc3dbe0984940b3dfae56e0e7521f04d87715b32fd384ded16505cb51b8ce33  ./README.md
 0c5da8d5cb601356ea8debc49d48f17d1488c53344e6ec0d087501ece2b2ff93  ./VERSION
 6dbb3b724b1a7037536177cb8e0c7d0a09e7e72d0da3c963cc79c495f368e76a  ./attic/bugsfixed-original-2026-10-01.md
 3bfe4392e392eb411a1ff5b5324610cf0fa52d707486b7951c1e3d6040e405a3  ./attic/cleanup-repo.bat
@@ -13951,6 +13951,7 @@ acc0bc72b95e2b84682260f038fbd76c9694484b2aecec3f030500929e01d2d6  ./bin/units/x8
 adab08376b32bea6505c4d51923b4a79bd997f1d7a459b85ac587e1f9085c742  ./bin/units/x86_64-darwin/glu.ppu
 ea4731d581429989a0f68e588542cc39a48fc38431f9b005b7a5c50f0a362041  ./bin/units/x86_64-darwin/gluContext.ppu
 ae6fb11bd3290ddf8612f611d96035bf69ddd29c5e92cfac9b97201dc0ee90b1  ./bin/units/x86_64-darwin/glut.ppu
+91a6579dfd3e9ff4444df2f11b2644db84b81efa3aa42261e8720ab86cf3d820  ./bin/units/x86_64-darwin/graph.pp
 96792dc97b0f4de86e5dc0c14c9c7a913d7910361e663545819d8f507a5e37d0  ./bin/units/x86_64-darwin/gzio.ppu
 70bf0caddef11178c91a6b2b53e35e4608691ea831626d4d74b759b872372bd5  ./bin/units/x86_64-darwin/heaptrc.ppu
 1d0d60d048ff7ea940b777962278e7139880426bffe2fbd94612fda99dce5576  ./bin/units/x86_64-darwin/histlist.ppu
@@ -15342,6 +15343,7 @@ d5085430a8724566ae002651f052db68f0974398b69e82c17332ab7c9866cc86  ./bin/units/x8
 98ca56da49b5e9253383dccaf0611c7d47a1c875cc11137bb40ad769400ad1e4  ./bin/units/x86_64-linux/glx.ppu
 c27ff518dd0a8466fbb3587d47316d7149b4091870bc0270afc838b9a73bdfb7  ./bin/units/x86_64-linux/gpm.ppu
 c285ba2e5671c3cfbdb05bcf4faa4483d2d6a4bbad663633fd5ceabf4a1ae36d  ./bin/units/x86_64-linux/gprt0.o
+0c5c0925adb098c58f8a9d55dcb60f1996a5034d7343ac69486fd94e39a4cdfe  ./bin/units/x86_64-linux/graph.pp
 75e6763a5e7f5154b554e17b8a5465e4a8ae467741fc6a27437d1f7584251f81  ./bin/units/x86_64-linux/groupcursorresource.ppu
 1ecf4d5dabf13a1329f57b989b10816b94b7dd6c7a7ec847629f70df6355e082  ./bin/units/x86_64-linux/groupiconresource.ppu
 cb759dcc347a0d0954e1c3f955055c974c684e6e40c401c5e5b37336126ec155  ./bin/units/x86_64-linux/groupresource.ppu
@@ -18650,7 +18652,7 @@ d6b74ad0c0f639af4f8a8e157f0000bb2011d38249b9f629face1c9f5119fc5a  ./docs/PATCH6-
 70f2f526640ae986cb04857c3aca4b6cf144b507ffbbf1b26e8d780fc47c6506  ./docs/README.md
 8654f09505725d7c6a7afc991038dba295d3799e7f633b0728166bec7dd15287  ./docs/ROADMAP-112.md
 f02b0e94999dbddc03618def4a09b99c67a24d01428a414e3e1e7bad9dff8cbe  ./docs/ROADMAP-MTERM.md
-e6e9ef42011085ae7d473b038676a166a94825b08c8271375336ac811ec066a2  ./docs/ROADMAP-UNITS.md
+1e37ce5692b0afd06984b965fa484a27ab4b79ab1fa6ddf5b0937f56c674f4bf  ./docs/ROADMAP-UNITS.md
 46f7a89999e99838d1738a52837b8efb18aa49c4834cc5fc5248fe75b1331a12  ./docs/SERIAL.md
 1cbaca91c8c599c07d741f69b229b3656a0643ad1c0d65f24eb5d03db5c44fda  ./docs/SOCKETS-PHASE.md
 7862739f1f933efda3ee5e7691c72f8b588ae960f9dbbe0f7e46a4e27d7c852c  ./docs/STRINGS.md
@@ -45089,7 +45091,7 @@ dd8c571f3131fbd61e9bddc21de39e0d505305e5bcd885114ec06e33832ffa7e  ./src/utils/tp
 b0c5b827c388b606993b508ae0071272a5078072e36dc3e39709ec62c9b35bce  ./src/utils/tply/yacctabl.pas
 cce1c2b13e9faeeec3b5923878d52aa85ee00bbe725eb9d093b8af5dc17bd4eb  ./src/utils/tply/yylex.cod
 108d60053c0c96df9f436ae77b42507c6167689766a763e53b1f999fd57e3a5f  ./src/utils/tply/yyparse.cod
-33039819acae9d19c50da9484bc0c8c281b77d0e6a10fc2f2e72795947e0e662  ./test/README.md
+c6c59ae2e608d90c9e0554d5f552b3c7ee67c8c7bd265d0794b56939018d708e  ./test/README.md
 e6b999bb86c50b05fbe5f5c0b9e91543e13a25491cdc6601a93953673cdc9967  ./test/darwin/README.md
 f90697888365f596285615903c21d24972f7782c9facb01a9521daa1a6335dfd  ./test/darwin/build.sh
 2ace020bfae42e6b54daf42a778b8e477161f994fb7351db6d4106dafae3c7e2  ./test/darwin/carbon
@@ -45187,6 +45189,10 @@ a02d98982cecbbd5d3941e3fbd51c44c440c8bc170259716b621bb0ac0e97dc7  ./test/test_us
 b8ff82213251fa22d62edefb923d5f67c92b2e0d1d420f1f01f5935416c03156  ./test/u7-platform/u7_test_dos
 37aff91853ceb0a1d57aec8f24f79e4238644d1eb55fa2bfc58d281e69e0005f  ./test/u7-platform/u7_test_linux
 5daa7f3af2f6ddb4ec01f1195ab42b378d039224a00656bd23286cdaafe3d6f4  ./test/u7-platform/u7_test_win32.exe
+68b3349ac936ac9960459790b174e5133081e1d8c66f1608d46b0ff54e3c4a08  ./test/x64graph/README.md
+b28fecd4a7b07a2b675a9fecd02056cbafd305cd835b8b1c9fcc247b42b08014  ./test/x64graph/build.sh
+c801505404e65f56600a2ab59db7b32dc7d4049f8058feb148f55c287861ec8e  ./test/x64graph/x64graph.pas
+b4f4f1a86e1e5710897cd16ed3da7a9162a934b391fbe6a8d90fea07d5358b92  ./test/x64graph/x64ptcgraph.pas
 7b29cda3e7818c3404486682c1218ebe202d9e0a79ea583aaa2889835fc80703  ./tools/build-fpcres.sh
 c3b1e9bf8f326951cd11b7337ceb7285cb994857910d560797a34bc6a809e284  ./tools/build-mystic-win32.sh
 b6df6b177ced77bedbf4fd632366ee8ecd691bde63e7682e3ac59431db96891d  ./tools/build-win32-rtl.bat
@@ -45236,7 +45242,7 @@ b8a813ee0481e6e3f86d036da7ad4dbee12ef5a79de4b9c835418445ba655ead  ./tools/graph-
 69413a97238d92ee0b767e12cb8116163e037a306e55b6e392c2ecea88c25871  ./tools/graph-304-build/patched-sdl/sdlutils.pas
 3b9f9d6fdf7514fb368ed7ecad8435af2774387063a79bd7e9fb8b8b1c5caa21  ./tools/graph-304-build/test-all.sh
 609698f34bec707180fb2b797ae9acc68d8c42b625a2bfb438fc8feb670cf38e  ./tools/graph-304-build/test-results.txt
-f44ffca55cd71aa6116782410ad50d9e0e03bc36face00540a21973248a8d4c4  ./tools/graph-322-build/README.md
+add1a70a8fde1bd28ccc0c4b032461cc55b25552d33813a4deda8c67800ba2e0  ./tools/graph-322-build/README.md
 c3312aa0fae804bb6a33e4e81ec52ce617c79b70fdc20f20c8666990834e0308  ./tools/graph-322-build/build-all.sh
 7f61591d87df48528ffbb2d732e46980ef39450f433f679cb8e9361fab0b2a28  ./tools/graph-322-build/patched-i386-linux/gl.pp
 92495f1475165bad0a1792f096dc57499a324da22155c3286c21a6d0a78872e1  ./tools/graph-322-build/patched-i386-linux/glext.pp

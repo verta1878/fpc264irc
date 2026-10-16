@@ -57,3 +57,9 @@ which exists on Linux/Darwin/OS2 but not DOS — skip on DOS.
 Built with `bin/ppc386 -Twin32 -FDbin/tools/i386-win32 -Fubin/units/i386-win32`, run under Wine:
 - `test_numlib`: `slegen` solves a 3x3 system (x = 1 3 0), `spl1nati`/`spl1pprv` natural spline of x² gives 6.2321 at 2.5.
 - `test_singleinstance`: a minimal `TBaseSingleInstance` descendant starts as server.
+
+## x64graph/ — graph on the x86_64 targets (2026-10-16)
+
+`test/x64graph/build.sh` builds one `uses graph` program for x86_64-win64, -linux, -freebsd and -darwin: it builds on
+win64 and freebsd; on linux and darwin the compiler stops with a message that names the fix (`uses ptcgraph` /
+build for i386-darwin), and the fix is built next. Details: `test/x64graph/README.md`.

@@ -60,6 +60,9 @@ ppc386 -Tgo32v2 myapp.pas       # DOS
 The compiler picks up the `.a` by itself, with or without `-XX`. The only `.o` files left are startup objects the
 compiler links by name (`prt0`, `cprt0`, `gprt0`, `dllprt0`, OS/2 `prt1`, go32v2 `exceptn`/`fpu`, i8086 `prt0*`).
 Tested linking: i386/x86_64 Linux, Win32/Win64, go32v2, i386 FreeBSD, ptcgraph from the repo units alone.
+Graph on 64-bit: x86_64-linux has no `graph` unit (FPC builds it for Linux/i386 only) - use `ptcgraph` there;
+x86_64-darwin has none (Carbon is 32-bit). On both, `uses graph` stops with a message that names the fix. Per-target
+table (win64, linux, freebsd, darwin) in `tools/graph-322-build/README.md`; test: `test/x64graph`.
 i386-os2 links natively with `-FD bin/tools/i386-os2` (see its README); i386-darwin and x86_64-darwin with
 `-FD bin/tools/i386-darwin` (`docs/DARWIN-CROSS.md`). Kit and details: `tools/smartpack/README.md`.
 

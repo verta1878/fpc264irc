@@ -193,6 +193,20 @@ source          patches/os2-cross/binutils/ (binutils-2.30-emx.patch, build.sh, 
 result          same program images and the same LX import fixups as before (360 / 1055 in the two tests); not yet run on OS/2
 ```
 
+## Graph on the x86_64 targets: docs, message, test (2026-10-16)
+
+```
+docs            tools/graph-322-build/README.md: which graph unit each 64-bit target has - x86_64-win64 graph (GDI) +
+                ptcgraph; x86_64-linux ptcgraph only (FPC builds graph for Linux/i386 only - svgalib - use
+                `uses ptcgraph`); x86_64-freebsd graph (compile only); x86_64-darwin none (Carbon is 32-bit).
+                Pointers in README.md and docs/ROADMAP-UNITS.md item 8.
+message         bin/units/x86_64-linux/graph.pp, bin/units/x86_64-darwin/graph.pp (new, 6 lines): "uses graph" there
+                now stops with a message that names the fix (uses ptcgraph / build for i386-darwin) instead of only
+                "Can't find unit graph"; no .ppu changed
+test            test/x64graph (new): x64graph.pas (uses graph), x64ptcgraph.pas (the fix), build.sh, README.md - all
+                four x86_64 targets as expected; linux ptcgraph (Xvfb), win64 graph + ptcgraph (Wine) run
+```
+
 ## go32v2: Move under DOSBox, fossil + serial_irq built (2026-10-15)
 
 ```
