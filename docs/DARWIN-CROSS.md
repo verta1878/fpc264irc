@@ -8,6 +8,28 @@ The linker, assembler, startup code and stub system libraries are bundled in `bi
 x86_64 builds of Apple's open-source cctools/ld64 and Csu; no Xcode, no Apple SDK). See its README for the file list,
 `patches/darwin-cross/` to rebuild them from source.
 
+### Why stub libraries? (2026-10-16)
+
+To link a Mac program, the linker (ld64) needs the Mac system libraries the program calls - `libSystem` (C library),
+`libobjc` (Objective-C runtime), the frameworks (Foundation, AppKit, Carbon, CoreFoundation ...). It checks that every
+name the program uses exists and records which library has it. Apple's real libraries are Apple's code under Apple's
+licence, so they cannot be in this repo (the Apple SDK never goes in the repo). Instead
+`bin/tools/i386-darwin/MacOSX10.6.sdk` holds **stubs**:
+
+- a stub is a tiny library made by us (`patches/darwin-cross/gen-stubs.sh`): only the names, each an empty function,
+  and the real library's install name (`/usr/lib/libobjc.A.dylib`, `/System/Library/Frameworks/AppKit.framework/...`);
+  no Apple code;
+- a stub is only read by the linker here; it is not copied into the program and never goes to the Mac;
+- the program records the install name, so on the Mac it loads macOS's own library (`otool -L prog` shows Apple's
+  paths, nothing from this repo);
+- the name lists come from FPC's own Mac units (`patches/darwin-cross/gen-framework-syms.py`) and are kept to the
+  names Apple's libraries really export (`apple-trim.py`, checked against an Apple SDK kept outside the repo - only the
+  names are used).
+
+A missing name shows up as `Undefined symbols ... _name` at link time; the fix is to add the name to the stub lists
+(e.g. 2026-10-16: the ObjC 2 API and `objc_enumerationMutation` in `libobjc`, needed by the Lazarus cocoa widgetset).
+Details: `bin/tools/i386-darwin/README.md`, `patches/darwin-cross/README.md`.
+
 ### Building
 
 ```bash

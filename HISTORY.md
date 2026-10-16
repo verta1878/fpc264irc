@@ -211,6 +211,8 @@ lazarus         bin/lazarus/units/i386-darwin (271) rebuilt against the new unit
 stubs           bin/tools/i386-darwin stub libobjc (universal): + 40 names - the ObjC 2 API and objc_enumerationMutation
                 that rtl/inc/objc1.inc / objcnf.inc declare without a name (patches/darwin-cross/gen-framework-syms.py
                 missed them; apple-trim.py keeps all 40); test/darwin + test/darwin64 programs still link
+docs            docs/DARWIN-CROSS.md "Why stub libraries?" + bin/tools/i386-darwin/README.md: what a stub is (names +
+                install name, no Apple code, read by the linker only; the Mac loads its own library)
 checked         every unit compiles in a program; test/darwin's 10 programs link; ppu_consistency only the known
                 FV / univint / LCL name clashes
 ```

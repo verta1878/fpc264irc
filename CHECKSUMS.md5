@@ -1,6 +1,6 @@
 72e08b7e06f7c731f4f17ca9c29c1411  ./.fpcirc
 108e2243262608e8d2c977350600ef04  ./.gitattributes
-a32aa93064e26cbafe63670e2152d304  ./HISTORY.md
+7d74eea0d407ca8f6a38a7887d38faec  ./HISTORY.md
 9f463bb4d3019a9d922623ac0874dae4  ./LICENSE
 d169ba6938afc8449c4c717026af8cd8  ./Makefile
 2b815f7e2640ee02738ec8bbe01d2f7f  ./README.md
@@ -5356,7 +5356,7 @@ a88fda50b26f9308ecf6074fb48dc708  ./bin/tools/i386-darwin/MacOSX10.6.sdk/usr/lib
 1b8ee736ab517ba68c123e15c4b8c6c1  ./bin/tools/i386-darwin/MacOSX10.6.sdk/usr/lib/libobjc.A.dylib
 1b8ee736ab517ba68c123e15c4b8c6c1  ./bin/tools/i386-darwin/MacOSX10.6.sdk/usr/lib/libobjc.dylib
 49c2c59649e8069cfb048ab36fe8685a  ./bin/tools/i386-darwin/MacOSX10.6.sdk/usr/lib/libpthread.dylib
-961652b56a911c9e085389d8d6e1b86f  ./bin/tools/i386-darwin/README.md
+60a7f7211062494bedf6b78222c34241  ./bin/tools/i386-darwin/README.md
 e4057f1832b23f8ee817a8c9eb34e943  ./bin/tools/i386-darwin/ar
 91f989957194241537ef3279136e38ad  ./bin/tools/i386-darwin/as
 faf3728ee897334b29c33db59252411c  ./bin/tools/i386-darwin/install_name_tool
@@ -18676,7 +18676,7 @@ ec986043fed439b981b7706a6405bee0  ./docs/BUILD-KNOBS.md
 b539d649629550c143e3beb9523f9f92  ./docs/CHANGELOG-IRC.md
 dd1e97c96a55a68c109e36da08a54c7d  ./docs/CHANGELOG.md
 e1d35f5f1010540b14ecc340e4692ccd  ./docs/CREDITS.md
-978a1724308427860918df559e2ae358  ./docs/DARWIN-CROSS.md
+f0dd3c0be5f7e4422d4969308bb93a94  ./docs/DARWIN-CROSS.md
 61e1db98d08e91fd3ec0eb54f82f04b1  ./docs/DL-GLIBC-FIX.md
 206d5e6bb2d062095660c4079d775211  ./docs/FPC264IRC-MZ-LINKER.md
 61651a1f6bbf07b29b55cb29548a00fb  ./docs/INSTALL.md

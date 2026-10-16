@@ -35,8 +35,14 @@ Checked against Apple's own MacOSX10.6 / 10.7 SDK (2026-10-10, kept outside the 
 the stubs (also with `-WM10.5` / `-WM10.6`); install names match Apple's (Foundation / AppKit were `Versions/A` before -
 fixed, a Mac would have refused to load the Cocoa programs).
 
-The stubs only let the linker check names; each carries the real library's install name (`/usr/lib/libSystem.B.dylib`
-etc.), so the program loads the real library on the Mac. Nothing here is copied from Apple's SDK or Xcode.
+**Why stubs:** the linker needs the Mac system libraries to check the names a program uses, and Apple's real libraries
+cannot be in this repo (Apple's licence). A stub holds only the names (each an empty function) and the real library's
+install name (`/usr/lib/libSystem.B.dylib`, `/usr/lib/libobjc.A.dylib`, `.../AppKit.framework/Versions/C/AppKit` ...).
+It is only read by the linker here and is not part of the program: the program records the install name and loads
+macOS's own library on the Mac (`otool -L prog` shows Apple's paths). Nothing here is copied from Apple's SDK or Xcode;
+the SDK is only used, outside the repo, to check which names Apple's libraries export. A missing name shows up as
+`Undefined symbols ... _name` at link time and is fixed by adding it to the lists in `patches/darwin-cross/stubs/`
+(see `docs/DARWIN-CROSS.md`, "Why stub libraries?").
 The folder is named `MacOSX10.6.sdk` because ld64 takes the SDK version it writes into the program from that name.
 
 ## Frameworks (2026-10-08; trimmed to Apple's names 2026-10-10)
