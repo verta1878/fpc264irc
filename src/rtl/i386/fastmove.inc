@@ -827,9 +827,9 @@ asm
   jmp     SmallBackwardMove_3
 end; {Backwards_SSE}
 
-const
+{$if defined(GO32V2)}{$i fmovgo32.inc}{$else}const { go32v2: fmovgo32.inc (FPU copy check, knob FPC_MOVE_NOFPU) }
    fastmoveproc_forward : pointer = @Forwards_IA32_3;
-   fastmoveproc_backward : pointer = @Backwards_IA32_3;
+   fastmoveproc_backward : pointer = @Backwards_IA32_3;{$endif}
 
 procedure Move(const source;var dest;count:SizeInt);[public, alias: 'FPC_MOVE'];assembler;nostackframe;
 asm

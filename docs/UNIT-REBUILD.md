@@ -18,7 +18,7 @@ named the same 37 units the kit rebuild changed).
 | 1 | i386-os2 | `tools/os2-native-build` | 219 | 37 | **Done 2026-10-10** - replaced by the kit build |
 | 2 | i386-freebsd / x86_64-freebsd (+ Lazarus i386-freebsd) | `tools/freebsd-build` | 167 / 46 (+ 312) | 20 / 0 (+ 63) | **Done 2026-10-12** - all three folders replaced by the kit build (`dos`/`sysutils` interface changed, so the Lazarus set was rebuilt with them) |
 | 3 | i386-linux (+ Lazarus i386-linux) | `tools/linux-build` | 275 (+ 228) | 50 (+ 63) | **Done 2026-10-13** - both folders replaced by the kit build (sysutils, dynlibs, contnrs interface changes) |
-| 4 | i386-go32v2 (+ Lazarus i386-go32v2, lcl/) | `tools/go32v2-build` | 235 (+ 138) | 44 (+ 34) | **Done 2026-10-13** - kit build; fossil + serial_irq kept (built against libs/serial) |
+| 4 | i386-go32v2 (+ Lazarus i386-go32v2, lcl/) | `tools/go32v2-build` | 235 (+ 138) | 44 (+ 34) | **Done 2026-10-13** - kit build; 2026-10-15: fossil + serial_irq built too (serial has COM_IRQ / MCR_OUT2), `Move` fix for DOSBox (BUG-044) |
 | 5 | i386-darwin | (`tools/smartpack/darwin_rebuild.py` kept the old interfaces) | 795 | 84 | next |
 | 6 | x86_64-linux | to do | 632 | 143 | |
 | 7 | i386-win32 (main + lcl/) | to do | 1,684 | 434 | |

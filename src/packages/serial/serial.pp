@@ -29,11 +29,12 @@ type
 
 const
   COM_BASE: array[0..3] of Word = ($3F8, $2F8, $3E8, $2E8);
+  COM_IRQ: array[0..3] of Byte = (4, 3, 4, 3);   { as libs/serial/serial.pas - serial_irq uses it (byte, 2026-10-15) }
   UART_RBR = 0; UART_THR = 0; UART_IER = 1; UART_IIR = 2;
   UART_FCR = 2; UART_LCR = 3; UART_MCR = 4; UART_LSR = 5;
   UART_MSR = 6; UART_DLL = 0; UART_DLH = 1;
   LSR_DR = $01; LSR_THRE = $20; LSR_TEMT = $40;
-  MCR_DTR = $01; MCR_RTS = $02;
+  MCR_DTR = $01; MCR_RTS = $02; MCR_OUT2 = $08;   { MCR_OUT2: as libs/serial/serial.pas (serial_irq) }
   MSR_CTS = $10; MSR_DSR = $20; MSR_RI = $40; MSR_DCD = $80;
   UART_CLOCK = 115200;
 

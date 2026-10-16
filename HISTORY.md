@@ -193,6 +193,25 @@ source          patches/os2-cross/binutils/ (binutils-2.30-emx.patch, build.sh, 
 result          same program images and the same LX import fixups as before (360 / 1055 in the two tests); not yet run on OS/2
 ```
 
+## go32v2: Move under DOSBox, fossil + serial_irq built (2026-10-15)
+
+```
+bug             BUG-044: Move of more than 36 bytes (no SSE / MMX) copies through the FPU (fild / fistp qword); DOSBox 0.74
+                keeps 53 bits, so every 8 bytes lost their low bits (s := s + ' ' + MD5Print(...): a zero byte every 8
+                bytes). Not a string or compiler bug; real x87 is exact; go32v2 never ran setup_fastmove
+fix             src/rtl/i386/fmovgo32.inc (new, go32v2 only; included by fastmove.inc, called from fpc_cpuinit in i386.inc):
+                startup test, plain copy when the FPU is not exact. Knob FPC_MOVE_NOFPU (0 test / 1 never the FPU copy),
+                docs/BUILD-KNOBS.md (new). fastmove.inc / i386.inc keep their line numbers: other targets byte-identical
+serial          src/packages/serial/serial.pp + COM_IRQ, MCR_OUT2 (as libs/serial/serial.pas): BUG-045
+kit             tools/go32v2-build: fossil + serial_irq no longer kept as shipped (drive.py KEEP empty)
+i386-go32v2     changed: system.ppu/.a, serial.ppu/.a (+ COM_IRQ), serial_irq.ppu, fossil.ppu (their .a unchanged);
+                every other unit and the Lazarus go32v2 set rebuild byte-identical
+checked         DOSBox: Move sweep + overlapping moves 0 wrong bytes (shipped 23,531), concat / MD5 / Base64 / RTL test
+                programs correct; FPC_MOVE_NOFPU=1 build the same; i386-linux kit still byte-identical to the repo;
+                ppu_consistency go32v2 0 notes (was 2)
+not fixed       DOSBox float -> Int64 (Trunc / Round above about 9e15) - its FPU limit, no integer replacement
+```
+
 ## Exact source rebuild 4: i386-go32v2 + Lazarus i386-go32v2 (2026-10-13)
 
 ```

@@ -130,6 +130,9 @@ Uses DosOpen, DosRead, DosWrite, DosDevIOCtl with IOCTL_ASYNC category ($01). Fu
 ### DOS (go32v2)
 Direct UART 8250/16550 register access via Port[]. ISR-driven ring buffer for interrupt receive (requires native DOS build for ISR; cross-compiled builds stub SerEnableIRQ/SerDisableIRQ). Source: `src/packages/serial/serial.pp` + `serial_irq.inc`.
 
+`serial.pp` also has `COM_IRQ` and `MCR_OUT2` (as wrench's `libs/serial/serial.pas`), so wrench's `serial_irq` and
+`fossil` (`libs/serial`, `libs/fossil`) build against it; all three ship in `bin/units/i386-go32v2` (2026-10-15).
+
 ## Building
 
 ```bash
@@ -147,6 +150,6 @@ fpc -Mdelphi test/test_serial.pas
 | `src/rtl/unix/serial.pp` | Linux, FreeBSD, Darwin, BSD | 343 |
 | `src/rtl/win/serial.pp` | Win32, Win64 | 558 |
 | `src/rtl/os2/serial.pp` | OS/2 | 247 |
-| `src/packages/serial/serial.pp` | DOS go32v2 | 260 |
+| `src/packages/serial/serial.pp` | DOS go32v2 | 261 |
 | `src/packages/serial/serial_irq.inc` | DOS ISR ring buffer | — |
 | `test/test_serial.pas` | Cross-platform test | 200 |

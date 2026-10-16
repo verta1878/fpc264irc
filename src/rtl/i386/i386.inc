@@ -112,7 +112,7 @@ procedure fpc_cpuinit;
     os_supports_sse:=false;
     { don't let libraries influence the FPU cw set by the host program }
     if IsLibrary then
-      Default8087CW:=Get8087CW;
+      Default8087CW:=Get8087CW;{$if defined(GO32V2) and defined(USE_FASTMOVE)} setup_fastmove_go32; {$endif} { go32v2: fmovgo32.inc }
   end;
 
 {$ifndef darwin}

@@ -121,10 +121,9 @@ def build(g):
         if ok: have[n] = True; res[n] = 'OK' + (' (group of %d)' % len(g) if len(g) > 1 else '')
         else: res[n] = 'FAIL ' + ' / '.join([l for l in out.splitlines() if 'Error' in l or 'Fatal' in l][:2])
     return ok
-# not rebuilt, the shipped files stay: built against libs/serial/serial.pas (COM_IRQ ...), not against the serial unit
-# of this folder (src/packages/serial) - they do not compile with it
-KEEP = {'fossil': 'built against libs/serial/serial.pas, not this folder\'s serial unit',
-        'serial_irq': 'built against libs/serial/serial.pas, not this folder\'s serial unit'}
+# units not rebuilt (the shipped files stay): none since 2026-10-15 - fossil and serial_irq (libs/) are built against
+# this folder's serial unit (src/packages/serial/serial.pp has COM_IRQ and MCR_OUT2 now, as libs/serial/serial.pas)
+KEEP = {}
 for n in KEEP: res[n] = 'KEEP shipped (' + KEEP[n] + ')'
 todo = list(dict.fromkeys(GROUP[n] for n, _, _ in units if n not in have and n not in KEEP))
 while True:

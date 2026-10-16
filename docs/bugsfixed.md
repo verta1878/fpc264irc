@@ -1,7 +1,7 @@
 # FPC 2.6.4irc — Bugs Fixed (r3.1)
 
 Verified against repo commit 42aa8991 on 2026-10-01.
-43 unique bugs. 9 duplicate/update entries merged into parents.
+45 unique bugs (BUG-044, BUG-045 added 2026-10-15). 9 duplicate/update entries merged into parents.
 
 Legend:
 - ✅ FIXED — verified in source
@@ -173,6 +173,26 @@ Final .exe packaging requires emxl.exe on OS/2. Platform limitation.
 **Fix:** Renamed InitWatt32→InitSockets, DoneWatt32→DoneSockets.
 **Verified:** `src/rtl/msdos/tcpip.pas` lines 45, 50: uses InitSockets/DoneSockets.
 
+### BUG-044: go32v2 Move corrupts data under DOSBox (zero byte every 8 bytes) — ✅ FIXED
+**Symptom:** `s := 'aGk='; s := s + ' ' + MD5Print(...)` (any copy over 36 bytes) came out as `#Hk= 0cc#85b9c0f#...` in
+DOSBox 0.74; the same program was correct on i386-linux.
+**Root cause:** not string handling: `Move` of more than 36 bytes on a CPU without SSE/MMX copies 8 bytes at a time
+through the FPU (`fild`/`fistp qword`, `src/rtl/i386/fastmove.inc`). A real x87 copies that exactly; DOSBox keeps FPU
+values as doubles (53 bits) and loses the low bits. go32v2 never ran `setup_fastmove`, so it always used that copy.
+**Fix:** `src/rtl/i386/fmovgo32.inc` (go32v2 only), called from `fpc_cpuinit` in `i386.inc`: one `fild`/`fistp` test at
+startup; if the value does not come back the same, `Move` uses the plain `rep movsb` copy. Knob `FPC_MOVE_NOFPU`
+(docs/BUILD-KNOBS.md): 0 = test at startup (default), 1 = never the FPU copy.
+**Verified:** DOSBox: a `Move` sweep (all sizes 1-60, 8 offsets) and overlapping moves - shipped units 23,531 wrong
+bytes, fixed units 0; the concat / MD5 / Base64 programs now correct; real x87 (i386-linux) passes the test. Other
+targets' units rebuild byte-identical.
+**Still open (DOSBox only):** float -> Int64 (`Trunc`/`Round` above about 9e15) also loses bits there - no integer
+replacement for that, a DOSBox limit.
+
+### BUG-045: go32v2 serial_irq did not compile against the folder's serial unit — ✅ FIXED
+**Fix:** `src/packages/serial/serial.pp` has `COM_IRQ` and `MCR_OUT2` (as wrench's `libs/serial/serial.pas`), so
+`serial_irq` and `fossil` (libs/) are built by `tools/go32v2-build` against `bin/units/i386-go32v2/serial`.
+**Verified:** `ppu_consistency.py` on bin/units/i386-go32v2: 0 notes (was 2: fossil, serial_irq).
+
 ---
 
 ## Platform: FreeBSD
@@ -314,14 +334,14 @@ Missing RegisterClass() calls for 18 Inno custom components. Fixed in InnoCompon
 
 | Status | Count |
 |--------|-------|
-| ✅ FIXED (verified in source) | 33 |
+| ✅ FIXED (verified in source) | 35 |
 | ✅ FIXED (binary only) | 1 |
 | 📝 DOCUMENTED / workaround | 5 |
 | ⏳ OPEN / DEFERRED | 2 |
 | 🔒 CLOSED (not a bug) | 3 |
 | ⚠️ KNOWN ISSUE (Wine) | 1 |
 | ↩️ REVERTED | 1 |
-| **Total unique issues** | **43** |
+| **Total unique issues** | **45** |
 | Duplicate/update entries merged | 9 |
 
 ### Numbering collisions in original document (resolved above)
