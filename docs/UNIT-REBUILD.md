@@ -19,8 +19,8 @@ named the same 37 units the kit rebuild changed).
 | 2 | i386-freebsd / x86_64-freebsd (+ Lazarus i386-freebsd) | `tools/freebsd-build` | 167 / 46 (+ 312) | 20 / 0 (+ 63) | **Done 2026-10-12** - all three folders replaced by the kit build (`dos`/`sysutils` interface changed, so the Lazarus set was rebuilt with them) |
 | 3 | i386-linux (+ Lazarus i386-linux) | `tools/linux-build` | 275 (+ 228) | 50 (+ 63) | **Done 2026-10-13** - both folders replaced by the kit build (sysutils, dynlibs, contnrs interface changes) |
 | 4 | i386-go32v2 (+ Lazarus i386-go32v2, lcl/) | `tools/go32v2-build` | 235 (+ 138) | 44 (+ 34) | **Done 2026-10-13** - kit build; 2026-10-15: fossil + serial_irq built too (serial has COM_IRQ / MCR_OUT2), `Move` fix for DOSBox (BUG-044) |
-| 5 | i386-darwin | (`tools/smartpack/darwin_rebuild.py` kept the old interfaces) | 795 | 84 | next |
-| 6 | x86_64-linux | to do | 632 | 143 | |
+| 5 | i386-darwin (+ Lazarus i386-darwin) | `tools/darwin-build` | 795 → 809 (+ 271) | 85 | **Done 2026-10-16** - kit build; new layout: FV `menus` + `resource` in `fv/`, univint `Video` + the 7 units that use it in `univint/`; + fcl-res, `fpobserver`, `jconsts`; `sysutils`/`dos`/`serial` interface changes |
+| 6 | x86_64-linux | to do | 632 | 143 | next |
 | 7 | i386-win32 (main + lcl/) | to do | 1,684 | 434 | |
 | 8 | x86_64-win64 | to do | 1,039 | 0 | proof only |
 | 9 | Lazarus unit sets (`bin/lazarus/units`) | to do (i386-freebsd done with #2, i386-linux #3, i386-go32v2 #4) | 1,201 | 358 | last |
@@ -35,8 +35,7 @@ named the same 37 units the kit rebuild changed).
 
 **i386-go32v2**: none (2026-10-13)
 
-**i386-darwin** (85):
-asciitab avl_tree chmfilewriter chmreader chmsitemap chmwriter classes crt cthreads custapp dateutils db dbf_prscore dbwhtml digesttestreport dom dos editors errors fmtbcd fpcunit fpexprpars fpextres fpjson fpjsonrtti fpmimetypes fpreadbmp fpreadpng fpreadtiff fptemplate fptiffcmn fpwritebmp fpwritepnm fpwritetiff fpwritexpm freetype gadgets gettext gl glut gzio htmlindexer iconvenc_dyn inifiles inplong iso7185 itsftransform keyboard latextestreport lineinfo lnfodwrf netdb openssl pastounittest pastree paswrite pipesipc plaintestreport pparser printer pscanner pscanvas regexpr rttiutils sax_html sdfdata simpleipc sockets sqldb stddlg strutils system sysutils tabs termio testreport typinfo ucomplex unicodedata uriparser video views whtml xmlcfg xmlreporter 
+**i386-darwin**: none (2026-10-16)
 
 **x86_64-linux** (144):
 asserttest avl_tree chmfilewriter chmreader chmsitemap chmwriter classes crt custapp customsqliteds dateutils db dbf dbf_common dbf_prscore dbwhtml digesttestreport dllistdyn dom dos errors fbadmin fbeventmonitor fmtbcd fpcgtiopf fpcsvexport fpcunit fpcunittests fpdatadict fpdbexport fpddcodegen fpddfb fpddpopcode fpexprpars fpjson fpjsonrtti fpmimetypes fpmkunit fpreadbmp fpreadpng fpreadtiff fprtfexport fpsimplejsonexport fpsimplexmlexport fpsqlexport fpsqlparser fpsqltree fptemplate fptexexport fptiffcmn fpwritebmp fpwritepnm fpwritetiff fpwritexpm fpxmlxsdexport freetype gettext gzio htmlindexer ibconnection iconvenc_dyn inifiles iso7185 itsftransform keyboard latextestreport lcl/avglvltree lcl/clipbrd lcl/controls lcl/dialogs lcl/fileutil lcl/forms lcl/graphics lcl/graphtype lcl/intfgraphics lcl/lazconfigstorage lcl/lazfileutils lcl/lazlogger lcl/lazloggerbase lcl/lazutf8 lcl/lclproc lcl/lresources lcl/menus lcl/propertystorage lcl/stdctrls lcl/textstrings lcl/utf8process lineinfo linuxvcs lnfodwrf money moneytest mssqlconn mysql40conn mysql41conn mysql4conn mysql50conn mysql51conn mysql55conn mysql56conn netdb odbcconn openssl oracleconnection pastounittest pastree paswrite pipesipc plaintestreport pparser pqconnection pqeventmonitor printer pscanner pscanvas regexpr registry rttiutils sax_html sdfdata simpleipc sockets sqldb sqlite3conn sqlite3db sqlite3ds sqlitedb sqliteds strutils symbolic system sysutils termio testreport typ typinfo ucomplex uriparser video whtml xmlcfg xmldatapacketreader xmlreg xmlreporter 
@@ -47,6 +46,7 @@ ServiceManager asserttest avglvltree avl_tree cgiapp chmfilewriter chmreader chm
 **bin/lazarus/units**:
 i386-freebsd none (2026-10-12);
 i386-go32v2 none (2026-10-13);
+i386-darwin none (2026-10-16);
 i386-linux none (2026-10-13);
 i386-win32 51 of 199;
 x86_64-linux 147 of 411;

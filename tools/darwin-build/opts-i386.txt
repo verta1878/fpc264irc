@@ -1,0 +1,748 @@
+# fpc264irc i386-darwin: compiler options per unit - byte, 2026-10-16
+# Package units: all their options (pickopts.py: the set that gives the shipped checksums and code; a unit that
+# did not compile against the shipped folder - the univint units that use Menus / Video - is not listed: it gets
+# its package options).
+# RTL units: only those the shipped set built with other options than the RTL Makefile (drive.py builds them, with
+# the Makefile defines); every other RTL unit comes from the RTL Makefile.
+# A unit in fv/ or univint/ is listed as fv/<unit>, univint/<unit>.
+bsd|-O2
+charset|-O2
+clocale|-O2
+cmem|-O2
+convutils|-O2
+cwstring|-O2
+dl|-O2
+exeinfo|-O2
+fgl|-O2
+fpintres|-O2
+getopts|-O2
+heaptrc|-O2
+initc|-O2
+ipc|-O2
+macpas|-O2
+math|-O2
+matrix|-O2
+objc|-O2
+objects|-O2
+objpas|-O2
+stdconvs|-O2
+strings|-O2
+sysconst|-O2
+terminfo|-O2
+types|-O2
+unix|-O2
+unixutil|-O2
+variants|-O2
+varutils|-O2
+abactions|-Mmacpas -Mmacpas
+abaddressbook|-Mmacpas -Mmacpas
+abglobals|-Mmacpas -Mmacpas
+abpeoplepicker|-Mmacpas -Mmacpas
+abtypedefs|-Mmacpas -Mmacpas
+accessibility|-Mmacpas -Mmacpas
+adler|-O2 -Ur
+aedatamodel|-Mmacpas -Mmacpas
+aehelpers|-Mmacpas -Mmacpas
+aeinteraction|-Mmacpas -Mmacpas
+aemach|-Mmacpas -Mmacpas
+aeobjects|-Mmacpas -Mmacpas
+aepackobject|-Mmacpas -Mmacpas
+aeregistry|-Mmacpas -Mmacpas
+aeusertermtypes|-Mmacpas -Mmacpas
+aiff|-Mmacpas -Mmacpas
+aliases|-Mmacpas -Mmacpas
+anonclassdefinitionsquartzcore|
+anonclassdefinitionswebkit|
+app|
+appearance|-Mmacpas -Mmacpas
+applediskpartitions|-Mmacpas -Mmacpas
+appleevents|-Mmacpas -Mmacpas
+applehelp|-Mmacpas -Mmacpas
+applescript|-Mmacpas -Mmacpas
+ascii85|-O2 -Ur
+asciitab|
+asdebugging|-Mmacpas -Mmacpas
+asregistry|-Mmacpas -Mmacpas
+atsfont|-Mmacpas -Mmacpas
+atslayouttypes|-Mmacpas -Mmacpas
+atstypes|-Mmacpas -Mmacpas
+atsunicodedirectaccess|-Mmacpas -Mmacpas
+atsunicodedrawing|-Mmacpas -Mmacpas
+atsunicodeflattening|-Mmacpas -Mmacpas
+atsunicodefonts|-Mmacpas -Mmacpas
+atsunicodeglyphs|-Mmacpas -Mmacpas
+atsunicodeobjects|-Mmacpas -Mmacpas
+atsunicodetypes|-Mmacpas -Mmacpas
+aucomponent|-Mmacpas -Mmacpas
+audiocodecs|-Mmacpas -Mmacpas
+audiocomponents|-Mmacpas -Mmacpas
+audiohardware|-Mmacpas -Mmacpas
+audiooutputunit|-Mmacpas -Mmacpas
+audiounitcarbonviews|-Mmacpas -Mmacpas
+audiounitparameters|-Mmacpas -Mmacpas
+audiounitproperties|-Mmacpas -Mmacpas
+authorization|-Mmacpas -Mmacpas
+authorizationdb|-Mmacpas -Mmacpas
+authorizationplugin|-Mmacpas -Mmacpas
+authorizationtags|-Mmacpas -Mmacpas
+authsession|-Mmacpas -Mmacpas
+avl_tree|
+avltree|-Mmacpas -Mmacpas
+axactionconstants|-Mmacpas -Mmacpas
+axattributeconstants|-Mmacpas -Mmacpas
+axconstants|-Mmacpas -Mmacpas
+axerrors|-Mmacpas -Mmacpas
+axnotificationconstants|-Mmacpas -Mmacpas
+axroleconstants|-Mmacpas -Mmacpas
+axtextattributedstring|-Mmacpas -Mmacpas
+axuielement|-Mmacpas -Mmacpas
+axvalue|-Mmacpas -Mmacpas
+axvalueconstants|-Mmacpas -Mmacpas
+backupcore|-Mmacpas -Mmacpas
+base64|
+blowfish|-O2 -Ur
+bmpcomn|-O2 -Ur
+bufdataset|-S2h
+bufdataset_parser|
+bufstream|-O2 -Ur
+buildfv|-Mobjfpc
+buildpasjpeg|
+cachecls|-O2 -Ur
+carboneventscore|-Mmacpas -Mmacpas
+cblas|-Mmacpas -Mmacpas
+certextensions|-Mmacpas -Mmacpas
+cfarray|-Mmacpas -Mmacpas
+cfattributedstring|-Mmacpas -Mmacpas
+cfbag|-Mmacpas -Mmacpas
+cfbase|-Mmacpas -Mmacpas
+cfbinaryheap|-Mmacpas -Mmacpas
+cfbitvector|-Mmacpas -Mmacpas
+cfbundle|-Mmacpas -Mmacpas
+cfbyteorders|-Mmacpas -Mmacpas
+cfcalendar|-Mmacpas -Mmacpas
+cfcharacterset|-Mmacpas -Mmacpas
+cfdata|-Mmacpas -Mmacpas
+cfdate|-Mmacpas -Mmacpas
+cfdateformatter|-Mmacpas -Mmacpas
+cfdictionary|-Mmacpas -Mmacpas
+cferror|-Mmacpas -Mmacpas
+cfftpstream|-Mmacpas -Mmacpas
+cfhost|-Mmacpas -Mmacpas
+cfhttpauthentication|-Mmacpas -Mmacpas
+cfhttpmessage|-Mmacpas -Mmacpas
+cfhttpstream|-Mmacpas -Mmacpas
+cflocale|-Mmacpas -Mmacpas
+cfmachport|-Mmacpas -Mmacpas
+cfmessageport|-Mmacpas -Mmacpas
+cfnetdiagnostics|-Mmacpas -Mmacpas
+cfnetservices|-Mmacpas -Mmacpas
+cfnetworkerrorss|-Mmacpas -Mmacpas
+cfnotificationcenter|-Mmacpas -Mmacpas
+cfnumber|-Mmacpas -Mmacpas
+cfnumberformatter|-Mmacpas -Mmacpas
+cfplugin|-Mmacpas -Mmacpas
+cfplugincom|-Mmacpas -Mmacpas
+cfpreferences|-Mmacpas -Mmacpas
+cfpropertylist|-Mmacpas -Mmacpas
+cfproxysupport|-Mmacpas -Mmacpas
+cfrunloop|-Mmacpas -Mmacpas
+cfset|-Mmacpas -Mmacpas
+cfsocket|-Mmacpas -Mmacpas
+cfsocketstream|-Mmacpas -Mmacpas
+cfstream|-Mmacpas -Mmacpas
+cfstring|-Mmacpas -Mmacpas
+cfstringencodingext|-Mmacpas -Mmacpas
+cfstringtokenizer|-Mmacpas -Mmacpas
+cftimezone|-Mmacpas -Mmacpas
+cftree|-Mmacpas -Mmacpas
+cfurl|-Mmacpas -Mmacpas
+cfurlaccess|-Mmacpas -Mmacpas
+cfusernotification|-Mmacpas -Mmacpas
+cfuuid|-Mmacpas -Mmacpas
+cfxmlnode|-Mmacpas -Mmacpas
+cfxmlparser|-Mmacpas -Mmacpas
+cgaffinetransforms|-Mmacpas -Mmacpas
+cgbase|-Mmacpas -Mmacpas
+cgbitmapcontext|-Mmacpas -Mmacpas
+cgcolor|-Mmacpas -Mmacpas
+cgcolorspace|-Mmacpas -Mmacpas
+cgcontext|-Mmacpas -Mmacpas
+cgdataconsumer|-Mmacpas -Mmacpas
+cgdataprovider|-Mmacpas -Mmacpas
+cgdirectdisplay|-Mmacpas -Mmacpas
+cgdirectpalette|-Mmacpas -Mmacpas
+cgdisplayconfiguration|-Mmacpas -Mmacpas
+cgdisplayfades|-Mmacpas -Mmacpas
+cgerrors|-Mmacpas -Mmacpas
+cgevent|-Mmacpas -Mmacpas
+cgeventsource|-Mmacpas -Mmacpas
+cgeventtypes|-Mmacpas -Mmacpas
+cgfont|-Mmacpas -Mmacpas
+cgfunction|-Mmacpas -Mmacpas
+cggeometry|-Mmacpas -Mmacpas
+cgglcontext|-Mmacpas -Mmacpas
+cggradient|-Mmacpas -Mmacpas
+cgimage|-Mmacpas -Mmacpas
+cgimagedestination|-Mmacpas -Mmacpas
+cgimageproperties|-Mmacpas -Mmacpas
+cgimagesource|-Mmacpas -Mmacpas
+cglayer|-Mmacpas -Mmacpas
+cglcurrent|-Mmacpas -Mmacpas
+cgldevice|-Mmacpas -Mmacpas
+cglprofiler|-Mmacpas -Mmacpas
+cglprofilerfunctionenums|-Mmacpas -Mmacpas
+cglrenderers|-Mmacpas -Mmacpas
+cgltypes|-Mmacpas -Mmacpas
+cgpath|-Mmacpas -Mmacpas
+cgpattern|-Mmacpas -Mmacpas
+cgpdfarray|-Mmacpas -Mmacpas
+cgpdfcontentstream|-Mmacpas -Mmacpas
+cgpdfcontext|-Mmacpas -Mmacpas
+cgpdfdictionary|-Mmacpas -Mmacpas
+cgpdfdocument|-Mmacpas -Mmacpas
+cgpdfobject|-Mmacpas -Mmacpas
+cgpdfoperatortable|-Mmacpas -Mmacpas
+cgpdfpage|-Mmacpas -Mmacpas
+cgpdfscanner|-Mmacpas -Mmacpas
+cgpdfstream|-Mmacpas -Mmacpas
+cgpdfstring|-Mmacpas -Mmacpas
+cgpsconverter|-Mmacpas -Mmacpas
+cgremoteoperation|-Mmacpas -Mmacpas
+cgsession|-Mmacpas -Mmacpas
+cgshading|-Mmacpas -Mmacpas
+cgwindow|-Mmacpas -Mmacpas
+cgwindowlevels|-Mmacpas -Mmacpas
+chmbase|-O2 -Ur
+chmfiftimain|-O2 -Ur
+chmreader|
+chmsitemap|
+chmspecialfiles|
+chmtypes|
+chmwriter|
+clipping|
+cmcalibrator|-Mmacpas -Mmacpas
+cocoaall|-O2 -Ur
+codefragments|-Mmacpas -Mmacpas
+collections|-Mmacpas -Mmacpas
+colorpicker|-Mmacpas -Mmacpas
+colorsynccmm|-Mmacpas -Mmacpas
+colorsyncdeprecated|-Mmacpas -Mmacpas
+colorsyncdevice|-Mmacpas -Mmacpas
+colorsyncprofile|-Mmacpas -Mmacpas
+colorsynctransform|-Mmacpas -Mmacpas
+colortxt|
+components|-Mmacpas -Mmacpas
+conditionalmacros|-Mmacpas -Mmacpas
+consoletestrunner|-O2 -Ur
+contnrs|
+controldefinitions|-Mmacpas -Mmacpas
+coreaudiotypes|-Mmacpas -Mmacpas
+coredata|
+corefoundation|-Mmacpas -Mmacpas
+coregraphics|-Mmacpas -Mmacpas
+coretext|-Mmacpas -Mmacpas
+crc|
+csidentity|-Mmacpas -Mmacpas
+csidentityauthority|-Mmacpas -Mmacpas
+csidentityquery|-Mmacpas -Mmacpas
+cssmapple|-Mmacpas -Mmacpas
+cssmconfig|-Mmacpas -Mmacpas
+cssmerr|-Mmacpas -Mmacpas
+cssmkrapi|-Mmacpas -Mmacpas
+cssmtype|-Mmacpas -Mmacpas
+ctfont|-Mmacpas -Mmacpas
+ctfontcollection|-Mmacpas -Mmacpas
+ctfontdescriptor|-Mmacpas -Mmacpas
+ctfontmanager|-Mmacpas -Mmacpas
+ctfontmanagererrors|-Mmacpas -Mmacpas
+ctfonttraits|-Mmacpas -Mmacpas
+ctframe|-Mmacpas -Mmacpas
+ctframesetter|-Mmacpas -Mmacpas
+ctglyphinfo|-Mmacpas -Mmacpas
+ctline|-Mmacpas -Mmacpas
+ctparagraphstyle|-Mmacpas -Mmacpas
+ctrun|-Mmacpas -Mmacpas
+ctstringattributes|-Mmacpas -Mmacpas
+cttexttab|-Mmacpas -Mmacpas
+cttypesetter|-Mmacpas -Mmacpas
+custapp|
+cvbase|-Mmacpas -Mmacpas
+cvbuffer|-Mmacpas -Mmacpas
+cvdisplaylink|-Mmacpas -Mmacpas
+cvhosttime|-Mmacpas -Mmacpas
+cvimagebuffer|-Mmacpas -Mmacpas
+cvopenglbuffer|-Mmacpas -Mmacpas
+cvopenglbufferpool|-Mmacpas -Mmacpas
+cvopengltexture|-Mmacpas -Mmacpas
+cvopengltexturecache|-Mmacpas -Mmacpas
+cvpixelbuffer|-Mmacpas -Mmacpas
+cvpixelbufferpool|-Mmacpas -Mmacpas
+cvpixelformatdescription|-Mmacpas -Mmacpas
+cvreturns|-Mmacpas -Mmacpas
+dadisk|-Mmacpas -Mmacpas
+dasession|-Mmacpas -Mmacpas
+datetimeutils|-Mmacpas -Mmacpas
+db|-S2h
+dbcoll|-S2h
+dbconst|-S2h
+dbf_prscore|
+dbf_prsdef|
+dbf_prssupp|
+dbugintf|-S2h
+dbugmsg|-O2 -Ur
+dbwhtml|-S2h
+debugging|-Mmacpas -Mmacpas
+dhcpclientpreferences|-Mmacpas -Mmacpas
+dialogs|-Mmacpas -Mmacpas
+fv/dialogs|
+dictionary|-Mmacpas -Mmacpas
+digesttestreport|
+digitalhubregistry|-Mmacpas -Mmacpas
+dom|
+dom_html|-O2 -Ur
+drag|-Mmacpas -Mmacpas
+drivers|
+driverservices|-Mmacpas -Mmacpas
+driversynchronization|-Mmacpas -Mmacpas
+dtdmodel|-O2 -Ur
+dynlibs|
+editors|
+ellipses|-O2 -Ur
+endian|-Mmacpas -Mmacpas
+eventlog|-S2h
+events|-Mmacpas -Mmacpas
+extinterpolation|-O2 -Ur
+fasthtmlparser|-O2 -Ur
+fenv|-Mmacpas -Mmacpas
+files|-Mmacpas -Mmacpas
+filetypesandcreators|-Mmacpas -Mmacpas
+finder|-Mmacpas -Mmacpas
+finderregistry|-Mmacpas -Mmacpas
+fixmath|-Mmacpas -Mmacpas
+folders|-Mmacpas -Mmacpas
+fontpanel|-Mmacpas -Mmacpas
+fonts|-Mmacpas -Mmacpas
+fontsync|-Mmacpas -Mmacpas
+fp|-Mmacpas -Mmacpas
+fpcanvas|
+fpcolhash|-O2 -Ur
+fpcunit|
+fpcunitreport|-O2 -Ur
+fpditherer|-O2 -Ur
+fpexprpars|
+fpimage|
+fpimgcanv|-S2h
+fpimgcmn|-O2 -Ur
+fpimggauss|-O2 -Ur
+fpjson|
+fpjsonrtti|
+fpmimetypes|
+fppixlcanv|-O2 -Ur
+fpquantizer|-O2 -Ur
+fpreadbmp|
+fpreadgif|-O2 -Ur
+fpreadjpeg|-O2 -Ur
+fpreadpcx|-O2 -Ur
+fpreadpng|
+fpreadpnm|-O2 -Ur
+fpreadpsd|-O2 -Ur
+fpreadtga|-O2 -Ur
+fpreadtiff|
+fpreadxpm|-O2 -Ur
+fpreadxwd|-O2 -Ur
+fptemplate|
+fptiffcmn|
+fptimer|-O2 -Ur
+fpwritebmp|
+fpwritejpeg|-O2 -Ur
+fpwritepcx|-O2 -Ur
+fpwritepng|
+fpwritepnm|
+fpwritetga|-O2 -Ur
+fpwritetiff|
+fpwritexpm|
+freeglut|-O2 -Ur
+freetype|
+freetypeh|-O2 -Ur
+fsevents|-Mmacpas -Mmacpas
+ftfont|-O2 -Ur
+fvcommon|
+fvconsts|-Mobjfpc
+gadgets|
+gestaltequ|-Mmacpas -Mmacpas
+gettext|
+gl|
+glicontexts|-Mmacpas -Mmacpas
+glidispatch|-Mmacpas -Mmacpas
+glu|-O2 -Ur
+glucontext|-Mmacpas -Mmacpas
+glut|
+gpcstrings|-O2 -Ur
+graph|-Sg
+gzio|
+hfsvolumes|-Mmacpas -Mmacpas
+hiaccessibility|-Mmacpas -Mmacpas
+hiarchive|-Mmacpas -Mmacpas
+hiclockview|-Mmacpas -Mmacpas
+hicombobox|-Mmacpas -Mmacpas
+hidisclosureviews|-Mmacpas -Mmacpas
+higeometry|-Mmacpas -Mmacpas
+hiimageviews|-Mmacpas -Mmacpas
+hilittlearrows|-Mmacpas -Mmacpas
+himovieview|-Mmacpas -Mmacpas
+hiobject|-Mmacpas -Mmacpas
+hiprogressviews|-Mmacpas -Mmacpas
+hirelevancebar|-Mmacpas -Mmacpas
+hiscrollview|-Mmacpas -Mmacpas
+hisegmentedview|-Mmacpas -Mmacpas
+hiseparator|-Mmacpas -Mmacpas
+hishape|-Mmacpas -Mmacpas
+hislider|-Mmacpas -Mmacpas
+histlist|
+hitabbedview|-Mmacpas -Mmacpas
+hitextlengthfilter|-Mmacpas -Mmacpas
+hitextutils|-Mmacpas -Mmacpas
+hitextviews|-Mmacpas -Mmacpas
+hitheme|-Mmacpas -Mmacpas
+hitoolbox|-Mmacpas -Mmacpas
+hiview|-Mmacpas -Mmacpas
+hiwindowviews|-Mmacpas -Mmacpas
+hosttime|-Mmacpas -Mmacpas
+htmldefs|-O2 -Ur
+htmlelements|-O2 -Ur
+htmlindexer|
+htmlrendering|-Mmacpas -Mmacpas
+htmlutil|-O2 -Ur
+htmlwriter|-O2 -Ur
+htmwrite|-O2 -Ur
+icaapplication|-Mmacpas -Mmacpas
+icacamera|-Mmacpas -Mmacpas
+icadevice|-Mmacpas -Mmacpas
+icons|-Mmacpas -Mmacpas
+iconscore|-Mmacpas -Mmacpas
+iconstorage|-Mmacpas -Mmacpas
+iconvenc|-O2 -Ur
+iconvenc_dyn|
+idea|-O2 -Ur
+imagecodec|-Mmacpas -Mmacpas
+imagecompression|-Mmacpas -Mmacpas
+infblock|-O2 -Ur
+infcodes|-O2 -Ur
+inffast|-O2 -Ur
+inftrees|-O2 -Ur
+infutil|-O2 -Ur
+inicol|-O2 -Ur
+inifiles|
+inplong|
+internetconfig|-Mmacpas -Mmacpas
+intlresources|-Mmacpas -Mmacpas
+iokitreturn|-Mmacpas -Mmacpas
+iostream|-O2 -Ur
+iosurfaceapi|-Mmacpas -Mmacpas
+itolitlsreader|
+itolitlstypes|
+itsftransform|
+jcapimin|-O2 -Ur
+jcapistd|-O2 -Ur
+jccoefct|-O2 -Ur
+jccolor|-O2 -Ur
+jcdctmgr|-O2 -Ur
+jchuff|-O2 -Ur
+jcinit|-O2 -Ur
+jcmainct|-O2 -Ur
+jcmarker|-O2 -Ur
+jcmaster|-O2 -Ur
+jcomapi|-O2 -Ur
+jcparam|-O2 -Ur
+jcphuff|-O2 -Ur
+jcprepct|-O2 -Ur
+jcsample|-O2 -Ur
+jctrans|-O2 -Ur
+jdapimin|-O2 -Ur
+jdapistd|-O2 -Ur
+jdatadst|-O2 -Ur
+jdatasrc|-O2 -Ur
+jdcoefct|-O2 -Ur
+jdcolor|-O2 -Ur
+jdct|
+jddctmgr|-O2 -Ur
+jdeferr|
+jdhuff|-O2 -Ur
+jdinput|-O2 -Ur
+jdmainct|-O2 -Ur
+jdmarker|-O2 -Ur
+jdmaster|-O2 -Ur
+jdmerge|-O2 -Ur
+jdphuff|-O2 -Ur
+jdpostct|-O2 -Ur
+jdsample|-O2 -Ur
+jerror|-O2 -Ur
+jfdctflt|-O2 -Ur
+jfdctfst|-O2 -Ur
+jfdctint|-O2 -Ur
+jidctflt|-O2 -Ur
+jidctfst|-O2 -Ur
+jidctint|-O2 -Ur
+jidctred|-O2 -Ur
+jinclude|-O2 -Ur
+jmemmgr|-O2 -Ur
+jmemnobs|-O2 -Ur
+jmorecfg|
+jpeglib|
+jquant1|-O2 -Ur
+jquant2|-O2 -Ur
+jsonconf|-O2 -Ur
+jsonparser|
+jsonscanner|
+jutils|-O2 -Ur
+kern_return|-Mmacpas -Mmacpas
+keyboards|-Mmacpas -Mmacpas
+keychaincore|-Mmacpas -Mmacpas
+keychainhi|-Mmacpas -Mmacpas
+keyevents|
+languageanalysis|-Mmacpas -Mmacpas
+latextestreport|
+libtar|-O2 -Ur
+lists|-Mmacpas -Mmacpas
+logger|
+lowmem|-Mmacpas -Mmacpas
+lsinfo|-Mmacpas -Mmacpas
+lsopen|-Mmacpas -Mmacpas
+lsquarantine|-Mmacpas -Mmacpas
+lssharedfilelist|-Mmacpas -Mmacpas
+lzxcompressthread|-O2 -Ur
+macerrors|-Mmacpas -Mmacpas
+macgl|-Mmacpas -Mmacpas
+macglext|-Mmacpas -Mmacpas
+macglu|-Mmacpas -Mmacpas
+mach_error|-Mmacpas -Mmacpas
+machineexceptions|-Mmacpas -Mmacpas
+maclocales|-Mmacpas -Mmacpas
+macmemory|-Mmacpas -Mmacpas
+macopengl|-Mmacpas -Mmacpas
+univint/macos|-Mmacpas -Mmacpas
+macosall|-O2 -Ur
+macosxposix|-Mmacpas -Mmacpas
+mactypes|-Mmacpas -Mmacpas
+maskutils|-O2 -Ur
+math64|-Mmacpas -Mmacpas
+md5|-O2 -Ur
+mdexternaldatastore|-Mmacpas -Mmacpas
+mdimporter|-Mmacpas -Mmacpas
+mditem|-Mmacpas -Mmacpas
+mdlineage|-Mmacpas -Mmacpas
+mdquery|-Mmacpas -Mmacpas
+mdschema|-Mmacpas -Mmacpas
+mediahandlers|-Mmacpas -Mmacpas
+memds|
+memory|
+menus|-Mmacpas -Mmacpas
+fv/menus|
+mididriver|-Mmacpas -Mmacpas
+midiservices|-Mmacpas -Mmacpas
+midisetup|-Mmacpas -Mmacpas
+midithruconnection|-Mmacpas -Mmacpas
+mixedmode|-Mmacpas -Mmacpas
+moviesformat|-Mmacpas -Mmacpas
+msgbox|
+multiprocessing|-Mmacpas -Mmacpas
+multiprocessinginfo|-Mmacpas -Mmacpas
+musicdevice|-Mmacpas -Mmacpas
+navigation|-Mmacpas -Mmacpas
+netdb|
+notification|-Mmacpas -Mmacpas
+nsl|-Mmacpas -Mmacpas
+nslcore|-Mmacpas -Mmacpas
+ntlm|-O2 -Ur
+nullstream|-O2 -Ur
+numberformatting|-Mmacpas -Mmacpas
+objcruntime|-Mmacpas -Mmacpas
+oldregexpr|-O2 -Ur
+openssl|-Sd
+opentransport|-Mmacpas -Mmacpas
+opentransportprotocol|-Mmacpas -Mmacpas
+opentransportproviders|-Mmacpas -Mmacpas
+osa|-Mmacpas -Mmacpas
+osacomp|-Mmacpas -Mmacpas
+osageneric|-Mmacpas -Mmacpas
+osutils|-Mmacpas -Mmacpas
+outline|
+palettes|-Mmacpas -Mmacpas
+paslznonslide|-O2 -Ur
+paslzx|-O2 -Ur
+paslzxcomp|-O2 -Ur
+passrcutil|-O2 -Ur
+pasteboard|-Mmacpas -Mmacpas
+pastounittest|
+pastree|
+paswrite|
+paszlib|-Sd
+pcxcomn|
+pefbinaryformat|-Mmacpas -Mmacpas
+pictutils|-Mmacpas -Mmacpas
+pipes|-O2 -Ur
+pipesipc|-S2h
+pixtools|-O2 -Ur
+plaintestreport|
+plstringfuncs|-Mmacpas -Mmacpas
+pmapplication|-Mmacpas -Mmacpas
+pmapplicationdeprecated|-Mmacpas -Mmacpas
+pmcore|-Mmacpas -Mmacpas
+pmcoredeprecated|-Mmacpas -Mmacpas
+pmdefinitions|-Mmacpas -Mmacpas
+pmdefinitionsdeprecated|-Mmacpas -Mmacpas
+pmerrors|-Mmacpas -Mmacpas
+pmprintaetypes|-Mmacpas -Mmacpas
+pmprintingdialogextensions|-Mmacpas -Mmacpas
+pmprintsettingskeys|-Mmacpas -Mmacpas
+pngcomn|
+pooledmm|-O2 -Ur
+power|-Mmacpas -Mmacpas
+pparser|
+process|-O2 -Ur
+processes|-Mmacpas -Mmacpas
+pscanner|
+pscanvas|
+pthreads|-Mobjfpc
+qdcmcommon|-Mmacpas -Mmacpas
+qdoffscreen|-Mmacpas -Mmacpas
+qdpicttocgcontext|-Mmacpas -Mmacpas
+qlbase|-Mmacpas -Mmacpas
+qlgenerator|-Mmacpas -Mmacpas
+qlthumbnailimage|-Mmacpas -Mmacpas
+qtml|-Mmacpas -Mmacpas
+univint/qtsmovie|-Mmacpas -Mmacpas
+univint/qtstreamingcomponents|-Mmacpas -Mmacpas
+quickdraw|-Mmacpas -Mmacpas
+quickdrawtext|-Mmacpas -Mmacpas
+quickdrawtypes|-Mmacpas -Mmacpas
+quicktimeerrors|-Mmacpas -Mmacpas
+quicktimemusic|-Mmacpas -Mmacpas
+univint/quicktimestreaming|-Mmacpas -Mmacpas
+quicktimevr|-Mmacpas -Mmacpas
+quicktimevrformat|-Mmacpas -Mmacpas
+regex|-O2 -Ur
+regexpr|-Sd
+resolve|-O2 -Ur
+fv/resource|
+resources|-Mmacpas -Mmacpas
+rtfpars|-O2 -Ur
+rttiutils|
+sax|
+sax_html|
+sax_xml|-O2 -Ur
+scalerstreamtypes|-Mmacpas -Mmacpas
+scdynamicstore|-Mmacpas -Mmacpas
+scdynamicstorecopydhcpinfos|-Mmacpas -Mmacpas
+scdynamicstorecopyspecific|-Mmacpas -Mmacpas
+scdynamicstorekey|-Mmacpas -Mmacpas
+scnetwork|-Mmacpas -Mmacpas
+scnetworkconfiguration|-Mmacpas -Mmacpas
+scnetworkconnection|-Mmacpas -Mmacpas
+scnetworkreachability|-Mmacpas -Mmacpas
+scpreferences|-Mmacpas -Mmacpas
+scpreferencespath|-Mmacpas -Mmacpas
+scpreferencessetspecific|-Mmacpas -Mmacpas
+scrap|-Mmacpas -Mmacpas
+script|-Mmacpas -Mmacpas
+scschemadefinitions|-Mmacpas -Mmacpas
+scsi|-Mmacpas -Mmacpas
+sdfdata|
+sdl|
+sdlgraph|
+sdlutils|
+secbase|-Mmacpas -Mmacpas
+sectrust|-Mmacpas -Mmacpas
+sfntlayouttypes|-Mmacpas -Mmacpas
+sfnttypes|-Mmacpas -Mmacpas
+sha1|-O2 -Ur
+simpleipc|
+sound|-Mmacpas -Mmacpas
+speechrecognition|-Mmacpas -Mmacpas
+speechsynthesis|-Mmacpas -Mmacpas
+sqldb|-S2h
+sqldblib|-S2h
+sqlscript|-S2h
+ssockets|-O2 -Ur
+statuses|
+stddlg|
+streamcoll|-O2 -Ur
+streamex|-O2 -Ur
+streamio|-O2 -Ur
+stringcompare|-Mmacpas -Mmacpas
+syncobjs|-O2 -Ur
+sysmsg|-Sd
+systemconfiguration|-Mmacpas -Mmacpas
+systemsound|-Mmacpas -Mmacpas
+tabs|
+targacmn|-O2 -Ur
+testdecorator|-O2 -Ur
+testregistry|-O2 -Ur
+testreport|
+testutils|-O2 -Ur
+textcommon|-Mmacpas -Mmacpas
+textedit|-Mmacpas -Mmacpas
+textencodingconverter|-Mmacpas -Mmacpas
+textencodingplugin|-Mmacpas -Mmacpas
+textinputsources|-Mmacpas -Mmacpas
+textutils|-Mmacpas -Mmacpas
+threads|-Mmacpas -Mmacpas
+time|
+timeddlg|
+timer|-Mmacpas -Mmacpas
+toolutils|-Mmacpas -Mmacpas
+translation|-Mmacpas -Mmacpas
+translationextensions|-Mmacpas -Mmacpas
+translationservices|-Mmacpas -Mmacpas
+trees|-O2 -Ur
+tsmte|-Mmacpas -Mmacpas
+typeselect|-Mmacpas -Mmacpas
+ubmockobject|-O2 -Ur
+unicodeconverter|-Mmacpas -Mmacpas
+unicodeutilities|-Mmacpas -Mmacpas
+universalaccess|-Mmacpas -Mmacpas
+unzip|-O2 -Ur
+uriparser|
+urlaccess|-Mmacpas -Mmacpas
+utcoretypes|-Mmacpas -Mmacpas
+utcutils|-Mmacpas -Mmacpas
+uttype|-Mmacpas -Mmacpas
+uuid|-O2 -Ur
+validate|
+vblas|-Mmacpas -Mmacpas
+vdsp|-Mmacpas -Mmacpas
+views|
+webkit|
+wformat|-O2 -Ur
+whtml|
+wsmethodinvocation|-Mmacpas -Mmacpas
+wsprotocolhandler|-Mmacpas -Mmacpas
+wstypes|-Mmacpas -Mmacpas
+wtex|-O2 -Ur
+x|
+x509defs|-Mmacpas -Mmacpas
+xattr|-Mmacpas -Mmacpas
+xhtml|-O2 -Ur
+xlib|
+xmlcfg|
+xmlconf|-O2 -Ur
+xmldatapacketreader|-S2h
+xmlread|
+xmlreporter|
+xmlstreaming|-O2 -Ur
+xmltestreport|-O2 -Ur
+xmlutils|
+xmlwrite|
+xpath|-O2 -Ur
+xwdfile|
+zbase|-O2 -Ur
+zcompres|-O2 -Ur
+zdeflate|-O2 -Ur
+zinflate|-O2 -Ur
+zip|-O2 -Ur
+zipper|-O2 -Ur
+ziputils|-O2 -Ur
+zstream|-O2 -Ur
+zuncompr|-O2 -Ur
+unicodedata|-Sd
+unicodenumtable|-Mobjfpc

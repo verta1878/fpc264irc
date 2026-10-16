@@ -15,7 +15,15 @@ bin/ppc386 -Tdarwin -FDbin/tools/i386-darwin -XRbin/tools/i386-darwin/MacOSX10.6
            -Fubin/units/i386-darwin/fv -Fubin/units/i386-darwin yourprogram.pas
 ```
 - `-FD` finds `as`/`ld`, `-XR` the startup code and the stub libraries (`-syslibroot` for ld).
-- `-Fu .../fv` first only for Free Vision programs (the folder also holds Apple's Carbon `Dialogs` unit).
+- `-Fu .../fv` first only for Free Vision programs (the folder also holds Apple's Carbon `Dialogs` and `Menus` units
+  and fcl-res's `Resource`; since 2026-10-16 Free Vision's `dialogs`, `menus` and `resource` are all in `fv/`).
+- `bin/units/i386-darwin/univint/` (2026-10-16): univint's `Video` (same name as the RTL `video` unit) and the 7 units
+  that use it - `Displays`, `DrawSprocket`, `QuickTimeComponents`, `QuickTimeStreaming`, `QTStreamingComponents`,
+  `QTSMovie`, `MacOS`. Only a program that needs one of them puts `-Fu .../univint` before the main folder.
+- Units are a kit build from `src/` (`tools/darwin-build`, with the Lazarus set `bin/lazarus/units/i386-darwin`:
+  `-Fu .../lcl/carbon` or `.../lcl/cocoa`, then `.../lcl`, `.../lazutils`, the unit folder; `-FD` also needs an
+  `fpcres` for LCL programs). LCL programs link with the carbon and the cocoa widgetset (the stub `libobjc` has the
+  ObjC 2 API and `objc_enumerationMutation` since 2026-10-16).
 - Default minimum macOS is 10.4; `-WM10.5` / `-WM10.6` pick the newer startup code and load commands.
 - `-Amacho` uses the compiler's internal Mach-O writer instead of `as`; both work.
 - Console programs (RTL, sysutils, classes, crt, Free Vision, unix units, sockets, cwstring, cthreads) link.

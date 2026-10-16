@@ -102,6 +102,11 @@ for d, fw in COCOA.items():
 for path in glob.glob(R + '/src/rtl/inc/objc*.inc') + glob.glob(R + '/src/packages/objcrtl/src/*.pas'):
     t = open(path, encoding='latin1').read()
     syms['libobjc'] |= set(re.findall(r"external\s+(?:\w+\s+)?name\s+'(_[A-Za-z0-9_]+)'", t))
+    # and the routines declared "cdecl; external libname;" without a name (objc1.inc / objcnf.inc: the ObjC 2 API, and
+    # objc_enumerationMutation, which the compiler calls for for-in loops over Objective-C collections) - 2026-10-16
+    syms['libobjc'] |= {'_' + m for m in re.findall(
+        r"^\s*(?:procedure|function)\s+([A-Za-z0-9_]+)\s*(?:\([^)]*\))?\s*(?::\s*[\w^]+\s*)?;\s*cdecl;\s*"
+        r"(?:weakexternal|external)\s+libname\s*;", t, re.M | re.I)}
 syms['libobjc'] |= {'_objc_msgSend', '_objc_msgSendSuper', '_objc_msgSend_stret', '_objc_msgSendSuper_stret',
                     '_objc_msgSend_fpret', '_objc_getClass', '_objc_getMetaClass', '_sel_registerName'}
 syms['Foundation'] |= {'.objc_class_name_NSBundle', '.objc_class_name_NSObject', '.objc_class_name_NSString'}

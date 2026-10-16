@@ -193,6 +193,28 @@ source          patches/os2-cross/binutils/ (binutils-2.30-emx.patch, build.sh, 
 result          same program images and the same LX import fixups as before (360 / 1055 in the two tests); not yet run on OS/2
 ```
 
+## Exact source rebuild 5: i386-darwin + Lazarus i386-darwin (2026-10-16)
+
+```
+kit             tools/darwin-build (build.sh): from tools/darwin64-build + the go32v2 Lazarus driver; per-unit options
+                found against the shipped units (pickopts.py, opts-i386.txt); two runs byte-identical
+i386-darwin     809 units = kit build (code identical 660, 85 lose concat_multi, 50 other code - no option set gives the
+                shipped code); interface changes: sysutils, dos (filerec/textrec include guards), serial (source),
+                univint/MacOS; new: univint Video + Menus, fcl-res (10 units), fpobserver, jconsts - 5 of them had only
+                their .rst in the folder (left 2026-10-07); the rebuilt units write the same .rst
+layout          fv/ = FV dialogs + menus + resource (FV menus, resource moved from the main folder); univint/ (new) = univint
+                Video + Displays, DrawSprocket, QuickTimeComponents, QuickTimeStreaming, QTStreamingComponents,
+                QTSMovie, MacOS - they could not be built before (Video clashes with the RTL video)
+removed         285 files: main folder the 7 univint units' .ppu/.a (now in univint/); Lazarus 271 loose .o (now .a)
+lazarus         bin/lazarus/units/i386-darwin (271) rebuilt against the new units, .ppu + .a (271 loose .o removed);
+                before an LCL program did not compile; now LCL programs link with carbon and with cocoa
+stubs           bin/tools/i386-darwin stub libobjc (universal): + 40 names - the ObjC 2 API and objc_enumerationMutation
+                that rtl/inc/objc1.inc / objcnf.inc declare without a name (patches/darwin-cross/gen-framework-syms.py
+                missed them; apple-trim.py keeps all 40); test/darwin + test/darwin64 programs still link
+checked         every unit compiles in a program; test/darwin's 10 programs link; ppu_consistency only the known
+                FV / univint / LCL name clashes
+```
+
 ## Graph on the x86_64 targets: docs, message, test (2026-10-16)
 
 ```

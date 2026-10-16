@@ -33,6 +33,10 @@ Notes:
   framework from each header's `File: <Subframework>/x.h` line or its name, subframeworks folded into the public
   framework that exports them, PowerPC-only DrawSprocket left out), cocoaint (`objcclass external` classes,
   `cdecl; external` functions, `cvar; external` variables), `rtl/inc/objc*.inc` + objcrtl (libobjc), openal, opencl.
+  libobjc (2026-10-16): also the routines `objc1.inc` / `objcnf.inc` declare `cdecl; external libname;` without a
+  name - the ObjC 2 API (`class_getName`, `object_getClass` ...) and `objc_enumerationMutation`, which the compiler
+  calls for `for ... in` over an Objective-C collection (the Lazarus cocoa widgetset did not link without it); 40 names,
+  all exported by Apple's i386 and x86_64 libobjc, so `apple-trim.py` keeps them (stub: 98 names i386, 83 x86_64).
   Rerun it only when those sources change; its output is committed.
 - `frameworks.txt` = `name|install name|re-exported frameworks`, each line after the frameworks it re-exports, so
   `gen-stubs.sh` builds them in one pass. Re-exporting stubs are built with `-macosx_version_min 10.5`: for 10.4 ld64

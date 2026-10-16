@@ -26,9 +26,8 @@ Files:
 - `patched/dynlibs.pas` — FPC 2.6.4's own layout (`unix/dynlibs.inc` read twice) plus the Patch 5 names
   `GetProcAddress` / `FreeLibrary`; `src/rtl/inc/dynlibs.pas` does not compile together with `unix/dynlibs.inc`.
 
-Folder layout (differs from i386-darwin on purpose): Free Vision's `dialogs` **and** `menus` are in `fv/`, univint's
-`Dialogs` and `Menus` in the main folder — so every univint unit builds (in the i386 set FV `menus` sits in the main
-folder). Use `-Fu.../x86_64-darwin/fv -Fu.../x86_64-darwin` (fv first) for Free Vision programs.
+Folder layout: Free Vision's `dialogs` **and** `menus` are in `fv/`, univint's `Dialogs` and `Menus` in the main
+folder — so every univint unit builds (the i386 set has the same layout since 2026-10-16, `tools/darwin-build`). Use `-Fu.../x86_64-darwin/fv -Fu.../x86_64-darwin` (fv first) for Free Vision programs.
 
 Not in the 64-bit set (7 of the 794 i386 units):
 

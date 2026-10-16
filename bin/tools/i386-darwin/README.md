@@ -23,7 +23,7 @@ see `tools/darwin64-build/README.md`; no `graph`). The folder keeps its name `i3
 | `MacOSX10.6.sdk/usr/lib/libSystem.B.dylib` | **stub** libSystem: 430 symbol names (C library, pthreads, math, dl, sockets, syslog, fenv, xattr), no code. Copies as `libc`, `libm`, `libdl`, `libpthread` `.dylib` (symlinks to libSystem on a Mac) |
 | `MacOSX10.6.sdk/usr/lib/libiconv.2.dylib` (+ `libiconv.dylib`) | stub libiconv (`cwstring`) |
 | `MacOSX10.6.sdk/usr/lib/libncurses.5.4.dylib` (+ `libncurses.dylib`) | stub ncurses (`terminfo`) |
-| `MacOSX10.6.sdk/usr/lib/libobjc.A.dylib` (+ `libobjc.dylib`) | stub Objective-C runtime (`objc_msgSend` & co., 58 names i386 / 43 x86_64) |
+| `MacOSX10.6.sdk/usr/lib/libobjc.A.dylib` (+ `libobjc.dylib`) | stub Objective-C runtime (`objc_msgSend` & co., 98 names i386 / 83 x86_64; + the ObjC 2 API and `objc_enumerationMutation` 2026-10-16) |
 | `MacOSX10.6.sdk/System/Library/Frameworks/<F>.framework` | **stub** frameworks, 25 (list below); each at its install path `Versions/A/<F>` (Foundation, AppKit: `Versions/C/<F>`, as on every Mac) + a copy `<F>` (symlinks on a Mac; git on Windows does not keep symlinks) |
 
 Every stub library and framework is **universal** (an i386 and an x86_64 part, like Apple's own); each part has its

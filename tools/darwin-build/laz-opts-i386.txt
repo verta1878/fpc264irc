@@ -1,0 +1,44 @@
+# folder|unit|options - FCL units the Lazarus folders also hold (copies of units of bin/units/i386-darwin): built with
+# the options of the main-folder copy (opts-i386.txt), so both have the same checksums and either can be found first
+# - byte, 2026-10-16
+lazutils|avl_tree|
+lazutils|contnrs|
+lazutils|fpimage|
+lazutils|gettext|
+lazutils|pipes|-O2 -Ur
+lazutils|process|-O2 -Ur
+lazutils|uriparser|
+lcl|bmpcomn|-O2 -Ur
+lcl|clipping|
+lcl|custapp|
+lcl|db|-S2h
+lcl|dbconst|-S2h
+lcl|dom|
+lcl|dtdmodel|-O2 -Ur
+lcl|ellipses|-O2 -Ur
+lcl|fpcanvas|
+lcl|fpimgcanv|-S2h
+lcl|fpimgcmn|-O2 -Ur
+lcl|fppixlcanv|-O2 -Ur
+lcl|fpreadbmp|
+lcl|fpreadgif|-O2 -Ur
+lcl|fpreadjpeg|-O2 -Ur
+lcl|fpreadpng|
+lcl|fpreadpnm|-O2 -Ur
+lcl|fpreadtiff|
+lcl|fptiffcmn|
+lcl|fpwritebmp|
+lcl|fpwritejpeg|-O2 -Ur
+lcl|fpwritepng|
+lcl|fpwritepnm|
+lcl|fpwritetiff|
+lcl|inifiles|
+lcl|maskutils|-O2 -Ur
+lcl|pixtools|-O2 -Ur
+lcl|pngcomn|
+lcl|rttiutils|
+lcl|syncobjs|-O2 -Ur
+lcl|xmlconf|-O2 -Ur
+lcl|xmlread|
+lcl|xmlutils|
+lcl|xmlwrite|

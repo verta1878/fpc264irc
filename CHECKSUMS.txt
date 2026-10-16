@@ -1,6 +1,6 @@
 FPC 2.6.4irc - Repository Checksums
-Generated: 2026-10-16 (byte, after graph on the x86_64 targets: docs, message, test)
-Includes: Patches 1-6, graph 3.0.4 backport, smartpack (.ppu + .a), stale-unit rebuild, i386-linux USB units, OS/2 native linking (patched binutils ld), i386-darwin Mach-O writer fix, unit-folder name clashes (lcl/, fv/), i8086 medium/large/huge -CX, OS/2 build kit + test/os2, i386-darwin linking (cctools/ld64, Csu, stub libSystem) + test/darwin, unit format check (numlib + singleinstance rebuilt for i386-win32), i386-darwin framework stubs (24 frameworks + libobjc) + test/darwin 8-10, x86_64-darwin units (tools/darwin64-build) + universal crt1/stubs + test/darwin64, graph 3.2.2 (tools/graph-322-build, ptcgraph 24-bit true colour), OS/2 units = kit build, Foundation/AppKit stubs Versions/C (docs/UNIT-REBUILD.md), Mac stubs trimmed to Apple's names per architecture (apple-trim.py) + CoreVideo, FreeBSD i386 + x86_64 + Lazarus i386-freebsd = kit build (tools/freebsd-build), i386-linux + Lazarus i386-linux = kit build (tools/linux-build), i386-go32v2 + Lazarus i386-go32v2 = kit build (tools/go32v2-build), go32v2 Move fix for DOSBox (BUG-044, fmovgo32.inc, knob FPC_MOVE_NOFPU) + fossil/serial_irq built (BUG-045), graph on the x86_64 targets (docs, graph.pp message on x86_64-linux/darwin, test/x64graph)
+Generated: 2026-10-16 (byte, after the i386-darwin exact source rebuild)
+Includes: Patches 1-6, graph 3.0.4 backport, smartpack (.ppu + .a), stale-unit rebuild, i386-linux USB units, OS/2 native linking (patched binutils ld), i386-darwin Mach-O writer fix, unit-folder name clashes (lcl/, fv/), i8086 medium/large/huge -CX, OS/2 build kit + test/os2, i386-darwin linking (cctools/ld64, Csu, stub libSystem) + test/darwin, unit format check (numlib + singleinstance rebuilt for i386-win32), i386-darwin framework stubs (24 frameworks + libobjc) + test/darwin 8-10, x86_64-darwin units (tools/darwin64-build) + universal crt1/stubs + test/darwin64, graph 3.2.2 (tools/graph-322-build, ptcgraph 24-bit true colour), OS/2 units = kit build, Foundation/AppKit stubs Versions/C (docs/UNIT-REBUILD.md), Mac stubs trimmed to Apple's names per architecture (apple-trim.py) + CoreVideo, FreeBSD i386 + x86_64 + Lazarus i386-freebsd = kit build (tools/freebsd-build), i386-linux + Lazarus i386-linux = kit build (tools/linux-build), i386-go32v2 + Lazarus i386-go32v2 = kit build (tools/go32v2-build), go32v2 Move fix for DOSBox (BUG-044, fmovgo32.inc, knob FPC_MOVE_NOFPU) + fossil/serial_irq built (BUG-045), graph on the x86_64 targets (docs, graph.pp message on x86_64-linux/darwin, test/x64graph), i386-darwin + Lazarus i386-darwin = kit build (tools/darwin-build; fv/, univint/, + fcl-res, fpobserver, jconsts), stub libobjc + ObjC 2 API
 Hashes are of the repository content (LF line endings, as on GitHub or a Linux clone). On Windows with
 core.autocrlf, text files are checked out with CRLF and hash differently; .ppu/.a/.exe/.o are binary and match.
 CHECKSUMS.md5 / CHECKSUMS.sha256 list every file except the three CHECKSUMS files themselves.
@@ -43,15 +43,15 @@ bin/tools/i386-darwin/ld:
   Size:   7846496
 
 HISTORY.md:
-  MD5:    db9ab988972745a2ab9874bc6694d1a8
-  SHA256: 7622b88038b1d6a81e5a6a7cd606705f7e95d5bed216844f605a21ee6f17377f
-  Size:   29970
+  MD5:    a32aa93064e26cbafe63670e2152d304
+  SHA256: a3f2e4b7f2d8323448d4cac66eb0990b8168044d4672fc1eaea8ac80dbe805a6
+  Size:   31912
 
 docs/ROADMAP-UNITS.md:
-  MD5:    66763bacf343082dffae73a4179c97cd
-  SHA256: 1e37ce5692b0afd06984b965fa484a27ab4b79ab1fa6ddf5b0937f56c674f4bf
-  Size:   13036
+  MD5:    75c88929bb703d02c9cc12f1e94d11c0
+  SHA256: 421f7d56802587c6fe934e1cee1fed801053f28c8a2d90987c8a549254c9dc32
+  Size:   13107
 
 === Totals ===
-Files: 45313
+Files: 45363
 Size:  1.8G
