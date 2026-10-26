@@ -1,6 +1,7 @@
 72e08b7e06f7c731f4f17ca9c29c1411  ./.fpcirc
 108e2243262608e8d2c977350600ef04  ./.gitattributes
-7d74eea0d407ca8f6a38a7887d38faec  ./HISTORY.md
+95110cc9d3af3d5ae891f49e0bb7e3c0  ./.gitignore
+f08add12b4ac79fb4991ab7d69446b67  ./HISTORY.md
 9f463bb4d3019a9d922623ac0874dae4  ./LICENSE
 d169ba6938afc8449c4c717026af8cd8  ./Makefile
 2b815f7e2640ee02738ec8bbe01d2f7f  ./README.md
@@ -45231,6 +45232,15 @@ dd125c57ce0ae7e7b0f7e80b7d34edd8  ./test/x64graph/README.md
 445632e5f14a7d114f60483c509787c5  ./test/x64graph/build.sh
 787344ccc7edcd14c6c29b26138092f8  ./test/x64graph/x64graph.pas
 871e3e9739561a0296f5919e69e2dd4f  ./test/x64graph/x64ptcgraph.pas
+e3fb6a7742a0e6ec477c2cb3246e5351  ./toolkit/CHECKPOINT.TXT
+6de03e3d073c5bccd1bc142902a246c7  ./toolkit/DISASM.TXT
+225fafbb261802f2e409fb84393de35a  ./toolkit/GLOBALS.TXT
+d95d222e4b76bdd5cf2cf8e2c4dd1158  ./toolkit/MATCH.PY
+a25e7320b1078d9c54ba70700558cf5d  ./toolkit/NEXT.TXT
+cdc7beffe56dbe9071f8995b013b3ed7  ./toolkit/RULES.TXT
+278ec9c188bbad47053603a07a160762  ./toolkit/SEGMAP.TXT
+bfdc23b9c0e31b93c6c0fa1aacf4a595  ./toolkit/STATUS.TXT
+cb5c591fa5b53cf322a9f6b7743b5b13  ./toolkit/test.sh
 e9595f89a55c7f3fc83b03637bde4696  ./tools/build-fpcres.sh
 0f0572ca9b8bca523ba68bbaa6df7184  ./tools/build-mystic-win32.sh
 0e6a27b6286c6ab921ab4e00734526fe  ./tools/build-win32-rtl.bat

@@ -1,0 +1,38 @@
+GLOBALS.TXT - fpc264irc - symptom -> cause -> fix tracker                byte, 2026-10-24
+(project-wide gotchas; look here first when something fails. Full write-ups: docs/bugsfixed.md, kit READMEs)
+
+G-001  SYMPTOM  go32v2 program: Move/FillChar copies wrong data or hangs under DOSBox
+       CAUSE    fastmove uses fild/fistp (FPU 64-bit move); DOSBox's FPU rounds the value
+       FIX      BUG-044: src/rtl/i386/fmovgo32.inc checks fild/fistp of $4847464544434241 at start-up and falls
+                back to the plain move. Knob FPC_MOVE_NOFPU=1 forces the plain move (docs/BUILD-KNOBS.md).
+G-002  SYMPTOM  "Fatal: User defined: x86_64-linux has no graph unit ..." (or x86_64-darwin)
+       CAUSE    intended: bin/units/x86_64-linux|darwin/graph.pp is a 6-line {$fatal} stub (no svgalib / no
+                64-bit Carbon). Before the stub: "Can't find unit graph".
+       FIX      linux: uses ptcgraph. darwin: build 32-bit (bin/ppc386 -Tdarwin -Fubin/units/i386-darwin).
+                test/x64graph/README.md.
+G-003  SYMPTOM  Mac link: "Undefined symbols" for a framework / libobjc routine
+       CAUSE    the stub SDK in bin/tools/i386-darwin/MacOSX10.6.sdk has only the names it was generated with
+       FIX      add the routine via patches/darwin-cross/gen-framework-syms.py / stubs/*.syms (cdecl; external
+                libname; without "name" is matched too), regenerate the stub. Never copy Apple files (RULES R9).
+G-004  SYMPTOM  rebuilt sysutils / dos have a new interface checksum on every target
+       CAUSE    the include guards in src/rtl/inc/filerec.inc / textrec.inc (allowed, RULES A2)
+       FIX      none needed; rebuild the units that use them (their indirect checksum changes) in the same delivery
+G-005  SYMPTOM  ppu_consistency.py reports FATAL / stale for Dialogs, Menus, resource, tabs
+       CAUSE    two units of one name in different sub-folders (FV vs univint vs LCL) - consistency reads them as
+                one set
+       FIX      expected; check that each sub-folder alone is consistent with the main folder (SEGMAP.TXT)
+G-006  SYMPTOM  a unit compiles with other code than the shipped one after a rebuild
+       CAUSE    shipped one built with other options: pickopts.py did not find them, or the unit is older source
+       FIX      list it (RULES A3) in the kit README; never ship silently
+G-007  SYMPTOM  i386-darwin Lazarus/LCL: "assembler error .stabs"
+       CAUSE    the assembler in bin/tools/i386-darwin has no .stabs
+       FIX      compile those folders with -Amacho (internal Mach-O writer) - lazdrive.py does
+G-008  SYMPTOM  a .ppu whose name only changed case (Menus.ppu vs menus.ppu) breaks on a Windows checkout
+       CAUSE    git on Windows keeps the old case; the .ppu names its archive exactly
+       FIX      keep the file names the folder had (darwin: compile univint Menus as menus.pas)
+G-009  SYMPTOM  Wine dry-run of a delivery bat fails: tar extracts nothing / certutil missing / findstr || odd
+       CAUSE    Wine's tar is a stub, no certutil, findstr's || misbehaves
+       FIX      pre-unzip for the dry-run, powershell fallback for MD5, use "if errorlevel 1" in bats
+G-010  SYMPTOM  verify after "pushed" shows the old HEAD
+       CAUSE    push not on GitHub yet
+       FIX      wait and re-check; never assume

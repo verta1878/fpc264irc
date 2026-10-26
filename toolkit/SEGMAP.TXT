@@ -1,0 +1,33 @@
+SEGMAP.TXT - fpc264irc - unit folder layout per target and the -Fu order   byte, 2026-10-24
+(the "segment map" of this project: which folder holds which unit set, and in which order a program searches them)
+
+RULE: one folder can hold only one unit of a name. Units that share a name live in sub-folders; a program puts the
+sub-folder it needs BEFORE the main folder (-Fu<sub> -Fu<main>), never two clashing sub-folders together.
+
+bin/units/<target>                     .ppu   sub-folders and what they are for
+i386-darwin                             809   fv/ (Free Vision dialogs, menus, resource)
+                                              univint/ (univint Video + Displays, DrawSprocket, QuickTimeComponents,
+                                              QuickTimeStreaming, QTStreamingComponents, QTSMovie, MacOS)
+                                              main = RTL + packages + univint Dialogs/Menus + fcl-res Resource
+x86_64-darwin                           789   fv/  (same idea as i386-darwin, no univint/)
+i386-go32v2                             318   lcl/ (LCL copies built for DOS)
+i386-win32                            1,538   lcl/
+x86_64-linux                            632   lcl/
+i386-os2 219, i386-freebsd 167, i386-linux 275, x86_64-freebsd 46, x86_64-win64 1,039: main folder only
+i8086-msdos (114) + -tiny/-small/-medium/-compact/-large/-huge (22-23 each): one folder per memory model
+
+bin/lazarus/units/<target>   sub-folders (order for an LCL program: lcl/<ws> lcl lazutils, then bin/units/<target>)
+i386-darwin    lazutils lcl lcl/carbon lcl/cocoa
+i386-freebsd   lazutils lcl lcl/customdrawn lazcontrols(/customdrawn) ideintf(/customdrawn) synedit(/customdrawn)
+i386-go32v2    lazutils lcl
+i386-linux     lazutils lcl lcl/customdrawn
+i386-os2       lazutils lcl
+i386-win32     lazutils lcl lcl/win32 lazcontrols(/win32) ideintf(/win32) synedit(/win32)
+x86_64-linux   lazutils lcl lcl/customdrawn lazcontrols(/customdrawn) ideintf(/customdrawn) synedit(/customdrawn) codetools
+
+EXAMPLES
+ Free Vision on i386-darwin:   -Fubin/units/i386-darwin/fv -Fubin/units/i386-darwin
+ univint Displays (darwin):    -Fubin/units/i386-darwin/univint -Fubin/units/i386-darwin   (not with RTL video / FV)
+ LCL carbon on i386-darwin:    -Fubin/lazarus/units/i386-darwin/lcl/carbon -Fu.../lcl -Fu.../lazutils
+                               -Fubin/units/i386-darwin   (+ -dcarbon; link tools bin/tools/i386-darwin)
+ graph on x86_64-linux:        uses ptcgraph (graph.pp in the folder is a {$fatal} stub, GLOBALS.TXT G-002)

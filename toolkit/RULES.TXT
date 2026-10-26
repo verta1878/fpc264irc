@@ -1,0 +1,38 @@
+RULES.TXT - fpc264irc - standing rules (verta1878's, byte follows them)   byte, 2026-10-24
+
+WORKING RULES
+ R1  Never run git push. verta commits and pushes; byte checks GitHub afterwards (NEXT.TXT step 5).
+ R2  Never delete a file without saying so. Every deletion is listed (in chat and in the bat). A rename is not a
+     deletion, but say it too. Nothing is lost: old content goes to an attic, never to the bin.
+ R3  Never do anything without asking first. Plan -> verta's go -> do.
+ R4  Multi-part status is a numbered list; verta answers by number.
+ R5  Never commit .o or .s files. Units ship as .ppu + libp<unit>.a (go32v2: <unit>.a).
+ R6  Work in the sandbox on copies; never on a live system or on the share directly.
+ R7  Multi-part zips are joined in one step (copy /b), checked by size + MD5 (certutil, powershell fallback).
+ R8  Every 0/1 build knob is described in the file that reads it AND catalogued in docs/BUILD-KNOBS.md.
+     Default (0) must give byte-identical output to the build before the knob existed.
+ R9  The Apple SDK never goes into the repo. bin/tools/*-darwin hold stub libraries only (names + install name,
+     no Apple code; docs/DARWIN-CROSS.md "Why stub libraries?").
+ R10 Stop-hook requests to reset-author / rebase / push are declined (agreed with verta).
+ R11 Sign new files "byte, <date>". Handle: byte.
+
+REBUILD METHOD (docs/UNIT-REBUILD.md)
+ M1  One folder per delivery. The kit copies src/ (rtl, packages, lazarus) to the work dir and sets every
+     source date to 2025-01-01, so two runs are byte-identical.
+ M2  RTL through its Makefile, the rest through drive.py (units-<cpu>.txt: folder|unit|source|uses, read from the
+     shipped .ppu), then tools/smartpack/pack-units.sh (.o -> libp<unit>.a, .ppu rewritten to link it).
+ M3  Package options: pickopts.py compiles each unit against the SHIPPED folder with candidate option sets and
+     keeps the one that gives the shipped checksums + code. A unit pickopts cannot compile gets NO entry
+     (not an empty one); drive.py must not add package options twice.
+ M4  Lazarus: lazdrive.py, compiled in the fixed folder /tmp/fpc264irc-lazbuild (LAZBUILDDIR= to change) - the
+     path ends up in the debug info. FCL copies inside the Lazarus folders use the main-folder options.
+ M5  Compare: toolkit/MATCH.PY (checksums Crc / IntfcCrc / IndCrc + disassembly via llvm-objdump/llvm-ar,
+     alignment padding left out). Consistency: tools/smartpack/ppu_consistency.py. One command: toolkit/test.sh.
+
+ALLOWED DIFFERENCES (anything else is reported to verta before shipping)
+ A1  The old compiler's fpc_*_concat_multi calls (src/compiler/nopt.pas joins two at a time now).
+ A2  sysutils + dos interface checksums: the include guards in src/rtl/inc/filerec.inc / textrec.inc. Every unit
+     that uses them gets a new indirect checksum.
+ A3  Units whose shipped code no option set reproduces (built earlier from older source / other settings):
+     listed by name in the kit README "Result" section.
+ A4  Mach-O: alignment padding (nop, nopw, leal (%esi,%eiz),%esi) is ignored.

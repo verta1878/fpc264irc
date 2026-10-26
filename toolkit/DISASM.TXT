@@ -1,0 +1,22 @@
+DISASM.TXT - fpc264irc - how to look inside units and archives            byte, 2026-10-24
+
+ppudump (from this repo's source; toolkit/test.sh builds it):
+  bin/ppcx64 -n -Fubin/units/x86_64-linux -Fusrc/compiler -Fusrc/compiler/x86_64 -Fusrc/compiler/x86 \
+    -Fisrc/compiler -Fisrc/compiler/x86_64 -Fisrc/compiler/x86 -dx86_64 -FE<dir> -FU<dir> src/compiler/utils/ppudump.pp
+  <dir>/ppudump -Vh x.ppu        header: Checksum / Interface Checksum / Indirect Checksum, source file, options
+  <dir>/ppudump x.ppu            + "Uses unit: <u> (Crc: .., IntfcCrc: ..)" (interface part, then implementation)
+
+archives (.a next to the .ppu: libp<unit>.a; go32v2 <unit>.a):
+  llvm-ar t libpx.a                         member list
+  mkdir t && cd t && llvm-ar x ../libpx.a   extract (never commit the .o, RULES R5)
+  llvm-objdump -d --no-show-raw-insn --no-leading-addr *.o    code (ELF, Mach-O, COFF, a.out alike)
+  llvm-objdump -t x.o                       symbols; grep concat_multi = a unit the rebuild will change (RULES A1)
+
+compare a whole folder: toolkit/MATCH.PY <ppudump> <built> <shipped>  (padding left out: nop, nopw,
+  lea (%esi,%eiz),%esi, mov %esi,%esi ...)
+
+per-target notes
+  i386-os2     a.out objects, bin/tools/i386-emx/emx-ar packs them (pack-units.sh)
+  go32v2       COFF-GO32; archive <unit>.a (no libp prefix)
+  darwin       Mach-O; -Amacho where the GNU-style assembler cannot (G-007)
+  i8086        OMF; FPC 3.2.2 units (tools/i8086-graph-build), not compared with MATCH.PY

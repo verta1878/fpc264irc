@@ -1,0 +1,34 @@
+NEXT.TXT - fpc264irc - what to do next                                   byte, 2026-10-24
+(cold start: read this, then RULES.TXT, STATUS.TXT, the last entry of CHECKPOINT.TXT)
+
+NEXT JOB: exact source rebuild #6 = bin/units/x86_64-linux (docs/UNIT-REBUILD.md row 6)
+  - 632 units, 144 still call the old fpc_*_concat_multi helper (list in UNIT-REBUILD.md)
+  - plus the Lazarus set bin/lazarus/units/x86_64-linux (411 units, 147 old-helper) - same delivery or the next
+  - kit: extend tools/linux-build to x86_64 (build.sh already takes <i386|x86_64>; missing: units-x86_64.txt,
+    opts-x86_64.txt, laz-x86_64.txt). Make them as for i386:
+      units.py <repo> <ppudump>               > units-x86_64.txt
+      pickopts.py <repo> <ppudump> units-x86_64.txt <date-fixed src>   > opts-x86_64.txt
+      lazunits.py <repo> <ppudump> x86_64-linux > laz-x86_64.txt
+  - then add x86_64-linux to the kit() table in toolkit/test.sh and run: toolkit/test.sh x86_64-linux
+  - x86_64-linux has NO graph unit on purpose (bin/units/x86_64-linux/graph.pp = {$fatal} stub; GLOBALS G-002).
+    Keep that file in the rebuilt folder.
+  - expected differences: the concat helper units, sysutils + dos interface (include guards, GLOBALS G-004),
+    and whatever pickopts cannot reproduce - list every one before shipping.
+
+AFTER THAT (UNIT-REBUILD.md order): 7 i386-win32 (main + lcl/, 1,684 units, 434 old-helper)
+  -> 8 x86_64-win64 (proof only) -> 9 the remaining Lazarus sets. Then: port newer upstream FPC source.
+
+DELIVERY STEPS (every job, never skip):
+  1 work on copies in the sandbox ("never work on a live system"); the share copy is
+    C:\Users\owner\Desktop\Claude\share\compilers\fpc264irc
+  2 zip  -> compilers\<name>\<name>.zip  (split in parts under 30 MB; joined in ONE step: copy /b + size + MD5)
+     bat  -> compilers\<name>-run.bat    (lists every file it replaces and every file it deletes)
+  3 verta runs the bat, says "tail log" -> stage the log, check it, give commit summary + description
+  4 verta commits + pushes ("pushed") - byte NEVER runs git push
+  5 verify GitHub: git pull in /home/claude/verify5, md5sum -c CHECKSUMS.md5 + sha256sum -c CHECKSUMS.sha256,
+    then sync /home/claude/work (fetch from verify5, fast-forward)
+  6 append a CHECKPOINT.TXT entry; update STATUS.TXT; update this file
+  7 memory backup: the MEMORY\ archive pile on the share, as always (pull before push, attic rule).
+    Repo-root backup zip (byte-memory-backup-<date>.zip): ON HOLD - not in the repo until the memory is checked
+    for personal info and verta approves. Once approved: one file, renamed to today's date each session, files
+    only added (attic rule).

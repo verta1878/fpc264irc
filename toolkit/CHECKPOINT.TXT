@@ -1,0 +1,14 @@
+CHECKPOINT.TXT - fpc264irc - append-only log (newest at the bottom; never edit or remove an entry)
+
+2026-10-10  rebuild #1 i386-os2 done (kit build replaces the folder). Method written: docs/UNIT-REBUILD.md.
+2026-10-12  rebuild #2 i386-freebsd + x86_64-freebsd + Lazarus i386-freebsd done.
+2026-10-13  rebuild #3 i386-linux + Lazarus; rebuild #4 i386-go32v2 + Lazarus done.
+2026-10-15  go32v2: Move fix for DOSBox (BUG-044, knob FPC_MOVE_NOFPU, fmovgo32.inc) + fossil/serial_irq built
+            (BUG-045). docs/BUILD-KNOBS.md started. Pushed bb219126.
+2026-10-16  graph on the x86_64 targets: {$fatal} stubs for x86_64-linux/-darwin, test/x64graph, docs. Pushed 49af3f18.
+2026-10-16  rebuild #5 i386-darwin (809) + Lazarus i386-darwin (271); fv/ + univint/ folders; 12 units added
+            instead of dropping 5 orphan .rst; stub libobjc + ObjC 2 API. Pushed 5d7637e3.
+2026-10-16  docs: why the Mac link tools use stub libraries. Pushed fb4766d2 (45,363 files, checksums OK).
+2026-10-24  adopted sysop/0's 9-file toolkit standard (toolkit/). Repo-root memory backup zip ON HOLD until the
+            memory is checked for personal info (verta, 2026-10-25). toolkit/test.sh tested: i386-os2 full kit run PASS (219 same),
+            i386-darwin check-only PASS (809 + 271 same). Next: rebuild #6 x86_64-linux.

@@ -193,6 +193,18 @@ source          patches/os2-cross/binutils/ (binutils-2.30-emx.patch, build.sh, 
 result          same program images and the same LX import fixups as before (360 / 1055 in the two tests); not yet run on OS/2
 ```
 
+## Toolkit (2026-10-24)
+sysop/0's crew standard (2026-10-24), byte's copy for this repo:
+- `toolkit/` - 9 files for a cold start: `NEXT.TXT` (next job + delivery steps), `RULES.TXT` (standing rules, rebuild
+  method, allowed differences), `STATUS.TXT` (per unit folder), `CHECKPOINT.TXT` (append-only log), `MATCH.PY`
+  (built vs shipped unit folder: checksums + disassembly, PASS/FAIL), `DISASM.TXT`, `GLOBALS.TXT` (symptom -> cause ->
+  fix), `SEGMAP.TXT` (unit folder layout, `-Fu` order), `test.sh <target>` (kit build + MATCH + consistency).
+  Checked: `toolkit/test.sh i386-os2` full run PASS (219 same); i386-darwin check of the 2026-10-16 build PASS
+  (809 + 271 same).
+- byte's memory backup zip: ON HOLD. It goes in the repo root (one rolling `byte-memory-backup-<date>.zip`) only
+  after the memory has been checked for personal info and verta approves it. Until then the backups stay in the
+  share's `MEMORY\` folder, and `.gitignore` (new) keeps `/byte-memory-backup-*.zip` out of commits.
+
 ## Exact source rebuild 5: i386-darwin + Lazarus i386-darwin (2026-10-16)
 
 ```
