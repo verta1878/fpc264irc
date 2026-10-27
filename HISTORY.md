@@ -193,6 +193,22 @@ source          patches/os2-cross/binutils/ (binutils-2.30-emx.patch, build.sh, 
 result          same program images and the same LX import fixups as before (360 / 1055 in the two tests); not yet run on OS/2
 ```
 
+## Exact source rebuild 6: x86_64-linux + lcl/ + Lazarus x86_64-linux (2026-10-27)
+`tools/linux-build/build.sh x86_64` now rebuilds `bin/units/x86_64-linux` (563 units), its flat LCL copy
+`bin/units/x86_64-linux/lcl` (69, lazutils + LCL + nogui widgetset) and `bin/lazarus/units/x86_64-linux` (411) from
+`src/` with `bin/ppcx64`; two runs are byte-identical. All three folders are replaced by the kit build.
+- Most shipped x86_64 units are PIC (`-Cg`, as the Makefiles build them on x86_64); `pickopts.py` now tries it, and all
+  500 package units reproduce the shipped checksums. Seven RTL units were shipped without `-Cg`; the kit builds them
+  (and the RTL units using them) the same way.
+- Code: main + `lcl/` 479 identical, 144 old string-join helper only, 9 other (source changed since / older include
+  files); Lazarus 189 identical, 147 old helper, 61 data offsets, 14 other. Interface changes: `sysutils`, `dos`
+  (include guards), `dynlibs`, `dl` (Patch 5), `fpcylix`; `objpas`, `rtlconst`, `cthreads` came from another compiler
+  build. Details: `tools/linux-build/README.md`.
+- Removed `bin/units/x86_64-linux/system.ppu.new` and `system.o.new` (leftovers). `graph.pp` stub kept.
+- Checked: no stale units (shipped: 510 notes in the main folder; Lazarus 7 fatal, 1201 notes); every unit compiles
+  in a program; RTL/FCL, Free Vision, LCL customdrawn (Xvfb) and LCL nogui programs linked and run; `fpcres` builds
+  straight from these units.
+
 ## Toolkit (2026-10-24)
 sysop/0's crew standard (2026-10-24), byte's copy for this repo:
 - `toolkit/` - 9 files for a cold start: `NEXT.TXT` (next job + delivery steps), `RULES.TXT` (standing rules, rebuild

@@ -1,0 +1,494 @@
+# unit|options - package units the shipped x86_64-linux set built with options (pickopts.py, 2026-10-27: all 500 package units reproduce the shipped checksums, 392 also the same code). Most are -Cg (PIC), as the package Makefiles build them on x86_64.
+# RTL units (2026-10-27): the shipped cthreads, dl, dynlibs, fpintres, objpas, rtlconst, serial were built WITHOUT -Cg (the RTL Makefile adds
+# -Cg on x86_64), which changes their interface checksum; drive.py builds these and the RTL units that use them (listed
+# here with the RTL Makefile options) instead of taking them from the Makefile build. An empty option list = no options.
+acceleratorsresource|-S2h -Cg
+adler|-Cg
+apr24|-Cg
+apriconv|-Cg
+aprutil|-Cg
+apr|-Cg
+ascii85|-S2h -Cg
+asserttest|-S2h
+atk|-S2
+avl_tree|-S2h -Cg
+base64|-S2h -Cg
+bitmapresource|-S2h -Cg
+blowfish|-S2h -Cg
+bmpcomn|-S2h -Cg
+bufdataset_parser|-Cg
+bufdataset|-S2h -Cg
+bufstream|-S2h -Cg
+buildpasjpeg|-Cg
+bzip2comn|-Cg
+bzip2stream|-Cg
+bzip2|-Cg
+cachecls|-S2h -Cg
+cairo|-S2
+charset|-Cg
+chmbase|-Cg
+chmfiftimain|-Cg
+chmfilewriter|-Cg
+chmreader|-Cg
+chmsitemap|-Cg
+chmspecialfiles|-Cg
+chmtypes|-Cg
+chmwriter|-Cg
+classes|-Cg
+clipping|-S2h -Cg
+clocale|-Cg
+coffconsts|-S2h -Cg
+coffreader|-S2h -Cg
+cofftypes|-S2h -Cg
+coffwriter|-S2h -Cg
+consoletestrunner|-S2h -Cg
+contnrs|-S2h -Cg
+convutils|-Cg
+cpu|-Cg
+crc|-Cg
+cthreads|
+cursorfont|-S2
+custapp|-S2h -Cg
+customsqliteds|-Cg
+cwstring|-Cg
+dateutils|-Cg
+dbcoll|-S2h -Cg
+dbconst|-S2h -Cg
+dbf_collate|-Cg
+dbf_common|-Cg
+dbf_cursor|-Cg
+dbf_dbffile|-Cg
+dbf_fields|-Cg
+dbf_idxcur|-Cg
+dbf_idxfile|-Cg
+dbf_lang|-Cg
+dbf_memo|-Cg
+dbf_parser|-Cg
+dbf_pgfile|-Cg
+dbf_prscore|-Cg
+dbf_prsdef|-Cg
+dbf_prssupp|-Cg
+dbf_str|-Cg
+dbf_wtil|-Cg
+dbf|-Cg
+dblib|-O2
+dbugintf|-S2h -Cg
+dbugmsg|-S2h -Cg
+dbwhtml|-S2h -Cg
+db|-S2h -Cg
+dfmreader|-S2h -Cg
+digesttestreport|-S2h -Cg
+dllistdyn|-Cg
+dllist|-Cg
+dl|
+dom_html|-S2h -Cg
+dom|-S2h -Cg
+dsl|-S2
+dtdmodel|-S2h -Cg
+dynlibs|
+elfconsts|-S2h -Cg
+elfreader|-S2h -Cg
+elftypes|-S2h -Cg
+elfwriter|-S2h -Cg
+ellipses|-S2h -Cg
+eventlog|-S2h -Cg
+externalreader|-S2h -Cg
+externaltypes|-S2h -Cg
+externalwriter|-S2h -Cg
+extinterpolation|-S2h -Cg
+fasthtmlparser|-Cg
+fbadmin|-S2h -Cg
+fbeventmonitor|-S2h -Cg
+fgl|-Cg
+fmtbcd|-Cg
+fpasync|-Cg
+fpcanvas|-S2h -Cg
+fpcgcreatedbf|-S2h -Cg
+fpcgdbcoll|-S2h -Cg
+fpcgsqlconst|-S2h -Cg
+fpcgtiopf|-S2h -Cg
+fpcolhash|-S2h -Cg
+fpcrestypes|-S2h -Cg
+fpcsvexport|-S2h -Cg
+fpcunitreport|-S2h -Cg
+fpcunittests|-S2h
+fpcunit|-S2h -Cg
+fpcylix|-Cg
+fpdatadict|-S2h -Cg
+fpdbexport|-S2h -Cg
+fpdbfexport|-S2h -Cg
+fpddcodegen|-S2h -Cg
+fpdddbf|-S2h -Cg
+fpdddiff|-S2h -Cg
+fpddfb|-S2h -Cg
+fpddmysql40|-S2h -Cg
+fpddmysql41|-S2h -Cg
+fpddmysql50|-S2h -Cg
+fpddmysql51|-S2h -Cg
+fpddmysql55|-S2h -Cg
+fpddodbc|-S2h -Cg
+fpddoracle|-S2h -Cg
+fpddpopcode|-S2h -Cg
+fpddpq|-S2h -Cg
+fpddregstd|-S2h -Cg
+fpddsqldb|-S2h -Cg
+fpddsqlite3|-S2h -Cg
+fpditherer|-S2h -Cg
+fpexprpars|-S2h -Cg
+fpfixedexport|-S2h -Cg
+fpimage|-S2h -Cg
+fpimgcanv|-S2h -Cg
+fpimgcmn|-S2h -Cg
+fpimggauss|-S2h -Cg
+fpintres|
+fpjsondataset|-Cg
+fpjsonrtti|-S2h -Cg
+fpjson|-S2h -Cg
+fpmimetypes|-S2h -Cg
+fpmkunit|-Cg
+fpobserver|-S2h
+fppixlcanv|-S2h -Cg
+fpquantizer|-S2h -Cg
+fpreadbmp|-S2h -Cg
+fpreadgif|-S2h -Cg
+fpreadjpeg|-S2h -Cg
+fpreadpcx|-S2h -Cg
+fpreadpng|-S2h -Cg
+fpreadpnm|-S2h -Cg
+fpreadpsd|-S2h -Cg
+fpreadtga|-S2h -Cg
+fpreadtiff|-S2h -Cg
+fpreadxpm|-S2h -Cg
+fpreadxwd|-S2h -Cg
+fprtfexport|-S2h -Cg
+fpsimplejsonexport|-S2h -Cg
+fpsimplexmlexport|-S2h -Cg
+fpsock|-S2h -Cg
+fpsqlexport|-S2h -Cg
+fpsqlparser|-S2h -Cg
+fpsqlscanner|-S2h -Cg
+fpsqltree|-S2h -Cg
+fpstdexports|-S2h -Cg
+fptemplate|-S2h -Cg
+fptexexport|-S2h -Cg
+fptiffcmn|-S2h -Cg
+fptimer|-S2h -Cg
+fpwritebmp|-S2h -Cg
+fpwritejpeg|-S2h -Cg
+fpwritepcx|-S2h -Cg
+fpwritepng|-S2h -Cg
+fpwritepnm|-S2h -Cg
+fpwritetga|-S2h -Cg
+fpwritetiff|-S2h -Cg
+fpwritexpm|-S2h -Cg
+fpxmlxsdexport|-S2h -Cg
+freetypeh|-S2h -Cg
+freetype|-S2h -Cg
+ftfont|-S2h -Cg
+gdk2pixbuf|-S2
+gdk2x|-S2
+gdk2|-S2
+gd|-Cg
+gettext|-S2h -Cg
+glib2|-S2
+groupcursorresource|-S2h -Cg
+groupiconresource|-S2h -Cg
+groupresource|-S2h -Cg
+gtk2ext|-O2
+gtk2|-S2
+gzio|-Cg
+hermes|-S2
+htmldefs|-S2h -Cg
+htmlelements|-S2h -Cg
+htmlindexer|-Cg
+htmlutil|-Cg
+htmlwriter|-S2h -Cg
+htmwrite|-S2h -Cg
+httpd24|-Cg
+httpd|-Cg
+ibase40|-Cg
+ibase60dyn|-Cg
+ibase60|-Cg
+ibconnection|-S2h -Cg
+icocurtypes|-S2h -Cg
+iconvenc_dyn|-Cg
+iconvenc|-Cg
+idea|-S2h -Cg
+infblock|-Cg
+infcodes|-Cg
+inffast|-Cg
+inftrees|-Cg
+infutil|-Cg
+inicol|-S2h -Cg
+inifiles|-S2h -Cg
+iostream|-S2h -Cg
+itolitlsreader|-Cg
+itolitlstypes|-Cg
+itsftransform|-Cg
+jcapimin|-Cg
+jcapistd|-Cg
+jccoefct|-Cg
+jccolor|-Cg
+jcdctmgr|-Cg
+jchuff|-Cg
+jcinit|-Cg
+jcmainct|-Cg
+jcmarker|-Cg
+jcmaster|-Cg
+jcomapi|-Cg
+jconsts|-S2
+jcparam|-Cg
+jcphuff|-Cg
+jcprepct|-Cg
+jcsample|-Cg
+jctrans|-Cg
+jdapimin|-Cg
+jdapistd|-Cg
+jdatadst|-Cg
+jdatasrc|-Cg
+jdcoefct|-Cg
+jdcolor|-Cg
+jdct|-Cg
+jddctmgr|-Cg
+jdeferr|-Cg
+jdhuff|-Cg
+jdinput|-Cg
+jdmainct|-Cg
+jdmarker|-Cg
+jdmaster|-Cg
+jdmerge|-Cg
+jdphuff|-Cg
+jdpostct|-Cg
+jdsample|-Cg
+jerror|-Cg
+jfdctflt|-Cg
+jfdctfst|-Cg
+jfdctint|-Cg
+jidctflt|-Cg
+jidctfst|-Cg
+jidctint|-Cg
+jidctred|-Cg
+jinclude|-Cg
+jmemmgr|-Cg
+jmemnobs|-Cg
+jmorecfg|-Cg
+jpeglib|-Cg
+jquant1|-Cg
+jquant2|-Cg
+jsbase|-Cg
+jsonconf|-S2h -Cg
+jsonparser|-S2h -Cg
+jsonscanner|-S2h -Cg
+jsparser|-Cg
+jsscanner|-Cg
+jstree|-Cg
+jutils|-Cg
+keysym|-S2
+latextestreport|-S2h -Cg
+lazaruspackageintf|-S2
+libasync|-Cg
+libglade2|-S2
+libtar|-Cg
+lzxcompressthread|-Cg
+machoconsts|-S2h -Cg
+machoreader|-S2h -Cg
+machotypes|-S2h -Cg
+machowriter|-S2h -Cg
+macpas|-Cg
+maskutils|-S2h -Cg
+math|-Cg
+md5|-Cg
+memds|-Cg
+moneytest|-S2h
+money|-S2h
+mssqlconn|-S2h -Cg
+my4_sys|-Cg
+mysql3_comdyn|-Cg
+mysql3_com|-Cg
+mysql3_version|-Cg
+mysql3dyn|-Cg
+mysql3|-Cg
+mysql40conn|-S2h -Cg
+mysql40dyn|-Cg
+mysql40|-Cg
+mysql41conn|-S2h -Cg
+mysql41dyn|-Cg
+mysql41|-Cg
+mysql4_comdyn|-Cg
+mysql4_com|-Cg
+mysql4_version|-Cg
+mysql4conn|-S2h -Cg
+mysql4dyn|-Cg
+mysql4|-Cg
+mysql50conn|-S2h -Cg
+mysql50dyn|-Cg
+mysql50|-Cg
+mysql51conn|-S2h -Cg
+mysql51dyn|-Cg
+mysql51|-Cg
+mysql55conn|-S2h -Cg
+mysql55dyn|-Cg
+mysql55|-Cg
+mysql56conn|-S2h -Cg
+mysql56dyn|-Cg
+mysql56|-Cg
+netdb|-S2h -Cg
+ntlm|-Cg
+nullstream|-S2h -Cg
+objpas|
+ocidyn|-Cg
+oci|-Cg
+odbcconn|-S2h -Cg
+odbcsqldyn|-Cg
+odbcsql|-Cg
+oldregexpr|-S2 -Cg
+omv|-S2
+oracleconnection|-S2h -Cg
+oraoci|-Cg
+oratypes|-Cg
+pangocairo|-S2
+pango|-S2
+paradox|-Cg
+paslznonslide|-Cg
+paslzxcomp|-Cg
+paslzx|-Cg
+passrcutil|-S2h -Cg
+pastounittest|-S2h -Cg
+pastree|-S2h -Cg
+paswrite|-S2h -Cg
+paszlib|-Cg
+pcxcomn|-S2h -Cg
+pipesipc|-S2h -Cg
+pipes|-S2h -Cg
+pixtools|-S2h -Cg
+plaintestreport|-S2h -Cg
+pngcomn|-S2h -Cg
+pooledmm|-S2h -Cg
+ports|-Cg
+postgres3dyn|-Cg
+postgres3|-Cg
+postgres|-Cg
+pparser|-S2h -Cg
+pqconnection|-S2h -Cg
+pqeventmonitor|-S2h -Cg
+process|-S2h -Cg
+pscanner|-S2h -Cg
+pscanvas|-S2h -Cg
+pxlib|-O2
+regexpr|-Cg
+regex|-Cg
+registry|-S2h -Cg
+resdatastream|-S2h -Cg
+resfactory|-S2h -Cg
+resmerger|-S2h -Cg
+resolve|-S2h -Cg
+resourcetree|-S2h -Cg
+resource|-S2h -Cg
+resreader|-S2h -Cg
+reswriter|-S2h -Cg
+rtfpars|-S2h -Cg
+rtlconsts|-Cg
+rtlconst|
+rttiutils|-S2h -Cg
+sax_html|-S2h -Cg
+sax_xml|-S2h -Cg
+sax|-S2h -Cg
+sdfdata|-Cg
+serial|
+seteuid_unit|-O2
+sha1|-Cg
+simpleipc|-S2h -Cg
+sqldblib|-S2h -Cg
+sqldb|-S2h -Cg
+sqlite3backup|-S2h -Cg
+sqlite3conn|-S2h -Cg
+sqlite3db|-Cg
+sqlite3ds|-Cg
+sqlite3dyn|-Cg
+sqlite3|-Cg
+sqlitedb|-Cg
+sqliteds|-Cg
+sqlite|-Cg
+sqlscript|-S2h -Cg
+ssockets|-S2h -Cg
+stdconvs|-Cg
+streamcoll|-S2h -Cg
+streamex|-S2h -Cg
+streamio|-S2h -Cg
+stringtableresource|-S2h -Cg
+strtable|-S2h -Cg
+strutils|-Cg
+suitetest|-S2h
+symbolic|-Cg
+syncobjs|-S2h -Cg
+sysconst|-Cg
+sysutils|-Cg
+targacmn|-S2h -Cg
+testdecorator|-S2h -Cg
+testregistry|-S2h -Cg
+testreport|-S2h -Cg
+testutils|-S2h -Cg
+tlbreader|-S2h -Cg
+trees|-Cg
+types|-Cg
+typinfo|-Cg -Sg
+typ|-S2
+ubmockobject|-S2h -Cg
+ucomplex|-Cg
+unixcrypt|-Cg
+unzip51g|-Cg
+unzip|-Cg
+uriparser|-S2h -Cg
+utextmouse|-O2
+utrayit|-O2
+uuid|-Cg
+variants|-Cg
+varutils|-Cg
+versionconsts|-S2h -Cg
+versionresource|-S2h -Cg
+versiontypes|-S2h -Cg
+wformat|-S2h -Cg
+whtml|-S2h -Cg
+winpeimagereader|-S2h -Cg
+wtex|-S2h -Cg
+xatom|-S2
+xcms|-S2
+xf86dga|-S2
+xf86vmode|-S2
+xhtml|-S2h -Cg
+xinerama|-S2
+xi|-S2
+xkblib|-S2
+xkb|-S2
+xlib|-S2
+xmlcfg|-S2h -Cg
+xmlconf|-S2h -Cg
+xmldatapacketreader|-S2h -Cg
+xmliconv|-S2h -Cg
+xmlread|-S2h -Cg
+xmlreg|-S2h -Cg
+xmlreporter|-S2h -Cg
+xmlstreaming|-S2h -Cg
+xmltestreport|-S2h -Cg
+xmlutils|-S2h -Cg
+xmlwrite|-S2h -Cg
+xpath|-S2h -Cg
+xrandr|-S2
+xrender|-S2
+xresource|-S2
+xshm|-S2
+xutil|-S2
+xvlib|-S2
+xv|-S2
+xwdfile|-S2h -Cg
+x|-S2
+zbase|-Cg
+zcompres|-Cg
+zdeflate|-Cg
+zinflate|-Cg
+zipper|-Cg
+ziptypes|-Cg
+ziputils|-Cg
+zip|-Cg
+zstream|-Cg
+zuncompr|-Cg

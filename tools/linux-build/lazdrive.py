@@ -7,7 +7,8 @@ the unit path, with the options of its Lazarus package (OPTS below, from the pac
 Log per unit in <out dir>/../lazlog/, summary in <out dir>/../lazbuild.txt."""
 import os, re, sys, subprocess, shutil
 R, LIST, RU, OUT, S = [os.path.abspath(x) for x in sys.argv[1:6]]
-PC = R + '/bin/ppc386'; T = R + '/bin/tools/i386-linux'
+CPU = 'x86_64' if 'x86_64' in os.path.basename(LIST) else 'i386'      # laz-x86_64.txt / lazmain-x86_64.txt: x86_64 (2026-10-27)
+PC = R + ('/bin/ppcx64' if CPU == 'x86_64' else '/bin/ppc386'); T = R + f'/bin/tools/{CPU}-linux'
 LZ = None
 FIX = os.environ.get('LAZBUILDDIR', '/tmp/fpc264irc-lazbuild')
 # the source tree is reached through a fixed link as well (include files are recorded with their full path)
@@ -24,6 +25,18 @@ OPTS = {   # folder -> (options, include dirs relative to src/lazarus)
   'ideintf/customdrawn':     (['-MObjFPC', '-Scghi', '-O1', '-g', '-gl'] + CD, ['components/ideintf', 'components/ideintf/images']),
   'synedit/customdrawn':     (['-MObjFPC', '-Scghi', '-CR', '-O1', '-g', '-gl', '-dgc'] + CD, ['components/synedit']),
 }
+if CPU == 'x86_64':   # x86_64-linux (2026-10-27): the shipped units of these folders are PIC (-Cg), lazutils is not
+  for f in ('lcl', 'lcl/customdrawn', 'lazcontrols/customdrawn', 'ideintf/customdrawn', 'synedit/customdrawn'):
+    OPTS[f] = (OPTS[f][0] + ['-Cg'], OPTS[f][1])
+  OPTS['codetools'] = (['-MObjFPC', '-Scghi', '-O1', '-g', '-gl', '-Cg'], ['components/codetools'])
+  # the flat LCL copy in bin/units/x86_64-linux/lcl: lazutils + LCL + the nogui widgetset in one folder, no debug info
+  # FCL units a Lazarus folder holds a copy of (lazutils: avl_tree contnrs fpimage gettext pipes process uriparser):
+  # built with the options of the main-folder copy (opts-x86_64.txt), so both copies have the same checksums
+  MAINOPT = {}
+  for l in open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'opts-x86_64.txt')):
+    if l.strip() and not l.startswith('#'): u, o = l.rstrip('\n').split('|'); MAINOPT[u] = o.split()
+  OPTS['mainlcl'] = ([], ['lcl/include', 'lcl', 'lcl/forms', 'lcl/widgetset', 'lcl/nonwin32', 'lcl/interfaces/nogui',
+                          'lcl/interfaces', 'components/lazutils'])
 if os.environ.get('LAZOPTS'):          # experiments: folder=opt opt;folder=...
     for part in os.environ['LAZOPTS'].split(';'):
         f, o = part.split('='); OPTS[f] = (o.split(), OPTS[f][1])
@@ -97,7 +110,13 @@ def build(g):
     out, ok = '', True
     for k in g:      # first one builds the cycle; the rest are already in o/ unless nothing used them
         if any(os.path.splitext(f)[0].lower() == k[1] and f.endswith('.ppu') for f in os.listdir(o)): continue
-        cmd = [PC, '-Tlinux', '-Pi386', '-FD' + T, '-n', '-vw'] + OPTS[k[0]][0] + ['-FU' + o, '-Fu' + o] + \
+        uo = OPTS[k[0]][0]
+        if CPU == 'x86_64' and '/lazarus/' not in units[k][0]: uo = MAINOPT.get(k[1], [])
+        # lazutils units other folders hold a copy of (lcl: lazutf8, lazfileutils, laz2_* ...): lazutils options, so
+        # both copies have the same checksums and the folder order of a program does not matter
+        if CPU == 'x86_64' and '/components/lazutils/' in units[k][0] and k[0] not in ('lazutils', 'mainlcl'):
+            uo = OPTS['lazutils'][0]
+        cmd = [PC, '-Tlinux', '-P' + CPU, '-FD' + T, '-n', '-vw'] + uo + ['-FU' + o, '-Fu' + o] + \
               ['-Fu' + OUT + '/' + f for f in fl] + ['-Fu' + RU] + ['-Fi' + x for x in incs] + [os.path.basename(units[k][0])]
         r = subprocess.run(cmd, cwd=wd, capture_output=True, text=True, errors='replace', timeout=1800)
         out += ' '.join(cmd) + '\n' + r.stdout + r.stderr

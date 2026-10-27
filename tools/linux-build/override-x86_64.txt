@@ -1,0 +1,4 @@
+dynlibs|src/rtl/unix/dynlibs.pas
+apr|src/packages/httpd22/src/apr/apr.pas
+apriconv|src/packages/httpd22/src/apriconv/apriconv.pas
+aprutil|src/packages/httpd22/src/aprutil/aprutil.pas

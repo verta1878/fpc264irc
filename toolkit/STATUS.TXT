@@ -1,4 +1,4 @@
-STATUS.TXT - fpc264irc - per-folder status                               byte, 2026-10-24
+STATUS.TXT - fpc264irc - per-folder status                               byte, 2026-10-27
 (.ppu = files in the folder on 2026-10-24, sub-folders included; UNIT-REBUILD.md counts are from 2026-10-10)
 GitHub HEAD fb4766d2 "Docs: why the Mac link tools use stub libraries" (45,363 files)
 
@@ -12,7 +12,7 @@ i386-go32v2           235+83 lcl/ tools/go32v2-build       2026-10-13  kit build
 i386-darwin           809 (+fv/ univint/) tools/darwin-build 2026-10-16 kit build (toolkit/test.sh: 809 same)
 x86_64-darwin              789   tools/darwin64-build     2026-10-09  byte-identical rebuild
 i8086-msdos*                 -   tools/i8086-graph-build  done        FPC 3.2.2 units
-x86_64-linux         632 (lcl/) (to do)                         NEXT        144 old-helper; graph.pp = {$fatal} stub
+x86_64-linux          563 + 69 lcl/ tools/linux-build  2026-10-27  kit build; PIC (-Cg) as shipped; lcl/ = flat nogui LCL; graph.pp stub
 i386-win32 (+ lcl/)      1,538   (to do)                  -           434 old-helper
 x86_64-win64             1,039   (to do)                  -           0 old-helper, proof only
 
@@ -21,7 +21,7 @@ i386-freebsd               324   tools/freebsd-build      2026-10-12  kit build
 i386-linux                 228   tools/linux-build        2026-10-13  kit build
 i386-go32v2                138   tools/go32v2-build       2026-10-13  kit build
 i386-darwin                271   tools/darwin-build       2026-10-16  kit build (toolkit/test.sh: 271 same)
-x86_64-linux               411   (to do)                  -           147 old-helper
+x86_64-linux               411   tools/linux-build        2026-10-27  kit build (MATCH: 189 same code, 147 old helper)
 i386-win32                 304   (to do)                  -           51 old-helper (of 199 counted 10-10)
 i386-os2                   233   (not on the plan yet)    -           ask verta
 

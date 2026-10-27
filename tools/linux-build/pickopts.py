@@ -3,7 +3,8 @@
 usage: pickopts.py <repo> <ppudump> <cpu> <os> <units.txt> <date-fixed source root> > opts-<cpu>.txt
 For every unit outside src/rtl, compile it against the shipped folder with each candidate option set and keep the
 first whose .ppu has the shipped unit's checksums (interface + full). Output: unit|options|match  (match = 'crc',
-'crc+code' (also the same code), 'intf' (interface only), or 'none' - then the first set that compiles)."""
+'crc+code' (also the same code), 'intf' (interface only), 'code' (checksums differ but the code is the same: the
+shipped unit came from another compiler build - x86_64-linux, 2026-10-27), or 'none' - then the first set that compiles)."""
 import os, re, sys, subprocess, shutil, tempfile
 R, PD, CPU, OS, LIST, S = sys.argv[1:7]; R = os.path.abspath(R)
 PC = R + ('/bin/ppc386' if CPU == 'i386' else '/bin/ppcx64'); T = R + f'/bin/tools/{CPU}-{OS}'
@@ -31,7 +32,7 @@ def pkg(src):
             if mm: o += mm.group(2).split()
     return [x for x in o if x.startswith('-') and '$' not in x]
 BASE = lambda src: [[], pkg(src), ['-S2'], ['-S2h'], ['-Sh'], ['-Sd'], ['-Mobjfpc', '-Sh']]
-CANDS = lambda src: [b + o for b in BASE(src) for o in ([], ['-O2'], ['-O1'])]
+CANDS = lambda src: [b + o + g for g in ([], ['-Cg']) for b in BASE(src) for o in ([], ['-O2'], ['-O1'])]   # -Cg (PIC): x86_64-linux, 2026-10-27
 for l in open(LIST):
     n, src, uses = l.rstrip('\n').split('|')
     if src.startswith('src/rtl/'): continue
@@ -51,8 +52,9 @@ for l in open(LIST):
             got = crcs(p)
             same = code is not None and os.path.exists(w + '/o/' + n + '.o') and dis([w + '/o/' + n + '.o']) == code
             if got == want and same: best = (c, 'crc+code')
-            elif got == want and (best is None or best[1] in ('none', 'intf')): best = (c, 'crc')
-            elif got[1] == want[1] and (best is None or best[1] == 'none'): best = (c, 'intf')
+            elif got == want and (best is None or best[1] in ('none', 'intf', 'code')): best = (c, 'crc')
+            elif got[1] == want[1] and (best is None or best[1] in ('none', 'code')): best = (c, 'intf')
+            elif same and (best is None or best[1] == 'none'): best = (c, 'code')   # other compiler: checksums differ, code the same (2026-10-27)
             elif best is None: best = (c, 'none')
         shutil.rmtree(w)
         if best and best[1] == 'crc+code': break

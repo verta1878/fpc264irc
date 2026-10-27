@@ -9,7 +9,7 @@ builds. Log per unit in <out dir>/../log/<unit>.log, summary in <out dir>/../bui
 import os, re, sys, subprocess, shutil, glob
 R, CPU, LIST, RU, OUT, S = sys.argv[1], sys.argv[2], *[os.path.abspath(x) for x in sys.argv[3:7]]
 R = os.path.abspath(R); XOPT = sys.argv[7:]; OS = 'linux'
-RTL = S + '/rtl'; PC = R + ('/bin/ppc386' if CPU == 'i386' else '/bin/ppcx64'); T = R + '/bin/tools/i386-linux'
+RTL = S + '/rtl'; PC = R + ('/bin/ppc386' if CPU == 'i386' else '/bin/ppcx64'); T = R + f'/bin/tools/{CPU}-linux'   # x86_64: bin/tools/x86_64-linux (2026-10-27)
 LOG = os.path.dirname(OUT) + '/log'; os.makedirs(LOG, exist_ok=True); os.makedirs(OUT, exist_ok=True)
 units = []
 for l in open(LIST):
@@ -48,6 +48,7 @@ have = {}
 for p in glob.glob(RU + '/*.ppu'):
     n = os.path.basename(p)[:-4]
     if n.lower() not in {u[0] for u in units}: continue        # only the units the shipped folder has
+    if n.lower() in OPTFILE: continue      # an RTL unit listed in opts-<cpu>.txt: built below with those options (x86_64)
     for ext in ('.ppu', '.o', '.rst'):
         if os.path.exists(RU + '/' + n + ext): shutil.copy(RU + '/' + n + ext, OUT + '/' + n + ext)
     have[n.lower()] = True

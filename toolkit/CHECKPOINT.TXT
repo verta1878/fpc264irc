@@ -12,3 +12,8 @@ CHECKPOINT.TXT - fpc264irc - append-only log (newest at the bottom; never edit o
 2026-10-24  adopted sysop/0's 9-file toolkit standard (toolkit/). Repo-root memory backup zip ON HOLD until the
             memory is checked for personal info (verta, 2026-10-25). toolkit/test.sh tested: i386-os2 full kit run PASS (219 same),
             i386-darwin check-only PASS (809 + 271 same). Next: rebuild #6 x86_64-linux.
+2026-10-25  toolkit pushed (28210694) + .gitignore /byte-memory-backup-*.zip (repo-root memory zip on hold until
+            the memory is checked for personal info).
+2026-10-27  rebuild #6 x86_64-linux (563) + lcl/ (69, flat nogui LCL) + Lazarus x86_64-linux (411). Found: shipped
+            x86_64 units are PIC (-Cg) except 7 RTL units; pickopts/drive/lazdrive/lazunits extended. All 500 package
+            units reproduce the shipped checksums. Removed system.ppu.new + system.o.new (verta ok). Next: i386-win32.

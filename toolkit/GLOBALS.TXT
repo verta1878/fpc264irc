@@ -36,3 +36,12 @@ G-009  SYMPTOM  Wine dry-run of a delivery bat fails: tar extracts nothing / cer
 G-010  SYMPTOM  verify after "pushed" shows the old HEAD
        CAUSE    push not on GitHub yet
        FIX      wait and re-check; never assume
+G-011  SYMPTOM  x86_64 rebuild: every package unit has other checksums than the shipped one, though the code is the same
+       CAUSE    the shipped x86_64-linux units were built with -Cg (PIC; the Makefiles add it on x86_64). -Cg adds
+                symbols, so the checksums differ without it. 7 RTL units were built without -Cg.
+       FIX      pickopts.py tries every option set with and without -Cg; RTL units with other options are listed in
+                opts-<cpu>.txt and drive.py builds them (tools/linux-build/README.md "x86_64-linux")
+G-012  SYMPTOM  "Recompiling XMLRead, checksum changed for URIParser" building Lazarus units
+       CAUSE    a Lazarus folder (lazutils) holds its own copy of an FCL unit, built with other options than the main
+                folder's, and comes first on the unit path
+       FIX      build such copies with the main-folder options (lazdrive.py, x86_64) - both copies get the same checksums
