@@ -45,3 +45,9 @@ G-012  SYMPTOM  "Recompiling XMLRead, checksum changed for URIParser" building L
        CAUSE    a Lazarus folder (lazutils) holds its own copy of an FCL unit, built with other options than the main
                 folder's, and comes first on the unit path
        FIX      build such copies with the main-folder options (lazdrive.py, x86_64) - both copies get the same checksums
+G-013  SYMPTOM  win32 rebuild not byte-identical: libimp<unit>.a differ between two runs
+       CAUSE    the import libraries the win32 compiler writes carry the build time in every member header
+       FIX      tools/win32-build/ardate.py sets the member dates to 2025-01-01 after packing
+G-014  SYMPTOM  "Identifier not found GetProcAddress" in openssl (win32)
+       CAUSE    sysop/0's minimal win32 dynlibs lacked the Patch 5 names
+       FIX      added 2026-10-27 to src/rtl/win/dynlibs.pas (GetProcAddress, FreeLibrary)

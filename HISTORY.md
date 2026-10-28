@@ -193,6 +193,17 @@ source          patches/os2-cross/binutils/ (binutils-2.30-emx.patch, build.sh, 
 result          same program images and the same LX import fixups as before (360 / 1055 in the two tests); not yet run on OS/2
 ```
 
+## Exact source rebuild 7a: i386-win32 main folder (2026-10-27)
+`tools/win32-build/build.sh` rebuilds `bin/units/i386-win32` (922 units + 151 import libraries) from `src/` with
+`bin/ppc386`; two runs are byte-identical. The folder is replaced by the kit build; `lcl/` and the Lazarus set follow.
+- `system`: no longer a locked binary (BUG-001/029): the source build has the same checksums and the same code except
+  two routines (old string-join helper only).
+- `src/rtl/win/dynlibs.pas`: + `GetProcAddress`, `FreeLibrary` (as Patch 5 on unix) - `openssl` builds again.
+- Checksums the same as shipped for 904 of 922 units; code: 751 identical, 168 old helper only, 2 data offsets,
+  3 other (`dynlibs`, `character`, `scan`). Details: `tools/win32-build/README.md`.
+- Checked: no stale units (shipped: 103 notes); every unit compiles in a program; console, thread, heap, exception
+  and DLL programs run under Wine.
+
 ## Exact source rebuild 6: x86_64-linux + lcl/ + Lazarus x86_64-linux (2026-10-27)
 `tools/linux-build/build.sh x86_64` now rebuilds `bin/units/x86_64-linux` (563 units), its flat LCL copy
 `bin/units/x86_64-linux/lcl` (69, lazutils + LCL + nogui widgetset) and `bin/lazarus/units/x86_64-linux` (411) from

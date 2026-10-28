@@ -1,18 +1,16 @@
 NEXT.TXT - fpc264irc - what to do next                                   byte, 2026-10-27
 (cold start: read this, then RULES.TXT, STATUS.TXT, the last entry of CHECKPOINT.TXT)
 
-NEXT JOB: exact source rebuild #7 = bin/units/i386-win32 (main + lcl/) (docs/UNIT-REBUILD.md row 7)
-  - 1,684 units, 434 still call the old fpc_*_concat_multi helper (list in UNIT-REBUILD.md)
-  - no win32 kit yet: start from tools/linux-build (units.py / pickopts.py / drive.py / lazunits.py / lazdrive.py),
-    target win32, tools in bin/tools/i386-win32. Check first how the shipped units were built (options, PIC-like
-    surprises: on x86_64-linux it was -Cg - see tools/linux-build/README.md "x86_64-linux").
-  - main lcl/ there is an LCL copy too (x86_64-linux: a flat nogui set, built with lazmain-x86_64.txt) - look at
-    what it is before building it.
-  - Lazarus i386-win32 (bin/lazarus/units/i386-win32, 51 old-helper units) belongs with it or right after.
-  - add i386-win32 to the kit() table in toolkit/test.sh; run toolkit/test.sh i386-win32
-  - expected differences: concat helper units, sysutils + dos interface (include guards, GLOBALS G-004);
-    list every other one before shipping.
+NEXT JOB: rebuild #7 part b = bin/units/i386-win32/lcl (616 units: a full Lazarus IDE + LCL build) and the Lazarus
+  set bin/lazarus/units/i386-win32 (304: lazutils, lcl, lcl/win32, lazcontrols/win32, ideintf/win32, synedit/win32;
+  105 units of the last three have a .ppu but no code - they cannot link today).
+  - kit: tools/win32-build (main folder done). Add lazunits.py / lazdrive.py from tools/linux-build (x86_64 version:
+    CPU-aware, LAZDIR / LAZWS for a copy folder, FCL/lazutils copies built with their original's options).
+  - look first at what lcl/ is: which sources (IDE: main, sourceeditor, codetools ...), which widgetset (win32),
+    which options; lcl/ has .res/.lfm files too.
+  - then toolkit/test.sh i386-win32 (it reports lcl/ MISSING until part b is in).
 
+DONE 2026-10-27: #7a i386-win32 main folder (tools/win32-build).
 DONE 2026-10-27: #6 x86_64-linux + lcl/ + Lazarus x86_64-linux (tools/linux-build build.sh x86_64).
 
 AFTER THAT (UNIT-REBUILD.md order): 8 x86_64-win64 (proof only) -> 9 the remaining Lazarus sets.

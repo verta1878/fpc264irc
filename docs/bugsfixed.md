@@ -22,6 +22,10 @@ Legend:
 **Fix:** Win32 system unit locked to r3's system.o (614KB).
 **Verified:** `bin/units/i386-win32/system.o` exists, 613,988 bytes.
 Codepage patches deferred to Phase 6 (unstable branch).
+**2026-10-27 (byte):** `system` built from today's source has the same checksums as the locked object and the same
+code except `Str_Real` and `DoAssign(TypedFile)` (old string-join helper only) - the fix is in the source. The kit
+(`tools/win32-build`) builds it from source again; tested under Wine (threads, heap, exceptions, DLL), not yet on
+Windows 11.
 
 ### BUG-005: windres Removed from Compiler Source — ✅ FIXED
 **Fix:** `rescmn.pas` rcbin set to empty string. windres lives in downstream repos.

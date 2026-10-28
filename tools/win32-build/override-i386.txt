@@ -1,0 +1,2 @@
+suiteconfig|src/packages/fcl-fpcunit/src/demo/consolerunner/suiteconfig.pp
+windows|src/rtl/win32/windows.pp

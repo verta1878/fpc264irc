@@ -5,6 +5,8 @@
   FPC 2.6.4 overloaded function limitation.
 
   GPLv3 — the crew 4free — sysop/0
+  2026-10-27 byte: + GetProcAddress / FreeLibrary, the names Patch 5 added to the
+  unix dynlibs (openssl and gl call them)
 }
 unit dynlibs;
 
@@ -24,6 +26,8 @@ const
 function LoadLibrary(const Name: AnsiString): TLibHandle;
 function UnloadLibrary(Lib: TLibHandle): Boolean;
 function GetProcedureAddress(Lib: TLibHandle; const ProcName: AnsiString): Pointer;
+function GetProcAddress(Lib: TLibHandle; const ProcName: AnsiString): Pointer;
+function FreeLibrary(Lib: TLibHandle): Boolean;
 
 implementation
 
@@ -40,6 +44,16 @@ end;
 function GetProcedureAddress(Lib: TLibHandle; const ProcName: AnsiString): Pointer;
 begin
   Result := Windows.GetProcAddress(Lib, PChar(ProcName));
+end;
+
+function GetProcAddress(Lib: TLibHandle; const ProcName: AnsiString): Pointer;
+begin
+  Result := GetProcedureAddress(Lib, ProcName);
+end;
+
+function FreeLibrary(Lib: TLibHandle): Boolean;
+begin
+  Result := UnloadLibrary(Lib);
 end;
 
 end.

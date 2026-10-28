@@ -1,0 +1,75 @@
+# unit|options - the options the shipped i386-win32 units were built with (pickopts.py, 2026-10-27: 830 of 850 package units reproduce the shipped checksums, 688 of them also the same code; the others: README.md). system: as the RTL Makefile builds it. Units not listed: no options.
+adler|-O2 -Ur
+app|-O2 -Ur
+asciitab|-O2 -Ur
+buildfv|-Ur
+buildjwa|-Ur
+colortxt|-O2 -Ur
+dbcoll|-S2h
+dbugintf|-O2 -Ur
+dialogs|-O2 -Ur
+digesttestreport|-Ur
+drivers|-O2 -Ur
+dsl|-O2 -Ur
+editors|-O2 -Ur
+fpcunit|-Ur
+fpextres|-Sg
+fpwidestring|-O2
+fvcommon|-O2 -Ur
+fvconsts|-Ur
+gadgets|-O2 -Ur
+globtype|-di386
+gzio|-Ur
+histlist|-O2 -Ur
+infblock|-O2 -Ur
+infcodes|-O2 -Ur
+inffast|-O2 -Ur
+inftrees|-O2 -Ur
+infutil|-O2 -Ur
+inplong|-O2 -Ur
+jwaactiveds|-Ur
+jwaadshlp|-Ur
+jwaadsprop|-Ur
+jwaadstlb|-O2 -Ur
+jwadsadmin|-Ur
+jwadsclient|-Ur
+jwantquery|-Ur
+jwavista|-Ur
+jwawindows|-Ur
+jwawinternl|-Ur
+lexbase|-Sg
+lexmsgs|-Sg
+mdt|-O2 -Ur
+memory|-O2 -Ur
+menus|-O2 -Ur
+msgbox|-O2 -Ur
+omv|-O2 -Ur
+outline|-O2 -Ur
+paszlib|-O2 -Ur
+pipes|-O2
+scan|-Sd
+singleinstance|-O2 -Ur
+sle|-O2 -Ur
+spl|-O2 -Ur
+statuses|-O2 -Ur
+stddlg|-O2 -Ur
+sysmsg|-O2 -Ur
+system|-Us -Sg
+tabs|-O2 -Ur
+timeddlg|-O2 -Ur
+time|-O2 -Ur
+trees|-O2 -Ur
+typ|-O2 -Ur
+unzip|-O2 -Ur
+validate|-O2 -Ur
+views|-O2 -Ur
+xmliconv_windows|-S2h -O2 -Ur
+xmlutils|-O2 -Ur
+yaccbase|-Sg
+yaccmsgs|-Sg
+zbase|-O2 -Ur
+zcompres|-O2 -Ur
+zdeflate|-O2 -Ur
+zinflate|-O2 -Ur
+zip|-O2 -Ur
+zuncompr|-O2 -Ur
