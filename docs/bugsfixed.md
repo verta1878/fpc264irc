@@ -231,6 +231,9 @@ FPC 2.6.4's ObjC bridge has incomplete protocol support. Workaround: use Carbon 
 ### BUG-010: paswstring.pas Codepage Signatures — ✅ FIXED
 **Fix:** Added `cp:TSystemCodePage` to 4 procedures.
 **Verified:** paswstring.pas lines 35, 56, 300, 321: all have `cp:TSystemCodePage`.
+**2026-10-28 (byte):** the 4 procedures still had `{$IFDEF MSWINDOWS}` branches without `cp` (for an older win32
+`system`); the win32 `system` is codepage-aware too, so they did not compile for win32. Branches removed in both
+copies (`src/lazarus/components/lazutils`, `src/lazarus/lazutils`); Lazarus i386-win32 builds `paswstring` again.
 
 ### BUG-041 (doc): dl.o missing stat.inc include path — ✅ FIXED
 **Fix:** Added `-Fisrc/rtl/linux/i386` to compile options.

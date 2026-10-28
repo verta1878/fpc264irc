@@ -1,15 +1,12 @@
 NEXT.TXT - fpc264irc - what to do next                                   byte, 2026-10-27
 (cold start: read this, then RULES.TXT, STATUS.TXT, the last entry of CHECKPOINT.TXT)
 
-NEXT JOB: rebuild #7 part b = bin/units/i386-win32/lcl (616 units: a full Lazarus IDE + LCL build) and the Lazarus
-  set bin/lazarus/units/i386-win32 (304: lazutils, lcl, lcl/win32, lazcontrols/win32, ideintf/win32, synedit/win32;
-  105 units of the last three have a .ppu but no code - they cannot link today).
-  - kit: tools/win32-build (main folder done). Add lazunits.py / lazdrive.py from tools/linux-build (x86_64 version:
-    CPU-aware, LAZDIR / LAZWS for a copy folder, FCL/lazutils copies built with their original's options).
-  - look first at what lcl/ is: which sources (IDE: main, sourceeditor, codetools ...), which widgetset (win32),
-    which options; lcl/ has .res/.lfm files too.
-  - then toolkit/test.sh i386-win32 (it reports lcl/ MISSING until part b is in).
+NEXT JOB: rebuild #8 = bin/units/x86_64-win64 (1,039 units, 0 old-helper - proof only: show the kit rebuilds it)
+  - start from tools/win32-build (win64: ppcx64 -Twin64, bin/tools for win64 - check what exists; import libraries,
+    ardate.py; copy src with cp -rL)
+  - then #9: the Lazarus sets left (i386-os2 233, not on the plan yet - ask verta).
 
+DONE 2026-10-28: #7b i386-win32 lcl/ (616) + Lazarus i386-win32 (304); main folder re-dated (cp -rL).
 DONE 2026-10-27: #7a i386-win32 main folder (tools/win32-build).
 DONE 2026-10-27: #6 x86_64-linux + lcl/ + Lazarus x86_64-linux (tools/linux-build build.sh x86_64).
 

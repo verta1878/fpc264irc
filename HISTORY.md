@@ -193,6 +193,19 @@ source          patches/os2-cross/binutils/ (binutils-2.30-emx.patch, build.sh, 
 result          same program images and the same LX import fixups as before (360 / 1055 in the two tests); not yet run on OS/2
 ```
 
+## Exact source rebuild 7b: i386-win32 lcl/ + Lazarus i386-win32 (2026-10-28)
+`tools/win32-build/build.sh` now also rebuilds `bin/units/i386-win32/lcl` (616 units: a whole Lazarus IDE build in one
+folder) and `bin/lazarus/units/i386-win32` (304); two runs are byte-identical.
+- `lcl/`: all 616 have the shipped checksums; code 347 identical, 269 old string-join helper only.
+- Lazarus i386-win32: rebuilt against the new units (the shipped set recorded units the folders did not have:
+  34 fatal, 1409 notes before; now only the FV/LCL `tabs` clash); the 105 lazcontrols / ideintf / synedit units that
+  had no code have their archives now.
+- `paswstring.pas` (both lazutils copies): the `{$IFDEF MSWINDOWS}` codepage-less signatures removed (BUG-010 note).
+- Main folder re-dated: the 2026-10-27 build recorded real source dates for units outside `src/rtl` (sandbox links);
+  `build.sh` copies with `cp -rL` now - 851 files change bytes, same checksums and code.
+- Checked: every `lcl/` and Lazarus unit compiles in a program; an LCL win32 program links with both sets (under Wine
+  it stops with "Class does not exist", the same with the shipped units). Details: `tools/win32-build/README.md`.
+
 ## Exact source rebuild 7a: i386-win32 main folder (2026-10-27)
 `tools/win32-build/build.sh` rebuilds `bin/units/i386-win32` (922 units + 151 import libraries) from `src/` with
 `bin/ppc386`; two runs are byte-identical. The folder is replaced by the kit build; `lcl/` and the Lazarus set follow.

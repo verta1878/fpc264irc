@@ -51,3 +51,12 @@ G-013  SYMPTOM  win32 rebuild not byte-identical: libimp<unit>.a differ between 
 G-014  SYMPTOM  "Identifier not found GetProcAddress" in openssl (win32)
        CAUSE    sysop/0's minimal win32 dynlibs lacked the Patch 5 names
        FIX      added 2026-10-27 to src/rtl/win/dynlibs.pas (GetProcAddress, FreeLibrary)
+G-015  SYMPTOM  two kit builds on different days differ in fpcmmain (win32 main folder)
+       CAUSE    src/utils/fpcm/fpcmmain.pp puts {$i %DATE} in its title; the compiler is static, faketime does not help
+       FIX      none - compare builds of the same day, or accept the one date string
+G-016  SYMPTOM  rebuilt units record real source dates instead of 2025-01-01
+       CAUSE    a source folder reached through a symlink: cp -r copies the link, the date fix touches only the link
+       FIX      copy with cp -rL (tools/win32-build/build.sh, 2026-10-28)
+G-017  SYMPTOM  LCL win32 program under Wine: "Failed to create win32 control, error 1411: Class does not exist"
+       CAUSE    not found yet - the same with the shipped units; a plain RegisterClass/CreateWindow program works
+       FIX      open; test on real Windows

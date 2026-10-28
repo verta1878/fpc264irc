@@ -20,7 +20,7 @@ kit() {  # target -> "kit dir|kit args|lazarus folder (or -)|MATCH options"
     i386-linux)     echo "linux-build|i386|i386-linux|" ;;
     x86_64-linux)   echo "linux-build|x86_64|x86_64-linux|" ;;
     i386-go32v2)    echo "go32v2-build|i386|i386-go32v2|" ;;
-    i386-win32)     echo "win32-build||-|" ;;
+    i386-win32)     echo "win32-build||i386-win32|" ;;
     i386-darwin)    echo "darwin-build||i386-darwin|" ;;
     x86_64-darwin)  echo "darwin64-build||-|" ;;
     *) echo "" ;;
@@ -30,7 +30,7 @@ if [ -z "$T" ] || [ "$T" = list ]; then
   echo "targets with a kit (docs/UNIT-REBUILD.md):"
   for t in i386-os2 i386-freebsd x86_64-freebsd i386-linux x86_64-linux i386-go32v2 i386-win32 i386-darwin x86_64-darwin; do
     echo "  $t  -> tools/$(kit $t | cut -d'|' -f1)"; done
-  echo "no kit yet: i386-win32 lcl/ + Lazarus (next), x86_64-win64, the other Lazarus sets. i8086: tools/i8086-graph-build."
+  echo "no kit yet: x86_64-win64 (next, proof only), Lazarus i386-os2. i8086: tools/i8086-graph-build."
   exit 0
 fi
 K=$(kit "$T")

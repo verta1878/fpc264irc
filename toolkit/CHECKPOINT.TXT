@@ -21,3 +21,8 @@ CHECKPOINT.TXT - fpc264irc - append-only log (newest at the bottom; never edit o
             again: same checksums as the locked BUG-001 object, code differs only by the old helper (verta: 1a).
             src/rtl/win/dynlibs.pas + GetProcAddress/FreeLibrary so openssl builds (verta: 2a). Wine: threads,
             heap, exceptions, DLL OK. Next: lcl/ (616) + Lazarus i386-win32 (304).
+2026-10-28  rebuild #7b i386-win32 lcl/ (616, all same checksums) + Lazarus i386-win32 (304). paswstring MSWINDOWS
+            branches removed (did not compile for the codepage-aware win32 system). Found: the 7a main folder had
+            real source dates for units outside src/rtl (sandbox links + cp -r) - build.sh uses cp -rL, main re-dated
+            (851 files, same checksums/code). fpcmmain carries the build date ({$i %DATE}). Wine: LCL win32 GUI stops
+            with "Class does not exist" - same with the shipped units. Next: x86_64-win64.
