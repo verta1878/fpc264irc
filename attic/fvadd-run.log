@@ -1,0 +1,12 @@
+fpc264irc fvadd Sat 11/14/2026 13:20:21.42 
+CHECK zip MD5 OK f46603303b7bdfc50ad99db6bc0ee359 
+UNZIPPED fpc264irc-fvadd-2026-10-30.zip 
+NEW Free Vision: i386-freebsd 53, x86_64-freebsd 61, i8086-msdos-medium/large/huge 52 each; tools\freebsd-build\units-extra-*.txt 
+REPLACED tools\freebsd-build\drive.py README.md tools\i8086-graph-build\build-rtl.sh README.md HISTORY.md CHECKSUMS toolkit\STATUS.TXT CHECKPOINT.TXT SEGMAP.TXT 
+CHECK bin\units\i386-freebsd Free Vision 24 of 24 
+CHECK bin\units\x86_64-freebsd Free Vision 24 of 24 
+CHECK bin\units\i8086-msdos-medium Free Vision 24 of 24 
+CHECK bin\units\i8086-msdos-large Free Vision 24 of 24 
+CHECK bin\units\i8086-msdos-huge Free Vision 24 of 24 
+DELETED tools\smartpack\fvadd.ok marker 
+DONE 
