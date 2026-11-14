@@ -23,7 +23,7 @@ named the same 37 units the kit rebuild changed).
 | 6 | x86_64-linux (+ `lcl/`, + Lazarus x86_64-linux) | `tools/linux-build` | 563 + 69 (+ 411) | 144 (+ 147) | **Done 2026-10-27** - all three folders replaced by the kit build; most units are PIC (`-Cg`), as shipped; `lcl/` = flat LCL copy with the nogui widgetset; `sysutils`/`dos`/`dynlibs`/`dl` interface changes, `objpas`/`rtlconst`/`cthreads` came from another compiler build |
 | 7 | i386-win32 (main + lcl/, + Lazarus i386-win32) | `tools/win32-build` | 922 + 616 lcl/ (+ 304) | 434 (+ 51) | **Done 2026-10-28** - all three folders kit builds; main 2026-10-27 (`system` from source again, `dynlibs` + GetProcAddress/FreeLibrary), main re-dated + `lcl/` (IDE build, all 616 same checksums) + Lazarus (`paswstring` codepage signatures on win32 too) 2026-10-28 |
 | 8 | x86_64-win64 | to do | 1,039 | 0 | next (proof only) |
-| 9 | Lazarus unit sets (`bin/lazarus/units`) | to do (i386-freebsd done with #2, i386-linux #3, i386-go32v2 #4) | 1,201 | 358 | last |
+| 9 | Lazarus unit sets (`bin/lazarus/units`) | done with their main folders: i386-freebsd #2, i386-linux #3, i386-go32v2 #4, i386-darwin #5, x86_64-linux #6, i386-win32 #7; `paswstring` refreshed in the first five 2026-11-14; to do: i386-os2 | 1,201 | 358 | last |
 | - | x86_64-darwin | `tools/darwin64-build` | 789 | 0 | done 2026-10-09 (byte-identical rebuild) |
 | - | i8086-msdos* | `tools/i8086-graph-build` | | n/a (FPC 3.2.2) | done |
 

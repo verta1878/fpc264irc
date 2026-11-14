@@ -13,6 +13,8 @@ LOG = os.path.dirname(OUT) + '/log'; os.makedirs(LOG, exist_ok=True); os.makedir
 units = []
 for l in open(LIST):
     sub, n, src, uses = l.rstrip('\n').split('|')
+    if src.startswith('tools/darwin-build/patched/'):   # build.sh copies it into the date-fixed src (byte, 2026-11-14:
+        src = 'src/rtl/inc/' + os.path.basename(src)     # from the kit folder the .ppu recorded the checkout date)
     units.append((sub, n, S + src[3:] if src.startswith('src/') else R + '/' + src, [u for u in uses.split(',') if u]))
 RTLDIRS = [RTL + x for x in ('/inc', '/i386', '/x86', '/unix', '/bsd', '/bsd/i386', '/darwin/i386', '/darwin', '/objpas',
            '/objpas/sysutils', '/objpas/classes', '/objpas/fgl')]

@@ -18,11 +18,11 @@ i386-win32 lcl/           616   tools/win32-build        2026-10-28  kit build; 
 x86_64-win64             1,039   (to do)                  -           0 old-helper, proof only
 
 bin/lazarus/units/<target>
-i386-freebsd               324   tools/freebsd-build      2026-10-12  kit build
-i386-linux                 228   tools/linux-build        2026-10-13  kit build
-i386-go32v2                138   tools/go32v2-build       2026-10-13  kit build
-i386-darwin                271   tools/darwin-build       2026-10-16  kit build (toolkit/test.sh: 271 same)
-x86_64-linux               411   tools/linux-build        2026-10-27  kit build (MATCH: 189 same code, 147 old helper)
+i386-freebsd               324   tools/freebsd-build      2026-10-12  kit build; paswstring 2026-11-14
+i386-linux                 228   tools/linux-build        2026-10-13  kit build; paswstring 2026-11-14
+i386-go32v2                138   tools/go32v2-build       2026-10-13  kit build; paswstring 2026-11-14
+i386-darwin                271   tools/darwin-build       2026-10-16  kit build; paswstring 2026-11-14
+x86_64-linux               411   tools/linux-build        2026-10-27  kit build (MATCH: 189 same code, 147 old helper); paswstring 2026-11-14
 i386-win32                 304   tools/win32-build        2026-10-28  kit build; paswstring fixed for win32; 105 units got their code
 i386-os2                   233   (not on the plan yet)    -           ask verta
 

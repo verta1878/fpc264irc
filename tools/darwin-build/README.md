@@ -13,7 +13,7 @@ Lazarus compiled in `/tmp/fpc264irc-lazbuild`, `LAZBUILDDIR=` to change).
 
 | Step | What |
 |---|---|
-| 1 | copy `src/rtl`, `src/packages`, `src/lazarus`, fix the dates; `patched/dynlibs.pas` (as `tools/darwin64-build`) |
+| 1 | copy `src/rtl`, `src/packages`, `src/lazarus`, fix the dates; `patched/dynlibs.pas` (as `tools/darwin64-build`) is copied to `src/rtl/inc` and built from there (2026-11-14: built from the kit folder it recorded the checkout date) |
 | 2 | RTL Makefile (`rtl/darwin`, `CPU_TARGET=i386`) with `bin/tools/i386-darwin` — 60 units |
 | 3 | `drive.py`: the other units of `units.txt`, options per unit from `opts-i386.txt` |
 | 4 | `tools/smartpack/pack-units.sh` (main folder, `fv/`, `univint/`) |

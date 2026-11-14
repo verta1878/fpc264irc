@@ -193,6 +193,18 @@ source          patches/os2-cross/binutils/ (binutils-2.30-emx.patch, build.sh, 
 result          same program images and the same LX import fixups as before (360 / 1055 in the two tests); not yet run on OS/2
 ```
 
+## paswstring refresh, darwin dynlibs date, docs (2026-11-14)
+- `paswstring.ppu` in the Lazarus sets i386-linux, x86_64-linux (`lazutils/` + `lcl/customdrawn/`), i386-freebsd,
+  i386-go32v2, i386-darwin: rebuilt from the `paswstring.pas` fixed on 2026-10-28 (line info only; same size,
+  checksums and `.a`). Each kit's full rebuild matched every other file of these sets and their main folders.
+  i386-os2 is not done: that Lazarus set was never rebuilt (no `.a` files).
+- `tools/darwin-build/drive.py`: `dynlibs` is compiled from the date-fixed copy in the build's `src/rtl/inc`, not from
+  `tools/darwin-build/patched/` - from there the `.ppu` recorded the checkout date, so a rebuild was not
+  byte-identical. `bin/units/i386-darwin/dynlibs.ppu` rebuilt (date 2025-01-01; same checksums and code).
+- README: unit counts per target, FreeBSD x86_64 row, Free Vision in the i8086 section; docs/UNIT-REBUILD.md row 9.
+- To `attic/`: `docs/PATCH6-MZ-LINKER-HANDOFF.md` (Patch 6 applied), `docs/PHASE-RTL-REBUILD.md` (replaced by
+  docs/UNIT-REBUILD.md).
+
 ## Free Vision on FreeBSD and the i8086 memory models (2026-10-30)
 - `bin/units/i386-freebsd` (+24) and `bin/units/x86_64-freebsd` (+24, and `video`, `keyboard`, `mouse`, `objects` it
   needs): built by `tools/freebsd-build` (`units-extra-<cpu>.txt`); the existing units are byte-identical.

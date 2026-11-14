@@ -29,3 +29,7 @@ CHECKPOINT.TXT - fpc264irc - append-only log (newest at the bottom; never edit o
 2026-10-30  Free Vision added where it was missing: i386-freebsd (24), x86_64-freebsd (24 + video/keyboard/mouse/
             objects), i8086-msdos-medium/large/huge (24 each, FPC 3.2.2 packages/fv). Existing files untouched.
             tiny/small/compact: cannot hold a FV program (64K code). DOSBox test OK in medium/large/huge.
+2026-11-14  paswstring.ppu refreshed in 5 Lazarus sets (linux i386/x86_64, freebsd, go32v2, darwin; line info only).
+            darwin-build drive.py: dynlibs from the date-fixed copy (recorded the checkout date) - dynlibs.ppu
+            rebuilt. README counts + FV, UNIT-REBUILD row 9; PATCH6 handoff + PHASE-RTL-REBUILD to attic/.
+            Next: x86_64-win64 (#8).

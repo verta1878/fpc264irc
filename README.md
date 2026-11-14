@@ -13,15 +13,16 @@ Lazarus IDE with LCL widgetset.
 
 | Target | Compiler | PPUs | Usage |
 |--------|----------|------|-------|
-| Win64 | ppcx64 | 1,012 | `ppcx64 -Twin64 myapp.pas` |
-| Win32 (default) | ppc386 | 1,521 | `ppc386 -Twin32 myapp.pas` |
-| Win9x ANSI | ppc386 | 1,521 | `ppc386 -Twin32 myapp.pas` (default=ANSI) |
-| Linux x86_64 | ppcx64 | 529 | `ppcx64 -Tlinux myapp.pas` |
-| Linux i386 | ppc386 | 252 | `ppc386 -Tlinux myapp.pas` |
-| DOS (go32v2) | ppc386 | 308 | `ppc386 -Tgo32v2 myapp.pas` |
-| DOS 16-bit | ppcross8086 | 113 | `ppcross8086 -Tmsdos myapp.pas` |
-| FreeBSD i386 | ppc386 | 160 | `ppc386 -Tfreebsd myapp.pas` |
-| macOS i386 (10.4 – 10.14) | ppc386 | 795 | `ppc386 -Tdarwin -FDbin/tools/i386-darwin -XRbin/tools/i386-darwin/MacOSX10.6.sdk myapp.pas` |
+| Win64 | ppcx64 | 1,039 | `ppcx64 -Twin64 myapp.pas` |
+| Win32 (default) | ppc386 | 1,538 | `ppc386 -Twin32 myapp.pas` |
+| Win9x ANSI | ppc386 | 1,538 | `ppc386 -Twin32 myapp.pas` (default=ANSI) |
+| Linux x86_64 | ppcx64 | 632 | `ppcx64 -Tlinux myapp.pas` |
+| Linux i386 | ppc386 | 275 | `ppc386 -Tlinux myapp.pas` |
+| DOS (go32v2) | ppc386 | 318 | `ppc386 -Tgo32v2 myapp.pas` |
+| DOS 16-bit | ppcross8086 | 114 | `ppcross8086 -Tmsdos myapp.pas` |
+| FreeBSD i386 | ppc386 | 191 | `ppc386 -Tfreebsd myapp.pas` |
+| FreeBSD x86_64 | ppcx64 | 74 | `ppcx64 -Tfreebsd myapp.pas` |
+| macOS i386 (10.4 – 10.14) | ppc386 | 809 | `ppc386 -Tdarwin -FDbin/tools/i386-darwin -XRbin/tools/i386-darwin/MacOSX10.6.sdk myapp.pas` |
 | macOS x86_64 (10.5 – 26, Rosetta 2) | ppcx64 | 789 | `ppcx64 -Tdarwin -FDbin/tools/i386-darwin -XRbin/tools/i386-darwin/MacOSX10.6.sdk myapp.pas` |
 
 ## What's Included
@@ -122,7 +123,7 @@ ppcross8086 -Tmsdos -WmLarge -Wh -XX -Fubin/units/i8086-msdos-large myapp.pas
 ppcross8086 -Tmsdos -WmHuge -Wh -XX -Fubin/units/i8086-msdos-huge myapp.pas
 ```
 
-113 pre-compiled units included: system, dos, crt, objects, strings,
+114 pre-compiled units included: system, dos, crt, objects, strings,
 sysutils, classes, mouse, keyboard, video, and more.
 
 **Graph (BGI-style):** `graph` unit for Medium, Large and Huge models
@@ -132,6 +133,10 @@ Small or Compact: graph + RTL does not fit in one 64KB code segment.
 ```
 ppcross8086 -Tmsdos -WmLarge -XX -Fubin/units/i8086-msdos-large myapp.pas
 ```
+**Free Vision:** the 24 Free Vision units for Medium, Large and Huge (and the default
+`i8086-msdos` set), tested in DOSBox. Not for Tiny, Small or Compact: a Free Vision
+program needs about 150KB of code.
+
 Build kit and test results: `tools/i8086-graph-build/`.
 
 Works with: IBM PC/XT/AT, Tandy, PCjr, DOSBox, 86Box, real hardware.
@@ -139,7 +144,8 @@ Output: 16-bit MZ .EXE (not NE, not PE, not DJGPP).
 
 All 6 memory models supported: Tiny, Small, Medium, Compact, Large, Huge.
 22 units per model including system, dos, crt, sysutils, objects, keyboard,
-mouse, video, printer, math, typinfo, fgl, classes, and more.
+mouse, video, printer, math, typinfo, fgl, classes, and more; Medium, Large
+and Huge add graph and Free Vision (47 units).
 
 **Important:** Each model has its own unit directory. You MUST use the
 matching directory and pass `-XX` (smart linking) or compilation will fail
