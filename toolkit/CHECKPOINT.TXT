@@ -26,3 +26,6 @@ CHECKPOINT.TXT - fpc264irc - append-only log (newest at the bottom; never edit o
             real source dates for units outside src/rtl (sandbox links + cp -r) - build.sh uses cp -rL, main re-dated
             (851 files, same checksums/code). fpcmmain carries the build date ({$i %DATE}). Wine: LCL win32 GUI stops
             with "Class does not exist" - same with the shipped units. Next: x86_64-win64.
+2026-10-30  Free Vision added where it was missing: i386-freebsd (24), x86_64-freebsd (24 + video/keyboard/mouse/
+            objects), i8086-msdos-medium/large/huge (24 each, FPC 3.2.2 packages/fv). Existing files untouched.
+            tiny/small/compact: cannot hold a FV program (64K code). DOSBox test OK in medium/large/huge.

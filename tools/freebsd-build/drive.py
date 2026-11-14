@@ -12,7 +12,10 @@ R = os.path.abspath(R); XOPT = sys.argv[7:]
 RTL = S + '/rtl'; PC = R + ('/bin/ppc386' if CPU == 'i386' else '/bin/ppcx64'); T = R + '/bin/tools/i386-freebsd'
 LOG = os.path.dirname(OUT) + '/log'; os.makedirs(LOG, exist_ok=True); os.makedirs(OUT, exist_ok=True)
 units = []
-for l in open(LIST):
+# units-extra-<cpu>.txt (2026-10-30): units the shipped folder did not have, built too (Free Vision; x86_64 also the
+# video / keyboard / mouse / objects it needs)
+_ex = os.path.join(os.path.dirname(LIST), 'units-extra-%s.txt' % CPU)
+for l in list(open(LIST)) + (list(open(_ex)) if os.path.exists(_ex) else []):
     n, src, uses = l.rstrip('\n').split('|')
     units.append((n, S + src[3:] if src.startswith('src/') else R + '/' + src, [u for u in uses.split(',') if u]))
 RTLDIRS = [RTL + x for x in ('/inc', '/' + CPU, '/x86', '/unix', '/bsd', '/bsd/' + CPU, '/freebsd/' + CPU, '/freebsd',
@@ -52,6 +55,13 @@ def ready(u):
     n, src, uses = u
     return all(x in have or x not in names or x == n for x in uses)
 todo = [u for u in units if u[0] not in have]
+# Free Vision app / dialogs / msgbox / validate use each other (implementation uses): one compile builds all four
+CYCLE = {'app', 'dialogs', 'msgbox', 'validate'}
+SRCOF = {n: s for n, s, _ in units}
+_cy = [u for u in todo if u[0] in CYCLE]
+if _cy:   # the cycle is "ready" when its members' other uses are there
+    _out = set().union(*[set(u[2]) for u in _cy]) - CYCLE
+    todo = [u for u in todo if u[0] not in CYCLE] + [(_cy[0][0], _cy[0][1], sorted(_out))]
 res = {n: 'OK (RTL Makefile)' for n in have}
 def build(u):
     n, src, uses = u
@@ -59,6 +69,8 @@ def build(u):
     extra += EXTRA.get(n, [])
     wd = os.path.dirname(OUT) + '/w/' + n; o = wd + '/o'
     shutil.rmtree(wd, ignore_errors=True); os.makedirs(o); shutil.copy2(src, wd)
+    grp = CYCLE if n in CYCLE else {n}
+    for g in grp - {n}: shutil.copy2(SRCOF[g], wd)     # units that use each other: compiled together
     cmd = [PC, '-Tfreebsd', '-P' + CPU, '-FD' + T, '-n', '-vw'] + XOPT + extra + ['-FU' + o, '-Fu' + OUT] + \
           ['-Fi' + x for x in incdirs(src)] + [os.path.basename(src)]
     try:
@@ -68,13 +80,14 @@ def build(u):
         out, ok = 'TIMEOUT', False
     if ok:
         for f in os.listdir(o):
-            if os.path.splitext(f)[0].lower() == n: shutil.move(o + '/' + f, OUT + '/' + f)
+            if os.path.splitext(f)[0].lower() in grp: shutil.move(o + '/' + f, OUT + '/' + f)
         left = os.listdir(o)
         if left: out += '\nUNEXPECTED OUTPUT: ' + ' '.join(left); ok = False
     open(f'{LOG}/{n}.log', 'w').write(' '.join(cmd) + '\n' + out)
     shutil.rmtree(wd, ignore_errors=True)
     if ok:
-        have[n] = True; res[n] = 'OK'; return True
+        for g in grp: have[g] = True; res[g] = 'OK' if g == n else 'OK (with %s)' % n
+        return True
     res[n] = 'FAIL ' + ' / '.join([l for l in out.splitlines() if 'Error' in l or 'Fatal' in l][:2]); return False
 while True:
     nbuilt = len(have)

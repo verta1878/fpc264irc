@@ -4,7 +4,7 @@
 # ppcross8086 is FPC 3.2.2 (PPU207), so the RTL comes from FPC 3.2.2 itself: rtl/, packages/rtl-console (crt, keyboard,
 # mouse, video) and packages/rtl-extra (objects, printer), fetched from the FPC GitLab release_3_2_2 tag and checked by SHA-256.
 # Flags: the RTL Makefile's own (-Tmsdos -Pi8086 -XPmsdos- -Xr) + -Wm<model> -CX; startup code assembled with nasm.
-# medium/large/huge also get graph (src from this kit, -O2 -CX, see build.sh).
+# medium/large/huge also get graph (src from this kit, -O2 -CX, see build.sh) and Free Vision (packages/fv, 24 units).
 # Output: <work>/out/i8086-msdos-<model> = the same file set as bin/units/i8086-msdos-<model> (.ppu + .a + .rsj, prt0?.o).
 # Needs: curl, nasm, make (Linux x86_64 host).
 set -e
@@ -23,6 +23,7 @@ get() { # $1=path in the FPC tree, $2=sha256
 get rtl                  6b8ce22fe0a27299d4d5175b772aaecf7664a387ff93659e45650bd1d5577d03
 get packages/rtl-console 26fe15b72e9e6c7d214762628de37f943b9f2c19cfe1656b946f7815e5b232e0
 get packages/rtl-extra   19eff671c4c7944b9735ed63484dc04d5f63dcbe116f6bd12e06c0d01e1da293
+get packages/fv          2023dad42cf20600d43e161787eae54edd1ee23c445ef53f155da5e51211c1bc
 mkdir -p "$W/bin"; ln -sf "$(command -v nasm)" "$W/bin/msdos-nasm"
 
 echo "[1/3] RTL -Wm$M -CX"
@@ -31,6 +32,8 @@ B=$W/b-$M; rm -rf "$B"; cp -r "$W/fpc/rtl" "$B"
   || { tail -5 "$W/rtl-$M.log"; exit 1; }
 U=$B/msdos/units/msdos
 
+FVUNITS="fvconsts fvcommon memory sysmsg drivers histlist views menus validate msgbox dialogs app resource time tabs
+         outline inplong stddlg statuses editors colortxt asciitab gadgets timeddlg"
 echo "[2/3] crt keyboard mouse video objects printer"
 P=$W/fpc/packages
 for f in rtl-console/src/msdos/crt.pp rtl-console/src/msdos/keyboard.pp rtl-console/src/msdos/mouse.pp \
@@ -42,7 +45,16 @@ done
 case $M in medium|large|huge)
   echo "      graph"
   "$C" -Tmsdos -Pi8086 -Wm$M -O2 -CX -n -FU"$U" -Fu"$U" -Fi"$K/src/inc" -Fi"$K/src/msdos" "$K/src/msdos/graph.pp" \
-       > "$W/graph-$M.log" 2>&1 || { tail -5 "$W/graph-$M.log"; exit 1; } ;;
+       > "$W/graph-$M.log" 2>&1 || { tail -5 "$W/graph-$M.log"; exit 1; }
+  # Free Vision (2026-10-30): the 24 units of packages/fv, -O2 -CX like graph. Only medium/large/huge: a program
+  # using it needs ~150K of code, more than the one 64K code segment of tiny/small/compact.
+  # 3.2.2's resource.pas has a stray line "asjgfsdkjsfld" (line 2, upstream does not build it) - removed here.
+  echo "      Free Vision"
+  FV=$W/fv-$M; rm -rf "$FV"; cp -r "$W/fpc/packages/fv/src" "$FV"; sed -i '2{/^asjgfsdkjsfld$/d}' "$FV/resource.pas"
+  for u in $FVUNITS; do
+    (cd "$FV" && "$C" -Tmsdos -Pi8086 -Wm$M -O2 -CX -n -FU"$U" -Fu"$U" -Fi"$FV" $u.pas) >> "$W/fv-$M.log" 2>&1 \
+      || { tail -5 "$W/fv-$M.log"; exit 1; }
+  done ;;
 esac
 
 echo "[3/3] collecting the shipped unit set"
@@ -50,6 +62,7 @@ O=$W/out/i8086-msdos-$M; rm -rf "$O"; mkdir -p "$O"
 c=$(echo $M | cut -c1)
 for u in classes crt ctypes dos fgl getopts keyboard math mouse msmouse objects objpas printer rtlconsts strings \
          sysconst system sysutils types typinfo video; do cp "$U/$u.ppu" "$U/$u.a" "$O/"; done
-case $M in medium|large|huge) cp "$U/graph.ppu" "$U/graph.a" "$O/";; esac
+case $M in medium|large|huge) cp "$U/graph.ppu" "$U/graph.a" "$O/"
+  for u in $FVUNITS; do for e in ppu a rsj; do [ -f "$U/$u.$e" ] && cp "$U/$u.$e" "$O/"; done; done;; esac   # fvconsts: no code
 cp "$U/ports.ppu" "$U/prt0$c.o" "$U"/{math,rtlconsts,sysconst,typinfo}.rsj "$O/"
 echo "done: $(ls "$O" | wc -l) files in $O"

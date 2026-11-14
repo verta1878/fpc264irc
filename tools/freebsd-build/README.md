@@ -66,3 +66,14 @@ icocurtypes`. Code against the old build (lazutils, lcl, lcl/customdrawn): ident
 - i386 links (hello, an RTL/zlib/sockets program, test/test_freebsd_sockets.pas). Programs that need FreeBSD's libc or
   X11 cannot be linked here (no FreeBSD libraries) - same as before. Not run (no FreeBSD machine).
 - No unit in the three folders calls `fpc_*_concat_multi` any more.
+
+## Free Vision (2026-10-30)
+Neither FreeBSD folder had Free Vision. `units-extra-<cpu>.txt` lists units the shipped folder did not have, which
+`drive.py` builds as well: the 24 Free Vision units of `src/packages/fv` (same sources and uses lists as i386-linux;
+`colorsel` is not built on any target, as upstream), and for x86_64 also `video`, `keyboard`, `mouse` and `objects`
+(the x86_64 folder had none of them). `app`, `dialogs`, `msgbox` and `validate` use each other, so `drive.py` compiles
+them together (one compile, all four kept).
+- The existing units are unchanged: every file the folders had comes out byte-identical (i386 167, x86_64 46, Lazarus 324).
+- New: i386 24 units (`.ppu` + `.a`) + 5 `.rst`; x86_64 28 units + 5 `.rst`.
+- i386: a program using Objects, Drivers, Views, Menus, Dialogs, App, MsgBox, Validate, StdDlg, Editors, Gadgets links
+  (FreeBSD ELF). x86_64: compiles (no x86_64 FreeBSD linker here). Not run (no FreeBSD machine).

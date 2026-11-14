@@ -5,13 +5,13 @@ ppcross8086 is FPC 3.2.2 (PPU207), so the matching upstream real-mode backend is
 The 3.2.2 `inc` files are kept here, NOT copied over `src/packages/graph/src/inc` (that is 2.6.4 and used by the other targets).
 
 Built (-O2 -CX, smartlinked like the rest of the i8086 units):
-| unit dir | model | graph |
-|---|---|---|
-| bin/units/i8086-msdos | huge (default set) | yes |
-| bin/units/i8086-msdos-medium | medium | yes |
-| bin/units/i8086-msdos-large | large | yes |
-| bin/units/i8086-msdos-huge | huge | yes |
-| tiny / small / compact | one 64KB code segment | no — graph + RTL overflows 64KB at link |
+| unit dir | model | graph | Free Vision |
+|---|---|---|---|
+| bin/units/i8086-msdos | huge (default set) | yes | yes |
+| bin/units/i8086-msdos-medium | medium | yes | yes (2026-10-30) |
+| bin/units/i8086-msdos-large | large | yes | yes (2026-10-30) |
+| bin/units/i8086-msdos-huge | huge | yes | yes (2026-10-30) |
+| tiny / small / compact | one 64KB code segment | no — graph + RTL overflows 64KB at link | no — same reason |
 
 Runtime test (gtest.pas, linked with the internal MZ linker, run in DOSBox 0.74 svga_s3) — same result on all 4:
 ```
@@ -61,3 +61,16 @@ Runs: DOSBox 0.74, svga_s3; the graph results are the table above, all six modes
 Limit (FPC 3.2.2, all models): one unit's code that a program uses must fit in that unit's 64K code segment. A program
 using `classes` (e.g. `TStringList`) stops with `Code segment "CLASSES_TEXT" too large` in medium/large/huge, the same as
 with the default `bin/units/i8086-msdos` set. Programs that stay with sysutils, objects, crt, dos, graph are fine.
+
+## Free Vision for medium / large / huge (2026-10-30)
+`build-rtl.sh medium|large|huge` also builds the 24 Free Vision units from FPC 3.2.2 `packages/fv` (fetched and checked
+by SHA-256 like the RTL; `-Wm<model> -O2 -CX`, as graph). 3.2.2's `resource.pas` has a stray line `asjgfsdkjsfld`
+(line 2; upstream does not build that unit) - the script removes it before compiling. `colorsel` is not built (as
+upstream). The default set `bin/units/i8086-msdos` already had Free Vision.
+- New in each of the three folders: 24 `.ppu` + 23 `.a` (`fvconsts` has no code) + 5 `.rsj`. The existing files are
+  not touched (a rebuild gives them other stored file dates only); the new units load with them.
+- tiny / small / compact: not possible - a Free Vision program needs ~150K of code; in those models one 64K code segment
+  holds the whole program ("Code segment _TEXT too large (exceeds 64k by 84360 bytes)" in small).
+- DOSBox 0.74 (svga_s3): a program that starts a TApplication, puts a dialog with an input line and a button on the
+  desktop, removes it and shuts down, writing the result to a file - OK in medium (209,522 bytes), large (285,184),
+  huge (303,042).

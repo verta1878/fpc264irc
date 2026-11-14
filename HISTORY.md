@@ -193,6 +193,14 @@ source          patches/os2-cross/binutils/ (binutils-2.30-emx.patch, build.sh, 
 result          same program images and the same LX import fixups as before (360 / 1055 in the two tests); not yet run on OS/2
 ```
 
+## Free Vision on FreeBSD and the i8086 memory models (2026-10-30)
+- `bin/units/i386-freebsd` (+24) and `bin/units/x86_64-freebsd` (+24, and `video`, `keyboard`, `mouse`, `objects` it
+  needs): built by `tools/freebsd-build` (`units-extra-<cpu>.txt`); the existing units are byte-identical.
+- `bin/units/i8086-msdos-medium`, `-large`, `-huge` (+24 each): FPC 3.2.2 `packages/fv`, built by
+  `tools/i8086-graph-build/build-rtl.sh`; DOSBox test OK in all three. tiny/small/compact cannot hold a Free Vision
+  program (one 64K code segment).
+- Free Vision is now in every unit folder that can hold it (`colorsel` nowhere, as upstream).
+
 ## Exact source rebuild 7b: i386-win32 lcl/ + Lazarus i386-win32 (2026-10-28)
 `tools/win32-build/build.sh` now also rebuilds `bin/units/i386-win32/lcl` (616 units: a whole Lazarus IDE build in one
 folder) and `bin/lazarus/units/i386-win32` (304); two runs are byte-identical.

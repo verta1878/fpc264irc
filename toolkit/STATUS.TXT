@@ -5,13 +5,13 @@ GitHub HEAD fb4766d2 "Docs: why the Mac link tools use stub libraries" (45,363 f
 bin/units/<target>       .ppu   kit                      rebuilt     result
 -----------------------  ------  -----------------------  ----------  ------------------------------------------
 i386-os2                   219   tools/os2-native-build   2026-10-10  kit build (toolkit/test.sh: 219 same)
-i386-freebsd               167   tools/freebsd-build      2026-10-12  kit build
-x86_64-freebsd              46   tools/freebsd-build      2026-10-12  kit build
+i386-freebsd           167+24   tools/freebsd-build      2026-10-12  kit build; + Free Vision 2026-10-30
+x86_64-freebsd          46+28   tools/freebsd-build      2026-10-12  kit build; + Free Vision, video/keyboard/mouse/objects 2026-10-30
 i386-linux                 275   tools/linux-build        2026-10-13  kit build
 i386-go32v2           235+83 lcl/ tools/go32v2-build       2026-10-13  kit build; 10-15 fossil + serial_irq, BUG-044/045
 i386-darwin           809 (+fv/ univint/) tools/darwin-build 2026-10-16 kit build (toolkit/test.sh: 809 same)
 x86_64-darwin              789   tools/darwin64-build     2026-10-09  byte-identical rebuild
-i8086-msdos*                 -   tools/i8086-graph-build  done        FPC 3.2.2 units
+i8086-msdos*                 -   tools/i8086-graph-build  done        FPC 3.2.2 units; Free Vision in default + medium/large/huge (10-30)
 x86_64-linux          563 + 69 lcl/ tools/linux-build  2026-10-27  kit build; PIC (-Cg) as shipped; lcl/ = flat nogui LCL; graph.pp stub
 i386-win32               922   tools/win32-build        2026-10-27  kit build (re-dated 10-28); system from source, dynlibs +2
 i386-win32 lcl/           616   tools/win32-build        2026-10-28  kit build; Lazarus IDE + LCL (win32), all same checksums
