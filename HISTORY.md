@@ -193,6 +193,17 @@ source          patches/os2-cross/binutils/ (binutils-2.30-emx.patch, build.sh, 
 result          same program images and the same LX import fixups as before (360 / 1055 in the two tests); not yet run on OS/2
 ```
 
+## Exact source rebuild 9: Lazarus i386-os2 (2026-11-14)
+`tools/os2-native-build/lazbuild.sh` rebuilds `bin/lazarus/units/i386-os2` (233 units: lazutils 59, lcl 174 with the
+customdrawn widgetset) against `bin/units/i386-os2`; two runs byte-identical. The last folder of docs/UNIT-REBUILD.md:
+every unit folder in the repo is now a kit build from `src/`.
+- The shipped set had no code (no `.a`, could not link) and was built against an older `sysutils` / `dos`: shipped
+  14 fatal / 139 notes in `ppu_consistency.py`, now only the FV/LCL `tabs` clash and 12 notes. New: 233 `libp*.a`.
+- Checksums: lazutils 58 of 59 the same (`fileutil`), lcl 50 of 174 (the rest are built against today's
+  `sysutils` / `dos` / `fileutil`). `.rst` and `finddlgunit.res` unchanged.
+- Checked: every unit compiles in a program; an LCL customdrawn program links to an OS/2 LX `.exe` (with the shipped
+  set it did not compile). Not run on OS/2. Details: `tools/os2-native-build/README.md`.
+
 ## Exact source rebuild 8: x86_64-win64 (2026-11-14)
 `tools/win64-build/build.sh` rebuilds `bin/units/x86_64-win64` (1,039 units) from `src/` with `bin/ppcx64`; two runs
 are byte-identical. The folder is replaced by the kit build.

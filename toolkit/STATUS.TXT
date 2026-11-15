@@ -24,7 +24,7 @@ i386-go32v2                138   tools/go32v2-build       2026-10-13  kit build;
 i386-darwin                271   tools/darwin-build       2026-10-16  kit build; paswstring 2026-11-14
 x86_64-linux               411   tools/linux-build        2026-10-27  kit build (MATCH: 189 same code, 147 old helper); paswstring 2026-11-14
 i386-win32                 304   tools/win32-build        2026-10-28  kit build; paswstring fixed for win32; 105 units got their code
-i386-os2                   233   (not on the plan yet)    -           ask verta
+i386-os2                   233   tools/os2-native-build   2026-11-14  kit build (lazbuild.sh); shipped had no code; + 233 .a
 
 OTHER
 graph on x86_64: win64 + freebsd real graph; linux + darwin {$fatal} stub with the fix in the message;

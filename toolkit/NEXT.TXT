@@ -1,16 +1,18 @@
 NEXT.TXT - fpc264irc - what to do next                                   byte, 2026-11-14
 (cold start: read this, then RULES.TXT, STATUS.TXT, the last entry of CHECKPOINT.TXT)
 
-NEXT JOB: #9 the last Lazarus set - bin/lazarus/units/i386-os2 (233 units, no .a files: never rebuilt; verta: item 3)
-  - start from tools/os2-native-build + the lazdrive.py of tools/freebsd-build
-OPEN (ask verta): x86_64-win64 syncobjs is the go32v2 stub file (as shipped) - build it from src/syncobjs.pp?
+NEXT JOB: none in the rebuild plan - every unit folder is a kit build (docs/UNIT-REBUILD.md, all 9 done).
+  Open: x86_64-win64 syncobjs = the go32v2 stub (empty TCriticalSection) - verta leans to the real src/syncobjs.pp
+  (+ fpapache fpapache24 ptcwrapper ptcgraph ptccrt ptcmouse rebuilt), waiting for go; attic " (2)" dups not in
+  CHECKSUMS yet (verta: later); real-machine tests (Windows 11, FreeBSD, OS/2).
 
+DONE 2026-11-14: #9 Lazarus i386-os2 (tools/os2-native-build/lazbuild.sh).
 DONE 2026-11-14: #8 x86_64-win64 (tools/win64-build); paswstring refresh in 5 Lazarus sets; darwin dynlibs date.
 DONE 2026-10-28: #7b i386-win32 lcl/ (616) + Lazarus i386-win32 (304); main folder re-dated (cp -rL).
 DONE 2026-10-27: #7a i386-win32 main folder (tools/win32-build).
 DONE 2026-10-27: #6 x86_64-linux + lcl/ + Lazarus x86_64-linux (tools/linux-build build.sh x86_64).
 
-AFTER THAT (UNIT-REBUILD.md order): 9 the Lazarus i386-os2 set, then porting newer upstream FPC source.
+AFTER THAT: porting newer upstream FPC source (on the known-good base), as UNIT-REBUILD.md plans.
   Then: port newer upstream FPC source.
 
 DELIVERY STEPS (every job, never skip):

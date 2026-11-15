@@ -59,3 +59,36 @@ Found before the replacement: the kit build differs from the shipped units in ex
 ## Linking and testing
 Linking OS/2 programs: `bin/tools/i386-os2/README.md`. Sample programs to run on a real OS/2 / ArcaOS machine:
 `test/os2/` (seven programs with ready-built `.exe` files; `build.sh` rebuilds them).
+
+## Lazarus i386-os2 (2026-11-14)
+
+```
+tools/os2-native-build/lazbuild.sh [work dir]   # -> <work>/lazarus (bin/lazarus/units/i386-os2)
+```
+Rebuilds the Lazarus set `bin/lazarus/units/i386-os2` (233 units: `lazutils/` 59, `lcl/` 174 = the LCL and its
+customdrawn widgetset, `customdrawn_os2proc`) against `bin/units/i386-os2`. Made from the go32v2 kit's step 5 (the
+other customdrawn set). About 1 minute. Two runs give byte-identical results.
+
+| Step | What |
+|---|---|
+| 1 | copy `src/rtl`, `src/packages`, `src/lazarus`, fix the dates (2025-01-01) |
+| 2 | `lazdrive.py` (`laz-i386.txt`, made by `lazunits.py <repo> <ppudump> i386-os2`): `-Tos2 -s`, each `.s` assembled with `bin/tools/i386-os2/as`; lazutils `-MObjFPC -Scghi -O1`, lcl no options, no debug info (as shipped); built in the fixed folder `LAZBUILDDIR` (default `/tmp/fpc264irc-lazbuild`) |
+| 3 | `tools/smartpack/pack-units.sh` per folder with `emx-ar`; `ardate.py`: archive member dates 2025-01-01 (emx-ar writes the build time) |
+
+Files: `lazunits.py`, `lazdrive.py` (from tools/go32v2-build: `-Tos2`, the `os2`/`emx` source folders, assembling,
+`dialogs` writes `finddlgunit.res`, which goes with it as shipped), `ardate.py` (tools/win32-build), `laz-i386.txt`.
+
+### Result against the shipped set
+The shipped set had no code at all (233 `.ppu`, no `.a` / `.o`: it could not be linked) and was built in July against
+an older `sysutils` / `dos` than `bin/units/i386-os2` has (123 units recorded a `sysutils`, 4 a `dos`, the folder does
+not have). `ppu_consistency.py` with the main folder: shipped 14 fatal in 10 units, 139 interface-only notes; now only
+the FV/LCL `tabs`/`Dialogs` name clash every set has, 12 notes.
+Checksums: lazutils 58 of 59 the same (`fileutil`: its interface records `dos` types); lcl 50 of 174 the same, 124 have
+a new interface checksum because they are built against today's `sysutils` / `dos` / `fileutil`. `.rst` and
+`finddlgunit.res` byte-identical. New: 233 `libp<unit>.a`.
+
+### Checked
+- Every one of the 233 units compiles in a program (with `bin/units/i386-os2`).
+- An LCL customdrawn program (form, button, timer, LazUTF8, FileUtil) links to an OS/2 LX `.exe` (5.2 MB) with
+  `bin/tools/i386-os2`; with the shipped set it did not compile (`Can't find unit LazFileUtils used by FileUtil`).
+- Not run on a real OS/2 / ArcaOS machine.
