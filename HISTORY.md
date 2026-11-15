@@ -193,6 +193,18 @@ source          patches/os2-cross/binutils/ (binutils-2.30-emx.patch, build.sh, 
 result          same program images and the same LX import fixups as before (360 / 1055 in the two tests); not yet run on OS/2
 ```
 
+## Exact source rebuild 8: x86_64-win64 (2026-11-14)
+`tools/win64-build/build.sh` rebuilds `bin/units/x86_64-win64` (1,039 units) from `src/` with `bin/ppcx64`; two runs
+are byte-identical. The folder is replaced by the kit build.
+- Checksums: 1,037 the same; `dynlibs` + `GetProcAddress` / `FreeLibrary` (as win32), `openssl` indirect with it.
+- Code: 1,033 identical; `dynlibs`, and `gl` `glu` `openssl` `wnaspi32` that now call its `GetProcAddress`; `sysutils`
+  (the shipped one was built before the r311 Final commit removed the workarounds in `src/rtl/win/sysutils.pp`).
+- As shipped: `syncobjs` from `fcl-base/src/go32v2/syncobjs.pp` (its checksums); `wcedit` kept unchanged (built
+  against IDE units the folder does not hold). 16 fcl-process / fppkg units `-O2 -Ur`.
+- Not shipped: the 260 import libraries today's compiler writes (internal linker; the folder never had them).
+- Checked: `ppu_consistency.py` 0 notes; every unit compiles in a program; RTL/FCL program linked and run under Wine.
+  Details: `tools/win64-build/README.md`.
+
 ## paswstring refresh, darwin dynlibs date, docs (2026-11-14)
 - `paswstring.ppu` in the Lazarus sets i386-linux, x86_64-linux (`lazutils/` + `lcl/customdrawn/`), i386-freebsd,
   i386-go32v2, i386-darwin: rebuilt from the `paswstring.pas` fixed on 2026-10-28 (line info only; same size,

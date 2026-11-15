@@ -1,0 +1,1 @@
+wcedit    # built against IDE units (weditor, wviews ...) the folder does not hold; today's src/ide and packages/ide no longer match them

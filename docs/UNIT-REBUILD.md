@@ -22,7 +22,7 @@ named the same 37 units the kit rebuild changed).
 | 5 | i386-darwin (+ Lazarus i386-darwin) | `tools/darwin-build` | 795 → 809 (+ 271) | 85 | **Done 2026-10-16** - kit build; new layout: FV `menus` + `resource` in `fv/`, univint `Video` + the 7 units that use it in `univint/`; + fcl-res, `fpobserver`, `jconsts`; `sysutils`/`dos`/`serial` interface changes |
 | 6 | x86_64-linux (+ `lcl/`, + Lazarus x86_64-linux) | `tools/linux-build` | 563 + 69 (+ 411) | 144 (+ 147) | **Done 2026-10-27** - all three folders replaced by the kit build; most units are PIC (`-Cg`), as shipped; `lcl/` = flat LCL copy with the nogui widgetset; `sysutils`/`dos`/`dynlibs`/`dl` interface changes, `objpas`/`rtlconst`/`cthreads` came from another compiler build |
 | 7 | i386-win32 (main + lcl/, + Lazarus i386-win32) | `tools/win32-build` | 922 + 616 lcl/ (+ 304) | 434 (+ 51) | **Done 2026-10-28** - all three folders kit builds; main 2026-10-27 (`system` from source again, `dynlibs` + GetProcAddress/FreeLibrary), main re-dated + `lcl/` (IDE build, all 616 same checksums) + Lazarus (`paswstring` codepage signatures on win32 too) 2026-10-28 |
-| 8 | x86_64-win64 | to do | 1,039 | 0 | next (proof only) |
+| 8 | x86_64-win64 | `tools/win64-build` | 1,039 | 0 | **Done 2026-11-14** - kit build; 1,037 same checksums, `dynlibs` + GetProcAddress/FreeLibrary (as win32); code: 1,033 same, `sysutils` from the clean r311 source; `syncobjs` from the go32v2 file as shipped; `wcedit` kept (locked) |
 | 9 | Lazarus unit sets (`bin/lazarus/units`) | done with their main folders: i386-freebsd #2, i386-linux #3, i386-go32v2 #4, i386-darwin #5, x86_64-linux #6, i386-win32 #7; `paswstring` refreshed in the first five 2026-11-14; to do: i386-os2 | 1,201 | 358 | last |
 | - | x86_64-darwin | `tools/darwin64-build` | 789 | 0 | done 2026-10-09 (byte-identical rebuild) |
 | - | i8086-msdos* | `tools/i8086-graph-build` | | n/a (FPC 3.2.2) | done |
@@ -40,6 +40,8 @@ named the same 37 units the kit rebuild changed).
 **x86_64-linux**: none (2026-10-27)
 
 **i386-win32**: none (2026-10-28)
+
+**x86_64-win64**: none (2026-11-14)
 
 **bin/lazarus/units**:
 i386-freebsd none (2026-10-12);

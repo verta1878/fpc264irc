@@ -1,0 +1,17 @@
+system|-Us -Sg
+dbugintf|-O2 -Ur
+fpmkunit|-O2 -Ur
+fprepos|-O2 -Ur
+fpxmlrep|-O2 -Ur
+pipes|-O2 -Ur
+pkgcommands|-O2 -Ur
+pkgdownload|-O2 -Ur
+pkgfpmake|-O2 -Ur
+pkgglobals|-O2 -Ur
+pkghandler|-O2 -Ur
+pkgmkconv|-O2 -Ur
+pkgoptions|-O2 -Ur
+pkgrepos|-O2 -Ur
+pkgwget|-O2 -Ur
+process|-O2 -Ur
+simpleipc|-O2 -Ur

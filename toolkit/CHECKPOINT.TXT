@@ -33,3 +33,6 @@ CHECKPOINT.TXT - fpc264irc - append-only log (newest at the bottom; never edit o
             darwin-build drive.py: dynlibs from the date-fixed copy (recorded the checkout date) - dynlibs.ppu
             rebuilt. README counts + FV, UNIT-REBUILD row 9; PATCH6 handoff + PHASE-RTL-REBUILD to attic/.
             Next: x86_64-win64 (#8).
+2026-11-14  rebuild #8 x86_64-win64 (1,039): 1,037 same checksums, dynlibs +2 (as win32); code 1,033 same; sysutils
+            from the clean r311 source. syncobjs was built from the go32v2 stub file (kept, ask verta); wcedit locked.
+            260 libimp*.a not shipped (internal linker). Next: Lazarus i386-os2.
