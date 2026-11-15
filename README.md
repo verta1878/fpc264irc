@@ -55,6 +55,10 @@ ppcx64 -Tlinux myapp.pas        # Linux 64-bit
 ppc386 -Tgo32v2 myapp.pas       # DOS
 ```
 
+`bin/ppc386`, `bin/ppcx64`, `bin/ppcross8086` and the `bin/tools/*` programs are Linux x86_64 programs. A git clone
+has them executable; after extracting a zip (zip drops the Unix execute bit) run `bash fix-permissions.sh` once.
+List: `tools/smartpack/exec-bits.txt`.
+
 ### How the units ship
 
 `bin/units/<target>/` holds each unit as `.ppu` + `.a` (its compiled code in a smart-link archive) — no loose `.o`.

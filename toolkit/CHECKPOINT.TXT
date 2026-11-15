@@ -43,3 +43,6 @@ CHECKPOINT.TXT - fpc264irc - append-only log (newest at the bottom; never edit o
             checksums) + BUG-047 = G-017 LCL win32 on NT (U-1 taken back in 12 files, W calls via win32compat
             Dyn*W, import table as shipped). Found building wrench's InnoIRC561 (Inno code kept separate; findings
             for wrench in INNOIRC561-FINDINGS.md, not in this repo). LCL win32 GUI runs under Wine.
+2026-11-15  pushed c78cd59c (BUG-046/047; verta added 67 attic files). Then: execute bits for 324 files
+            (exec-bits.txt), BUG-048 win64 syncobjs from the real source (11 files), ppu_consistency CLASH lines
+            (FV/LCL Dialogs), CHECKSUMS incl. attic. InnoIRC561 fixes delivered to netmodem2irc (ab9787f).

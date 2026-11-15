@@ -57,6 +57,12 @@ G-015  SYMPTOM  two kit builds on different days differ in fpcmmain (win32 main 
 G-016  SYMPTOM  rebuilt units record real source dates instead of 2025-01-01
        CAUSE    a source folder reached through a symlink: cp -r copies the link, the date fix touches only the link
        FIX      copy with cp -rL (tools/win32-build/build.sh, 2026-10-28)
+G-018  SYMPTOM  ppu_consistency.py: "FATAL tabs: implementation uses Dialogs" in every LCL set
+       CAUSE    Free Vision and the LCL both have Dialogs / Menus - a name clash, not a stale unit
+       FIX      2026-11-15: FV units matching a later folder's unit of that name = CLASH line, not FATAL
+G-019  SYMPTOM  Linux: "Permission denied" running bin/ppc386 after a git clone
+       CAUSE    every file stored as git mode 100644
+       FIX      2026-11-15: 324 files 100755 (tools/smartpack/exec-bits.txt); zip extracts: bash fix-permissions.sh
 G-017  SYMPTOM  LCL win32 program under Wine: "Failed to create win32 control, error 1411: Class does not exist"
        CAUSE    U-1 commit 3cc25923 put A functions into the NT-only (UnicodeEnabledOS) branches: RegisterClassA
                 with a WNDCLASSW registered "Window" as "W" (docs/bugsfixed.md BUG-047)

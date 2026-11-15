@@ -21,7 +21,7 @@ win64 uses the compiler's own assembler and linker, so there is no `bin/tools/x8
 ## Files
 - `units-x86_64.txt` — `unit|source|uses`, made by `units.py <repo> <ppudump> x86_64` (win64 / win source folders
   preferred). `override-x86_64.txt`: `windows` and `graph` from the win32 folders (as win32), `test` = the pasjpeg
-  example (not the IDE's test.pas), `syncobjs` = `fcl-base/src/go32v2/syncobjs.pp` (see below).
+  example (not the IDE's test.pas). `syncobjs` is built from `fcl-base/src/syncobjs.pp` since 2026-11-15 (see below).
 - `opts-x86_64.txt` — `system` `-Us -Sg`; 16 package units `-O2 -Ur` (fcl-process `pipes` `process` `simpleipc`,
   `dbugintf`, `fpxmlrep`, fppkg `fpmkunit` `fprepos` `pkg*`): found with `pickopts.py <repo> <ppudump> x86_64 win64
   <list> <date-fixed src>` - same checksums and same code. All other units: no options.
@@ -41,11 +41,13 @@ win64 uses the compiler's own assembler and linker, so there is no `bin/tools/x8
 - `webmodule.lfm`, `wmecho.lfm`, `wmsession.lfm` (fcl-web examples) - copies of their source's form file.
 - Kept unchanged (not made by the kit): `restest.rst`, `testcgiapp.rst`.
 
-## syncobjs
-The shipped win64 `syncobjs` was built from `src/packages/fcl-base/src/go32v2/syncobjs.pp` (the go32v2 version, which
-uses no `sysutils`): its checksums are those of that file, not of `src/syncobjs.pp`. The kit builds it from the same
-file so the folder stays as shipped (`fpapache`, `fpapache24`, `ptcwrapper` use it). Building it from
-`src/syncobjs.pp` instead changes its interface and theirs - a separate decision (verta).
+## syncobjs (BUG-048, 2026-11-15)
+The shipped win64 `syncobjs` was built from `src/packages/fcl-base/src/go32v2/syncobjs.pp`, the go32v2 stub: its
+`TCriticalSection.Enter`/`Leave` do nothing and it has no `TEvent`. A program with 4 threads counting to 800,000 under
+one `TCriticalSection` got 302,806 - 478,128 (Wine, 3 runs). The kit built it from that file too, to stay as shipped.
+Now it is built from `src/packages/fcl-base/src/syncobjs.pp` (the file win32 uses): the same program gets 800,000 every
+run, and `TEvent` works. Changed with it: `fpapache`, `fpapache24`, `ptcwrapper` (`.ppu` + `.a`) and the `.ppu` of
+`ptccrt`, `ptcgraph`, `ptcmouse` (indirect checksum only) - 11 files; every other unit byte-identical.
 
 ## Result against the shipped units (2026-11-14)
 1,039 units: checksums the same for 1,037; `dynlibs` interface changed (+ `GetProcAddress`, `FreeLibrary`, as win32

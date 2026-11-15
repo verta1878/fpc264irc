@@ -1,7 +1,7 @@
 # FPC 2.6.4irc — Bugs Fixed (r3.1)
 
 Verified against repo commit 42aa8991 on 2026-10-01.
-47 unique bugs (BUG-044, BUG-045 added 2026-10-15; BUG-046, BUG-047 2026-11-15). 9 duplicate/update entries merged into parents.
+48 unique bugs (BUG-044, BUG-045 added 2026-10-15; BUG-046, BUG-047, BUG-048 2026-11-15). 9 duplicate/update entries merged into parents.
 
 Legend:
 - ✅ FIXED — verified in source
@@ -227,6 +227,15 @@ uncounted reference).
 **Verified:** official FPC 2.6.4 and 3.2.2 print 0; fpc264irc now prints 0 on i386-linux, i386-win32 (Wine),
 go32v2 (DOSBox); `system` checksums unchanged, no other unit changes.
 
+### BUG-048: x86_64-win64 TCriticalSection does nothing (syncobjs = go32v2 stub) — ✅ FIXED
+**Symptom:** 4 threads incrementing one counter 200,000 times each under one `TCriticalSection`: 302,806 - 478,128
+instead of 800,000 (Wine, x86_64-win64). `TEvent` missing ("Identifier not found").
+**Root cause:** `bin/units/x86_64-win64/syncobjs` was built from `src/packages/fcl-base/src/go32v2/syncobjs.pp`, the
+go32v2 stub (empty `Enter`/`Leave`); the kit kept that to stay as shipped.
+**Fix:** `tools/win64-build` builds it from `src/packages/fcl-base/src/syncobjs.pp` (as i386-win32); `fpapache`,
+`fpapache24`, `ptcwrapper`, `ptccrt`, `ptcgraph`, `ptcmouse` rebuilt with it.
+**Verified:** the same program: 800,000 in every run, `TEvent` signalled; `ppu_consistency.py` 0 notes.
+
 ### BUG-045: go32v2 serial_irq did not compile against the folder's serial unit — ✅ FIXED
 **Fix:** `src/packages/serial/serial.pp` has `COM_IRQ` and `MCR_OUT2` (as wrench's `libs/serial/serial.pas`), so
 `serial_irq` and `fossil` (libs/) are built by `tools/go32v2-build` against `bin/units/i386-go32v2/serial`.
@@ -376,14 +385,14 @@ Missing RegisterClass() calls for 18 Inno custom components. Fixed in InnoCompon
 
 | Status | Count |
 |--------|-------|
-| ✅ FIXED (verified in source) | 37 |
+| ✅ FIXED (verified in source) | 38 |
 | ✅ FIXED (binary only) | 1 |
 | 📝 DOCUMENTED / workaround | 5 |
 | ⏳ OPEN / DEFERRED | 2 |
 | 🔒 CLOSED (not a bug) | 3 |
 | ⚠️ KNOWN ISSUE (Wine) | 1 |
 | ↩️ REVERTED | 1 |
-| **Total unique issues** | **47** |
+| **Total unique issues** | **48** |
 | Duplicate/update entries merged | 9 |
 
 ### Numbering collisions in original document (resolved above)

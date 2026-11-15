@@ -193,6 +193,22 @@ source          patches/os2-cross/binutils/ (binutils-2.30-emx.patch, build.sh, 
 result          same program images and the same LX import fixups as before (360 / 1055 in the two tests); not yet run on OS/2
 ```
 
+## Execute bits, win64 syncobjs, ppu_consistency, attic checksums (2026-11-15)
+- **Execute bits**: every file was stored as 100644 - after a git clone on Linux `bin/ppc386`, `bin/ppcx64` and the
+  `bin/tools` programs did not run. 324 files now 100755 (86 Linux programs, 238 `#!` scripts; list
+  `tools/smartpack/exec-bits.txt`; only the git mode changes, not the content). `fix-permissions.sh` (for zip extracts)
+  + `bin/tools/x86_64-linux`; README Quick Start says so.
+- **BUG-048** x86_64-win64 `syncobjs` was the go32v2 stub (`TCriticalSection` did nothing, no `TEvent`): 4 threads
+  under one critical section counted 302,806 - 478,128 of 800,000 (Wine). `tools/win64-build` builds it from
+  `src/packages/fcl-base/src/syncobjs.pp` (as win32): 800,000 every run, `TEvent` works. Rebuilt: `syncobjs`,
+  `fpapache`, `fpapache24`, `ptcwrapper` (`.ppu` + `.a`), `ptccrt` `ptcgraph` `ptcmouse` (`.ppu`, indirect checksum) -
+  11 files; the other 1,032 units of the kit build byte-identical. `ppu_consistency.py`: 0 notes.
+- **`tools/smartpack/ppu_consistency.py`**: the FATAL `tabs` / `Dialogs` line every set had was Free Vision vs LCL
+  (both have `Dialogs` and `Menus`), not a stale unit: FV units built with a later folder's unit of that name are now
+  CLASH lines. Every other check unchanged (the Lazarus i386-os2 set before rebuild 9 still shows its 13 real FATAL).
+  Now 0 FATAL in every set (i386-win32 main + `lcl/`: 0 notes, 12 CLASH).
+- **CHECKSUMS** cover `attic/` too (the two " (2)" docs and the delivery zips / bats / logs moved there).
+
 ## i386 SetLength fix, LCL win32 on NT (2026-11-15)
 Two fpc264irc bugs found while building wrench's InnoIRC561 (Inno code is not part of this repo).
 - **BUG-046** `src/rtl/i386/i386.inc`: the assembler `fpc_AnsiStr_Decr_Ref` set `S := nil` only when the count

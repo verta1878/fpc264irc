@@ -866,7 +866,7 @@ suiteconfig|src/packages/fcl-stl/tests/suiteconfig.pp|system,objpas,gvectortest,
 suitetest|src/packages/fcl-fpcunit/src/tests/suitetest.pp|system,objpas,fpcunit,testreport,testregistry
 svgalib|src/packages/svgalib/src/svgalib.pp|system
 symbolic|src/packages/symbolic/src/symbolic.pas|system,objpas,math,classes,sysutils
-syncobjs|src/packages/fcl-base/src/go32v2/syncobjs.pp|system,objpas
+syncobjs|src/packages/fcl-base/src/syncobjs.pp|system,objpas,sysutils
 sysconst|src/rtl/objpas/sysconst.pp|system,objpas
 sysmsg|src/packages/fv/src/sysmsg.pas|system
 system|src/rtl/win64/system.pp|

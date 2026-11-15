@@ -11,6 +11,10 @@ No recompile; `.ppu` checksums are untouched, so nothing that depends on a unit 
   lists every other `.o`/`.s` for deletion except startup objects the compiler links by name.
 - `ppu_consistency.py <ppudump> <unit dir> [...]` - lists stale dependency records: FATAL (implementation section,
   the compiler stops with "Can't find unit") and interface-only warnings (compiler carries on).
+  The first folder with a unit name wins, as for the compiler. CLASH lines (2026-11-15): Free Vision and the LCL
+  both have `Dialogs` and `Menus`; a Free Vision unit (`tabs`, `stddlg`, ...) built with the FV unit of a later folder
+  is reported as CLASH, not FATAL - FV and the LCL are not used in one program. Every other unit is checked as before
+  (the Lazarus i386-os2 set before rebuild 9 still shows its 13 real FATAL; only the `tabs` line became CLASH).
 - `rebuild_stale.py <repo> <target> <unit dir>` - rebuilds the FATAL units from `src/` against the current units
   (dependencies first, mutually dependent units together), packs them as `.ppu` + `.a`, loops until none are left.
 - `ppu_version_check.py <repo>` - every `.ppu` must be in its compiler's format: PPU135 (ppc386/ppcx64, FPC 2.6.4)

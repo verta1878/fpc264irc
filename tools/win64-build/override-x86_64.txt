@@ -1,4 +1,3 @@
 windows|src/rtl/win32/windows.pp
 graph|src/packages/graph/src/win32/graph.pp
 test|src/packages/pasjpeg/examples/test.pas
-syncobjs|src/packages/fcl-base/src/go32v2/syncobjs.pp   # as shipped (checksums match this file): the go32v2 stub, not src/syncobjs.pp

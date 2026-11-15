@@ -1,0 +1,9 @@
+fpc264irc rtllcl Sun 11/15/2026 15:33:35.02 
+CHECK zip MD5 OK 896973eec774de17214ab34602a79874 
+UNZIPPED fpc264irc-rtllcl-2026-11-15.zip 
+REPLACED src\rtl\i386\i386.inc, 13 LCL win32 sources, i386-win32 main 4 + lcl\ 18 + Lazarus lcl\win32 20, system of linux freebsd os2 go32v2 darwin 9, docs toolkit 7, CHECKSUMS 3 
+CHECK win32-system.ppu MD5 OK 8511aeda0fdd6c4aeeedf7c02b8f089b 
+CHECK lcl-win32int.ppu MD5 OK 8b6fcb09620cac6fdcaad7204a03f807 
+CHECK i386.inc MD5 OK cce4f625402a07f89690ce758bbbe97f 
+DELETED tools\smartpack\rtllcl.ok marker 
+DONE 
