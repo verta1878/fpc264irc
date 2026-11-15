@@ -257,7 +257,7 @@ begin
   begin
   {$ifdef WindowsUnicodeSupport}
     if UnicodeEnabledOS
-    then WinSetWindowText(FHandle, AdjustedValue)
+    then DynSetWindowTextW(FHandle, PWideChar(UTF8ToUTF16(AdjustedValue)))
     else Windows.SetWindowText(FHandle, PChar(Utf8ToAnsi(AdjustedValue)));
   {$else}
     SendMessage(FHandle, WM_SETTEXT, 0, LPARAM(PChar(AdjustedValue)));

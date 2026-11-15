@@ -58,5 +58,6 @@ G-016  SYMPTOM  rebuilt units record real source dates instead of 2025-01-01
        CAUSE    a source folder reached through a symlink: cp -r copies the link, the date fix touches only the link
        FIX      copy with cp -rL (tools/win32-build/build.sh, 2026-10-28)
 G-017  SYMPTOM  LCL win32 program under Wine: "Failed to create win32 control, error 1411: Class does not exist"
-       CAUSE    not found yet - the same with the shipped units; a plain RegisterClass/CreateWindow program works
-       FIX      open; test on real Windows
+       CAUSE    U-1 commit 3cc25923 put A functions into the NT-only (UnicodeEnabledOS) branches: RegisterClassA
+                with a WNDCLASSW registered "Window" as "W" (docs/bugsfixed.md BUG-047)
+       FIX      FIXED 2026-11-15: 12 LCL win32 files back to upstream, W calls loaded at run time (win32compat Dyn*W)

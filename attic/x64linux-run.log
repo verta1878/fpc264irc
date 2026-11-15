@@ -1,0 +1,16 @@
+fpc264irc x64linux Tue 10/27/2026 13:01:55.76 
+CHECK zip1 MD5 OK ab526f91ac332bb3e08299cf50b4e4bf 
+CHECK zip2 MD5 OK abbec4a2974bd2313dfeddef14c4914f 
+UNZIPPED fpc264irc-x64linux-1-units-2026-10-27.zip 
+UNZIPPED fpc264irc-x64linux-2-lazarus-2026-10-27.zip 
+REPLACED bin\units\x86_64-linux bin\lazarus\units\x86_64-linux tools\linux-build docs\UNIT-REBUILD.md docs\ROADMAP-UNITS.md HISTORY.md CHECKSUMS.md5 CHECKSUMS.sha256 CHECKSUMS.txt toolkit\NEXT.TXT STATUS.TXT CHECKPOINT.TXT SEGMAP.TXT GLOBALS.TXT test.sh 
+NEW tools\linux-build\units-x86_64.txt opts-x86_64.txt override-x86_64.txt laz-x86_64.txt lazmain-x86_64.txt + 59 .rst + 24 Lazarus .lfm/.rst 
+DELETED bin\units\x86_64-linux\system.ppu.new 
+DELETED bin\units\x86_64-linux\system.o.new 
+CHECK bin\units\x86_64-linux 563 .ppu (want 563) 
+CHECK bin\units\x86_64-linux\lcl 69 .ppu (want 69) 
+CHECK bin\lazarus\units\x86_64-linux 411 .ppu (want 411) 
+CHECK graph.pp kept - OK 
+CHECK tools\linux-build x86_64 lists - OK 
+DELETED tools\smartpack\x64linux.ok marker 
+DONE 

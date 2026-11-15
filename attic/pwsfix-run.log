@@ -1,0 +1,9 @@
+fpc264irc pwsfix Sat 11/14/2026 14:31:56.55 
+CHECK zip MD5 OK 9107ccad24b11b1bfd96198ad676ca4c 
+UNZIPPED fpc264irc-pwsfix-2026-11-14.zip 
+REPLACED 7 paswstring.ppu, i386-darwin dynlibs.ppu, tools\darwin-build drive.py README.md, README.md HISTORY.md docs\UNIT-REBUILD.md toolkit STATUS CHECKPOINT, CHECKSUMS 
+KEPT docs\PATCH6-MZ-LINKER-HANDOFF.md - attic copy 4861 bytes, docs 5016  
+KEPT docs\PHASE-RTL-REBUILD.md - attic copy 17275 bytes, docs 17696  
+CHECK paswstring.ppu present 6 of 6 folders 
+DELETED tools\smartpack\pwsfix.ok marker 
+DONE 

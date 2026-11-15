@@ -22,7 +22,6 @@ unit Win32WSDialogs;
 interface
 
 uses
-  win32compat,
 ////////////////////////////////////////////////////
 // I M P O R T A N T
 ////////////////////////////////////////////////////
@@ -223,7 +222,7 @@ var
       FileNames := UTF16ToUTF8(DialogRec^.UnicodeFileNames);
       if FolderName='' then
       begin
-        // On Windows 7, the WinSendMessage(GetParent(Wnd), CDM_GETFOLDERPATH, 0, LPARAM(nil))
+        // On Windows 7, the SendMessageW(GetParent(Wnd), CDM_GETFOLDERPATH, 0, LPARAM(nil))
         // at UpdateStorage might fail (see #16797)
         // However, the valid directory is returned in OpenFile^.lpstrFile
         //
@@ -425,14 +424,14 @@ begin
   {$ifdef WindowsUnicodeSupport}
   if UnicodeEnabledOS then
   begin
-    FolderSize := WinSendMessage(GetParent(Wnd), CDM_GETFOLDERPATH, 0, LPARAM(nil));
-    FilesSize := WinSendMessage(GetParent(Wnd), CDM_GETSPEC, 0, LPARAM(nil));
+    FolderSize := SendMessageW(GetParent(Wnd), CDM_GETFOLDERPATH, 0, LPARAM(nil));
+    FilesSize := SendMessageW(GetParent(Wnd), CDM_GETSPEC, 0, LPARAM(nil));
     SetLength(DialogRec^.UnicodeFolderName, FolderSize - 1);
-    WinSendMessage(GetParent(Wnd), CDM_GETFOLDERPATH, FolderSize,
+    SendMessageW(GetParent(Wnd), CDM_GETFOLDERPATH, FolderSize,
                  LPARAM(PWideChar(DialogRec^.UnicodeFolderName)));
 
     SetLength(DialogRec^.UnicodeFileNames, FilesSize - 1);
-    WinSendMessage(GetParent(Wnd), CDM_GETSPEC, FilesSize,
+    SendMessageW(GetParent(Wnd), CDM_GETSPEC, FilesSize,
                  LPARAM(PWideChar(DialogRec^.UnicodeFileNames)));
   end else
   {$endif}
@@ -1258,7 +1257,7 @@ begin
         // Setting root dir
         {$ifdef WindowsUnicodeSupport}
         if UnicodeEnabledOS then
-          WinSendMessage(hwnd, BFFM_SETSELECTIONW, ULONG(True), lpData)
+          SendMessageW(hwnd, BFFM_SETSELECTIONW, ULONG(True), lpData)
         else
         {$endif}
           SendMessage(hwnd, BFFM_SETSELECTION, ULONG(True), lpData);
@@ -1319,7 +1318,7 @@ begin
       lParam := Windows.LParam(PWideChar(InitialDirW));
     end;
 
-    iidl := SHBrowseForFolderW(biw);
+    iidl := SHBrowseForFolderW(@biw);
 
     if Assigned(iidl) then
     begin
@@ -1345,7 +1344,7 @@ begin
       lParam := Windows.LParam(PChar(InitialDir));
     end;
 
-    iidl := SHBrowseForFolder(bi);
+    iidl := SHBrowseForFolder(@bi);
 
     if Assigned(iidl) then
     begin
@@ -1370,7 +1369,7 @@ begin
     lParam := LclType.LParam(PChar(InitialDir));
   end;
 
-  iidl := SHBrowseForFolder(bi);
+  iidl := SHBrowseForFolder(@bi);
 
   if Assigned(iidl) then
   begin

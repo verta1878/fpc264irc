@@ -193,6 +193,24 @@ source          patches/os2-cross/binutils/ (binutils-2.30-emx.patch, build.sh, 
 result          same program images and the same LX import fixups as before (360 / 1055 in the two tests); not yet run on OS/2
 ```
 
+## i386 SetLength fix, LCL win32 on NT (2026-11-15)
+Two fpc264irc bugs found while building wrench's InnoIRC561 (Inno code is not part of this repo).
+- **BUG-046** `src/rtl/i386/i386.inc`: the assembler `fpc_AnsiStr_Decr_Ref` set `S := nil` only when the count
+  reached 0. `astrings.inc` (`SetLength(S, 0)` and others) relies on decr_ref clearing `S`, so a shared string kept
+  its old text: `t := s; SetLength(s, 0)` left `Length(s)` = 4. Now `S` is cleared on every path, as the Pascal
+  version and upstream FPC 2.6.4 / 3.2.2 (checked: both print 0). `system` rebuilt with each kit for i386-win32,
+  -linux, -freebsd, -go32v2, -os2, -darwin: same checksums, no other unit changes. Test prints 0 on i386-linux,
+  i386-win32 (Wine), go32v2 (DOSBox).
+- **BUG-047 / G-017** LCL win32 "Failed to create win32 control, error 1411: Class does not exist" on NT/Wine: the
+  U-1 commit `3cc25923` had put `A` functions (`Win*` = A without `UNICODE`) into the `if UnicodeEnabledOS` (NT only)
+  branches - `RegisterClassA` with a `WNDCLASSW` registered "Window" as "W". 12 files of
+  `src/lazarus/lcl/interfaces/win32` back to the upstream code (A on 9x, W on NT, at run time). The 12 W functions
+  BUG-040 kept out of the import table are loaded at run time by `win32compat.pas` (`DynRegisterClassW`,
+  `DynDefWindowProcW` ...; A fallback if missing), so the import table is the same as shipped (29 W imports, all in
+  NT branches) - Win98 still loads. Rebuilt: `win32compat` (main folder), 18 files in `lcl/`, 20 in the Lazarus set.
+- Checked: `ppu_consistency.py` as shipped (lcl+main 11 notes, Lazarus 13, the known `tabs` fatal); an LCL win32
+  program (form, button, timer) runs under Wine with both sets. Not run on real Windows or Win98.
+
 ## Exact source rebuild 9: Lazarus i386-os2 (2026-11-14)
 `tools/os2-native-build/lazbuild.sh` rebuilds `bin/lazarus/units/i386-os2` (233 units: lazutils 59, lcl 174 with the
 customdrawn widgetset) against `bin/units/i386-os2`; two runs byte-identical. The last folder of docs/UNIT-REBUILD.md:

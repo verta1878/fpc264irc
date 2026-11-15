@@ -1,0 +1,9 @@
+fpc264irc w64 Sat 11/14/2026 19:39:25.02 
+CHECK zip MD5 OK 79d1e28889af42c69206443c80b89d63 
+UNZIPPED fpc264irc-w64-2026-11-14.zip 
+REPLACED bin\units\x86_64-win64 1038 .ppu + 6 .a, HISTORY.md docs\UNIT-REBUILD.md ROADMAP-UNITS.md toolkit STATUS CHECKPOINT NEXT, CHECKSUMS 
+NEW tools\win64-build (9 files) 
+CHECK bin\units\x86_64-win64 1039 .ppu (want 1039) 
+CHECK tools\win64-build 9 files (want 9) 
+DELETED tools\smartpack\w64.ok marker 
+DONE 

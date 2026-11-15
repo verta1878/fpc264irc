@@ -1518,11 +1518,16 @@ asm
         subl    $4,%esp
 // Var S located in register
 // Var l located in register
-        movl    %eax,(%esp)
 // [101] l:=@PAnsiRec(S-FirstOff)^.Ref;
 // Ref is at StringPtr-8 in both 8-byte and 12-byte TAnsiRec layouts
 // (in 12-byte: CodePage:2 + ElementSize:2 + Ref:4 = offset 4, so ptr-12+4 = ptr-8)
         movl    (%eax),%edx
+// fpc264irc 2026-11-14 (byte): S := nil on EVERY path, as the Pascal fpc_ansistr_decr_ref in inc/astrings.inc
+// does. That astrings.inc (fpc_AnsiStr_SetLength with l=0, ...) relies on it; before, S was cleared only when the
+// count reached 0, so SetLength(S,0) on a shared string left S pointing at it (and uncounted). The temp slot now
+// keeps the string pointer itself, for the FreeMem below.
+        movl    $0,(%eax)
+        movl    %edx,(%esp)
         subl    $8,%edx
 // [102] If l^<0 then exit;
         cmpl    $0,(%edx)
@@ -1552,14 +1557,11 @@ asm
         je      .Lj3605
 .Lj3620:
         movl    (%esp),%eax
-        movl    (%eax),%eax
 // BUG-029 fix: FreeMem needs record BASE at StringPtr - AnsiFirstOff.
 // AnsiFirstOff = SizeOf(TAnsiRec) = 12 (CodePage:2+ElementSize:2+Ref:4+Len:4).
 // Original had $8 from pre-codepage layout (Ref:4+Len:4 = 8 bytes only).
         subl    $12,%eax
         call    FPC_FREEMEM_X
-        movl    (%esp),%eax
-        movl    $0,(%eax)
 .Lj3618:
 .Lj3605:
 .Lj3596:

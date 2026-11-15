@@ -1,0 +1,40 @@
+fpc264irc cleanup Sat 10/10/2026  0:38:42.59 
+DELETED folder darwin
+DELETED folder darwinld
+DELETED folder darwinfw
+DELETED folder darwin64
+DELETED folder graph322
+DELETED folder i8086os2
+DELETED folder testos2
+DELETED folder os2ld
+DELETED folder os2link
+DELETED folder os2test
+DELETED folder ppufmt
+DELETED folder unitfolders
+DELETED folder unitsfix
+DELETED folder smartpack
+DELETED darwin-run.bat
+DELETED darwin-run.log
+DELETED darwinld-run.bat
+DELETED darwinld-run.log
+DELETED darwinfw-run.bat
+DELETED darwinfw-run.log
+DELETED darwin64-run.bat
+DELETED darwin64-run.log
+DELETED graph322-run.bat
+DELETED graph322-run.log
+DELETED i8086os2-run.bat
+DELETED i8086os2-run.log
+DELETED testos2-run.bat
+DELETED testos2-run.log
+DELETED os2ld-run.bat
+DELETED os2ld-run.log
+DELETED os2link-run.bat
+DELETED os2link-run.log
+DELETED ppufmt-run.bat
+DELETED ppufmt-run.log
+DELETED unitfolders-run.bat
+DELETED unitfolders-run.log
+DELETED unitsfix-run.bat
+DELETED unitsfix-run.log
+DONE

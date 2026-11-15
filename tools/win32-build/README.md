@@ -96,3 +96,13 @@ synedit (win32) had a `.ppu` but no code and now have their `libp<unit>.a`. New:
   (form, button, timer) links with both LCL sets (`-XPi386-win32-` for fpcres) but stops under Wine with "Failed to
   create win32 control, error 1411: Class does not exist" - the same with the shipped units, a plain RegisterClass /
   CreateWindow program works: an LCL-under-Wine problem, not this rebuild. Not tested on Windows 11.
+- 2026-11-15: that "Class does not exist" was fpc264irc's own (BUG-047, GLOBALS G-017): fixed in
+  `src/lazarus/lcl/interfaces/win32`, the LCL win32 program now runs under Wine with both sets.
+
+### 2026-11-15: SetLength fix + LCL win32 on NT
+Rebuilt with this kit after BUG-046 (`src/rtl/i386/i386.inc`) and BUG-047 (12 LCL win32 sources, `win32compat.pas`):
+`system` (same checksums), `win32compat` (+ the `Dyn*W` functions), in `lcl/` 18 files (win32int, win32proc,
+win32wschecklst, win32wscomctrls, win32wscontrols, win32wsdialogs, win32wsextdlgs, win32wsfactory, win32wsspin,
+win32wsstdctrls + their `.a`), in the Lazarus set the same 18 + `alllclintfunits`, `lcl`. Every other file of the
+three folders the same as before (the date-only `fpcmmain` / `fpcmpkg` / `fpcmwr` not replaced). Import table of an
+LCL program unchanged (29 W imports, Win98 loads it as before).

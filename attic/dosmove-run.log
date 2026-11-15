@@ -1,0 +1,6 @@
+fpc264irc dosmove Thu 10/15/2026 22:36:18.70 
+UNZIPPED fpc264irc-dosmove-2026-10-15.zip - 21 files 
+REPLACED bin\units\i386-go32v2 system.ppu system.a serial.ppu serial.a serial_irq.ppu fossil.ppu 
+NEW src\rtl\i386\fmovgo32.inc docs\BUILD-KNOBS.md 
+DELETED tools\smartpack\dosmove.ok marker 
+DONE 

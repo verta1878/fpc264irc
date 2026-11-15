@@ -179,7 +179,7 @@ var
   NCCreateParams: TNCCreateParams;
   WindowClass, DummyClass: WndClass;
 {$ifdef WindowsUnicodeSupport}
-  WindowClassW, DummyClassW: WndClass;
+  WindowClassW, DummyClassW: WndClassW;
 {$endif}
 begin
   NCCreateParams.DefWndProc := nil;
@@ -195,18 +195,18 @@ begin
       {$ifdef WindowsUnicodeSupport}
         if UnicodeEnabledOS then
         begin
-          if GetClassInfo(System.HInstance, PChar(pClassName), @WindowClassW) then
+          if DynGetClassInfoW(System.HInstance, PWideChar(WideString(pClassName)), @WindowClassW) then
           begin
             NCCreateParams.DefWndProc := WndProc(WindowClassW.lpfnWndProc);
-            if not GetClassInfo(System.HInstance, PChar(pSubClassName), @DummyClassW) then
+            if not DynGetClassInfoW(System.HInstance, PWideChar(WideString(pSubClassName)), @DummyClassW) then
             begin
               with WindowClassW do
               begin
                 LPFnWndProc := SubClassWndProc;
                 hInstance := System.HInstance;
-                lpszClassName := PChar(pSubClassName);
+                lpszClassName := PWideChar(WideString(pSubClassName));
               end;
-              WinRegisterClass(@WindowClassW);
+              DynRegisterClassW(@WindowClassW);
             end;
             pClassName := pSubClassName;
           end;

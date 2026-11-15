@@ -1,0 +1,17 @@
+repocheck Sat 11/14/2026 12:45:27.28 
+git: C:\Users\owner\AppData\Local\GitHubDesktop\app-3.6.7\resources\app\git\cmd\git.exe 
+[1] LOCAL HEAD 
+ac3c7ce484f1d871c79d459f09a18eadc16af8e7
+[2] GITHUB main 
+ac3c7ce484f1d871c79d459f09a18eadc16af8e7	refs/heads/main
+[3] STATUS - empty means no changed, deleted or new files 
+?? attic/attic-byte-fix-run.bat
+?? attic/attic-byte-run.bat
+?? attic/fvadd-run.bat
+?? attic/fvadd/fpc264irc-fvadd-2026-10-30.zip
+?? attic/rtlattic.zip
+[4] IGNORED 
+!! byte-memory-backup-2026-10-24.zip
+[5] TRACKED FILES 
+45607
+DONE 

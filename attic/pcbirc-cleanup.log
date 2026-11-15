@@ -1,0 +1,117 @@
+pcbirc cleanup Sat 10/10/2026 11:36:00.08 
+DELETED bin\tools\i386-win32\i386-win32-fpcres 
+DELETED bin\units\i386-darwin\dbugintf.ppu 
+DELETED bin\units\i386-darwin\dbugintf.rst 
+DELETED bin\units\i386-darwin\fpimgcanv.ppu 
+DELETED bin\units\i386-darwin\fv\dialogs.ppu 
+DELETED bin\units\i386-darwin\fv\dialogs.rst 
+DELETED bin\units\i386-darwin\fv\libpdialogs.a 
+DELETED bin\units\i386-darwin\libpdbugintf.a 
+DELETED bin\units\i386-darwin\libpfpimgcanv.a 
+DELETED bin\units\i386-darwin\libpmenus.a 
+DELETED bin\units\i386-darwin\libpxmldatapacketreader.a 
+DELETED bin\units\i386-darwin\xmldatapacketreader.ppu 
+DELETED bin\units\i386-darwin\xmldatapacketreader.rst 
+DELETED bin\units\i386-win32\app.ppu 
+DELETED bin\units\i386-win32\app.rst 
+DELETED bin\units\i386-win32\asciitab.ppu 
+DELETED bin\units\i386-win32\buildfv.ppu 
+DELETED bin\units\i386-win32\colortxt.ppu 
+DELETED bin\units\i386-win32\dialogs.ppu 
+DELETED bin\units\i386-win32\dialogs.rst 
+DELETED bin\units\i386-win32\drivers.ppu 
+DELETED bin\units\i386-win32\editors.ppu 
+DELETED bin\units\i386-win32\editors.rst 
+DELETED bin\units\i386-win32\fpwidestring.ppu 
+DELETED bin\units\i386-win32\fvcommon.ppu 
+DELETED bin\units\i386-win32\fvconsts.ppu 
+DELETED bin\units\i386-win32\gadgets.ppu 
+DELETED bin\units\i386-win32\histlist.ppu 
+DELETED bin\units\i386-win32\inplong.ppu 
+DELETED bin\units\i386-win32\libimpfpwidestring.a 
+DELETED bin\units\i386-win32\libpapp.a 
+DELETED bin\units\i386-win32\libpasciitab.a 
+DELETED bin\units\i386-win32\libpbuildfv.a 
+DELETED bin\units\i386-win32\libpcolortxt.a 
+DELETED bin\units\i386-win32\libpdialogs.a 
+DELETED bin\units\i386-win32\libpdrivers.a 
+DELETED bin\units\i386-win32\libpeditors.a 
+DELETED bin\units\i386-win32\libpfpwidestring.a 
+DELETED bin\units\i386-win32\libpfvcommon.a 
+DELETED bin\units\i386-win32\libpfvconsts.a 
+DELETED bin\units\i386-win32\libpgadgets.a 
+DELETED bin\units\i386-win32\libphistlist.a 
+DELETED bin\units\i386-win32\libpinplong.a 
+DELETED bin\units\i386-win32\libpmemory.a 
+DELETED bin\units\i386-win32\libpmenus.a 
+DELETED bin\units\i386-win32\libpmsgbox.a 
+DELETED bin\units\i386-win32\libpoutline.a 
+DELETED bin\units\i386-win32\libpstatuses.a 
+DELETED bin\units\i386-win32\libpstddlg.a 
+DELETED bin\units\i386-win32\libpsysmsg.a 
+DELETED bin\units\i386-win32\libptabs.a 
+DELETED bin\units\i386-win32\libptime.a 
+DELETED bin\units\i386-win32\libptimeddlg.a 
+DELETED bin\units\i386-win32\libpvalidate.a 
+DELETED bin\units\i386-win32\libpviews.a 
+DELETED bin\units\i386-win32\memory.ppu 
+DELETED bin\units\i386-win32\menus.ppu 
+DELETED bin\units\i386-win32\msgbox.ppu 
+DELETED bin\units\i386-win32\msgbox.rst 
+DELETED bin\units\i386-win32\outline.ppu 
+DELETED bin\units\i386-win32\statuses.ppu 
+DELETED bin\units\i386-win32\stddlg.ppu 
+DELETED bin\units\i386-win32\stddlg.rst 
+DELETED bin\units\i386-win32\sysmsg.ppu 
+DELETED bin\units\i386-win32\tabs.ppu 
+DELETED bin\units\i386-win32\time.ppu 
+DELETED bin\units\i386-win32\timeddlg.ppu 
+DELETED bin\units\i386-win32\validate.ppu 
+DELETED bin\units\i386-win32\views.ppu 
+DELETED bin\units\x86_64-win64\fprepos.ppu 
+DELETED bin\units\x86_64-win64\fprepos.rst 
+DELETED bin\units\x86_64-win64\fpxmlrep.ppu 
+DELETED bin\units\x86_64-win64\fpxmlrep.rst 
+DELETED bin\units\x86_64-win64\libpfprepos.a 
+DELETED bin\units\x86_64-win64\libpfpxmlrep.a 
+DELETED bin\units\x86_64-win64\libppkgcommands.a 
+DELETED bin\units\x86_64-win64\libppkgdownload.a 
+DELETED bin\units\x86_64-win64\libppkgfpmake.a 
+DELETED bin\units\x86_64-win64\libppkgglobals.a 
+DELETED bin\units\x86_64-win64\libppkghandler.a 
+DELETED bin\units\x86_64-win64\libppkgmessages.a 
+DELETED bin\units\x86_64-win64\libppkgmkconv.a 
+DELETED bin\units\x86_64-win64\libppkgoptions.a 
+DELETED bin\units\x86_64-win64\libppkgrepos.a 
+DELETED bin\units\x86_64-win64\libppkgwget.a 
+DELETED bin\units\x86_64-win64\pkgcommands.ppu 
+DELETED bin\units\x86_64-win64\pkgdownload.ppu 
+DELETED bin\units\x86_64-win64\pkgfpmake.ppu 
+DELETED bin\units\x86_64-win64\pkgglobals.ppu 
+DELETED bin\units\x86_64-win64\pkghandler.ppu 
+DELETED bin\units\x86_64-win64\pkgmessages.ppu 
+DELETED bin\units\x86_64-win64\pkgmessages.rst 
+DELETED bin\units\x86_64-win64\pkgmkconv.ppu 
+DELETED bin\units\x86_64-win64\pkgoptions.ppu 
+DELETED bin\units\x86_64-win64\pkgrepos.ppu 
+DELETED bin\units\x86_64-win64\pkgrepos.rst 
+DELETED bin\units\x86_64-win64\pkgwget.ppu 
+DELETED docs\ROADMAP-UNITS.md 
+DELETED src\rtl\objpas\unicode\fpwidestring.pp 
+DELETED tools\smartpack\ppu_consistency.py 
+DELETED tools\smartpack\unitfolders.ok 
+REMOVED EMPTY FOLDER bin\units\i386-darwin\fv 
+REMOVED EMPTY FOLDER src\rtl\objpas\unicode 
+REMOVED EMPTY FOLDER bin\tools\i386-win32 
+REMOVED EMPTY FOLDER bin\units\i386-darwin 
+REMOVED EMPTY FOLDER bin\units\i386-win32 
+REMOVED EMPTY FOLDER bin\units\x86_64-win64 
+REMOVED EMPTY FOLDER src\rtl\objpas 
+REMOVED EMPTY FOLDER bin\tools 
+REMOVED EMPTY FOLDER bin\units 
+REMOVED EMPTY FOLDER src\rtl 
+REMOVED EMPTY FOLDER tools\smartpack 
+REMOVED EMPTY FOLDER bin 
+REMOVED EMPTY FOLDER src 
+DELETED 101 files, SKIPPED 0 
+Restore with GitHub Desktop - Discard changes: checksums.md5 checksums.sha256 checksums.txt history.md 

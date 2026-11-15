@@ -1046,10 +1046,10 @@ begin
 {$ifdef WindowsUnicodeSupport}
   if UnicodeEnabledOS then
   begin
-    TextLen := WinGetWindowTextLength(AHandle);
+    TextLen := DynGetWindowTextLengthW(AHandle);
     SetLength(WideBuffer, TextLen);
     if TextLen > 0 // Never give Windows the chance to write to System.emptychar
-    then TextLen := Windows.GetWindowText(AHandle, PChar(WideBuffer), TextLen + 1);
+    then TextLen := DynGetWindowTextW(AHandle, PWideChar(WideBuffer), TextLen + 1);
     SetLength(WideBuffer, TextLen);
     Result := UTF16ToUTF8(WideBuffer);
   end

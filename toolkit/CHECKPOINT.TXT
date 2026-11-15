@@ -39,3 +39,7 @@ CHECKPOINT.TXT - fpc264irc - append-only log (newest at the bottom; never edit o
 2026-11-14  rebuild #9 Lazarus i386-os2 (233, tools/os2-native-build/lazbuild.sh): the shipped set had no code and
             stale sysutils/dos; now 233 .ppu + libp*.a, ppu_consistency only the tabs clash, every unit compiles, an
             LCL customdrawn program links (OS/2 LX). emx-ar member dates fixed (ardate.py). ALL FOLDERS = KIT BUILDS.
+2026-11-15  BUG-046 i386 SetLength/decr_ref (S := nil on every path; system rebuilt for 6 i386 targets, same
+            checksums) + BUG-047 = G-017 LCL win32 on NT (U-1 taken back in 12 files, W calls via win32compat
+            Dyn*W, import table as shipped). Found building wrench's InnoIRC561 (Inno code kept separate; findings
+            for wrench in INNOIRC561-FINDINGS.md, not in this repo). LCL win32 GUI runs under Wine.

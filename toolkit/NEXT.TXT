@@ -1,11 +1,13 @@
-NEXT.TXT - fpc264irc - what to do next                                   byte, 2026-11-14
+NEXT.TXT - fpc264irc - what to do next                                   byte, 2026-11-15
 (cold start: read this, then RULES.TXT, STATUS.TXT, the last entry of CHECKPOINT.TXT)
 
 NEXT JOB: none in the rebuild plan - every unit folder is a kit build (docs/UNIT-REBUILD.md, all 9 done).
   Open: x86_64-win64 syncobjs = the go32v2 stub (empty TCriticalSection) - verta leans to the real src/syncobjs.pp
   (+ fpapache fpapache24 ptcwrapper ptcgraph ptccrt ptcmouse rebuilt), waiting for go; attic " (2)" dups not in
-  CHECKSUMS yet (verta: later); real-machine tests (Windows 11, FreeBSD, OS/2).
+  CHECKSUMS yet (verta: later); real-machine tests (Windows 11, Win98 for the LCL
+  win32 fix, FreeBSD, OS/2).
 
+DONE 2026-11-15: BUG-046 i386 SetLength (system x6) + BUG-047/G-017 LCL win32 on NT (lcl/ + Lazarus win32).
 DONE 2026-11-14: #9 Lazarus i386-os2 (tools/os2-native-build/lazbuild.sh).
 DONE 2026-11-14: #8 x86_64-win64 (tools/win64-build); paswstring refresh in 5 Lazarus sets; darwin dynlibs date.
 DONE 2026-10-28: #7b i386-win32 lcl/ (616) + Lazarus i386-win32 (304); main folder re-dated (cp -rL).

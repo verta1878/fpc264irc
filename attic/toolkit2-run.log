@@ -1,0 +1,10 @@
+fpc264irc toolkit2 Sun 10/25/2026 22:29:36.26 
+UNZIPPED fpc264irc-toolkit2-2026-10-25.zip - 8 files 
+NEW .gitignore 
+REPLACED HISTORY.md CHECKSUMS.md5 CHECKSUMS.sha256 CHECKSUMS.txt toolkit\NEXT.TXT toolkit\CHECKPOINT.TXT 
+CHECK .gitignore has /byte-memory-backup-*.zip - OK 
+CHECK CHECKSUMS.md5 does not list the backup zip - OK 
+CHECK HISTORY.md says ON HOLD - OK 
+LEFT byte-memory-backup-2026-10-24.zip in the folder - git ignores it 
+DELETED tools\smartpack\toolkit2.ok marker 
+DONE 

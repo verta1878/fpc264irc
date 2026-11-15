@@ -1,0 +1,12 @@
+fpc264irc w32main Tue 10/27/2026 20:24:31.64 
+CHECK zip MD5 OK 57ce2661959ee43f7346d73409fd436a 
+UNZIPPED fpc264irc-w32main-2026-10-27.zip 
+REPLACED bin\units\i386-win32 src\rtl\win\dynlibs.pas docs\UNIT-REBUILD.md docs\ROADMAP-UNITS.md docs\bugsfixed.md HISTORY.md CHECKSUMS.md5 CHECKSUMS.sha256 CHECKSUMS.txt toolkit\NEXT.TXT STATUS.TXT CHECKPOINT.TXT GLOBALS.TXT test.sh 
+NEW tools\win32-build + 9 import libraries + 2 .rst 
+CHECK bin\units\i386-win32 922 .ppu (want 922) 
+CHECK bin\units\i386-win32 152 import libraries (want 152: 151 + libimpmultimon.a kept) 
+CHECK bin\units\i386-win32\lcl 616 .ppu untouched (want 616) 
+CHECK tools\win32-build - OK 
+CHECK dynlibs.pas has FreeLibrary - OK 
+DELETED tools\smartpack\w32main.ok marker 
+DONE 

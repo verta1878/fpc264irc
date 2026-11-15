@@ -1,0 +1,5 @@
+fpc264irc darwindoc Fri 10/16/2026 17:27:37.85 
+UNZIPPED fpc264irc-darwindoc-2026-10-16.zip - 7 files 
+REPLACED docs\DARWIN-CROSS.md bin\tools\i386-darwin\README.md HISTORY.md CHECKSUMS.md5 CHECKSUMS.sha256 CHECKSUMS.txt 
+DELETED tools\smartpack\darwindoc.ok marker 
+DONE 

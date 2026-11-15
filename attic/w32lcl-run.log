@@ -1,0 +1,17 @@
+fpc264irc w32lcl Wed 10/28/2026 10:38:51.86 
+CHECK zip1 MD5 OK 843ec208d4bf89e067118f7230c8206b 
+CHECK zip2 MD5 OK 9feb3f51f33c4bc542f996c1bf9eda8f 
+CHECK zip3 MD5 OK b7de7a54ac545bf44fd952aa8bc4d00a 
+UNZIPPED fpc264irc-w32lcl-1-main-2026-10-28.zip 
+UNZIPPED fpc264irc-w32lcl-2-lcl-2026-10-28.zip 
+UNZIPPED fpc264irc-w32lcl-3-lazarus-2026-10-28.zip 
+REPLACED bin\units\i386-win32 bin\units\i386-win32\lcl bin\lazarus\units\i386-win32 src\lazarus\components\lazutils\paswstring.pas src\lazarus\lazutils\paswstring.pas tools\win32-build docs HISTORY.md CHECKSUMS toolkit 
+NEW tools\win32-build\laz-i386.txt lazmain-i386.txt lazdrive.py lazunits.py + 121 Lazarus files 
+CHECK bin\units\i386-win32 922 .ppu (want 922) 
+CHECK bin\units\i386-win32\lcl 616 .ppu (want 616) 
+CHECK bin\lazarus\units\i386-win32 304 .ppu (want 304) 
+CHECK bin\lazarus\units\i386-win32 304 libp*.a (want 304) 
+CHECK paswstring.pas updated - OK 
+CHECK tools\win32-build lazdrive.py - OK 
+DELETED tools\smartpack\w32lcl.ok marker 
+DONE 

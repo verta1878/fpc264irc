@@ -880,7 +880,7 @@ begin
   end;
   {$ifdef WindowsUnicodeSupport}
   if UnicodeEnabledOS then
-    Result := Windows.CreateFontIndirect(@TempLogFont)
+    Result := DynCreateFontIndirectW(@TempLogFontW)
   else
     Result := Windows.CreateFontIndirectA(@TempLogFont)
   {$else}
@@ -1146,7 +1146,7 @@ begin
   if UnicodeEnabledOS then
   begin
     W := UTF8ToUTF16(s);
-    Result := WinDrawText(DC, S, Rect, Flags);
+    Result := Windows.DrawTextW(DC, PWideChar(W), Length(W), @Rect, Flags);
   end
   else
   begin
@@ -1934,7 +1934,7 @@ begin
     if (UnicodeEnabledOS) and (BufSize = Sizeof(LOGFONTA)) then
     begin
       BufSize := SizeOf(LogFontW);
-      Result := Windows.GetObject(GDIObj, BufSize, @LFW);
+      Result := DynGetObjectW(GDIObj, BufSize, @LFW);
       Move(LFW, LF^, SizeOf(LogFontA) - SizeOf(LOGFONTA.lfFaceName));
       LF^.lfFaceName := UTF16ToUTF8(LFW.lfFaceName);
     end
@@ -2091,7 +2091,7 @@ begin
   begin
     // TODO: use the real number of chars (and not the length)
     w := UTF8ToUTF16(LCLStr);
-    Result := Windows.GetTextExtentExPointW(DC, PWideChar(w), Length(w),
+    Result := Windows.GetTextExtentExPointW(DC, PWideChar(W), Length(W),
       MaxWidth, MaxCount, PartialWidths, Size);
   end
   else
@@ -2134,7 +2134,7 @@ begin
   begin
     // TODO: use the real number of chars (and not the length)
     w := UTF8ToUTF16(S);
-    Result := Windows.GetTextExtentPoint32W(DC, PWideChar(w), Length(w), @Size);
+    Result := Windows.GetTextExtentPoint32W(DC, PWideChar(W), Length(W), @Size);
   end else
   begin
     // Important: Althougth the MSDN Docs point that GetTextExtentPoint32W
@@ -2187,7 +2187,7 @@ end;
 function TWin32WidgetSet.GetWindowLong(Handle: HWND; Int: Integer): PtrInt;
 begin
   if UnicodeEnabledOS then
-    Result := Windows.GetWindowLongPtr(Handle, int)
+    Result := DynGetWindowLongPtrW(Handle, int)
   else
     Result := Windows.GetWindowLongPtr(Handle, int);
 end;
@@ -2651,7 +2651,7 @@ function TWin32WidgetSet.PeekMessage(var LPMsg: TMsg; Handle: HWND;
 begin
   {$IFDEF WindowsUnicodeSupport}
     if UnicodeEnabledOS then
-      Result := Boolean(Windows.PeekMessage(@LPMsg, Handle, WMsgFilterMin, WMsgFilterMax, WRemoveMsg))
+      Result := Boolean(DynPeekMessageW(@LPMsg, Handle, WMsgFilterMin, WMsgFilterMax, WRemoveMsg))
     else
       Result := Boolean(Windows.PeekMessage(@LPMsg, Handle, WMsgFilterMin, WMsgFilterMax, WRemoveMsg));
   {$ELSE}
@@ -3335,7 +3335,7 @@ end;
 function TWin32WidgetSet.SetWindowLong(Handle: HWND; Idx: Integer; NewLong: PtrInt): PtrInt;
 begin
   if UnicodeEnabledOS then
-    Result := Windows.SetWindowLongPtr(Handle, Idx, NewLong)
+    Result := DynSetWindowLongPtrW(Handle, Idx, NewLong)
   else
     Result := Windows.SetWindowLongPtr(Handle, Idx, NewLong);
 end;
@@ -3701,7 +3701,7 @@ var
 begin
 {$ifdef WindowsUnicodeSupport}
   ws := UTF8ToUTF16(copy(str,1,Count));
-  Result := Boolean(Windows.TextOutW(DC, X, Y, PWideChar(ws), Length(ws)));
+  Result := Boolean(Windows.TextOutW(DC, X, Y, PWideChar(ws), length(ws)));
 {$else}
   Result := Boolean(Windows.TextOut(DC, X, Y, Str, Count));
 {$endif}

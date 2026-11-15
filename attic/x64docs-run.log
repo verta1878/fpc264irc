@@ -1,0 +1,7 @@
+fpc264irc x64docs Thu 10/15/2026 23:30:14.87 
+UNZIPPED fpc264irc-x64docs-2026-10-16.zip - 15 files 
+REPLACED tools\graph-322-build\README.md README.md docs\ROADMAP-UNITS.md test\README.md HISTORY.md CHECKSUMS.md5 CHECKSUMS.sha256 CHECKSUMS.txt 
+NEW bin\units\x86_64-linux\graph.pp bin\units\x86_64-darwin\graph.pp test\x64graph\x64graph.pas test\x64graph\x64ptcgraph.pas test\x64graph\build.sh test\x64graph\README.md 
+OK no graph.ppu on x86_64-linux 
+DELETED tools\smartpack\x64docs.ok marker 
+DONE 

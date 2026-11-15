@@ -1,0 +1,9 @@
+fpc264irc toolkit Sun 10/25/2026 22:20:35.07 
+UNZIPPED fpc264irc-toolkit-2026-10-24.zip - 15 files 
+NEW toolkit\NEXT.TXT RULES.TXT STATUS.TXT CHECKPOINT.TXT MATCH.PY DISASM.TXT GLOBALS.TXT SEGMAP.TXT test.sh 
+NEW byte-memory-backup-2026-10-24.zip (repo root) 
+REPLACED HISTORY.md CHECKSUMS.md5 CHECKSUMS.sha256 CHECKSUMS.txt 
+CHECK toolkit 9 of 9 files present 
+CHECK byte-memory-backup-2026-10-24.zip MD5 OK e679254623af2913d6e64bc965eafb7f 
+DELETED tools\smartpack\toolkit.ok marker 
+DONE 

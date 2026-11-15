@@ -201,7 +201,7 @@ begin
   Info^.AWinControl := AWinControl;
   {$IFDEF WindowsUnicodeSupport}
   if UnicodeEnabledOS then
-    Info^.DefWndProc := Windows.WNDPROC(SetWindowLongPtr(UpDown, GWL_WNDPROC, PtrInt(@SpinUpDownWndProc)))
+    Info^.DefWndProc := Windows.WNDPROC(DynSetWindowLongPtrW(UpDown, GWL_WNDPROC, PtrInt(@SpinUpDownWndProc)))
   else
   {$ENDIF}
   Info^.DefWndProc := Windows.WNDPROC(SetWindowLongPtr(UpDown, GWL_WNDPROC, PtrInt(@SpinUpDownWndProc)));

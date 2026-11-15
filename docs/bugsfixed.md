@@ -1,7 +1,7 @@
 # FPC 2.6.4irc — Bugs Fixed (r3.1)
 
 Verified against repo commit 42aa8991 on 2026-10-01.
-45 unique bugs (BUG-044, BUG-045 added 2026-10-15). 9 duplicate/update entries merged into parents.
+47 unique bugs (BUG-044, BUG-045 added 2026-10-15; BUG-046, BUG-047 2026-11-15). 9 duplicate/update entries merged into parents.
 
 Legend:
 - ✅ FIXED — verified in source
@@ -123,6 +123,29 @@ Lazarus Makefile controls unit output dir, ignoring -FU flag. build-lcl.sh handl
 ### BUG-040: LCL Win32 uses W-variant APIs (crashes Win9x) — ✅ FIXED
 **Fix:** Created `win32compat.pas` + 46 call replacements (A/W dispatch).
 **Verified:** `src/lazarus/lcl/interfaces/win32/win32compat.pas` exists with A/W wrapper layer.
+**Update 2026-11-15:** the 46 replacements were all in NT-only branches and broke NT/Wine (BUG-047); taken back.
+The Win9x goal stays: the W functions BUG-040 removed from the import table are loaded at run time
+(`win32compat.pas` `Dyn*W`).
+
+### BUG-047: LCL win32 "Class does not exist" on NT / Wine (G-017) — ✅ FIXED
+**Symptom:** every LCL win32 program stopped with `Failed to create win32 control, error 1411: Class does not exist`.
+A Wine `+class` trace showed the class "Window" registered as "W" and "HintWindow" as "H".
+**Root cause:** commit `3cc25923` (BUG-040, "U-1 Win9x ANSI") replaced 46 `Windows.xxxW` calls with `Win*`
+wrappers. fpc264irc builds without `UNICODE`, so the wrappers are the A functions - and all 46 calls are inside
+`if UnicodeEnabledOS then` (NT only). `RegisterClassA` got a `WNDCLASSW` (stops after the first character), then
+`DefWindowProcA` for wide windows (stack overflow, run-time error 202), A messages on wide buffers. On Win9x those
+branches never run, so the change did nothing there.
+**Fix:** 12 files in `src/lazarus/lcl/interfaces/win32` back to upstream (A on 9x, W on NT, chosen at run time):
+win32callback.inc, win32listsl.inc, win32memostrings.inc, win32object.inc, win32proc.pp, win32winapi.inc,
+win32wschecklst.pp, win32wscomctrls.pp, win32wscontrols.pp, win32wsdialogs.pp, win32wsspin.pp, win32wsstdctrls.pp.
+The 12 W functions that the upstream code calls statically and BUG-040 had kept out of the import table go through
+`win32compat.pas` `DynGetWindowTextLengthW`, `DynGetWindowTextW`, `DynGetClassInfoW`, `DynRegisterClassW`,
+`DynUnregisterClassW`, `DynSetWindowLongPtrW`, `DynGetWindowLongPtrW`, `DynDefWindowProcW`, `DynSetWindowTextW`,
+`DynCreateFontIndirectW`, `DynGetObjectW`, `DynPeekMessageW` (GetProcAddress on first use; the A function or 0 if
+missing).
+**Verified:** import table of an LCL program the same as with the shipped units (29 W imports); the program runs
+under Wine with the Lazarus set and with `bin/units/i386-win32/lcl`; `ppu_consistency.py` as shipped. Not run on
+real Windows or Win98.
 
 ---
 
@@ -191,6 +214,18 @@ bytes, fixed units 0; the concat / MD5 / Base64 programs now correct; real x87 (
 targets' units rebuild byte-identical.
 **Still open (DOSBox only):** float -> Int64 (`Trunc`/`Round` above about 9e15) also loses bits there - no integer
 replacement for that, a DOSBox limit.
+
+### BUG-046: i386 SetLength(S, 0) does not empty a shared string — ✅ FIXED
+**Symptom:** `s := 'abc' + IntToStr(1); t := s; SetLength(s, 0); writeln(Length(s));` prints 4 (must be 0) on every
+i386 target; x86_64 correct. Found in InnoIRC561: every empty string of the setup header came back as the previous
+one ("app constant before it was initialized").
+**Root cause:** `src/rtl/inc/astrings.inc` (newer version) lets `fpc_ansistr_decr_ref` clear `S`, as the Pascal
+decr_ref does. The i386 assembler `fpc_AnsiStr_Decr_Ref` in `src/rtl/i386/i386.inc` (BUG-029) cleared `S` only when
+the count reached 0: for a shared string the count went down but `S` still pointed at it (wrong text and an
+uncounted reference).
+**Fix:** `S := nil` on every path; the free path takes the pointer it saved. `system` rebuilt for the 6 i386 targets.
+**Verified:** official FPC 2.6.4 and 3.2.2 print 0; fpc264irc now prints 0 on i386-linux, i386-win32 (Wine),
+go32v2 (DOSBox); `system` checksums unchanged, no other unit changes.
 
 ### BUG-045: go32v2 serial_irq did not compile against the folder's serial unit — ✅ FIXED
 **Fix:** `src/packages/serial/serial.pp` has `COM_IRQ` and `MCR_OUT2` (as wrench's `libs/serial/serial.pas`), so
@@ -341,14 +376,14 @@ Missing RegisterClass() calls for 18 Inno custom components. Fixed in InnoCompon
 
 | Status | Count |
 |--------|-------|
-| ✅ FIXED (verified in source) | 35 |
+| ✅ FIXED (verified in source) | 37 |
 | ✅ FIXED (binary only) | 1 |
 | 📝 DOCUMENTED / workaround | 5 |
 | ⏳ OPEN / DEFERRED | 2 |
 | 🔒 CLOSED (not a bug) | 3 |
 | ⚠️ KNOWN ISSUE (Wine) | 1 |
 | ↩️ REVERTED | 1 |
-| **Total unique issues** | **45** |
+| **Total unique issues** | **47** |
 | Duplicate/update entries merged | 9 |
 
 ### Numbering collisions in original document (resolved above)

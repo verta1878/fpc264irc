@@ -1,0 +1,9 @@
+fpc264irc os2laz Sat 11/14/2026 20:52:56.03 
+CHECK zip MD5 OK 8c8a149fa282c53d9b62caddbeacdc2a 
+UNZIPPED fpc264irc-os2laz-2026-11-14.zip 
+REPLACED bin\lazarus\units\i386-os2 233 .ppu, tools\os2-native-build\README.md, HISTORY.md docs\UNIT-REBUILD.md ROADMAP-UNITS.md toolkit STATUS CHECKPOINT NEXT, CHECKSUMS 
+NEW bin\lazarus\units\i386-os2 233 libp*.a, tools\os2-native-build lazbuild.sh lazdrive.py lazunits.py laz-i386.txt ardate.py 
+CHECK bin\lazarus\units\i386-os2 233 .ppu (want 233) 
+CHECK bin\lazarus\units\i386-os2 233 .a (want 233) 
+DELETED tools\smartpack\os2laz.ok marker 
+DONE 
