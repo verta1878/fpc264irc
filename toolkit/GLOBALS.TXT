@@ -57,6 +57,9 @@ G-015  SYMPTOM  two kit builds on different days differ in fpcmmain (win32 main 
 G-016  SYMPTOM  rebuilt units record real source dates instead of 2025-01-01
        CAUSE    a source folder reached through a symlink: cp -r copies the link, the date fix touches only the link
        FIX      copy with cp -rL (tools/win32-build/build.sh, 2026-10-28)
+G-020  SYMPTOM  a string assigned to itself (S := S, Result := Result) comes out empty; InnoIRC errors without text
+       CAUSE    FPC 3.x astrings.inc: decr_ref cleared S every time; the 2.6.4 compiler reads S again after decr_ref
+       FIX      2026-11-15 BUG-049: decr_ref as in 2.6.4 (nil only when freed), SetLength(S,0) clears S itself
 G-018  SYMPTOM  ppu_consistency.py: "FATAL tabs: implementation uses Dialogs" in every LCL set
        CAUSE    Free Vision and the LCL both have Dialogs / Menus - a name clash, not a stale unit
        FIX      2026-11-15: FV units matching a later folder's unit of that name = CLASH line, not FATAL

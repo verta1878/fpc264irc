@@ -1,7 +1,7 @@
 72e08b7e06f7c731f4f17ca9c29c1411  ./.fpcirc
 108e2243262608e8d2c977350600ef04  ./.gitattributes
 95110cc9d3af3d5ae891f49e0bb7e3c0  ./.gitignore
-394589318dafe7932bbd3ce00ac5758e  ./HISTORY.md
+9dc20f960e108cbb6ea0010a6847ea85  ./HISTORY.md
 9f463bb4d3019a9d922623ac0874dae4  ./LICENSE
 d169ba6938afc8449c4c717026af8cd8  ./Makefile
 1ebd7d1acc90db5c39395a6ddc5d2f91  ./README.md
@@ -367,6 +367,9 @@ e3c055b381ab4a32025d919e2b020f54  ./attic/rtllcl-run.log
 1789a4dbd13365748a5627db4cf8fd90  ./attic/stubtrim-run.bat
 5ce7d916edfdfab946a809df20e756d4  ./attic/stubtrim-run.log
 16d6158e1cb1c1811951658a1a9b16bf  ./attic/stubtrim/fpc264irc-stubtrim-2026-10-10.zip
+546a83ed4b50a4cb5f965b37dfb53529  ./attic/testsh-run.bat
+86697e43ea3d2be185e0c2e027179cf9  ./attic/testsh-run.log
+fdc598af2239449306c231295cdebfcb  ./attic/testsh/fpc264irc-testsh-2026-11-15.zip
 9d1a6f6e8d4c940e0d0bb62950a2057a  ./attic/toolkit-run.bat
 1581e14e052ee4665140ec9399cff738  ./attic/toolkit-run.log
 613780d15dda3b607263987298da2790  ./attic/toolkit/fpc264irc-toolkit-2026-10-24.zip
@@ -7309,7 +7312,7 @@ b69b21ed2efe328a2b65e796d1177ebf  ./bin/units/i386-darwin/libpstringtableresourc
 fc97bb3c67dc41d4965b6ba95eccc53c  ./bin/units/i386-darwin/libpsysconst.a
 87e747d3fd043c48fc17fe52aaecedc7  ./bin/units/i386-darwin/libpsysctl.a
 eef2cfb46be5522183e0407538cefe3b  ./bin/units/i386-darwin/libpsysmsg.a
-8875ef1cf59f256970aaff98ecbe67c5  ./bin/units/i386-darwin/libpsystem.a
+de1085579eb85a6417087253cb9190f4  ./bin/units/i386-darwin/libpsystem.a
 75192eac08722c74e87824611db1c8f2  ./bin/units/i386-darwin/libpsysutils.a
 075a3c3a5cc24f7337a35710a46499b5  ./bin/units/i386-darwin/libptabs.a
 598799f9de4dcb6d621b50393903ce53  ./bin/units/i386-darwin/libptargacmn.a
@@ -7489,7 +7492,7 @@ f3c1c03760a36f2e06e9e690231d01a1  ./bin/units/i386-darwin/syncobjs.ppu
 835f731488bcbcb568b7b819ac76deb7  ./bin/units/i386-darwin/sysconst.rst
 2e2df06829f41aeb3821c982f4b02c5c  ./bin/units/i386-darwin/sysctl.ppu
 fff60c176987ccc1ffc81d863f7707f4  ./bin/units/i386-darwin/sysmsg.ppu
-b9ed906eafd2e7c43341d9f34aab8e25  ./bin/units/i386-darwin/system.ppu
+f75e67d3e6531ef088e1d8e4f4d769d0  ./bin/units/i386-darwin/system.ppu
 7f4fbd89b9e53a7a474c2213e6d0ab30  ./bin/units/i386-darwin/sysutils.ppu
 156207be380045fcf976082a744083dc  ./bin/units/i386-darwin/tabs.ppu
 5216bbc3f4da04db33ce1433a55bd7f7  ./bin/units/i386-darwin/targacmn.ppu
@@ -7839,7 +7842,7 @@ b1c5acf5fa104f2ab2968eda5272a760  ./bin/units/i386-freebsd/libpstrutils.a
 f99b142134c49c14337433a4ece3a227  ./bin/units/i386-freebsd/libpsysconst.a
 5f32bf6cf56b168058f990e8f3e19414  ./bin/units/i386-freebsd/libpsysctl.a
 ca48a824c21bbdf1bc479751cbf90731  ./bin/units/i386-freebsd/libpsysmsg.a
-fc87160d51889cbab26103861d37efde  ./bin/units/i386-freebsd/libpsystem.a
+4feaa13d5f277a4841303d543f69ac17  ./bin/units/i386-freebsd/libpsystem.a
 95dd04ea2f6a3d527a34611b7140a145  ./bin/units/i386-freebsd/libpsysutils.a
 61e5afd7997e263ec3f608fc90c3c3c8  ./bin/units/i386-freebsd/libptabs.a
 4dad6f6f5780d0f22b69dec0c8151a79  ./bin/units/i386-freebsd/libpterminfo.a
@@ -7945,7 +7948,7 @@ da0d7100e9aa4899bb45615b2383ea80  ./bin/units/i386-freebsd/syscall.ppu
 835f731488bcbcb568b7b819ac76deb7  ./bin/units/i386-freebsd/sysconst.rst
 6c15faaa138ae31dc55e8552b85eb176  ./bin/units/i386-freebsd/sysctl.ppu
 88e218d5e06da8c3f767d78b993ea075  ./bin/units/i386-freebsd/sysmsg.ppu
-9f012e6a1d1eb0a153e5891b565dc833  ./bin/units/i386-freebsd/system.ppu
+c432e0f86a2cf3ee027038637b09ee77  ./bin/units/i386-freebsd/system.ppu
 20ff4243428ab12b7f71e9bc08b18345  ./bin/units/i386-freebsd/sysutils.ppu
 7d74898df20ca851100f3d1c732a1244  ./bin/units/i386-freebsd/tabs.ppu
 4dc24df973fa200a19bf28fe32a2148f  ./bin/units/i386-freebsd/terminfo.ppu
@@ -8584,8 +8587,8 @@ f9aeb32be29352b9436d0b01b401d26f  ./bin/units/i386-go32v2/sysconst.ppu
 a3b8e6b2c95a6427d83fad9a4239485d  ./bin/units/i386-go32v2/sysconst.rst
 4e3aa8d714ae32dfd5fa6e3f8b6fd8fc  ./bin/units/i386-go32v2/sysmsg.a
 fb837631521f900f17e2bfa91c1e7c14  ./bin/units/i386-go32v2/sysmsg.ppu
-f33853fc49210d7b3ff9b2401d205c55  ./bin/units/i386-go32v2/system.a
-935ac69ece127fb8034d88c887e19c6d  ./bin/units/i386-go32v2/system.ppu
+ed08ff9aed1632555e30fd3421d1ae97  ./bin/units/i386-go32v2/system.a
+0cddfb8254d81113ca0a4b090052d4ac  ./bin/units/i386-go32v2/system.ppu
 8b1d2479724f38d489064ed013987381  ./bin/units/i386-go32v2/sysutils.a
 dea697f5f2254b7881e0af901e7f0c68  ./bin/units/i386-go32v2/sysutils.ppu
 cdcef59b1262c4b1dbe684221c7bc3c9  ./bin/units/i386-go32v2/tabs.a
@@ -9042,7 +9045,7 @@ f4e286334a5da79a4e42801f61b827ff  ./bin/units/i386-linux/libpsi_g.a
 3f070135b77cdc6d37167bd82e4320d8  ./bin/units/i386-linux/libpsyscall.a
 abc57c9175282e8ec0e74186e31c6fbe  ./bin/units/i386-linux/libpsysconst.a
 05b5e25d0e821bda7217efc2662b52c1  ./bin/units/i386-linux/libpsysmsg.a
-67e049fc0c1851311a34cbdecd47eeb0  ./bin/units/i386-linux/libpsystem.a
+f0a1935b3e2efd597ec10d0083b84bbd  ./bin/units/i386-linux/libpsystem.a
 9379fefc43da90e00739d217b4c0e4d8  ./bin/units/i386-linux/libpsysutils.a
 0392ec2ac7bb83b5c354d05a51dc0491  ./bin/units/i386-linux/libptabs.a
 1ecdfb88d63e4ac7a1d84c7a29be7243  ./bin/units/i386-linux/libpterminfo.a
@@ -9199,7 +9202,7 @@ db71612584e42d660faa29856456a847  ./bin/units/i386-linux/syscall.ppu
 3306719635f6e74e90d03a3870bedd3d  ./bin/units/i386-linux/sysconst.ppu
 835f731488bcbcb568b7b819ac76deb7  ./bin/units/i386-linux/sysconst.rst
 8638da717580e9d7de038c0fad1028f5  ./bin/units/i386-linux/sysmsg.ppu
-e1ad7d7b5331bbe3572f37d17d91e2e8  ./bin/units/i386-linux/system.ppu
+d7ef9b9fdbd20a66a158620a622ff44c  ./bin/units/i386-linux/system.ppu
 ed1ad06d90ab9d63366894717a8d6f20  ./bin/units/i386-linux/sysutils.ppu
 f5d8c7ba1f95a1a9c329f067c863a2fa  ./bin/units/i386-linux/tabs.ppu
 cec70af95f9c3683a830938f754adb7d  ./bin/units/i386-linux/terminfo.ppu
@@ -9617,7 +9620,7 @@ aa6ea8c4207c96e0644a7e63be0b3e3a  ./bin/units/i386-os2/libpstrings.a
 3cb5affb9c29e56567b7d15f792d7e07  ./bin/units/i386-os2/libpstrutils.a
 36461f51cf591153c13636336369cd98  ./bin/units/i386-os2/libpsysconst.a
 e4431ae2fb9ebd9d27b491f2ef262ef4  ./bin/units/i386-os2/libpsysmsg.a
-dfe708ed4ca8c5cbb019e1cb9ddde89b  ./bin/units/i386-os2/libpsystem.a
+2a80e24ac1633b72b514bd5ed2249339  ./bin/units/i386-os2/libpsystem.a
 80e9d8fdeaac399a6add4133d3ec8330  ./bin/units/i386-os2/libpsysutils.a
 7c6321587c68698b063186147d82295d  ./bin/units/i386-os2/libptabs.a
 f0dc9ed9e5bd6c490f38a2a8390f14ad  ./bin/units/i386-os2/libptcp32dll.a
@@ -9755,7 +9758,7 @@ e3b1860b745d5e568867f32dff3ce985  ./bin/units/i386-os2/sysconst.ppu
 a3b8e6b2c95a6427d83fad9a4239485d  ./bin/units/i386-os2/sysconst.rst
 5bb4f86ebac4479b26d0bea191a45bd7  ./bin/units/i386-os2/sysmsg.ppu
 59e5d008df614bf780219c8bea0451e5  ./bin/units/i386-os2/system.a
-73b3eb04e18e5c54902b5674302f4247  ./bin/units/i386-os2/system.ppu
+8fd96b1e98fa34ee00077984ad7c4fa9  ./bin/units/i386-os2/system.ppu
 a6548544d954fb9bc5a4fc8e5f276cb9  ./bin/units/i386-os2/sysutils.a
 dcaecbaf683ad87361a5a22b45855707  ./bin/units/i386-os2/sysutils.ppu
 0f77ac0ab357d026be1a09f77a4d2d61  ./bin/units/i386-os2/tabs.ppu
@@ -12967,7 +12970,7 @@ c54741babd3f90be838f714244561c20  ./bin/units/i386-win32/libpsysinitcyg.a
 a51750402dabdd98ec6f4e27c6f72217  ./bin/units/i386-win32/libpsysinitgprof.a
 07cff347b3134df44c9cd927090192a7  ./bin/units/i386-win32/libpsysinitpas.a
 813898ee008eed6a20285604ab03f3f6  ./bin/units/i386-win32/libpsysmsg.a
-e34c687ce3efa843ffed744eb8d69bb0  ./bin/units/i386-win32/libpsystem.a
+081d1c5a2457e7ed96fd2e4f5196a677  ./bin/units/i386-win32/libpsystem.a
 49e6cd745c9d9af3d2e8b3500ad2fe28  ./bin/units/i386-win32/libpsystems.a
 006ab88e0724594a8310443509dee89e  ./bin/units/i386-win32/libpsysutils.a
 d9f799321a2b7adeaca71aa36079c1d7  ./bin/units/i386-win32/libptabs.a
@@ -13270,7 +13273,7 @@ bfc17ac644ffc6e04ca679c5e422429a  ./bin/units/i386-win32/sysinitcyg.ppu
 fd012effd3ffe4346272a44424c359cc  ./bin/units/i386-win32/sysinitgprof.ppu
 5121c7d1d45cba1e24add1f8096836a3  ./bin/units/i386-win32/sysinitpas.ppu
 fe0bfc007fdbd9de6f41046e7f957c99  ./bin/units/i386-win32/sysmsg.ppu
-8511aeda0fdd6c4aeeedf7c02b8f089b  ./bin/units/i386-win32/system.ppu
+671015f984e48d2dc82d5a3ba2bc1364  ./bin/units/i386-win32/system.ppu
 f30e71c04f9d99d9155f05439fa36653  ./bin/units/i386-win32/systems.ppu
 d1dd0d07909d1592ed5a80eb56b88c4e  ./bin/units/i386-win32/sysutils.ppu
 6ededbf57108e56f6dba1f6a6c8a6200  ./bin/units/i386-win32/tabs.ppu
@@ -15488,7 +15491,7 @@ a9177309a0fa8631b884b5b50602d645  ./bin/units/x86_64-darwin/libpsha1.a
 1d2a2f0ca082bafc3178af4cd77d7aad  ./bin/units/x86_64-darwin/libpsysconst.a
 731d75a237cfa2237368181d99f0ceb5  ./bin/units/x86_64-darwin/libpsysctl.a
 ba618a6f7ebb3b61f7825358c551653f  ./bin/units/x86_64-darwin/libpsysmsg.a
-e4151f27db979b9caf449bde3fa04117  ./bin/units/x86_64-darwin/libpsystem.a
+3a1645d715cf24d8c80db5f274fe9102  ./bin/units/x86_64-darwin/libpsystem.a
 9b55243a12c1aa4170a304e5413b0221  ./bin/units/x86_64-darwin/libpsysutils.a
 f50b795ad71032612b3213dbc1182e01  ./bin/units/x86_64-darwin/libptabs.a
 248aeab0eda58fdabca8f28e456cc7bd  ./bin/units/x86_64-darwin/libptargacmn.a
@@ -15656,7 +15659,7 @@ c8e842f24592229727164c9eda87032f  ./bin/units/x86_64-darwin/streamio.ppu
 835f731488bcbcb568b7b819ac76deb7  ./bin/units/x86_64-darwin/sysconst.rst
 b6b8c46f37a1dcedad5239af1a2a97cc  ./bin/units/x86_64-darwin/sysctl.ppu
 8011361402ec6e16f28ee613a878b08b  ./bin/units/x86_64-darwin/sysmsg.ppu
-80979fb4fa3ef16c3468f506f8659840  ./bin/units/x86_64-darwin/system.ppu
+5c644ccec821fc741d56d0f21a767b76  ./bin/units/x86_64-darwin/system.ppu
 a03f7b86435ef6a40e6b72efc0fa8b19  ./bin/units/x86_64-darwin/sysutils.ppu
 512bfe8173adf224e4df28f362acd116  ./bin/units/x86_64-darwin/tabs.ppu
 5994b928b7bbf6c72fd33cbd0a9bc451  ./bin/units/x86_64-darwin/targacmn.ppu
@@ -15818,7 +15821,7 @@ d13de01da05ddf6aef56b539db0094f2  ./bin/units/x86_64-freebsd/libpstatuses.a
 7b530bc5475100aa6b66ffee4eeb9ed9  ./bin/units/x86_64-freebsd/libpsysconst.a
 0e18cfd2d6b1ec11a5a96583c3e4facf  ./bin/units/x86_64-freebsd/libpsysctl.a
 b918e69f2b8e687624470b5fd0f526a1  ./bin/units/x86_64-freebsd/libpsysmsg.a
-802b2215bddf69ce0ab91b3757a31202  ./bin/units/x86_64-freebsd/libpsystem.a
+c0749e9ba0aada30861e1366350364d7  ./bin/units/x86_64-freebsd/libpsystem.a
 00b6637b43e9b70ed8841d3356a0c8c6  ./bin/units/x86_64-freebsd/libpsysutils.a
 ddf6165f9fced5a707120087f8ca3c3c  ./bin/units/x86_64-freebsd/libptabs.a
 635413f49ccb9c570c973153e5dcb4b5  ./bin/units/x86_64-freebsd/libptermio.a
@@ -15865,7 +15868,7 @@ dfe8c8b2c868c3a2632be2dfa1981dd3  ./bin/units/x86_64-freebsd/resource.ppu
 835f731488bcbcb568b7b819ac76deb7  ./bin/units/x86_64-freebsd/sysconst.rst
 95ab2c5e3bab9ccd40193d4c2e6b854a  ./bin/units/x86_64-freebsd/sysctl.ppu
 dcda03afd3174d3b71d8d36837f19201  ./bin/units/x86_64-freebsd/sysmsg.ppu
-522b62d31860d3329dbec3bdd8eb82d6  ./bin/units/x86_64-freebsd/system.ppu
+0da3cbe9f80d5368505a936beb1dad90  ./bin/units/x86_64-freebsd/system.ppu
 a0d1a7ff89e2814d58627abb4ae697c8  ./bin/units/x86_64-freebsd/sysutils.ppu
 394e23740b78c120375803d875a959ee  ./bin/units/x86_64-freebsd/tabs.ppu
 60a0abbfdc8bc82ba8fe5bf9f8532b51  ./bin/units/x86_64-freebsd/termio.ppu
@@ -16885,7 +16888,7 @@ c68abd96b4c4e3d793be5cbeb2b94c50  ./bin/units/x86_64-linux/libpstrtable.a
 209470b797a1e5cbefc0e2a4f483ecc3  ./bin/units/x86_64-linux/libpsyscall.a
 93e182e20ed8e9b739dd405439695c5a  ./bin/units/x86_64-linux/libpsysconst.a
 b3eabc2afdfbc9e117ea079a0ed62b84  ./bin/units/x86_64-linux/libpsysmsg.a
-2a698a9c392d152393da65510580c491  ./bin/units/x86_64-linux/libpsystem.a
+998228bd5ddcbd6a4544a15ce7b7df3b  ./bin/units/x86_64-linux/libpsystem.a
 a3978bb5ee16594fe473cf0c5711530e  ./bin/units/x86_64-linux/libpsysutils.a
 6d372d5fd1c61b55f089457a6c34fcd1  ./bin/units/x86_64-linux/libptabs.a
 6768201bbfc1bfe19b23806f4a8ec44f  ./bin/units/x86_64-linux/libptargacmn.a
@@ -17180,7 +17183,7 @@ d32dddc877a1093d9e88bb08b6e31b20  ./bin/units/x86_64-linux/symbolic.rst
 11bcb3fe11be79bd243be5338b561feb  ./bin/units/x86_64-linux/sysconst.ppu
 835f731488bcbcb568b7b819ac76deb7  ./bin/units/x86_64-linux/sysconst.rst
 a3d14da88c53926f7c254456302b607b  ./bin/units/x86_64-linux/sysmsg.ppu
-07102c6b5793295d403a917b4b295bc2  ./bin/units/x86_64-linux/system.ppu
+ab7555aac038252fa51a87ea9e34238f  ./bin/units/x86_64-linux/system.ppu
 4575e6db35329fd9a5660d7e245f538d  ./bin/units/x86_64-linux/sysutils.ppu
 e4711b56048fcf865ef11cd442bcf4dd  ./bin/units/x86_64-linux/tabs.ppu
 1eb6a9cd10dca2bcfbe387903670006c  ./bin/units/x86_64-linux/targacmn.ppu
@@ -18830,7 +18833,7 @@ ef0621f8b2a381cabff40002104142e2  ./bin/units/x86_64-win64/libpsvgalib.a
 3efe298e5cc4c4168af8340e3cc24084  ./bin/units/x86_64-win64/libpsyncobjs.a
 1f4f11ea1cd69d5731d41dc8b508afa5  ./bin/units/x86_64-win64/libpsysconst.a
 5a8ed3652852fc6e8ce99b2fae908847  ./bin/units/x86_64-win64/libpsysmsg.a
-6e0333554413ad8938436565e1137e6a  ./bin/units/x86_64-win64/libpsystem.a
+d7ead243a210e20cb96740b72d28c69e  ./bin/units/x86_64-win64/libpsystem.a
 a0a2ba41a907e4e94b57a351ff853a54  ./bin/units/x86_64-win64/libpsystemlog.a
 8cd54785b712318c40d1f9dc99a19bf3  ./bin/units/x86_64-win64/libpsystemresources.a
 c1682543d0c039818092cd959fa1ec0f  ./bin/units/x86_64-win64/libpsysutils.a
@@ -19281,7 +19284,7 @@ d32dddc877a1093d9e88bb08b6e31b20  ./bin/units/x86_64-win64/symbolic.rst
 9b8a6ce8cb4c7424921afbad0097c2d1  ./bin/units/x86_64-win64/sysconst.ppu
 a3b8e6b2c95a6427d83fad9a4239485d  ./bin/units/x86_64-win64/sysconst.rst
 629dad1afb5ed1a74ebb0c03fd6c2c72  ./bin/units/x86_64-win64/sysmsg.ppu
-d8583b989ad1dea776427b7d7cb3c393  ./bin/units/x86_64-win64/system.ppu
+4f9fa985e701b7c7b5e97c68830f3bb0  ./bin/units/x86_64-win64/system.ppu
 f1d5c4db26aab5292589d7aa3d9a70ab  ./bin/units/x86_64-win64/systemlog.ppu
 03d1b68a785e5d1c755aa1d01b928775  ./bin/units/x86_64-win64/systemresources.ppu
 6533b8b724114ee66a5203295fffaa19  ./bin/units/x86_64-win64/sysutils.ppu
@@ -19497,7 +19500,7 @@ ccfcb2795a8184dada05a40cdb1f55d8  ./docs/UNIT-REBUILD.md
 0b22fdda2291914f9266325236a9fe6f  ./docs/X64-BOOTSTRAP.md
 9839e1b566454631053c367ac479386c  ./docs/att/ISCC_WINE_AV_BUG_REPORT.md
 95cbd7909a80de785ee11ff74f096160  ./docs/att/docs-archive.zip
-087819b2afa67436c67a5f1c1cc59bca  ./docs/bugsfixed.md
+a52e35d1f45256ce098943faec2f0dab  ./docs/bugsfixed.md
 db7295a341427c994068830284324888  ./docs/chm-src/bugsfixed.html
 8768aae51d01673578b1d31849ae28cc  ./docs/chm-src/changelog.html
 01f3ab7b7104ba355021ec5cecea4715  ./docs/chm-src/credits.html
@@ -21498,7 +21501,7 @@ c5f25f55fa9ce951ce02584fa6df77dd  ./fix-permissions.sh
 4973b813575b60650b0f9d3df52e6c01  ./installer/build-lazarus-ide.sh
 fac2270bc186f3e54613d06e56fe2dc8  ./installer/fpc264irc-setup.nsi
 ae4711f08aa98341358610fa5ab423ed  ./installer/fpc264irc.ico
-0a622a6cf3bc503e31aa3c56b888aa9a  ./installer/fpc264irc.iss
+a49e025fed774b679dab910252e80d69  ./installer/fpc264irc.iss
 a6003e20c7582ba50af565ea6df18d70  ./installer/fpc264irc.png
 273971d9dc396e042f958269522be007  ./installer/fpc264irc_fast.iss
 6ffdedc3294f07290e6ac36494352150  ./installer/fpc264irc_minimal.iss
@@ -40097,7 +40100,7 @@ d7bfcc8808d7c347be07f9b728bbb189  ./src/rtl/haiku/unxsockh.inc
 21526fa51d3b538681f82ac2a09827a4  ./src/rtl/i386/cpu.pp
 434ef1ab1bf79441320cc443d2679f09  ./src/rtl/i386/fastmove.inc
 4d57a7907b7bc4ecda85d425b4b7a791  ./src/rtl/i386/fmovgo32.inc
-cce4f625402a07f89690ce758bbbe97f  ./src/rtl/i386/i386.inc
+8e273b9813d309c8e87a10636152b362  ./src/rtl/i386/i386.inc
 ad9801ec90ecddeca500236c41589a64  ./src/rtl/i386/int64p.inc
 d4ee44084f7b4522d272827e2ae5c670  ./src/rtl/i386/makefile.cpu
 8df9cdd0510b20c94548d8d577333897  ./src/rtl/i386/math.inc
@@ -40129,7 +40132,7 @@ e252d5b1e69aad068df7734d37460f19  ./src/rtl/i8086/setjumph.inc
 650c61efaeb5afe89a24f4771a469d16  ./src/rtl/i8086/strings.inc
 fa60f42bdee677f5c8be1c99699316b5  ./src/rtl/i8086/stringss.inc
 6fb24ce7196849a388fe70834eb90556  ./src/rtl/inc/aliases.inc
-8df7fc33cfca832f2d69fa699319da70  ./src/rtl/inc/astrings.inc
+5fec3a6e4e76ed0fdcdafc6e7feb17c3  ./src/rtl/inc/astrings.inc
 9d9ab70840d778c4d8381023deb18464  ./src/rtl/inc/cgeneric.inc
 1ff9638d678a51ca02ce9f2bf96c40e4  ./src/rtl/inc/cgenmath.inc
 5be8db19c2d07da16cee35b2a7fd02e3  ./src/rtl/inc/cgenstr.inc
@@ -46029,14 +46032,14 @@ dd125c57ce0ae7e7b0f7e80b7d34edd8  ./test/x64graph/README.md
 445632e5f14a7d114f60483c509787c5  ./test/x64graph/build.sh
 787344ccc7edcd14c6c29b26138092f8  ./test/x64graph/x64graph.pas
 871e3e9739561a0296f5919e69e2dd4f  ./test/x64graph/x64ptcgraph.pas
-44df5cea8e0e871795692a698eddecef  ./toolkit/CHECKPOINT.TXT
+372289020b336bb85303b5c13f918f5b  ./toolkit/CHECKPOINT.TXT
 6de03e3d073c5bccd1bc142902a246c7  ./toolkit/DISASM.TXT
-1de462e9c21fbdadaa65fd2e16362f18  ./toolkit/GLOBALS.TXT
+64ce51e75a4b759d685bf707705c9fd7  ./toolkit/GLOBALS.TXT
 d95d222e4b76bdd5cf2cf8e2c4dd1158  ./toolkit/MATCH.PY
-b087021acb9dd52cefa11b50b014f4b8  ./toolkit/NEXT.TXT
+1304e0a1bf736f0aad891d16416dff16  ./toolkit/NEXT.TXT
 cdc7beffe56dbe9071f8995b013b3ed7  ./toolkit/RULES.TXT
 954000301d9a17ed5a19c338d1596e30  ./toolkit/SEGMAP.TXT
-7323ff0e015431dc6796b4ba33a872d3  ./toolkit/STATUS.TXT
+a34204c8f0c0feb235b26fdecac43812  ./toolkit/STATUS.TXT
 87fd7d02cb93dc9f879ec0e7d4b68063  ./toolkit/test.sh
 e9595f89a55c7f3fc83b03637bde4696  ./tools/build-fpcres.sh
 0f0572ca9b8bca523ba68bbaa6df7184  ./tools/build-mystic-win32.sh
@@ -46181,7 +46184,7 @@ e29fd9adacd1d640c3af98b725e3a96b  ./tools/smartpack/ppu_consistency.py
 ae271c77729faa2634e0a3f661a3d515  ./tools/smartpack/ppu_smart.py
 73c18ccb6ee2c7a0ea897b29e98e0d18  ./tools/smartpack/ppu_version_check.py
 85590a654714172b7d0a1b8aa1032d14  ./tools/smartpack/rebuild_stale.py
-a57a94c0efda78d4d5b0d8879ffc6026  ./tools/win32-build/README.md
+d95c72894dbb617f37febd359c6d36b3  ./tools/win32-build/README.md
 33e3ae5aedcd753c82be87e26a3142ae  ./tools/win32-build/ardate.py
 af519a68a84baa237dbe20c6fe23400e  ./tools/win32-build/build.sh
 90c070dc2de6504aead9c741ab703024  ./tools/win32-build/drive.py

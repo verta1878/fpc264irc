@@ -3,9 +3,11 @@ NEXT.TXT - fpc264irc - what to do next                                   byte, 2
 
 NEXT JOB: none in the rebuild plan - every unit folder is a kit build (docs/UNIT-REBUILD.md, all 9 done).
   Open: fpc264irc installer (Inno .iss with InnoIRC, deb/rpm/tar.gz, Free Vision text installer, Windows
-  ppc386.exe?) - verta 2026-11-15: Inno only for now, then audit all docs for gaps; real-machine tests (Windows 11, Win98 for the LCL
+  ppc386.exe?) - verta 2026-11-15: Inno only for now (fpc264irc.iss works; no Windows ppc386.exe/ppcx64.exe
+  yet), then audit all docs for gaps (incl. os2 kit without date fix, fpc264irc_fast/_minimal.iss); real-machine tests (Windows 11, Win98 for the LCL
   win32 fix, FreeBSD, OS/2).
 
+DONE 2026-11-15: BUG-049 S := S (system x10, BUG-046 revised); installer/fpc264irc.iss works with InnoIRC.
 DONE 2026-11-15: toolkit/test.sh x86_64-win64 + Lazarus i386-os2 (both PASS); CHECKSUMS + 7 attic files;
                  kits chmod only the exec-bits.txt list.
 DONE 2026-11-15: exec bits (324), BUG-048 win64 syncobjs, ppu_consistency CLASH, CHECKSUMS incl. attic.

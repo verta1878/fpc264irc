@@ -142,11 +142,17 @@ Begin
     exit;
   { check for constant strings ...}
   p:=PAnsiRec(S-AnsiFirstOff);
-  s:=nil;
+  { fpc264irc 2026-11-15 (byte, BUG-049): S := nil only when the string is freed, as in FPC 2.6.4. This file is the
+    FPC 3.x version, whose decr_ref cleared S first; the 2.6.4 compiler does not expect that: for S := S it calls
+    decr_ref(S) and then reads S again, so the string came out empty. The compiler stores nil itself after every
+    decr_ref where it needs it; SetLength(S, 0) below does too. }
   If p^.ref<0 then exit;
   { declocked does a MT safe dec and returns true, if the counter is 0 }
   If declocked(p^.ref) then
-    FreeMem(p);
+    begin
+      FreeMem(p);
+      s:=nil;
+    end;
 end;
 {$endif FPC_SYSTEM_HAS_ANSISTR_DECR_REF}
 
@@ -808,7 +814,10 @@ begin
       PAnsiRec(Pointer(S)-AnsiFirstOff)^.Len:=l;
     end
   else  { length=0, deallocate the string }
-    fpc_ansistr_decr_ref (Pointer(S));
+    begin
+      fpc_ansistr_decr_ref (Pointer(S));
+      Pointer(S):=nil;  { fpc264irc BUG-049/BUG-046: decr_ref clears S only when it frees it }
+    end;
 end;
 {$endif FPC_HAS_ANSISTR_SETLENGTH}
 

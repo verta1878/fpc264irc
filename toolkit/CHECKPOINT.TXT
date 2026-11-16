@@ -51,3 +51,8 @@ CHECKPOINT.TXT - fpc264irc - append-only log (newest at the bottom; never edit o
             toolkit/test.sh: + x86_64-win64 (PASS, 1039 same) + Lazarus i386-os2 via lazbuild.sh (PASS, 219 + 233 same).
             Kits: chmod from exec-bits.txt only (a run marked READMEs executable). Next: installer - Inno only, then
             audit all docs for gaps (verta).
+2026-11-15  BUG-049 S := S emptied a string (FPC 3.x astrings.inc decr_ref vs the 2.6.4 compiler); BUG-046 revised
+            (i386.inc back to 77210616, SetLength clears S itself). system rebuilt for 10 targets (only system
+            changes). installer/fpc264irc.iss works with InnoIRC (Wine: 114 MB setup, installs/uninstalls).
+            InnoIRC bugs 8 (no [Code] compiled; OLE) + 9 (GetExceptionMessage) fixed - separate netmodem2irc delivery.
+            Found: tools/os2-native-build/build.sh does not fix source dates (ppu record checkout dates) - docs audit.

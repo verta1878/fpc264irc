@@ -193,6 +193,27 @@ source          patches/os2-cross/binutils/ (binutils-2.30-emx.patch, build.sh, 
 result          same program images and the same LX import fixups as before (360 / 1055 in the two tests); not yet run on OS/2
 ```
 
+## BUG-049 S := S emptied a string; Inno setup script (2026-11-15)
+- **BUG-049** `src/rtl/inc/astrings.inc` is the FPC 3.x version: its `fpc_ansistr_decr_ref` set `S := nil` every
+  time. The 2.6.4 compiler (`bin/ppc386`, `bin/ppcx64`) does not expect that: for `S := S` it calls `decr_ref(S)` and
+  then reads `S` again - the string came out empty, on i386 and x86_64 (`Result := Result` in Pascal Script made every
+  InnoIRC error message empty). Official FPC 2.6.4 and 3.2.2: correct. Now as in FPC 2.6.4: `decr_ref` clears `S` only
+  when it frees the string (checked against the official 2.6.4 `system.o`); `SetLength(S, 0)` sets `S := nil` itself
+  (as official 2.6.4). **BUG-046 revised**: its i386 assembler change (S := nil on every path) went the wrong way -
+  `src/rtl/i386/i386.inc` is back to the 77210616 version; the SetLength case is fixed by `SetLength` itself.
+- `system` rebuilt with each kit for i386-win32, -linux, -freebsd, -go32v2, -os2, -darwin and x86_64-linux, -freebsd,
+  -win64, -darwin: only `system` changes, checksums the same. i8086 is not affected (built by `ppcross8086`, FPC 3.2.2,
+  with its own RTL).
+- Checked: a string test (`S := S`, shared `S := S`, `SetLength` 0 / shorter on a shared string, copy-on-write,
+  `Result := Result`, `var X := X`, record and array self-copy, Delete/Insert, 20,000-pass loop, heap leak check):
+  ALL OK on i386-linux, x86_64-linux, i386-win32 (Wine), go32v2 (DOSBox), as official FPC 2.6.4; the shipped units
+  failed 4 - 9 checks and crashed. `ppu_consistency.py`: 0 FATAL. InnoIRC rebuilt with it shows its error texts again.
+- `installer/fpc264irc.iss` works with InnoIRC (netmodem2irc): `LicenseFile` `..\LICENSE`, `MinVersion=4.1,5.0` (Win98
+  - Windows 11), duplicate `ide` component removed; the Linux programs are no longer packed as `.exe` (`ppc386.exe`,
+  `ppcx64.exe`, `make.exe`, `bin\tools\*\*.exe`: packed when Windows builds exist); the PATH check expands `{app}`
+  (it added the folder again on every install) and the uninstaller takes it out of PATH again. Tested under Wine
+  (normal + Win98 mode): 114 MB setup, 12,717 files, installs, exits, uninstalls; installed units byte-identical.
+
 ## Execute bits, win64 syncobjs, ppu_consistency, attic checksums (2026-11-15)
 - **Execute bits**: every file was stored as 100644 - after a git clone on Linux `bin/ppc386`, `bin/ppcx64` and the
   `bin/tools` programs did not run. 324 files now 100755 (86 Linux programs, 238 `#!` scripts; list

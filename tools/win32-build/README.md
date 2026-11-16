@@ -106,3 +106,5 @@ win32wschecklst, win32wscomctrls, win32wscontrols, win32wsdialogs, win32wsextdlg
 win32wsstdctrls + their `.a`), in the Lazarus set the same 18 + `alllclintfunits`, `lcl`. Every other file of the
 three folders the same as before (the date-only `fpcmmain` / `fpcmpkg` / `fpcmwr` not replaced). Import table of an
 LCL program unchanged (29 W imports, Win98 loads it as before).
+- BUG-049 (same day): `system` rebuilt again - `src/rtl/inc/astrings.inc` decr_ref as in FPC 2.6.4, `i386.inc` back to
+  its earlier version (BUG-046 revised). Only `system.ppu` + `libpsystem.a` change, same checksums.

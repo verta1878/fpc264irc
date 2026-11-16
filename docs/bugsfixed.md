@@ -1,7 +1,7 @@
 # FPC 2.6.4irc — Bugs Fixed (r3.1)
 
 Verified against repo commit 42aa8991 on 2026-10-01.
-48 unique bugs (BUG-044, BUG-045 added 2026-10-15; BUG-046, BUG-047, BUG-048 2026-11-15). 9 duplicate/update entries merged into parents.
+49 unique bugs (BUG-044, BUG-045 added 2026-10-15; BUG-046 - BUG-049 2026-11-15). 9 duplicate/update entries merged into parents.
 
 Legend:
 - ✅ FIXED — verified in source
@@ -223,9 +223,26 @@ one ("app constant before it was initialized").
 decr_ref does. The i386 assembler `fpc_AnsiStr_Decr_Ref` in `src/rtl/i386/i386.inc` (BUG-029) cleared `S` only when
 the count reached 0: for a shared string the count went down but `S` still pointed at it (wrong text and an
 uncounted reference).
-**Fix:** `S := nil` on every path; the free path takes the pointer it saved. `system` rebuilt for the 6 i386 targets.
-**Verified:** official FPC 2.6.4 and 3.2.2 print 0; fpc264irc now prints 0 on i386-linux, i386-win32 (Wine),
-go32v2 (DOSBox); `system` checksums unchanged, no other unit changes.
+**Fix (first, 2026-11-15, c78cd59c):** `S := nil` on every path in the i386 assembler decr_ref. **Revised by BUG-049**
+the same day: that was the wrong side - the 2.6.4 compiler needs decr_ref to leave a live `S` alone. Final fix:
+`fpc_AnsiStr_SetLength` with length 0 sets `S := nil` itself (as official FPC 2.6.4), decr_ref as in 2.6.4.
+**Verified:** official FPC 2.6.4 and 3.2.2 print 0; fpc264irc prints 0 on i386-linux, x86_64-linux, i386-win32
+(Wine), go32v2 (DOSBox).
+
+### BUG-049: `S := S` empties a string (i386 + x86_64) — ✅ FIXED
+**Symptom:** `S := 'abc' + Chr(49); S := S;` leaves `S` empty; also `Result := Result`, `var X := X`, a record or array
+element assigned to itself. Official FPC 2.6.4 and 3.2.2: correct. Found in InnoIRC561: Pascal Script's
+`ShortMessageToString` ends with `Result := Result;`, so every script compile error had no text.
+**Root cause:** `src/rtl/inc/astrings.inc` is the FPC 3.x version. Its `fpc_ansistr_decr_ref` sets `S := nil` first;
+the 2.6.4 compiler compiles `S := S` as incr_ref(S), decr_ref(S), then reads `S` again and stores it - which now read
+nil. (FPC 3.x compilers do not generate that sequence.) BUG-046's i386 assembler change made i386 do the same.
+**Fix:** `fpc_ansistr_decr_ref` clears `S` only when it frees the string, as in FPC 2.6.4 (checked against the official
+2.6.4 `system.o`); `SetLength(S, 0)` clears `S` itself (as official 2.6.4); `src/rtl/i386/i386.inc` back to its
+77210616 version. The compiler stores nil itself after every decr_ref where it needs it (`S := ''`, `X := ''`).
+UnicodeString already worked this way; WideString is not reference-counted.
+**Verified:** string test ALL OK on i386-linux, x86_64-linux, i386-win32 (Wine), go32v2 (DOSBox) - same as official
+2.6.4 (shipped units: 4 - 9 failures, then an access violation); `system` rebuilt for 10 targets, same checksums,
+nothing else changes; InnoIRC's error texts are back.
 
 ### BUG-048: x86_64-win64 TCriticalSection does nothing (syncobjs = go32v2 stub) — ✅ FIXED
 **Symptom:** 4 threads incrementing one counter 200,000 times each under one `TCriticalSection`: 302,806 - 478,128
@@ -385,14 +402,14 @@ Missing RegisterClass() calls for 18 Inno custom components. Fixed in InnoCompon
 
 | Status | Count |
 |--------|-------|
-| ✅ FIXED (verified in source) | 38 |
+| ✅ FIXED (verified in source) | 39 |
 | ✅ FIXED (binary only) | 1 |
 | 📝 DOCUMENTED / workaround | 5 |
 | ⏳ OPEN / DEFERRED | 2 |
 | 🔒 CLOSED (not a bug) | 3 |
 | ⚠️ KNOWN ISSUE (Wine) | 1 |
 | ↩️ REVERTED | 1 |
-| **Total unique issues** | **48** |
+| **Total unique issues** | **49** |
 | Duplicate/update entries merged | 9 |
 
 ### Numbering collisions in original document (resolved above)

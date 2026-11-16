@@ -25,10 +25,11 @@ UninstallDisplayIcon={app}\bin\ppc386.exe
 Compression=lzma2
 SolidCompression=yes
 DisableWelcomePage=no
-LicenseFile=..\LICENSE.txt
+LicenseFile=..\LICENSE
 ArchitecturesAllowed=x86 x64
-; Win95 minimum — the whole point of this fork!
-MinVersion=5.0
+; Windows 98 (4.1) and Windows 2000 (5.0) or later. Needs a setup built with InnoIRC561 (netmodem2irc ab9787f
+; or later): stock Inno 5.6.1 refuses a Win9x MinVersion.
+MinVersion=4.1,5.0
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -49,7 +50,6 @@ Name: "tools_linux";Description: "Linux cross-linker + assembler";      Types: f
 Name: "examples";   Description: "Examples (PabloDraw, FOSSIL, etc.)";  Types: full
 Name: "docs";       Description: "Documentation";                       Types: full compact
 Name: "src";        Description: "Source code";                          Types: full
-Name: "ide";       Description: "Lazarus IDE"; Types: full
 Name: "ide";       Description: "Lazarus IDE (lazarus.exe)";             Types: full
 
 ; ===========================================================================
@@ -58,7 +58,9 @@ Name: "ide";       Description: "Lazarus IDE (lazarus.exe)";             Types: 
 
 [Files]
 ; ---- Compiler ----
-Source: "..\bin\ppc386";            DestDir: "{app}\bin"; DestName: "ppc386.exe"; Flags: ignoreversion skipifsourcedoesntexist; Components: compiler
+; The compilers in bin/ (ppc386, ppcx64, ppcross8086) are Linux programs: only Windows builds (.exe) are packed.
+; Until they exist these lines are skipped (skipifsourcedoesntexist).
+Source: "..\bin\ppc386.exe";        DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist; Components: compiler
 Source: "..\bin\h2pas.exe";      DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist; Components: compiler
 Source: "..\bin\fpcmake.exe";    DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist; Components: compiler
 Source: "..\bin\fpcres.exe";     DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist; Components: compiler
@@ -85,13 +87,13 @@ Source: "..\bin\units\i386-go32v2\*"; DestDir: "{app}\units\i386-go32v2"; Flags:
 Source: "..\bin\units\i386-freebsd\*"; DestDir: "{app}\units\i386-freebsd"; Flags: ignoreversion recursesubdirs; Components: rtl_freebsd
 
 ; ---- Win32 Tools (linker, assembler) ----
-Source: "..\bin\tools\i386-win32\*"; DestDir: "{app}\bin\tools\i386-win32"; Flags: ignoreversion skipifsourcedoesntexist; Components: tools_win32
+Source: "..\bin\tools\i386-win32\*.exe"; DestDir: "{app}\bin\tools\i386-win32"; Flags: ignoreversion skipifsourcedoesntexist; Components: tools_win32
 
 ; ---- DOS Tools ----
-Source: "..\bin\tools\i386-go32v2\*"; DestDir: "{app}\bin\tools\i386-go32v2"; Flags: ignoreversion skipifsourcedoesntexist; Components: tools_dos
+Source: "..\bin\tools\i386-go32v2\*.exe"; DestDir: "{app}\bin\tools\i386-go32v2"; Flags: ignoreversion skipifsourcedoesntexist; Components: tools_dos
 
 ; ---- Linux Tools ----
-Source: "..\bin\tools\i386-linux\*"; DestDir: "{app}\bin\tools\i386-linux"; Flags: ignoreversion skipifsourcedoesntexist; Components: tools_linux
+Source: "..\bin\tools\i386-linux\*.exe"; DestDir: "{app}\bin\tools\i386-linux"; Flags: ignoreversion skipifsourcedoesntexist; Components: tools_linux
 
 ; ---- Config ----
 Source: "..\bin\fpc.cfg"; DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist; Components: compiler
@@ -126,8 +128,8 @@ Source: "..\fix-permissions.sh"; DestDir: "{app}"; Flags: ignoreversion skipifso
 ; ===========================================================================
 
 ; ---- Additional compilers ----
-Source: "..\bin\ppcx64"; DestDir: "{app}\bin"; DestName: "ppcx64.exe"; Flags: ignoreversion skipifsourcedoesntexist; Components: compiler
-Source: "..\bin\ppcross8086"; DestDir: "{app}\bin"; DestName: "ppcross8086.exe"; Flags: ignoreversion skipifsourcedoesntexist; Components: compiler
+Source: "..\bin\ppcx64.exe"; DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist; Components: compiler
+Source: "..\bin\ppcross8086.exe"; DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist; Components: compiler
 
 ; ---- OS/2 tools ----
 
@@ -135,7 +137,8 @@ Source: "..\bin\ppcross8086"; DestDir: "{app}\bin"; DestName: "ppcross8086.exe";
 
 
 ; ---- make ----
-Source: "..\bin\tools\make"; DestDir: "{app}\bin"; DestName: "make.exe"; Flags: ignoreversion skipifsourcedoesntexist; Components: compiler
+; bin/tools/make is a Linux program: only a Windows make.exe is packed
+Source: "..\bin\tools\make.exe"; DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist; Components: compiler
 
 ; ---- OS/2 + i8086 PPUs ----
 
@@ -186,7 +189,29 @@ begin
     Result := True;
     exit;
   end;
-  Result := Pos(';' + Param + ';', ';' + OrigPath + ';') = 0;
+  // Param arrives unexpanded ('{app}\bin') - expand it, or the check never finds it and every install adds it again
+  Result := Pos(';' + Uppercase(ExpandConstant(Param)) + ';', ';' + Uppercase(OrigPath) + ';') = 0;
+end;
+
+// Uninstall: take {app}\bin out of the system PATH again (the [Registry] entry above only adds it)
+procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
+var
+  P, Dir: string;
+  I: Integer;
+begin
+  if CurUninstallStep <> usUninstall then exit;
+  if not RegQueryStringValue(HKEY_LOCAL_MACHINE,
+    'SYSTEM\CurrentControlSet\Control\Session Manager\Environment', 'Path', P) then exit;
+  Dir := ExpandConstant('{app}\bin');
+  P := ';' + P + ';';
+  I := Pos(';' + Uppercase(Dir) + ';', Uppercase(P));
+  while I > 0 do begin
+    Delete(P, I, Length(Dir) + 1);
+    I := Pos(';' + Uppercase(Dir) + ';', Uppercase(P));
+  end;
+  P := Copy(P, 2, Length(P) - 2);
+  RegWriteExpandStringValue(HKEY_LOCAL_MACHINE,
+    'SYSTEM\CurrentControlSet\Control\Session Manager\Environment', 'Path', P);
 end;
 
 [UninstallDelete]
