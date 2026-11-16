@@ -20,7 +20,7 @@ CPU=i386
 K=$(cd "$(dirname "$0")" && pwd); R=$(cd "$K/../.." && pwd)
 D=${1:-${TMPDIR:-/tmp}/fpc264irc-win32}; mkdir -p "$D"; W=$(cd "$D" && pwd)
 PC=$R/bin/ppc386; T=$R/bin/tools/i386-win32; OPT=${OPT-}
-chmod +x "$PC" "$T"/* "$R/bin/tools/make" 2>/dev/null || true
+grep -v '^#' "$R/tools/smartpack/exec-bits.txt" 2>/dev/null | while read -r f; do [ -n "$f" ] && [ ! -x "$R/$f" ] && chmod +x "$R/$f"; done || true   # execute bits: the listed programs only (git has them; for zip extracts)
 MAKE=make; command -v make >/dev/null || MAKE=$R/bin/tools/make
 
 echo "[1/4] sources"

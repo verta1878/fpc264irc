@@ -13,7 +13,7 @@ set -e
 export TZ=UTC
 K=$(cd "$(dirname "$0")" && pwd); R=$(cd "$K/../.." && pwd)
 D=${1:-${TMPDIR:-/tmp}/fpc264irc-darwin64}; mkdir -p "$D"; W=$(cd "$D" && pwd)
-chmod +x "$R/bin/ppcx64" "$R/bin/tools/i386-darwin/"* 2>/dev/null || true
+grep -v '^#' "$R/tools/smartpack/exec-bits.txt" 2>/dev/null | while read -r f; do [ -n "$f" ] && [ ! -x "$R/$f" ] && chmod +x "$R/$f"; done || true   # execute bits: the listed programs only (git has them; for zip extracts)
 
 echo "[1/4] sources"
 rm -rf "$W/src" "$W/units" "$W/b"; mkdir -p "$W/src"

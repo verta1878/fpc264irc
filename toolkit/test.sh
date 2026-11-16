@@ -1,5 +1,6 @@
 #!/bin/bash
 # fpc264irc toolkit: rebuild one unit folder with its kit and check it against the shipped folder.  byte, 2026-10-24
+# 2026-11-15: + x86_64-win64 (tools/win64-build); i386-os2 also builds and checks the Lazarus set (lazbuild.sh).
 # usage: toolkit/test.sh <target> [work dir]          (Linux x86_64 host; run from anywhere)
 #        toolkit/test.sh list                         the targets and their kits
 #        CHECKONLY=1 toolkit/test.sh <target> <work>  skip the build, check an earlier <work> (MATCH + consistency)
@@ -14,7 +15,7 @@ R=$(cd "$(dirname "$0")/.." && pwd)
 T=${1:-}
 kit() {  # target -> "kit dir|kit args|lazarus folder (or -)|MATCH options"
   case $1 in
-    i386-os2)       echo "os2-native-build||-|" ;;
+    i386-os2)       echo "os2-native-build||i386-os2|" ;;
     i386-freebsd)   echo "freebsd-build|i386|i386-freebsd|" ;;
     x86_64-freebsd) echo "freebsd-build|x86_64|-|" ;;
     i386-linux)     echo "linux-build|i386|i386-linux|" ;;
@@ -23,14 +24,15 @@ kit() {  # target -> "kit dir|kit args|lazarus folder (or -)|MATCH options"
     i386-win32)     echo "win32-build||i386-win32|" ;;
     i386-darwin)    echo "darwin-build||i386-darwin|" ;;
     x86_64-darwin)  echo "darwin64-build||-|" ;;
+    x86_64-win64)   echo "win64-build||-|" ;;
     *) echo "" ;;
   esac
 }
 if [ -z "$T" ] || [ "$T" = list ]; then
   echo "targets with a kit (docs/UNIT-REBUILD.md):"
-  for t in i386-os2 i386-freebsd x86_64-freebsd i386-linux x86_64-linux i386-go32v2 i386-win32 i386-darwin x86_64-darwin; do
+  for t in i386-os2 i386-freebsd x86_64-freebsd i386-linux x86_64-linux i386-go32v2 i386-win32 i386-darwin x86_64-darwin x86_64-win64; do
     echo "  $t  -> tools/$(kit $t | cut -d'|' -f1)"; done
-  echo "no kit yet: x86_64-win64 (next, proof only), Lazarus i386-os2. i8086: tools/i8086-graph-build."
+  echo "every unit folder has a kit; i386-os2 includes the Lazarus set (lazbuild.sh). i8086: tools/i8086-graph-build."
   exit 0
 fi
 K=$(kit "$T")
@@ -53,7 +55,8 @@ fi
 
 # 2 kit
 if [ -z "${CHECKONLY:-}" ]; then
-  if [ "$KD" = os2-native-build ]; then bash "$R/tools/$KD/build.sh" "$W/units" >> "$LOG" 2>&1
+  if [ "$KD" = os2-native-build ]; then bash "$R/tools/$KD/build.sh" "$W/units" >> "$LOG" 2>&1 &&
+    bash "$R/tools/$KD/lazbuild.sh" "$W" >> "$LOG" 2>&1   # Lazarus set -> $W/lazarus (against bin/units/i386-os2)
   elif [ -n "$KA" ]; then bash "$R/tools/$KD/build.sh" "$KA" "$W" >> "$LOG" 2>&1
   else bash "$R/tools/$KD/build.sh" "$W" >> "$LOG" 2>&1; fi
   step "2 kit build (log $LOG)" $?

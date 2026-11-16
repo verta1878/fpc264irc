@@ -18,7 +18,7 @@ K=$(cd "$(dirname "$0")" && pwd); R=$(cd "$K/../.." && pwd)
 D=${2:-${TMPDIR:-/tmp}/fpc264irc-freebsd-$CPU}; mkdir -p "$D"; W=$(cd "$D" && pwd)
 case $CPU in i386) PC=$R/bin/ppc386; ASF=--32;; x86_64) PC=$R/bin/ppcx64; ASF=--64;; *) echo "cpu?"; exit 1;; esac
 T=$R/bin/tools/i386-freebsd; OPT=${OPT-}        # no -O2: how most shipped FreeBSD units were built
-chmod +x "$PC" "$T"/* "$R/bin/tools/make" 2>/dev/null || true
+grep -v '^#' "$R/tools/smartpack/exec-bits.txt" 2>/dev/null | while read -r f; do [ -n "$f" ] && [ ! -x "$R/$f" ] && chmod +x "$R/$f"; done || true   # execute bits: the listed programs only (git has them; for zip extracts)
 MAKE=make; command -v make >/dev/null || MAKE=$R/bin/tools/make
 
 echo "[1/5] sources"

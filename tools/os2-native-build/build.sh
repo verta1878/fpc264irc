@@ -13,7 +13,7 @@ set -e
 K=$(cd "$(dirname "$0")" && pwd); R=$(cd "$K/../.." && pwd)
 D=${1:-${TMPDIR:-/tmp}/fpc264irc-os2/units}; OUT=$(mkdir -p "$D" && cd "$D" && pwd)
 LOG=$(dirname "$OUT")/log; mkdir -p "$LOG"
-chmod +x "$R/bin/ppc386" "$R/bin/tools/i386-os2/"* "$R/bin/tools/i386-emx/"* 2>/dev/null || true
+grep -v '^#' "$R/tools/smartpack/exec-bits.txt" 2>/dev/null | while read -r f; do [ -n "$f" ] && [ ! -x "$R/$f" ] && chmod +x "$R/$f"; done || true   # execute bits: the listed programs only (git has them; for zip extracts)
 S=$R/src; PPC=$R/bin/ppc386; AS=$R/bin/tools/i386-os2/as
 INC="-Fi$S/rtl/inc -Fi$S/rtl/i386 -Fi$S/rtl/objpas -Fi$S/rtl/objpas/sysutils -Fi$S/rtl/objpas/classes -Fi$S/rtl/os2"
 

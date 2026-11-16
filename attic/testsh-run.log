@@ -1,0 +1,9 @@
+fpc264irc testsh Sun 11/15/2026 20:39:59.43 
+CHECK zip MD5 OK fdc598af2239449306c231295cdebfcb 
+UNZIPPED fpc264irc-testsh-2026-11-15.zip 
+REPLACED toolkit\test.sh NEXT.TXT STATUS.TXT CHECKPOINT.TXT GLOBALS.TXT, HISTORY.md, CHECKSUMS 3, 10 kit scripts (chmod line) 
+CHECK test.sh MD5 OK 87fd7d02cb93dc9f879ec0e7d4b68063 
+CHECK linux-build.sh MD5 OK d876053141ea2b18a85b98a5ee687377 
+CHECK CHECKSUMS.md5 MD5 OK 26288b18ef9492f0e051529cb3aa10fc 
+DELETED tools\smartpack\testsh.ok marker 
+DONE 

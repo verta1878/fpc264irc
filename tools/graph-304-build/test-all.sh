@@ -6,7 +6,7 @@
 K=$(cd $(dirname $0) && pwd); R=${R:-$(cd $K/../.. && pwd)}; W=$K/testrun; rm -rf $W; mkdir -p $W
 V=$W/units; for t in $(ls $K/out); do mkdir -p $V/$t; cp -a $R/bin/units/$t/. $V/$t/; cp $K/out/$t/*.ppu $K/out/$t/*.o $K/out/$t/*.a $V/$t/ 2>/dev/null; done
 TS=$R/src/packages/graph/tests
-chmod +x $R/bin/ppc386 $R/bin/ppcx64 $R/bin/tools/*/* 2>/dev/null   # git from Windows drops the exec bit
+grep -v '^#' "$R/tools/smartpack/exec-bits.txt" 2>/dev/null | while read -r f; do [ -n "$f" ] && [ ! -x "$R/$f" ] && chmod +x "$R/$f"; done || true   # execute bits: the listed programs only (git has them; for zip extracts)
 export WINEPREFIX=/root/.wine WINEDEBUG=-all SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy
 XV='xvfb-run -a -s "-screen 0 1280x1024x24"'
 pc(){ case $1 in i386-*) echo $R/bin/ppc386;; *) echo $R/bin/ppcx64;; esac; }

@@ -20,7 +20,7 @@ D=${2:-${TMPDIR:-/tmp}/fpc264irc-linux-$CPU}; mkdir -p "$D"; W=$(cd "$D" && pwd)
 case $CPU in i386) PC=$R/bin/ppc386; ASF=--32;; x86_64) PC=$R/bin/ppcx64; ASF=--64;; *) echo "cpu?"; exit 1;; esac
 T=$R/bin/tools/$CPU-linux; OPT=${OPT-}        # no -O2: how most shipped Linux units were built
 [ -f "$K/units-$CPU.txt" ] || { echo "no units-$CPU.txt"; exit 1; }
-chmod +x "$PC" "$T"/* "$R/bin/tools/make" 2>/dev/null || true
+grep -v '^#' "$R/tools/smartpack/exec-bits.txt" 2>/dev/null | while read -r f; do [ -n "$f" ] && [ ! -x "$R/$f" ] && chmod +x "$R/$f"; done || true   # execute bits: the listed programs only (git has them; for zip extracts)
 MAKE=make; command -v make >/dev/null || MAKE=$R/bin/tools/make
 
 echo "[1/5] sources"

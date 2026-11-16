@@ -46,3 +46,8 @@ CHECKPOINT.TXT - fpc264irc - append-only log (newest at the bottom; never edit o
 2026-11-15  pushed c78cd59c (BUG-046/047; verta added 67 attic files). Then: execute bits for 324 files
             (exec-bits.txt), BUG-048 win64 syncobjs from the real source (11 files), ppu_consistency CLASH lines
             (FV/LCL Dialogs), CHECKSUMS incl. attic. InnoIRC561 fixes delivered to netmodem2irc (ab9787f).
+2026-11-15  pushed d81ebce9 (GitHub Desktop dropped the mode changes) + c621e612 (execbits-run.bat committed the 324
+            execute bits itself) + c9db42b2 (verta: attic). Fresh clone: ppc386/ppcx64 run, checksums OK.
+            toolkit/test.sh: + x86_64-win64 (PASS, 1039 same) + Lazarus i386-os2 via lazbuild.sh (PASS, 219 + 233 same).
+            Kits: chmod from exec-bits.txt only (a run marked READMEs executable). Next: installer - Inno only, then
+            audit all docs for gaps (verta).

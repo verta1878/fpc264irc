@@ -208,6 +208,14 @@ result          same program images and the same LX import fixups as before (360
   CLASH lines. Every other check unchanged (the Lazarus i386-os2 set before rebuild 9 still shows its 13 real FATAL).
   Now 0 FATAL in every set (i386-win32 main + `lcl/`: 0 notes, 12 CLASH).
 - **CHECKSUMS** cover `attic/` too (the two " (2)" docs and the delivery zips / bats / logs moved there).
+- The execute bits went in as their own commit `c621e612` (`execbits-run.bat`): GitHub Desktop had dropped the mode
+  changes from `d81ebce9`.
+- `toolkit/test.sh`: + `x86_64-win64`; `i386-os2` also builds and checks the Lazarus set (`lazbuild.sh`). Both PASS
+  (win64 1,039 same; os2 219 + Lazarus 233 same).
+- Kits (darwin, darwin64, freebsd, go32v2, linux, win32, os2 `build.sh` + `lazbuild.sh`, graph-304/322 `test-all.sh`):
+  the blanket `chmod +x bin/tools/<x>/*` is now one line that sets the bit only on the files in
+  `tools/smartpack/exec-bits.txt` - before, a kit run on Linux marked READMEs and data files executable (`git status`
+  showed them). Tested: a zip-like extract (0 executable) gets exactly the 324; a kit run leaves `git status` clean.
 
 ## i386 SetLength fix, LCL win32 on NT (2026-11-15)
 Two fpc264irc bugs found while building wrench's InnoIRC561 (Inno code is not part of this repo).
