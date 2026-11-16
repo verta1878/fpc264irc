@@ -1,0 +1,13 @@
+fpc264irc fix4 Sun 11/15/2026 18:36:16.37 
+git: C:\Users\owner\AppData\Local\GitHubDesktop\app-3.6.7\resources\app\git\cmd\git.exe 
+CHECK zip MD5 OK ebbe0facf0de078a4be13b97aaadeba6 
+UNZIPPED fpc264irc-fix4-2026-11-15.zip 
+REPLACED x86_64-win64 11 files, tools\win64-build 3, tools\smartpack 2, README HISTORY fix-permissions.sh bugsfixed UNIT-REBUILD, toolkit 4, CHECKSUMS 3 
+NEW tools\smartpack\exec-bits.txt 
+GIT update-index --chmod=+x: 324 files set, 0 failed (want 324, 0) 
+CHECK syncobjs.ppu MD5 OK 900b60a33ed415c5e6c4a7f47a5873f0 
+CHECK exec-bits.txt MD5 OK e9bd32c048656816151fd274a194bcf3 
+CHECK CHECKSUMS.md5 MD5 OK 6ced41964da683c48779b2163eb6f34a 
+CHECK git index: 324 files with mode 100755 (want 324) 
+DELETED tools\smartpack\fix4.ok marker 
+DONE 
