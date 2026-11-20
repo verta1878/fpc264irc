@@ -1,0 +1,9 @@
+fpc264irc bug50 Fri 11/20/2026  1:49:05.90 
+CHECK zip MD5 OK c2e3108f063c1dae5bce406e83cd642a 
+UNZIPPED fpc264irc-bug50-2026-11-20.zip 
+NEW bin\ppc386.exe bin\ppcx64.exe tools\wincomp-build 2 test\win32\thr.pas; REPLACED i386-win32 system 3, systhrd.inc, win32-build 2, docs 5, toolkit 4, CHECKSUMS 3 
+CHECK win32-system.ppu MD5 OK 91404abbb80bea8a4b196aed700c0771 
+CHECK ppc386.exe MD5 OK d624f30d99daf311c72f74d1284d1c9a 
+CHECK ppcx64.exe MD5 OK db3ec179e56ea560930c071484a21480 
+DELETED tools\smartpack\bug50.ok marker 
+DONE 
