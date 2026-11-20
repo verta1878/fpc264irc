@@ -54,7 +54,7 @@ spl|-O2 -Ur
 statuses|-O2 -Ur
 stddlg|-O2 -Ur
 sysmsg|-O2 -Ur
-system|-Us -Sg
+system|-Us -Sg -dSUPPORT_WIN95
 tabs|-O2 -Ur
 timeddlg|-O2 -Ur
 time|-O2 -Ur

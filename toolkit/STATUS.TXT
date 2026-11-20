@@ -31,5 +31,7 @@ graph on x86_64: win64 + freebsd real graph; linux + darwin {$fatal} stub with t
   test/x64graph (2026-10-16)
 system (10 targets, i386 + x86_64): BUG-049 S := S / BUG-046 SetLength fix 2026-11-15, same checksums
 LCL win32 (lcl/ + Lazarus i386-win32): BUG-047 / G-017 fixed 2026-11-15, runs under Wine
-build knobs: docs/BUILD-KNOBS.md (FPC_MOVE_NOFPU, go32v2)
+build knobs: docs/BUILD-KNOBS.md (FPC_MOVE_NOFPU go32v2; SUPPORT_WIN95 i386-win32 = 1, 2026-11-20)
+Windows compilers: bin/ppc386.exe (Win95/98 - 11) + bin/ppcx64.exe, tools/wincomp-build 2026-11-20; i386-win32
+  system -dSUPPORT_WIN95 (BUG-050), Wine Win98 + Win2000 mode tested, real Win98 pending
 darwin link: bin/tools/i386-darwin stub SDK (libobjc + ObjC 2 API added 2026-10-16)

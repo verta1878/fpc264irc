@@ -56,3 +56,9 @@ CHECKPOINT.TXT - fpc264irc - append-only log (newest at the bottom; never edit o
             changes). installer/fpc264irc.iss works with InnoIRC (Wine: 114 MB setup, installs/uninstalls).
             InnoIRC bugs 8 (no [Code] compiled; OLE) + 9 (GetExceptionMessage) fixed - separate netmodem2irc delivery.
             Found: tools/os2-native-build/build.sh does not fix source dates (ppu record checkout dates) - docs audit.
+2026-11-20  Win98 check of the new Windows compilers found BUG-050: every i386-win32 program imported
+            TryEnterCriticalSection (not in Win95, as far as we know not in Win98/ME). i386-win32 system built with
+            -dSUPPORT_WIN95 (fallback in systhrd.inc; knob documented): only system changes, same checksums.
+            bin/ppc386.exe + bin/ppcx64.exe added, kit tools/wincomp-build (byte-identical reruns). Wine Win98 mode +
+            Win2000 mode (separate prefixes): compile + run string / threads / FCL tests ALL OK; forced fallback OK.
+            Delivery folder now claude\memory\fpc264irc-deliv\ (old share gone). Next: docs gap audit; real Win98.

@@ -63,3 +63,10 @@ Built with `bin/ppc386 -Twin32 -FDbin/tools/i386-win32 -Fubin/units/i386-win32`,
 `test/x64graph/build.sh` builds one `uses graph` program for x86_64-win64, -linux, -freebsd and -darwin: it builds on
 win64 and freebsd; on linux and darwin the compiler stops with a message that names the fix (`uses ptcgraph` /
 build for i386-darwin), and the fix is built next. Details: `test/x64graph/README.md`.
+
+## win32/thr.pas — threads + TryEnterCriticalSection (BUG-050, 2026-11-20)
+
+`bin/ppc386 -Twin32 -Fubin/units/i386-win32 test/win32/thr.pas` (or `ppc386.exe` on Windows). Two threads count to
+100,000 each under one critical section (200,000), then `TryEnterCriticalSection` while the section is free (1), held
+by another thread (0) and released (1). Prints `ALL OK`. Under Wine (Windows 98 and Windows 2000 mode): ALL OK. On a
+real Windows 98 it runs `system`'s own TryEnterCriticalSection (knob `SUPPORT_WIN95`): the test to run there.

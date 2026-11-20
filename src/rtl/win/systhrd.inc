@@ -77,7 +77,7 @@ CONST
    WAIT_ABANDONED = $80;
    WAIT_FAILED = $ffffffff;
 
-{$ifndef SUPPORT_WIN95}
+{$ifndef SUPPORT_WIN95} { knob SUPPORT_WIN95 (docs/BUILD-KNOBS.md, BUG-050): 0 = TryEnterCriticalSection imported from kernel32 (NT 4 / 2000 and later only; Windows 95/98/ME refuse to start the program), 1 = looked up at startup, own version when kernel32 has none (Windows 95/98/ME); fpc264irc i386-win32 system: 1 }
 function WinTryEnterCriticalSection(var cs : TRTLCriticalSection):longint;
   {$ifdef wince}cdecl{$else}stdcall{$endif};external KernelDLL name 'TryEnterCriticalSection';
 {$else SUPPORT_WIN95}

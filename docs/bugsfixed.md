@@ -1,7 +1,7 @@
 # FPC 2.6.4irc — Bugs Fixed (r3.1)
 
 Verified against repo commit 42aa8991 on 2026-10-01.
-49 unique bugs (BUG-044, BUG-045 added 2026-10-15; BUG-046 - BUG-049 2026-11-15). 9 duplicate/update entries merged into parents.
+50 unique bugs (BUG-044, BUG-045 added 2026-10-15; BUG-046 - BUG-049 2026-11-15; BUG-050 2026-11-20). 9 duplicate/update entries merged into parents.
 
 Legend:
 - ✅ FIXED — verified in source
@@ -228,6 +228,17 @@ the same day: that was the wrong side - the 2.6.4 compiler needs decr_ref to lea
 `fpc_AnsiStr_SetLength` with length 0 sets `S := nil` itself (as official FPC 2.6.4), decr_ref as in 2.6.4.
 **Verified:** official FPC 2.6.4 and 3.2.2 print 0; fpc264irc prints 0 on i386-linux, x86_64-linux, i386-win32
 (Wine), go32v2 (DOSBox).
+
+### BUG-050: i386-win32 programs do not start on Windows 95/98/ME (TryEnterCriticalSection) — ✅ FIXED
+**Symptom:** every i386-win32 program built with fpc264irc imports `TryEnterCriticalSection` from kernel32.dll
+(`objdump -p`). Windows 95 has no such function, and as far as we know Windows 98/ME neither, so the program does not
+start ("linked to missing export"). Found checking the new `ppc386.exe` for Win98. Not yet seen on a real Win98.
+**Root cause:** `src/rtl/win/systhrd.inc` imports it directly unless `SUPPORT_WIN95` is defined; nothing defined it.
+**Fix:** i386-win32 `system` built with `-dSUPPORT_WIN95` (`tools/win32-build/opts-i386.txt`; knob in
+docs/BUILD-KNOBS.md): the function is looked up at startup, `Win95TryEnterCriticalSection` used when it is missing.
+**Verified:** no `TryEnterCriticalSection` import any more; `test/win32/thr.pas` ALL OK under Wine in Windows 98 and
+Windows 2000 mode, also with the lookup forced to fail (the fallback); only `system` changes, same checksums.
+**Open:** run `thr.exe` on a real Win98 - the fallback works on the NT layout of a critical section.
 
 ### BUG-049: `S := S` empties a string (i386 + x86_64) — ✅ FIXED
 **Symptom:** `S := 'abc' + Chr(49); S := S;` leaves `S` empty; also `Result := Result`, `var X := X`, a record or array

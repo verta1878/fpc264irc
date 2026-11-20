@@ -1,12 +1,16 @@
-NEXT.TXT - fpc264irc - what to do next                                   byte, 2026-11-15
+NEXT.TXT - fpc264irc - what to do next                                   byte, 2026-11-20
 (cold start: read this, then RULES.TXT, STATUS.TXT, the last entry of CHECKPOINT.TXT)
 
 NEXT JOB: none in the rebuild plan - every unit folder is a kit build (docs/UNIT-REBUILD.md, all 9 done).
-  Open: fpc264irc installer (Inno .iss with InnoIRC, deb/rpm/tar.gz, Free Vision text installer, Windows
-  ppc386.exe?) - verta 2026-11-15: Inno only for now (fpc264irc.iss works; no Windows ppc386.exe/ppcx64.exe
-  yet), then audit all docs for gaps (incl. os2 kit without date fix, fpc264irc_fast/_minimal.iss); real-machine tests (Windows 11, Win98 for the LCL
-  win32 fix, FreeBSD, OS/2).
+  Open: docs gap audit (verta 2026-11-20 "3 then 2": 3 = Windows compilers DONE, 2 = audit next) - incl. os2 kit
+  without date fix, fpc264irc_fast/_minimal.iss (pack the Linux bin/ppc386 as ppc386.exe; now bin/ppc386.exe exists),
+  fpc264irc.iss PPU counts + all of bin/lazarus, VERSION r311, CHECKSUMS of the attic files after efeba4c, stale
+  README/HISTORY/docs. Real-machine tests (Windows 11, Win98: thr.exe for BUG-050 + the LCL win32 fix + installer
+  PATH, FreeBSD, OS/2). Win98 import check against real KERNEL32/USER32/OLEAUT32.DLL when verta has them.
+  Windows ppcross8086.exe: not built (FPC 3.2.2 compiler; check its source is in the repo first).
 
+DONE 2026-11-20: BUG-050 Win98 TryEnterCriticalSection (i386-win32 system -dSUPPORT_WIN95); bin/ppc386.exe +
+                 bin/ppcx64.exe (tools/wincomp-build); test/win32/thr.pas.
 DONE 2026-11-15: BUG-049 S := S (system x10, BUG-046 revised); installer/fpc264irc.iss works with InnoIRC.
 DONE 2026-11-15: toolkit/test.sh x86_64-win64 + Lazarus i386-os2 (both PASS); CHECKSUMS + 7 attic files;
                  kits chmod only the exec-bits.txt list.
@@ -22,11 +26,11 @@ AFTER THAT: porting newer upstream FPC source (on the known-good base), as UNIT-
   Then: port newer upstream FPC source.
 
 DELIVERY STEPS (every job, never skip):
-  1 work on copies in the sandbox ("never work on a live system"); the share copy is
-    C:\Users\owner\Desktop\Claude\share\compilers\fpc264irc
-  2 zip  -> compilers\<name>\<name>*.zip  (the bridge takes 30 MB per file: no binary copy /b splits - verta;
+  1 work on copies in the sandbox ("never work on a live system"); verta's copy is (2026-11-18, old share removed)
+    C:\Users\owner\Desktop\OneDrive\claude\fpc264irc
+  2 zip  -> claude\memory\fpc264irc-deliv\<name>\<name>*.zip (was share\compilers\ until 2026-11-18)  (the bridge takes 30 MB per file: no binary copy /b splits - verta;
           2026-10-27: one complete zip per unit folder, each under 30 MB, the bat extracts all of them in one run)
-     bat  -> compilers\<name>-run.bat    (lists every file it replaces and every file it deletes)
+     bat  -> claude\memory\fpc264irc-deliv\<name>-run.bat    (lists every file it replaces and every file it deletes)
   3 verta runs the bat, says "tail log" -> stage the log, check it, give commit summary + description
   4 verta commits + pushes ("pushed") - byte NEVER runs git push
   5 verify GitHub: git pull in /home/claude/verify5, md5sum -c CHECKSUMS.md5 + sha256sum -c CHECKSUMS.sha256,

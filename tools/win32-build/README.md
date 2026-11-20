@@ -108,3 +108,10 @@ three folders the same as before (the date-only `fpcmmain` / `fpcmpkg` / `fpcmwr
 LCL program unchanged (29 W imports, Win98 loads it as before).
 - BUG-049 (same day): `system` rebuilt again - `src/rtl/inc/astrings.inc` decr_ref as in FPC 2.6.4, `i386.inc` back to
   its earlier version (BUG-046 revised). Only `system.ppu` + `libpsystem.a` change, same checksums.
+
+### 2026-11-20: SUPPORT_WIN95 (BUG-050)
+`opts-i386.txt`: `system|-Us -Sg -dSUPPORT_WIN95` - `system` no longer imports `TryEnterCriticalSection` (Windows
+95/98/ME do not have it), it looks it up at startup (knob in docs/BUILD-KNOBS.md). Kit run: only `system.ppu`,
+`libpsystem.a`, `libimpsystem.a` change, same checksums; the other 921 main, 616 `lcl/`, 304 Lazarus files the same
+(`fpcmmain` / `fpcmpkg` / `fpcmwr` and `aboutfrm` / `idefpcinfo` / `ideinfodlg` in `lcl/`: build date only, not
+replaced). The Windows compilers `bin/ppc386.exe` / `bin/ppcx64.exe` are built by `tools/wincomp-build`.

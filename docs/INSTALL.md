@@ -5,8 +5,9 @@
 Run `fpc264irc-r311-setup.exe`. Installs to `C:\FPC264IRC\`.
 
 Contents after install:
-- `bin\ppcx64.exe` — 64-bit compiler
-- `bin\ppc386.exe` — 32-bit compiler + 14 tools
+- `bin\ppcx64.exe` — 64-bit compiler (x86_64-win64; needs 64-bit Windows)
+- `bin\ppc386.exe` — 32-bit compiler (i386-win32; Windows 95/98 - 11) + 14 tools
+  (both built by `tools/wincomp-build/build.sh`, 2026-11-20)
 - `bin\units\x86_64-win64\` — 1,012 Win64 PPUs
 - `bin\units\i386-win32\` — 1,521 Win32 PPUs
 - `bin\lazarus\lazarus.exe` — Lazarus IDE (18 MB)

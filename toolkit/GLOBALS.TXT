@@ -71,3 +71,7 @@ G-017  SYMPTOM  LCL win32 program under Wine: "Failed to create win32 control, e
        CAUSE    U-1 commit 3cc25923 put A functions into the NT-only (UnicodeEnabledOS) branches: RegisterClassA
                 with a WNDCLASSW registered "Window" as "W" (docs/bugsfixed.md BUG-047)
        FIX      FIXED 2026-11-15: 12 LCL win32 files back to upstream, W calls loaded at run time (win32compat Dyn*W)
+G-021  SYMPTOM  an i386-win32 program (ppc386.exe too) does not start on Windows 95/98/ME: missing export
+                KERNEL32.DLL:TryEnterCriticalSection (Win95 for sure; Win98 to be confirmed on real hardware)
+       CAUSE    src/rtl/win/systhrd.inc imports it directly unless SUPPORT_WIN95 is defined; nothing defined it
+       FIX      2026-11-20 BUG-050: i386-win32 system built with -dSUPPORT_WIN95 (tools/win32-build/opts-i386.txt)

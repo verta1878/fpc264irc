@@ -193,6 +193,27 @@ source          patches/os2-cross/binutils/ (binutils-2.30-emx.patch, build.sh, 
 result          same program images and the same LX import fixups as before (360 / 1055 in the two tests); not yet run on OS/2
 ```
 
+## BUG-050 Win98: TryEnterCriticalSection; Windows compilers ppc386.exe + ppcx64.exe (2026-11-20)
+- **BUG-050** every i386-win32 program fpc264irc built (and the new `ppc386.exe`) imported `TryEnterCriticalSection`
+  from kernel32. Windows 95 does not have it (NT 4 and later do), and as far as we know Windows 98/ME neither: such a
+  program does not start there ("linked to missing export KERNEL32.DLL:TryEnterCriticalSection"; to be confirmed on
+  real Win98). `src/rtl/win/systhrd.inc` already has the fix behind the knob `SUPPORT_WIN95` (docs/BUILD-KNOBS.md),
+  which nothing defined. The i386-win32 `system` is now built with `-dSUPPORT_WIN95` (`tools/win32-build/opts-i386.txt`):
+  it looks the function up at startup and uses its own version when kernel32 has none. Only `system.ppu`,
+  `libpsystem.a`, `libimpsystem.a` change - same checksums, the other 921 + 616 (`lcl/`) + 304 (Lazarus) units of the
+  kit build byte-identical (`fpcm*` and 3 IDE about units: build date only, not replaced). x86_64-win64 not changed
+  (64-bit Windows always has the function).
+- **`bin/ppc386.exe`** (i386-win32, 2.2 MB) and **`bin/ppcx64.exe`** (x86_64-win64, 2.5 MB): the 2.6.4irc compiler
+  as Windows programs, built from `src/compiler` by the new kit `tools/wincomp-build` (two runs byte-identical).
+  `ppc386.exe` is built against the new `system`, so it does not import `TryEnterCriticalSection` either.
+  `installer/fpc264irc.iss` packs both (it already listed them).
+- Checked under Wine, once set to Windows 98 (9x, 4.10) and once to Windows 2000 (NT, 5.0): `ppc386.exe` compiles a
+  string test, a threads test (`test/win32/thr.pas`: 2 threads x 100,000 under a lock, TryEnterCriticalSection free /
+  held / released) and an FCL test (fpjson, dom, zipper, md5, base64, inifiles, registry...); all run correctly, the
+  same code as `bin/ppc386` makes (only the compiler build date differs). The fallback forced (kernel32 lookup
+  renamed): ALL OK. The old units' `thr.exe` with the function removed: aborts at the call. `ppcx64.exe`: the same
+  tests for win64, ALL OK. Still for a real Win98: the fallback assumes the NT layout of a critical section.
+
 ## BUG-049 S := S emptied a string; Inno setup script (2026-11-15)
 - **BUG-049** `src/rtl/inc/astrings.inc` is the FPC 3.x version: its `fpc_ansistr_decr_ref` set `S := nil` every
   time. The 2.6.4 compiler (`bin/ppc386`, `bin/ppcx64`) does not expect that: for `S := S` it calls `decr_ref(S)` and
