@@ -70,3 +70,13 @@ build for i386-darwin), and the fix is built next. Details: `test/x64graph/READM
 100,000 each under one critical section (200,000), then `TryEnterCriticalSection` while the section is free (1), held
 by another thread (0) and released (1). Prints `ALL OK`. Under Wine (Windows 98 and Windows 2000 mode): ALL OK. On a
 real Windows 98 it runs `system`'s own TryEnterCriticalSection (knob `SUPPORT_WIN95`): the test to run there.
+
+## threads/ — threads + syncobjs on every target (BUG-051, 2026-11-20)
+
+- `thr2.pas`: 4 `TThread`s x 100,000 increments under `TCriticalSection`, the RTL critical section and
+  `InterLockedIncrement` (400,000 each), `threadvar` per thread, `TryEnterCriticalSection`, `TEvent` timeout/signal,
+  `RTLEvent`. Unix targets need `cthreads` (the program uses it). ALL OK on i386-linux, x86_64-linux, i386-win32 (Wine,
+  also Windows 98 mode), x86_64-win64; compiles for i386/x86_64-freebsd, links for i386-os2.
+- `tmr.pas`: `fptimer` (TFPTimer, 50 ms) - 11 ticks in 600 ms on i386-linux; compiles for FreeBSD.
+- `syncdos.pas`: DOS `syncobjs` (go32v2, i8086-msdos): critical section, auto/manual-reset events, timeouts. ALL OK in
+  DOSBox (go32v2 with CWSDPMI; i8086 default, small, medium, large, huge).

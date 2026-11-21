@@ -92,3 +92,9 @@ a new interface checksum because they are built against today's `sysutils` / `do
 - An LCL customdrawn program (form, button, timer, LazUTF8, FileUtil) links to an OS/2 LX `.exe` (5.2 MB) with
   `bin/tools/i386-os2`; with the shipped set it did not compile (`Can't find unit LazFileUtils used by FileUtil`).
 - Not run on a real OS/2 / ArcaOS machine.
+
+## syncobjs (2026-11-20, BUG-051)
+`unitlist.txt` + `syncobjs` (upstream builds it for OS/2; the folder had none). This kit does not fix source dates, so a
+full run records the checkout's dates in every `.ppu`; the delivered `syncobjs` was built alone against the shipped
+folder from a copy dated 2025-01-01 (UTC), with the kit's flags (`-Tos2 -Pi386 -s -O2 -Ur -n`, assembled with
+`bin/tools/i386-os2/as`, packed with `pack-units.sh`). test/threads/thr2.pas links (LX); not run (no OS/2 machine).

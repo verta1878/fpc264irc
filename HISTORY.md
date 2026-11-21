@@ -193,6 +193,33 @@ source          patches/os2-cross/binutils/ (binutils-2.30-emx.patch, build.sh, 
 result          same program images and the same LX import fixups as before (360 / 1055 in the two tests); not yet run on OS/2
 ```
 
+## BUG-051 Threads on every target: syncobjs / cthreads / fptimer gaps, DOS syncobjs (2026-11-20)
+- **BUG-051** found checking a "thread bug" kiddo asked about: the thread code itself is fine (a threads test -
+  `test/threads/thr2.pas`: 4 `TThread`s x 100,000 under `TCriticalSection`, the RTL critical section and
+  `InterLockedIncrement`, `threadvar`, `TryEnterCriticalSection`, `TEvent`, `RTLEvent` - ALL OK on i386-linux,
+  x86_64-linux, i386-win32 and x86_64-win64, the win32 build also in Wine's Windows 98 mode), but units were missing:
+  - **x86_64-freebsd** had no `cthreads` (and no `initc`, `pthreads`): no threads at all (`uses cthreads` did not
+    compile; a `TThread` stops with runtime error 232). Added `initc cthreads pthreads syncobjs fptimer`.
+  - **i386-freebsd**: `syncobjs` and `fptimer` were missing (upstream builds both for FreeBSD). Added.
+  - **i386-os2**: no `syncobjs` in the unit folder (only a copy in the Lazarus set; upstream builds it for OS/2). Added.
+  - **i386-linux**: `fptimer` missing. Added.
+  - **DOS**: go32v2's `syncobjs` was a 2026 stub with only `TCriticalSection` (no `TEvent`, `TSimpleEvent`,
+    `TWaitResult`, `TryEnter`), i8086-msdos had none. `src/packages/fcl-base/src/go32v2/syncobjs.pp` is now a
+    single-threaded DOS version with the same interface as the real unit (the real one stops with runtime error 232 or
+    does nothing on DOS: no thread manager). Built for go32v2 and all 7 i8086-msdos folders.
+- Only new files, except go32v2: its `syncobjs` interface changed, so the Lazarus units that use it were rebuilt with the
+  kit (`lclrescache` and what uses it: 62 files in `bin/lazarus/units/i386-go32v2`, the same 60 in the copy
+  `bin/units/i386-go32v2/lcl`). Every other file of the 7 kit runs comes out byte-identical (i386/x86_64-freebsd + Lazarus
+  i386-freebsd, i386-linux + Lazarus, i386-go32v2 main folder); `ppu_consistency.py`: 0 fatal in every changed folder.
+- Checked: `thr2.pas` and `test/threads/tmr.pas` (fptimer) compile for i386/x86_64-freebsd; `thr2.pas` links for OS/2 (LX);
+  `tmr.pas` runs on i386-linux (11 ticks in 600 ms); `test/threads/syncdos.pas` (critical section, auto/manual events,
+  timeouts) ALL OK in DOSBox for go32v2 and i8086 default/small/medium/large/huge. The shipped go32v2 stub did not compile
+  it ("TEvent not found"). FreeBSD and OS/2 not run (no machines). i8086 tiny/compact: `syncobjs` is built, but
+  `sysutils` alone does not fit their 64K code segment, so programs using it cannot link there (as before).
+- CHECKSUMS: now also the 5 delivery files verta atticked after 2026-11-15 (`attic/bug49*`, `attic/fpc264irc-deliv/bug50*`).
+- Found, not fixed (pre-existing, same with the shipped units): an i386-go32v2 LCL program that uses `Forms` or
+  `Controls` stops the compiler with "EListError: List index exceeds bounds (265)"; `Graphics`, `LCLIntf` compile.
+
 ## BUG-050 Win98: TryEnterCriticalSection; Windows compilers ppc386.exe + ppcx64.exe (2026-11-20)
 - **BUG-050** every i386-win32 program fpc264irc built (and the new `ppc386.exe`) imported `TryEnterCriticalSection`
   from kernel32. Windows 95 does not have it (NT 4 and later do), and as far as we know Windows 98/ME neither: such a

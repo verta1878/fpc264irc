@@ -62,3 +62,9 @@ CHECKPOINT.TXT - fpc264irc - append-only log (newest at the bottom; never edit o
             bin/ppc386.exe + bin/ppcx64.exe added, kit tools/wincomp-build (byte-identical reruns). Wine Win98 mode +
             Win2000 mode (separate prefixes): compile + run string / threads / FCL tests ALL OK; forced fallback OK.
             Delivery folder now claude\memory\fpc264irc-deliv\ (old share gone). Next: docs gap audit; real Win98.
+2026-11-20  BUG-051 Part A: thread units. Audit of 17 unit folders vs upstream fcl-base lists: x86_64-freebsd no threads
+            (added initc cthreads pthreads syncobjs fptimer), i386-freebsd + syncobjs fptimer, i386-os2 + syncobjs,
+            i386-linux + fptimer, DOS syncobjs rewritten (full interface, single-threaded) for go32v2 + 7 i8086 folders.
+            Kit runs byte-identical except new files (+ go32v2 Lazarus units using syncobjs). Part B = rest of fcl-base.
+            Sandbox note: /home/claude/work had leftover src/rtl/units + fpcmade.go32v2 + a modified fileutil.pas from an
+            earlier in-place kit run - cleaned (git checkout); kits must never run in the mirror.

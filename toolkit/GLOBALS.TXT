@@ -75,3 +75,6 @@ G-021  SYMPTOM  an i386-win32 program (ppc386.exe too) does not start on Windows
                 KERNEL32.DLL:TryEnterCriticalSection (Win95 for sure; Win98 to be confirmed on real hardware)
        CAUSE    src/rtl/win/systhrd.inc imports it directly unless SUPPORT_WIN95 is defined; nothing defined it
        FIX      2026-11-20 BUG-050: i386-win32 system built with -dSUPPORT_WIN95 (tools/win32-build/opts-i386.txt)
+G-022  SYMPTOM  x86_64-freebsd: "Can't find unit cthreads"; FreeBSD/OS/2: "Can't find unit syncobjs"; go32v2: TEvent not found
+       CAUSE    the kits rebuild only what each folder shipped with; go32v2 syncobjs.pp was a TCriticalSection-only stub
+       FIX      2026-11-20 BUG-051: units added to the kit lists; DOS syncobjs.pp with the real unit's interface

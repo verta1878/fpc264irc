@@ -70,3 +70,11 @@ recorded a `sysutils` the RTL folder did not have, and 9 units could not load at
   `fistp`), which DOSBox keeps at 53 bits. With the fix a `Move` sweep (sizes 1-60, 8 offsets) and overlapping moves give
   0 wrong bytes in DOSBox (shipped units: 23,531), the concat / MD5 / Base64 / RTL programs are correct, and the same with
   `FPC_MOVE_NOFPU` = 1. Still a DOSBox limit: float -> Int64 (`Trunc` / `Round` above about 9e15) loses bits there.
+
+## syncobjs for DOS (2026-11-20, BUG-051)
+`src/packages/fcl-base/src/go32v2/syncobjs.pp` (used by this kit and by i8086) was a stub with only `TCriticalSection`.
+Now the real unit's full interface (`TSynchroObject`, `TCriticalSection` + `TryEnter`, `THandleObject`, `TEvent`,
+`TSimpleEvent`, `TWaitResult`, `INFINITE`) with single-threaded behaviour - see the file header. Its interface checksum
+changed, so the kit rebuilt `lclrescache` and the LCL units that use it: 62 files in `bin/lazarus/units/i386-go32v2`
+(the same 60 in the copy `bin/units/i386-go32v2/lcl`); every other file the same. test/threads/syncdos.pas ALL OK in
+DOSBox. Note: an LCL program using `Forms`/`Controls` stops the compiler with EListError (265) - pre-existing, open.

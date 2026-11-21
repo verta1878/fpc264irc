@@ -217,3 +217,4 @@ zinflate
 zipper
 zstream
 zuncompr
+syncobjs

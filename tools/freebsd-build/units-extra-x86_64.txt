@@ -1,3 +1,4 @@
+initc|src/rtl/unix/initc.pp|system,ctypes
 keyboard|src/rtl/unix/keyboard.pp|system
 mouse|src/rtl/unix/mouse.pp|system,baseunix,video
 objects|src/rtl/inc/objects.pp|system
@@ -26,3 +27,7 @@ time|src/packages/fv/src/time.pas|system,dos
 timeddlg|src/packages/fv/src/timeddlg.pas|system,objects,dialogs,fvconsts,drivers,views,dos,app,msgbox
 validate|src/packages/fv/src/validate.pas|system,fvcommon,objects,fvconsts,msgbox
 views|src/packages/fv/src/views.pas|system,objects,fvcommon,drivers,fvconsts,video
+cthreads|src/rtl/unix/cthreads.pp|system,objpas,baseunix,unix,unixtype,initc
+pthreads|src/packages/pthreads/src/pthreads.pp|system,objpas,initc,baseunix,unixtype
+syncobjs|src/packages/fcl-base/src/syncobjs.pp|system,objpas,sysutils
+fptimer|src/packages/fcl-base/src/fptimer.pp|system,objpas,classes,sysutils

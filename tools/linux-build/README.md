@@ -113,3 +113,7 @@ changed since (`idehelpintf`, `imagelistcache`). New: 24 `.lfm` / `.rst` files t
   program (form, button, timer) under Xvfb; an LCL nogui program with `bin/units/x86_64-linux/lcl`; `fpcres` from
   `src/utils/fpcres` (it needed a separate RTL build before, tools/build-fpcres.sh).
 - No unit calls `fpc_*_concat_multi` any more (only `system` still has the helpers).
+
+## fptimer (2026-11-20, BUG-051)
+`units-i386.txt` + `fptimer` (x86_64-linux had it, i386-linux not). Kit run: the 275 existing units and the Lazarus set
+the same; new `fptimer.ppu` + `libpfptimer.a`. test/threads/tmr.pas runs (11 ticks in 600 ms); thr2.pas ALL OK.

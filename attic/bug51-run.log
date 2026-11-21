@@ -1,0 +1,8 @@
+fpc264irc bug51 Fri 11/20/2026 19:07:21.63 
+CHECK zip MD5 OK 193523491168680614e7c59813629d9a 
+UNZIPPED fpc264irc-bug51-2026-11-20.zip 
+NEW 35 (x86_64-freebsd 10, i386-freebsd 4, i386-linux 2, i386-os2 2, i8086 x7 14, test\threads 3); REPLACED 145 (go32v2 syncobjs 2 + lcl\ 60 + Lazarus lcl 62, syncobjs.pp, kits 10, docs+toolkit 7, CHECKSUMS 3) 
+CHECK freebsd64-cthreads.ppu MD5 OK c05380a7d79ad86e9266296a352956f3 
+CHECK go32v2-syncobjs.ppu MD5 OK 42cffcbc5201b61cc69c29f06d5156f3 
+DELETED tools\smartpack\bug51.ok marker 
+DONE 

@@ -74,3 +74,11 @@ upstream). The default set `bin/units/i8086-msdos` already had Free Vision.
 - DOSBox 0.74 (svga_s3): a program that starts a TApplication, puts a dialog with an input line and a button on the
   desktop, removes it and shuts down, writing the result to a file - OK in medium (209,522 bytes), large (285,184),
   huge (303,042).
+
+## syncobjs (2026-11-20, BUG-051)
+`build-rtl.sh` builds `syncobjs` for every model from `src/packages/fcl-base/src/go32v2/syncobjs.pp` (the single-threaded
+DOS version shared with go32v2), `-O2 -CX`, from a copy dated 2025-01-01 UTC. The delivered files were built against the
+shipped folders (`ppcross8086 -Tmsdos -Pi8086 -Wm<model> -O2 -CX -n -FU<out> -Fubin/units/<folder> syncobjs.pp`; the
+default `bin/units/i8086-msdos` with `-Wmhuge`); for large the kit's `syncobjs.ppu`/`.a` are the same bytes. Tested in
+DOSBox (test/threads/syncdos.pas): default, small, medium, large, huge ALL OK. tiny/compact: built, but `sysutils` alone
+exceeds their 64K code segment, so a program using it cannot link there.

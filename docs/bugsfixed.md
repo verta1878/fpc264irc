@@ -1,7 +1,7 @@
 # FPC 2.6.4irc — Bugs Fixed (r3.1)
 
 Verified against repo commit 42aa8991 on 2026-10-01.
-50 unique bugs (BUG-044, BUG-045 added 2026-10-15; BUG-046 - BUG-049 2026-11-15; BUG-050 2026-11-20). 9 duplicate/update entries merged into parents.
+51 unique bugs (BUG-044, BUG-045 added 2026-10-15; BUG-046 - BUG-049 2026-11-15; BUG-050, BUG-051 2026-11-20). 9 duplicate/update entries merged into parents.
 
 Legend:
 - ✅ FIXED — verified in source
@@ -228,6 +228,19 @@ the same day: that was the wrong side - the 2.6.4 compiler needs decr_ref to lea
 `fpc_AnsiStr_SetLength` with length 0 sets `S := nil` itself (as official FPC 2.6.4), decr_ref as in 2.6.4.
 **Verified:** official FPC 2.6.4 and 3.2.2 print 0; fpc264irc prints 0 on i386-linux, x86_64-linux, i386-win32
 (Wine), go32v2 (DOSBox).
+
+### BUG-051: thread units missing on FreeBSD / OS/2 / i386-linux; DOS syncobjs stub — ✅ FIXED
+**Symptom:** x86_64-freebsd: `uses cthreads` "Can't find unit", so no threads (runtime error 232); i386-freebsd and
+i386-os2: `uses syncobjs` "Can't find unit"; i386-linux: no `fptimer`; go32v2: `TEvent` "Identifier not found" (stub);
+i8086-msdos: no `syncobjs`. The thread code worked wherever the units existed (Linux, Windows: test/threads/thr2.pas).
+**Root cause:** the kits rebuild the unit set each folder shipped with, and these units were never in it. go32v2's
+`src/packages/fcl-base/src/go32v2/syncobjs.pp` was a minimal stub (TCriticalSection only).
+**Fix:** units added through the kits' lists (`tools/freebsd-build/units-extra-*.txt`, `tools/linux-build/units-i386.txt`,
+`tools/os2-native-build/unitlist.txt`, `tools/i8086-graph-build/build-rtl.sh`); the DOS `syncobjs.pp` now has the full
+interface of the real unit with single-threaded behaviour (critical section counts; an event is a flag: set -> wrSignaled,
+not set -> wrTimeout after the wait, INFINITE -> wrError instead of hanging).
+**Verified:** only new files (go32v2: syncobjs + the Lazarus units that use it); thr2/tmr compile for FreeBSD, link for
+OS/2, run on Linux; syncdos ALL OK in DOSBox (go32v2, i8086 5 models). **Open:** run on real FreeBSD and OS/2.
 
 ### BUG-050: i386-win32 programs do not start on Windows 95/98/ME (TryEnterCriticalSection) — ✅ FIXED
 **Symptom:** every i386-win32 program built with fpc264irc imports `TryEnterCriticalSection` from kernel32.dll

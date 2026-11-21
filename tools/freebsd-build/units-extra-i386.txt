@@ -22,3 +22,5 @@ time|src/packages/fv/src/time.pas|system,dos
 timeddlg|src/packages/fv/src/timeddlg.pas|system,objects,dialogs,fvconsts,drivers,views,dos,app,msgbox
 validate|src/packages/fv/src/validate.pas|system,fvcommon,objects,fvconsts,msgbox
 views|src/packages/fv/src/views.pas|system,objects,fvcommon,drivers,fvconsts,video
+syncobjs|src/packages/fcl-base/src/syncobjs.pp|system,objpas,sysutils
+fptimer|src/packages/fcl-base/src/fptimer.pp|system,objpas,classes,sysutils

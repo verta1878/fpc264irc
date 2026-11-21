@@ -77,3 +77,9 @@ them together (one compile, all four kept).
 - New: i386 24 units (`.ppu` + `.a`) + 5 `.rst`; x86_64 28 units + 5 `.rst`.
 - i386: a program using Objects, Drivers, Views, Menus, Dialogs, App, MsgBox, Validate, StdDlg, Editors, Gadgets links
   (FreeBSD ELF). x86_64: compiles (no x86_64 FreeBSD linker here). Not run (no FreeBSD machine).
+
+## Thread units (2026-11-20, BUG-051)
+`units-extra-x86_64.txt` + `initc cthreads pthreads syncobjs fptimer` (x86_64-freebsd had no thread manager at all),
+`units-extra-i386.txt` + `syncobjs fptimer` (upstream builds both for FreeBSD). Kit runs: every existing file the same
+(i386 191, x86_64 74, Lazarus 324); new x86_64 5 units, i386 2 units (`.ppu` + `.a`). test/threads/thr2.pas and tmr.pas
+compile for both CPUs (not linked/run: no FreeBSD libc / machine here).

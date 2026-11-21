@@ -57,6 +57,15 @@ case $M in medium|large|huge)
   done ;;
 esac
 
+# syncobjs (2026-11-20, BUG-051): fpc264irc's single-threaded DOS version (src/packages/fcl-base/src/go32v2/syncobjs.pp,
+# shared with go32v2 - same interface as the real unit, TCriticalSection + TEvent/TSimpleEvent without threads), -O2 -CX.
+# tiny/compact get it too, but sysutils alone does not fit their 64K code segment, so it cannot be linked there.
+echo "      syncobjs"
+SO=$W/syncobjs-$M; rm -rf "$SO"; mkdir -p "$SO"; cp "$R/src/packages/fcl-base/src/go32v2/syncobjs.pp" "$SO/"
+touch -d '2025-01-01 00:00:00 UTC' "$SO/syncobjs.pp"
+(cd "$SO" && "$C" -Tmsdos -Pi8086 -Wm$M -O2 -CX -n -FU"$U" -Fu"$U" syncobjs.pp) > "$W/syncobjs-$M.log" 2>&1 \
+  || { tail -5 "$W/syncobjs-$M.log"; exit 1; }
+
 echo "[3/3] collecting the shipped unit set"
 O=$W/out/i8086-msdos-$M; rm -rf "$O"; mkdir -p "$O"
 c=$(echo $M | cut -c1)
@@ -64,5 +73,6 @@ for u in classes crt ctypes dos fgl getopts keyboard math mouse msmouse objects 
          sysconst system sysutils types typinfo video; do cp "$U/$u.ppu" "$U/$u.a" "$O/"; done
 case $M in medium|large|huge) cp "$U/graph.ppu" "$U/graph.a" "$O/"
   for u in $FVUNITS; do for e in ppu a rsj; do [ -f "$U/$u.$e" ] && cp "$U/$u.$e" "$O/"; done; done;; esac   # fvconsts: no code
+cp "$U/syncobjs.ppu" "$U/syncobjs.a" "$O/"
 cp "$U/ports.ppu" "$U/prt0$c.o" "$U"/{math,rtlconsts,sysconst,typinfo}.rsj "$O/"
 echo "done: $(ls "$O" | wc -l) files in $O"

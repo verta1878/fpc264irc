@@ -273,3 +273,4 @@ zipper|src/packages/paszlib/src/zipper.pp|system,objpas,baseunix,sysutils,classe
 ziputils|src/packages/paszlib/src/ziputils.pas|system
 zstream|src/packages/paszlib/src/zstream.pp|system,objpas,classes,zbase,gzio,zdeflate,zinflate
 zuncompr|src/packages/paszlib/src/zuncompr.pas|system,zbase,zinflate
+fptimer|src/packages/fcl-base/src/fptimer.pp|system,objpas,classes,sysutils
