@@ -39,4 +39,6 @@ i8086 classes (BUG-052, 2026-11-21): medium/large/huge kit-built, links in mediu
   BUG-053 OPEN far-data record copy. tiny/small/compact: kit types/sysutils/math/fgl differ from shipped
 Windows compilers: bin/ppc386.exe (Win95/98 - 11) + bin/ppcx64.exe, tools/wincomp-build 2026-11-20; i386-win32
   system -dSUPPORT_WIN95 (BUG-050), Wine Win98 + Win2000 mode tested, real Win98 pending
+installers (2026-11-21): fpc264irc.iss (main, InnoIRC561, Win98+), _fast/_minimal .iss compile, NSIS fpc264irc-setup.nsi
+  rewritten (builds, Wine 2000/98 install OK); VERSION stays r311 (+ date line)
 darwin link: bin/tools/i386-darwin stub SDK (libobjc + ObjC 2 API added 2026-10-16)

@@ -93,7 +93,8 @@ end.
 
 `ppcross8086` compiles Pascal to 16-bit DOS .EXE files that run on original
 IBM PC hardware — 8086, 286, 386, no DPMI extender, no protected mode.
-Real mode, 640K, the way it was.
+Real mode, 640K, the way it was. `ppcross8086` (FPC 3.2.2) is a Linux program - there is no Windows
+`ppcross8086.exe` yet, so build 16-bit programs on Linux (or WSL).
 
 ```
 ppcross8086 -Tmsdos -WmSmall -XX -Fubin/units/i8086-msdos-small myapp.pas
@@ -110,7 +111,7 @@ linking can read.
 | `-XX` | Smart linking — **required**, reads .a archives |
 | `-Fubin/units/i8086-msdos-small` | Unit search path (match the model) |
 | `-CX` | Create smart-linked units (only needed when recompiling RTL) |
-| `-Wh` | Huge code — needed for Medium/Large/Huge models |
+| `-Wh` | Huge code for units you compile yourself (optional; `ppcross8086 -h`: "ignored for models with CODE in a unique segment"); programs do not need it |
 
 Quick reference:
 ```
@@ -121,14 +122,19 @@ ppcross8086 -Tmsdos -WmTiny -XX -Fubin/units/i8086-msdos-tiny myapp.pas
 ppcross8086 -Tmsdos -WmSmall -XX -Fubin/units/i8086-msdos-small myapp.pas
 
 # Large (far code+data, bigger programs):
-ppcross8086 -Tmsdos -WmLarge -Wh -XX -Fubin/units/i8086-msdos-large myapp.pas
+ppcross8086 -Tmsdos -WmLarge -XX -Fubin/units/i8086-msdos-large myapp.pas
 
-# Huge (no segment limits, required for classes.pp):
-ppcross8086 -Tmsdos -WmHuge -Wh -XX -Fubin/units/i8086-msdos-huge myapp.pas
+# Huge (far code+data, huge pointers):
+ppcross8086 -Tmsdos -WmHuge -XX -Fubin/units/i8086-msdos-huge myapp.pas
 ```
 
-114 pre-compiled units included: system, dos, crt, objects, strings,
-sysutils, classes, mouse, keyboard, video, and more.
+**classes** (TStringList etc.): links in Medium and Large and with the default `bin/units/i8086-msdos` set (huge
+model, `-Wmhuge`) since 2026-11-21 (BUG-052). Tiny/Small/Compact: one 64KB code segment, too small; the `-huge`
+folder's `system` is 94 bytes too big with it - use the default set. Open: BUG-053 (Large/Huge, copying a record
+with two AnsiStrings corrupts memory) - `docs/bugsfixed.md`.
+
+Pre-compiled units (`.ppu` count, 2026-11-21): tiny/small/compact 23, medium/large/huge 48 (+ graph and Free Vision),
+the default `i8086-msdos` set 115 - system, dos, crt, objects, strings, sysutils, classes, mouse, keyboard, video, and more.
 
 **Graph (BGI-style):** `graph` unit for Medium, Large and Huge models
 (plus the default `i8086-msdos` set). CGA, EGA, VGA, mode 13h and VESA

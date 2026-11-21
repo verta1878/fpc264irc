@@ -7,16 +7,19 @@ OutputBaseFilename=fpc264irc_r31_setup
 OutputDir=..\out
 Compression=lzma2
 SolidCompression=yes
-LicenseFile=..\LICENSE.txt
+LicenseFile=..\LICENSE
 SetupIconFile=fpc264irc.ico
-MinVersion=5.0
+; Windows 98 (4.1) and Windows 2000 (5.0) or later, as fpc264irc.iss. Needs a setup built with InnoIRC561
+; (netmodem2irc ab9787f or later): stock Inno 5.6.1 refuses a Win9x MinVersion.  (byte, 2026-11-21: was 5.0)
+MinVersion=4.1,5.0
 
 [Files]
-Source: "..\bin\ppc386"; DestDir: "{app}\bin"; DestName: "ppc386.exe"; Flags: ignoreversion
+; The compilers in bin/ without .exe are Linux programs: only the Windows builds are packed (byte, 2026-11-21:
+; these lines packed the Linux bin/ppc386, ppcx64, ppcross8086 renamed to .exe). No Windows ppcross8086.exe yet.
+Source: "..\bin\ppc386.exe"; DestDir: "{app}\bin"; Flags: ignoreversion
 Source: "..\bin\fpc.cfg"; DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist
 Source: "..\bin\fpc-linux.cfg"; DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist
-Source: "..\bin\ppcx64"; DestDir: "{app}\bin"; DestName: "ppcx64.exe"; Flags: ignoreversion skipifsourcedoesntexist
-Source: "..\bin\ppcross8086"; DestDir: "{app}\bin"; DestName: "ppcross8086.exe"; Flags: ignoreversion skipifsourcedoesntexist
+Source: "..\bin\ppcx64.exe"; DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist
 Source: "..\bin\units\i386-win32\*"; DestDir: "{app}\units\i386-win32"; Flags: ignoreversion recursesubdirs
 Source: "..\bin\units\i386-linux\*"; DestDir: "{app}\units\i386-linux"; Flags: ignoreversion recursesubdirs skipifsourcedoesntexist
 Source: "..\bin\units\i386-go32v2\*"; DestDir: "{app}\units\i386-go32v2"; Flags: ignoreversion recursesubdirs skipifsourcedoesntexist
@@ -44,17 +47,51 @@ Name: "addpath"; Description: "Add FPC to system PATH"
 [Registry]
 Root: HKLM; Subkey: "SOFTWARE\FPC264irc"; ValueType: string; ValueName: "InstallPath"; ValueData: "{app}"; Flags: uninsdeletekey
 Root: HKLM; Subkey: "SOFTWARE\FPC264irc"; ValueType: string; ValueName: "Version"; ValueData: "r3.1"
+; Add to PATH if the task is picked (byte, 2026-11-21: the task did nothing before; same line as fpc264irc.iss)
+Root: HKLM; Subkey: "SYSTEM\CurrentControlSet\Control\Session Manager\Environment"; ValueType: expandsz; ValueName: "Path"; ValueData: "{olddata};{app}\bin"; Tasks: addpath; Check: NeedsAddPath('{app}\bin')
 
 [Code]
+// byte, 2026-11-21: same code as fpc264irc.iss (PATH check with the parameter expanded; uninstall removes the
+// entry again)
 function NeedsAddPath(Param: string): boolean;
-var OrigPath: string;
+var
+  OrigPath: string;
 begin
   if not RegQueryStringValue(HKEY_LOCAL_MACHINE,
     'SYSTEM\CurrentControlSet\Control\Session Manager\Environment',
-    'Path', OrigPath) then begin Result := True; exit; end;
-  Result := Pos(';' + Param + ';', ';' + OrigPath + ';') = 0;
+    'Path', OrigPath)
+  then begin
+    Result := True;
+    exit;
+  end;
+  // Param arrives unexpanded ('{app}\bin') - expand it, or the check never finds it and every install adds it again
+  Result := Pos(';' + Uppercase(ExpandConstant(Param)) + ';', ';' + Uppercase(OrigPath) + ';') = 0;
 end;
 
+// Uninstall: take {app}\bin out of the system PATH again (the [Registry] entry above only adds it)
+procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
+var
+  P, Dir: string;
+  I: Integer;
+begin
+  if CurUninstallStep <> usUninstall then exit;
+  if not RegQueryStringValue(HKEY_LOCAL_MACHINE,
+    'SYSTEM\CurrentControlSet\Control\Session Manager\Environment', 'Path', P) then exit;
+  Dir := ExpandConstant('{app}\bin');
+  P := ';' + P + ';';
+  I := Pos(';' + Uppercase(Dir) + ';', Uppercase(P));
+  while I > 0 do begin
+    Delete(P, I, Length(Dir) + 1);
+    I := Pos(';' + Uppercase(Dir) + ';', Uppercase(P));
+  end;
+  P := Copy(P, 2, Length(P) - 2);
+  RegWriteExpandStringValue(HKEY_LOCAL_MACHINE,
+    'SYSTEM\CurrentControlSet\Control\Session Manager\Environment', 'Path', P);
+end;
+
+[Files]
+; byte, 2026-11-21: these entries were after [Code] without a section header, so ISCC stopped with "Error on
+; line 61" - [Files] again (Inno merges repeated sections).
 ; ---- FPC Tools ----
 Source: "..\bin\fpc.exe"; DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist
 Source: "..\bin\fpcmake.exe"; DestDir: "{app}\bin"; Flags: ignoreversion skipifsourcedoesntexist

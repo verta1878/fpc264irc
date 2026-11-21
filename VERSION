@@ -1,1 +1,2 @@
 r311 — 2026-09-06 — x64 bootstrap + USB stack + 1029 Win64 PPUs
+last updated 2026-11-21 — still r311: kit-built unit folders, BUG-044 - BUG-052 fixed (BUG-053 open), Windows ppc386.exe/ppcx64.exe; see docs/CHANGELOG.md "After r311"

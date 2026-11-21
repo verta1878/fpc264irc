@@ -81,3 +81,11 @@ CHECKPOINT.TXT - fpc264irc - append-only log (newest at the bottom; never edit o
             record copy with 2 AnsiStrings corrupts memory (rec2s.pas) - the uriparser hang. Next: docs gap audit.
 2026-11-21  bug52b: CHECKSUMS entry of attic/bug51p2-run.log fixed - it was hashed as the CRLF Windows copy, git stores LF
             (text=auto). 46,569/46,570 verified on 0abe6de2 before the fix. G-026 added.
+2026-11-21  docs gap audit 1 (verta: version stays r311 + date line; changelog summary + pointer; NSIS: mark/point to Inno,
+            attic the old, fix it). _fast/_minimal .iss compile (InnoIRC561/Wine); NSIS rewritten, makensis 3.09 + Wine
+            2000/98 silent install/uninstall OK. INSTALL i8086 "do NOT use i8086-msdos" was wrong (huge set). Next: found
+            list, then BUG-053 triage (verta: docs first, then triage).
+            Same delivery (verta "fix 7 first"; 4a doc now, 4b os2dates next): fpc264irc.iss counts + laz_cross, _fast/
+            _minimal PATH task, README -Wh/counts, LCL HOWTO, INSTALL clone. Wine: Inno Setup.exe fails "error 1400" -
+            installs not testable in Wine (compile only). Mistake caught: a slice/replace with an empty pattern blew up
+            the two .iss copies in the sandbox - restored from git, redone (never replace with an unchecked slice).

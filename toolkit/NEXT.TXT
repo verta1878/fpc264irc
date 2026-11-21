@@ -11,6 +11,11 @@ NEXT JOB: none in the rebuild plan - every unit folder is a kit build (docs/UNIT
   i8086: BUG-053 (far-data record copy) own session; then fcl-base for i8086. tiny/small/compact shipped
   types/sysutils/math/fgl differ from a kit build (other interface checksums) - not reproducible yet.
 
+DONE 2026-11-21: docs gap audit 1 - installers (_fast/_minimal compile; NSIS rewritten, old in attic), VERSION line,
+                 CHANGELOG "After r311", INSTALL/README/LCL HOWTO (Lazarus first, i8086), fpc264irc.iss counts +
+                 laz_cross component, _fast/_minimal PATH task. NEXT: os2dates (os2 build.sh fixes source dates,
+                 reship bin/units/i386-os2 dates only), BUG-053 cheap triage alongside (no repo change). Open:
+                 bin/lazarus.exe vs bin/lazarus/lazarus.exe differ.
 DONE 2026-11-21: BUG-052 i8086 classes links in medium/large (huge: default folder); BUG-053 OPEN (far-data record
                  copy with 2 AnsiStrings, test/i8086/classes/rec2s.pas) - own session. NEXT: docs gap audit.
 DONE 2026-11-21: BUG-051 Part B - fcl-base on x86_64/i386-freebsd, i386-os2, i386-linux, go32v2 (same checksums as the

@@ -20,6 +20,12 @@ unicode), rtl/os2, packages/fv/src, and per unit `-Fi` <srcdir>, <srcdir>/os2, <
 `-Ur` (release units) stops the system.pas recompile cascade, so rtl/os2 can be on the include path.
 `graph` is built like `tools/graph-304-build` does it: no `-O2`, plus `-Fi src/packages/graph/src/inc`.
 
+**Source dates (2026-11-21, known gap):** `build.sh` compiles straight from `src/` and does not fix the source file dates
+(`lazbuild.sh` and `fclbase.sh` do: 2025-01-01). A `.ppu` stores the date of every source file it was built from, so a
+`build.sh` run on another checkout gives `.ppu` files that differ from `bin/units/i386-os2` in those dates only (code,
+`.rst` and interface checksums the same); its `libp*.a` also carry emx-ar's build time. Fix planned: `build.sh` copies
+`src` with dates 2025-01-01 and runs `ardate.py`, and `bin/units/i386-os2` is reshipped from it (dates only).
+
 ## Unit set (`unitlist.txt`, 219)
 The 209 units of the 2026-10-01 native rebuild plus 10 fcl-res units added 2026-10-02:
 `groupcursorresource groupiconresource groupresource icocurtypes newexe resdatastream resfactory resmerger

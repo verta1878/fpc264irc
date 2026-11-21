@@ -1,0 +1,10 @@
+fpc264irc bug52 Fri 11/20/2026 20:31:46.43 
+CHECK zip MD5 OK 99dcb0910f03a3516019d7c74b35f10a 
+UNZIPPED fpc264irc-bug52-2026-11-21.zip 
+NEW 5 (classes-inithandler.patch, test\i8086\classes x3, attic\bug51p2-run.log); REPLACED 18 (classes.ppu/.a medium large huge 6, i8086 kit 2, docs+toolkit 7, CHECKSUMS 3) 
+CHECK medium-classes.ppu MD5 OK 40cba9cd9579efbcf800b27633cf5946 
+CHECK large-classes.ppu MD5 OK 605dbc286898585a8a2c27a698cbccd1 
+CHECK huge-classes.ppu MD5 OK c8a48e82ef493e074a5c4c64018a4206 
+CHECK patch MD5 OK 8e87339ed1e3a14e428d394de2082ab1 
+DELETED tools\smartpack\bug52.ok marker 
+DONE 

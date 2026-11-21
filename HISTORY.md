@@ -193,6 +193,34 @@ source          patches/os2-cross/binutils/ (binutils-2.30-emx.patch, build.sh, 
 result          same program images and the same LX import fixups as before (360 / 1055 in the two tests); not yet run on OS/2
 ```
 
+## Docs gap audit 1: installers, VERSION, changelogs, Lazarus-first, i8086 notes (2026-11-21)
+- **Installers.** `installer/fpc264irc_fast.iss` and `_minimal.iss` did not compile (`LicenseFile=..\LICENSE.txt`
+  does not exist; the FPC tools / Lazarus `[Files]` entries sat in `[Code]`: "Error on line 61") and packed the Linux
+  `bin/ppc386`, `ppcx64`, `ppcross8086` renamed to `.exe`. Now: `LICENSE`, a `[Files]` header, the real `ppc386.exe` /
+  `ppcx64.exe` (no ppcross8086 - no Windows build), `MinVersion=4.1,5.0` (Win98, as `fpc264irc.iss`; needs
+  InnoIRC561). Both compile with InnoIRC561 under Wine (110 MB / 73 MB).
+- **NSIS** `installer/fpc264irc-setup.nsi` never built from the repo (needs the third-party `EnvVarUpdate.nsh`, paths
+  only from the repo root, `*.o` that no longer exist, Unicode = no Win9x). Old script kept as
+  `attic/fpc264irc-setup-r311.nsi`; rewritten: plain registry PATH code (NT family; Win9x: shows the AUTOEXEC.BAT line;
+  knob `ADD_PATH` 0/1), `..\` paths, `.ppu` + `.a`, ANSI, counts 1,039 / 1,538. makensis 3.09: builds (108 MB);
+  Wine Windows 2000 and Windows 98 mode: silent install (ppc386.exe identical, 2,577 `.ppu`), PATH added, uninstall
+  removes the files and the PATH entry.
+- **Docs.** `docs/INSTALL.md`: Windows section = the Inno installer (NSIS as the alternative), i8086 section corrected
+  (the default `i8086-msdos` folder is a huge-model set and works - it said "do NOT use"), `classes` limits, new
+  "LCL programs: Lazarus folders first" (G-023) - also in `docs/LCL-CROSS-COMPILE-HOWTO.md`; README.md: no Windows
+  `ppcross8086.exe`, `classes` on i8086. `VERSION` stays r311 with a "last updated 2026-11-21" line;
+  `docs/CHANGELOG.md` "After r311" summary, `docs/CHANGELOG-IRC.md` pointer.
+- **Also fixed (verta 2026-11-21, "fix 7 first"):** `installer/fpc264irc.iss` component counts (were 737 / 241 / ~200
+  PPUs; now 1,538 / 301 / 337 / 223) and the IDE component: `lazarus.exe` + the i386-win32 Lazarus set only; the 6
+  cross-target Lazarus sets (~310 MB) are a new component `laz_cross`, off by default. `_fast`/`_minimal`: the
+  "Add FPC to system PATH" task now adds it (the registry line + `[Code]` of `fpc264irc.iss`; uninstall removes it).
+  All three compile with InnoIRC561 under Wine; a silent install could not be tried there (Setup stops with "Failed to
+  create win32 control, error 1400" in Wine). README: `-Wh` is not needed for programs (`ppcross8086 -h`), real i8086
+  unit counts; LCL HOWTO: the 141-PPU recipe marked historical; INSTALL: git clone / zip + `fix-permissions.sh`
+  instead of a Linux tarball that does not exist. os2 kit README: "Source dates" known gap (fix = next delivery).
+- Seen, not changed: `bin/lazarus.exe` and `bin/lazarus/lazarus.exe` are two different 18 MB files (the installer packs
+  both: `{app}\bin\lazarus.exe` and `{app}\bin\lazarus\lazarus.exe`).
+
 ## BUG-052 i8086 classes in the memory-model folders; BUG-053 far-data record copy (open) (2026-11-21)
 - **BUG-052:** in `bin/units/i8086-msdos-medium/-large/-huge` no program using `classes` linked - also a 1-line
   `TStringList` program stopped with `Code segment "CLASSES_TEXT" too large (exceeds 64k by ~49000 bytes)`. FPC 3.2.2's

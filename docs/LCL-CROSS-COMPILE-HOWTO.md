@@ -180,6 +180,9 @@ LCLOPTS="$OPTS -Fu$LCL -Fi$LCL -Fi$LCL/include -Fu$LCL/widgetset"
 141 PPUs for i386-win32 LCL. Copy to `bin/units/i386-win32/`.
 NMServer and any LCL Win32 app can now link.
 
+**Now (2026-11-21):** this is the historical recipe. The LCL ships kit-built (`tools/win32-build`, 2026-10-28) in
+`bin/units/i386-win32/lcl/` and `bin/lazarus/units/i386-win32/` - no need to build it this way.
+
 ## Why 2.6.4 Can't Do This
 
 ppc386 2.6.4 hits `EAccessViolation` at `$00000000000F17E2` when
@@ -192,6 +195,14 @@ FPC 3.2.2 rewrote that code path and handles it cleanly.
 A future fpc264irc backport could fix this by patching the compiler
 source at that address — it's in the symbol table resolution during
 PPU generation. Filed as a known limitation.
+
+## Using the LCL units: Lazarus folders first (2026-11-21)
+
+When compiling an LCL program, put `bin/lazarus/units/<target>/lcl` (and its widgetset subfolder, e.g. `lcl/win32`)
+and `bin/lazarus/units/<target>/lazutils` before `bin/units/<target>` on the unit path. The main folder's FCL units
+and Free Vision `Dialogs`/`Menus` otherwise hide the Lazarus copies: "Recompiling <LCL unit>, checksum changed" then
+"Can't find unit", or an EListError (265) compiler crash. Example and details: `docs/INSTALL.md` ("LCL programs:
+Lazarus folders first"), `toolkit/GLOBALS.TXT` G-023.
 
 ## Credits
 

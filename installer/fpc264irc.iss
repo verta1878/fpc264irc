@@ -40,17 +40,20 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Components]
 Name: "compiler";   Description: "FPC 2.6.4irc Compiler (ppc386)";      Types: full compact custom; Flags: fixed
-Name: "rtl_win32";  Description: "Win32 RTL + LCL (737 PPUs)";          Types: full compact
-Name: "rtl_linux";  Description: "Linux i386 cross-compile (241 PPUs)";  Types: full
-Name: "rtl_dos";    Description: "DOS go32v2 cross-compile (~200 PPUs)"; Types: full
-Name: "rtl_freebsd";Description: "FreeBSD i386 cross-compile";          Types: full
+Name: "rtl_win32";  Description: "Win32 RTL + packages + LCL (1,538 PPUs)"; Types: full compact
+Name: "rtl_linux";  Description: "Linux i386 cross-compile (301 PPUs)";  Types: full
+Name: "rtl_dos";    Description: "DOS go32v2 cross-compile (337 PPUs)"; Types: full
+Name: "rtl_freebsd";Description: "FreeBSD i386 cross-compile (223 PPUs)"; Types: full
 Name: "tools_win32";Description: "Win32 linker + assembler";            Types: full compact; Flags: fixed
 Name: "tools_dos";  Description: "DOS go32v2 linker + assembler";       Types: full
 Name: "tools_linux";Description: "Linux cross-linker + assembler";      Types: full
 Name: "examples";   Description: "Examples (PabloDraw, FOSSIL, etc.)";  Types: full
 Name: "docs";       Description: "Documentation";                       Types: full compact
 Name: "src";        Description: "Source code";                          Types: full
-Name: "ide";       Description: "Lazarus IDE (lazarus.exe)";             Types: full
+Name: "ide";       Description: "Lazarus IDE (lazarus.exe) + its i386-win32 unit set"; Types: full
+; byte, 2026-11-21: the other 6 Lazarus unit sets (cross targets, ~310 MB) are their own component, off by default
+; (no Types - pick it under "Custom"). Counts above: .ppu files, 2026-11-21.
+Name: "laz_cross"; Description: "Lazarus unit sets for cross targets (linux, freebsd, go32v2, os2, darwin, x86_64-linux)"
 
 ; ===========================================================================
 ; Files
@@ -144,7 +147,14 @@ Source: "..\bin\tools\make.exe"; DestDir: "{app}\bin"; Flags: ignoreversion skip
 
 ; ---- IDE resources ----
 Source: "..\bin\ide\*"; DestDir: "{app}\bin\ide"; Flags: ignoreversion skipifsourcedoesntexist recursesubdirs; Components: ide
-Source: "..\bin\lazarus\*"; DestDir: "{app}\bin\lazarus"; Flags: ignoreversion skipifsourcedoesntexist recursesubdirs; Components: ide
+Source: "..\bin\lazarus\*"; Excludes: "\units\*"; DestDir: "{app}\bin\lazarus"; Flags: ignoreversion skipifsourcedoesntexist recursesubdirs; Components: ide
+Source: "..\bin\lazarus\units\i386-win32\*"; DestDir: "{app}\bin\lazarus\units\i386-win32"; Flags: ignoreversion recursesubdirs; Components: ide
+Source: "..\bin\lazarus\units\i386-linux\*"; DestDir: "{app}\bin\lazarus\units\i386-linux"; Flags: ignoreversion recursesubdirs; Components: laz_cross
+Source: "..\bin\lazarus\units\i386-freebsd\*"; DestDir: "{app}\bin\lazarus\units\i386-freebsd"; Flags: ignoreversion recursesubdirs; Components: laz_cross
+Source: "..\bin\lazarus\units\i386-go32v2\*"; DestDir: "{app}\bin\lazarus\units\i386-go32v2"; Flags: ignoreversion recursesubdirs; Components: laz_cross
+Source: "..\bin\lazarus\units\i386-os2\*"; DestDir: "{app}\bin\lazarus\units\i386-os2"; Flags: ignoreversion recursesubdirs; Components: laz_cross
+Source: "..\bin\lazarus\units\i386-darwin\*"; DestDir: "{app}\bin\lazarus\units\i386-darwin"; Flags: ignoreversion recursesubdirs; Components: laz_cross
+Source: "..\bin\lazarus\units\x86_64-linux\*"; DestDir: "{app}\bin\lazarus\units\x86_64-linux"; Flags: ignoreversion recursesubdirs; Components: laz_cross
 
 
 [Icons]

@@ -31,3 +31,9 @@ See `docs/CHANGELOG.md` for the full r311 changelog covering:
 - Phase 28: x86_64 cross targets
 - Phase 29: Package compilation (1,012 Win64 PPUs)
 - Phase 30: Compiler bootstrap (4 patches, native x64)
+
+---
+
+## After r311 (2026-09-07 - 2026-11-21)
+
+Version stays r311. Summary: `docs/CHANGELOG.md` ("After r311"); full record: `HISTORY.md`.

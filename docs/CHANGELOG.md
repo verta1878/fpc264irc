@@ -1,4 +1,30 @@
 
+## After r311 (2026-09-07 - 2026-11-21) - summary
+
+Version stays r311; this is what changed since. Full entries (what, why, how it was checked): `HISTORY.md`;
+bugs: `docs/bugsfixed.md`.
+
+- **Exact source rebuilds (2026-10-10 - 11-14):** every unit folder and Lazarus unit set rebuilt from the repo
+  sources by a kit (`tools/*-build`, byte-identical reruns): i386-os2, FreeBSD x2, i386-linux, i386-go32v2,
+  i386-darwin, x86_64-linux, i386-win32 (+ lcl/), x86_64-win64, Lazarus i386-os2 (`docs/UNIT-REBUILD.md`).
+- **Unit format (2026-10-02 - 10-08):** `.ppu` + `.a` smart-link archives, no loose `.o`; unit-folder name clashes and
+  stale units cleaned; `tools/smartpack`.
+- **OS/2:** native LX linking with a patched binutils 2.30 `ld` (no Python), OS/2 kit + samples.
+- **Mac:** i386-darwin Mach-O writer fix, linking on Linux (cctools/ld64, stub libSystem + 24 framework stubs,
+  libobjc), x86_64-darwin units.
+- **Graph:** graph 3.0.4 backport, graph 3.2.2 / ptcgraph, graph for the x86_64 targets; Free Vision on FreeBSD and
+  the i8086 medium/large/huge models.
+- **i8086:** medium/large/huge `-CX`; `classes` links in medium/large (BUG-052); BUG-053 open (far-data record copy).
+- **Windows:** `bin/ppc386.exe` (Windows 95/98 - 11) + `bin/ppcx64.exe` (`tools/wincomp-build`); i386-win32 programs
+  start on Windows 95/98 (BUG-050); LCL win32 on NT (BUG-047); installers: `installer/fpc264irc.iss` works with
+  InnoIRC561, `_fast`/`_minimal` and the NSIS script fixed (2026-11-21).
+- **RTL fixes:** go32v2 Move under DOSBox (BUG-044, knob FPC_MOVE_NOFPU), fossil/serial_irq (BUG-045), i386 SetLength
+  and `S := S` (BUG-046, BUG-049), win64 syncobjs (BUG-048).
+- **Units added:** thread units on every target (BUG-051 Part A), the rest of fcl-base on FreeBSD, OS/2, i386-linux,
+  go32v2 with the Lazarus copies' checksums (Part B).
+- **Repo:** CHECKSUMS.md5/.sha256 over every file (attic/ included), execute bits from `tools/smartpack/exec-bits.txt`,
+  `toolkit/` (crew status files), `toolkit/test.sh`.
+
 ## r311 (2026-09-06) — x86_64-win64 + USB Stack
 
 ### Phase 27: USB Stack
