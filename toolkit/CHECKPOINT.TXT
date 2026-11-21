@@ -89,3 +89,8 @@ CHECKPOINT.TXT - fpc264irc - append-only log (newest at the bottom; never edit o
             _minimal PATH task, README -Wh/counts, LCL HOWTO, INSTALL clone. Wine: Inno Setup.exe fails "error 1400" -
             installs not testable in Wine (compile only). Mistake caught: a slice/replace with an empty pattern blew up
             the two .iss copies in the sandbox - restored from git, redone (never replace with an unchecked slice).
+2026-11-21  os2dates: os2 build.sh dated copy + ardate on every .a -> reruns byte-identical; drive.py whtml (took src/ide,
+            pulled wutils) and graph (-Ur off, as graph-322-build). Reshipped i386-os2: 219 ppu + 220 libp + 1 rst; all
+            checksums + objects same, test exes + LCL program same bytes. docs1 "error 1400" = dead Xvfb (G-027):
+            fast setup installs, PATH once, uninstall clean; main setup Win98 mode OK. netmodem2irc ISPP port done
+            the same evening (InnoIRC561 ISPP.dll, case renames). Next: BUG-053 triage.

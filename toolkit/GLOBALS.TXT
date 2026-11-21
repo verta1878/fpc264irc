@@ -95,3 +95,6 @@ G-026  SYMPTOM  md5sum -c on a fresh clone: "attic/<name>-run.log: FAILED" right
                 log was hashed as the CRLF Windows copy
        FIX      2026-11-21 bug52b: hash files as a Linux checkout has them - logs/docs from Windows with tr -d '\r',
                 .bat as CRLF - or hash a fresh checkout after the commit
+G-027  SYMPTOM  Wine: every Inno setup (and LCL program) stops with "Failed to create win32 control, error 1400"
+       CAUSE    no X display - byte's Xvfb had died (pgrep Xvfb shows nothing)
+       FIX      start one: setsid nohup Xvfb :80 -screen 0 1024x768x24 & ; DISPLAY=:80 (2026-11-21; not an Inno bug)

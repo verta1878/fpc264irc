@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 # fpc264irc i386-os2 native (-Tos2) unit build driver - byte, 2026-10-01, made repo-relative 2026-10-07
-# usage: drive.py <repo> <out dir>
+# usage: drive.py <repo> <out dir> [src dir]
+# [src dir] (2026-11-21): a dated copy of <repo>/src made by build.sh (its patched/ copy sits next to it); default <repo>/src
 # Builds every unit in unitlist.txt (except system, which build.sh bootstraps) from <repo>/src with <repo>/bin/ppc386,
 # repeating passes until nothing new builds (units are tried in name order, so dependencies need several passes).
 import subprocess, os, sys
-R = os.path.abspath(sys.argv[1]); OUT = os.path.abspath(sys.argv[2]); S = R + '/src'
+R = os.path.abspath(sys.argv[1]); OUT = os.path.abspath(sys.argv[2])
+S = os.path.abspath(sys.argv[3]) if len(sys.argv) > 3 else R + '/src'
 K = os.path.dirname(os.path.abspath(__file__))
+PD = os.path.join(os.path.dirname(S), 'patched') if len(sys.argv) > 3 else K + '/patched'
 LOG = os.path.join(os.path.dirname(OUT), 'log'); os.makedirs(LOG, exist_ok=True)
 names = open(K + '/unitlist.txt').read().split()
 by = {}
@@ -16,12 +19,13 @@ for root, dirs, files in os.walk(S):
         if e.lower() in ('.pp', '.pas'):
             by.setdefault(b.lower(), []).append(os.path.relpath(os.path.join(root, f), S))
 # Source choices for names that exist more than once in src/ (match the shipped .ppu)
-override = {'unixcp': K + '/patched/unixcp.pas', 'fpwidestring': K + '/patched/fpwidestring.pp',
+override = {'unixcp': PD + '/unixcp.pas', 'fpwidestring': PD + '/fpwidestring.pp',
  'crc': 'packages/hash/src/crc.pas', 'resource': 'packages/fcl-res/src/resource.pp', 'dialogs': 'packages/fv/src/dialogs.pas',
  'menus': 'packages/fv/src/menus.pas', 'msgbox': 'packages/fv/src/msgbox.pas', 'tabs': 'packages/fv/src/tabs.pas',
  'regexpr': 'packages/regexpr/src/regexpr.pas', 'rexxsaa': 'os2bindings/rexxsaa.pas', 'cpu': 'rtl/i386/cpu.pp',
  'graph': 'packages/graph/src/os2/graph.pp', 'dynlibs': 'rtl/inc/dynlibs.pas', 'matrix': 'rtl/inc/matrix.pp',
- 'newexe': 'rtl/os2/newexe.pas'}
+ 'newexe': 'rtl/os2/newexe.pas',
+ 'whtml': 'packages/fcl-base/src/whtml.pp'}   # 2026-11-21: not src/ide/whtml.pas (the IDE's, which needs wutils)
 bad = ('/win', '/linux', '/unix', '/go32', '/amiga', '/morphos', '/darwin', '/bsd', '/msdos', '/wince', '/netware', '/beos',
        '/haiku', '/tests/', '/test/', '/examples/', '/emx/', 'lazarus/')
 plan = {}
@@ -45,8 +49,8 @@ while todo:
     for n, f in sorted(todo.items()):
         d = os.path.dirname(f)
         opts = BASE
-        if n == 'graph':  # same as tools/graph-304-build: no -O2, graph's own inc dir
-            opts = [o for o in BASE if o != '-O2'] + ['-Fi' + S + '/packages/graph/src/inc']
+        if n == 'graph':  # as tools/graph-322-build (which made the shipped one): no -O2, no -Ur, graph's own inc dir
+            opts = [o for o in BASE if o not in ('-O2', '-Ur')] + ['-Fi' + S + '/packages/graph/src/inc']
         if n in ('gettext', 'avl_tree'):  # 2026-11-21 (BUG-051 Part B): -S2h like the Lazarus lazutils copies (same checksums)
             opts = BASE + ['-S2h']
         r = subprocess.run([R + '/bin/ppc386'] + opts + ['-Fi' + d, '-Fi' + d + '/os2', '-Fi' + d + '/inc', '-Fi' + d + '/../inc',

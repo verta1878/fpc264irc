@@ -18,13 +18,19 @@ tools/os2-native-build/build.sh [out dir]      # default: $TMPDIR/fpc264irc-os2/
 Flags: `-Tos2 -Pi386 -s -O2 -Ur -n -FU<out> -FE<out> -Fu<out>`, `-Fi` for rtl/inc, rtl/i386, rtl/objpas (+sysutils, classes,
 unicode), rtl/os2, packages/fv/src, and per unit `-Fi` <srcdir>, <srcdir>/os2, <srcdir>/inc, <srcdir>/../inc.
 `-Ur` (release units) stops the system.pas recompile cascade, so rtl/os2 can be on the include path.
-`graph` is built like `tools/graph-304-build` does it: no `-O2`, plus `-Fi src/packages/graph/src/inc`.
+`graph` is built like `tools/graph-322-build` (which made the shipped one): no `-O2`, no `-Ur`, plus `-Fi src/packages/graph/src/inc`.
 
-**Source dates (2026-11-21, known gap):** `build.sh` compiles straight from `src/` and does not fix the source file dates
-(`lazbuild.sh` and `fclbase.sh` do: 2025-01-01). A `.ppu` stores the date of every source file it was built from, so a
-`build.sh` run on another checkout gives `.ppu` files that differ from `bin/units/i386-os2` in those dates only (code,
-`.rst` and interface checksums the same); its `libp*.a` also carry emx-ar's build time. Fix planned: `build.sh` copies
-`src` with dates 2025-01-01 and runs `ardate.py`, and `bin/units/i386-os2` is reshipped from it (dates only).
+**Source dates (2026-11-21, fixed):** `build.sh` copies `src/` and `patched/` next to the output, every file dated
+2025-01-01 00:00 UTC, and builds from the copy (as `lazbuild.sh` and `fclbase.sh`); `ardate.py` sets the member dates
+of every `.a` (emx-ar and the compiler write the build time). Two runs give byte-identical output. Also fixed in
+`drive.py`: `whtml` comes from fcl-base (`src/ide/whtml.pas` was picked first and pulled in the IDE's `wutils`), `graph`
+is built without `-Ur` like `tools/graph-322-build`, which made the shipped one. `bin/units/i386-os2` was reshipped
+from the kit: 246 `.ppu` + 246 `libp*.a` (+ `stringtableresource.rst`, which the shipped folder lacked).
+Against the old files: every interface checksum, unit checksum and object file the same; 244 `.ppu` differ only in the
+stored source dates, `fgl` and `icocurtypes` also in token/file-position records (today's compiler); the archives differ
+in member dates and symbol-index format (the old ones mixed GNU `/` and `__.SYMDEF`). Not built by the kit and left as
+shipped: the 30 import archives `<unit>.a` and the `*.dll.a` libraries. test/os2 (7), test/fcl-base/fclb,
+test/threads/thr2 and an LCL program (Lazarus folders first, no recompiles) link to the same `.exe` bytes as before.
 
 ## Unit set (`unitlist.txt`, 219)
 The 209 units of the 2026-10-01 native rebuild plus 10 fcl-res units added 2026-10-02:
@@ -109,4 +115,6 @@ folder from a copy dated 2025-01-01 (UTC), with the kit's flags (`-Tos2 -Pi386 -
 `fclbase.sh` builds the 26 fcl-base units the folder did not have against the shipped folder (see its header: each unit
 alone from a 2025-01-01 copy, kit flags, `-S2h` for gettext/avl_tree like the Lazarus lazutils copies, archive member dates
 fixed - two runs byte-identical). `unitlist.txt` lists them and `drive.py` gives gettext/avl_tree `-S2h`, so a full
-`build.sh` run gives the same interface checksums. test/fcl-base/fclb.pas links (LX); not run (no OS/2 machine).
+`build.sh` run gives the same interface checksums (except `whtml`, which `drive.py` took from `src/ide` - fixed
+2026-11-21, see "Source dates"). test/fcl-base/fclb.pas links (LX); not run (no OS/2 machine). Since 2026-11-21 the
+whole folder is a `build.sh` build; `fclbase.sh` stays as the record of how these were first made.

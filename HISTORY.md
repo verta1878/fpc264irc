@@ -193,6 +193,25 @@ source          patches/os2-cross/binutils/ (binutils-2.30-emx.patch, build.sh, 
 result          same program images and the same LX import fixups as before (360 / 1055 in the two tests); not yet run on OS/2
 ```
 
+## OS/2 kit: fixed source dates, i386-os2 reshipped; installers installed under Wine (2026-11-21)
+- **`tools/os2-native-build/build.sh`** builds from a copy of `src/` + `patched/` with every file dated 2025-01-01 UTC
+  and sets the member dates of every `.a` (`ardate.py`): two runs give byte-identical output (before, each `.ppu`
+  recorded the checkout's source dates). `drive.py`: `whtml` from fcl-base (it took `src/ide/whtml.pas`, which pulled in
+  the IDE's `wutils` - a different unit with the same name as the shipped one), `graph` without `-Ur` (as
+  `tools/graph-322-build`, which made the shipped one); optional 3rd argument = the dated source copy.
+- **`bin/units/i386-os2` reshipped from the kit**: 219 `.ppu` and 220 `libp*.a` change, `stringtableresource.rst` is new
+  (the other 27 + 26 were already byte-identical - the BUG-051 units, built from dated copies). Same interface checksums,
+  unit checksums and object files everywhere; the `.ppu` differ in stored source dates (`fgl`, `icocurtypes` also in
+  token/file-position records of today's compiler), the archives in member dates and symbol-index format. Import
+  archives (`<unit>.a`, `*.dll.a`) not touched. Checked: test/os2 (7 programs), test/fcl-base/fclb, test/threads/thr2
+  and an LCL program (Lazarus folders first, no unit recompiled) link to the same `.exe` bytes as with the old folder.
+- **Correction (docs gap audit 1):** the Wine "Failed to create win32 control, error 1400" was not Inno - byte's Xvfb
+  display had died (as `netmodem2irc/InnoIRC561/INNOIRC561-FINDINGS.md` already says). With a live display:
+  `fpc264irc_fast` setup installs (`ppc386.exe` identical), its "Add FPC to system PATH" task adds `C:\...\bin` once
+  (a reinstall does not add it twice), the uninstaller removes it; `fpc264irc.iss` installs in Windows 98 mode, with
+  only the i386-win32 Lazarus set (`laz_cross` off by default). (Wine keeps the NT environment key in Win98 mode; on a
+  real Win98 the PATH line belongs in AUTOEXEC.BAT.)
+
 ## Docs gap audit 1: installers, VERSION, changelogs, Lazarus-first, i8086 notes (2026-11-21)
 - **Installers.** `installer/fpc264irc_fast.iss` and `_minimal.iss` did not compile (`LicenseFile=..\LICENSE.txt`
   does not exist; the FPC tools / Lazarus `[Files]` entries sat in `[Code]`: "Error on line 61") and packed the Linux
@@ -214,8 +233,8 @@ result          same program images and the same LX import fixups as before (360
   PPUs; now 1,538 / 301 / 337 / 223) and the IDE component: `lazarus.exe` + the i386-win32 Lazarus set only; the 6
   cross-target Lazarus sets (~310 MB) are a new component `laz_cross`, off by default. `_fast`/`_minimal`: the
   "Add FPC to system PATH" task now adds it (the registry line + `[Code]` of `fpc264irc.iss`; uninstall removes it).
-  All three compile with InnoIRC561 under Wine; a silent install could not be tried there (Setup stops with "Failed to
-  create win32 control, error 1400" in Wine). README: `-Wh` is not needed for programs (`ppcross8086 -h`), real i8086
+  All three compile with InnoIRC561 under Wine; the silent install was tried later the same day (see "OS/2 kit:
+  fixed source dates": the error 1400 seen first was a dead X display, not Inno). README: `-Wh` is not needed for programs (`ppcross8086 -h`), real i8086
   unit counts; LCL HOWTO: the 141-PPU recipe marked historical; INSTALL: git clone / zip + `fix-permissions.sh`
   instead of a Linux tarball that does not exist. os2 kit README: "Source dates" known gap (fix = next delivery).
 - Seen, not changed: `bin/lazarus.exe` and `bin/lazarus/lazarus.exe` are two different 18 MB files (the installer packs

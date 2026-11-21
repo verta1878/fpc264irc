@@ -1,0 +1,10 @@
+fpc264irc os2dates Fri 11/20/2026 22:48:46.72 
+CHECK zip MD5 OK 6a552902b9abeb26fd6409d8cb26bb3a 
+UNZIPPED fpc264irc-os2dates-2026-11-21.zip 
+NEW 1 (i386-os2 stringtableresource.rst); REPLACED 451 (i386-os2 219 ppu + 220 libp*.a, os2 kit 4, HISTORY, toolkit 4, CHECKSUMS 3) 
+CHECK system.ppu MD5 OK 69d27aae62c2ad72402c5b01ef7890c5 
+CHECK libpsysutils.a MD5 OK af042fcd3583790f01dbdb76abe96130 
+CHECK build.sh MD5 OK ac32260125ae5f2d5ee86e573224d941 
+CHECK CHECKSUMS.md5 MD5 OK e3d6a772c2b3b98044df779895c5d6f5 
+DELETED tools\smartpack\os2dates.ok marker 
+DONE 

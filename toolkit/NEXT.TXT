@@ -11,6 +11,11 @@ NEXT JOB: none in the rebuild plan - every unit folder is a kit build (docs/UNIT
   i8086: BUG-053 (far-data record copy) own session; then fcl-base for i8086. tiny/small/compact shipped
   types/sysutils/math/fgl differ from a kit build (other interface checksums) - not reproducible yet.
 
+DONE 2026-11-21: os2dates - os2 build.sh from a dated src copy + ardate (byte-identical reruns), drive.py whtml/graph
+                 fixes, bin/units/i386-os2 reshipped (same code + checksums, dates only); fpc264irc installers
+                 installed under Wine (PATH task once, uninstall removes; Win98 mode main setup OK). NEXT: BUG-053
+                 triage (sandbox, report). Open: real Win98 / OS/2 runs; SetupIconFile cannot be compiled ON Win9x
+                 (upstream Inno) - fpc264irc.iss + netmodem32.iss must be built on NT/2000+.
 DONE 2026-11-21: docs gap audit 1 - installers (_fast/_minimal compile; NSIS rewritten, old in attic), VERSION line,
                  CHANGELOG "After r311", INSTALL/README/LCL HOWTO (Lazarus first, i8086), fpc264irc.iss counts +
                  laz_cross component, _fast/_minimal PATH task. NEXT: os2dates (os2 build.sh fixes source dates,

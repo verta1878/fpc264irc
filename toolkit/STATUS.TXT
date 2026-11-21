@@ -4,7 +4,7 @@ GitHub HEAD fb4766d2 "Docs: why the Mac link tools use stub libraries" (45,363 f
 
 bin/units/<target>       .ppu   kit                      rebuilt     result
 -----------------------  ------  -----------------------  ----------  ------------------------------------------
-i386-os2                   219   tools/os2-native-build   2026-10-10  kit build (toolkit/test.sh: 219 same)
+i386-os2                   246   tools/os2-native-build   2026-11-21  kit build, dated sources: reruns byte-identical, shipped = kit output
 i386-freebsd           167+24   tools/freebsd-build      2026-10-12  kit build; + Free Vision 2026-10-30
 x86_64-freebsd          46+28   tools/freebsd-build      2026-10-12  kit build; + Free Vision, video/keyboard/mouse/objects 2026-10-30
 i386-linux                 275   tools/linux-build        2026-10-13  kit build

@@ -1,8 +1,8 @@
 #!/bin/bash
 # fpc264irc i386-os2: build the fcl-base units the folder did not have (BUG-051 Part B) - byte, 2026-11-21
 # usage: tools/os2-native-build/fclbase.sh [work dir]     (Linux x86_64 host; default $TMPDIR/fpc264irc-os2-fclbase)
-# Builds them against the shipped bin/units/i386-os2 (not a full kit run: build.sh does not fix source dates, so a full
-# run records the checkout's dates in every .ppu). Each unit is compiled alone in an empty folder from a copy dated
+# Builds them against the shipped bin/units/i386-os2 (not a full kit run: until 2026-11-21 build.sh did not fix source
+# dates, so a full run recorded the checkout's dates in every .ppu; it does now - this script is kept as the record). Each unit is compiled alone in an empty folder from a copy dated
 # 2025-01-01 UTC (so the compiler cannot find - and recompile - the sources of units the folder already has), with the
 # kit's flags -Tos2 -Pi386 -s -O2 -Ur -n; assembled with bin/tools/i386-os2/as, packed with tools/smartpack/pack-units.sh,
 # archive member dates set to 2025-01-01 (ardate.py) - two runs give the same bytes.
