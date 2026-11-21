@@ -78,6 +78,9 @@ real Windows 98 it runs `system`'s own TryEnterCriticalSection (knob `SUPPORT_WI
   `RTLEvent`. Unix targets need `cthreads` (the program uses it). ALL OK on i386-linux, x86_64-linux, i386-win32 (Wine,
   also Windows 98 mode), x86_64-win64; compiles for i386/x86_64-freebsd, links for i386-os2.
 - `tmr.pas`: `fptimer` (TFPTimer, 50 ms) - 11 ticks in 600 ms on i386-linux; compiles for FreeBSD.
+- `i8086/classes/clist.pas` (BUG-052): TStringList in the i8086 model folders - ALL OK in DOSBox (medium, large;
+  huge: use the default folder). `inithand.pas`: init handler list (x86_64-linux with the patch for CPUX86_64).
+  `rec2s.pas`: BUG-053 repro (open) - large/huge/default print only "1 set", medium all 5 lines.
 - `syncdos.pas`: DOS `syncobjs` (go32v2, i8086-msdos): critical section, auto/manual-reset events, timeouts. ALL OK in
   DOSBox (go32v2 with CWSDPMI; i8086 default, small, medium, large, huge).
 

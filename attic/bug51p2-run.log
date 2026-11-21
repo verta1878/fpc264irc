@@ -1,0 +1,9 @@
+fpc264irc bug51 part B Fri 11/20/2026 19:42:58.99 
+CHECK zip MD5 OK a5c99ea671ba860ae82bb492f505d7fe 
+UNZIPPED fpc264irc-bug51-partb-2026-11-21.zip 
+NEW 304 (x86_64-freebsd 73, i386-freebsd 65, i386-linux 55, i386-go32v2 45, i386-os2 63, os2 fclbase.sh, freebsd opts-i386.txt, test\fcl-base\fclb.pas); REPLACED 25 (i386-freebsd syncobjs.ppu, kits 14, docs+toolkit 7, CHECKSUMS 3) 
+CHECK freebsd64-contnrs.ppu MD5 OK e334f5659fa97ba9447ae02ae32d5b8f 
+CHECK freebsd32-syncobjs.ppu MD5 OK 69718c9a04eb6134b9e8aee7a2485a45 
+CHECK os2-inifiles.ppu MD5 OK 9f40ce1dab6f183578335da9c38f5cf5 
+DELETED tools\smartpack\bug51p2.ok marker 
+DONE 

@@ -73,3 +73,9 @@ CHECKPOINT.TXT - fpc264irc - append-only log (newest at the bottom; never edit o
             i386-freebsd syncobjs (package options) broke Graphics with the main folder first - rebuilt. The go32v2 EListError
             was the FV/LCL Dialogs/Menus clash (main folder first), not a bug. i8086 skipped: classes too big in model folders,
             shipped uriparser hangs (pre-existing). Next: docs gap audit.
+2026-11-21  BUG-052: i8086 classes - FPC 3.2.2 CommonInit's RegisterInitComponentHandler(TComponent,...) linked TReader/TWriter
+            into every classes program (> 64K). Patch registers the default handler on first use (same list); build-rtl.sh
+            applies it, copies the RTL with dates (cp -rp), classes byte-identical on rerun. Shipped medium/large/huge
+            classes (same checksums); clist ALL OK in DOSBox medium + large; huge folder SYSTEM_TEXT 94 over (default folder
+            OK). tiny/small/compact left: kit types/sysutils/math/fgl checksums differ from shipped. BUG-053 OPEN: far-data
+            record copy with 2 AnsiStrings corrupts memory (rec2s.pas) - the uriparser hang. Next: docs gap audit.

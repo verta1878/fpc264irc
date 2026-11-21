@@ -193,6 +193,28 @@ source          patches/os2-cross/binutils/ (binutils-2.30-emx.patch, build.sh, 
 result          same program images and the same LX import fixups as before (360 / 1055 in the two tests); not yet run on OS/2
 ```
 
+## BUG-052 i8086 classes in the memory-model folders; BUG-053 far-data record copy (open) (2026-11-21)
+- **BUG-052:** in `bin/units/i8086-msdos-medium/-large/-huge` no program using `classes` linked - also a 1-line
+  `TStringList` program stopped with `Code segment "CLASSES_TEXT" too large (exceeds 64k by ~49000 bytes)`. FPC 3.2.2's
+  `classes` registers the TComponent init handler in its unit init (`CommonInit`), and that one reference links
+  TComponent, TReader, TWriter and the binary object reader/writer into every program.
+- **Fix:** `tools/i8086-graph-build/patches/classes-inithandler.patch` (applied by `build-rtl.sh`, i8086 only): the
+  default handler is registered with the first `RegisterInitComponentHandler` or `InitInheritedComponent` call - the
+  handler list ends up as before. `classes.ppu` + `classes.a` rebuilt in medium, large, huge (same interface checksums;
+  nothing else changes). `build-rtl.sh` now copies the RTL with its archive dates (`cp -rp`) and dates the patched file
+  2025-01-01 UTC: two runs give byte-identical `classes` files.
+- **Checked:** `test/i8086/classes/clist.pas` links and prints ALL OK in DOSBox in medium (134,700 bytes) and large
+  (180,426); huge folder: `classes` now fits, but `SYSTEM_TEXT` is 94 bytes over 64K - use the default folder
+  `bin/units/i8086-msdos` (huge model, its own `classes`, already linked: ALL OK). `test/i8086/classes/inithand.pas`
+  (own handler + default handler) ALL OK on x86_64-linux with the same patch for CPUX86_64 - in the i8086 model folders
+  a program that streams components is still bigger than 64K.
+- **Not changed:** tiny, small, compact - one 64K code segment for the whole program, `classes` cannot fit. Their
+  shipped `types`/`sysutils`/`math`/`fgl` have other interface checksums than a kit build, so a kit `classes` would not
+  load there; left as shipped.
+- **BUG-053 (open):** in far-data models (large, huge, the default folder) copying a record with two AnsiString fields
+  corrupts memory: the next `writeln` hangs or prints garbage (`test/i8086/classes/rec2s.pas`; medium is fine). This was
+  the "shipped uriparser hangs" of BUG-051 Part B. Compiler (FPC 3.2.2 i8086 code generation) or RTL - its own session.
+
 ## BUG-051 Part B: the rest of fcl-base on FreeBSD, OS/2, i386-linux, go32v2 (2026-11-21)
 - Upstream builds 30 fcl-base units for every OS (`src/packages/fcl-base/Makefile.fpc`); these folders lacked them:
   x86_64-freebsd 30, i386-freebsd 30, i386-os2 26, i386-linux 25, i386-go32v2 19 (contnrs, inifiles, rtfpars, idea,

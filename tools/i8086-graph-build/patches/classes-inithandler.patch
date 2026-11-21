@@ -1,0 +1,58 @@
+fpc264irc BUG-052 (byte, 2026-11-21): FPC 3.2.2 classes for i8086 - the TComponent default init handler is registered
+with the first RegisterInitComponentHandler or InitInheritedComponent call instead of in CommonInit. The CommonInit
+reference pulled TComponent + TReader/TWriter + the binary object reader/writer into every program using classes: more
+than the 64K code segment of the unit in the memory-model folders. The handler list ends up the same as before (default
+first, a later TComponent handler still replaces it); interface checksum unchanged.
+Applied by build-rtl.sh to the downloaded rtl/ (patch -p0 -d <rtl copy>).
+
+--- objpas/classes/classes.inc
++++ objpas/classes/classes.inc
+@@ -1268,13 +1268,27 @@
+   end;
+ 
+ 
++{$ifdef CPUI8086}
++function DefaultInitHandler(Instance: TComponent; RootAncestor: TClass): Boolean; forward;
++{$endif}
++
+ procedure RegisterInitComponentHandler(ComponentClass: TComponentClass;   Handler: TInitComponentHandler);
+ Var
+   I : Integer;
+   H: TInitHandler;
+ begin
+   If (InitHandlerList=Nil) then
++{$ifdef CPUI8086}
++    begin
++    { fpc264irc (i8086): the TComponent default handler is registered with the first handler (or the first
++      InitInheritedComponent) instead of in CommonInit - same list and order as before, but a program that never
++      streams components does not link TComponent + TReader/TWriter (more than the 64K code segment of classes) }
+     InitHandlerList:=TList.Create;
++    RegisterInitComponentHandler(TComponent,@DefaultInitHandler);
++    end;
++{$else}
++    InitHandlerList:=TList.Create;
++{$endif}
+   H:=TInitHandler.Create;
+   H.Aclass:=ComponentClass;
+   H.AHandler:=Handler;
+@@ -1354,6 +1368,10 @@
+   I : Integer;
+ begin
+   I:=0;
++{$ifdef CPUI8086}
++  if not Assigned(InitHandlerList) then
++    RegisterInitComponentHandler(TComponent,@DefaultInitHandler);
++{$endif}
+   if not Assigned(InitHandlerList) then begin
+     Result := True;
+     Exit;
+@@ -2487,7 +2505,9 @@
+   ClassAliasList := nil;
+   { on unix this maps to a simple rw synchornizer }
+   GlobalNameSpace := TMultiReadExclusiveWriteSynchronizer.Create;
++{$ifndef CPUI8086}
+   RegisterInitComponentHandler(TComponent,@DefaultInitHandler);
++{$endif}
+ end;
+ 
+ procedure CommonCleanup;

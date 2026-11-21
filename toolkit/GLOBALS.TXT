@@ -82,3 +82,11 @@ G-023  SYMPTOM  "Recompiling <LCL unit>, checksum changed for <FCL unit>" then "
                 with EListError 265) building an LCL program
        CAUSE    the main unit folder is first on the path: its FCL unit (or FV Dialogs/Menus) differs from the Lazarus copy
        FIX      put the Lazarus folders first; new main-folder FCL units are built with the Lazarus copy's checksum (BUG-051 B)
+G-024  SYMPTOM  i8086 medium/large/huge: 'Code segment "CLASSES_TEXT" too large' for any program using classes
+       CAUSE    FPC 3.2.2 classes CommonInit registers the TComponent init handler -> links TReader/TWriter (> 64K)
+       FIX      2026-11-21 BUG-052: patches/classes-inithandler.patch in tools/i8086-graph-build (registered on first use);
+                huge folder: SYSTEM_TEXT 94 bytes over - use the default folder; tiny/small/compact cannot fit classes
+G-025  SYMPTOM  i8086 large/huge/default: a program hangs or prints garbage after copying a record with 2 AnsiStrings
+                (also: the shipped uriparser hangs)
+       CAUSE    not found yet - FPC 3.2.2 i8086 far-data code generation or RTL helpers (BUG-053, OPEN)
+       FIX      none yet; medium (near data) works. Repro test/i8086/classes/rec2s.pas

@@ -27,7 +27,9 @@ get packages/fv          2023dad42cf20600d43e161787eae54edd1ee23c445ef53f155da5e
 mkdir -p "$W/bin"; ln -sf "$(command -v nasm)" "$W/bin/msdos-nasm"
 
 echo "[1/3] RTL -Wm$M -CX"
-B=$W/b-$M; rm -rf "$B"; cp -r "$W/fpc/rtl" "$B"
+B=$W/b-$M; rm -rf "$B"; cp -rp "$W/fpc/rtl" "$B"   # -p (2026-11-21): keep the archive's file dates in the .ppu files
+# BUG-052 (2026-11-21): classes links in the memory-model folders - see patches/classes-inithandler.patch
+patch -s -p0 -d "$B" < "$K/patches/classes-inithandler.patch"; touch -d '2025-01-01 00:00:00 UTC' "$B/objpas/classes/classes.inc"
 (cd "$B/msdos" && PATH="$W/bin:$PATH" make all CPU_TARGET=i8086 OS_TARGET=msdos FPC="$C" OPT="-Wm$M -CX") > "$W/rtl-$M.log" 2>&1 \
   || { tail -5 "$W/rtl-$M.log"; exit 1; }
 U=$B/msdos/units/msdos

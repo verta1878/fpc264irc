@@ -1,7 +1,7 @@
 # FPC 2.6.4irc — Bugs Fixed (r3.1)
 
 Verified against repo commit 42aa8991 on 2026-10-01.
-51 unique bugs (BUG-044, BUG-045 added 2026-10-15; BUG-046 - BUG-049 2026-11-15; BUG-050, BUG-051 2026-11-20). 9 duplicate/update entries merged into parents.
+53 unique bugs (BUG-044, BUG-045 added 2026-10-15; BUG-046 - BUG-049 2026-11-15; BUG-050, BUG-051 2026-11-20; BUG-052, BUG-053 2026-11-21). 9 duplicate/update entries merged into parents.
 
 Legend:
 - ✅ FIXED — verified in source
@@ -229,6 +229,27 @@ the same day: that was the wrong side - the 2.6.4 compiler needs decr_ref to lea
 **Verified:** official FPC 2.6.4 and 3.2.2 print 0; fpc264irc prints 0 on i386-linux, x86_64-linux, i386-win32
 (Wine), go32v2 (DOSBox).
 
+### BUG-053: i8086 far data - copying a record with two AnsiStrings corrupts memory — ⏳ OPEN
+**Symptom:** i8086-msdos large, huge and the default folder (huge model): `u := v` for a record with two AnsiString
+fields, then the next `writeln` hangs or prints garbage. Medium (near data) is fine. `test/i8086/classes/rec2s.pas`
+prints only "1 set" in DOSBox (medium: all 5 lines). A program using the shipped `uriparser` (default folder) hangs the
+same way - that was the "uriparser hangs" of BUG-051 Part B.
+**Root cause:** not found yet - FPC 3.2.2 i8086 code generation for far data (record copy / AnsiString reference
+counting) or the RTL helpers it calls. Separate session.
+
+### BUG-052: i8086 model folders - no program using `classes` links (CLASSES_TEXT > 64K) — ✅ FIXED
+**Symptom:** `bin/units/i8086-msdos-medium/-large/-huge`: a 1-line `TStringList` program stops with `Code segment
+"CLASSES_TEXT" too large (exceeds 64k by ~49000 bytes)`.
+**Root cause:** FPC 3.2.2 `classes` `CommonInit` calls `RegisterInitComponentHandler(TComponent,@DefaultInitHandler)`;
+that reference links TComponent, TReader, TWriter and the binary object reader/writer into every program.
+**Fix:** `tools/i8086-graph-build/patches/classes-inithandler.patch` (i8086 only, applied by `build-rtl.sh`): the
+default handler is registered with the first `RegisterInitComponentHandler` / `InitInheritedComponent` call, so the
+handler list is the same as before. `classes.ppu`/`.a` rebuilt for medium, large, huge (same interface checksums).
+**Verified:** `test/i8086/classes/clist.pas` ALL OK in DOSBox (medium, large); `inithand.pas` ALL OK on x86_64-linux
+with the patch switched to CPUX86_64. **Limits:** huge folder - `SYSTEM_TEXT` 94 bytes over 64K with `classes`, use the
+default folder (huge model, links); tiny/small/compact - one 64K code segment, cannot fit `classes`; component
+streaming still does not fit in the model folders.
+
 ### BUG-051: thread units missing on FreeBSD / OS/2 / i386-linux; DOS syncobjs stub — ✅ FIXED
 **Symptom:** x86_64-freebsd: `uses cthreads` "Can't find unit", so no threads (runtime error 232); i386-freebsd and
 i386-os2: `uses syncobjs` "Can't find unit"; i386-linux: no `fptimer`; go32v2: `TEvent` "Identifier not found" (stub);
@@ -243,7 +264,8 @@ not set -> wrTimeout after the wait, INFINITE -> wrError instead of hanging).
 same interface checksums as the Lazarus sets' own copies; i386-freebsd `syncobjs` rebuilt (Part A's had the package options,
 a different checksum from Lazarus `lcl/syncobjs`). The go32v2 "EListError (265)" note was the Free Vision / LCL name clash
 with the main folder first on the path, not a bug of its own. **Open (i8086, pre-existing):** model folders - programs using
-`classes` do not link (CLASSES_TEXT > 64K); default folder - a program using the shipped `uriparser` hangs in DOSBox.
+`classes` do not link (CLASSES_TEXT > 64K; fixed as BUG-052); default folder - a program using the shipped `uriparser`
+hangs in DOSBox (BUG-053, open).
 **Verified:** only new files (go32v2: syncobjs + the Lazarus units that use it); thr2/tmr compile for FreeBSD, link for
 OS/2, run on Linux; syncdos ALL OK in DOSBox (go32v2, i8086 5 models). **Open:** run on real FreeBSD and OS/2.
 

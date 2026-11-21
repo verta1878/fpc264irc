@@ -1,4 +1,4 @@
-NEXT.TXT - fpc264irc - what to do next                                   byte, 2026-11-20
+NEXT.TXT - fpc264irc - what to do next                                   byte, 2026-11-21
 (cold start: read this, then RULES.TXT, STATUS.TXT, the last entry of CHECKPOINT.TXT)
 
 NEXT JOB: none in the rebuild plan - every unit folder is a kit build (docs/UNIT-REBUILD.md, all 9 done).
@@ -8,7 +8,11 @@ NEXT JOB: none in the rebuild plan - every unit folder is a kit build (docs/UNIT
   README/HISTORY/docs. Real-machine tests (Windows 11, Win98: thr.exe for BUG-050 + the LCL win32 fix + installer
   PATH, FreeBSD, OS/2). Win98 import check against real KERNEL32/USER32/OLEAUT32.DLL when verta has them.
   Windows ppcross8086.exe: not built (FPC 3.2.2 compiler; check its source is in the repo first).
+  i8086: BUG-053 (far-data record copy) own session; then fcl-base for i8086. tiny/small/compact shipped
+  types/sysutils/math/fgl differ from a kit build (other interface checksums) - not reproducible yet.
 
+DONE 2026-11-21: BUG-052 i8086 classes links in medium/large (huge: default folder); BUG-053 OPEN (far-data record
+                 copy with 2 AnsiStrings, test/i8086/classes/rec2s.pas) - own session. NEXT: docs gap audit.
 DONE 2026-11-21: BUG-051 Part B - fcl-base on x86_64/i386-freebsd, i386-os2, i386-linux, go32v2 (same checksums as the
                  Lazarus copies); i386-freebsd syncobjs fixed. i8086 not done (classes too big in model folders, uriparser
                  hangs - pre-existing). NEXT: docs gap audit.

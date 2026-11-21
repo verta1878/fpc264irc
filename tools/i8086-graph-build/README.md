@@ -59,8 +59,8 @@ Runs: DOSBox 0.74, svga_s3; the graph results are the table above, all six modes
 `.ppu` + `.a` now, like tiny/small/compact; only `prt0m.o`/`prt0l.o`/`prt0h.o` stay as objects.
 
 Limit (FPC 3.2.2, all models): one unit's code that a program uses must fit in that unit's 64K code segment. A program
-using `classes` (e.g. `TStringList`) stops with `Code segment "CLASSES_TEXT" too large` in medium/large/huge, the same as
-with the default `bin/units/i8086-msdos` set. Programs that stay with sysutils, objects, crt, dos, graph are fine.
+using `classes` (e.g. `TStringList`) stopped with `Code segment "CLASSES_TEXT" too large` in medium/large/huge - fixed
+2026-11-21 (BUG-052, below). Programs that stay with sysutils, objects, crt, dos, graph are fine.
 
 ## Free Vision for medium / large / huge (2026-10-30)
 `build-rtl.sh medium|large|huge` also builds the 24 Free Vision units from FPC 3.2.2 `packages/fv` (fetched and checked
@@ -89,3 +89,19 @@ large (exceeds 64k)", also a 1-line TStringList program); in the default folder 
 in DOSBox. With ppcross8086 (FPC 3.2.2) this repo's 2.6.4 fcl-base mostly compiles (`-Wm<model> -CX`, as the default
 folder's contnrs - byte-identical), except gettext ("Data element too large") and bufstream; not shipped until the two above
 are understood.
+
+## classes (2026-11-21, BUG-052)
+`build-rtl.sh` applies `patches/classes-inithandler.patch` to its RTL copy: FPC 3.2.2 `classes` registered the TComponent
+init handler in its unit init, which linked TComponent + TReader/TWriter + the binary object reader/writer into every
+program using `classes` - more than the unit's 64K code segment. On i8086 the handler is now registered with the first
+`RegisterInitComponentHandler` / `InitInheritedComponent` call (same handler list). The RTL is copied with its archive
+dates (`cp -rp`) and the patched `classes.inc` dated 2025-01-01 UTC, so two runs give byte-identical `classes` files.
+- Shipped: `classes.ppu` + `classes.a` of medium, large, huge from this kit (same interface checksums as before).
+- `test/i8086/classes/clist.pas` (TStringList): ALL OK in DOSBox in medium and large. huge folder: `classes` fits now,
+  but `SYSTEM_TEXT` is 94 bytes over 64K - use the default folder (huge model; its own `classes` already linked).
+- tiny / small / compact: not possible (one 64K code segment). Their shipped `types`, `sysutils`, `math` (and `fgl` in
+  small/compact) have other interface checksums than this kit's, so the kit's `classes` would not load there - left as
+  shipped.
+- A program that streams components (TReader, `InitInheritedComponent`) is still too big for the model folders.
+- Open, BUG-053: in far-data models (large, huge, default) copying a record with two AnsiStrings corrupts memory
+  (`test/i8086/classes/rec2s.pas`) - why the shipped `uriparser` hangs; fcl-base for i8086 waits for it.
