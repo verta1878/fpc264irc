@@ -1,7 +1,7 @@
 72e08b7e06f7c731f4f17ca9c29c1411  ./.fpcirc
 108e2243262608e8d2c977350600ef04  ./.gitattributes
 95110cc9d3af3d5ae891f49e0bb7e3c0  ./.gitignore
-43c87a6414c0e779c57793df7a5d9bcf  ./HISTORY.md
+3ba15c39c1316d141834c301c569081a  ./HISTORY.md
 9f463bb4d3019a9d922623ac0874dae4  ./LICENSE
 d169ba6938afc8449c4c717026af8cd8  ./Makefile
 1ebd7d1acc90db5c39395a6ddc5d2f91  ./README.md
@@ -16,6 +16,9 @@ acdb341eb42d79c126401bbad186ba2a  ./attic/attic-byte-run.log
 77039bf29e15ef88747e1e88a11bae51  ./attic/attic-old-milestones.bat
 6c52e03b904d8312eacf231fc2e982b6  ./attic/bug49-run.bat
 ccda5a9ba3e42d06270f9d7eb2fc7773  ./attic/bug49/fpc264irc-bug49-2026-11-15.zip
+f1c2ab7d4d5662eb77ea04e32bd5e643  ./attic/bug51-run.bat
+77eff338407f624360ae02187f31e540  ./attic/bug51-run.log
+193523491168680614e7c59813629d9a  ./attic/bug51/fpc264irc-bug51-2026-11-20.zip
 1228acf5fe0e40a7f3068ab1fc8c0c8d  ./attic/bugsfixed-original-2026-10-01.md
 71e7a61fdadca1b39469430766e147aa  ./attic/cleanup-repo.bat
 9247307111553a34b1e02d0750020ae3  ./attic/cleanup-repo.log

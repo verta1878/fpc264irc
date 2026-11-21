@@ -1,5 +1,5 @@
 FPC 2.6.4irc - Repository Checksums
-Generated: 2026-11-20 (byte, BUG-051 thread units on every target, DOS syncobjs)
+Generated: 2026-11-21 (byte, CHECKSUMS fix: HISTORY.md entry + attic/bug51*)
 Includes: Patches 1-6, graph 3.0.4 backport, smartpack (.ppu + .a), stale-unit rebuild, i386-linux USB units, OS/2 native linking (patched binutils ld), i386-darwin Mach-O writer fix, unit-folder name clashes (lcl/, fv/), i8086 medium/large/huge -CX, OS/2 build kit + test/os2, i386-darwin linking (cctools/ld64, Csu, stub libSystem) + test/darwin, unit format check (numlib + singleinstance rebuilt for i386-win32), i386-darwin framework stubs (24 frameworks + libobjc) + test/darwin 8-10, x86_64-darwin units (tools/darwin64-build) + universal crt1/stubs + test/darwin64, graph 3.2.2 (tools/graph-322-build, ptcgraph 24-bit true colour), OS/2 units = kit build, Foundation/AppKit stubs Versions/C (docs/UNIT-REBUILD.md), Mac stubs trimmed to Apple's names per architecture (apple-trim.py) + CoreVideo, FreeBSD i386 + x86_64 + Lazarus i386-freebsd = kit build (tools/freebsd-build), i386-linux + Lazarus i386-linux = kit build (tools/linux-build), i386-go32v2 + Lazarus i386-go32v2 = kit build (tools/go32v2-build), go32v2 Move fix for DOSBox (BUG-044, fmovgo32.inc, knob FPC_MOVE_NOFPU) + fossil/serial_irq built (BUG-045), graph on the x86_64 targets (docs, graph.pp message on x86_64-linux/darwin, test/x64graph), i386-darwin + Lazarus i386-darwin = kit build (tools/darwin-build; fv/, univint/, + fcl-res, fpobserver, jconsts), stub libobjc + ObjC 2 API, toolkit/ (9-file crew standard), .gitignore (backup zip on hold), x86_64-linux + lcl/ + Lazarus x86_64-linux = kit build (tools/linux-build, PIC as shipped), i386-win32 main folder = kit build (tools/win32-build; system from source, dynlibs + GetProcAddress/FreeLibrary), i386-win32 lcl/ + Lazarus i386-win32 = kit build (paswstring for win32), Free Vision on i386/x86_64-freebsd and i8086-msdos medium/large/huge, paswstring refresh (Lazarus linux/freebsd/go32v2/darwin), darwin-build dynlibs date fix, x86_64-win64 = kit build (tools/win64-build), Lazarus i386-os2 = kit build (tools/os2-native-build/lazbuild.sh), BUG-046 i386 SetLength/decr_ref (system on the 6 i386 targets), BUG-047 / G-017 LCL win32 on NT (12 LCL win32 sources back to upstream, win32compat Dyn*W), execute bits (324 files, tools/smartpack/exec-bits.txt), BUG-048 x86_64-win64 syncobjs from src/syncobjs.pp (+ 6 units), ppu_consistency.py FV/LCL CLASH lines, attic/ in the checksums, toolkit/test.sh x86_64-win64 + Lazarus i386-os2, kits set the execute bit from exec-bits.txt only, BUG-049 S := S (astrings.inc decr_ref as FPC 2.6.4, system on 10 targets, BUG-046 revised), installer/fpc264irc.iss works with InnoIRC, BUG-050 i386-win32 system -dSUPPORT_WIN95 (Win95/98), bin/ppc386.exe + bin/ppcx64.exe (tools/wincomp-build), test/win32/thr.pas, BUG-051 thread units (cthreads/syncobjs/fptimer gaps, DOS syncobjs), test/threads
 Hashes are of the repository content (LF line endings, as on GitHub or a Linux clone). On Windows with
 core.autocrlf, text files are checked out with CRLF and hash differently; .ppu/.a/.exe/.o are binary and match.
@@ -53,9 +53,9 @@ bin/tools/i386-darwin/ld:
   Size:   7846496
 
 HISTORY.md:
-  MD5:    43c87a6414c0e779c57793df7a5d9bcf
-  SHA256: e3e4e2480ca24c44f8b49425fe9209837376b52e4e8fe568ba39939bd9269a19
-  Size:   51550
+  MD5:    3ba15c39c1316d141834c301c569081a
+  SHA256: a6e3d041e1f15b8f244b3b2bb21ec1e5d6042a809ba605e1c6ecbf1ad1045c27
+  Size:   51675
 
 docs/ROADMAP-UNITS.md:
   MD5:    535f976e7c8687847a12da59c575b133
@@ -63,5 +63,5 @@ docs/ROADMAP-UNITS.md:
   Size:   13401
 
 === Totals ===
-Files: 46253
+Files: 46256
 Size:  1.8G
