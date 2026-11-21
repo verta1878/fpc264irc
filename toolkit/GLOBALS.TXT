@@ -90,3 +90,8 @@ G-025  SYMPTOM  i8086 large/huge/default: a program hangs or prints garbage afte
                 (also: the shipped uriparser hangs)
        CAUSE    not found yet - FPC 3.2.2 i8086 far-data code generation or RTL helpers (BUG-053, OPEN)
        FIX      none yet; medium (near data) works. Repro test/i8086/classes/rec2s.pas
+G-026  SYMPTOM  md5sum -c on a fresh clone: "attic/<name>-run.log: FAILED" right after the commit that added it
+       CAUSE    .gitattributes "* text=auto": a Linux checkout has text files with LF (only *.bat CRLF, eol=crlf); the
+                log was hashed as the CRLF Windows copy
+       FIX      2026-11-21 bug52b: hash files as a Linux checkout has them - logs/docs from Windows with tr -d '\r',
+                .bat as CRLF - or hash a fresh checkout after the commit

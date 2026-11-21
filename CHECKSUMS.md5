@@ -23,8 +23,10 @@ f1c2ab7d4d5662eb77ea04e32bd5e643  ./attic/bug51-run.bat
 e55682b8304232544507f124ed8cbb9f  ./attic/bug51b-run.log
 fc34ec6baa1c32141f2608c9ed0a8fba  ./attic/bug51b/fpc264irc-bug51b-2026-11-21.zip
 d641f6d1271119c435e4ef4747616a8e  ./attic/bug51p2-run.bat
-fc3f2a046dfbc75cfe5842b0fc085e2f  ./attic/bug51p2-run.log
+4402653ec91ec01d34670226ec1a7b3f  ./attic/bug51p2-run.log
 a5c99ea671ba860ae82bb492f505d7fe  ./attic/bug51p2/fpc264irc-bug51-partb-2026-11-21.zip
+47226e27d085d37f0b725eda4012cc88  ./attic/bug52-run.bat
+99dcb0910f03a3516019d7c74b35f10a  ./attic/bug52/fpc264irc-bug52-2026-11-21.zip
 1228acf5fe0e40a7f3068ab1fc8c0c8d  ./attic/bugsfixed-original-2026-10-01.md
 71e7a61fdadca1b39469430766e147aa  ./attic/cleanup-repo.bat
 9247307111553a34b1e02d0750020ae3  ./attic/cleanup-repo.log
@@ -46389,9 +46391,9 @@ dd125c57ce0ae7e7b0f7e80b7d34edd8  ./test/x64graph/README.md
 445632e5f14a7d114f60483c509787c5  ./test/x64graph/build.sh
 787344ccc7edcd14c6c29b26138092f8  ./test/x64graph/x64graph.pas
 871e3e9739561a0296f5919e69e2dd4f  ./test/x64graph/x64ptcgraph.pas
-e52d2eef640569809df3dce21548f71f  ./toolkit/CHECKPOINT.TXT
+1aa83867064919cbe28dd7eb3f187925  ./toolkit/CHECKPOINT.TXT
 6de03e3d073c5bccd1bc142902a246c7  ./toolkit/DISASM.TXT
-2027692ac3f2cf7dfb10789e30999036  ./toolkit/GLOBALS.TXT
+d149712f76ed3cc0cb7e6b599f5f0378  ./toolkit/GLOBALS.TXT
 d95d222e4b76bdd5cf2cf8e2c4dd1158  ./toolkit/MATCH.PY
 601366519cb2156ff5b067cfe57f1a0e  ./toolkit/NEXT.TXT
 cdc7beffe56dbe9071f8995b013b3ed7  ./toolkit/RULES.TXT

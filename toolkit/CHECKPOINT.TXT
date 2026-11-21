@@ -79,3 +79,5 @@ CHECKPOINT.TXT - fpc264irc - append-only log (newest at the bottom; never edit o
             classes (same checksums); clist ALL OK in DOSBox medium + large; huge folder SYSTEM_TEXT 94 over (default folder
             OK). tiny/small/compact left: kit types/sysutils/math/fgl checksums differ from shipped. BUG-053 OPEN: far-data
             record copy with 2 AnsiStrings corrupts memory (rec2s.pas) - the uriparser hang. Next: docs gap audit.
+2026-11-21  bug52b: CHECKSUMS entry of attic/bug51p2-run.log fixed - it was hashed as the CRLF Windows copy, git stores LF
+            (text=auto). 46,569/46,570 verified on 0abe6de2 before the fix. G-026 added.
