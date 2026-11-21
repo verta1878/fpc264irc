@@ -119,3 +119,22 @@ zinflate|-O1
 zipper|-S2
 zstream|-O1
 zuncompr|-O1
+rtfpars|-CX
+idea|-CX
+iostream|-CX
+cachecls|-CX
+avl_tree|-CX -S2h
+wformat|-CX
+whtml|-CX
+wtex|-CX
+nullstream|-CX
+blowfish|-CX
+inicol|-CX
+pooledmm|-CX
+libtar|-CX
+streamcoll|-CX
+maskutils|-CX
+fpexprpars|-CX
+ascii85|-CX
+fptemplate|-CX
+fpmimetypes|-CX

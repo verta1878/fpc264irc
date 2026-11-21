@@ -82,3 +82,10 @@ shipped folders (`ppcross8086 -Tmsdos -Pi8086 -Wm<model> -O2 -CX -n -FU<out> -Fu
 default `bin/units/i8086-msdos` with `-Wmhuge`); for large the kit's `syncobjs.ppu`/`.a` are the same bytes. Tested in
 DOSBox (test/threads/syncdos.pas): default, small, medium, large, huge ALL OK. tiny/compact: built, but `sysutils` alone
 exceeds their 64K code segment, so a program using it cannot link there.
+
+## fcl-base: not built (2026-11-21, BUG-051 Part B)
+Found with the shipped units: in the memory-model folders no program using `classes` links ("Code segment CLASSES_TEXT too
+large (exceeds 64k)", also a 1-line TStringList program); in the default folder a program using the shipped `uriparser` hangs
+in DOSBox. With ppcross8086 (FPC 3.2.2) this repo's 2.6.4 fcl-base mostly compiles (`-Wm<model> -CX`, as the default
+folder's contnrs - byte-identical), except gettext ("Data element too large") and bufstream; not shipped until the two above
+are understood.

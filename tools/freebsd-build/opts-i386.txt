@@ -1,0 +1,8 @@
+# unit|options - used instead of the package options (drive.py, 2026-11-21, BUG-051 Part B). The Lazarus set has its own
+# copies of these FCL units in lcl/, built without package options (-S2h): the main folder's must have the same interface
+# checksum, or an LCL unit is recompiled (and fails) when the main folder is first on the unit path. Empty = no options.
+syncobjs|
+inifiles|
+custapp|
+rttiutils|
+maskutils|

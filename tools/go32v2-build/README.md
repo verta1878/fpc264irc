@@ -78,3 +78,10 @@ Now the real unit's full interface (`TSynchroObject`, `TCriticalSection` + `TryE
 changed, so the kit rebuilt `lclrescache` and the LCL units that use it: 62 files in `bin/lazarus/units/i386-go32v2`
 (the same 60 in the copy `bin/units/i386-go32v2/lcl`); every other file the same. test/threads/syncdos.pas ALL OK in
 DOSBox. Note: an LCL program using `Forms`/`Controls` stops the compiler with EListError (265) - pre-existing, open.
+
+## fcl-base (2026-11-21, BUG-051 Part B)
+`units-i386.txt` + 19 fcl-base units (`libtar` with DOS uses: no unix units), `opts-i386.txt` `-CX` for them, `avl_tree`
+`-CX -S2h` (same interface checksum as the Lazarus lazutils copy). Kit run: every existing file the same, + 45 files.
+test/fcl-base/fclb.pas ALL OK in DOSBox. Correction: the EListError (265) noted under BUG-051 is the Free Vision / LCL
+`Dialogs`/`Menus` name clash with the main folder first on the unit path; with the Lazarus folders first an LCL program
+using Forms links.

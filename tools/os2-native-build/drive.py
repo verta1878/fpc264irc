@@ -47,6 +47,8 @@ while todo:
         opts = BASE
         if n == 'graph':  # same as tools/graph-304-build: no -O2, graph's own inc dir
             opts = [o for o in BASE if o != '-O2'] + ['-Fi' + S + '/packages/graph/src/inc']
+        if n in ('gettext', 'avl_tree'):  # 2026-11-21 (BUG-051 Part B): -S2h like the Lazarus lazutils copies (same checksums)
+            opts = BASE + ['-S2h']
         r = subprocess.run([R + '/bin/ppc386'] + opts + ['-Fi' + d, '-Fi' + d + '/os2', '-Fi' + d + '/inc', '-Fi' + d + '/../inc',
                             os.path.basename(f)], cwd=d, capture_output=True, text=True)
         open(f'{LOG}/{n}.log', 'w').write(r.stdout + r.stderr)

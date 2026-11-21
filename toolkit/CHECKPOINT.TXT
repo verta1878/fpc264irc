@@ -68,3 +68,8 @@ CHECKPOINT.TXT - fpc264irc - append-only log (newest at the bottom; never edit o
             Kit runs byte-identical except new files (+ go32v2 Lazarus units using syncobjs). Part B = rest of fcl-base.
             Sandbox note: /home/claude/work had leftover src/rtl/units + fpcmade.go32v2 + a modified fileutil.pas from an
             earlier in-place kit run - cleaned (git checkout); kits must never run in the mirror.
+2026-11-21  BUG-051 Part B: 30 fcl-base units for x86_64/i386-freebsd, 26 os2, 25 i386-linux, 19 go32v2; option sets chosen so
+            each has the interface checksum of the Lazarus copy (plain = lcl/ copies, -S2h = lazutils copies). Found: Part A's
+            i386-freebsd syncobjs (package options) broke Graphics with the main folder first - rebuilt. The go32v2 EListError
+            was the FV/LCL Dialogs/Menus clash (main folder first), not a bug. i8086 skipped: classes too big in model folders,
+            shipped uriparser hangs (pre-existing). Next: docs gap audit.

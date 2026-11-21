@@ -83,3 +83,12 @@ them together (one compile, all four kept).
 `units-extra-i386.txt` + `syncobjs fptimer` (upstream builds both for FreeBSD). Kit runs: every existing file the same
 (i386 191, x86_64 74, Lazarus 324); new x86_64 5 units, i386 2 units (`.ppu` + `.a`). test/threads/thr2.pas and tmr.pas
 compile for both CPUs (not linked/run: no FreeBSD libc / machine here).
+
+## fcl-base (2026-11-21, BUG-051 Part B)
+`units-extra-<cpu>.txt` + the 30 fcl-base units upstream builds for FreeBSD. `opts-i386.txt` (new, read by `drive.py`):
+`syncobjs inifiles custapp rttiutils maskutils` without package options - the Lazarus set's `lcl/` copies were built that
+way, and the main folder's must have the same interface checksums (else an LCL unit is recompiled - and fails - when the
+main folder comes first on the unit path); the rest keep the package options (`-S2h`, like the lazutils copies). Kit
+runs: x86_64 + 30 units, i386 + 30 units and `syncobjs.ppu` rebuilt (Part A's had the package options); every other file
+of both folders and the Lazarus set the same. test/fcl-base/fclb.pas compiles for both. Use the Lazarus folders first on
+the unit path (the main folder's Free Vision `Dialogs`/`Menus` would hide the LCL ones).

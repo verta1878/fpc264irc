@@ -80,3 +80,9 @@ real Windows 98 it runs `system`'s own TryEnterCriticalSection (knob `SUPPORT_WI
 - `tmr.pas`: `fptimer` (TFPTimer, 50 ms) - 11 ticks in 600 ms on i386-linux; compiles for FreeBSD.
 - `syncdos.pas`: DOS `syncobjs` (go32v2, i8086-msdos): critical section, auto/manual-reset events, timeouts. ALL OK in
   DOSBox (go32v2 with CWSDPMI; i8086 default, small, medium, large, huge).
+
+## fcl-base/fclb.pas — fcl-base units added in BUG-051 Part B (2026-11-21)
+
+contnrs `TFPHashList`, base64, inifiles `TMemIniFile`, fpexprpars `1+2*3`, avl_tree, uriparser, nullstream, maskutils, and
+custapp/wformat/inicol/pooledmm/streamio/cachecls/iostream/streamex/ascii85/idea/fptemplate in `uses`. ALL OK on
+i386-linux and go32v2 (DOSBox, CWSDPMI); compiles for i386/x86_64-freebsd; links for i386-os2.

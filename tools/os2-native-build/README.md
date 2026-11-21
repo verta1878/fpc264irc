@@ -98,3 +98,9 @@ a new interface checksum because they are built against today's `sysutils` / `do
 full run records the checkout's dates in every `.ppu`; the delivered `syncobjs` was built alone against the shipped
 folder from a copy dated 2025-01-01 (UTC), with the kit's flags (`-Tos2 -Pi386 -s -O2 -Ur -n`, assembled with
 `bin/tools/i386-os2/as`, packed with `pack-units.sh`). test/threads/thr2.pas links (LX); not run (no OS/2 machine).
+
+## fcl-base (2026-11-21, BUG-051 Part B)
+`fclbase.sh` builds the 26 fcl-base units the folder did not have against the shipped folder (see its header: each unit
+alone from a 2025-01-01 copy, kit flags, `-S2h` for gettext/avl_tree like the Lazarus lazutils copies, archive member dates
+fixed - two runs byte-identical). `unitlist.txt` lists them and `drive.py` gives gettext/avl_tree `-S2h`, so a full
+`build.sh` run gives the same interface checksums. test/fcl-base/fclb.pas links (LX); not run (no OS/2 machine).

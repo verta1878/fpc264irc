@@ -239,6 +239,11 @@ i8086-msdos: no `syncobjs`. The thread code worked wherever the units existed (L
 `tools/os2-native-build/unitlist.txt`, `tools/i8086-graph-build/build-rtl.sh`); the DOS `syncobjs.pp` now has the full
 interface of the real unit with single-threaded behaviour (critical section counts; an event is a flag: set -> wrSignaled,
 not set -> wrTimeout after the wait, INFINITE -> wrError instead of hanging).
+**Part B (2026-11-21):** the rest of fcl-base (30 units) added to x86_64/i386-freebsd, i386-os2, i386-linux, go32v2 with the
+same interface checksums as the Lazarus sets' own copies; i386-freebsd `syncobjs` rebuilt (Part A's had the package options,
+a different checksum from Lazarus `lcl/syncobjs`). The go32v2 "EListError (265)" note was the Free Vision / LCL name clash
+with the main folder first on the path, not a bug of its own. **Open (i8086, pre-existing):** model folders - programs using
+`classes` do not link (CLASSES_TEXT > 64K); default folder - a program using the shipped `uriparser` hangs in DOSBox.
 **Verified:** only new files (go32v2: syncobjs + the Lazarus units that use it); thr2/tmr compile for FreeBSD, link for
 OS/2, run on Linux; syncdos ALL OK in DOSBox (go32v2, i8086 5 models). **Open:** run on real FreeBSD and OS/2.
 

@@ -193,6 +193,38 @@ source          patches/os2-cross/binutils/ (binutils-2.30-emx.patch, build.sh, 
 result          same program images and the same LX import fixups as before (360 / 1055 in the two tests); not yet run on OS/2
 ```
 
+## BUG-051 Part B: the rest of fcl-base on FreeBSD, OS/2, i386-linux, go32v2 (2026-11-21)
+- Upstream builds 30 fcl-base units for every OS (`src/packages/fcl-base/Makefile.fpc`); these folders lacked them:
+  x86_64-freebsd 30, i386-freebsd 30, i386-os2 26, i386-linux 25, i386-go32v2 19 (contnrs, inifiles, rtfpars, idea,
+  base64, gettext, iostream, cachecls, avl_tree, uriparser, eventlog, custapp, wformat, whtml, wtex, rttiutils, bufstream,
+  nullstream, streamex, blowfish, streamio, inicol, pooledmm, libtar, streamcoll, maskutils, fpexprpars, ascii85,
+  fptemplate, fpmimetypes). All built and added (`.ppu` + `.a`, `.rst`): 301 new files, nothing else changes - except
+  i386-freebsd `syncobjs.ppu` (below).
+- **Same checksums as the Lazarus copies.** The Lazarus sets hold their own copies of some of these units (lcl/:
+  syncobjs, inifiles, custapp, rttiutils, maskutils - built without options; lazutils/: contnrs, gettext, avl_tree,
+  uriparser - built with `-S2h`). Each new main-folder unit is built so its interface checksum equals the copy's
+  (`tools/freebsd-build/opts-i386.txt` + `drive.py` reads it; `tools/linux-build/opts-i386.txt` avl_tree `-S2h`;
+  `tools/go32v2-build/opts-i386.txt` avl_tree `-CX -S2h`; OS/2 gettext/avl_tree `-S2h`). Otherwise a Lazarus unit that
+  recorded the copy is recompiled - and fails - when the main folder comes first on the unit path.
+- **Part A correction:** the i386-freebsd `syncobjs` of d4551627 was built with the package options and had a different
+  interface checksum from the Lazarus `lcl/syncobjs` copy, so `Graphics` was recompiled (and failed) with the main folder
+  first. Rebuilt without options: same checksum as the copy (only `syncobjs.ppu` changes).
+- OS/2: `tools/os2-native-build/fclbase.sh` builds the 26 against the shipped folder (the kit does not fix source dates;
+  each unit compiled alone from a 2025-01-01 copy, archive dates fixed - two runs byte-identical); `unitlist.txt` and
+  `drive.py` updated to match.
+- Checked: `test/fcl-base/fclb.pas` (contnrs, base64, inifiles TMemIniFile, fpexprpars, avl_tree, uriparser, nullstream,
+  maskutils, + custapp wformat inicol pooledmm streamio cachecls iostream streamex ascii85 idea fptemplate in uses):
+  ALL OK on i386-linux and go32v2 (DOSBox); compiles for both FreeBSD; links for OS/2 (LX). Lazarus programs compile
+  with the Lazarus folders first on the path (i386-freebsd, -linux, -os2, go32v2). ppu_consistency: nothing new.
+- **Correction of the BUG-051 note "go32v2 LCL program using Forms/Controls crashes the compiler (EListError 265)":** that
+  happens only with the main folder first on the unit path - the main folder's Free Vision `Dialogs`/`Menus` hide the LCL
+  ones (the compiler crashes instead of reporting it). With the Lazarus folders first the program builds (go32v2 and
+  i386-freebsd, which also has Free Vision). Not a separate bug.
+- **i8086-msdos: not done.** Found (pre-existing, shipped units): in the memory-model folders (`-small` ... `-huge`) no
+  program using `classes` links ("Code segment CLASSES_TEXT too large (exceeds 64k)"); in the default folder a program
+  using the shipped `uriparser` hangs in DOSBox. fcl-base for i8086 waits for those (FPC 3.2.2 compiler with this repo's
+  2.6.4 sources: gettext "Data element too large", bufstream does not compile).
+
 ## BUG-051 Threads on every target: syncobjs / cthreads / fptimer gaps, DOS syncobjs (2026-11-20)
 - **BUG-051** found checking a "thread bug" kiddo asked about: the thread code itself is fine (a threads test -
   `test/threads/thr2.pas`: 4 `TThread`s x 100,000 under `TCriticalSection`, the RTL critical section and

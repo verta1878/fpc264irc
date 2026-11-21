@@ -9,6 +9,9 @@ NEXT JOB: none in the rebuild plan - every unit folder is a kit build (docs/UNIT
   PATH, FreeBSD, OS/2). Win98 import check against real KERNEL32/USER32/OLEAUT32.DLL when verta has them.
   Windows ppcross8086.exe: not built (FPC 3.2.2 compiler; check its source is in the repo first).
 
+DONE 2026-11-21: BUG-051 Part B - fcl-base on x86_64/i386-freebsd, i386-os2, i386-linux, go32v2 (same checksums as the
+                 Lazarus copies); i386-freebsd syncobjs fixed. i8086 not done (classes too big in model folders, uriparser
+                 hangs - pre-existing). NEXT: docs gap audit.
 DONE 2026-11-20: BUG-051 Part A - thread units on all targets (x86_64-freebsd cthreads..., freebsd/os2 syncobjs,
                  fptimer, DOS syncobjs with TEvent); Part B (rest of fcl-base in freebsd/os2/linux/go32v2/i8086) NEXT,
                  then the docs gap audit. Open: go32v2 LCL Forms/Controls EListError (265).

@@ -1,0 +1,7 @@
+fpc264irc bug51b Fri 11/20/2026 19:16:15.53 
+CHECK zip MD5 OK fc34ec6baa1c32141f2608c9ed0a8fba 
+UNZIPPED fpc264irc-bug51b-2026-11-21.zip 
+REPLACED CHECKSUMS.md5 CHECKSUMS.sha256 CHECKSUMS.txt (3) 
+CHECK CHECKSUMS.md5 MD5 OK 8691ffafb8817f1ef3dfce170a6a7216 
+DELETED tools\smartpack\bug51b.ok marker 
+DONE 

@@ -19,3 +19,4 @@ time|-O2
 timeddlg|-O2
 validate|-O2
 buildfv|-S2
+avl_tree|-S2h

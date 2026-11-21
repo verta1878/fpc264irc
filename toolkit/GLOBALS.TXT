@@ -78,3 +78,7 @@ G-021  SYMPTOM  an i386-win32 program (ppc386.exe too) does not start on Windows
 G-022  SYMPTOM  x86_64-freebsd: "Can't find unit cthreads"; FreeBSD/OS/2: "Can't find unit syncobjs"; go32v2: TEvent not found
        CAUSE    the kits rebuild only what each folder shipped with; go32v2 syncobjs.pp was a TCriticalSection-only stub
        FIX      2026-11-20 BUG-051: units added to the kit lists; DOS syncobjs.pp with the real unit's interface
+G-023  SYMPTOM  "Recompiling <LCL unit>, checksum changed for <FCL unit>" then "Can't find unit ..." (or the compiler crashes
+                with EListError 265) building an LCL program
+       CAUSE    the main unit folder is first on the path: its FCL unit (or FV Dialogs/Menus) differs from the Lazarus copy
+       FIX      put the Lazarus folders first; new main-folder FCL units are built with the Lazarus copy's checksum (BUG-051 B)

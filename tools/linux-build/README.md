@@ -117,3 +117,8 @@ changed since (`idehelpintf`, `imagelistcache`). New: 24 `.lfm` / `.rst` files t
 ## fptimer (2026-11-20, BUG-051)
 `units-i386.txt` + `fptimer` (x86_64-linux had it, i386-linux not). Kit run: the 275 existing units and the Lazarus set
 the same; new `fptimer.ppu` + `libpfptimer.a`. test/threads/tmr.pas runs (11 ticks in 600 ms); thr2.pas ALL OK.
+
+## fcl-base (2026-11-21, BUG-051 Part B)
+`units-i386.txt` + 25 fcl-base units x86_64-linux had and i386-linux not; `opts-i386.txt` + `avl_tree|-S2h` (same interface
+checksum as the Lazarus lazutils copy; the others match their lcl/ copies without options). Kit run: the existing 276 units
+and the Lazarus set the same, + 55 files. test/fcl-base/fclb.pas ALL OK.

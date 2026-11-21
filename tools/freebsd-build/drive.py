@@ -42,6 +42,16 @@ def pkgopts(src):
         o += re.findall(r"P\.Options\.Add\('(-[^']+)'\)", open(fm, errors='replace').read())
     return [x for x in o if x.startswith('-') and '$' not in x]
 EXTRA = {'graph': ['-Sg'], 'ggigraph': ['-Sg'], 'sdlgraph': ['-Sg']}
+# opts-<cpu>.txt (2026-11-21, BUG-051 Part B): unit|options - used instead of the package options. The FCL units the
+# Lazarus set has its own copies of (syncobjs, contnrs, inifiles, ...) were built there without package options; the
+# main folder's units must have the same interface checksums, or a Lazarus unit that recorded the copy is recompiled
+# (and fails) when the main folder comes first on the unit path. An empty options field = no package options.
+OPTS = {}
+_op = os.path.join(os.path.dirname(LIST), 'opts-%s.txt' % CPU)
+if os.path.exists(_op):
+    for l in open(_op):
+        if l.strip() and not l.startswith('#'):
+            n, o = l.rstrip('\n').split('|', 1); OPTS[n] = o.split()
 have = {}
 for p in glob.glob(RU + '/*.ppu'):
     n = os.path.basename(p)[:-4]
@@ -65,7 +75,7 @@ if _cy:   # the cycle is "ready" when its members' other uses are there
 res = {n: 'OK (RTL Makefile)' for n in have}
 def build(u):
     n, src, uses = u
-    extra = ['-dNOMOUSE'] if src.startswith(RTL + '/') else pkgopts(src)
+    extra = ['-dNOMOUSE'] if src.startswith(RTL + '/') else (OPTS[n] if n in OPTS else pkgopts(src))
     extra += EXTRA.get(n, [])
     wd = os.path.dirname(OUT) + '/w/' + n; o = wd + '/o'
     shutil.rmtree(wd, ignore_errors=True); os.makedirs(o); shutil.copy2(src, wd)
